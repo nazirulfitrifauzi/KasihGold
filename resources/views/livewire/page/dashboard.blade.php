@@ -36,12 +36,12 @@
             </div>
         </div>
         <div class="col-span-12 mt-5">
-            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
+            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
                 <div class="bg-white p-4" id="chartpie"></div>
 
                 <div class="bg-white p-4">
                     <h1 class="font-bold text-base">Weekly Top Seller</h1>
-                    <div class="mt-4 flex justify-center">
+                    <div class="mt-4">
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="PRODUCT NAME" sort="" livewire=""/>
