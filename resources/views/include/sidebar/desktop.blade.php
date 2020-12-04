@@ -20,11 +20,16 @@
                 <x-sidebar.nav-item title="Reporting" route="" name="3">
                     <x-heroicon-o-clipboard-list class="w-5 h-5"/>
                 </x-sidebar.nav-item>
-
-                <x-sidebar.nav-item title="Incident Reporting" route="" name="4">
-                    <x-heroicon-o-exclamation-circle class="w-5 h-5"/>
-                </x-sidebar.nav-item>
+                @if (auth()->user()->role == 2)
+                    <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}" name="4">
+                        <x-heroicon-o-exclamation-circle class="w-5 h-5"/>
+                    </x-sidebar.nav-item>
+                @endif
                 @if (auth()->user()->role == 1)
+                    <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}" name="4">
+                        <x-heroicon-o-exclamation-circle class="w-5 h-5"/>
+                    </x-sidebar.nav-item>
+                
                     <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" name="5">
                         <x-heroicon-o-shield-check class="w-5 h-5"/>
                     </x-sidebar.nav-item>

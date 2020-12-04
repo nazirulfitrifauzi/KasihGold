@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StockManagementController;
 use App\Http\Controllers\ScreeningController;
+use App\Http\Controllers\IncidentReportingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +51,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('home', [DashboardController::class, 'index'])->name('home');
     Route::get('stock', [StockManagementController::class, 'index'])->name('stock');
+    Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
 });
 
 Route::middleware('auth.admin')->group(function () {
     Route::get('admin/screening', [ScreeningController::class, 'index'])->name('admin.screening');
+    Route::get('admin/incident-reporting', [IncidentReportingController::class, 'admin'])->name('admin.incidentReporting');
 });
