@@ -11,7 +11,7 @@
                 <x-slot name="content"> 
                     <div class="border border-gray-200 rounded-md p-5">
                         <div class="font-medium flex items-center border-b border-gray-200 pb-5">
-                            <x-heroicon-o-chevron-down class="w-5 h-5 mr-2  text-yellow-400 "/> Incident Reporting Form 
+                            <x-heroicon-o-chevron-down class="w-5 h-5 mr-2  text-gray-600 "/> Incident Reporting Form 
                         </div>
                         <div class="mt-5">
                             <x-form.dropdown label="" value="" default="">
@@ -30,7 +30,7 @@
                             <textarea wire:model="" name="comment" id="" data-feature="all" rows="8" class="appearance-none block w-full h-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"  placeholder="Your Comment"></textarea>
                         </div>
                         <div class="flex justify-center p-2">
-                            <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Submit</button>
+                            <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-400 rounded cursor-pointer focus:outline-none">Submit</button>
                         </div>
                     </div>
                 </x-slot>

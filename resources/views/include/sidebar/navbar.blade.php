@@ -32,11 +32,21 @@
                 <li class="flex">
                     <a
                     class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                    href="{{route('profile')}}"
+                    >
+                    <x-heroicon-o-user class="w-5 h-5 mr-2"/>
+                    <span>Profile</span>
+                    </a>
+                </li>
+                <li class="flex">
+                    <a
+                    class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                     href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     >
                     <x-heroicon-o-login class="w-5 h-5 mr-2"/>
                     <span>Log out</span>
                     </a>
+                    
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
