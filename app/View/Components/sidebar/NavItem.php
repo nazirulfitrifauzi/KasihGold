@@ -8,13 +8,13 @@ class NavItem extends Component
 {
     public $title;
     public $route;
-    public $name;
+    public $uri;
 
-    public function __construct($title,$route,$name)
+    public function __construct($title,$route,$uri)
     {
         $this->title = $title;
         $this->route = $route;
-        $this->name = $name;
+        $this->uri = $uri;
     }
 
     
