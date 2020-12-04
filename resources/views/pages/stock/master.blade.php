@@ -25,7 +25,7 @@
                 <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
                     <div class="relative flex w-56 text-gray-700">
                         <span class="mt-2 mr-2">Search</span>
-                        <x-form.input label="" value="" livewire=""/>
+                        <x-form.input label="" value=""/>
                     </div>
                 </div>
             </div>
@@ -33,9 +33,9 @@
             <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <x-table.table>
                         <x-slot name="thead">
-                            <x-table.table-header class="text-left" value="Date" sort="" livewire=""/>
-                            <x-table.table-header class="text-left" value="Stock" sort="" livewire=""/>
-                            <x-table.table-header class="text-left" value="Status" sort="" livewire=""/>
+                            <x-table.table-header class="text-left" value="Date" sort=""/>
+                            <x-table.table-header class="text-left" value="Stock" sort=""/>
+                            <x-table.table-header class="text-left" value="Status" sort=""/>
                         </x-slot>
                         <x-slot name="tbody">
                             @foreach ($masters as $master)

@@ -18,9 +18,9 @@
                                 <x-form.dropdown label="Type" value="" default="yes">
                                     <option value=""></option>
                                 </x-form.dropdown>
-                                <x-form.input label="Name" value="" livewire=""/>
-                                <x-form.input label="Brand" value="" livewire=""/>
-                                <x-form.input label="Purity" value="" livewire=""/>
+                                <x-form.input label="Name" value="" />
+                                <x-form.input label="Brand" value="" />
+                                <x-form.input label="Purity" value=""/>
                             </div>
                             <div class="flex justify-end">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none" @click="modalOpen1 = false" >

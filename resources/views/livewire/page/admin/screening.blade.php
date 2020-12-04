@@ -10,7 +10,7 @@
         <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
             <div class="flex w-56 text-gray-700">
                 <span class="mt-2 mr-2">Search</span>
-                <x-form.input label="" value="" livewire=""/>
+                <x-form.input label="" value=""/>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
         <x-general.modal modalActive="OpenScreening" title="Screening" modalSize="4xl">
             <div class="p-4">
                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                    <x-form.input label="Name" value="Test" livewire="" disabled/>
+                    <x-form.input label="Name" value="Test"  disabled/>
                 </div>
                 <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                     <table class="table-auto border border-gray-300 w-full ">

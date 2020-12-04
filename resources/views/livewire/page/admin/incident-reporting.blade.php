@@ -22,15 +22,15 @@
         </div>
         <div class="flex items-center">
             <span class="mr-2 text-base text-gray-500 -mt-4">Search : </span>
-            <x-form.input label="" value="" livewire=""/>
+            <x-form.input label="" value=""/>
         </div>
     </div>
     <x-table.table>
         <x-slot name="thead">
-            <x-table.table-header class="text-left" value="NAME" sort="" livewire=""/>
-            <x-table.table-header class="text-left" value="TITLE" sort="" livewire=""/>
-            <x-table.table-header class="text-left" value="DATE" sort="" livewire=""/>
-            <x-table.table-header class="text-left" value="ACTIONS" sort="" livewire=""/>
+            <x-table.table-header class="text-left" value="NAME" sort=""/>
+            <x-table.table-header class="text-left" value="TITLE" sort=""/>
+            <x-table.table-header class="text-left" value="DATE" sort=""/>
+            <x-table.table-header class="text-left" value="ACTIONS" sort=""/>
         </x-slot>
         <x-slot name="tbody">
             <tr>
@@ -68,7 +68,7 @@
                                             </x-form.dropdown>
                                         </div>
                                         <div class="mt-5">
-                                            <x-form.input wire:model="" name="title" id="" value="" label="" type="text" placeholder="Title" livewire=""/>
+                                            <x-form.input wire:model="" name="title" id="" value="" label="" type="text" placeholder="Title"/>
                                         </div>
                                         <div class="mt-5">
                                             <textarea wire:model="" name="comment" id="" data-feature="all" rows="8" class="appearance-none block w-full h-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"  placeholder="Your Comment"></textarea>

@@ -15,7 +15,7 @@
                     <x-slot name="content">
                         <div class="p-4 mt-4 leading-4">
                             <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                <x-form.input label="Name" value="" livewire=""/>
+                                <x-form.input label="Name" value=""/>
                             </div>
                             <div class="flex justify-end">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none" @click="modalOpen2 = false" >
