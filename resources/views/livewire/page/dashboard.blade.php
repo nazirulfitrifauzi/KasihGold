@@ -32,22 +32,22 @@
         </div>
         <div class="col-span-12 mt-5">
             <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                <div class="bg-white p-4" id="chartline"></div>
+                <div class="bg-white shadow-lg p-4" id="chartline"></div>
             </div>
         </div>
         <div class="col-span-12 mt-5">
             <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                <div class="bg-white p-4" id="chartpie"></div>
+                <div class="bg-white p-4 shadow-lg" id="chartpie"></div>
 
-                <div class="bg-white p-4">
+                <div class="bg-white p-4 shadow-lg">
                     <h1 class="font-bold text-base">Weekly Top Seller</h1>
                     <div class="mt-4">
                         <x-table.table>
                             <x-slot name="thead">
-                                <x-table.table-header class="text-left" value="PRODUCT NAME" sort="" livewire=""/>
-                                <x-table.table-header class="text-left" value="STOCK" sort="" livewire=""/>
-                                <x-table.table-header class="text-left" value="STATUS" sort="" livewire=""/>
-                                <x-table.table-header class="text-left" value="ACTIONS" sort="" livewire=""/>
+                                <x-table.table-header class="text-left" value="PRODUCT NAME" sort=""/>
+                                <x-table.table-header class="text-left" value="STOCK" sort=""/>
+                                <x-table.table-header class="text-left" value="STATUS" sort=""/>
+                                <x-table.table-header class="text-left" value="ACTIONS" sort=""/>
                             </x-slot>
                             <x-slot name="tbody">
                                 <tr>

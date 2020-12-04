@@ -9,14 +9,12 @@ class Input extends Component
     public $label;
     public $value;
     public $type;
-    public $livewire = '';
 
-    public function __construct($label, $value, $type = "text", $livewire)
+    public function __construct($label, $value, $type = "text")
     {
         $this->label    = $label;
         $this->value    = $value;
         $this->type     = $type;
-        $this->livewire = $livewire;
     }
     public function render()
     {
