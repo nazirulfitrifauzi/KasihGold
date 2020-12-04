@@ -1,9 +1,9 @@
 <!-- Desktop sidebar -->
-<aside class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0">
+<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white border-r border-yellow-300 md:block">
     <div class="text-white">
 
         <div class="flex p-2 bg-yellow-400">
-            <div class="bg-white mx-auto text-indigo-600 p-2">
+            <div class="p-2 mx-auto bg-white rounded-lg">
                 <x-logo class="w-auto h-8 " />
             </div>
         </div>
@@ -31,10 +31,10 @@
             </ul>
         </div>
 
-        
+
         <ul class="">
             <x-sidebar.dropdown-nav-item active="open" title="Dropdown Menu" >
-                <li class="px-2 py-1 transition-colors duration-150 text-white">
+                <li class="px-2 py-1 text-white transition-colors duration-150">
                     <div class="flex">
                         <x-heroicon-o-cube class="w-5 h-5"/>
                         <a class="w-full ml-2" href="#">Child Menu 1</a>
@@ -42,6 +42,6 @@
                 </li>
             </x-sidebar.dropdown-nav-item>
         </ul>
-        
+
     </div>
 </aside>

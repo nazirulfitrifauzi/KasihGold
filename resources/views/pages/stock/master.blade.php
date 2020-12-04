@@ -3,14 +3,14 @@
         Master List
     </h2>
     <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0">
-        <a href="#" class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white focus:outline-none">Stock In / Out</a>
+        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Stock In / Out</a>
     </div>
     <!-- BEGIN: Item List -->
     <div class="col-span-12 intro-y lg:col-span-8">
         <div class="grid grid-cols-12 gap-6">
             <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-no-wrap">
                 <div class="relative dropdown" x-data="{open: false}">
-                    <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white focus:outline-none" @click="open = !open">Actions</button>
+                    <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" @click="open = !open">Actions</button>
                     <div class="absolute z-10 w-40 rounded-lg shadow-lg " x-show="open" style="display: none; top: -17px; left: 90px;">
                         <div class="py-4">
                             <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md hover:bg-gray-200">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
-                    <div class="relative w-56  flex text-gray-700">
+                    <div class="relative flex w-56 text-gray-700">
                         <span class="mt-2 mr-2">Search</span>
                         <x-form.input label="" value="" livewire=""/>
                     </div>
@@ -38,32 +38,25 @@
                             <x-table.table-header class="text-left" value="Status" sort="" livewire=""/>
                         </x-slot>
                         <x-slot name="tbody">
-                            <tr>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    5th November 2020
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    100
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    <div class="flex text-green-500">
-                                        <x-heroicon-o-logout class="w-5 h-5 mr-1"/> in
-                                    </div>
-                                </x-table.table-body>
-                            </tr>
-                            <tr>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    5th November 2020
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    10
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                    <div class="flex text-red-500">
-                                        <x-heroicon-o-login class="w-5 h-5 mr-1"/> out
-                                    </div>
-                                </x-table.table-body>
-                            </tr>
+                            @foreach ($masters as $master)
+                                <tr>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                        {{ $master->created_at->format('jS F Y') }}
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                        {{ number_format($master->unit,0) }}
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                        <div class="flex {{ ($master->code == 1) ? 'text-green-500' : 'text-red-500' }}">
+                                            @if ($master->code == 1)
+                                                <x-heroicon-o-login class="w-4 h-4 mr-2"/> In
+                                            @else
+                                                <x-heroicon-o-logout class="w-4 h-4 mr-2"/> Out
+                                            @endif
+                                        </div>
+                                    </x-table.table-body>
+                                </tr>
+                            @endforeach
                         </x-slot>
                 </x-table.table>
             </div>
@@ -80,9 +73,9 @@
     <div class="col-span-12 lg:col-span-4">
         <div class="pr-1 intro-y">
             <div class="p-2 box">
-                <div class="flex justify-center bg-white p-4 rounded-lg">
-                    <a href="#" class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white focus:outline-none mr-2">Serial Number Available</a>
-                    <a href="#" class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white focus:outline-none mr-2">Total</a>
+                <div class="flex justify-between p-4 bg-white rounded-lg">
+                    <a href="#" class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Serial Number Available</a>
+                    <a href="#" class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Total</a>
                 </div>
             </div>
         </div>
@@ -110,9 +103,9 @@
                 </a>
             </div>
             <div class="flex p-5 mt-5 bg-white rounded-lg">
-                <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white focus:outline-none mr-2">Total</button>
+                <button class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Total</button>
                 <div class="relative w-full text-gray-700">
-                    <p type="text" class="w-full  py-1 px-4 text-right bg-gray-200 font-semibold">253</p>
+                    <p type="text" class="w-full px-4 py-1 font-semibold text-right bg-gray-200">253</p>
                 </div>
             </div>
         </div>
