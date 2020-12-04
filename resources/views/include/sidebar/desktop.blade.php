@@ -24,10 +24,11 @@
                 <x-sidebar.nav-item title="Incident Reporting" route="" name="4">
                     <x-heroicon-o-exclamation-circle class="w-5 h-5"/>
                 </x-sidebar.nav-item>
-
-                <x-sidebar.nav-item title="Screening" route="" name="5">
-                    <x-heroicon-o-shield-check class="w-5 h-5"/>
-                </x-sidebar.nav-item>
+                @if (auth()->user()->role == 1)
+                    <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" name="5">
+                        <x-heroicon-o-shield-check class="w-5 h-5"/>
+                    </x-sidebar.nav-item>
+                @endif
             </ul>
         </div>
 
