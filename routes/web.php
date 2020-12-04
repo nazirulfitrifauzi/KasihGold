@@ -24,8 +24,6 @@ use App\Http\Controllers\StockManagementController;
 |
 */
 
-
-
 Route::middleware('guest')->group(function () {
     Route::view('/', 'welcome')->name('home');
     Route::view('/mengenai-kami', 'about')->name('aboutUs');
@@ -48,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)->name('logout');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('home', [DashboardController::class, 'index'])->name('home');
     Route::get('stock', [StockManagementController::class, 'index'])->name('stock');
 });
