@@ -18,10 +18,10 @@
                                 <x-form.input  label="Name" value="addCategoryName" wire:model="addCategoryName"/>
                             </div>
                             <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-400 rounded focus:outline-none" @click="modalOpen2 = false" wire:click="clearErrorBag">
+                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen2 = false" wire:click="clearErrorBag">
                                     Cancel
                                 </button>
-                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-400 rounded focus:outline-none">
+                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none">
                                     Submit
                                 </button>
                             </div>
@@ -32,24 +32,45 @@
             {{-- End Modal Add Category --}}
         </div>
     </div>
-
-    <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
-        @foreach ($categories as $category)
-            <x-general.card-tab
-                class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block"
-                countTab="{{ $category->id }}"
-                wire:click="$emit('categorySelected', {{ $category->id }})"
-            >
-                <div class="p-4">
-                    <div class="font-medium">
-                        {{ ucfirst(strtolower($category->name)) }}
-                    </div>
-
-                    <div class="">
-                        {{ $category->item_type()->count() }} Items
-                    </div>
+    <div x-data="{ active: 0 }">
+        <div class="grid grid-cols-12 gap-6">
+            @foreach ($categories as $category)
+                <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
+                    <x-general.card-tab countTab="{{ $category->id }}" wire:click="$emit('categorySelected', {{ $category->id }})">
+                        <div x-data="{ deleteOpen : false }">
+                            <div class="p-4">
+                                <div class="font-medium flex justify-between">
+                                    {{ ucfirst(strtolower($category->name)) }}
+                                    <div class="bg-red-600 py-2 px-2 rounded-full hover:bg-red-700 flex items-center" x-on:click="deleteOpen = true">
+                                        <x-heroicon-o-trash class="w-4 h-4 text-white"/>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    {{ $category->item_type()->count() }} Items
+                                </div>
+                            </div>
+                            {{-- Start modal delete --}}
+                                <x-general.modal modalActive="deleteOpen" title="Delete Confirmation" modalSize="sm" closeBtn="no">
+                                    <div class="">
+                                        <div class="font font-semibold text-center py-4 text-black">
+                                            Are You Sure Want To Delete
+                                        </div>
+                                        <div class="flex justify-center mt-3">
+                                            <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen = false">
+                                                Cancel
+                                            </button>
+                                            <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none">
+                                                yes,Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </x-general.modal>
+                            {{-- End modal delete  --}}
+                        </div>
+                    </x-general.card-tab>
                 </div>
-            </x-general.card-tab>
-        @endforeach
+            @endforeach
+        </div>
     </div>
+    
 </div>

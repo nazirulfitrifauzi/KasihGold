@@ -17,9 +17,10 @@
                     <x-heroicon-o-archive class="w-5 h-5"/>
                 </x-sidebar.nav-item>
 
-                <x-sidebar.nav-item title="Reporting" route="" uri="3">
+                <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5"/>
                 </x-sidebar.nav-item>
+
                 @if (auth()->user()->role == 2)
                     <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}" uri="incident-reporting">
                         <x-heroicon-o-exclamation-circle class="w-5 h-5"/>

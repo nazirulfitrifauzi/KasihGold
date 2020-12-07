@@ -29,10 +29,13 @@
             <div>
                 <div class="">
                     <div class="flex items-center justify-between p-4 font-semibold border-b border-gray-400">
-                        <h3 class="text-lg font-semibold leading-6" id="modal-headline">
+                        <h3 class="text-lg font-semibold leading-6 text-black" id="modal-headline">
                             {{$title}}
                         </h3>
-                        <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-red-400 cursor-pointer"/>
+                        
+                        @if ($closeBtn == "yes")
+                            <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-red-600 cursor-pointer"/>
+                        @endif
                     </div>
 
                     {{$slot}}
