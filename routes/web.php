@@ -15,6 +15,7 @@ use App\Http\Controllers\StockManagementController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\IncidentReportingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,7 @@ Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('stock', [StockManagementController::class, 'index'])->name('stock');
     Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
 });
 
 Route::middleware('auth.admin')->group(function () {

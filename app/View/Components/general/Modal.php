@@ -9,12 +9,14 @@ class Modal extends Component
     public $title;
     public $modalActive;
     public $modalSize;
+    public $closeBtn;
     
-    public function __construct($title,$modalActive,$modalSize)
+    public function __construct($title,$modalActive,$modalSize ,$closeBtn ="yes")
     {
         $this->title = $title;
         $this->modalActive = $modalActive;
         $this->modalSize = $modalSize;
+        $this->closeBtn = $closeBtn;
     }
 
     

@@ -2,8 +2,31 @@
     <h2 class="col-span-6 mr-auto text-lg font-medium ">
         Master List
     </h2>
-    <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0">
-        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Stock In / Out</a>
+    <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen4: false}">
+        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" 
+            @click="modalOpen4 = true">Stock In / Out
+        </a>
+        {{-- Start modal Stock In / Out --}}
+        <x-general.modal modalActive="modalOpen4" title="Stock In / Out" modalSize="lg">
+            <x-form.basic-form action="">
+                <x-slot name="content">
+                    <div class="p-4 mt-4 leading-4">
+                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                            <x-form.input label="Name" value=""/>
+                        </div>
+                        <div class="flex justify-end">
+                            <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen4 = false" >
+                                Cancel
+                            </button>
+                            <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </x-slot>
+            </x-form.basic-form>
+        </x-general.modal>
+        {{-- End Modal Stock In / Out --}}
     </div>
     <!-- BEGIN: Item List -->
     <div class="col-span-12 intro-y lg:col-span-8">
