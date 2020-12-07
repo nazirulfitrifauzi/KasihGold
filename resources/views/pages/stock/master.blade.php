@@ -96,7 +96,7 @@
     <div class="col-span-12 lg:col-span-4">
         <div class="pr-1 intro-y">
             <div class="p-2 box">
-                <div class="flex justify-between p-4 bg-white rounded-lg">
+                <div class="flex justify-between p-4 bg-white rounded-lg shadow">
                     <a href="#" class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Serial Number Available</a>
                     <a href="#" class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Total</a>
                 </div>
@@ -104,31 +104,35 @@
         </div>
         <div class="tab-content">
             <div class="p-2 mt-5 pos__ticket box">
-                <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
-                    <div class="mr-1 truncate pos__ticket__item-name">0089-0095</div>
-                    <div class="ml-auto">105</div>
-                </a>
-                <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
-                    <div class="mr-1 truncate pos__ticket__item-name">0097-0098</div>
-                    <div class="ml-auto">86</div>
-                </a>
-                <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
-                    <div class="mr-1 truncate pos__ticket__item-name">0100</div>
-                    <div class="ml-auto">23</div>
-                </a>
-                <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
-                    <div class="mr-1 truncate pos__ticket__item-name">0074-0075</div>
-                    <div class="ml-auto">36</div>
-                </a>
-                <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
-                    <div class="mr-1 truncate pos__ticket__item-name">0077</div>
-                    <div class="ml-auto">3</div>
-                </a>
+                <div class="shadow">
+                    <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
+                        <div class="mr-1 truncate pos__ticket__item-name">0089-0095</div>
+                        <div class="ml-auto">105</div>
+                    </a>
+                    <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
+                        <div class="mr-1 truncate pos__ticket__item-name">0097-0098</div>
+                        <div class="ml-auto">86</div>
+                    </a>
+                    <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
+                        <div class="mr-1 truncate pos__ticket__item-name">0100</div>
+                        <div class="ml-auto">23</div>
+                    </a>
+                    <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
+                        <div class="mr-1 truncate pos__ticket__item-name">0074-0075</div>
+                        <div class="ml-auto">36</div>
+                    </a>
+                    <a href="javascript:;" class="flex items-center p-3 transition duration-300 ease-in-out bg-white rounded-md cursor-pointer hover:bg-gray-200">
+                        <div class="mr-1 truncate pos__ticket__item-name">0077</div>
+                        <div class="ml-auto">3</div>
+                    </a>
+                </div>
             </div>
-            <div class="flex p-5 mt-5 bg-white rounded-lg">
-                <button class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Total</button>
-                <div class="relative w-full text-gray-700">
-                    <p type="text" class="w-full px-4 py-1 font-semibold text-right bg-gray-200">253</p>
+            <div class="p-2">
+                <div class="flex p-5 mt-5 bg-white rounded-lg shadow">
+                    <button class="flex px-4 py-1 mr-2 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none">Total</button>
+                    <div class="relative w-full text-gray-700">
+                        <p type="text" class="w-full px-4 py-1 font-semibold text-right bg-gray-200">253</p>
+                    </div>
                 </div>
             </div>
         </div>

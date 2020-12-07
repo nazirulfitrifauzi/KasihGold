@@ -125,11 +125,29 @@ class Stock extends Component
             'code'              => sprintf('%09d', $code + 1),
             'name'              => strtoupper($this->addItemName),
             'weight'            => ($this->addItemWeight == '') ? NULL : strtoupper($this->addItemWeight),
-            'unit'              => ($this->addItemUnit == '') ? NULL : strtoupper($this->addItemUnit),
-            'price_per_unit'    => ($this->addItemPrice == '') ? NULL : strtoupper($this->addItemPrice),
+            'unit'              => ($this->addItemUnit == '') ? NULL : $this->addItemUnit,
+            'price_per_unit'    => ($this->addItemPrice == '') ? NULL : $this->addItemPrice,
             'created_by'        => auth()->user()->id,
             'created_at'        => now(),
         ]);
+
+        return redirect()->to('/stock');
+    }
+
+    public function delete($scope, $id)
+    {
+        if($scope == 'category'){
+            $table = 'App\Models\InvCategory';
+        }
+        elseif ($scope == 'type') {
+            $table = 'App\Models\InvItemType';
+        }
+        elseif ($scope == 'item') {
+            $table = 'App\Models\InvItem';
+        }
+
+        $table::whereId($id)->update(['deleted_by' => auth()->user()->id]);
+        $table::whereId($id)->delete();
 
         return redirect()->to('/stock');
     }
