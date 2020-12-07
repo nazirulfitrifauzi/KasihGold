@@ -11,17 +11,17 @@
                     <div class="flex">
                         <x-tab.nav-tab name="0" livewire="">
                             <div class="flex font-semibold">
-                                <x-heroicon-o-home class="w-6 h-6 mr-2"/>Performance
+                                <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Performance
                             </div>
                         </x-tab.nav-tab>
                         <x-tab.nav-tab name="1" livewire="">
                             <div class="flex font-semibold">
-                                <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Insurannce
+                                <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Insurannce
                             </div>
                         </x-tab.nav-tab>
                         <x-tab.nav-tab name="2" livewire="">
                             <div class="flex font-semibold">
-                                <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Regulatory
+                                <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Regulatory
                             </div>
                         </x-tab.nav-tab>
                     </div>
@@ -30,15 +30,15 @@
         <!-- END: Profile Menu -->
         <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
             <x-tab.nav-content name="0">
-                
+                @include('pages.reporting.performance')
             </x-tab.nav-content>
 
             <x-tab.nav-content name="1">
-                
+                @include('pages.reporting.insurance')
             </x-tab.nav-content>
 
             <x-tab.nav-content name="2">
-                
+                @include('pages.reporting.regulatory')
             </x-tab.nav-content>
         </div>
 </div>
