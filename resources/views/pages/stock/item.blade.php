@@ -11,16 +11,24 @@
 
             {{-- Start modal Add Items --}}
             <x-general.modal modalActive="modalOpen1" title="Add New Items" modalSize="2xl">
-                <x-form.basic-form action="">
+                <x-form.basic-form wire:submit.prevent="addItem">
                     <x-slot name="content">
                         <div class="p-4 mt-4 leading-4">
                             <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                <x-form.dropdown label="Type" value="" default="yes">
-                                    <option value=""></option>
+                                <x-form.dropdown label="Type" value="addItemTypeId" default="yes" wire:model="addItemTypeId">
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type->brand : '' }}</option>
+                                    @endforeach
                                 </x-form.dropdown>
-                                <x-form.input label="Name" value="" />
-                                <x-form.input label="Brand" value="" />
-                                <x-form.input label="Purity" value=""/>
+                                <x-form.dropdown label="Supplier" value="addItemSupplier" default="yes" wire:model="addItemSupplier">
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @endforeach
+                                </x-form.dropdown>
+                                <x-form.input label="Name" value="addItemName" wire:model="addItemName" />
+                                <x-form.input label="Weight" value="addItemWeight" wire:model="addItemWeight" />
+                                <x-form.input label="Unit" value="addItemUnit" wire:model="addItemUnit"/>
+                                <x-form.input label="Price Per Unit" value="addItemPrice" wire:model="addItemPrice"/>
                             </div>
                             <div class="flex justify-end">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none" @click="modalOpen1 = false" >

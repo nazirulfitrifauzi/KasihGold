@@ -6,6 +6,7 @@ use App\Models\InvCategory;
 use App\Models\InvItem;
 use App\Models\InvItemType;
 use App\Models\InvMovement;
+use App\Models\InvSupplier;
 use Livewire\Component;
 
 class Stock extends Component
@@ -17,12 +18,22 @@ class Stock extends Component
     public $typeId;
     public $itemId;
 
-    // modal add property
+    // modal add category
     public $addCategoryName;
+
+    // modal add type
     public $addTypeCategoryId;
     public $addTypeName;
     public $addTypeBrand;
     public $addTypePurity;
+
+    // modal add item
+    public $addItemTypeId;
+    public $addItemSupplier;
+    public $addItemName;
+    public $addItemWeight;
+    public $addItemUnit;
+    public $addItemPrice;
 
     protected $listeners = [
         'categorySelected',
@@ -98,6 +109,31 @@ class Stock extends Component
         return redirect()->to('/stock');
     }
 
+    public function addItem()
+    {
+        $data = $this->validate([
+            'addItemTypeId' => 'required',
+            'addItemSupplier' => 'required',
+            'addItemName'       => 'required|min:3',
+        ]);
+
+        $code = InvItem::orderBy('id', 'desc')->take(1)->value('id');
+
+        InvItem::create([
+            'item_type_id'      => $this->addItemTypeId,
+            'supplier_id'       => $this->addItemSupplier,
+            'code'              => sprintf('%09d', $code + 1),
+            'name'              => strtoupper($this->addItemName),
+            'weight'            => ($this->addItemWeight == '') ? NULL : strtoupper($this->addItemWeight),
+            'unit'              => ($this->addItemUnit == '') ? NULL : strtoupper($this->addItemUnit),
+            'price_per_unit'    => ($this->addItemPrice == '') ? NULL : strtoupper($this->addItemPrice),
+            'created_by'        => auth()->user()->id,
+            'created_at'        => now(),
+        ]);
+
+        return redirect()->to('/stock');
+    }
+
     public function render()
     {
         return view('livewire.page.stock', [
@@ -105,6 +141,7 @@ class Stock extends Component
             'types' => InvItemType::where('category_id', $this->categoryId)->get(),
             'items' => InvItem::where('item_type_id', $this->typeId)->get(),
             'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
+            'suppliers' => InvSupplier::all(),
         ]);
     }
 }
