@@ -1,5 +1,5 @@
 <!-- Desktop sidebar -->
-<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white border-r border-yellow-300 md:block">
+<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white md:block">
     <div class="text-white">
 
         <div class="flex p-2 bg-yellow-400">
@@ -30,7 +30,7 @@
                     <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
                         <x-heroicon-o-exclamation-circle class="w-5 h-5"/>
                     </x-sidebar.nav-item>
-                
+
                     <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" uri="admin/screening">
                         <x-heroicon-o-shield-check class="w-5 h-5"/>
                     </x-sidebar.nav-item>
