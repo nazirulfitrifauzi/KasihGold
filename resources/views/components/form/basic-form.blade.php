@@ -1,4 +1,4 @@
-<form {{ $attributes }} wire:submit.prevent="{{ $action }}">
+<form {{ $attributes }}>
     <div>
         {{ $content }}
     </div>

@@ -9,6 +9,8 @@ class InvCategory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function item_type()
     {
         return $this->hasMany('App\Models\InvItemType', 'category_id', 'id');

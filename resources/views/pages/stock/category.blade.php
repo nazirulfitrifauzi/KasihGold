@@ -5,23 +5,23 @@
             Categories
         </h2>
         <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen2: false}">
-            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer" @click="modalOpen2 = true" >
+            <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer" @click="modalOpen2 = true" >
                 Add Category
-            </a>
+            </button>
 
             {{-- Start modal Add Category --}}
             <x-general.modal modalActive="modalOpen2" title="Add New Category" modalSize="lg">
-                <x-form.basic-form action="">
+                <x-form.basic-form wire:submit.prevent="addCategory">
                     <x-slot name="content">
                         <div class="p-4 mt-4 leading-4">
                             <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                <x-form.input label="Name" value=""/>
+                                <x-form.input  label="Name" value="addCategoryName" wire:model="addCategoryName"/>
                             </div>
                             <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none" @click="modalOpen2 = false" >
+                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-400 rounded focus:outline-none" @click="modalOpen2 = false" wire:click="clearErrorBag">
                                     Cancel
                                 </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none">
+                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-400 rounded focus:outline-none">
                                     Submit
                                 </button>
                             </div>
