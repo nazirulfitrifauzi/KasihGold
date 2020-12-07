@@ -16,7 +16,13 @@ class Stock extends Component
     public $categoryId;
     public $typeId;
     public $itemId;
-    public $categoryName;
+
+    // modal add property
+    public $addCategoryName;
+    public $addTypeCategoryId;
+    public $addTypeName;
+    public $addTypeBrand;
+    public $addTypePurity;
 
     protected $listeners = [
         'categorySelected',
@@ -54,7 +60,42 @@ class Stock extends Component
 
     public function addCategory()
     {
-        $this->emit('closeModal');
+        $data = $this->validate([
+            'addCategoryName' => 'required|min:3',
+        ]);
+
+        $code = InvCategory::orderBy('id','desc')->take(1)->value('id');
+
+        InvCategory::create([
+            'code'          => sprintf('%09d', $code + 1),
+            'name'          => strtoupper($this->addCategoryName),
+            'created_by'    => auth()->user()->id,
+            'created_at'    => now(),
+        ]);
+
+        return redirect()->to('/stock');
+    }
+
+    public function addType()
+    {
+        $data = $this->validate([
+            'addTypeCategoryId' => 'required',
+            'addTypeName'       => 'required|min:3',
+        ]);
+
+        $code = InvItemType::orderBy('id', 'desc')->take(1)->value('id');
+
+        InvItemType::create([
+            'category_id'   => $this->addTypeCategoryId,
+            'code'          => sprintf('%09d', $code + 1),
+            'name'          => strtoupper($this->addTypeName),
+            'brand'         => ($this->addTypeBrand == '') ? NULL : strtoupper($this->addTypeBrand),
+            'purity'        => ($this->addTypePurity == '') ? NULL : strtoupper($this->addTypePurity),
+            'created_by'    => auth()->user()->id,
+            'created_at'    => now(),
+        ]);
+
+        return redirect()->to('/stock');
     }
 
     public function render()

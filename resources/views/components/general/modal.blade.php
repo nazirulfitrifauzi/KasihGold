@@ -25,18 +25,16 @@
             class="inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg lg:max-w-2xl xl:max-w-{{$modalSize}} sm:w-full sm:p-6"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline"
         >
-        
+
             <div>
                 <div class="">
                     <div class="flex items-center justify-between p-4 font-semibold border-b border-gray-400">
                         <h3 class="text-lg font-semibold leading-6" id="modal-headline">
                             {{$title}}
                         </h3>
-                        
-                        
-                        <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-yellow-400 cursor-pointer"/>
+                        <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-red-400 cursor-pointer"/>
                     </div>
-                    
+
                     {{$slot}}
 
                 </div>
@@ -44,5 +42,3 @@
         </div>
     </div>
 </div>
-
-

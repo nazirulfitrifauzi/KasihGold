@@ -11,22 +11,24 @@
 
             {{-- Start modal Add Type --}}
             <x-general.modal modalActive="modalOpen" title="Add New Type" modalSize="2xl">
-                <x-form.basic-form action="">
+                <x-form.basic-form wire:submit.prevent="addType">
                     <x-slot name="content">
                         <div class="p-4 mt-4 leading-4">
                             <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                <x-form.dropdown label="Category" value="" default="yes">
-                                    <option value=""></option>
+                                <x-form.dropdown label="Category" default="yes" value="addTypeCategoryId" wire:model="addTypeCategoryId">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </x-form.dropdown>
-                                <x-form.input label="Name" value=""/>
-                                <x-form.input label="Brand" value=""/>
-                                <x-form.input label="Purity" value=""/>
+                                <x-form.input label="Name" value="addTypeName" wire:model="addTypeName"/>
+                                <x-form.input label="Brand" value="addTypeBrand" wire:model="addTypeBrand"/>
+                                <x-form.input label="Purity" value="addTypePurity" wire:model="addTypePurity"/>
                             </div>
                             <div class="flex justify-end">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none" @click="modalOpen = false" >
                                     Cancel
                                 </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none">
+                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none">
                                     Submit
                                 </button>
                             </div>
