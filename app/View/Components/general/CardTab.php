@@ -6,11 +6,11 @@ use Illuminate\View\Component;
 
 class CardTab extends Component
 {
-    public $countTab;
     
-    public function __construct($countTab)
+    
+    public function __construct()
     {
-        $this->countTab = $countTab;
+        
     }
 
    

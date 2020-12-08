@@ -36,7 +36,7 @@
         <div class="grid grid-cols-12 gap-6">
             @foreach ($categories as $category)
                 <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
-                    <x-general.card-tab countTab="{{ $category->id }}" wire:click="$emit('categorySelected', {{ $category->id }})">
+                    <x-general.card-tab class="{{ $categoryActive == $category->id ? 'bg-yellow-400 text-white' : '' }}" wire:click="$emit('categorySelected', {{ $category->id }})">
                         <div x-data="{ deleteOpen : false }">
                             <div class="p-4">
                                 <div class="flex justify-between font-medium">

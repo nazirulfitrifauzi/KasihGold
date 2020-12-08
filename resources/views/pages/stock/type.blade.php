@@ -43,7 +43,7 @@
     <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
         @foreach ($types as $type)
         <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
-            <x-general.card-tab countTab="{{ $type->id }}" wire:click="$emit('typeSelected', {{ $type->id }})">
+            <x-general.card-tab class="{{$typeActive == $type->id ? 'bg-yellow-400 text-white' : '' }}" wire:click="$emit('typeSelected', {{ $type->id }})">
                 <div x-data="{ deleteOpen2 : false }">
                     <div class="p-4">
                         <div class="flex justify-between font-medium">

@@ -1,5 +1,4 @@
-<div {{ $attributes->merge(['class' => 'w-full sm:rounded-lg shadow px-3 py-3 mt-3 cursor-pointer shadow-sm bg-white hover:scale-105 transition duration-300']) }}  
-    x-on:click="active = {{$countTab}}"  x-bind:class="{'bg-yellow-400 text-white': active === {{$countTab}}}">
+<div {{ $attributes->merge(['class' => 'w-full sm:rounded-lg shadow px-3 py-3 mt-3 cursor-pointer shadow-sm bg-white hover:scale-105 transition duration-300']) }} >
     <div class="h-full w-full">
         {{ $slot }}
     </div>
