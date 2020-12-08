@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="mt-8">
-                    <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+                    <div class="bg-white px-6 py-6 md:bg-transparent">
                         <form wire:submit.prevent="authenticate">
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
@@ -78,8 +78,10 @@
             </div>
         </div>
     </div>
-    <div class="-mt-64 md:mt-0 w-full md:flex-1">
-        <img src="https://scontent.fkul8-1.fna.fbcdn.net/v/t1.0-9/s960x960/128684889_2740973309566116_5489823759887491015_o.jpg?_nc_cat=111&ccb=2&_nc_sid=110474&_nc_ohc=QQULsDOaq-8AX8uy0yZ&_nc_ht=scontent.fkul8-1.fna&tp=7&oh=2ba026c39c8058978d71d203dcf27b11&oe=5FF572E5" class="w-full h-full object-cover" />
+    <div class="-mt-64 md:mt-0 w-full md:flex-1 ">
+        <div class="w-full bg-cover bg-center rounded-b-3xl" style="height:100%; background-image: url({{asset('img/banner.jpg')}});">
+            <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50"></div>
+        </div>
     </div>
 </div>
         

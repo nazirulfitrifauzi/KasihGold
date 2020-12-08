@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="flex flex-col justify-center min-h-screen bg-gray-50 ">
-        <div class="relative z-10 w-full h-24 px-12 bg-white flex justify-between">
+        <div class="relative z-10 w-full h-24 px-12 bg-white flex justify-between border-b shadow-lg">
             <a href="/" class="h-full flex items-center text-lg md:text-2xl font-bold tracking-widest text-gray-700 uppercase hover:text-gray-400">
                 <x-logo class="w-auto h-16 mx-auto" />
             </a>
