@@ -5,7 +5,7 @@
 </div>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-no-wrap">
-        <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white">Add New User</button>
+        <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white hover:bg-yellow-300">Add New User</button>
         <div class="hidden mx-auto text-gray-600 md:block">{{-- Showing1to10of150entries --}}</div>
         <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
             <div class="flex w-56 text-gray-700">
@@ -25,7 +25,7 @@
                     <a href="" class="font-medium">test</a>
                 </div>
                 <div class="flex mt-4 lg:mt-0">
-                    <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white" wire:click="" @click="OpenScreening = true" >
+                    <button class="bg-yellow-400  py-1 px-4 rounded flex cursor-pointer font-bold text-sm text-white hover:bg-yellow-300" wire:click="" @click="OpenScreening = true" >
                         Screening
                     </button>
                 </div>

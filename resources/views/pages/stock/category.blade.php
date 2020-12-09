@@ -5,7 +5,7 @@
             Categories
         </h2>
         <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen2: false}">
-            <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer" @click="modalOpen2 = true" >
+            <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer hover:bg-yellow-300" @click="modalOpen2 = true" >
                 Add Category
             </button>
 
@@ -18,10 +18,10 @@
                                 <x-form.input  label="Name" value="addCategoryName" wire:model="addCategoryName"/>
                             </div>
                             <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen2 = false" wire:click="clearErrorBag">
+                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen2 = false" wire:click="clearErrorBag">
                                     Cancel
                                 </button>
-                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none">
+                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                     Submit
                                 </button>
                             </div>

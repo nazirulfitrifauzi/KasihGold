@@ -44,7 +44,7 @@
                                 <x-form.text-area value="comment" wire:model="comment" name="comment" id="comment" data-feature="all" rows="8"  placeholder="Your Comment"/>
                             </div>
                             <div class="flex justify-center p-2">
-                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-400 rounded cursor-pointer focus:outline-none hover:bg-green-500">Submit</button>
+                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded cursor-pointer focus:outline-none hover:bg-green-500">Submit</button>
                             </div>
                         </div>
                     </x-slot>
