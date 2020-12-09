@@ -52,7 +52,7 @@
 
                             <div class="flex items-center justify-between mt-6">
                                 <div class="flex items-center">
-                                    <input wire:model.lazy="remember" id="remember" type="checkbox" class="form-checkbox w-4 h-4 text-indigo-600 transition duration-150 ease-in-out" />
+                                    <input wire:model.lazy="remember" id="remember" type="checkbox" class="form-checkbox w-4 h-4 text-yellow-400 transition duration-150 ease-in-out" />
                                     <label for="remember" class="block ml-2 text-sm text-gray-900 leading-5">
                                         Remember
                                     </label>

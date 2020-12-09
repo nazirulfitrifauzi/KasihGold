@@ -46,42 +46,40 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
+    <div class="grid grid-cols-12 gap-6">
         @foreach ($items as $item)
-        <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
+        <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block" x-data="{ deleteOpen3 : false  }">
             <x-general.card-tab  wire:click="$emit('itemSelected', {{ $item->id }})">
-                <div x-data="{ deleteOpen3 : false }">
-                    <div class="p-4">
-                        <div class="flex justify-between font-medium">
-                            {{ ucfirst(strtolower($item->name)) }}
-                            <div class="flex items-center px-2 py-2 bg-red-600 rounded-full hover:bg-red-700" x-on:click="deleteOpen3 = true">
-                                <x-heroicon-o-trash class="w-4 h-4 text-white"/>
-                            </div>
-                        </div>
-                        <div class="">
-                            {{ ucwords(strtolower($item->supplier->name)) }}
+                <div class="p-4">
+                    <div class="flex justify-between font-medium">
+                        {{ ucfirst(strtolower($item->name)) }}
+                        <div class="flex items-center px-2 py-2 bg-red-600 rounded-full hover:bg-red-700" x-on:click="deleteOpen3 = true">
+                            <x-heroicon-o-trash class="w-4 h-4 text-white"/>
                         </div>
                     </div>
-                    {{-- Start modal delete --}}
-                    <x-general.modal modalActive="deleteOpen3" title="Delete Confirmation" modalSize="sm" closeBtn="no">
-                        <div class="">
-                            <div class="py-4 font-semibold text-center text-black font">
-                                Are you sure you want to delete :<br>
-                                Item "{{ucfirst(strtolower($item->name)) }}"?
-                            </div>
-                            <div class="flex justify-center mt-3">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen2 = false">
-                                    Cancel
-                                </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('item', {{ $item->id }})">
-                                    yes,Delete
-                                </button>
-                            </div>
-                        </div>
-                    </x-general.modal>
-                    {{-- End modal delete  --}}
+                    <div class="">
+                        {{ ucwords(strtolower($item->supplier->name)) }}
+                    </div>
                 </div>
             </x-general.card-tab>
+            {{-- Start modal delete --}}
+            <x-general.modal modalActive="deleteOpen3" title="Delete Confirmation" modalSize="sm" closeBtn="no">
+                <div class="">
+                    <div class="py-4 font-semibold text-center text-black font">
+                        Are you sure you want to delete :<br>
+                        Item "{{ucfirst(strtolower($item->name)) }}"?
+                    </div>
+                    <div class="flex justify-center mt-3">
+                        <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen3 = false">
+                            Cancel
+                        </button>
+                        <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('item', {{ $item->id }})">
+                            yes,Delete
+                        </button>
+                    </div>
+                </div>
+            </x-general.modal>
+            {{-- End modal delete  --}}
         </div>
         @endforeach
     </div>
