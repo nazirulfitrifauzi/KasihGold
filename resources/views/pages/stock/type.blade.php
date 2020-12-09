@@ -40,11 +40,10 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
+    <div class="grid grid-cols-12 gap-6">
         @foreach ($types as $type)
-        <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
+        <div class="flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block"  x-data="{ deleteOpen2 : false  }">
             <x-general.card-tab class="{{$typeActive == $type->id ? 'bg-yellow-400 text-white' : '' }}" wire:click="$emit('typeSelected', {{ $type->id }})">
-                <div x-data="{ deleteOpen2 : false }">
                     <div class="p-4">
                         <div class="flex justify-between font-medium">
                             {{ ucfirst(strtolower($type->name)) }} {{ ($type->brand != null) ? '( '.ucfirst(strtolower($type->brand)).' )' : '' }}
@@ -56,26 +55,25 @@
                             {{ $type->item()->count() }} Items
                         </div>
                     </div>
-                    {{-- Start modal delete --}}
-                    <x-general.modal modalActive="deleteOpen2" title="Delete Confirmation" modalSize="sm" closeBtn="no">
-                        <div class="">
-                            <div class="py-4 font-semibold text-center text-black font">
-                                Are you sure you want to delete :<br>
-                                Type "{{ucfirst(strtolower($type->name)) }}"?
-                            </div>
-                            <div class="flex justify-center mt-3">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen2 = false">
-                                    Cancel
-                                </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('type', {{ $type->id }})">
-                                    yes,Delete
-                                </button>
-                            </div>
-                        </div>
-                    </x-general.modal>
-                    {{-- End modal delete  --}}
-                </div>
             </x-general.card-tab>
+            {{-- Start modal delete --}}
+            <x-general.modal modalActive="deleteOpen2" title="Delete Confirmation" modalSize="sm" closeBtn="no">
+                <div class="">
+                    <div class="py-4 font-semibold text-center text-black font">
+                        Are you sure you want to delete :<br>
+                        Type "{{ucfirst(strtolower($type->name)) }}"?
+                    </div>
+                    <div class="flex justify-center mt-3">
+                        <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen2 = false">
+                            Cancel
+                        </button>
+                        <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('type', {{ $type->id }})">
+                            yes,Delete
+                        </button>
+                    </div>
+                </div>
+            </x-general.modal>
+            {{-- End modal delete  --}}
         </div>
         @endforeach
     </div>
