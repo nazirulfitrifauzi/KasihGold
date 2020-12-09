@@ -41,7 +41,7 @@
                             <img class="object-cover w-8 h-8 rounded-full"
                                 src="https://image.flaticon.com/icons/png/512/149/149071.png" alt=""
                                 aria-hidden="true" />
-                            <p class="pt-1 pl-2">ADMIN</p>
+                            <p class="pt-1 pl-2">{{auth()->user()->name}}</p>
                         </div>
                     </button>
                     <template x-if="isProfileMenuOpen">
