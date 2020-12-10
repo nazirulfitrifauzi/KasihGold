@@ -20,11 +20,18 @@
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
+                
                 @if (auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Suppliers" route="{{route('admin.suppliers')}}" uri="admin/suppliers">
                     <x-heroicon-o-inbox class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @endif
+
+                <x-sidebar.nav-item title="Tracking" route="{{route('tracking')}}" uri="tracking">
+                    <x-heroicon-o-map class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+
                 @if (auth()->user()->role == 2)
                 <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}"
                     uri="incident-reporting">

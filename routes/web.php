@@ -17,6 +17,7 @@ use App\Http\Controllers\IncidentReportingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\SuppliersController;
+use App\Http\Controllers\TrackingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
+    Route::get('tracking', [TrackingController::class, 'index'])->name('tracking');
     
 });
 
