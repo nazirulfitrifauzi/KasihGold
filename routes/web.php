@@ -16,6 +16,7 @@ use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\IncidentReportingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportingController;
+use App\Http\Controllers\SuppliersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +57,11 @@ Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
+    
 });
 
 Route::middleware('auth.admin')->group(function () {
     Route::get('admin/screening', [ScreeningController::class, 'index'])->name('admin.screening');
     Route::get('admin/incident-reporting', [IncidentReportingController::class, 'admin'])->name('admin.incidentReporting');
+    Route::get('admin/suppliers', [SuppliersController::class, 'index'])->name('admin.suppliers');
 });
