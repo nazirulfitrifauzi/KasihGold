@@ -75,11 +75,9 @@
                         <div class="flex space-x-1">
                             <!----- Start Edit Btn ----->
                             <div x-data="{modalEdit: false}">
-                                <a href="#" class="flex" x-on:click="modalEdit = true">
-                                    <div class="flex items-center px-2 py-2 bg-blue-600 rounded-full hover:bg-blue-700">
-                                        <x-heroicon-o-pencil-alt class="w-4 h-4 text-white" />
-                                    </div>
-                                </a>
+                                <x-btn.tooltip-btn class="bg-blue-600 rounded-full hover:bg-blue-700" btnRoute="#" tooltipTitle="Edit" x-on:click="modalEdit = true">
+                                    <x-heroicon-o-pencil-alt class="w-4 h-4 text-white" />
+                                </x-btn.tooltip-btn>
                                 {{-- Start Modal Edit Suppliers --}}
                                 <x-general.modal modalActive="modalEdit" title="Edit Suppliers" modalSize="2xl">
                                     <x-form.basic-form wire:submit.prevent="">
@@ -118,11 +116,9 @@
 
                             <!----- Start Delete Btn----->
                             <div x-data="{modalDelete: false}">
-                                <a href="#" class="flex" x-on:click="modalDelete = true">
-                                    <div class="flex items-center px-2 py-2 bg-red-600 rounded-full hover:bg-red-700">
-                                        <x-heroicon-o-trash class="w-4 h-4 text-white" />
-                                    </div>
-                                </a>
+                                <x-btn.tooltip-btn class="bg-red-600 rounded-full hover:bg-red-700" btnRoute="#" tooltipTitle="Delete" x-on:click="modalDelete = true">
+                                    <x-heroicon-o-trash class="w-4 h-4 text-white" />
+                                </x-btn.tooltip-btn>
                                 {{-- Start modal delete Suppliers --}}
                                 <x-general.modal modalActive="modalDelete" title="Delete Confirmation" modalSize="sm"
                                     closeBtn="yes">

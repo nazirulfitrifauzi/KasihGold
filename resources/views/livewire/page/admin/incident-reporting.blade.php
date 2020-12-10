@@ -8,14 +8,19 @@
     <div class="mt-8 bg-white p-4">
         <div class="flex justify-between my-4">
             <div class="flex items-center">
-                <a href="#"
-                    class="flex px-4 py-2 text-sm font-bold text-white bg-green-400 rounded cursor-pointer focus:outline-none">
-                    <x-heroicon-o-document-text class="w-5 h-5 mr-1" /> Export to Excel
-                </a>
-                <a href="#"
-                    class="flex px-4 py-2 text-sm font-bold text-white bg-orange-400 rounded cursor-pointer focus:outline-none ml-2">
-                    <x-heroicon-o-document-text class="w-5 h-5 mr-1" /> Export to PDF
-                </a>
+                <div class="relative dropdown" x-data="{open: false}">
+                    <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" @click="open = !open">Actions</button>
+                    <div class="absolute z-10 w-40 rounded-lg shadow-lg bg-white" x-show="open" style="display: none; top: -17px; left: 90px;">
+                        <div class="py-4">
+                            <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md hover:bg-gray-200">
+                            <x-heroicon-o-document-text class="w-5 h-5 mr-1"/> Export to Excel
+                            </a>
+                            <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md hover:bg-gray-200">
+                            <x-heroicon-o-document-text class="w-5 h-5 mr-1"/> Export to PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div wire:loading>
                 <div class="flex items-center justify-center text-white absolute bg-yellow-400 p-4 rounded"
