@@ -61,7 +61,7 @@ Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
     Route::get('tracking', [TrackingController::class, 'index'])->name('tracking');
-    
+
 });
 
 Route::middleware('auth.admin')->group(function () {
