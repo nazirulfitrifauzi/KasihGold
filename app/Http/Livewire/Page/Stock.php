@@ -18,6 +18,12 @@ class Stock extends Component
     public $typeId;
     public $itemId;
 
+    // modal stock in out
+    public $stockStatus;
+    public $stockCategory;
+    public $stockType;
+    public $stockItem;
+
     // modal add category
     public $addCategoryName;
 
@@ -78,7 +84,8 @@ class Stock extends Component
         $code = InvCategory::orderBy('id','desc')->take(1)->value('id');
 
         InvCategory::create([
-            'code'          => sprintf('%09d', $code + 1),
+            'user_id'       => auth()->user()->id,
+            'code'          => sprintf('%09d', ($code == NULL ? 0 : $code ) + 1),
             'name'          => strtoupper($this->addCategoryName),
             'created_by'    => auth()->user()->id,
             'created_at'    => now(),
@@ -97,8 +104,9 @@ class Stock extends Component
         $code = InvItemType::orderBy('id', 'desc')->take(1)->value('id');
 
         InvItemType::create([
+            'user_id'       => auth()->user()->id,
             'category_id'   => $this->addTypeCategoryId,
-            'code'          => sprintf('%09d', $code + 1),
+            'code'          => sprintf('%09d', ($code == NULL ? 0 : $code) + 1),
             'name'          => strtoupper($this->addTypeName),
             'brand'         => ($this->addTypeBrand == '') ? NULL : strtoupper($this->addTypeBrand),
             'purity'        => ($this->addTypePurity == '') ? NULL : strtoupper($this->addTypePurity),
@@ -120,9 +128,10 @@ class Stock extends Component
         $code = InvItem::orderBy('id', 'desc')->take(1)->value('id');
 
         InvItem::create([
+        'user_id'               => auth()->user()->id,
             'item_type_id'      => $this->addItemTypeId,
             'supplier_id'       => $this->addItemSupplier,
-            'code'              => sprintf('%09d', $code + 1),
+            'code'              => sprintf('%09d', ($code == NULL ? 0 : $code) + 1),
             'name'              => strtoupper($this->addItemName),
             'weight'            => ($this->addItemWeight == '') ? NULL : strtoupper($this->addItemWeight),
             'unit'              => ($this->addItemUnit == '') ? NULL : $this->addItemUnit,
@@ -155,11 +164,15 @@ class Stock extends Component
     public function render()
     {
         return view('livewire.page.stock', [
-            'categories' => InvCategory::all(),
-            'types' => InvItemType::where('category_id', $this->categoryId)->get(),
+            // cards
+            'categories' => InvCategory::where('user_id', auth()->user()->id)->get(),
+            'types' => InvItemType::where('category_id', $this->categoryId)->where('user_id', auth()->user()->id)->get(),
             'items' => InvItem::where('item_type_id', $this->typeId)->get(),
-            'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
+            // 'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
             'suppliers' => InvSupplier::all(),
+            // modal
+            'stockTypes' => InvItemType::where('category_id', $this->stockCategory)->get(),
+            'stockItems' => InvItem::where('item_type_id', $this->stockType)->get(),
         ]);
     }
 }

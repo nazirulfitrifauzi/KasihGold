@@ -13,28 +13,20 @@
 
     <link rel="stylesheet" href="{{ asset('dist/apexcharts.css')}}" />
     <script src="{{ asset('dist/apexcharts.min.js')}}"></script>
-
-
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    
     <script src="{{ asset('js/init-alpine.js')}}"></script>
 
-
     @livewireStyles
-
-    </head>
-    <body>
-
-
-
-    <div class="flex bg-gray-100 h-screen" :class="{ 'overflow-hidden': isSideMenuOpen }">
+</head>
+<body>
+    <div class="flex h-screen bg-gray-100" :class="{ 'overflow-hidden': isSideMenuOpen }">
         @include('include.sidebar.desktop')
         @include('include.sidebar.mobile')
 
         <div class="flex flex-col flex-1 w-full">
             @include('include.sidebar.navbar')
             <main class="overflow-y-auto">
-            <div class="px-8 mx-auto grid pb-10">
+            <div class="grid px-8 pb-10 mx-auto">
                 {{-- content --}}
                 @yield('content')
             </div>
@@ -42,6 +34,7 @@
         </div>
     </div>
     @livewireScripts
-    </body>
-    </html>
 
+    <script src="{{ url(mix('js/app.js')) }}"></script>
+</body>
+</html>

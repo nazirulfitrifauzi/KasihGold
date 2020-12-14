@@ -18,7 +18,7 @@
                                 <x-form.input  label="Name" value="addCategoryName" wire:model="addCategoryName"/>
                             </div>
                             <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen2 = false" wire:click="clearErrorBag">
+                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen2 = false">
                                     Cancel
                                 </button>
                                 <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
