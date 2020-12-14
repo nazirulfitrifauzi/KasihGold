@@ -17,7 +17,7 @@
                     <x-slot name="icon">
                         <x-heroicon-o-archive class="w-5 h-5" />
                     </x-slot>
-                    <div class="leading-6">
+                    <div class="leading-7">
                         <x-sidebar.dropdown-item title="Stock Management" href="{{route('stock-management')}}"
                             uri="stock/management">
                             <x-slot name="icon">
