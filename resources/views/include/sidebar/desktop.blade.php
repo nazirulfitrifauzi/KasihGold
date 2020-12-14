@@ -13,14 +13,31 @@
                     <x-heroicon-o-home class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                <x-sidebar.nav-item title="Stock Management" route="{{route('stock')}}" uri="stock">
-                    <x-heroicon-o-archive class="w-5 h-5" />
-                </x-sidebar.nav-item>
+                <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-archive class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-6">
+                        <x-sidebar.dropdown-item title="Stock Management" href="{{route('stock-management')}}"
+                            uri="stock/management">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Stock Movement" href="{{route('stock-movement')}}"
+                            uri="stock/movement">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
+                
 
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
-                
+
                 @if (auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Suppliers" route="{{route('admin.suppliers')}}" uri="admin/suppliers">
                     <x-heroicon-o-inbox class="w-5 h-5" />
@@ -30,7 +47,6 @@
                 <x-sidebar.nav-item title="Tracking" route="{{route('tracking')}}" uri="tracking">
                     <x-heroicon-o-map class="w-5 h-5" />
                 </x-sidebar.nav-item>
-
 
                 @if (auth()->user()->role == 2)
                 <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}"
@@ -50,17 +66,5 @@
                 @endif
             </ul>
         </div>
-
-        <ul class="">
-            <x-sidebar.dropdown-nav-item active="open" title="Dropdown Menu">
-                <li class="px-2 py-1 text-white transition-colors duration-150">
-                    <div class="flex">
-                        <x-heroicon-o-cube class="w-5 h-5" />
-                        <a class="w-full ml-2" href="#">Child Menu 1</a>
-                    </div>
-                </li>
-            </x-sidebar.dropdown-nav-item>
-        </ul>
-
     </div>
 </aside>

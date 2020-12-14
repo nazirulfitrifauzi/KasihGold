@@ -18,6 +18,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\StockMovementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +55,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'passScreen'])->group(function () {
     Route::get('home', [DashboardController::class, 'index'])->name('home');
-    Route::get('stock', [StockManagementController::class, 'index'])->name('stock');
+    Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
+    Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
     Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');

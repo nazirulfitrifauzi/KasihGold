@@ -4,7 +4,7 @@
         @if(Route::current()->uri == $uri)
         bg-yellow-400
         @else
-        bg-white
+        bg-transparent
         @endif"
     >
     </span>
