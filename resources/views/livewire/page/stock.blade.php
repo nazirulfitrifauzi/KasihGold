@@ -3,7 +3,60 @@
         <h2 class="mr-auto text-lg font-medium">
             Stock Management
         </h2>
+        <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen: false}">
+            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer" @click="modalOpen = true" >
+                Stock In/Out
+            </a>
+
+            {{-- Start modal Add Items --}}
+            <x-general.modal modalActive="modalOpen" title="Stock In/Out" modalSize="2xl">
+                <x-form.basic-form wire:submit.prevent="">
+                    <x-slot name="content">
+                        <div class="p-4 mt-4 leading-4">
+                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                <x-form.dropdown label="Status" default="yes" value="stockStatus" wire:model="stockStatus">
+                                    <option value="1">In</option>
+                                    <option value="2">Out</option>
+                                </x-form.dropdown>
+                                <x-form.dropdown label="Category" default="yes" value="stockCategory" wire:model="stockCategory">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </x-form.dropdown>
+                                <x-form.dropdown label="Type" value="stockType" default="yes" wire:model="stockType">
+                                    @foreach ($stockTypes as $stockType)
+                                        <option value="{{ $stockType->id }}">{{ $stockType->name }} {{ ($stockType->brand != null) ? $stockType->brand : '' }}</option>
+                                    @endforeach
+                                </x-form.dropdown>
+                                <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
+                                    @foreach ($stockItems as $stockItem)
+                                        <option value="{{ $stockItem->id }}">{{ $stockItem->name }} - {{ ucwords(strtolower($stockItem->supplier->name)) }} </option>
+                                    @endforeach
+                                </x-form.dropdown>
+                                <x-form.input label="Customer Name" value="addItemName" wire:model="addItemName" />
+                                <x-form.input label="Unit" value="addItemWeight" wire:model="addItemWeight" />
+                                <x-form.input label="Serial Number" value="addItemUnit" wire:model="addItemUnit"/>
+                                <x-form.input label="Shipment Date" value="addItemPrice" wire:model="addItemPrice"/>
+                                <x-form.input label="Tracking Number" value="addItemPrice" wire:model="addItemPrice"/>
+                                <x-form.input label="Total Out" value="addItemPrice" wire:model="addItemPrice"/>
+                                <x-form.input label="Remarks" value="addItemPrice" wire:model="addItemPrice"/>
+                            </div>
+                            <div class="flex justify-end">
+                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen = false" >
+                                    Cancel
+                                </button>
+                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </x-slot>
+                </x-form.basic-form>
+            </x-general.modal>
+            {{-- End Modal Add Items --}}
+        </div>
     </div>
+
     <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y">
         @include('pages.stock.category')
 
@@ -15,8 +68,8 @@
             @include('pages.stock.item')
         @endif
 
-        @if ($itemId != null)
+        {{-- @if ($itemId != null)
             @include('pages.stock.master')
-        @endif
+        @endif --}}
     </div>
 </div>

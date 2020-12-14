@@ -5,7 +5,7 @@
             Item List
         </h2>
         <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen1: false}">
-            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer  hover:bg-yellow-300" @click="modalOpen1 = true" >
+            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer hover:bg-yellow-300" @click="modalOpen1 = true" >
                 Add Item
             </a>
 
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="">
-                        {{ ucwords(strtolower($item->supplier->name)) }}
+                        {{ ucwords(strtolower($item->supplier->name)) }} - {{ $item->unit }} items
                     </div>
                 </div>
             </x-general.card-tab>
