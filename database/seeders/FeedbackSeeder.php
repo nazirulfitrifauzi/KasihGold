@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\FeedbackCategory;
+use App\Models\FeedbackSubCategory;
 use Illuminate\Database\Seeder;
-
-use App\models\FeedbackCategory;
-use App\models\FeedbackSubCategory;
-use App\models\FeedbackList;
 
 class FeedbackSeeder extends Seeder
 {
