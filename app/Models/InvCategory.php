@@ -17,4 +17,9 @@ class InvCategory extends Model
     {
         return $this->hasMany('App\Models\InvItemType', 'category_id', 'id');
     }
+
+    public function movement()
+    {
+        return $this->hasMany('App\Models\InvMovement', 'category_id', 'id');
+    }
 }

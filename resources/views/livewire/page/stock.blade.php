@@ -10,7 +10,7 @@
 
             {{-- Start modal Add Items --}}
             <x-general.modal modalActive="modalOpen" title="Stock In/Out" modalSize="2xl">
-                <x-form.basic-form wire:submit.prevent="">
+                <x-form.basic-form wire:submit.prevent="addStockInOut">
                     <x-slot name="content">
                         <div class="p-4 mt-4 leading-4">
                             <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
@@ -33,15 +33,28 @@
                                         <option value="{{ $stockItem->id }}">{{ $stockItem->name }} - {{ ucwords(strtolower($stockItem->supplier->name)) }} </option>
                                     @endforeach
                                 </x-form.dropdown>
-                                <x-form.input label="Customer Name" value="addItemName" wire:model="addItemName" />
-                                <x-form.input label="Unit" value="addItemWeight" wire:model="addItemWeight" />
-                                <x-form.input label="Serial Number" value="addItemUnit" wire:model="addItemUnit"/>
-                                <x-form.input label="Shipment Date" value="addItemPrice" wire:model="addItemPrice"/>
-                                <x-form.input label="Tracking Number" value="addItemPrice" wire:model="addItemPrice"/>
-                                <x-form.input label="Total Out" value="addItemPrice" wire:model="addItemPrice"/>
-                                <x-form.input label="Remarks" value="addItemPrice" wire:model="addItemPrice"/>
+                                @if(auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
+                                    <x-form.dropdown label="Supplier" value="stockSupplier" default="yes" wire:model="stockSupplier">
+                                        @foreach ($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </x-form.dropdown>
+                                @endif
+
+                                @if(auth()->user()->role == 1 && $stockStatus == 2) <!-- if admin and stock out -->
+                                    <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" />
+                                @elseif(auth()->user()->role != 1)
+                                    <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" />
+                                @endif
+
+                                <x-form.input label="Unit" value="stockUnit" wire:model="stockUnit" />
+                                <x-form.input label="Serial Number / Ref Number" value="stockSerial" wire:model="stockSerial"/>
+                                <x-form.input type="date" label="Shipment Date" value="stockShipDate" wire:model="stockShipDate"/>
+                                <x-form.input label="Tracking Number" value="stockTrackingNo" wire:model="stockTrackingNo"/>
+                                <x-form.input label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/>
+                                <x-form.input label="Remarks" value="stockRemarks" wire:model="stockRemarks"/>
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex justify-end mt-4">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen = false" >
                                     Cancel
                                 </button>
