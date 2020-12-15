@@ -7,6 +7,8 @@ use App\Models\InvItem;
 use App\Models\InvItemType;
 use App\Models\InvMovement;
 use App\Models\InvSupplier;
+use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class Stock extends Component
@@ -23,6 +25,14 @@ class Stock extends Component
     public $stockCategory;
     public $stockType;
     public $stockItem;
+    public $stockSupplier = NULL;
+    public $stockCustId;
+    public $stockUnit;
+    public $stockSerial;
+    public $stockShipDate;
+    public $stockTrackingNo;
+    public $stockTotalOut;
+    public $stockRemarks;
 
     // modal add category
     public $addCategoryName;
@@ -75,6 +85,60 @@ class Stock extends Component
         $this->itemId = $itemId;
     }
 
+    public function addStockInOut()
+    {
+        if(auth()->user()->id == 1) // HQ user
+        {
+            $data = $this->validate([
+                'stockStatus'       => 'required',
+                'stockCategory'     => 'required',
+                'stockType'         => 'required',
+                'stockItem'         => 'required',
+                'stockSupplier'     => 'required_if:stockStatus,==,1',
+                'stockCustId'       => 'required_if:stockStatus,==,2',
+                'stockUnit'         => 'required|integer',
+                'stockSerial'       => 'required',
+                'stockShipDate'     => 'required',
+                'stockTrackingNo'   => 'required',
+                'stockTotalOut'     => 'required|integer',
+            ]);
+        }
+        else // other than HQ user
+        {
+            $data = $this->validate([
+                'stockStatus'       => 'required',
+                'stockCategory'     => 'required',
+                'stockType'         => 'required',
+                'stockItem'         => 'required',
+                'stockCustId'       => 'required',
+                'stockUnit'         => 'required|integer',
+                'stockSerial'       => 'required',
+                'stockShipDate'     => 'required',
+                'stockTrackingNo'   => 'required',
+                'stockTotalOut'     => 'required|integer',
+            ]);
+        }
+
+        InvMovement::create([
+            'status'        => $this->stockStatus,
+            'category_id'   => $this->stockCategory,
+            'type_id'       => $this->stockType,
+            'supplier_id'   => $this->stockSupplier,
+            'from_user_id'  => auth()->user()->id,
+            'to_user_id'    => $this->stockCustId,
+            'unit'          => $this->stockUnit,
+            'serial_no'     => $this->stockSerial,
+            'shipment_date' => $this->stockShipDate,
+            'tracking_no'   => $this->stockTrackingNo,
+            'total_out'     => $this->stockTotalOut,
+            'remarks'       => $this->stockRemarks,
+            'created_by'    => auth()->user()->id,
+            'created_at'    => now(),
+        ]);
+
+        return redirect()->to('/stock/movement');
+    }
+
     public function addCategory()
     {
         $data = $this->validate([
@@ -91,7 +155,7 @@ class Stock extends Component
             'created_at'    => now(),
         ]);
 
-        return redirect()->to('/stock');
+        return redirect()->to('/stock/management');
     }
 
     public function addType()
@@ -114,7 +178,7 @@ class Stock extends Component
             'created_at'    => now(),
         ]);
 
-        return redirect()->to('/stock');
+        return redirect()->to('/stock/management');
     }
 
     public function addItem()
@@ -140,7 +204,7 @@ class Stock extends Component
             'created_at'        => now(),
         ]);
 
-        return redirect()->to('/stock');
+        return redirect()->to('/stock/management');
     }
 
     public function delete($scope, $id)
@@ -158,7 +222,7 @@ class Stock extends Component
         $table::whereId($id)->update(['deleted_by' => auth()->user()->id]);
         $table::whereId($id)->delete();
 
-        return redirect()->to('/stock');
+        return redirect()->to('/stock/management');
     }
 
     public function render()

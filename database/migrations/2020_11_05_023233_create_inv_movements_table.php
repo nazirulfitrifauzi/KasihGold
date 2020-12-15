@@ -15,15 +15,19 @@ class CreateInvMovementsTable extends Migration
     {
         Schema::create('inv_movements', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('code');
-            $table->datetime('date');
-            $table->unsignedDecimal('unit', 16, 2);
+            $table->integer('status');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('user_id_to')->nullable();
+            $table->unsignedBigInteger('supplier_id')->nullable();
+            $table->unsignedBigInteger('from_user_id')->nullable();
+            $table->unsignedBigInteger('to_user_id')->nullable();
+            $table->unsignedDecimal('unit', 16, 2);
+            $table->string('serial_no', 100)->nullable();
+            $table->datetime('shipment_date')->nullable();
+            $table->string('tracking_no')->nullable();
+            $table->unsignedDecimal('total_out', 16, 2)->nullable();
             $table->string('remarks', 100)->nullable();
-            
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

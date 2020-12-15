@@ -22,4 +22,9 @@ class InvItemType extends Model
     {
         return $this->hasMany('App\Models\InvItem', 'item_type_id', 'id');
     }
+
+    public function movement()
+    {
+        return $this->hasMany('App\Models\InvMovement', 'item_type_id', 'id');
+    }
 }
