@@ -12,9 +12,7 @@
                     <x-slot name="content"> 
                         <div class="border border-gray-200 rounded-md p-5">
                             @if (session('success'))
-                                <div class="flex items-center px-5 py-4 mb-5 rounded-md bg-green-500 text-white">
-                                    <x-heroicon-o-check-circle class="w-5 h-5 mr-2  text-white "/> {{ session('success') }}
-                                </div>
+                                <x-toaster.success title="{{ session('success') }}"/>
                             @endif
                             <div class="font-medium flex items-center border-b border-gray-200 pb-5">
                                 <x-heroicon-o-chevron-down class="w-5 h-5 mr-2  text-gray-600 "/> Incident Reporting Form 
