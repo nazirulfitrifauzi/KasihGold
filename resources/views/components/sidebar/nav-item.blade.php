@@ -11,7 +11,7 @@
 
     <a class="inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-yellow-400
     @if(Route::current()->uri == $uri)
-    text-yellow-400 bg-yellow-50
+    text-yellow-400 bg-yellow-50 p-1
     @else
     text-gray-500
     @endif"
