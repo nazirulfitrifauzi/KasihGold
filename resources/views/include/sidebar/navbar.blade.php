@@ -1,4 +1,4 @@
-<header class="z-10 py-4 bg-gray-900  shadow-md ">
+<header class="z-0 py-4 bg-gray-900  shadow-md ">
     <div class="flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <h1 class="lg:block ml-6 hidden text-white font-semibold italic">Welcome to Kasih Gold</h1>
         <div class="flex">
