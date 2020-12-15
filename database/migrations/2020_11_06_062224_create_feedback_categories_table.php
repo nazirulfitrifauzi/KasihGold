@@ -15,9 +15,7 @@ class CreateFeedbackCategoriesTable extends Migration
     {
         Schema::create('feedback_categories', function (Blueprint $table) {
             $table->id();
-            
             $table->string('name', 100);
-
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
