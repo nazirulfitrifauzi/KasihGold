@@ -11,15 +11,12 @@
                 New User</button>
             <div class="hidden mx-auto text-gray-600 md:block">{{-- Showing1to10of150entries --}}</div>
             <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-                <div class="flex w-56 text-gray-700">
-                    <span class="mt-2 mr-2">Search</span>
-                    <x-form.input type="text" label="" value="search" />
-                </div>
+                <x-form.search-input/>
             </div>
         </div>
 
         <div class="col-span-12 intro-y md:col-span-6">
-            <div class="bg-gray-100 shadow-lg rounded-xl">
+            <div class="bg-gray-100 shadow-lg rounded-xl border-l-4 border-yellow-400">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
                         <img alt="avatar" class="rounded-full border-4 border-white"
