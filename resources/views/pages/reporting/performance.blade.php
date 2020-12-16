@@ -57,10 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
-                                        <div class="relative flex w-56 text-gray-700">
-                                            <span class="mt-2 mr-2">Search</span>
-                                            <x-form.input label="" value=""/>
-                                        </div>
+                                        <x-form.search-input/>
                                     </div>
                                 </div>
                                 <!-- BEGIN: Data List -->
@@ -149,10 +146,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
-                                        <div class="relative flex w-56 text-gray-700">
-                                            <span class="mt-2 mr-2">Search</span>
-                                            <x-form.input label="" value=""/>
-                                        </div>
+                                        <x-form.search-input/>
                                     </div>
                                 </div>
                                 <!-- BEGIN: Data List -->
@@ -242,10 +236,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
-                                        <div class="relative flex w-56 text-gray-700">
-                                            <span class="mt-2 mr-2">Search</span>
-                                            <x-form.input label="" value=""/>
-                                        </div>
+                                        <x-form.search-input/>
                                     </div>
                                 </div>
                                 <!-- BEGIN: Data List -->
