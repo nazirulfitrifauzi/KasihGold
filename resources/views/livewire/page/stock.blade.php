@@ -18,19 +18,9 @@
                                     <option value="1">In</option>
                                     <option value="2">Out</option>
                                 </x-form.dropdown>
-                                <x-form.dropdown label="Category" default="yes" value="stockCategory" wire:model="stockCategory">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
-                                <x-form.dropdown label="Type" value="stockType" default="yes" wire:model="stockType">
-                                    @foreach ($stockTypes as $stockType)
-                                        <option value="{{ $stockType->id }}">{{ $stockType->name }} {{ ($stockType->brand != null) ? $stockType->brand : '' }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
                                 <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
                                     @foreach ($stockItems as $stockItem)
-                                        <option value="{{ $stockItem->id }}">{{ $stockItem->name }} - {{ ucwords(strtolower($stockItem->supplier->name)) }} </option>
+                                        <option value="{{ $stockItem->id }}">{{ $stockItem->name }}</option>
                                     @endforeach
                                 </x-form.dropdown>
                                 @if(auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
@@ -52,7 +42,7 @@
                                 <x-form.input type="date" label="Shipment Date" value="stockShipDate" wire:model="stockShipDate"/>
                                 <x-form.input label="Tracking Number" value="stockTrackingNo" wire:model="stockTrackingNo"/>
                                 <x-form.input label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/>
-                                
+
                             </div>
                             <x-form.text-area label="Remarks" value="stockRemarks" wire:model="stockRemarks" rows="2" />
                             <div class="flex justify-end mt-4">

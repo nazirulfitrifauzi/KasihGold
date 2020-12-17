@@ -8,6 +8,7 @@ use App\Models\InvItemType;
 use App\Models\InvMovement;
 use App\Models\InvSupplier;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
@@ -25,7 +26,7 @@ class Stock extends Component
     public $stockCategory;
     public $stockType;
     public $stockItem;
-    public $stockSupplier = NULL;
+    public $stockSupplier;
     public $stockCustId;
     public $stockUnit;
     public $stockSerial;
@@ -45,11 +46,7 @@ class Stock extends Component
 
     // modal add item
     public $addItemTypeId;
-    public $addItemSupplier;
     public $addItemName;
-    public $addItemWeight;
-    public $addItemUnit;
-    public $addItemPrice;
 
     protected $listeners = [
         'categorySelected',
@@ -119,13 +116,14 @@ class Stock extends Component
             ]);
         }
 
-        InvMovement::create([
+        $test = InvMovement::create([
             'status'        => $this->stockStatus,
             'category_id'   => $this->stockCategory,
             'type_id'       => $this->stockType,
+            'item_id'       => $this->stockItem,
             'supplier_id'   => $this->stockSupplier,
-            'from_user_id'  => auth()->user()->id,
-            'to_user_id'    => $this->stockCustId,
+            'from_user_id'  => ($this->stockSupplier == NULL) ? auth()->user()->id : NULL,
+            'to_user_id'    => ($this->stockSupplier == NULL) ? $this->stockCustId: NULL,
             'unit'          => $this->stockUnit,
             'serial_no'     => $this->stockSerial,
             'shipment_date' => $this->stockShipDate,
@@ -135,7 +133,7 @@ class Stock extends Component
             'created_by'    => auth()->user()->id,
             'created_at'    => now(),
         ]);
-
+        // dd($test);
         return redirect()->to('/stock/movement');
     }
 
@@ -185,7 +183,6 @@ class Stock extends Component
     {
         $data = $this->validate([
             'addItemTypeId' => 'required',
-            'addItemSupplier' => 'required',
             'addItemName'       => 'required|min:3',
         ]);
 
@@ -194,12 +191,8 @@ class Stock extends Component
         InvItem::create([
         'user_id'               => auth()->user()->id,
             'item_type_id'      => $this->addItemTypeId,
-            'supplier_id'       => $this->addItemSupplier,
             'code'              => sprintf('%09d', ($code == NULL ? 0 : $code) + 1),
             'name'              => strtoupper($this->addItemName),
-            'weight'            => ($this->addItemWeight == '') ? NULL : strtoupper($this->addItemWeight),
-            'unit'              => ($this->addItemUnit == '') ? NULL : $this->addItemUnit,
-            'price_per_unit'    => ($this->addItemPrice == '') ? NULL : $this->addItemPrice,
             'created_by'        => auth()->user()->id,
             'created_at'        => now(),
         ]);
@@ -231,12 +224,12 @@ class Stock extends Component
             // cards
             'categories' => InvCategory::where('user_id', auth()->user()->id)->get(),
             'types' => InvItemType::where('category_id', $this->categoryId)->where('user_id', auth()->user()->id)->get(),
-            'items' => InvItem::where('item_type_id', $this->typeId)->get(),
+            'items' => InvItem::where('item_type_id', $this->typeId)->where('user_id', auth()->user()->id)->get(),
             // 'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
             'suppliers' => InvSupplier::all(),
             // modal
-            'stockTypes' => InvItemType::where('category_id', $this->stockCategory)->get(),
-            'stockItems' => InvItem::where('item_type_id', $this->stockType)->get(),
+            // 'stockTypes' => InvItemType::where('category_id', $this->stockCategory)->get(),
+            'stockItems' => InvItem::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 }
