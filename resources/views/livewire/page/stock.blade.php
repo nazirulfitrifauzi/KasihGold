@@ -52,8 +52,9 @@
                                 <x-form.input type="date" label="Shipment Date" value="stockShipDate" wire:model="stockShipDate"/>
                                 <x-form.input label="Tracking Number" value="stockTrackingNo" wire:model="stockTrackingNo"/>
                                 <x-form.input label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/>
-                                <x-form.input label="Remarks" value="stockRemarks" wire:model="stockRemarks"/>
+                                
                             </div>
+                            <x-form.text-area label="Remarks" value="stockRemarks" wire:model="stockRemarks" rows="2" />
                             <div class="flex justify-end mt-4">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen = false" >
                                     Cancel
