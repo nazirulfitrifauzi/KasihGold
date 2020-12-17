@@ -138,8 +138,8 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/csc-officer-seven/Development/KasihGold/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/csc-officer-seven/Development/KasihGold/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/csc-officer-seven/Development/kasihgold/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/csc-officer-seven/Development/kasihgold/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

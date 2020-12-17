@@ -2,7 +2,7 @@
     @if ($sort != "")
         <div class="flex cursor-pointer">
             <span class="mr-2">{{ $value }}</span>
-                @include('pages.misc.sort_icon', ['field' => $sort ])
+                {{-- @include('pages.misc.sort_icon', ['field' => $sort ]) --}}
         </div>
     @else
         {{ $value }}
