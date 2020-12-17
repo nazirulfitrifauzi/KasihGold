@@ -13,8 +13,8 @@ class InvSupplier extends Model
 
     protected $guarded = [];
 
-    public function item()
+    public function master()
     {
-        return $this->hasMany('App\Models\InvItem', 'supplier_id', 'id');
+        return $this->hasMany('App\Models\InvMaster', 'supplier_id', 'id');
     }
 }

@@ -20,15 +20,7 @@
                                         <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type->brand : '' }}</option>
                                     @endforeach
                                 </x-form.dropdown>
-                                <x-form.dropdown label="Supplier" value="addItemSupplier" default="yes" wire:model="addItemSupplier">
-                                    @foreach ($suppliers as $supplier)
-                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
                                 <x-form.input label="Name" value="addItemName" wire:model="addItemName" />
-                                <x-form.input label="Weight" value="addItemWeight" wire:model="addItemWeight" />
-                                <x-form.input label="Unit" value="addItemUnit" wire:model="addItemUnit"/>
-                                <x-form.input label="Price Per Unit" value="addItemPrice" wire:model="addItemPrice"/>
                             </div>
                             <div class="flex justify-end">
                                 <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen1 = false" >
@@ -58,7 +50,7 @@
                         </div>
                     </div>
                     <div class="">
-                        {{ ucwords(strtolower($item->supplier->name)) }} - {{ $item->unit }} items
+                        {{ $item->unit == NULL ? '0' : $item->unit }} items
                     </div>
                 </div>
             </x-general.card-tab>

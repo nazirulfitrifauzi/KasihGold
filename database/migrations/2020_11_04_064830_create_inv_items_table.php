@@ -18,12 +18,8 @@ class CreateInvItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('item_type_id');
-            $table->unsignedBigInteger('supplier_id');
             $table->string('code', 9);
             $table->string('name', 100);
-            $table->unsignedDecimal('weight', 12, 6)->nullable();
-            $table->string('unit', 100)->nullable();
-            $table->unsignedDecimal('price_per_unit', 12, 6)->nullable();
             $table->string('remarks')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
