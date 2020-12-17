@@ -76,4 +76,9 @@
             @include('pages.stock.master')
         @endif --}}
     </div>
+
+    {{-- loading --}}
+        <div>
+            <x-loading.global-loading />
+        </div>
 </div>
