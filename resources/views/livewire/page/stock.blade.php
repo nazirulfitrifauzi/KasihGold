@@ -78,7 +78,7 @@
     </div>
 
     {{-- loading --}}
-        <div>
+        {{-- <div wire:loading wire:target="submit">
             <x-loading.global-loading />
-        </div>
+        </div> --}}
 </div>
