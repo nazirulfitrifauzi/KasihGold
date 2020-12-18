@@ -75,8 +75,14 @@ class User extends Authenticatable
     {
         return $this->roles()->where('description', 'Retail - VVIP')->exists();
     }
+
     public function isRetailPublic()
     {
         return $this->roles()->where('description', 'Retail - Public')->exists();
+    }
+    
+    public function screening()
+    {
+        return $this->hasMany('App\Models\Screening', 'user_id', 'id');
     }
 }

@@ -11,4 +11,9 @@ class SanctionListWebsites extends Model
 
     protected $table = "sanction_list_websites";
     protected $guarded = [];
+
+    public function screening()
+    {
+        return $this->hasMany('App\Models\Screening', 'sanction_id', 'id');
+    }
 }
