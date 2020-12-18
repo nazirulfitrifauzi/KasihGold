@@ -13,54 +13,54 @@ class Screening extends Component
     use WithPagination;
 
     public $search = '';
-    public $screeningList;
-    public $currentAccountScreen, $currentScreeningStatus;
+    public $remarks;
 
-    public function mount()
+    public function screenResult($user_id, $screen_id, $status)
     {
-        $this->screeningList = SanctionListWebsites::all();
+        return ModelsScreening::create([
+            'user_id'       => $user_id,
+            'sanction_id'   => $screen_id,
+            'status'        => $status == "pass" ? 1 : 0,
+            'created_by'    => auth()->user()->id,
+        ]);
     }
 
-    public function screen($id)
+    public function finalResult($user_id, $status)
     {
-        // Get current account data
-        $this->currentAccountScreen = User::where('id', $id)->first();
-
-        // Get screening list status
-        $screeningListStatus = $this->getScreeningListStatus($id);
-
-        // Check if screeningListStatus is empty
-        if($screeningListStatus->isEmpty()) {
-            // Create new screening list
-            foreach($this->screeningList as $sanction) {
-                ModelsScreening::create([
-                    'user_id'       => $id,
-                    'sanction_id'   => $sanction->id,
-                    'status'        => 0,
-                    'created_by'    => auth()->user()->id,
+        if ($status == 'terima')
+        {
+            User::whereId($user_id)
+                ->update([
+                    'active' => 1
                 ]);
-            }
 
-            // Get screening list status
-            $this->currentScreeningStatus = $this->getScreeningListStatus($id);
+            session()->flash('type', 'success');
+            session()->flash('title', 'Info');
+            session()->flash('message', 'User successfully approved.');
         }
-        else {
-            // Use existing screening list
-            $this->currentScreeningStatus = $screeningListStatus;
+        elseif ($status == 'tolak')
+        {
+            User::whereId($user_id)
+                ->update([
+                    'active' => 2
+                ]);
+
+            session()->flash('type', 'success');
+            session()->flash('title', 'Info');
+            session()->flash('message', 'User has been declined.');
         }
 
-        dd($this->currentScreeningStatus);
-    }
-
-    private function getScreeningListStatus($id)
-    {
-        return ModelsScreening::where('user_id', $id)->get();
+        return redirect()->to('/admin/screening');
     }
     
     public function render()
     {
         return view('livewire.page.admin.screening',[
-            'list' => User::where('name', 'like', '%' . $this->search . '%')->whereRole(2)->whereActive(0)->paginate(10),
+            'list' => User::where('name', 'like', '%' . $this->search . '%')
+                            ->whereRole(2)
+                            ->whereActive(0)
+                            ->paginate(10),
+            'sanctionList' => SanctionListWebsites::all(),
         ]);
     }
 }
