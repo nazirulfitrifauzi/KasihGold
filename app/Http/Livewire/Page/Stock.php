@@ -7,6 +7,7 @@ use App\Models\InvItem;
 use App\Models\InvItemType;
 use App\Models\InvMovement;
 use App\Models\InvSupplier;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -88,8 +89,6 @@ class Stock extends Component
         {
             $data = $this->validate([
                 'stockStatus'       => 'required',
-                'stockCategory'     => 'required',
-                'stockType'         => 'required',
                 'stockItem'         => 'required',
                 'stockSupplier'     => 'required_if:stockStatus,==,1',
                 'stockCustId'       => 'required_if:stockStatus,==,2',
@@ -104,8 +103,6 @@ class Stock extends Component
         {
             $data = $this->validate([
                 'stockStatus'       => 'required',
-                'stockCategory'     => 'required',
-                'stockType'         => 'required',
                 'stockItem'         => 'required',
                 'stockCustId'       => 'required',
                 'stockUnit'         => 'required|integer',
@@ -116,24 +113,59 @@ class Stock extends Component
             ]);
         }
 
-        $test = InvMovement::create([
-            'status'        => $this->stockStatus,
-            'category_id'   => $this->stockCategory,
-            'type_id'       => $this->stockType,
-            'item_id'       => $this->stockItem,
-            'supplier_id'   => $this->stockSupplier,
-            'from_user_id'  => ($this->stockSupplier == NULL) ? auth()->user()->id : NULL,
-            'to_user_id'    => ($this->stockSupplier == NULL) ? $this->stockCustId: NULL,
-            'unit'          => $this->stockUnit,
-            'serial_no'     => $this->stockSerial,
-            'shipment_date' => $this->stockShipDate,
-            'tracking_no'   => $this->stockTrackingNo,
-            'total_out'     => $this->stockTotalOut,
-            'remarks'       => $this->stockRemarks,
-            'created_by'    => auth()->user()->id,
-            'created_at'    => now(),
-        ]);
-        // dd($test);
+        if($this->stockSupplier != NULL) {  // from supplier
+            InvMovement::create([
+                'status'        => $this->stockStatus,
+                'item_id'       => $this->stockItem,
+                'supplier_id'   => $this->stockSupplier,
+                'from_user_id'  => NULL,
+                'to_user_id'    => auth()->user()->id,
+                'unit'          => $this->stockUnit,
+                'serial_no'     => $this->stockSerial,
+                'shipment_date' => $this->stockShipDate,
+                'tracking_no'   => $this->stockTrackingNo,
+                'total_out'     => $this->stockTotalOut,
+                'remarks'       => $this->stockRemarks,
+                'owner_id'      => auth()->user()->id,
+                'created_by'    => auth()->user()->id,
+                'created_at'    => now(),
+            ]);
+        } else { // not from supplier
+            InvMovement::create([ // create for recorder first
+                'status'        => $this->stockStatus,
+                'item_id'       => $this->stockItem,
+                'supplier_id'   => $this->stockSupplier,
+                'from_user_id'  => auth()->user()->id,
+                'to_user_id'    => $this->stockCustId,
+                'unit'          => $this->stockUnit,
+                'serial_no'     => $this->stockSerial,
+                'shipment_date' => $this->stockShipDate,
+                'tracking_no'   => $this->stockTrackingNo,
+                'total_out'     => $this->stockTotalOut,
+                'remarks'       => $this->stockRemarks,
+                'owner_id'      => auth()->user()->id,
+                'created_by'    => auth()->user()->id,
+                'created_at'    => now(),
+            ]);
+
+            InvMovement::create([ //then create for client
+                'status'        => ($this->stockStatus == 1) ? 2 : 1,
+                'item_id'       => $this->stockItem,
+                'supplier_id'   => $this->stockSupplier,
+                'from_user_id'  => auth()->user()->id,
+                'to_user_id'    => $this->stockCustId,
+                'unit'          => $this->stockUnit,
+                'serial_no'     => $this->stockSerial,
+                'shipment_date' => $this->stockShipDate,
+                'tracking_no'   => $this->stockTrackingNo,
+                'total_out'     => $this->stockTotalOut,
+                'remarks'       => $this->stockRemarks,
+                'owner_id'      => $this->stockCustId,
+                'created_by'    => auth()->user()->id,
+                'created_at'    => now(),
+            ]);
+        }
+
         return redirect()->to('/stock/movement');
     }
 
@@ -228,8 +260,8 @@ class Stock extends Component
             // 'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
             'suppliers' => InvSupplier::all(),
             // modal
-            // 'stockTypes' => InvItemType::where('category_id', $this->stockCategory)->get(),
             'stockItems' => InvItem::where('user_id', auth()->user()->id)->get(),
+            'users' => User::where('role','!=','1')->get(),
         ]);
     }
 }
