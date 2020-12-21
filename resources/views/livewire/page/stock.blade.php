@@ -31,10 +31,13 @@
                                     </x-form.dropdown>
                                 @endif
 
-                                @if(auth()->user()->role == 1 && $stockStatus == 2) <!-- if admin and stock out -->
-                                    <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" />
-                                @elseif(auth()->user()->role != 1)
-                                    <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" />
+                                @if((auth()->user()->role == 1 && $stockStatus == 2) || auth()->user()->role != 1) <!-- if admin and stock out -->
+                                    {{-- <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" /> --}}
+                                    <x-form.dropdown label="Customer" value="stockCustId" default="yes" wire:model="stockCustId">
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </x-form.dropdown>
                                 @endif
 
                                 <x-form.input label="Unit" value="stockUnit" wire:model="stockUnit" />

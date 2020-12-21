@@ -32,4 +32,14 @@ class InvMovement extends Model
     {
         return $this->belongsTo('App\Models\InvSupplier', 'supplier_id', 'id');
     }
+
+    public function from_user()
+    {
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
+    }
+
+    public function to_user()
+    {
+        return $this->belongsTo('App\Models\User', 'to_user_id', 'id');
+    }
 }

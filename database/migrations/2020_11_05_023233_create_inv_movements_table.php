@@ -16,8 +16,6 @@ class CreateInvMovementsTable extends Migration
         Schema::create('inv_movements', function (Blueprint $table) {
             $table->id();
             $table->integer('status');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->unsignedBigInteger('from_user_id')->nullable();
@@ -28,6 +26,7 @@ class CreateInvMovementsTable extends Migration
             $table->string('tracking_no')->nullable();
             $table->unsignedDecimal('total_out', 16, 2)->nullable();
             $table->string('remarks', 100)->nullable();
+            $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
