@@ -56,7 +56,12 @@
                             86728111
                         </x-table.table-body>
                         <x-table.table-body colspan="" class=" text-xs font-medium text-gray-700">
-                            <x-heroicon-o-check-circle class="h-6 w-6 text-green-400" />
+                            <div class="flex">
+                            <x-heroicon-o-login class="h-6 w-6 mr-2 text-green-400" />
+                            <p class="text-green-400">In</p>
+                            {{-- <x-heroicon-o-logout class="h-6 w-6 mr-2 text-red-600" />
+                            <p class="text-red-600">Out</p> --}}
+                            </div>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class=" text-xs font-medium text-gray-700">
                             10
