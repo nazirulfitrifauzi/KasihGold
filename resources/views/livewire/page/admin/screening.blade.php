@@ -143,7 +143,11 @@
             </div>
         </div>
         @empty
-        <p>No data at the moment</p>
+        <div class="col-span-12 intro-y md:col-span-12 py-4 px-2 border-2 border-gray-200">
+            <div class="flex justify-center">
+                <p class="font-semibold">No data at the moment</p>
+            </div>
+        </div>
         @endforelse
     </div>
     {{-- End Screening List --}}
