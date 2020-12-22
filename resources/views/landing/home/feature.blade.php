@@ -1,9 +1,9 @@
 <div id="features" class="relative w-full px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 bg-gradient-to-b from-cool-gray-50 to-cool-gray-600">
     <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
-        <h3 class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Kenapa perlu terlibat dengan pelaburan <span class="text-yellow-400">Emas</span>?</h3>
+        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Kenapa perlu terlibat dengan pelaburan <span class="text-yellow-400">Emas</span>?</h3>
         <div class="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
 
-            <div class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
+            <div data-aos="flip-right" class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
                 <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
                     <svg class="absolute w-full h-full text-yellow-300 fill-current" viewBox="0 0 377 340" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
+            <div data-aos="flip-right" class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
                 <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
                     <svg class="absolute w-full h-full text-yellow-300 fill-current" viewBox="0 0 358 372" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
+            <div data-aos="flip-right" class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
                 <div class="relative flex flex-col items-center justify-center w-full h-full p-20 mr-5 rounded-lg">
                     <svg class="absolute w-full h-full text-yellow-300 fill-current" viewBox="0 0 378 410" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M305.9 14.4c23.8 24.6 16.3 84.9 26.6 135.1 10.4 50.2 38.6 90.3 43.7 137.8 5.1 47.5-12.8 102.4-50.7 117.4-37.9 15.1-95.7-9.8-151.7-12.2-56.1-2.5-110.3 17.6-130-3.4-19.7-20.9-4.7-82.9-11.5-131.2C25.5 209.5-3 174.7 1.2 147c4.2-27.7 41-48.3 75-69.6C110.1 56.1 141 34.1 184 17.5c43.1-16.6 98.1-27.7 121.9-3.1z"/></g></g></svg>
                     <!-- FEATURE Icon 3 -->
