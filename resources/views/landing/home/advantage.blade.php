@@ -1,10 +1,10 @@
 <div id="testimonials" class="flex items-center justify-center w-full px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 ">
     <div class="max-w-6xl mx-auto">
         <div class="flex-col items-center ">
-            <div class="flex flex-col items-center justify-center w-full h-full max-w-4xl px-5 mx-auto text-center">
+            <div data-aos="fade-right" class="flex flex-col items-center justify-center w-full h-full max-w-4xl px-5 mx-auto text-center">
                 <h2 class="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl lg:text-5xl xl:text-6xl">Kenapa perlu menjadi <span class="text-yellow-300">AHLI KELUARGA</span> Kasih Gold?</h2>
             </div>
-            <div class="flex flex-col items-center justify-center max-w-2xl py-8 mx-auto xl:flex-row xl:max-w-full">
+            <div data-aos="flip-up" class="flex flex-col items-center justify-center max-w-2xl py-8 mx-auto xl:flex-row xl:max-w-full">
                 <div class="w-full xl:w-1/2 xl:pr-8">
                     <blockquote class="flex flex-col items-center justify-between w-full col-span-1 p-6 text-center transition-all duration-200 rounded-lg bg-gradient-to-br from-yellow-200 to-yellow-400 md:flex-row md:text-left hover:bg-white hover:shadow ease">
                         <div class="flex flex-col flex-grow pr-8">

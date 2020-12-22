@@ -9,7 +9,7 @@
         <div class="flex justify-between my-4">
             <div class="flex items-center">
                 <div class="relative dropdown" x-data="{open: false}">
-                    <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" @click="open = !open">Actions</button>
+                    <button class="cursor-pointer flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300" @click="open = !open">Actions</button>
                     <div class="absolute z-10 w-40 rounded-lg shadow-lg bg-white" x-show="open" style="display: none; top: -17px; left: 90px;">
                         <div class="py-4">
                             <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md hover:bg-gray-200">

@@ -16,8 +16,7 @@
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <span class="mr-2 -mt-3 text-base text-gray-500">Search: </span>
-                    <x-form.input label="" value="" wire:model="" />
+                    <x-form.search-input/>
                 </div>
             </div>
             <x-table.table>

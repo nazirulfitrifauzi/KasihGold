@@ -1,8 +1,8 @@
 <div class="relative w-full px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 bg-gradient-to-r from-yellow-200 to-yellow-400">
     <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
-        <h3 class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Inspirasi Penubuhan <span class="text-white">Kasih Gold</span></h3>
+        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Inspirasi Penubuhan <span class="text-white">Kasih Gold</span></h3>
 
-        <div class="flex flex-col w-full max-w-4xl mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+        <div data-aos="zoom-in" class="flex flex-col w-full max-w-4xl mt-0 lg:flex-row sm:mt-10 lg:mt-20">
 
             <ul class="grid grid-cols-1 row-gap-8">
                 <li>

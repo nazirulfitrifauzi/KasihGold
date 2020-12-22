@@ -25,11 +25,19 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     </head>
 
     <body>
         @yield('body')
 
         @livewireScripts
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                offset:100,
+                duration :1000
+            });
+        </script>
     </body>
 </html>

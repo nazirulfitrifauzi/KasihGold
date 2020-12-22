@@ -1,7 +1,7 @@
 <div class="px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 bg-gradient-to-r from-yellow-400 to-yellow-200">
     <div id="sertai" class="container flex flex-col items-center h-full max-w-6xl mx-auto">
-        <h3 class="w-full max-w-3xl px-5 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">Jom, sertai kami di Kasih Gold sekarang!</h3>
-        <div class="max-w-full md:max-w-6xl sm:px-8">
+        <h3 data-aos="fade-left" class="w-full max-w-3xl px-5 mt-2 text-2xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl md:px-0">Jom, sertai kami di Kasih Gold sekarang!</h3>
+        <div  data-aos="zoom-in" class="max-w-full md:max-w-6xl sm:px-8">
             <div class="max-w-full md:max-w-6xl sm:px-8">
                 <div class="relative flex flex-col items-center lg:flex-row">
                     <!-- Pakej Asnaf -->
