@@ -8,9 +8,7 @@
             class="block w-full transition duration-150 ease-in-out form-select sm:text-sm sm:leading-5"
             wire:loading.attr='readonly'
             wire:loading.class="bg-gray-300"
-            wire:target="submit"
-        >
-            <option value="" selected disabled>Choose State</option>
+            wire:target="submit">
             {{ $slot }}
         </select>
     </div>
