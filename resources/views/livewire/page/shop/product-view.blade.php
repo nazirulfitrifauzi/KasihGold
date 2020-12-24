@@ -1,7 +1,7 @@
 <div>
     <div x-data="{ cartOpen: false , isOpen: false }" class="bg-white my-10 rounded-lg">
         <header>
-            <div class="container mx-auto px-6 py-3">
+            <div class="px-6 py-3">
                 <div class="flex justify-between">
                     <div class="w-full text-gray-700 md:text-2xl font-semibold">
                         Product List
@@ -12,7 +12,7 @@
 
         <!-- Start product detail View-->
         <main class="my-4">
-            <div class="container mx-auto px-6">
+            <div class="px-6">
                 <div class="w-64">
                     <x-form.dropdown label="Category" value="" default="yes">
                         <option value="" selected>Gold 0.25g</option>
