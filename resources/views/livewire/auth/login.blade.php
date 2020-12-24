@@ -17,11 +17,11 @@
                             create a new account
                         </a>
                     </p>
-                </div>
+                </div
 
                 <div class="mt-8">
                     <div class="bg-white px-6 py-6 md:bg-transparent">
-                        <form wire:submit.prevent="authenticate">
+                        <form wire:submit.prevent="authenticate">`
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
                                     Email address

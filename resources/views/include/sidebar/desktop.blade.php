@@ -64,6 +64,26 @@
                     <x-heroicon-o-shield-check class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @endif
+
+                <x-sidebar.dropdown-nav-item active="open" title="Shop" uri="product/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-shopping-bag class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-7">
+                        <x-sidebar.dropdown-item title="Buy Product" href="{{route('product-view')}}"
+                            uri="product/view">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Sell Product" href="{{route('product-sell')}}"
+                            uri="product/sell">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
             </ul>
         </div>
     </div>
