@@ -1,14 +1,14 @@
 <div>
     <div class="py-6 bg-white my-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-1">
+        <div class="w-full px-4 sm:px-6 lg:px-8 mt-1">
 
             <header x-data="{ cartOpen: false , isOpen: false }" x-cloak>
-                <div class="container mx-auto px-1 mb-8">
+                <div class="px-1 mb-8">
                     <div class="flex justify-between">
                         <div class="w-full text-gray-700 md:text-2xl font-semibold">
                             Product Detail
                         </div>
-                        <div class="flex items-center justify-end w-full">
+                        <div class="flex items-center justify-end w-full relative">
                             <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
                                 <span 
                                 class="absolute inline-block w-6 h-6 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
