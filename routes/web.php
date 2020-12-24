@@ -19,6 +19,9 @@ use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\StockMovementController;
+use App\Http\Controllers\ProductDetailController;
+use App\Http\Controllers\ProductViewController;
+use App\Http\Controllers\ProductSellController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -47,6 +50,9 @@ Route::middleware('auth')->group(function () {
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
         Route::get('tracking', [TrackingController::class, 'index'])->name('tracking');
+        Route::get('product/detail', [ProductDetailController::class, 'index'])->name('product-detail');
+        Route::get('product/view', [ProductViewController::class, 'index'])->name('product-view');
+        Route::get('product/sell', [ProductSellController::class, 'index'])->name('product-sell');
     });
 
     Route::middleware('auth.admin')->group(function () {
