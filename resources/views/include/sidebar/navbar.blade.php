@@ -1,4 +1,4 @@
-<header class="z-0 py-4 bg-gray-900  shadow-md ">
+<header class="py-4 bg-gray-900  shadow-md ">
     <div class="flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
         <h1 class="lg:block ml-6 hidden text-white font-semibold italic">Welcome to Kasih Gold</h1>
         <div class="flex">
@@ -31,10 +31,46 @@
                 Screening passed
             </span>
             @endif
+
+            <div x-data="{ cartOpen: false , isOpen: false }" x-cloak class="pr-6 pt-1">
+                <div class="flex items-center justify-end w-full relative">
+                    <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
+                        <span 
+                        class="absolute inline-block w-4 h-4 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
+                        border-white rounded-full text-white items-center" style="font-size: 9px">1
+                        </span>
+                        <x-heroicon-o-shopping-cart class="h-6 w-6 text-white" />
+                    </button>
+                </div>
+                <!-- start view cart -->
+                <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
+                    class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300 z-40">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+                        <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
+                            <x-heroicon-o-x class="h-6 w-6" />
+                        </button>
+                    </div>
+                    <hr class="my-3">
+                    <div class="mt-6">
+                        <div class="flex">
+                            <img class="h-20 w-20 object-cover rounded"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU"
+                                alt="">
+                            <div class="mx-3">
+                                <h3 class="text-sm text-gray-600 font-semibold">Gold 0.5g</h3>
+                                <span class="text-yellow-400 font-semibold">RM 180.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End view cart -->
+            </div>
+
             <ul class="flex items-center flex-shrink-0 space-x-6">
                 <!-- Profile menu -->
                 <li class="relative">
-                    <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                    <button class="align-middle rounded-full  focus:outline-none"
                         @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                         aria-haspopup="true">
                         <div class="flex text-white font-semibold">
@@ -48,7 +84,7 @@
                         <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
                             x-transition:leave-end="opacity-0" @click.away="closeProfileMenu"
                             @keydown.escape="closeProfileMenu"
-                            class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                            class="z-40 absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                             aria-label="submenu">
                             <li class="flex">
                                 <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
