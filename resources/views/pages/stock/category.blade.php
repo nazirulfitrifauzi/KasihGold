@@ -47,25 +47,27 @@
                                     </x-btn.tooltip-btn>
 
                                     {{-- Start modal edit Category --}}
-                                    <x-general.modal modalActive="editOpen" title="Edit Category" modalSize="lg">
-                                        <x-form.basic-form >
-                                            <x-slot name="content">
-                                                <div class="p-4 mt-4 leading-4">
-                                                    <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                        <x-form.input  label="Name" value="" wire:model=""/>
+                                    <div class="cursor-default text-gray-900">
+                                        <x-general.modal modalActive="editOpen" title="Edit Category" modalSize="lg">
+                                            <x-form.basic-form >
+                                                <x-slot name="content">
+                                                    <div class="p-4 mt-4 leading-4">
+                                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                            <x-form.input  label="Name" value=""/>
+                                                        </div>
+                                                        <div class="flex justify-end">
+                                                            <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="editOpen = false">
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                Submit
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="flex justify-end">
-                                                        <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="editOpen = false">
-                                                            Cancel
-                                                        </button>
-                                                        <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                            Submit
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </x-slot>
-                                        </x-form.basic-form>
-                                    </x-general.modal>
+                                                </x-slot>
+                                            </x-form.basic-form>
+                                        </x-general.modal>
+                                    </div>
                                     {{-- End Modal edit Category --}}
                                 </div>
                                 
@@ -75,22 +77,24 @@
                                         <x-heroicon-o-trash class="w-4 h-4 text-white"/>
                                     </x-btn.tooltip-btn>
                                     {{-- Start modal delete --}}
-                                    <x-general.modal modalActive="deleteOpen" title="Delete Confirmation" modalSize="sm" closeBtn="yes">
-                                        <div class="">
-                                            <div class="py-4 font-semibold text-center text-black font">
-                                                Are you sure you want to delete :<br>
-                                                Category "{{ucfirst(strtolower($category->name)) }}"?
+                                    <div class="cursor-default">
+                                        <x-general.modal modalActive="deleteOpen" title="Delete Confirmation" modalSize="sm" closeBtn="yes">
+                                            <div class="">
+                                                <div class="py-4 font-semibold text-center text-black font">
+                                                    Are you sure you want to delete :<br>
+                                                    Category "{{ucfirst(strtolower($category->name)) }}"?
+                                                </div>
+                                                <div class="flex justify-center mt-3">
+                                                    <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen = false">
+                                                        Cancel
+                                                    </button>
+                                                    <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('category', {{ $category->id }})">
+                                                        yes,Delete
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="flex justify-center mt-3">
-                                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen = false">
-                                                    Cancel
-                                                </button>
-                                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none" wire:click="delete('category', {{ $category->id }})">
-                                                    yes,Delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </x-general.modal>
+                                        </x-general.modal>
+                                    </div>
                                     {{-- End modal delete  --}}
                                 </div>
                             </div>
