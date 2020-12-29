@@ -8,46 +8,10 @@
                         <div class="w-full text-gray-700 md:text-2xl font-semibold">
                             Product Detail
                         </div>
-                        <div class="flex items-center justify-end w-full relative">
-                            <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
-                                <span 
-                                class="absolute inline-block w-6 h-6 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
-                                border-white rounded-full text-sm text-white items-center">1
-                                </span>
-                                <x-heroicon-o-shopping-cart class="h-8 w-8" />
-                            </button>
-                        </div>
                     </div>
                 </div>
-
-                <!-- start view cart -->
-                <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
-                    class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
-                        <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
-                            <x-heroicon-o-x class="h-6 w-6" />
-                        </button>
-                    </div>
-                    <hr class="my-3">
-                    <div class="mt-6">
-                        <div class="flex">
-                            <img class="h-20 w-20 object-cover rounded"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU"
-                                alt="">
-                            <div class="mx-3">
-                                <h3 class="text-sm text-gray-600 font-semibold">Gold 0.25g</h3>
-                                <span class="text-yellow-400 font-semibold">RM 180.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End view cart -->
-
             </header>
-
             <div class="flex flex-col md:flex-row -mx-4">
-
                 <!-Start detail of image -->
                 <div class="md:flex-1 px-4">
                     <div x-data="{imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU'}" x-cloak>
@@ -91,7 +55,7 @@
 
                 <!--Start detail for buying -->
                 <div class="mt-8 lg:flex-1 px-4 md:mt-0">
-                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Gold 0.25g</h2>
+                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Gold 0.5g</h2>
                     <p class="text-gray-500 text-sm">By 
                         <span class="text-yellow-400">Hq Kasih Gold</span>
                     </p>
