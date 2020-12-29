@@ -1,16 +1,13 @@
 <div>
     <div class="py-6 bg-white my-10">
         <div class="w-full px-4 sm:px-6 lg:px-8 mt-1">
-
-            <header x-data="{ cartOpen: false , isOpen: false }" x-cloak>
-                <div class="px-1 mb-8">
-                    <div class="flex justify-between">
-                        <div class="w-full text-gray-700 md:text-2xl font-semibold">
-                            Product Detail
-                        </div>
+            <div class="px-1 mb-8">
+                <div class="flex justify-between">
+                    <div class="w-full text-gray-700 md:text-2xl font-semibold">
+                        Product Detail
                     </div>
                 </div>
-            </header>
+            </div>
             <div class="flex flex-col md:flex-row -mx-4">
                 <!-Start detail of image -->
                 <div class="md:flex-1 px-4">
