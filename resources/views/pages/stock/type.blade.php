@@ -4,40 +4,6 @@
         <h2 class="mr-auto text-lg font-medium">
             Type
         </h2>
-        <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen: false}">
-            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer  hover:bg-yellow-300" @click="modalOpen = true" >
-                Add type
-            </a>
-
-            {{-- Start modal Add Type --}}
-            <x-general.modal modalActive="modalOpen" title="Add New Type" modalSize="2xl">
-                <x-form.basic-form wire:submit.prevent="addType">
-                    <x-slot name="content">
-                        <div class="p-4 mt-4 leading-4">
-                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                <x-form.dropdown label="Category" default="yes" value="addTypeCategoryId" wire:model="addTypeCategoryId">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
-                                <x-form.input label="Name" value="addTypeName" wire:model="addTypeName"/>
-                                <x-form.input label="Brand" value="addTypeBrand" wire:model="addTypeBrand"/>
-                                <x-form.input label="Purity" value="addTypePurity" wire:model="addTypePurity"/>
-                            </div>
-                            <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen = false" >
-                                    Cancel
-                                </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                    </x-slot>
-                </x-form.basic-form>
-            </x-general.modal>
-            {{-- End Modal Add Type --}}
-        </div>
     </div>
 
     <div class="grid grid-cols-12 gap-6">

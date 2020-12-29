@@ -4,38 +4,6 @@
         <h2 class="mr-auto text-lg font-medium">
             Item List
         </h2>
-        <div class="flex w-full mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen1: false}">
-            <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer hover:bg-yellow-300" @click="modalOpen1 = true" >
-                Add Item
-            </a>
-
-            {{-- Start modal Add Items --}}
-            <x-general.modal modalActive="modalOpen1" title="Add New Items" modalSize="2xl">
-                <x-form.basic-form wire:submit.prevent="addItem">
-                    <x-slot name="content">
-                        <div class="p-4 mt-4 leading-4">
-                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                <x-form.dropdown label="Type" value="addItemTypeId" default="yes" wire:model="addItemTypeId">
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type->brand : '' }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
-                                <x-form.input label="Name" value="addItemName" wire:model="addItemName" />
-                            </div>
-                            <div class="flex justify-end">
-                                <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500" @click="modalOpen1 = false" >
-                                    Cancel
-                                </button>
-                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                    Submit
-                                </button>
-                            </div>
-                        </div>
-                    </x-slot>
-                </x-form.basic-form>
-            </x-general.modal>
-            {{-- End Modal Add Items --}}
-        </div>
     </div>
 
     <div class="grid grid-cols-12 gap-6">
