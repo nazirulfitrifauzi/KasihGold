@@ -7,17 +7,15 @@
         </div>
     </div>
     <x-general.card class="bg-white shadow-lg">
+        <div class="flex justify-end py-2 px-4">
+            <a href="{{route('product-sell')}}" class="cursor-pointer flex items-center px-4 py-1 
+                text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">
+                <x-heroicon-o-arrow-circle-left class="w-5 h-5 mr-2 text-white" />
+                List Product
+            </a>
+        </div>
         <div class="grid grid-cols-12 gap-6">
             <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
-                <div class="flex justify-end py-2 px-4">
-
-                    <a href="{{route('product-sell')}}" class="cursor-pointer flex items-center px-4 py-1 
-                        text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">
-                        <x-heroicon-o-arrow-circle-left class="w-5 h-5 mr-2 text-white" />
-                        List Product
-                    </a>
-                </div>
-
                 <!-- Start Add Product View -->
                 <div class="py-4 px-4">
                     <h1 class="font-semibold text-lg">Upload Product Image</h1>
@@ -107,7 +105,7 @@
                     </x-form.basic-form>
                 </div>
                 <!-- End  Add Product View -->
-                
+
             </div>
         </div>
     </x-general.card>
