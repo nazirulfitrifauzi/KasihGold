@@ -22,6 +22,8 @@ use App\Http\Controllers\StockMovementController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductViewController;
 use App\Http\Controllers\ProductSellController;
+use App\Http\Controllers\ProductAddController;
+use App\Http\Controllers\ProductEditController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -53,6 +55,8 @@ Route::middleware('auth')->group(function () {
         Route::get('product/detail', [ProductDetailController::class, 'index'])->name('product-detail');
         Route::get('product/view', [ProductViewController::class, 'index'])->name('product-view');
         Route::get('product/sell', [ProductSellController::class, 'index'])->name('product-sell');
+        Route::get('product/sell-add', [ProductAddController::class, 'index'])->name('product-add');
+        Route::get('product/sell-edit', [ProductEditController::class, 'index'])->name('product-edit');
     });
 
     Route::middleware('auth.admin')->group(function () {
