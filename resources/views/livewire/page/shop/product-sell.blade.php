@@ -6,7 +6,7 @@
             </h2>
         </div>
     </div>
-    <x-general.card class="bg-white shadow-lg">
+    <x-general.card class="bg-white shadow-lg w-full">
         <div class="flex justify-end py-2 px-4">
             <a href="{{route('product-add')}}" class="cursor-pointer flex items-center px-4 py-1 
                 text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">
@@ -14,45 +14,47 @@
                 Add Product
             </a>
         </div>
-        <div class="grid grid-cols-12 gap-6">
-            <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
-                    <!-- Start List Product View -->
-                    <div class="py-4 px-4">
-                        <x-table.table>
-                            <x-slot name="thead">
-                                <x-table.table-header class="text-left" value="PRODUCT NAME" sort="" />
-                                <x-table.table-header class="text-left" value="PRICE OF PRODUCT" sort="" />
-                                <x-table.table-header class="text-left" value="ACTIONS" sort="" />
-                            </x-slot>
-                            <x-slot name="tbody">
-                                
-                                <tr>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700"> 
-                                        GOLD 0.5G
-                                    </x-table.table-body>
+            <!-- Start List Product View -->
+            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                        <div class="py-4 px-4">
+                            <x-table.table>
+                                <x-slot name="thead">
+                                    <x-table.table-header class="text-left" value="PRODUCT NAME" sort="" />
+                                    <x-table.table-header class="text-left" value="PRICE OF PRODUCT" sort="" />
+                                    <x-table.table-header class="text-left" value="ACTIONS" sort="" />
+                                </x-slot>
+                                <x-slot name="tbody">
+                                    
+                                    <tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700"> 
+                                            GOLD 0.5G
+                                        </x-table.table-body>
 
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        RM 180.00
-                                    </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            RM 180.00
+                                        </x-table.table-body>
 
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex font-medium">
-                                            <a href="{{route('product-edit')}}" class="flex">
-                                                <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500" />
-                                                <p class="text-blue-500">Edit Product</p>
-                                            </a>
-                                        </div>
-                                    </x-table.table-body>
-                                </tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex font-medium">
+                                                <a href="{{route('product-edit')}}" class="flex">
+                                                    <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500" />
+                                                    <p class="text-blue-500">Edit Product</p>
+                                                </a>
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
 
-                            </x-slot>
-                            {{-- <div class="py-2 px-2">
-                                {{ $list->links('pagination::tailwind') }}
-                            </div> --}}
-                        </x-table.table>
+                                </x-slot>
+                                {{-- <div class="py-2 px-2">
+                                    {{ $list->links('pagination::tailwind') }}
+                                </div> --}}
+                            </x-table.table>
+                        </div>
                     </div>
-                    <!-- End  List Product View -->
+                </div>
             </div>
-        </div>
+            <!-- End  List Product View -->
     </x-general.card>
 </div>

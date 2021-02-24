@@ -17,7 +17,7 @@
                             create a new account
                         </a>
                     </p>
-                </div
+                </div>
 
                 <div class="mt-8">
                     <div class="bg-white px-6 py-6 md:bg-transparent">
