@@ -7,92 +7,31 @@
                 <x-heroicon-o-plus-circle class="h-6 w-6 text-green-400  hover:text-green-500" @click="openModal = true"/>
                 {{-- Start modal --}}
                     <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl">
-                        <div x-data="{ active: 0 }">
-                            <div class="flex my-2 bg-gray-100 w-full shadow-sm">
-                                <x-tab.nav-tab name="0" livewire="">
-                                    <div class="flex font-medium">
-                                        <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Category
-                                    </div>
-                                </x-tab.nav-tab>
-                                <x-tab.nav-tab name="1" livewire="">
-                                    <div class="flex font-medium">
-                                        <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Type
-                                    </div>
-                                </x-tab.nav-tab>
-                                <x-tab.nav-tab name="2" livewire="">
-                                    <div class="flex font-medium">
-                                        <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Item
-                                    </div>
-                                </x-tab.nav-tab>
-                            </div>
-                            <!-- Start Add Category -->
-                            <x-tab.nav-content name="0">
-                                <x-form.basic-form wire:submit.prevent="addCategory">
-                                    <x-slot name="content">
-                                        <div class="p-4 leading-4">
-                                            <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                <x-form.input  label="Name" value="addCategoryName" wire:model="addCategoryName"/>
-                                            </div>
-                                            <div class="flex justify-end mt-4">
-                                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                    Submit
-                                                </button>
-                                            </div>
+                        <div>
+                            <x-form.basic-form wire:submit.prevent="">
+                                <x-slot name="content">
+                                    <div class="p-4 leading-4">
+                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                            <x-form.input label="Category Name" value="addCategoryName" wire:model="addCategoryName" />
                                         </div>
-                                    </x-slot>
-                                </x-form.basic-form>
-                            </x-tab.nav-content>
-                            <!-- End Add Category -->
-
-                            <!-- Start Add Type -->
-                            <x-tab.nav-content name="1">
-                                <x-form.basic-form wire:submit.prevent="addType">
-                                    <x-slot name="content">
-                                        <div class="p-4 leading-4">
-                                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                <x-form.dropdown label="Category" default="yes" value="addTypeCategoryId" wire:model="addTypeCategoryId">
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
-                                                </x-form.dropdown>
-                                                <x-form.input label="Name" value="addTypeName" wire:model="addTypeName"/>
-                                                <x-form.input label="Brand" value="addTypeBrand" wire:model="addTypeBrand"/>
-                                                <x-form.input label="Purity" value="addTypePurity" wire:model="addTypePurity"/>
-                                            </div>
-                                            <div class="flex justify-end mt-4">
-                                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                    Submit
-                                                </button>
-                                            </div>
+                                        <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                            <x-form.input label="Type Name" value="addTypeName" wire:model="addTypeName" />
+                                            <x-form.input label="Type Brand" value="addTypeBrand" wire:model="addTypeBrand" />
+                                            <x-form.input label="Type Purity" value="addTypePurity" wire:model="addTypePurity" />
                                         </div>
-                                    </x-slot>
-                                </x-form.basic-form>
-                            </x-tab.nav-content>
-                            <!-- End Add Type -->
-
-                            <!-- Start Add Item -->
-                            <x-tab.nav-content name="2">
-                                <x-form.basic-form wire:submit.prevent="addItem">
-                                    <x-slot name="content">
-                                        <div class="p-4 mt-4 leading-4">
-                                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                <x-form.dropdown label="Type" value="addItemTypeId" default="yes" wire:model="addItemTypeId">
-                                                    @foreach ($types as $type)
-                                                        <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type->brand : '' }}</option>
-                                                    @endforeach
-                                                </x-form.dropdown>
-                                                <x-form.input label="Name" value="addItemName" wire:model="addItemName" />
-                                            </div>
-                                            <div class="flex justify-end mt-4">
-                                                <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                    Submit
-                                                </button>
-                                            </div>
+                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                            <x-form.input label="Item Name" value="addItemName" wire:model="addItemName" />
                                         </div>
-                                    </x-slot>
-                                </x-form.basic-form>
-                            </x-tab.nav-content>
-                            <!-- End Add Item -->
+                                        <div class="flex justify-end mt-4">
+                                            <button
+                                                class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </x-slot>
+                            </x-form.basic-form>
+                            
                         </div>
                     </x-general.modal>
                 {{-- End modal --}}
