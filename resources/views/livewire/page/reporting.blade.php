@@ -8,7 +8,7 @@
     <!-- BEGIN: Profile Menu -->
     <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
             <x-general.card class="mt-5 bg-white shadow-lg w-full">
-                    <div class="flex">
+                    <div class="flex overflow-x-auto">
                         <x-tab.nav-tab name="0" livewire="">
                             <div class="flex font-semibold">
                                 <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Performance

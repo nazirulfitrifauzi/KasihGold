@@ -30,104 +30,113 @@
                 </x-dashboard.info-card> 
             </div>
         </div>
-        <div class="col-span-12 mt-5">
-            <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                <div class="bg-white shadow-lg p-4" id="chartline"></div>
+        <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+            <div class="grid grid-cols-12 gap-6">
+
+                <div class="flex col-span-12 lg:col-span-6 xxl:col-span-6 lg:block">
+                    <div class="bg-white shadow-lg p-4" id="chartline"></div>
+                </div>
+
+                <div class="col-span-12 lg:col-span-6 xxl:col-span-6">
+                    <div class="bg-white p-4 shadow-lg" id="chartpie"></div>
+                </div>
             </div>
         </div>
-        <div class="col-span-12 mt-5">
-            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                <div class="bg-white p-4 shadow-lg" id="chartpie"></div>
 
-                <div class="bg-white p-4 shadow-lg">
-                    <h1 class="font-bold text-base">Weekly Top Seller</h1>
-                    <div class="mt-4">
-                        <x-table.table>
-                            <x-slot name="thead">
-                                <x-table.table-header class="text-left" value="PRODUCT NAME" sort=""/>
-                                <x-table.table-header class="text-left" value="STOCK" sort=""/>
-                                <x-table.table-header class="text-left" value="STATUS" sort=""/>
-                                <x-table.table-header class="text-left" value="ACTIONS" sort=""/>
-                            </x-slot>
-                            <x-slot name="tbody">
-                                <tr>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>Apple MacBook Pro 13</p>
-                                        <p class="text-xs text-gray-400">PC & Laptop</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>77</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex text-green-500">
-                                            <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
-                                            <p>Active</p>
-                                        </div>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex">
-                                            <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
-                                            <p class="text-blue-500">Edit</p>
+        <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                    <div class="bg-white p-4 shadow-lg">
+                        <h1 class="font-bold text-base">Weekly Top Seller</h1>
+                        <div class="mt-4">
+                            <x-table.table>
+                                <x-slot name="thead">
+                                    <x-table.table-header class="text-left" value="PRODUCT NAME" sort=""/>
+                                    <x-table.table-header class="text-left" value="STOCK" sort=""/>
+                                    <x-table.table-header class="text-left" value="STATUS" sort=""/>
+                                    <x-table.table-header class="text-left" value="ACTIONS" sort=""/>
+                                </x-slot>
+                                <x-slot name="tbody">
+                                    <tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>Apple MacBook Pro 13</p>
+                                            <p class="text-xs text-gray-400">PC & Laptop</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>77</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex text-green-500">
+                                                <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
+                                                <p>Active</p>
+                                            </div>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex">
+                                                <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
+                                                <p class="text-blue-500">Edit</p>
 
-                                            <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
-                                            <p class="text-red-500">Delete</p>
-                                        </div>
-                                    </x-table.table-body>
-                                </tr>
-                                <tr>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>Oppo Find X2 Pro</p>
-                                        <p class="text-xs text-gray-400">Smartphone & Tablet</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>50</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex text-green-500">
-                                            <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
-                                            <p>Active</p>
-                                        </div>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex">
-                                            <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
-                                            <p class="text-blue-500">Edit</p>
+                                                <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
+                                                <p class="text-red-500">Delete</p>
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                    <tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>Oppo Find X2 Pro</p>
+                                            <p class="text-xs text-gray-400">Smartphone & Tablet</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>50</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex text-green-500">
+                                                <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
+                                                <p>Active</p>
+                                            </div>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex">
+                                                <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
+                                                <p class="text-blue-500">Edit</p>
 
-                                            <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
-                                            <p class="text-red-500">Delete</p>
-                                        </div>
-                                    </x-table.table-body>
-                                </tr>
-                                <tr>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>Dell XPS 13</p>
-                                        <p class="text-xs text-gray-400">PC & Laptop</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <p>100</p>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex text-green-500">
-                                            <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
-                                            <p>Active</p>
-                                        </div>
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                        <div class="flex">
-                                            <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
-                                            <p class="text-blue-500">Edit</p>
+                                                <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
+                                                <p class="text-red-500">Delete</p>
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                    <tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>Dell XPS 13</p>
+                                            <p class="text-xs text-gray-400">PC & Laptop</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>100</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex text-green-500">
+                                                <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
+                                                <p>Active</p>
+                                            </div>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex">
+                                                <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
+                                                <p class="text-blue-500">Edit</p>
 
-                                            <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
-                                            <p class="text-red-500">Delete</p>
-                                        </div>
-                                    </x-table.table-body>
-                                </tr>
-                            </x-slot>
-                        </x-table.table>
+                                                <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
+                                                <p class="text-red-500">Delete</p>
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                </x-slot>
+                            </x-table.table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div> 
 

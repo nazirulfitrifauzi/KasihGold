@@ -21,7 +21,7 @@
                     <h1 class="font-semibold text-lg">Upload Product Image</h1>
                     <x-form.basic-form wire:submit.prevent="">
                         <x-slot name="content">
-                            <div class="grid gap-2 grid-cols-3  lg:grid-cols-6 ">
+                            <div class="grid gap-2 grid-cols-2  lg:grid-cols-6 ">
 
                                 <!-- upload product img 1 -->
                                 <div class="flex mt-3">
