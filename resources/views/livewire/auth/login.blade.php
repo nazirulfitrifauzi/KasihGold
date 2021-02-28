@@ -1,8 +1,5 @@
 @section('title', 'Sign in to your account')
 
-
-
-
 <div class="-mt-24 pt-24 w-full h-screen bg-white flex flex-wrap">
     <div class="flex items-center justify-center md:-px-0 w-full md:w-4/12 bg-gray-800">
         <div class="shadow-xl md:shadow-none p-8 md:bg-white  relative z-10">
@@ -19,9 +16,9 @@
                     </p>
                 </div>
 
-                <div class="mt-8">
+                <div class="mt-3">
                     <div class="bg-white px-6 py-6 md:bg-transparent">
-                        <form wire:submit.prevent="authenticate">`
+                        <form wire:submit.prevent="authenticate">
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
                                     Email address

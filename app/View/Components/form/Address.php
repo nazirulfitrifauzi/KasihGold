@@ -12,10 +12,11 @@ class Address extends Component
     public $value3;
     public $value4;
     public $value5;
+    public $value6;
     public $condition;
     public $state;
 
-    public function __construct($label, $value1, $value2, $value3, $value4, $value5, $condition)
+    public function __construct($label, $value1, $value2, $value3, $value4, $value5, $value6, $condition)
     {
         $this->label = $label;
         $this->value1 = $value1;
@@ -23,6 +24,7 @@ class Address extends Component
         $this->value3 = $value3;
         $this->value4 = $value4;
         $this->value5 = $value5;
+        $this->value6 = $value6;
         $this->condition = $condition;
         // $this->state = State::all();
     }

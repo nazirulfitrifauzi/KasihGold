@@ -10,7 +10,7 @@
                     </h2>
                 </div>
 
-                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
                     <div class="bg-white px-6 py-6 md:bg-transparent">
                         @if ($emailSentMessage)
                             <div class="rounded-md bg-green-50 p-4">
