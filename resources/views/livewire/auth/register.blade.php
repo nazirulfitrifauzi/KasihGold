@@ -17,7 +17,7 @@
                     </p>
                 </div>
 
-                <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
                     <div class="bg-white px-6 py-6 md:bg-transparent">
                         <form wire:submit.prevent="register">
                             <div>
