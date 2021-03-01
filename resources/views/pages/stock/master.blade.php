@@ -71,7 +71,7 @@
                                         {{ $master->item->type->category->code }}/{{ $master->item->type->code }}/{{ $master->item->code }}/{{ $master->serial_no }}
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                        {{ $master->created_at->format('jS F Y') }}
+                                        {{ $master->created_at->format('d/m/Y') }}
                                     </x-table.table-body>
                                 </tr>
                             @endforeach
