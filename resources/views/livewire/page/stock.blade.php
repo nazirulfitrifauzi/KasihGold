@@ -34,7 +34,7 @@
 
                         </div> --}}
                         <div x-data="{ active: 0 }">
-                            <div class="flex w-full my-2 bg-gray-100 shadow-sm">
+                            <div class="flex my-2 bg-gray-100 w-full shadow-sm">
                                 <x-tab.nav-tab name="0" livewire="">
                                     <div class="flex font-medium">
                                         <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Category
@@ -65,10 +65,31 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                            <x-form.input label="Type Name" value="addTypeName" wire:model="addTypeName" />
-                                            <x-form.input label="Type Brand" value="addTypeBrand" wire:model="addTypeBrand" />
-                                            <x-form.input label="Type Purity" value="addTypePurity" wire:model="addTypePurity" />
+                                    </x-slot>
+                                </x-form.basic-form>
+                            </x-tab.nav-content>
+                            <!-- End Add Category -->
+
+                            <!-- Start Add Type -->
+                            <x-tab.nav-content name="1">
+                                <x-form.basic-form wire:submit.prevent="addType">
+                                    <x-slot name="content">
+                                        <div class="p-4 leading-4">
+                                            <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                                <x-form.dropdown label="Category" default="yes" value="addTypeCategoryId" wire:model="addTypeCategoryId">
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </x-form.dropdown>
+                                                <x-form.input label="Name" value="addTypeName" wire:model="addTypeName"/>
+                                                <x-form.input label="Brand" value="addTypeBrand" wire:model="addTypeBrand"/>
+                                                <x-form.input label="Purity" value="addTypePurity" wire:model="addTypePurity"/>
+                                            </div>
+                                            <div class="flex justify-end mt-4">
+                                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                    Submit
+                                                </button>
+                                            </div>
                                         </div>
                                     </x-slot>
                                 </x-form.basic-form>
@@ -82,10 +103,9 @@
                                         <div class="p-4 mt-4 leading-4">
                                             <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
                                                 <x-form.dropdown label="Type" value="addItemTypeId" default="yes" wire:model="addItemTypeId">
-                                                    <option value="%">APPLY TO ALL TYPE</option>
-                                                    {{-- @foreach ($stockTypes as $type)
-                                                        <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type2->brand : '' }}</option>
-                                                    @endforeach --}}
+                                                    @foreach ($types as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->name }} {{ ($type->brand != null) ? $type->brand : '' }}</option>
+                                                    @endforeach
                                                 </x-form.dropdown>
                                                 <x-form.input label="Name" value="addItemName" wire:model="addItemName" />
                                             </div>
@@ -95,16 +115,10 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="flex justify-end mt-4">
-                                            <button
-                                                class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                Submit
-                                            </button>
-                                        </div>
                                     </x-slot>
                                 </x-form.basic-form>
                             </x-tab.nav-content>
-
+                            <!-- End Add Item -->
                         </div>
                     </x-general.modal>
                 {{-- End modal --}}
