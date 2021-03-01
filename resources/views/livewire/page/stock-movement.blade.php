@@ -24,12 +24,12 @@
                     <x-table.table-header class="text-left" value="REF" sort="" />
                     {{-- <x-table.table-header class="text-left" value="DATE" sort="" /> --}}
                     <x-table.table-header class="text-left" value="SUPPLIER / CUSTOMER NAME" sort="" />
-                    <x-table.table-header class="text-left" value="PCS" sort="" />
+                    {{-- <x-table.table-header class="text-left" value="PCS" sort="" /> --}}
                     <x-table.table-header class="text-left" value="SERIAL NUMBER" sort="" />
                     <x-table.table-header class="text-left" value="SHIPMENT DATE" sort="" />
                     <x-table.table-header class="text-left" value="TRACKING NUMBER" sort="" />
                     <x-table.table-header class="text-left" value="STATUS / REMARKS" sort="" />
-                    <x-table.table-header class="text-left" value="TOTAL OUT" sort="" />
+                    {{-- <x-table.table-header class="text-left" value="TOTAL OUT" sort="" /> --}}
                 </x-slot>
                 <x-slot name="tbody">
                     @foreach ($data as $item)
@@ -48,9 +48,9 @@
                                     @endif
                                 @endif
                             </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 {{ $item->unit }}
-                            </x-table.table-body>
+                            </x-table.table-body> --}}
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 {{ $item->serial_no }}
                             </x-table.table-body>
@@ -73,9 +73,9 @@
                                 </div>
                                 @endif
                             </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 {{ $item->total_out }}
-                            </x-table.table-body>
+                            </x-table.table-body> --}}
                         </tr>
                     @endforeach
                 </x-slot>
