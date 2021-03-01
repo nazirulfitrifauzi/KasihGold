@@ -9,25 +9,26 @@
     <div class="grid grid-cols-12 gap-6">
         @foreach ($items as $item)
         <div class="relative flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block" x-data="{ deleteOpen3 : false  }">
-            <x-general.card-tab  wire:click="$emit('itemSelected', {{ $item->id }})">
+            <x-general.card-tab class="{{$itemActive == $item->id ? 'bg-yellow-400 text-white' : '' }} hover:bg-yellow-400 hover:text-white" wire:click="$emit('itemSelected', {{ $item->id }})">
+    {{-- <x-general.card-tab class="{{$typeActive == $type->id ? 'bg-yellow-400 text-white' : '' }} hover:bg-yellow-400 hover:text-white" wire:click="$emit('typeSelected', {{ $type->id }})"> --}}
                 <div class="p-4">
                     <div class="flex justify-between font-medium">
                         {{ ucfirst(strtolower($item->name)) }}
                     </div>
                     <div class="">
-                        {{ $item->unit == NULL ? '0' : $item->unit }} items
+                        {{ $item->master()->count() }} Items
                     </div>
                 </div>
             </x-general.card-tab>
-            <div class="flex absolute top-0 right-0 py-10 px-6 ">
+            <div class="absolute top-0 right-0 flex px-6 py-10 ">
                 <div x-data="{ editOpen3 : false  }">
-                    <x-btn.tooltip-btn class="text-xs flex items-center px-2 py-2 bg-blue-600 rounded-full hover:bg-blue-700" 
+                    <x-btn.tooltip-btn class="flex items-center px-2 py-2 text-xs bg-blue-600 rounded-full hover:bg-blue-700"
                         btnRoute="#" tooltipTitle="Edit" x-on:click="editOpen3 = true">
                         <x-heroicon-o-pencil-alt class="w-4 h-4 text-white"/>
                     </x-btn.tooltip-btn>
 
                     {{-- Start modal edit type --}}
-                    <div class="cursor-default text-gray-900">
+                    <div class="text-gray-900 cursor-default">
                         <x-general.modal modalActive="editOpen3" title="Edit Item" modalSize="lg">
                             <x-form.basic-form >
                                 <x-slot name="content">
@@ -57,7 +58,7 @@
                 </div>
 
                 <div x-data="{ deleteOpen3 : false  }">
-                    <x-btn.tooltip-btn class="text-xs flex items-center px-2 py-2 bg-red-600 rounded-full hover:bg-red-700 ml-2" 
+                    <x-btn.tooltip-btn class="flex items-center px-2 py-2 ml-2 text-xs bg-red-600 rounded-full hover:bg-red-700"
                         btnRoute="#" tooltipTitle="Delete" x-on:click="deleteOpen3 = true">
                         <x-heroicon-o-trash class="w-4 h-4 text-white"/>
                     </x-btn.tooltip-btn>

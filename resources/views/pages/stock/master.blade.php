@@ -3,9 +3,9 @@
         Master List
     </h2>
     <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen4: false}">
-        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none"
+        {{-- <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none"
             @click="modalOpen4 = true">Stock In / Out
-        </a>
+        </a> --}}
         {{-- Start modal Stock In / Out --}}
         <x-general.modal modalActive="modalOpen4" title="Stock In / Out" modalSize="lg">
             <x-form.basic-form action="">
@@ -57,27 +57,21 @@
             <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <x-table.table>
                         <x-slot name="thead">
-                            <x-table.table-header class="text-left" value="Date" sort=""/>
-                            <x-table.table-header class="text-left" value="Stock" sort=""/>
-                            <x-table.table-header class="text-left" value="Status" sort=""/>
+                            <x-table.table-header class="text-left" value="No" sort=""/>
+                            <x-table.table-header class="text-left" value="Serial Number" sort=""/>
+                            <x-table.table-header class="text-left" value="Created Date" sort=""/>
                         </x-slot>
                         <x-slot name="tbody">
                             @foreach ($masters as $master)
                                 <tr>
                                     <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                        {{ $loop->iteration  }}
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                        {{ $master->item->type->category->code }}/{{ $master->item->type->code }}/{{ $master->item->code }}/{{ $master->serial_no }}
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
                                         {{ $master->created_at->format('jS F Y') }}
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                        {{ number_format($master->unit,0) }}
-                                    </x-table.table-body>
-                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                        <div class="flex {{ ($master->code == 1) ? 'text-green-500' : 'text-red-500' }}">
-                                            @if ($master->code == 1)
-                                                <x-heroicon-o-login class="w-4 h-4 mr-2"/> In
-                                            @else
-                                                <x-heroicon-o-logout class="w-4 h-4 mr-2"/> Out
-                                            @endif
-                                        </div>
                                     </x-table.table-body>
                                 </tr>
                             @endforeach

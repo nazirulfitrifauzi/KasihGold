@@ -373,8 +373,7 @@ class Stock extends Component
             'categories' => InvCategory::where('user_id', auth()->user()->id)->get(),
             'types' => InvItemType::where('category_id', $this->categoryId)->where('user_id', auth()->user()->id)->get(),
             'items' => InvItem::where('item_type_id', $this->typeId)->where('user_id', auth()->user()->id)->get(),
-            // 'masters' => InvMovement::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
-            'masters' => InvMaster::all(),
+            'masters' => InvMaster::where('user_id', auth()->user()->id)->where('item_id', $this->itemId)->get(),
             'suppliers' => InvSupplier::all(),
             // modal
             'stockTypes' => InvItemType::where('user_id', auth()->user()->id)->get(),

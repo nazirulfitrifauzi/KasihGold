@@ -34,7 +34,7 @@
 
                         </div> --}}
                         <div x-data="{ active: 0 }">
-                            <div class="flex my-2 bg-gray-100 w-full shadow-sm">
+                            <div class="flex w-full my-2 bg-gray-100 shadow-sm">
                                 <x-tab.nav-tab name="0" livewire="">
                                     <div class="flex font-medium">
                                         <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Category
@@ -162,11 +162,11 @@
                                     </x-form.dropdown>
                                 @endif
 
-                                <x-form.input label="Unit" value="stockUnit" wire:model="stockUnit" />
+                                {{-- <x-form.input label="Unit" value="stockUnit" wire:model="stockUnit" /> --}}
                                 <x-form.input label="Serial Number / Ref Number" value="stockSerial" wire:model="stockSerial"/>
                                 <x-form.input type="date" label="Shipment Date" value="stockShipDate" wire:model="stockShipDate"/>
                                 <x-form.input label="Tracking Number" value="stockTrackingNo" wire:model="stockTrackingNo"/>
-                                <x-form.input label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/>
+                                {{-- <x-form.input label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/> --}}
 
                             </div>
                             <x-form.text-area label="Remarks" value="stockRemarks" wire:model="stockRemarks" rows="2" />
@@ -197,9 +197,9 @@
             @include('pages.stock.item')
         @endif
 
-        {{-- @if ($itemId != null)
+        @if ($itemId != null)
             @include('pages.stock.master')
-        @endif --}}
+        @endif
     </div>
 
     {{-- loading --}}
