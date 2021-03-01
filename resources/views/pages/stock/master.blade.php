@@ -3,7 +3,7 @@
         Master List
     </h2>
     <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen4: false}">
-        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" 
+        <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none"
             @click="modalOpen4 = true">Stock In / Out
         </a>
         {{-- Start modal Stock In / Out --}}
@@ -29,7 +29,8 @@
         {{-- End Modal Stock In / Out --}}
     </div>
     <!-- BEGIN: Item List -->
-    <div class="col-span-12 intro-y lg:col-span-8">
+    {{-- <div class="col-span-12 intro-y lg:col-span-8"> --}}
+    <div class="col-span-12 intro-y">
         <div class="grid grid-cols-12 gap-6">
             <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-no-wrap">
                 <div class="relative dropdown" x-data="{open: false}">
@@ -93,7 +94,7 @@
     </div>
     <!-- END: Item List -->
     <!-- BEGIN: Ticket -->
-    <div class="col-span-12 lg:col-span-4">
+    {{-- <div class="col-span-12 lg:col-span-4">
         <div class="pr-1 intro-y">
             <div class="p-2 box">
                 <div class="flex justify-between p-4 bg-white rounded-lg shadow">
@@ -136,6 +137,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- END: Ticket -->
 </div>
