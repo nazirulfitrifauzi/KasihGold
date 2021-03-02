@@ -8,6 +8,8 @@ class ProductView extends Component
 {
     public function render()
     {
-        return view('livewire.page.shop.product-view');
+        return view('livewire.page.shop.product-view', [
+            'list' => InvInfo::all(),
+        ]);
     }
 }

@@ -1,4 +1,6 @@
 @extends('default.default')
 @section('content')
-    <livewire:page.shop.product-detail />
+    <div class="hidden">{{$iid=app('request')->input('iid')}}</div>
+    <livewire:page.shop.product-detail :iid="$iid" />
+
 @endsection

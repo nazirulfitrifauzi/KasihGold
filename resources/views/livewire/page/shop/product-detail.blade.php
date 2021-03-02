@@ -18,7 +18,7 @@
             <div class="flex flex-col md:flex-row -mx-4">
                 <!-Start detail of image -->
                 <div class="md:flex-1 px-4">
-                    <div x-data="{imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU'}" x-cloak>
+                    <div x-data="{imageUrl: '{{ asset('images/'.$info->prod_img1) }}'}" x-cloak>
                         <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4">
                             <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                                 <img id="main" :src="imageUrl" class="h-full w-full bg-cover" />
@@ -26,30 +26,30 @@
                         </div>
                         <div class="grid gap-6 grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mt-6">
                             <button class=" focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU" 
+                                <img src="{{ asset('images/'.$info->prod_img1) }}"
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU'" 
+                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img1) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-2.5g-300x225.png" 
+                                <img src="{{ asset('images/'.$info->prod_img2) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-2.5g-300x225.png'" 
+                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img2) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwSWfJaKxFzZpQQkebbCfvu45ttYjTVHBgAQ&usqp=CAU" 
+                                <img src="{{ asset('images/'.$info->prod_img3) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwSWfJaKxFzZpQQkebbCfvu45ttYjTVHBgAQ&usqp=CAU'" 
+                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img3) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://cf.shopee.com.my/file/c23f57aea4e2615194ce72d0d4dcbb60" 
+                                <img src="{{ asset('images/'.$info->prod_img4) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://cf.shopee.com.my/file/c23f57aea4e2615194ce72d0d4dcbb60'" 
+                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img4) }}'" 
                                     />
                             </button>
                         </div>
@@ -59,14 +59,14 @@
 
                 <!--Start detail for buying -->
                 <div class="mt-8 lg:flex-1 px-4 md:mt-0">
-                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Gold 0.25g</h2>
+                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">{{$info->prod_name}}</h2>
                     <p class="text-gray-500 text-sm">By 
-                        <span class="text-yellow-400">Hq Kasih Gold</span>
+                        <span class="text-yellow-400">{{$userInfo->name}}</span>
                     </p>
                     <div class="flex items-center space-x-4 my-4">
                         <div>
                             <div class="rounded-lg bg-gray-100 flex py-2 px-3">
-                                <span class="font-bold text-yellow-400 text-xl">RM 100.00</span>
+                                <span class="font-bold text-yellow-400 text-xl">{{$info->prod_price}}</span>
                             </div>
                         </div>
                         <div class="flex-1">
@@ -74,9 +74,7 @@
                             <p class="text-gray-400 text-sm">Inclusive of all Taxes.</p>
                         </div>
                     </div>
-                    <p class="text-gray-500">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Vitae
-                        exercitationem porro saepe ea harum corrupti vero id laudantium enim, libero blanditiis expedita
-                        cupiditate a est.
+                    <p class="text-gray-500">{{$info->prod_desc}}
                     </p>
                     <div class="flex py-4 space-x-4">
                         <div class="relative">
