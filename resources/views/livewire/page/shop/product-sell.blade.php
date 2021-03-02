@@ -29,11 +29,11 @@
                                     
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700"> 
-                                            GOLD 0.5G
+                                            GOLD 0.25G
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            RM 180.00
+                                            RM 100.00
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
