@@ -18,7 +18,7 @@
             <div class="flex flex-col md:flex-row -mx-4">
                 <!-Start detail of image -->
                 <div class="md:flex-1 px-4">
-                    <div x-data="{imageUrl: '{{ asset('images/'.$info->prod_img1) }}'}" x-cloak>
+                    <div x-data="{imageUrl: '{{ asset('storage/'.$info->prod_img1) }}'}" x-cloak>
                         <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4">
                             <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                                 <img id="main" :src="imageUrl" class="h-full w-full bg-cover" />
@@ -26,30 +26,30 @@
                         </div>
                         <div class="grid gap-6 grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mt-6">
                             <button class=" focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="{{ asset('images/'.$info->prod_img1) }}"
+                                <img src="{{ asset('storage/'.$info->prod_img1) }}"
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img1) }}'" 
+                                    @click="imageUrl = '{{ asset('storage/'.$info->prod_img1) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="{{ asset('images/'.$info->prod_img2) }}" 
+                                <img src="{{ asset('storage/'.$info->prod_img2) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img2) }}'" 
+                                    @click="imageUrl = '{{ asset('storage/'.$info->prod_img2) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="{{ asset('images/'.$info->prod_img3) }}" 
+                                <img src="{{ asset('storage/'.$info->prod_img3) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img3) }}'" 
+                                    @click="imageUrl = '{{ asset('storage/'.$info->prod_img3) }}'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="{{ asset('images/'.$info->prod_img4) }}" 
+                                <img src="{{ asset('storage/'.$info->prod_img4) }}" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = '{{ asset('images/'.$info->prod_img4) }}'" 
+                                    @click="imageUrl = '{{ asset('storage/'.$info->prod_img4) }}'" 
                                     />
                             </button>
                         </div>
