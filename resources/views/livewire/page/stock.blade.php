@@ -140,11 +140,20 @@
                                     <option value="1">In</option>
                                     <option value="2">Out</option>
                                 </x-form.dropdown>
-                                <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
-                                    @foreach ($stockItems as $stockItem)
-                                        <option value="{{ $stockItem->id }}">{{ $stockItem->name }}</option>
-                                    @endforeach
-                                </x-form.dropdown>
+                                @if($stockStatus == 1) <!-- stock in -->
+                                    <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
+                                        @foreach ($stockItems as $stockItem)
+                                            <option value="{{ $stockItem->id }}">{{ $stockItem->name }} - {{ $stockItem->type->name }}</option>
+                                        @endforeach
+                                    </x-form.dropdown>
+                                @elseif($stockStatus == 2) <!-- stock out -->
+                                    <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
+                                        @foreach ($stockMasters as $stockMaster)
+                                            <option value="{{ $stockMaster->serial_no }}">{{ $stockMaster->serial_no }} - {{ $stockMaster->item->name }} ({{ $stockMaster->item->type->name }})</option>
+                                        @endforeach
+                                    </x-form.dropdown>
+                                @endif
+
                                 @if(auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
                                     <x-form.dropdown label="Supplier" value="stockSupplier" default="yes" wire:model="stockSupplier">
                                         @foreach ($suppliers as $supplier)

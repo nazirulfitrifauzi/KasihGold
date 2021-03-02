@@ -378,6 +378,7 @@ class Stock extends Component
             // modal
             'stockTypes' => InvItemType::where('user_id', auth()->user()->id)->get(),
             'stockItems' => InvItem::where('user_id', auth()->user()->id)->get(),
+            'stockMasters' => InvMaster::where('user_id', auth()->user()->id)->get(),
             'users' => User::where('role','!=','1')->get(),
         ]);
     }
