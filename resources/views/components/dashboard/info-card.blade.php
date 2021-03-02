@@ -1,4 +1,4 @@
-<a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-{{ $bg }}"
+<a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-{{ $bg }} hover:bg-gray-50"
 href="{{ $cardRoute }}" >
     <div class="p-5">
         <div class="flex justify-between">
