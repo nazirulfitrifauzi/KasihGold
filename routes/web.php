@@ -24,6 +24,7 @@ use App\Http\Controllers\ProductViewController;
 use App\Http\Controllers\ProductSellController;
 use App\Http\Controllers\ProductAddController;
 use App\Http\Controllers\ProductEditController;
+use App\Http\Controllers\NewOrdersController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
         Route::get('product/sell', [ProductSellController::class, 'index'])->name('product-sell');
         Route::get('product/sell-add', [ProductAddController::class, 'index'])->name('product-add');
         Route::get('product/sell-edit', [ProductEditController::class, 'index'])->name('product-edit');
+        Route::get('new-orders', [NewOrdersController::class, 'index'])->name('new-orders');
     });
 
     Route::middleware('auth.admin')->group(function () {

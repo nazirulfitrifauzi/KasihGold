@@ -11,7 +11,7 @@
                     </x-slot>
                 </x-dashboard.info-card>
 
-                <x-dashboard.info-card bg="white" title="New Orders" value="3.521" percentage="2%" percentageBg="red" cardRoute="#" >
+                <x-dashboard.info-card bg="white" title="New Orders" value="3.521" percentage="2%" percentageBg="red" cardRoute="{{route('new-orders')}}" >
                     <x-slot name="svg">
                         <x-heroicon-o-desktop-computer class="h-7 w-7 text-yellow-400"/>
                     </x-slot>

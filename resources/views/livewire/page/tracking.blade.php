@@ -7,7 +7,7 @@
     <div class="grid grid-cols-12 gap-6">
         <div class="flex col-span-12 lg:col-span-6 xxl:col-span-6 lg:block">
             <x-general.card class="bg-white shadow-lg">
-                <div class="flex">
+                <div class="flex border-b-2 py-2">
                     <div class="w-full">
                         <x-form.input label="" value="" wire:model="" />
                     </div>
@@ -16,10 +16,6 @@
                         Search
                     </button>
                 </div>
-            </x-general.card>
-        </div>
-        <div class="col-span-12 lg:col-span-6 xxl:col-span-6">
-            <x-general.card class="bg-white shadow-lg">
                 <div class="relative w-1/2 m-8">
                     <div class="border-r-4 border-yellow-400 absolute h-full " style="left: 15px"></div>
                     <ul class="list-none m-0 p-0">
@@ -78,6 +74,38 @@
                             </div>
                         </li>
                     </ul>
+                </div>
+            </x-general.card>
+        </div>
+        <div class="col-span-12 lg:col-span-6 xxl:col-span-6">
+            <x-general.card class="bg-white shadow-lg">
+                <h2 class="mr-auto text-lg font-medium bg-yellow-400 text-white py-2 px-2 rounded-lg ">
+                    Parcel heading to you
+                </h2>
+                <div class="py-4">
+                    <x-table.table>
+                        <x-slot name="thead">
+                            <x-table.table-header class="text-left" value="No" sort=""/>
+                            <x-table.table-header class="text-left" value="Serial Number" sort=""/>
+                            <x-table.table-header class="text-left" value="Action" sort=""/>
+                        </x-slot>
+                        <x-slot name="tbody">
+                            <tr>
+                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                    <p>1</p>
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                    <p>4561845</p>
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                    <a href="#" class="font-semibold py-2 px-4 rounded-lg inline-flex items-center text-white bg-indigo-500 hover:bg-indigo-600">
+                                        <x-heroicon-o-truck class="w-5 h-5 mr-1" />
+                                        <p>Delivered</p>
+                                    </a>
+                                </x-table.table-body>
+                            </tr>
+                        </x-slot>
+                    </x-table.table>
                 </div>
             </x-general.card>
         </div>
