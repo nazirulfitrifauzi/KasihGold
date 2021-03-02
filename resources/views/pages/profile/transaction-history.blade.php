@@ -16,8 +16,8 @@
             <x-slot name="tbody">
                 <tr>
                     <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                        <p>Apple MacBook Pro 13</p>
-                        <p class="text-xs text-gray-400">PC & Laptop</p>
+                        <p>GOLD 0.5G</p>
+                        <p class="text-xs text-gray-400"></p>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                         <div class="flex text-green-500">
@@ -26,7 +26,7 @@
                         </div>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                        <p>RM 5000.00</p>
+                        <p>RM 180.00</p>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                         <p>12-12-2018</p>

@@ -19,7 +19,9 @@
     @livewireStyles
 </head>
 <body>
+    
     <div class="flex h-screen bg-gray-100" :class="{ 'overflow-hidden': isSideMenuOpen }">
+        <div class="loader bg-orange-400"></div>
         @include('include.sidebar.desktop')
         @include('include.sidebar.mobile')
 
