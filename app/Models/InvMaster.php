@@ -22,4 +22,9 @@ class InvMaster extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function history()
+    {
+        return $this->hasMany('App\Models\InvMasterHistory', 'serial_no', 'serial_no');
+    }
 }
