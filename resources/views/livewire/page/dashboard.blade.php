@@ -59,8 +59,8 @@
                                 <x-slot name="tbody">
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>Apple MacBook Pro 13</p>
-                                            <p class="text-xs text-gray-400">PC & Laptop</p>
+                                            <p>GOLD 0.5G</p>
+                                            <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                             <p>77</p>
@@ -83,8 +83,8 @@
                                     </tr>
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>Oppo Find X2 Pro</p>
-                                            <p class="text-xs text-gray-400">Smartphone & Tablet</p>
+                                            <p>GOLD 1.0G</p>
+                                            <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                             <p>50</p>
@@ -107,8 +107,8 @@
                                     </tr>
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>Dell XPS 13</p>
-                                            <p class="text-xs text-gray-400">PC & Laptop</p>
+                                            <p>GOLD 1.5G</p>
+                                            <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                             <p>100</p>
