@@ -59,7 +59,7 @@
                                 <x-slot name="tbody">
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>GOLD 0.5G</p>
+                                            <p>GOLD 0.25G</p>
                                             <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
@@ -83,7 +83,7 @@
                                     </tr>
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>GOLD 1.0G</p>
+                                            <p>GOLD 1.5G</p>
                                             <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
@@ -107,11 +107,35 @@
                                     </tr>
                                     <tr>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <p>GOLD 1.5G</p>
+                                            <p>GOLD 2.5G</p>
                                             <p class="text-xs text-gray-400"></p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                             <p>100</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex text-green-500">
+                                                <x-heroicon-o-check-circle class="w-5 h-5 mr-1"/>
+                                                <p>Active</p>
+                                            </div>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <div class="flex">
+                                                <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500"/>
+                                                <p class="text-blue-500">Edit</p>
+
+                                                <x-heroicon-o-trash class="w-5 h-5 mr-1 ml-3 text-red-500"/>
+                                                <p class="text-red-500">Delete</p>
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                    <tr>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>DINAR</p>
+                                            <p class="text-xs text-gray-400"></p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                            <p>250</p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                             <div class="flex text-green-500">

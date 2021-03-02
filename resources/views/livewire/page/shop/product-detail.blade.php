@@ -3,15 +3,22 @@
         <div class="w-full px-4 sm:px-6 lg:px-8 mt-1">
             <div class="px-1 mb-8">
                 <div class="flex justify-between">
-                    <div class="w-full text-gray-700 md:text-2xl font-semibold">
+                    <div class="text-gray-700 md:text-2xl font-semibold">
                         Product Detail
+                    </div>
+                    <div>
+                        <a href="{{route('product-view')}}" class="cursor-pointer flex items-center px-4 py-1 
+                            text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">
+                            <x-heroicon-o-arrow-circle-left class="w-5 h-5 mr-2 text-white" />
+                            Product List
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col md:flex-row -mx-4">
                 <!-Start detail of image -->
                 <div class="md:flex-1 px-4">
-                    <div x-data="{imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU'}" x-cloak>
+                    <div x-data="{imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU'}" x-cloak>
                         <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4">
                             <div class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">
                                 <img id="main" :src="imageUrl" class="h-full w-full bg-cover" />
@@ -19,30 +26,30 @@
                         </div>
                         <div class="grid gap-6 grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mt-6">
                             <button class=" focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU" 
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU'" 
+                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq_Dst9k3LDWfrpfwYbzOQMkNJqHEptIMFOw&usqp=CAU'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://waqafa.com/wp-content/uploads/2020/08/116432621_3774400585909391_2839691980544145634_o.jpg" 
+                                <img src="https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-2.5g-300x225.png" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://waqafa.com/wp-content/uploads/2020/08/116432621_3774400585909391_2839691980544145634_o.jpg'" 
+                                    @click="imageUrl = 'https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-2.5g-300x225.png'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-1dinar-300x225.png" 
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwSWfJaKxFzZpQQkebbCfvu45ttYjTVHBgAQ&usqp=CAU" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://www.kasihgold.com/wp-content/uploads/2020/06/waqf-1dinar-300x225.png'" 
+                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwSWfJaKxFzZpQQkebbCfvu45ttYjTVHBgAQ&usqp=CAU'" 
                                     />
                             </button>
                             <button
                                 class="focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcebMx0HroJXmjcu18fRUwhPU0fYxgD1dxVw&usqp=CAU" 
+                                <img src="https://cf.shopee.com.my/file/c23f57aea4e2615194ce72d0d4dcbb60" 
                                     class="h-full w-full bg-cover"
-                                    @click="imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcebMx0HroJXmjcu18fRUwhPU0fYxgD1dxVw&usqp=CAU'" 
+                                    @click="imageUrl = 'https://cf.shopee.com.my/file/c23f57aea4e2615194ce72d0d4dcbb60'" 
                                     />
                             </button>
                         </div>
@@ -52,14 +59,14 @@
 
                 <!--Start detail for buying -->
                 <div class="mt-8 lg:flex-1 px-4 md:mt-0">
-                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Gold 0.5g</h2>
+                    <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">Gold 0.25g</h2>
                     <p class="text-gray-500 text-sm">By 
                         <span class="text-yellow-400">Hq Kasih Gold</span>
                     </p>
                     <div class="flex items-center space-x-4 my-4">
                         <div>
                             <div class="rounded-lg bg-gray-100 flex py-2 px-3">
-                                <span class="font-bold text-yellow-400 text-xl">RM 180.00</span>
+                                <span class="font-bold text-yellow-400 text-xl">RM 100.00</span>
                             </div>
                         </div>
                         <div class="flex-1">
