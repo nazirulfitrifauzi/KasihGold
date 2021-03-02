@@ -65,5 +65,7 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/screening', [ScreeningController::class, 'index'])->name('admin.screening');
         Route::get('admin/incident-reporting', [IncidentReportingController::class, 'admin'])->name('admin.incidentReporting');
         Route::get('admin/suppliers', [SuppliersController::class, 'index'])->name('admin.suppliers');
+        Route::get('admin/product/sell', [ProductAddController::class, 'admin'])->name('admin.product-sell-hq');
+        Route::get('admin/product/sell-add', [ProductAddController::class, 'adminAdd'])->name('admin.product-add-hq');
     });
 });

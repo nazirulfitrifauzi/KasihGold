@@ -70,6 +70,7 @@
                         <x-heroicon-o-shopping-bag class="w-5 h-5" />
                     </x-slot>
                     <div class="leading-7">
+                        @if (auth()->user()->role == 2)
                         <x-sidebar.dropdown-item title="Buy Product" href="{{route('product-view')}}"
                             uri="product/view">
                             <x-slot name="icon">
@@ -82,6 +83,15 @@
                                 <x-heroicon-o-cube class="w-5 h-5" />
                             </x-slot>
                         </x-sidebar.dropdown-item>
+                        @endif
+                        @if (auth()->user()->role == 1)
+                        <x-sidebar.dropdown-item title="Sell Product" href="{{route('admin.product-sell-hq')}}"
+                            uri="admin/product/sell-add">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        @endif
                     </div>
                 </x-sidebar.dropdown-nav-item>
             </ul>

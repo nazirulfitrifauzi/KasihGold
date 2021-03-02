@@ -10,4 +10,14 @@ class ProductAddController extends Controller
     {
         return view('pages.shop.product-add');
     }
+
+    public function admin()
+    {
+        return view('pages.admin.product-sell-hq');
+    }
+
+    public function adminAdd()
+    {
+        return view('pages.admin.product-add-hq');
+    }
 }
