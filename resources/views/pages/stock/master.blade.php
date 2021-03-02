@@ -35,7 +35,7 @@
             <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-no-wrap">
                 <div class="relative dropdown" x-data="{open: false}">
                     <button class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none" @click="open = !open">Actions</button>
-                    <div class="absolute z-10 w-40 rounded-lg shadow-lg " x-show="open" style="display: none; top: -17px; left: 90px;">
+                    <div class="absolute z-40 w-40 rounded-lg shadow-lg " x-show="open" style="display: none; top: -17px; left: 90px;">
                         <div class="py-4">
                             <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white rounded-md hover:bg-gray-200">
                             <x-heroicon-o-document-text class="w-5 h-5 mr-1"/> Export to Excel
@@ -48,7 +48,7 @@
                 </div>
                 <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
                     <div class="relative flex w-56 text-gray-700">
-                        <span class="mt-2 mr-2">Search</span>
+                        <span class="mt-3 mr-2">Search</span>
                         <x-form.input label="" value=""/>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
                             <x-table.table-header class="text-left" value="No" sort=""/>
                             <x-table.table-header class="text-left" value="Serial Number" sort=""/>
                             <x-table.table-header class="text-left" value="Created Date" sort=""/>
+                            <x-table.table-header class="text-left" value="" sort=""/>
                         </x-slot>
                         <x-slot name="tbody">
                             @foreach ($masters as $master)
@@ -72,6 +73,61 @@
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-medium text-gray-900">
                                         {{ $master->created_at->format('d/m/Y') }}
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+
+                                    <div x-data="{open: false}">
+
+                                        <a href="#" x-on:click="open = true"
+                                        class="flex text-indigo-500 hover:text-indigo-600">
+                                            <x-heroicon-o-clock class="w-5 h-5 mr-1" />
+                                            <p>Ownership history</p>
+                                        </a>
+
+                                        {{-- Start Ownership history --}}
+                                        <div class="cursor-default text-gray-900">
+                                            <x-general.modal modalActive="open" title="Ownership history" modalSize="2xl">
+                                                <div class="flex justify-end py-4 px-2">
+                                                    <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
+                                                        <div class="relative flex w-56 text-gray-700">
+                                                            <span class="mt-3 mr-2">Search</span>
+                                                            <x-form.input label="" value=""/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="px-2">
+                                                    <x-table.table>
+                                                        <x-slot name="thead">
+                                                            <x-table.table-header class="text-left" value="No" sort=""/>
+                                                            <x-table.table-header class="text-left" value="Name" sort=""/>
+                                                            <x-table.table-header class="text-left" value="Date" sort=""/>
+                                                        </x-slot>
+                                                        <x-slot name="tbody">
+                                                            <tr>
+                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                    1
+                                                                </x-table.table-body>
+                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                    ADMIN
+                                                                </x-table.table-body>
+                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                    3/3/2021
+                                                                </x-table.table-body>
+                                                            </tr>
+                                                        </x-slot>
+                                                    </x-table.table>
+
+                                                    <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-row sm:flex-no-wrap mt-2">
+                                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
+                                                    </div>
+                                                </div>
+
+                                            </x-general.modal>
+                                        </div>
+                                        {{-- End ModalOwnership history --}}
+                                    </div>
+
                                     </x-table.table-body>
                                 </tr>
                             @endforeach

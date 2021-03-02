@@ -27,7 +27,7 @@
             @include('include.sidebar.navbar')
             <main class="overflow-y-auto">
             <div class="grid px-8 pb-10 mx-auto">
-                {{-- content --}}
+                
                 @yield('content')
             </div>
             </main>
