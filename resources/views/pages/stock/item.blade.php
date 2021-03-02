@@ -10,7 +10,6 @@
         @foreach ($items as $item)
         <div class="relative flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block" x-data="{ deleteOpen3 : false  }">
             <x-general.card-tab class="{{$itemActive == $item->id ? 'bg-yellow-400 text-white' : '' }} hover:bg-yellow-400 hover:text-white" wire:click="$emit('itemSelected', {{ $item->id }})">
-    {{-- <x-general.card-tab class="{{$typeActive == $type->id ? 'bg-yellow-400 text-white' : '' }} hover:bg-yellow-400 hover:text-white" wire:click="$emit('typeSelected', {{ $type->id }})"> --}}
                 <div class="p-4">
                     <div class="flex justify-between font-medium">
                         {{ ucfirst(strtolower($item->name)) }}

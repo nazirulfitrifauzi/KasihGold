@@ -75,28 +75,20 @@
                                         {{ $master->created_at->format('d/m/Y') }}
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-medium text-gray-900">
-
                                     <div x-data="{open: false}">
-
-                                        <a href="#" x-on:click="open = true"
-                                        class="flex text-indigo-500 hover:text-indigo-600">
+                                        <a href="#" x-on:click="open = true" class="flex text-indigo-500 hover:text-indigo-600">
                                             <x-heroicon-o-clock class="w-5 h-5 mr-1" />
                                             <p>Ownership history</p>
                                         </a>
 
-                                        {{-- Start Ownership history --}}
-                                        <div class="cursor-default text-gray-900">
-                                            <x-general.modal modalActive="open" title="Ownership history" modalSize="2xl">
-                                                <div class="flex justify-end py-4 px-2">
-                                                    <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
-                                                        <div class="relative flex w-56 text-gray-700">
-                                                            <span class="mt-3 mr-2">Search</span>
-                                                            <x-form.input label="" value=""/>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        @php
+                                            $history = \App\Models\InvMasterHistory::where('serial_no', $master->serial_no)->get()
+                                        @endphp
 
-                                                <div class="px-2">
+                                        {{-- Start Ownership history --}}
+                                        <div class="text-gray-900 cursor-default">
+                                            <x-general.modal modalActive="open" title="Ownership history" modalSize="2xl">
+                                                <div class="px-2 mt-4">
                                                     <x-table.table>
                                                         <x-slot name="thead">
                                                             <x-table.table-header class="text-left" value="No" sort=""/>
@@ -104,21 +96,23 @@
                                                             <x-table.table-header class="text-left" value="Date" sort=""/>
                                                         </x-slot>
                                                         <x-slot name="tbody">
+                                                            @foreach($master->history as $history)
                                                             <tr>
                                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    1
+                                                                    {{ $loop->iteration }}
                                                                 </x-table.table-body>
                                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    ADMIN
+                                                                    {{ $history->user->name }}
                                                                 </x-table.table-body>
                                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    3/3/2021
+                                                                    {{ $history->created_at }}
                                                                 </x-table.table-body>
                                                             </tr>
+                                                            @endforeach
                                                         </x-slot>
                                                     </x-table.table>
 
-                                                    <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-row sm:flex-no-wrap mt-2">
+                                                    <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-row sm:flex-no-wrap">
                                                         {{-- {{ $list->links('pagination::tailwind') }} --}}
                                                     </div>
                                                 </div>
