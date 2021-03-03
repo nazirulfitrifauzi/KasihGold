@@ -138,13 +138,13 @@
                                     <div class="flex justify-between mt-6 border-b-2 pb-4">
                                         <div class="flex">
                                             <img class="h-20 w-20 object-cover rounded"
-                                                src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
+                                                src=""
                                                 alt="">
                                             <div class="mx-3 my-3">
                                                 <h3 class="text-sm text-gray-600">Gold 0.25G</h3>
                                             </div>
                                         </div>
-                                        <span class="text-gray-600 my-3">RM 169.00</span>
+                                        <span class="text-gray-600 my-3">RM 336.00</span>
                                     </div>
 
                                     <x-form.basic-form wire:submit.prevent="">
@@ -165,7 +165,7 @@
                                                 <p>Subtotal</p>
                                             </div>
                                             <div class="font-semibold">
-                                                <p>RM 169.00</p>
+                                                <p>RM 336.00</p>
                                             </div>
                                         </div>
 
@@ -184,7 +184,7 @@
                                             <p>Total</p>
                                         </div>
                                         <div class="font-semibold text-lg">
-                                            <p>RM 169.00</p>
+                                            <p>RM 336.00</p>
                                         </div>
                                     </div>
                                 </div>
