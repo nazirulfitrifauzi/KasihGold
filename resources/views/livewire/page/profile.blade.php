@@ -1,51 +1,52 @@
-<div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
-    <h2 class="mr-auto text-lg font-medium">
-        Profile
-    </h2>
-</div>
-
-<div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
-    <!-- BEGIN: Profile Menu -->
-    <div class="flex col-span-12 lg:col-span-4 xxl:col-span-3 lg:block">
-            <x-general.card class="mt-5 bg-white shadow-lg w-full">
-                <div class="relative flex items-center p-5">
-                    <div class="w-12 h-12 image-fit">
-                        <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+<div>
+    <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
+        <h2 class="mr-auto text-lg font-medium">
+            Profile
+        </h2>
+    </div>
+    <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
+        <!-- BEGIN: Profile Menu -->
+        <div class="flex col-span-12 lg:col-span-4 xxl:col-span-3 lg:block">
+                <x-general.card class="w-full mt-5 bg-white shadow-lg">
+                    <div class="relative flex items-center p-5">
+                        <div class="w-12 h-12 image-fit">
+                            <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="text-base font-medium">Admin</div>
+                            <div class="text-gray-600">Software Engineer</div>
+                        </div>
                     </div>
-                    <div class="ml-4 mr-auto">
-                        <div class="text-base font-medium">Admin</div>
-                        <div class="text-gray-600">Software Engineer</div>
-                    </div>
-                </div>
-                    <div class="p-5 border-t border-gray-200">
-                        <x-tab.title name="0" livewire="">
-                            <div class="flex font-semibold">
-                                <x-heroicon-o-home class="w-6 h-6 mr-2"/>Personal Information
-                            </div>
-                        </x-tab.title>
-                        <x-tab.title name="1" livewire="">
-                            <div class="flex font-semibold">
-                                <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Transaction History
-                            </div>
-                        </x-tab.title>
-                        <x-tab.title name="2" livewire="">
-                            <div class="flex font-semibold">
-                                <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Sub Agents Tracking
-                            </div>
-                        </x-tab.title>
-                    </div>
-            </x-general.card>
-        </div>
-        <!-- END: Profile Menu -->
-        <div class="col-span-12 lg:col-span-8 xxl:col-span-9">
-            <x-tab.content name="0">
-                @include('pages.profile.personal-information')
-            </x-tab.content>
-            <x-tab.content name="1">
-                @include('pages.profile.transaction-history')
-            </x-tab.content>
-            <x-tab.content name="2">
-                @include('pages.profile.sub-agent-tracking')
-            </x-tab.content>
-        </div>
+                        <div class="p-5 border-t border-gray-200">
+                            <x-tab.title name="0" livewire="">
+                                <div class="flex font-semibold">
+                                    <x-heroicon-o-home class="w-6 h-6 mr-2"/>Personal Information
+                                </div>
+                            </x-tab.title>
+                            <x-tab.title name="1" livewire="">
+                                <div class="flex font-semibold">
+                                    <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Transaction History
+                                </div>
+                            </x-tab.title>
+                            <x-tab.title name="2" livewire="">
+                                <div class="flex font-semibold">
+                                    <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Sub Agents Tracking
+                                </div>
+                            </x-tab.title>
+                        </div>
+                </x-general.card>
+            </div>
+            <!-- END: Profile Menu -->
+            <div class="col-span-12 lg:col-span-8 xxl:col-span-9">
+                <x-tab.content name="0">
+                    @include('pages.profile.personal-information')
+                </x-tab.content>
+                <x-tab.content name="1">
+                    @include('pages.profile.transaction-history')
+                </x-tab.content>
+                <x-tab.content name="2">
+                    @include('pages.profile.sub-agent-tracking')
+                </x-tab.content>
+            </div>
+    </div>
 </div>
