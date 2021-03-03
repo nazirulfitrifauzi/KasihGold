@@ -25,7 +25,7 @@ class CreateProfilesTable extends Migration
             $table->string('town');
             $table->bigInteger('state_id');
             $table->bigInteger('country_id')->nullable();
-            $table->bigInteger('phone1');
+            $table->string('phone1');
             $table->timestamps();
         });
     }

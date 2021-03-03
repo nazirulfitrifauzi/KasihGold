@@ -9,7 +9,7 @@
         <select name="{{ $value }}" class="block w-full transition duration-150 ease-in-out form-select sm:text-sm sm:leading-5 {{ ($errors->has($value)) ? 'border-red-300 bg-red-50 text-red-900' : ''}}"
             {{ $attributes }}>
             @if($default == 'yes')
-                <option value="" selected>Select an option</option>
+                <option value="0" selected>Select an option</option>
             @endif
 
             {{ $slot }}
