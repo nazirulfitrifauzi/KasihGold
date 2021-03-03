@@ -83,9 +83,6 @@
                                     class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 pt-5 h-14 flex items-end pb-1">
                                     <option>1</option>
                                     <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
                                 </select>
 
                                 <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
@@ -102,10 +99,10 @@
                         </div>
                         
                         <div class="flex">
-                            <button type="button"
-                                class="h-14 px-6 py-2 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
+                            <a href="{{route('product-buy',$info->id)}}"
+                                class="cursor-pointer items-center px-6 py-4 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
                                 Buy Now
-                            </button>
+                            </a>
                             <button type="button" @click="cartOpen = !cartOpen"
                                 class="ml-2 h-14 px-6 py-2 font-semibold rounded-xl bg-yellow-400 hover:bg-yellow-300 text-white focus:outline-none">
                                 Add to Cart

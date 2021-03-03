@@ -29,37 +29,45 @@
 
                 </x-slot>
                 <x-slot name="tbody">
-
+                    @forelse ($orders as $item)
                     <tr>
+                        <x-form.basic-form wire:submit.prevent="approve">
+                        <x-slot name="content">
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>1</p>
+                            <p>{{$loop->index+1}}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>Kasih Gold HQ</p>
+                            <p>{{$item->user_name}}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>3/3/2021</p>
+                            <p>{{$item->created_at->format('d F Y')}}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <x-form.basic-form >
-                                <x-slot name="content">
-                                    <x-form.dropdown label="" value="" default="no" >
-                                        <option value="">Serial Number</option>
-                                        <option value="">4638399</option>
-                                        <option value="">4224329</option>
-                                        <option value="">4522192</option>
-                                    </x-form.dropdown>
-                                </x-slot>
-                            </x-form.basic-form>
+                            <x-form.dropdown label="" value="serial_no" wire:model="serial_no" default="no" >
+                                <option value="">Serial Number</option>
+                                @foreach ($inventory as $invent)
+                                <option value="{{$invent->serial_no}}">{{$invent->serial_no}}</option>
+                                @endforeach
+                            </x-form.dropdown>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <a href="#" class="font-semibold py-2 px-4 rounded-lg inline-flex items-center text-white bg-green-500 hover:bg-green-600">
+                            <button type="submit"
+                                    class="font-semibold py-2 px-4 rounded-lg inline-flex items-center text-white bg-green-500 hover:bg-green-600">
                                 <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
-                                <p>Approve</p>
-                            </a>
+                                Approve
+                            </button>
                         </x-table.table-body>
-
+                        
+                        </x-slot>
+                    </x-form.basic-form>
                     </tr>
+                    @empty
+                    <tr>
+                        <x-table.table-body colspan="4" class="text-gray-500 text-center">
+                            No new orders
+                        </x-table.table-body>
+                    </tr>
+                    @endforelse
 
                 </x-slot>
                 <div class="px-2 py-2">

@@ -10,11 +10,8 @@
         <div class="flex justify-end py-2 px-4">
             {{--  --}}
         </div>
-        <div class="grid grid-c<a href="{{route('admin.product-add-hq')}}" class="cursor-pointer flex items-center px-4 py-1 
-                text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">
-                <x-heroicon-o-plus-circle class="w-5 h-5 mr-2 text-white" />
-                Add Product
-            </a>ols-12 gap-6">
+        
+            <div class="grid grid-cols-12 gap-6">
             <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
                     <!-- Start List Product View -->
                     <div class="py-4 px-4">
