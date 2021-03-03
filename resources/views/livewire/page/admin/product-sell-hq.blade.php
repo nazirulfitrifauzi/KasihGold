@@ -36,7 +36,7 @@
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
                                         <div class="flex font-medium">
-                                            <a href="{{route('product-edit')}}" class="flex">
+                                            <a href="#" class="flex">
                                                 <x-heroicon-o-pencil-alt class="w-5 h-5 mr-1 text-blue-500" />
                                                 <p class="text-blue-500">Edit Product</p>
                                             </a>

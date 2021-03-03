@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvInfoTable extends Migration
+class CreateNewOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,13 @@ class CreateInvInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('inv_info', function (Blueprint $table) {
+        Schema::create('new_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-
-            $table->string('prod_name', 100);
-            $table->string('prod_desc', 500);
-            $table->decimal('prod_price');
-            $table->string('prod_cat', 10);
-            $table->string('prod_img1', 100);
-            $table->string('prod_img2', 100);
-            $table->string('prod_img3', 100);
-            $table->string('prod_img4', 100);
-
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('quantity');
+            $table->unsignedBigInteger('fulfillment');
+            $table->string('user_name');
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -42,6 +36,6 @@ class CreateInvInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inv_info');
+        Schema::dropIfExists('new_orders');
     }
 }
