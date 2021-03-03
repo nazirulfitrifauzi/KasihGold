@@ -58,11 +58,11 @@
                     <div class="mt-6">
                         <div class="flex">
                             <img class="h-20 w-20 object-cover rounded"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_AnWR195G0gl2OtQRaqeYpLYKNwxBpRGK-w&usqp=CAU"
+                                src=""
                                 alt="">
                             <div class="mx-3">
-                                <h3 class="text-sm text-gray-600 font-semibold">Gold 0.5g</h3>
-                                <span class="text-yellow-400 font-semibold">RM 180.00</span>
+                                <h3 class="text-sm text-gray-600 font-semibold">GOLD 0.25g</h3>
+                                <span class="text-yellow-400 font-semibold">RM 336.00</span>
                             </div>
                         </div>
                     </div>
