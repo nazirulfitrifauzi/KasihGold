@@ -11,7 +11,7 @@ use Livewire\Component;
 class Profile extends Component
 {
     public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $states;
-    public $movement_from, $movement_to;
+    public $movement;
 
     public function mount()
     {
@@ -29,8 +29,7 @@ class Profile extends Component
         $this->state = auth()->user()->profile->state_id;
         $this->states = States::all();
 
-        $this->movement_from = InvMovement::where('from_user_id', auth()->user()->id)->get();
-        $this->movement_to = InvMovement::where('to_user_id', auth()->user()->id)->get();
+        $this->movement = InvMovement::where('from_user_id', auth()->user()->id)->orWhere('to_user_id', auth()->user()->id)->get();
     }
 
     public function updated($propertyName)
