@@ -1,4 +1,4 @@
-<li class="relative" x-data="{ {{$active}}:  @if(\Request::is($uri)) true @else false @endif }">
+<li class="relative" x-data="{ {{$active}}:  @if(\Request::is($uri)) true @else false @endif }" >
     <div class="inline-flex items-center justify-between w-full text-base font-semibold transition-colors duration-150 text-gray-500  hover:text-yellow-400 cursor-pointer"
         x-on:click="{{$active}} = !{{$active}}">
         <span class="px-6 py-1 relative inline-flex items-center">
@@ -16,12 +16,12 @@
 
     </div>
 
-    <div x-show.transition="{{$active}}" >
+    <div x-show.transition="{{$active}}">
         <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0"
             x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300"
             x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0"
             class="p-2 mt-2 mx-4 space-y-2 overflow-hidden text-sm font-medium  rounded-md shadow-inner bg-gray-50"
-            aria-label="submenu">
+            aria-label="submenu" x-cloak>
 
             {{$slot}}
             
