@@ -26,6 +26,8 @@ use App\Http\Controllers\ProductAddController;
 use App\Http\Controllers\ProductEditController;
 use App\Http\Controllers\NewOrdersController;
 use App\Http\Controllers\ProductBuyController;
+use App\Http\Controllers\OwnershipController;
+use App\Http\Controllers\DeliveryController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -61,6 +63,8 @@ Route::middleware('auth')->group(function () {
         Route::get('product/sell-add', [ProductAddController::class, 'index'])->name('product-add');
         Route::get('product/sell-edit', [ProductEditController::class, 'index'])->name('product-edit');
         Route::get('new-orders', [NewOrdersController::class, 'index'])->name('new-orders');
+        Route::get('tracking/ownership', [OwnershipController::class, 'index'])->name('ownership');
+        Route::get('tracking/delivery', [DeliveryController::class, 'index'])->name('delivery');
     });
 
     Route::middleware('auth.admin')->group(function () {

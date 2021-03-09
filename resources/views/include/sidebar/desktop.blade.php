@@ -44,9 +44,25 @@
                 </x-sidebar.nav-item>
                 @endif
 
-                <x-sidebar.nav-item title="Tracking" route="{{route('tracking')}}" uri="tracking">
-                    <x-heroicon-o-map class="w-5 h-5" />
-                </x-sidebar.nav-item>
+                <x-sidebar.dropdown-nav-item active="open" title="Tracking" uri="tracking/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-map class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-7">
+                        <x-sidebar.dropdown-item title="Ownership" href="{{route('ownership')}}"
+                            uri="tracking/ownership">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Delivery" href="{{route('delivery')}}"
+                            uri="tracking/delivery">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
 
                 @if (auth()->user()->role == 2)
                 <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}"
