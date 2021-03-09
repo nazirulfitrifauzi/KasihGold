@@ -22,15 +22,23 @@ class NewOrders extends Component
             'updated_at'        => now(),
         ]);
 
-        InvMaster::where('serial_no', $this->serial_no)->update([
-            'user_id'           => $this->newOrders->user_id,
-            'updated_by'        => auth()->user()->id,
-            'updated_at'        => now(),
-        ]);
+        // InvMaster::where('serial_no', $this->serial_no)->update([
+        //     'user_id'           => $this->newOrders->user_id,
+        //     'updated_by'        => auth()->user()->id,
+        //     'updated_at'        => now(),
+        // ]);
 
-        InvMovement::where('serial_no', $this->serial_no)->update([
+        InvMovement::create([
+            'status'            => 1,
+            'item_id'           => $this->newOrders->item_id,
+            'supplier_id'       => 1,
             'from_user_id'      => $this->inv_master->user_id,
             'to_user_id'        => $this->newOrders->user_id,
+            'serial_no'         => $this->serial_no,
+            'shipment_date'     => now(),
+            'tracking_no'       => "MY" . rand(),
+            'owner_id'          => $this->inv_master->user_id,
+            'created_by'        => auth()->user()->id,
             'updated_by'        => auth()->user()->id,
             'updated_at'        => now(),
         ]);
@@ -38,8 +46,9 @@ class NewOrders extends Component
     public function render()
     {
         return view('livewire.page.neworders.new-orders', [
-            'orders' => ModelsNewOrders::where('fulfillment', 0)->get(),
-            'inventory' => InvMaster::where('item_id', 17)->get(),
+            'orders' => ModelsNewOrders::join('inv_masters', 'inv_masters.item_id', '=', 'new_orders.item_id')
+                ->where('fulfillment', 0)
+                ->get(),
         ]);
     }
 }

@@ -11,7 +11,7 @@ class ProductAddHq extends Component
 
     use WithFileUploads;
 
-    public $prod_name, $prod_desc, $prod_price, $prod_cat, $prod_img1, $prod_img2, $prod_img3, $prod_img4;
+    public $prod_name, $prod_desc, $prod_price, $prod_code, $prod_img1, $prod_img2, $prod_img3, $prod_img4;
 
     public function save()
     {
@@ -27,7 +27,7 @@ class ProductAddHq extends Component
             'prod_name'        => $this->prod_name,
             'prod_desc'        => $this->prod_desc,
             'prod_price'       => $this->prod_price,
-            'prod_cat'         => $this->prod_cat,
+            'prod_code'        => $this->prod_code,
             'prod_img1'        => $this->prod_img1->store('public/prodImg'),
             'prod_img2'        => $this->prod_img2->store('public/prodImg'),
             'prod_img3'        => $this->prod_img3->store('public/prodImg'),

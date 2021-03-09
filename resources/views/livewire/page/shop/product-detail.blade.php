@@ -76,39 +76,50 @@
                     </div>
                     <p class="text-gray-500">{{$info->prod_desc}}
                     </p>
-                    <div class="flex py-4 space-x-4">
-                        <div class="relative">
-                            <div>
-                                <select
-                                    class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 pt-5 h-14 flex items-end pb-1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
+                    <x-form.basic-form wire:submit.prevent="buy">
+                        <x-slot name="content">
+                            <div class="flex py-4 space-x-4">
+                                <div class="relative">
+                                    <div>
+                                        <select value="prod_qty" wire:model="prod_qty" default="yes"
+                                            class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 pt-5 h-14 flex items-end pb-1">
+                                            @forelse ($totalProduct as $total)
+                                            <option value="{{$loop->index+1}}">{{$loop->index+1}}</option>
+                                            @empty
+                                            <option value="">NaN</option>
+                                            @endforelse
+                                        </select>
 
-                                <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                                </svg>
+                                        <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                                        </svg>
+                                    </div>
+                                    <div
+                                        class="text-center top-0 px-4 py-1 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">
+                                        Qty
+                                    </div>
+                                </div>
+                                
+                                <div class="flex">
+                                    <a href="{{route('product-buy',['iid'=>$info->id])}}"
+                                        class="cursor-pointer items-center px-6 py-4 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
+                                        Buy Now
+                                    </a>
+                                    {{-- <button type="submit"
+                                        class="cursor-pointer items-center px-6 py-4 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
+                                        Buy Now
+                                    </button> --}}
+                                    <button type="button" @click="cartOpen = !cartOpen"
+                                        class="ml-2 h-14 px-6 py-2 font-semibold rounded-xl bg-yellow-400 hover:bg-yellow-300 text-white focus:outline-none">
+                                        Add to Cart
+                                    </button>
+                                </div>
                             </div>
-                            <div
-                                class="text-center top-0 px-4 py-1 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">
-                                Qty
-                            </div>
-                        </div>
-                        
-                        <div class="flex">
-                            <a href="{{route('product-buy',$info->id)}}"
-                                class="cursor-pointer items-center px-6 py-4 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
-                                Buy Now
-                            </a>
-                            <button type="button" @click="cartOpen = !cartOpen"
-                                class="ml-2 h-14 px-6 py-2 font-semibold rounded-xl bg-yellow-400 hover:bg-yellow-300 text-white focus:outline-none">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
+                        </x-slot>
+                    </x-form.basic-form>
                 </div>
                 <!--End detail for buying -->
                 

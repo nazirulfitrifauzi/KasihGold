@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\InvMaster;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ProductBuyController extends Controller
 {
-    public function index($id)
+    public function index()
     {
-        $selected_product = InvMaster::where('item_id', 17)->get();
-        return view('pages.shop.product-buy', compact('selected_product'));
+        return view('pages.shop.product-buy');
     }
 }
