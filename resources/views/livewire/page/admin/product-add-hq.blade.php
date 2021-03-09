@@ -81,11 +81,17 @@
                                 <x-form.input label="Price of Product" value="prod_price" wire:model="prod_price" name="prod_price"/>
                             </div>
                             <div class="grid sm:grid-cols-1 gap-2 lg:grid-cols-3  mt-6">
-                                <x-form.dropdown label="Category" value="prod_cat" wire:model="prod_cat" default="yes">
-                                    <option value="0.25">Gold 0.25g</option>
-                                    <option value="0.5">Gold 0.5g</option>
-                                    <option value="1.0">Gold 1.0g</option>
-                                    <option value="1.5">Gold 1.5g</option>
+                                <x-form.dropdown label="Category" value="prod_code" wire:model="prod_code" default="yes">
+                                    <option value="001">Gold 24 Karat - 0.25g</option>
+                                    <option value="018">Gold 22 Karat - 0.25g</option>
+                                    <option value="019">Gold 18 Karat - 0.25g</option>
+                                    <option value="020">Gold 24 Karat - 1.5g</option>
+                                    <option value="021">Gold 22 Karat - 1.5g</option>
+                                    <option value="022">Gold 18 Karat - 1.5g</option>
+                                    <option value="023">Gold 24 Karat - 2.5g</option>
+                                    <option value="024">Gold 22 Karat - 2.5g</option>
+                                    <option value="025">Gold 18 Karat - 2.5g</option>
+                                    <option value="026">Dinar</option>
                                 </x-form.dropdown>
                             </div>
                             <div class="grid gap-2 sm:grid-cols-1 lg:grid-cols-2  mt-2">

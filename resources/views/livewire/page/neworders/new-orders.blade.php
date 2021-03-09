@@ -45,7 +45,7 @@
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <x-form.dropdown label="" value="serial_no" wire:model="serial_no" default="no" >
                                 <option value="">Serial Number</option>
-                                @foreach ($inventory as $invent)
+                                @foreach ($orders as $invent)
                                 <option value="{{$invent->serial_no}}">{{$invent->serial_no}}</option>
                                 @endforeach
                             </x-form.dropdown>
