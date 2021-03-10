@@ -45,25 +45,25 @@
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <x-form.dropdown label="" value="serial_no" wire:model="serial_no" default="no" >
                                 <option value="">Serial Number</option>
-                                @foreach ($orders as $invent)
+                                @foreach ($item->master as $invent)
                                 <option value="{{$invent->serial_no}}">{{$invent->serial_no}}</option>
                                 @endforeach
                             </x-form.dropdown>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <button type="submit"
-                                    class="font-semibold py-2 px-4 rounded-lg inline-flex items-center text-white bg-green-500 hover:bg-green-600">
+                                    class="inline-flex items-center px-4 py-2 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
                                 <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
                                 Approve
                             </button>
                         </x-table.table-body>
-                        
+
                         </x-slot>
                     </x-form.basic-form>
                     </tr>
                     @empty
                     <tr>
-                        <x-table.table-body colspan="4" class="text-gray-500 text-center">
+                        <x-table.table-body colspan="4" class="text-center text-gray-500">
                             No new orders
                         </x-table.table-body>
                     </tr>
