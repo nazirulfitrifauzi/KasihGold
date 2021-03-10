@@ -54,9 +54,15 @@
                                     <option value="2">Out</option>
                                 </x-form.dropdown>
                                 <x-form.dropdown label="Item" value="stockItem" default="yes" wire:model="stockItem">
-                                    @foreach ($stockItems as $stockItem)
-                                        <option value="{{ $stockItem->id }}">{{ $stockItem->name }}</option>
-                                    @endforeach
+                                    @if($stockStatus == 1)
+                                        @foreach ($stockItems as $stockItem)
+                                            <option value="{{ $stockItem->id }}">{{ $stockItem->name }} - {{ $stockItem->type->name }}</option>
+                                        @endforeach
+                                    @else
+                                        @foreach ($stockMasters as $item)
+                                            <option value="{{ $item }}">{{ $item->serial_no }} - {{ $item->item->name }} ({{ $item->item->type->name }})</option>
+                                        @endforeach
+                                    @endif
                                 </x-form.dropdown>
                                 @if(auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
                                     <x-form.dropdown label="Supplier" value="stockSupplier" default="yes" wire:model="stockSupplier">
@@ -75,11 +81,14 @@
                                     </x-form.dropdown>
                                 @endif
 
-                                <x-form.input type="text" label="Unit" value="stockUnit" wire:model="stockUnit" />
-                                <x-form.input type="text" label="Serial Number / Ref Number" value="stockSerial" wire:model="stockSerial"/>
+                                {{-- <x-form.input type="text" label="Unit" value="stockUnit" wire:model="stockUnit" /> --}}
+                                @if($stockStatus == 1)
+                                    <x-form.input type="text" label="Serial Number / Ref Number" value="stockSerial" wire:model="stockSerial"/>
+                                @endif
+
                                 <x-form.input type="date" label="Shipment Date" value="stockShipDate" wire:model="stockShipDate"/>
                                 <x-form.input type="text" label="Tracking Number" value="stockTrackingNo" wire:model="stockTrackingNo"/>
-                                <x-form.input type="text" label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/>
+                                {{-- <x-form.input type="text" label="Total Out" value="stockTotalOut" wire:model="stockTotalOut"/> --}}
 
                             </div>
                             <x-form.text-area label="Remarks" value="stockRemarks" wire:model="stockRemarks" rows="2" />
@@ -110,9 +119,9 @@
             @include('pages.stock.item')
         @endif
 
-        {{-- @if ($itemId != null)
+        @if ($itemId != null)
             @include('pages.stock.master')
-        @endif --}}
+        @endif
     </div>
 
     {{-- loading --}}

@@ -17,12 +17,12 @@ use Livewire\Component;
 
 class Stock extends Component
 {
-    public $categoryActive;
-    public $typeActive;
-    public $itemActive;
-    public $categoryId;
-    public $typeId;
-    public $itemId;
+    public $categoryActive = 13;
+    public $typeActive = 7;
+    public $itemActive = 17;
+    public $categoryId = 13;
+    public $typeId = 7;
+    public $itemId = 17;
 
     // modal stock in out
     public $stockStatus;
@@ -88,7 +88,7 @@ class Stock extends Component
     public function addStockInOut()
     {
         // stock movement part
-        if(auth()->user()->id == 1) // HQ user
+        if (auth()->user()->id == 1) // HQ user
         {
             $data = $this->validate([
                 'stockStatus'       => 'required',
@@ -101,8 +101,7 @@ class Stock extends Component
                 'stockTrackingNo'   => 'required',
                 // 'stockTotalOut'     => 'required|integer',
             ]);
-        }
-        else // other than HQ user
+        } else // other than HQ user
         {
             $data = $this->validate([
                 'stockStatus'       => 'required',
@@ -116,7 +115,7 @@ class Stock extends Component
             ]);
         }
 
-        if($this->stockSupplier != NULL) {  // from supplier
+        if ($this->stockSupplier != NULL) {  // from supplier
             InvMovement::create([
                 'status'        => $this->stockStatus,
                 'item_id'       => $this->stockItem,
@@ -182,52 +181,10 @@ class Stock extends Component
             ]);
 
             // create or update history ownership
-            $no = InvMasterHistory::where('serial_no',$this->stockSerial) // get latest no
-                                    ->orderBy('no', 'desc')
-                                    ->take(1)
-                                    ->value('no');
-
-            $masterHistory = InvMasterHistory::updateOrCreate([
-                'serial_no' => $this->stockSerial
-            ],
-            [
-                'user_id'       => auth()->user()->id,
-                'serial_no'     => $this->stockSerial,
-                'no'            => $no + 1,
-            ]);
-
-            if ($masterHistory->wasRecentlyCreated) // $masterHistory perform create
-            {
-                InvMasterHistory::where('serial_no', $this->stockSerial)
-                                ->where('no', $no + 1)
-                                ->update([
-                                    'created_by' => auth()->user()->id,
-                                    'created_at' => now(),
-                                ]);
-            }
-
-            if (!$masterHistory->wasRecentlyCreated && $masterHistory->wasChanged()) // $masterHistory perform update
-            {
-                InvMasterHistory::where('serial_no', $this->stockSerial)
-                                ->where('no', $no + 1)
-                                ->update([
-                                    'updated_by' => auth()->user()->id,
-                                    'updated_at' => now(),
-                                ]);
-            }
-        } else { // not from supplier
-            // update record on master (since record already there created by hq )
-            InvMaster::where('serial_no', $this->stockSerial)->update([
-                'user_id'       => $this->stockCustId,
-                'updated_by'    => auth()->user()->id,
-                'updated_at'    => now(),
-            ]);
-
-            // update history ownership
             $no = InvMasterHistory::where('serial_no', $this->stockSerial) // get latest no
-                                    ->orderBy('no', 'desc')
-                                    ->take(1)
-                                    ->value('no');
+                ->orderBy('no', 'desc')
+                ->take(1)
+                ->value('no');
 
             $masterHistory = InvMasterHistory::updateOrCreate(
                 [
@@ -243,21 +200,65 @@ class Stock extends Component
             if ($masterHistory->wasRecentlyCreated) // $masterHistory perform create
             {
                 InvMasterHistory::where('serial_no', $this->stockSerial)
-                                ->where('no', $no + 1)
-                                ->update([
-                                    'created_by' => auth()->user()->id,
-                                    'created_at' => now(),
-                                ]);
+                    ->where('no', $no + 1)
+                    ->update([
+                        'created_by' => auth()->user()->id,
+                        'created_at' => now(),
+                    ]);
             }
 
             if (!$masterHistory->wasRecentlyCreated && $masterHistory->wasChanged()) // $masterHistory perform update
             {
                 InvMasterHistory::where('serial_no', $this->stockSerial)
-                                ->where('no', $no + 1)
-                                ->update([
-                                    'updated_by' => auth()->user()->id,
-                                    'updated_at' => now(),
-                                ]);
+                    ->where('no', $no + 1)
+                    ->update([
+                        'updated_by' => auth()->user()->id,
+                        'updated_at' => now(),
+                    ]);
+            }
+        } else { // not from supplier
+            // update record on master (since record already there created by hq )
+            InvMaster::where('serial_no', $this->stockSerial)->update([
+                'user_id'       => $this->stockCustId,
+                'updated_by'    => auth()->user()->id,
+                'updated_at'    => now(),
+            ]);
+
+            // update history ownership
+            $no = InvMasterHistory::where('serial_no', $this->stockSerial) // get latest no
+                ->orderBy('no', 'desc')
+                ->take(1)
+                ->value('no');
+
+            $masterHistory = InvMasterHistory::updateOrCreate(
+                [
+                    'serial_no' => $this->stockSerial
+                ],
+                [
+                    'user_id'       => auth()->user()->id,
+                    'serial_no'     => $this->stockSerial,
+                    'no'            => $no + 1,
+                ]
+            );
+
+            if ($masterHistory->wasRecentlyCreated) // $masterHistory perform create
+            {
+                InvMasterHistory::where('serial_no', $this->stockSerial)
+                    ->where('no', $no + 1)
+                    ->update([
+                        'created_by' => auth()->user()->id,
+                        'created_at' => now(),
+                    ]);
+            }
+
+            if (!$masterHistory->wasRecentlyCreated && $masterHistory->wasChanged()) // $masterHistory perform update
+            {
+                InvMasterHistory::where('serial_no', $this->stockSerial)
+                    ->where('no', $no + 1)
+                    ->update([
+                        'updated_by' => auth()->user()->id,
+                        'updated_at' => now(),
+                    ]);
             }
         }
         // end inventory master
@@ -271,11 +272,11 @@ class Stock extends Component
             'addCategoryName' => 'required|min:3',
         ]);
 
-        $code = InvCategory::orderBy('id','desc')->take(1)->value('id');
+        $code = InvCategory::orderBy('id', 'desc')->take(1)->value('id');
 
         InvCategory::create([
             'user_id'       => auth()->user()->id,
-            'code'          => sprintf('%03d', ($code == NULL ? 0 : $code ) + 1),
+            'code'          => sprintf('%03d', ($code == NULL ? 0 : $code) + 1),
             'name'          => strtoupper($this->addCategoryName),
             'created_by'    => auth()->user()->id,
             'created_at'    => now(),
@@ -318,7 +319,7 @@ class Stock extends Component
 
             $all_type = InvItemType::where('deleted_by', NULL)->get();
 
-            foreach($all_type as $type) {
+            foreach ($all_type as $type) {
 
                 $code = InvItem::orderBy('id', 'desc')->take(1)->value('id');
 
@@ -331,7 +332,6 @@ class Stock extends Component
                     'created_at'        => now(),
                 ]);
             }
-
         } else {
             $code = InvItem::orderBy('id', 'desc')->take(1)->value('id');
 
@@ -350,13 +350,11 @@ class Stock extends Component
 
     public function delete($scope, $id)
     {
-        if($scope == 'category'){
+        if ($scope == 'category') {
             $table = 'App\Models\InvCategory';
-        }
-        elseif ($scope == 'type') {
+        } elseif ($scope == 'type') {
             $table = 'App\Models\InvItemType';
-        }
-        elseif ($scope == 'item') {
+        } elseif ($scope == 'item') {
             $table = 'App\Models\InvItem';
         }
 
@@ -379,7 +377,7 @@ class Stock extends Component
             'stockTypes' => InvItemType::where('user_id', auth()->user()->id)->get(),
             'stockItems' => InvItem::where('user_id', auth()->user()->id)->get(),
             'stockMasters' => InvMaster::where('user_id', auth()->user()->id)->get(),
-            'users' => User::where('role','!=','1')->get(),
+            'users' => User::where('role', '!=', '1')->get(),
         ]);
     }
 }
