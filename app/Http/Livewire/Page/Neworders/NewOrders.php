@@ -46,9 +46,7 @@ class NewOrders extends Component
     public function render()
     {
         return view('livewire.page.neworders.new-orders', [
-            'orders' => ModelsNewOrders::join('inv_masters', 'inv_masters.item_id', '=', 'new_orders.item_id')
-                ->where('fulfillment', 0)
-                ->get(),
+            'orders' => ModelsNewOrders::where('fulfillment', 0)->get(),
         ]);
     }
 }

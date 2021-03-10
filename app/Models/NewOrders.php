@@ -19,4 +19,9 @@ class NewOrders extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function master()
+    {
+        return $this->hasMany('App\Models\InvMaster', 'item_id', 'item_id');
+    }
 }
