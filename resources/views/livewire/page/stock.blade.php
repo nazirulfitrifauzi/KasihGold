@@ -6,7 +6,7 @@
             <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}"> 
                 <x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500" @click="openModal = true"/>
                 {{-- Start modal --}}
-                    <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl" closeBtn="">
+                    <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl" closeBtn="yes">
                         <div>
                             <x-form.basic-form wire:submit.prevent="">
                                 <x-slot name="content">
