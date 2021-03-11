@@ -1,8 +1,18 @@
-<li class="px-2 py-1 text-gray-500 transition-colors duration-150 hover:text-yellow-400">
-    <div class=" @if(Route::current()->uri == $uri)  text-yellow-400 bg-yellow-50 py-2 px-1 rounded-lg  @endif">
-        <div class="flex items-center">
-            {{$icon}}
-            <a class="w-full ml-2" {{ $attributes }}>{{$title}}</a>
-        </div>
-    </div>
-</li>
+<div class="pb-1">
+    <a href="{{$route}}" class="flex items-center w-full space-x-2 text-white text-base font-semibold
+        @if(Route::current()->uri == $uri) bg-white text-yellow-400  rounded-lg rounded-r-none
+        @else
+            bg-transparent
+        @endif
+        ">
+        <span aria-hidden="true" class="p-2  
+        @if(Route::current()->uri == $uri) bg-yellow-300 rounded-lg text-white
+        @else
+            bg-transparent
+        @endif
+        ">
+        {{$icon}}
+        </span>
+        <span>{{$title}}</span>
+    </a>
+</div>
