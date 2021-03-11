@@ -39,7 +39,7 @@
         <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
             <button @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})"
                 class="transition-opacity rounded-lg opacity-80 hover:opacity-100 focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2">
-                    <img class="w-10 h-10 rounded-full shadow-md border-4 border-yellow-300"
+                    <img class="w-10 h-10 rounded-full shadow-md border-4 border-yellow-300 "
                     src="https://image.flaticon.com/icons/png/512/149/149071.png" alt=""
                     aria-hidden="true" />
                 <span class="sr-only">User menu</span>
