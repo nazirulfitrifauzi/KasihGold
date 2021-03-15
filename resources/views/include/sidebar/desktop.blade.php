@@ -13,7 +13,7 @@
     <div x-transition:enter="transform transition-transform duration-300" x-transition:enter-start="-translate-x-full"
         x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform duration-300"
         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-show="isSidebarOpen"
-        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 w-64 bg-teal-800  shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 
+        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 w-64 bg-gray-800  shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 
         hidden md:block">
         <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full">
             <!-- Logo -->
@@ -24,7 +24,7 @@
             </div>
             <div class="flex flex-shrink-0">
                 <div class="p-2 mx-auto  rounded-lg">
-                    <img class="w-24 h-24 rounded-full shadow-md border-4 border-yellow-300 "
+                    <img class="w-24 h-24 rounded-full shadow-md border-4 border-yellow-400 "
                     src="https://image.flaticon.com/icons/png/512/149/149071.png" alt=""
                     aria-hidden="true" />
                     <p class="pt-1  text-white text-base font-bold">{{auth()->user()->name}}</p>

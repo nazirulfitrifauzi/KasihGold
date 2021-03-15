@@ -16,11 +16,14 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('js/init-alpine.js')}}"></script>
 
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
     @livewireStyles
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
-        <div class="flex h-screen bg-teal-700">
+        <div class="flex h-screen bg-gray-700">
             <!-- Loading screen -->
             <div x-ref="loading">
                 @include('misc.loading')
@@ -53,5 +56,16 @@
     }
 }
     
+</script>
+<script>
+	tippy('.tooltipbtn', {
+        content:(reference)=>reference.getAttribute('data-title'),
+        onMount(instance) {
+            instance.popperInstance.setOptions({
+            placement :instance.reference.getAttribute('data-placement')
+            });
+        },
+        allowHTML: true,
+    });
 </script>
 </html>
