@@ -1,11 +1,7 @@
 <div x-data="{ {{$active}}:  @if(\Request::is($uri)) true @else false @endif }">
-    <div class="relative flex items-center w-full space-x-2 text-white text-base font-semibold cursor-pointer"
+    <div class="relative flex items-center w-full space-x-2 text-white text-base font-semibold  hover:text-yellow-300 cursor-pointer"
         x-on:click="{{$active}} = !{{$active}}">
         <span aria-hidden="true" class="p-2  
-        @if(Route::current()->uri == $uri) bg-yellow-300 rounded-lg text-white
-        @else
-            bg-transparent
-        @endif
         ">
             {{ $icon }}
         </span>

@@ -1,6 +1,6 @@
 <div class="pb-1">
     <a href="{{$route}}" class="flex items-center w-full space-x-2 text-white text-base font-semibold
-        @if(Route::current()->uri == $uri) bg-white text-yellow-400  rounded-lg rounded-r-none
+        @if(Route::current()->uri == $uri) bg-white text-teal-700  rounded-lg rounded-r-none
         @else
             bg-transparent
         @endif
