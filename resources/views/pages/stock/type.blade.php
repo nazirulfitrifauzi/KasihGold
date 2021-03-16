@@ -8,7 +8,7 @@
 
     <div class="grid grid-cols-12 gap-6">
         @foreach ($types as $type)
-        <div class="relative flex col-span-12 lg:col-span-3 xxl:col-span-3 lg:block">
+        <div class="relative flex col-span-12 lg:col-span-4 xl:col-span-3 xxl:col-span-3 lg:block">
             <x-general.card-tab class="{{$typeActive == $type->id ? 'bg-yellow-400 text-white' : '' }} hover:bg-yellow-400 hover:text-white" wire:click="$emit('typeSelected', {{ $type->id }})">
                     <div class="p-4">
                         <div class="flex justify-between font-medium">
