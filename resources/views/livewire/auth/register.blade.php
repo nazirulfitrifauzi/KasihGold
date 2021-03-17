@@ -1,93 +1,86 @@
 @section('title', 'Create a new account')
 
-<div class="-mt-24 pt-24 w-full h-screen bg-white flex flex-wrap">
-    <div class="flex items-center justify-center md:-px-0 w-full md:w-4/12 bg-gray-800">
-        <div class="shadow-xl md:shadow-none p-8 md:bg-white  relative z-10">
-            <div>
-                <div class="sm:mx-auto sm:w-full sm:max-w-md">
-                    <h2 class="mt-6 text-3xl font-extrabold text-center text-white leading-9 md:text-gray-900">
-                        Create a new account
-                    </h2>
-
-                    <p class="mt-2 text-sm text-center text-white max-w md:text-gray-900">
-                        Or
-                        <a href="{{ route('login') }}" class="font-medium text-yellow-400 hover:text-yellow-300 focus:outline-none focus:underline transition ease-in-out duration-150">
-                            sign in to your account
-                        </a>
-                    </p>
+<div>
+    <div class="bg-gray-800 w-screen h-screen grid grid-cols-12">
+        <div class="relative col-span-12 md:col-span-8 lg:col-span-5  bg-white flex flex-col justify-center items-center h-full">
+            <div class="w-full absolute top-0 px-4 pt-8">
+                <div class="flex justify-between">
+                    <a href="/">
+                        <div class="flex justify-center">
+                            <x-logo class="w-auto h-12 " />
+                        </div>
+                    </a>
+                    <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
+                        <p>Login</p>
+                    </a>
                 </div>
+            </div>
+            <div class="px-4 sm:px-24   z-40 w-full">
+                <div class="mb-6 sm:mx-auto sm:w-full">
+                    <h2 class="text-3xl font-extrabold text-left text-gray-700">
+                        Register
+                    </h2>
+                    <h2 class="mt-2 text-base font-semibold text-left text-gray-500 leading-7 max-w-sm">
+                        Welcome! Please fill information in below
+                    </h2>
+                </div>
+                <form wire:submit.prevent="register">
+                    <div>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                        </div>
 
-                <div class="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
-                    <div class="bg-white px-6 py-6 md:bg-transparent">
-                        <form wire:submit.prevent="register">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
-                                    Name
-                                </label>
+                        @error('name')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                                <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
-                                </div>
+                    <div class="mt-6">
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input wire:model.lazy="email" id="email" type="email" required  placeholder="Type your email" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                        </div>
 
-                                @error('name')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
+                        @error('email')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            <div class="mt-6">
-                                <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                                    Email address
-                                </label>
+                    <div class="mt-6">
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                        </div>
 
-                                <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="email" id="email" type="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
-                                </div>
+                        @error('password')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                                @error('email')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
+                    <div class="mt-6">
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                        </div>
+                    </div>
 
-                            <div class="mt-6">
-                                <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                                    Password
-                                </label>
-
-                                <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="password" id="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
-                                </div>
-
-                                @error('password')
-                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                            <div class="mt-6">
-                                <label for="password_confirmation" class="block text-sm font-medium text-gray-700 leading-5">
-                                    Confirm Password
-                                </label>
-
-                                <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 appearance-none rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                                </div>
-                            </div>
-
-                            <div class="mt-6">
-                                <span class="block w-full rounded-md shadow-sm">
-                                    <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-md hover:bg-yellow-300 focus:outline-none focus:border-yellow-500 focus:shadow-outline-indigo active:bg-yellow-500 transition duration-150 ease-in-out">
-                                        Register
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
+                    <div class="mt-6">
+                        <span class="block w-full rounded-md shadow-sm">
+                            <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
+                                Register
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="hidden lg:block z-40 col-span-12 md:col-span-4 lg:col-span-7" >
+            <div class="w-auto bg-cover bg-center" style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
+                <div class="flex items-center justify-center h-full w-full bg-gray-800 bg-opacity-50">
+                    <div class="max-w-xl -mt-20  animate__animated animate__zoomIn">
+                        <p class="text-6xl  font-bold text-yellow-400 text-left leading-tight">Memperkasakan Wakaf Ekonomi</p>
+                        <p class="border-b mb-2"></p>
+                        <p class="text-sm text-white">Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="-mt-64 md:mt-0 w-full md:flex-1">
-        <div class="w-full bg-cover bg-center rounded-b-3xl" style="height:100%; background-image: url({{asset('img/banner.jpg')}});">
-            <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-50"></div>
         </div>
     </div>
 </div>

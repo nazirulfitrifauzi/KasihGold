@@ -8,13 +8,15 @@ class DropdownItem extends Component
 {
     
     public $title;
+    public $route;
     public $uri;
 
-    public function __construct($title,$uri)
+    public function __construct($title,$uri,$route)
     {
         
         $this->title = $title;
         $this->uri = $uri;
+        $this->route = $route;
         
     }
 
