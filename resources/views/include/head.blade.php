@@ -23,7 +23,7 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
-        <div class="flex h-screen bg-gray-700">
+        <div class="flex h-screen bg-gray-700 overflow-y-hidden">
             <!-- Loading screen -->
             <div x-ref="loading">
                 @include('misc.loading')
