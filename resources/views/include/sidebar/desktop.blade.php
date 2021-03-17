@@ -127,7 +127,7 @@
                         @endif
                         @if (auth()->user()->role == 1)
                         <x-sidebar.dropdown-item title="Sell Product" route="{{route('admin.product-sell-hq')}}"
-                            uri="admin/product/sell-add">
+                            uri="product/admin/product/sell">
                             <x-slot name="icon">
                                 <x-heroicon-o-cube class="w-5 h-5" />
                             </x-slot>
