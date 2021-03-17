@@ -5,15 +5,17 @@
         <div class="relative col-span-12 md:col-span-8 lg:col-span-5  bg-white flex flex-col justify-center items-center h-full">
             <div class="w-full absolute top-0 px-4 pt-8">
                 <div class="flex justify-between">
-                    <div class="flex justify-center">
-                        <x-logo class="w-auto h-12 " />
-                    </div>
+                    <a href="/">
+                        <div class="flex justify-center">
+                            <x-logo class="w-auto h-12 " />
+                        </div>
+                    </a>
                     <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
                         <p>Login</p>
                     </a>
                 </div>
             </div>
-            <div class=" px-4 sm:px-24   z-40 w-full">
+            <div class="px-4 sm:px-24   z-40 w-full">
                 <div class="mb-6 sm:mx-auto sm:w-full">
                     <h2 class="text-3xl font-extrabold text-left text-gray-700">
                         Register
@@ -72,7 +74,7 @@
         <div class="hidden lg:block z-40 col-span-12 md:col-span-4 lg:col-span-7" >
             <div class="w-auto bg-cover bg-center" style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
                 <div class="flex items-center justify-center h-full w-full bg-gray-800 bg-opacity-50">
-                    <div class="max-w-xl -mt-20">
+                    <div class="max-w-xl -mt-20  animate__animated animate__zoomIn">
                         <p class="text-6xl  font-bold text-yellow-400 text-left leading-tight">Memperkasakan Wakaf Ekonomi</p>
                         <p class="border-b mb-2"></p>
                         <p class="text-sm text-white">Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang</p>
