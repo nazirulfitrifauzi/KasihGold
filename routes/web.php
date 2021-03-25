@@ -28,6 +28,7 @@ use App\Http\Controllers\NewOrdersController;
 use App\Http\Controllers\ProductBuyController;
 use App\Http\Controllers\OwnershipController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\AnalyticsController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -65,6 +66,7 @@ Route::middleware('auth')->group(function () {
         Route::get('new-orders', [NewOrdersController::class, 'index'])->name('new-orders');
         Route::get('tracking/ownership', [OwnershipController::class, 'index'])->name('ownership');
         Route::get('tracking/delivery', [DeliveryController::class, 'index'])->name('delivery');
+        Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
     });
 
     Route::middleware('auth.admin')->group(function () {
