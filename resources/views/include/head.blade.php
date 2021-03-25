@@ -19,6 +19,7 @@
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+    
 
     @livewireStyles
 </head>
@@ -48,6 +49,11 @@
         <!-- Panels -->
     </div>
 </body>
+<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
 <script>
     const setup = () => {
     return {
@@ -69,4 +75,5 @@
         allowHTML: true,
     });
 </script>
+@stack('js')
 </html>

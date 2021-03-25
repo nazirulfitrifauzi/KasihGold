@@ -135,6 +135,10 @@
                         @endif
                     </div>
                 </x-sidebar.dropdown-nav-item>
+
+                <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
+                    <x-heroicon-o-chart-bar class="w-5 h-5" />
+                </x-sidebar.nav-item>
             </div>
         </nav>
 
