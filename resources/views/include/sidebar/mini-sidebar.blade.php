@@ -18,6 +18,19 @@
 
             <!-- cart button -->
             <button
+                @click="(isSidebarOpen && currentSidebarTab == 'cartTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'cartTab'"
+                class="p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                :class="(isSidebarOpen && currentSidebarTab == 'cartTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'">
+                <span class="sr-only">Toggle notifications panel</span>
+
+                <span class="absolute inline-block w-4 h-4 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
+                        border-white rounded-full text-white items-center" style="font-size: 9px">1
+                </span>
+                <x-heroicon-o-shopping-cart class="h-6 w-6" />
+            </button>
+
+            <!-- notification button -->
+            <button
                 @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
                 class="p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
                 :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'">
@@ -26,7 +39,7 @@
                 <span class="absolute inline-block w-4 h-4 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
                         border-white rounded-full text-white items-center" style="font-size: 9px">1
                 </span>
-                <x-heroicon-o-shopping-cart class="h-6 w-6" />
+                <x-heroicon-o-bell class="h-6 w-6" />
             </button>
 
             <div>
