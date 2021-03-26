@@ -142,8 +142,8 @@
             </div>
         </nav>
 
-        <section x-show="currentSidebarTab == 'notificationsTab'" class="px-4 py-6">
-            <h2 class="text-xl text-white">Cart</h2>
+        <section x-show="currentSidebarTab == 'cartTab'" class="px-4 py-6">
+            <h2 class="text-xl text-yellow-300">Cart</h2>
             <div class="mt-6">
                 <div class="flex">
                     <img class="h-20 w-20 object-cover rounded"
@@ -152,6 +152,21 @@
                     <div class="mx-3">
                         <h3 class="text-sm text-white font-semibold">GOLD 0.25g</h3>
                         <span class="text-yellow-300 font-semibold">RM 336.00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section x-show="currentSidebarTab == 'notificationsTab'" class="px-4 py-6">
+            <h2 class="text-xl text-yellow-300">Notification</h2>
+            <div class="mt-6">
+                <div class="flex">
+                    <img class="h-12 w-12 object-cover rounded"
+                        src="https://image.flaticon.com/icons/png/512/149/149071.png"
+                        alt="">
+                    <div class="mx-3">
+                        <h3 class="text-sm text-white font-semibold">Hq</h3>
+                        <span class="text-yellow-300 font-semibold">message</span>
                     </div>
                 </div>
             </div>
