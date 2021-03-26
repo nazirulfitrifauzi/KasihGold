@@ -56,8 +56,8 @@
                 <div class="flex items-center">
                     <div class="text-lg font-medium">Send us your incident reporting</div>
                 </div>
-                <div class="mt-3 tex-sm">Do you have a suggestion or found some bug?</div>
-                <div class="text-sm">let us know the field below</div>
+                <div class="mt-3 tex-sm">Do you have any suggestion or found some bugs?</div>
+                <div class="text-sm">let us know in the form given</div>
             </div>
             <div class="w-full px-5 py-4 mt-4 mb-2 text-gray-900 bg-white rounded-md shadow-lg">
                 <div class="flex items-center">
