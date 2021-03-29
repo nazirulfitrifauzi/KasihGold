@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Models\BankAccId;
+use App\Models\BankInfo;
+use App\Models\Banks;
 use App\Models\InvMovement;
 use App\Models\Profile as ModelsProfile;
 use App\Models\States;
@@ -10,11 +13,22 @@ use Livewire\Component;
 
 class Profile extends Component
 {
-    public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $states;
+    public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $pgCode, $introducer, $introducerName, $preferredBranch;
+    public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment;
+    public $bankAccs;
+    public $states, $banks;
     public $movement;
 
     public function mount()
     {
+        $this->states = States::all();
+        $this->banks = Banks::all();
+        
+        $this->pgCode = auth()->user()->profile->pg_code;
+        $this->introducer = auth()->user()->profile->introducer;
+        $this->introducerName = auth()->user()->profile->introducer_name;
+        $this->preferredBranch = auth()->user()->profile->preferred_branch;
+
         $this->name = auth()->user()->name;
         $this->ic = auth()->user()->profile->ic;
         $this->email = auth()->user()->email;
@@ -27,13 +41,28 @@ class Profile extends Component
         $this->postcode = auth()->user()->profile->postcode;
         $this->town = auth()->user()->profile->town;
         $this->state = auth()->user()->profile->state_id;
-        $this->states = States::all();
+        
+        $bankInfo = BankInfo::where('user_id', auth()->user()->id)->first();
+
+        $this->bankId = $bankInfo->bank_id ?? "";
+        $this->swiftCode = $bankInfo->swift_code ?? "";
+        $this->accNo = $bankInfo->acc_no ?? "";
+        $this->accHolderName = $bankInfo->acc_holder_name ?? "";
+        $this->bankAttachment = $bankInfo->attachment ?? "";
+        $this->bankAccs = ($this->bankId != "") ? BankAccId::where('bank_info_id', $bankInfo->id)->get() : [];
 
         $this->movement = InvMovement::where('from_user_id', auth()->user()->id)->orWhere('to_user_id', auth()->user()->id)->get();
     }
 
     public function updated($propertyName)
     {
+        $this->validateOnly($propertyName, [
+            'pgCode' => 'required',
+            'introducer' => 'required',
+            'introducerName' => 'required',
+            'preferredBranch' => 'required',
+        ]);
+        
         $this->validateOnly($propertyName, [
             'name' => 'required',
             'ic' => 'required',
@@ -49,7 +78,7 @@ class Profile extends Component
         ]);
     }
 
-    public function savePersonalInformation()
+    public function savePersonal()
     {
         $data = $this->validate([
             'name' => 'required',
@@ -83,6 +112,26 @@ class Profile extends Component
                 'postcode' => $data['postcode'],
                 'town' => $data['town'],
                 'state_id' => $data['state'],
+            ]);
+
+        session()->flash('success', 'Profile updated.');
+    }
+
+    public function saveReferrer()
+    {
+        $data = $this->validate([
+            'pgCode' => 'required',
+            'introducer' => 'required',
+            'introducerName' => 'required',
+            'preferredBranch' => 'required',
+        ]);
+
+        ModelsProfile::where('user_id',auth()->user()->id)
+            ->update([
+                'pg_code' => $data['pgCode'],
+                'introducer' => $data['introducer'],
+                'introducer_name' => $data['introducerName'],
+                'preferred_branch' => $data['preferredBranch'],
             ]);
 
         session()->flash('success', 'Profile updated.');

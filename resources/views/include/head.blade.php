@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
-        <div class="flex h-screen bg-gray-700 overflow-y-hidden">
+        <div class="flex h-screen overflow-y-hidden bg-gray-700">
             <!-- Loading screen -->
             <div x-ref="loading">
                 @include('misc.loading')
@@ -35,7 +35,7 @@
             @include('include.sidebar.desktop')
 
             <!-- content -->
-            <div class="flex flex-col flex-1 w-full bg-white rounded-lg my-4 mx-2 ml-2 md:ml-0">
+            <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
                 {{-- @include('include.sidebar.navbar') --}}
                 <main class="overflow-y-auto">
                 <div class="grid px-8 pb-10 mx-auto">
@@ -49,6 +49,7 @@
         <!-- Panels -->
     </div>
 </body>
+@livewireScripts
 <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
 <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>

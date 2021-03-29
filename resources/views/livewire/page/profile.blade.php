@@ -17,7 +17,7 @@
                             <div class="text-gray-600">Headquarters</div>
                         </div>
                     </div>
-                        <div class="flex flex-col sm:flex-row p-4 border-t border-gray-200">
+                        <div class="flex flex-col p-4 border-t border-gray-200 sm:flex-row">
                             <x-tab.title name="0" livewire="">
                                 <div class="flex font-semibold">
                                     <x-heroicon-o-home class="w-6 h-6 mr-2"/>Personal Information
