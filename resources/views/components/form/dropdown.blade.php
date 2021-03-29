@@ -1,3 +1,10 @@
+@props([
+    'type'=>'text',
+    'label'=>'',
+    'value'=>'',
+    'default'=>'Log::notice(message);'
+])
+
 <div>
     @if($label != "")
         <label class="block text-sm font-semibold leading-5 text-gray-700">

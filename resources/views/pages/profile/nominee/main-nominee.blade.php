@@ -10,10 +10,10 @@
             </x-note-card>  
 
             <!-- Start Top Navigation -->
-            <div class="border-b-2 py-4 px-4">
+            <div class="px-4 py-4 border-b-2">
                 <div class="flex justify-between"> 
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                        <div class="flex-1  text-base  font-medium  leading-tight">
+                        <div class="flex-1 text-base font-medium leading-tight">
                             <div x-show="step === 1">
                                 <div>Insert Nomination Details</div>
                             </div>
@@ -25,13 +25,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="uppercase tracking-wide text-xs font-bold text-gray-500 mb-1 leading-tight" x-text="`Step: ${step} of 3`"></div>
+                    <div class="mb-1 text-xs font-bold leading-tight tracking-wide text-gray-500 uppercase" x-text="`Step: ${step} of 3`"></div>
                 </div>
             </div>
             <!-- End Top Navigation -->
 
             <!-- Start Step Content -->
-            <div class="py-4 px-4">	
+            <div class="px-4 py-4">	
                 <div x-show.transition.in="step === 1">
                     @include('pages.profile.nominee.insert-nominee')
                 </div>
@@ -49,17 +49,17 @@
         <div class="flex justify-between">
             <div class="w-1/2">
                 <button x-show="step > 1" @click="step--"
-                        class="w-32 focus:outline-none py-2 px-5 rounded-lg text-center  bg-gray-200 hover:bg-gray-300 " 
+                        class="w-32 px-5 py-2 text-center bg-gray-200 rounded-lg focus:outline-none hover:bg-gray-300 " 
                     >Back
                 </button>
             </div>
             <div class="w-1/2 text-right">
                 <button x-show="step < 3" @click="step++"
-                    class="w-32 focus:outline-none  py-2 px-5 rounded-lg shadow-sm text-center text-white bg-yellow-400 hover:bg-yellow-300" 
+                    class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
                     >Next
                 </button>
                 <button x-show="step === 3" 
-                    class="w-32 focus:outline-none  py-2 px-5 rounded-lg shadow-sm text-center text-white bg-yellow-400 hover:bg-yellow-300" 
+                    class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
                     >Sumbit
                 </button>
             </div>
