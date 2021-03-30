@@ -1,14 +1,14 @@
 <div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
-        
+
         <h2 class="flex mr-auto text-lg font-medium">
-            Stock Management 
-            <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}"> 
+            Stock Management
+            <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}">
                 <x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500" @click="openModal = true"/>
                 {{-- Start modal --}}
                     <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl">
                         <div x-data="{ active: 0 }">
-                            <div class="flex my-2 bg-gray-100 w-full shadow-sm">
+                            <div class="flex w-full my-2 bg-gray-100 shadow-sm">
                                 <x-tab.nav-tab name="0" livewire="">
                                     <div class="flex font-medium">
                                         <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Category

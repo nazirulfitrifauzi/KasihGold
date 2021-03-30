@@ -11,7 +11,7 @@ class InvMasterHistory extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "inv_masters_history";
+    protected $table = "inv_masters_histories";
     protected $guarded = [];
 
     public function user()

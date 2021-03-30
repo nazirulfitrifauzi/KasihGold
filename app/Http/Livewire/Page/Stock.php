@@ -17,12 +17,12 @@ use Livewire\Component;
 
 class Stock extends Component
 {
-    public $categoryActive = 13;
-    public $typeActive = 7;
-    public $itemActive = 17;
-    public $categoryId = 13;
-    public $typeId = 7;
-    public $itemId = 17;
+    public $categoryActive = 1;
+    public $typeActive = 1;
+    public $itemActive = 1;
+    public $categoryId = 1;
+    public $typeId = 1;
+    public $itemId = 1;
 
     // modal stock in out
     public $stockStatus;
