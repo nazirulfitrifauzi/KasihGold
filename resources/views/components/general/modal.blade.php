@@ -33,7 +33,7 @@
                             {{$title}}
                         </h3>
                         
-                        @if ($closeBtn == "yes")
+                        @if (isset($closeBtn) and $closeBtn == "yes")
                             <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-red-600 cursor-pointer"/>
                         @endif
                     </div>
