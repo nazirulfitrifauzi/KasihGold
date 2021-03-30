@@ -15,7 +15,7 @@
         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-show="isSidebarOpen"
         class="fixed inset-y-0 left-0 z-30 flex-shrink-0 w-64 bg-gray-800  shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 
         hidden md:block">
-        <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full">
+        <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full pb-4">
             <!-- Logo -->
             <div class="flex flex-shrink-0 pt-4 pb-1">
                 <div class="p-2 mx-auto  rounded-lg">
@@ -136,16 +136,28 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
+                <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-shopping-cart class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-7">
+                        <x-sidebar.dropdown-item title="My Order" route="{{route('my-order')}}" 
+                            uri="order/my-order">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Customer Order" route="{{route('customer-order')}}" 
+                            uri="order/customer-order">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
+
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
-                </x-sidebar.nav-item>
-
-                <x-sidebar.nav-item title="My Order" route="{{route('my-order')}}" uri="my-order">
-                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
-                </x-sidebar.nav-item>
-
-                <x-sidebar.nav-item title="Customer Order" route="{{route('customer-order')}}" uri="customer-order">
-                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
                 <x-sidebar.nav-item title="Shipment" route="{{route('shipment')}}" uri="shipment">
@@ -153,8 +165,17 @@
                 </x-sidebar.nav-item>
 
                 <x-sidebar.nav-item title="My Network" route="{{route('my-network')}}" uri="my-network">
-                    <x-heroicon-o-truck class="w-5 h-5" />
+                    <x-heroicon-o-globe-alt class="w-5 h-5" />
                 </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="My Commission" route="{{route('commission')}}" uri="commission">
+                    <x-heroicon-o-currency-dollar class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="Upline Details" route="{{route('upline-detail')}}" uri="upline-detail">
+                    <x-heroicon-o-collection class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
 
             </div>
         </nav>
