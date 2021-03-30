@@ -1,13 +1,14 @@
 <div>
     <div>
-        <div class="mt-8">
-            <div class="flex justify-between">
-                <h2 class="mr-auto text-lg font-medium">
-                    Group Sumamary
-                </h2>
+        <div class="flex justify between mt-8">
+            <h2 class="mr-auto text-lg font-medium">
+                Group Summary
+            </h2>
+            <div class="bg-yellow-400 text-white py-1 px-2">
                 <p>PG00214563</p>
             </div>
         </div>
+        
         <div class="p-4 mt-4 bg-white">
             <x-table.table>
                 <x-slot name="thead">

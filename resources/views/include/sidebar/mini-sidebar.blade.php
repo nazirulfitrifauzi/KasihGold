@@ -48,8 +48,10 @@
                 </div>
 
                 <div class="cursor-default text-gray-900">
-                    <x-general.modal modalActive="Open" title="" modalSize="lg">
-                    
+                    <x-general.modal modalActive="Open" title="Customer Support" modalSize="lg">
+                        <div class="flex justify-center mt-4 text-lg font-semibold">
+                            <p>If you need any assitance please contact us via</p>
+                        </div>
                     </x-general.modal>
                 </div>
             </div>

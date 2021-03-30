@@ -33,6 +33,8 @@ use App\Http\Controllers\MyOrderController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\MyNetworkController;
+use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\UplineController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -71,10 +73,12 @@ Route::middleware('auth')->group(function () {
         Route::get('tracking/ownership', [OwnershipController::class, 'index'])->name('ownership');
         Route::get('tracking/delivery', [DeliveryController::class, 'index'])->name('delivery');
         Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
-        Route::get('my-order', [MyOrderController::class, 'index'])->name('my-order');
-        Route::get('customer-order', [CustomerOrderController::class, 'index'])->name('customer-order');
+        Route::get('order/my-order', [MyOrderController::class, 'index'])->name('my-order');
+        Route::get('order/customer-order', [CustomerOrderController::class, 'index'])->name('customer-order');
         Route::get('shipment', [ShipmentController::class, 'index'])->name('shipment');
         Route::get('my-network', [MyNetworkController::class, 'index'])->name('my-network');
+        Route::get('commission', [CommissionController::class, 'index'])->name('commission');
+        Route::get('upline-detail', [UplineController::class, 'index'])->name('upline-detail');
     });
 
     Route::middleware('auth.admin')->group(function () {
