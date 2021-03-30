@@ -21,7 +21,8 @@ class CreateBankInfosTable extends Migration
             $table->string('swift_code', 50);
             $table->string('acc_no', 100);
             $table->string('acc_holder_name', 255);
-            $table->string('attachment', 255);
+            $table->string('acc_id', 50);
+            $table->string('attachment', 255)->nullable();
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
