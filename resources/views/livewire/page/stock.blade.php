@@ -121,7 +121,7 @@
                                         @endforeach
                                     @else
                                         @foreach ($stockMasters as $item)
-                                            <option value="{{ $item }}">{{ $item->serial_no }} - {{ $item->item->name }} ({{ $item->item->type->name }})</option>
+                                            <option value="{{ $item->serial_no }}">{{ $item->serial_no }} - {{ $item->item->name }} ({{ $item->item->type->name }})</option>
                                         @endforeach
                                     @endif
                                 </x-form.dropdown>
