@@ -42,6 +42,18 @@
                 <x-heroicon-o-bell class="h-6 w-6" />
             </button>
 
+            <div x-data="{ Open : false  }">
+                <div class="cursor-pointer bg-pink-500 text-white py-2 px-2 rounded-lg w-full" x-on:click="Open = true" >
+                    <x-heroicon-o-question-mark-circle class="w-6 h-6  " />
+                </div>
+
+                <div class="cursor-default text-gray-900">
+                    <x-general.modal modalActive="Open" title="" modalSize="lg">
+                    
+                    </x-general.modal>
+                </div>
+            </div>
+
             <div>
                 @if(auth()->user()->screen == 1)
                 <div class="bg-orange-400 text-white py-2 px-2 rounded-lg w-full tooltipbtn"  data-title="Screening in process" data-placement="right">

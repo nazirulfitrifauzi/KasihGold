@@ -102,20 +102,76 @@
                                 <div>
                                     <div class="lg:w-full">
                                         <div>
-                                            <h4 class="text-base text-gray-600 font-medium">Billing address</h4>
-                                            <span class="text-sm text-gray-500"> Select the address that matches your cant or payment method.</span>
-                                            <div class="mt-6">
+                                            <h4 class="text-base text-gray-600 font-medium">Billing Details</h4>
+                                            <div class="mt-6" x-data="{ accordion: 0 }">
                                                 <div class="flex items-center justify-between w-full bg-white rounded-t-lg border  p-4 focus:outline-none">
                                                     <label class="flex items-center">
-                                                        <input type="radio"  id="" value="" name="address"  class="form-radio h-5 w-5 text-blue-600" >
-                                                            <span class="ml-2 text-sm text-gray-700">Same as shipping address</span>
+                                                        <input @click="accordion = accordion == 1 ? 0 : 1" type="radio"  id="" value="" name="address"  class="form-radio h-5 w-5 text-blue-600" >
+                                                            <span class="ml-2 text-sm text-gray-700">Purchase for Myself</span>
                                                     </label>
+                                                </div>
+                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }">
+                                                    <div class="border-2 px-4 py-4">
+                                                        <x-form.basic-form>
+                                                            <x-slot name="content">
+                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                                                    <x-form.input type="text" label="First Name" value="" wire:model=""/>
+                                                                    <x-form.input type="text" label="Last Name" value="" wire:model=""/>
+                                                                </div>
+                                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                                    <x-form.input type="text" label="Company Name (optional)" value="" wire:model=""/>
+                                                                    <x-form.dropdown label="Country/Region" value="" default="no" wire:model="" name="" id="">
+                                                                        <option value="" selected>Select a Country/Region</option>
+                                                                    </x-form.dropdown>
+                                                                    <x-form.address class="" 
+                                                                        label="Address" 
+                                                                        value1="address1" 
+                                                                        value2="address2" 
+                                                                        value3="address3" 
+                                                                        value4="town" 
+                                                                        value5="postcode" 
+                                                                        value6="state" 
+                                                                        condition="state"
+                                                                    />
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-form.basic-form>
+                                                    </div>
                                                 </div>
                                                 <div class=" flex items-center justify-between w-full bg-white rounded-b-lg border p-4 focus:outline-none">
                                                     <label class="flex items-center">
-                                                        <input type="radio" id="" value="" name="address" class="form-radio h-5 w-5 text-blue-600">
-                                                        <span class="ml-2 text-sm text-gray-700">Use a different billing address</span>
+                                                        <input @click="accordion = accordion == 2 ? 0 : 2" type="radio" id="" value="" name="address" class="form-radio h-5 w-5 text-blue-600">
+                                                        <span class="ml-2 text-sm text-gray-700">Purchase for Oders</span>
                                                     </label>
+                                                </div>
+                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 2 }">
+                                                    <div class="border-2 px-4 py-4">
+                                                        <x-form.basic-form>
+                                                            <x-slot name="content">
+                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                                                    <x-form.input type="text" label="First Name" value="" wire:model=""/>
+                                                                    <x-form.input type="text" label="Last Name" value="" wire:model=""/>
+                                                                </div>
+                                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                                    <x-form.input type="text" label="Company Name (optional)" value="" wire:model=""/>
+                                                                    <x-form.input type="text" label="IC Number *" value="" wire:model=""/>
+                                                                    <x-form.dropdown label="Country/Region" value="" default="no" wire:model="" name="" id="">
+                                                                        <option value="" selected>Select a Country/Region</option>
+                                                                    </x-form.dropdown>
+                                                                    <x-form.address class="" 
+                                                                        label="Address" 
+                                                                        value1="address1" 
+                                                                        value2="address2" 
+                                                                        value3="address3" 
+                                                                        value4="town" 
+                                                                        value5="postcode" 
+                                                                        value6="state" 
+                                                                        condition="state"
+                                                                    />
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-form.basic-form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

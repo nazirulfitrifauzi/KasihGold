@@ -29,6 +29,10 @@ use App\Http\Controllers\ProductBuyController;
 use App\Http\Controllers\OwnershipController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\MyOrderController;
+use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\MyNetworkController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -67,6 +71,10 @@ Route::middleware('auth')->group(function () {
         Route::get('tracking/ownership', [OwnershipController::class, 'index'])->name('ownership');
         Route::get('tracking/delivery', [DeliveryController::class, 'index'])->name('delivery');
         Route::get('analytics', [AnalyticsController::class, 'index'])->name('analytics');
+        Route::get('my-order', [MyOrderController::class, 'index'])->name('my-order');
+        Route::get('customer-order', [CustomerOrderController::class, 'index'])->name('customer-order');
+        Route::get('shipment', [ShipmentController::class, 'index'])->name('shipment');
+        Route::get('my-network', [MyNetworkController::class, 'index'])->name('my-network');
     });
 
     Route::middleware('auth.admin')->group(function () {

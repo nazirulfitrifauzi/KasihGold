@@ -139,6 +139,23 @@
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="My Order" route="{{route('my-order')}}" uri="my-order">
+                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="Customer Order" route="{{route('customer-order')}}" uri="customer-order">
+                    <x-heroicon-o-shopping-cart class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="Shipment" route="{{route('shipment')}}" uri="shipment">
+                    <x-heroicon-o-truck class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="My Network" route="{{route('my-network')}}" uri="my-network">
+                    <x-heroicon-o-truck class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
             </div>
         </nav>
 
