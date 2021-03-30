@@ -7,7 +7,7 @@
     <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 mt-8">
 
         <x-general.card-tab class="bg-yellow-400 text-white rounded-lg">
-            <div class="font-bold text-lg text-white">
+            <div class="font-bold text-base text-white">
                 <div class="flex justify-between">
                     <p>NAME OF INTRODUCER</p>
                     <x-heroicon-o-user class="w-8 h-8" />
@@ -16,7 +16,7 @@
             </div>
         </x-general.card-tab>
         <x-general.card-tab class="bg-yellow-400 text-white rounded-lg">
-            <div class="font-bold text-lg text-white">
+            <div class="font-bold text-base text-white">
                 <div class="flex justify-between">
                     <p>UPLINE CONTACT NUMBERR</p>
                     <x-heroicon-o-phone class="w-8 h-8" />
@@ -25,7 +25,7 @@
             </div>
         </x-general.card-tab>
         <x-general.card-tab class="bg-yellow-400 text-white rounded-lg">
-            <div class="font-bold text-lg text-white">
+            <div class="font-bold text-base text-white">
                 <div class="flex justify-between">
                     <p>UPLINE AGENT ID</p>
                     <x-heroicon-o-identification class="w-8 h-8" />
