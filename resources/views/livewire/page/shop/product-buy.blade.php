@@ -11,7 +11,7 @@
                                     <div class="lg:w-full">
                                         <div>
                                             <div class="mt-6">
-                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none rounded-t-lg">
+                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none">
                                                     <label class="block text-sm font-semibold leading-5 ml-2 text-gray-700 ">
                                                         Contact:
                                                     </label>
@@ -21,7 +21,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none rounded-b-lg">
+                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none">
                                                     <label class="block text-sm font-semibold leading-5 ml-2 text-gray-700 ">
                                                         Ship To:
                                                     </label>
@@ -40,7 +40,7 @@
                                         <div>
                                             <h4 class="text-base text-gray-600 font-medium">Shipping Method</h4>
                                             <div class="mt-3">
-                                                <div class="flex items-center justify-between w-full bg-white rounded-t-lg  border  p-4 focus:outline-none">
+                                                <div class="flex items-center justify-between w-full bg-white   border  p-4 focus:outline-none">
                                                     <label class="flex items-center">
                                                         <input type="radio"  id="" value="" name="method"  class="form-radio h-5 w-5 text-blue-600" >
                                                         <span class="ml-2 text-sm text-gray-700">DHL/POSLAJU</span>
@@ -60,12 +60,12 @@
                                 </div>
                                 <div class="pb-8 mt-8">
                                     <div class="lg:w-full">
-                                        <div>
+                                        <div class="mb-2">
                                             <h4 class="text-base text-gray-600 font-medium">Payment</h4>
                                             <span class="text-sm text-gray-500">All transactions are secure and encrypted</span>
                                         </div>
-                                        <x-general.card class="bg-gray-200  pt-0 pl-0 pr-0 border-2">
-                                            <div class="mr-auto text-lg font-medium bg-white text-white py-2 px-2 rounded-lg rounded-b-none ">
+                                        <div class="bg-gray-200  pt-0 pl-0 pr-0 border">
+                                            <div class="mr-auto text-lg font-medium bg-white text-white py-2 px-2 ">
                                                 <div class="flex justify-between">
                                                     <div>
                                                         <img src="{{ asset('img/ipay88.png') }}"  class="w-auto h-10"/>
@@ -96,7 +96,7 @@
                                                     You have now selected and will be redirected to IPay88to <br>Complete your purchase securely
                                                 </span>
                                             </div>
-                                        </x-general.card>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -104,7 +104,7 @@
                                         <div>
                                             <h4 class="text-base text-gray-600 font-medium">Billing Details</h4>
                                             <div class="mt-6" x-data="{ accordion: 0 }">
-                                                <div class="flex items-center justify-between w-full bg-white rounded-t-lg border  p-4 focus:outline-none">
+                                                <div class="flex items-center justify-between w-full bg-white border  p-4 focus:outline-none">
                                                     <label class="flex items-center">
                                                         <input @click="accordion = accordion == 1 ? 0 : 1" type="radio"  id="" value="" name="address"  class="form-radio h-5 w-5 text-blue-600" >
                                                             <span class="ml-2 text-sm text-gray-700">Purchase for Myself</span>
@@ -138,14 +138,14 @@
                                                         </x-form.basic-form>
                                                     </div>
                                                 </div>
-                                                <div class=" flex items-center justify-between w-full bg-white rounded-b-lg border p-4 focus:outline-none">
+                                                <div class=" flex items-center justify-between w-full bg-white rounded-b-none border p-4 focus:outline-none">
                                                     <label class="flex items-center">
                                                         <input @click="accordion = accordion == 2 ? 0 : 2" type="radio" id="" value="" name="address" class="form-radio h-5 w-5 text-blue-600">
                                                         <span class="ml-2 text-sm text-gray-700">Purchase for Oders</span>
                                                     </label>
                                                 </div>
                                                 <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 2 }">
-                                                    <div class="border-2 px-4 py-4">
+                                                    <div class="border-2  rounded-b-lg  px-4 py-4">
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
@@ -190,7 +190,7 @@
 
                     <div class="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2 mt-4">
                         <div class="flex justify-center lg:justify-end">
-                            <div class="border rounded-md max-w-md w-full px-4 py-3">
+                            <div class="border  max-w-md w-full px-4 py-3">
                                 <div class="flex items-center justify-between">
                                     <h3 class="text-gray-700 font-medium">Order total (1)</h3>
                                 </div>

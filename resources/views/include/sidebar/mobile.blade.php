@@ -164,7 +164,7 @@
                         @endif
                         @if (auth()->user()->role == 1)
                         <x-sidebar.dropdown-item title="Sell Product" route="{{route('admin.product-sell-hq')}}"
-                            uri="admin/product/sell-add">
+                            uri="product/admin/product/sell">
                             <x-slot name="icon">
                                 <x-heroicon-o-cube class="w-5 h-5" />
                             </x-slot>
@@ -172,6 +172,46 @@
                         @endif
                     </div>
                 </x-sidebar.dropdown-nav-item>
+
+                <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-shopping-cart class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-7">
+                        <x-sidebar.dropdown-item title="My Order" route="{{route('my-order')}}" 
+                            uri="order/my-order">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Customer Order" route="{{route('customer-order')}}" 
+                            uri="order/customer-order">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
+
+                <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
+                    <x-heroicon-o-chart-bar class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="Shipment" route="{{route('shipment')}}" uri="shipment">
+                    <x-heroicon-o-truck class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="My Network" route="{{route('my-network')}}" uri="my-network">
+                    <x-heroicon-o-globe-alt class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="My Commission" route="{{route('commission')}}" uri="commission">
+                    <x-heroicon-o-currency-dollar class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
+                <x-sidebar.nav-item title="Upline Details" route="{{route('upline-detail')}}" uri="upline-detail">
+                    <x-heroicon-o-collection class="w-5 h-5" />
+                </x-sidebar.nav-item>
             </div>
         </nav>
 

@@ -42,15 +42,18 @@
                 <x-heroicon-o-bell class="h-6 w-6" />
             </button>
 
-            <div x-data="{ Open : false  }">
-                <div class="cursor-pointer bg-pink-500 text-white py-2 px-2 rounded-lg w-full" x-on:click="Open = true" >
+            <div x-data="{ Open : false }">
+                <div class="cursor-pointer bg-pink-500 text-white py-2 px-2 rounded-lg w-full tooltipbtn" data-title="Customer Support" data-placement="right" x-on:click="Open = true" >
                     <x-heroicon-o-question-mark-circle class="w-6 h-6  " />
                 </div>
 
                 <div class="cursor-default text-gray-900">
                     <x-general.modal modalActive="Open" title="Customer Support" modalSize="lg">
-                        <div class="flex justify-center mt-4 text-lg font-semibold">
-                            <p>If you need any assitance please contact us via</p>
+                        <div class="flex justify-center mt-4 text-lg font-semibold text-center">
+                            <p>If you need any assitance please contact us via <br> WhatsApp/SMS/Call </p>
+                        </div>
+                        <div class="flex justify-center mt-2 text-lg font-semibold">
+                            <p class='bg-yellow-400 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
                         </div>
                     </x-general.modal>
                 </div>
