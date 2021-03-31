@@ -11,7 +11,7 @@ class ProductBuy extends Component
 {
     public $iid, $item_id;
     public $fname, $lname, $cname, $nric;
-    public $address1, $address2, $address3, $town, $postcode, $state;
+    public $address1, $address2, $address3, $town, $postcode, $state_id;
 
     public function mount()
     {
@@ -24,13 +24,13 @@ class ProductBuy extends Component
             'fname'               => 'required|string',
             'lname'               => 'required|string',
             'cname'               => 'required|string',
-            'nric'               => 'required|digits:12',
+            'nric'                => 'required|digits:12',
             'address1'            => 'required|string',
             'address2'            => 'nullable|string',
             'address3'            => 'nullable|string',
             'town'                => 'required|string',
             'postcode'            => 'required|digits:5',
-            'state'               => 'required|string',
+            'state_id'            => 'required|integer',
         ]);
     }
 
