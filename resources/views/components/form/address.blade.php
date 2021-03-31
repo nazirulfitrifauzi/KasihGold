@@ -37,13 +37,13 @@
         @if($errors->has($value5)) <p class="text-sm text-red-600">{{ $errors->first($value5) }}</p> @endif
     </div>
     <x-form.state-dropdown label="State" value="{{ $value6 }}">
-        @isset($states)
-            @if ($condition == "")
+        {{-- @isset($states) --}}
+            {{-- @if ($condition == "") --}}
                 <option value="0">CHOOSE STATE</option>
-            @endif
-            @foreach ($states as $item)
-                <option value="{{ $item->id }}" {{ ($item->id == $condition) ? 'selected' : '' }}>{{ $item->description }}</option>
+            {{-- @endif --}}
+            @foreach ($state as $item)
+                <option value="{{ $item->id }}" >{{ $item->description }}</option>
             @endforeach
-        @endisset
+        {{-- @endisset --}}
     </x-form.state-dropdown>
 </div>

@@ -3,6 +3,7 @@
 namespace App\View\Components\form;
 
 use Illuminate\View\Component;
+use App\Models\States;
 
 class Address extends Component
 {
@@ -26,7 +27,7 @@ class Address extends Component
         $this->value5 = $value5;
         $this->value6 = $value6;
         $this->condition = $condition;
-        // $this->state = State::all();
+        $this->state = States::all();
     }
     public function render()
     {
