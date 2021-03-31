@@ -24,7 +24,7 @@
     @livewireStyles
 </head>
 <body>
-    <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
+    <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
         <div class="bg-red-500 py-1 px-1 text-white text-center text-sm font-bold absolute z-50 right-0 w-full">
             <div class="flex justify-center items-center animate-pulse">
                 <x-heroicon-o-exclamation class="w-6 h-6" />
@@ -38,11 +38,13 @@
             </div>
         
             <!--Sidebar-->
-            @include('include.sidebar.desktop')
+            @include('include.sidebar.desktop-sidebar')
 
             <!-- content -->
             <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
-                {{-- @include('include.sidebar.navbar') --}}
+
+                @include('include.sidebar.mobile-navbar')
+                
                 <main class="overflow-y-auto">
                 <div class="grid px-8 pb-10 mx-auto">
                     
@@ -67,6 +69,8 @@
         isSidebarOpen: true,
         isSidebarOpenMobile: false,
         currentSidebarTab: "linksTab",
+        isSettingsPanelOpen: false,
+        isSubHeaderOpen: false,
     }
 }
 

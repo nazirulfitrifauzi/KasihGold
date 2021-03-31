@@ -129,8 +129,8 @@
                                             </div>
                                         </div>
                                     </div>
-{{-- 
-                                    <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
+
+                                    {{-- <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
                                         <div class="lg:w-full mt-5">
                                             <div>
                                                 <h4 class="text-base text-gray-600 font-medium">Shipping Address</h4>
