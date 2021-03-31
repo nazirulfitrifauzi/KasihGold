@@ -23,14 +23,11 @@
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                                    <x-form.input type="text" label="First Name" value="" wire:model=""/>
-                                                                    <x-form.input type="text" label="Last Name" value="" wire:model=""/>
+                                                                    <x-form.input type="text" label="First Name" value="" livewire="wire:model.lazy=fname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                                    <x-form.input type="text" label="Last Name" value="" livewire="wire:model.lazy=lname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.input type="text" label="Company Name (optional)" value="" wire:model=""/>
-                                                                    <x-form.dropdown label="Country/Region" value="" default="no" wire:model="" name="" id="">
-                                                                        <option value="" selected>Select a Country/Region</option>
-                                                                    </x-form.dropdown>
+                                                                    <x-form.input type="text" label="Company Name (optional)" value="" livewire="wire:model.lazy=cname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
                                                                     <x-form.address class="" 
                                                                         label="Address" 
                                                                         value1="address1" 
@@ -57,15 +54,12 @@
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                                    <x-form.input type="text" label="First Name" value="" wire:model=""/>
-                                                                    <x-form.input type="text" label="Last Name" value="" wire:model=""/>
+                                                                    <x-form.input type="text" label="First Name" value="" livewire="wire:model.lazy=fname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                                    <x-form.input type="text" label="Last Name" value="" livewire="wire:model.lazy=lname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.input type="text" label="Company Name (optional)" value="" wire:model=""/>
-                                                                    <x-form.input type="text" label="IC Number *" value="" wire:model=""/>
-                                                                    <x-form.dropdown label="Country/Region" value="" default="no" wire:model="" name="" id="">
-                                                                        <option value="" selected>Select a Country/Region</option>
-                                                                    </x-form.dropdown>
+                                                                    <x-form.input type="text" label="Company Name (optional)" value="" livewire="wire:model.lazy=cname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                                    <x-form.input type="text" label="IC Number *" value="" livewire="wire:model.lazy=nric wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
                                                                     <x-form.address class="" 
                                                                         label="Address" 
                                                                         value1="address1" 
@@ -306,7 +300,7 @@
                                 <x-form.basic-form wire:submit.prevent="">
                                     <x-slot name="content">
                                         <div class=" mt-6 border-b-2 pb-4">
-                                            <x-form.input label="Gift card or discount code" value="" wire:model="" />
+                                            <x-form.input label="Gift card or discount code" value=""  />
                                             <button class="flex items-center px-3 py-2 my-auto bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 focus:outline-none">
                                                 <x-heroicon-o-badge-check class="w-5 h-5 mr-2" />
                                                 <span>Apply</span>
