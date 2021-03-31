@@ -7,8 +7,9 @@
             <!-- Menu button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'linksTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'linksTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-yellow-400' : 'text-gray-500 bg-white'">
+                class="tooltipbtn p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-yellow-400' : 'text-gray-500 bg-white'"
+                data-title="Menu" data-placement="right">
                 <span class="sr-only">Toggle sidebar</span>
                 <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -19,8 +20,9 @@
             <!-- cart button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'cartTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'cartTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'cartTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'">
+                class="tooltipbtn p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                :class="(isSidebarOpen && currentSidebarTab == 'cartTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
+                data-title="Cart" data-placement="right">
                 <span class="sr-only">Toggle notifications panel</span>
 
                 <span class="absolute inline-block w-4 h-4 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
@@ -32,8 +34,9 @@
             <!-- notification button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
-                class="p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'">
+                class="tooltipbtn p-2 transition-colors rounded-lg shadow-md hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
+                data-title="Notification" data-placement="right">
                 <span class="sr-only">Toggle notifications panel</span>
 
                 <span class="absolute inline-block w-4 h-4 transform translate-x-1 -translate-y-1 bg-red-600 border-2 
@@ -43,16 +46,16 @@
             </button>
 
             <div x-data="{ Open : false }">
-                <div class="cursor-pointer bg-pink-500 text-white py-2 px-2 rounded-lg w-full tooltipbtn" data-title="Customer Support" data-placement="right" x-on:click="Open = true" >
+                <div class="cursor-pointer bg-pink-500 hover:bg-pink-600 text-white py-2 px-2 rounded-lg w-full tooltipbtn" data-title="Customer Support" data-placement="right" x-on:click="Open = true" >
                     <x-heroicon-o-question-mark-circle class="w-6 h-6  " />
                 </div>
 
                 <div class="cursor-default text-gray-900">
                     <x-general.modal modalActive="Open" title="Customer Support" modalSize="lg">
-                        <div class="flex justify-center mt-4 text-lg font-semibold text-center">
+                        <div class="flex justify-center mt-4 text-base font-semibold text-center">
                             <p>If you need any assitance please contact us via <br> WhatsApp/SMS/Call </p>
                         </div>
-                        <div class="flex justify-center mt-2 text-lg font-semibold">
+                        <div class="flex justify-center mt-2 text-base font-semibold">
                             <p class='bg-yellow-400 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
                         </div>
                     </x-general.modal>
