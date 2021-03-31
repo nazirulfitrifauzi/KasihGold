@@ -35,7 +35,7 @@
                                                                         value3="address3" 
                                                                         value4="town" 
                                                                         value5="postcode" 
-                                                                        value6="state" 
+                                                                        value6="state_id" 
                                                                         condition="state"
                                                                     />
                                                                 </div>
