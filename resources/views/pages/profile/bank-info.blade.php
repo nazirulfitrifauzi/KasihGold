@@ -14,7 +14,7 @@
             <x-slot name="content">
                 <div class="mt-2 leading-4">
                     <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                        <x-form.dropdown label="Bank" wire:model="bankId" default="no" >
+                        <x-form.dropdown label="Bank" wire:model="bankId" default="no" value="bankId">
                             <option value="0">Choose Bank</option>
                             @foreach ($banks as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
