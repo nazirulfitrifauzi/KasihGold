@@ -45,20 +45,57 @@
                 <x-heroicon-o-bell class="h-6 w-6" />
             </button>
 
+            <!-- Shop -->
+            <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
+                <button class="focus:outline-none" @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
+                    <div class="cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-2 rounded-lg w-full tooltipbtn" 
+                    data-title="Shop" data-placement="right" x-on:click="Open = true" >
+                        <x-heroicon-o-shopping-bag class="w-6 h-6  " />
+                    </div>
+                </button>
+                <div x-show="isOpen" @click.away="isOpen = false" @keydown.escape="isOpen = false" x-ref="userMenu"
+                    tabindex="-1"
+                    class="absolute w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 bottom-0  focus:outline-none"
+                    role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
+
+                    @if (auth()->user()->role == 2)
+                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
+                    role="menuitem">
+                        Buy Product
+                    </a>
+
+                    <a href="{{route('product-sell')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
+                    role="menuitem">
+                        Sell Product
+                    </a>
+                    @endif
+                    @if (auth()->user()->role == 1)
+                    <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
+                    role="menuitem">
+                        Sell Product
+                    </a>
+                    @endif
+                </div>
+            </div>
+
+            <!-- customer support -->
             <div x-data="{ Open : false }">
                 <div class="cursor-pointer bg-pink-500 hover:bg-pink-600 text-white py-2 px-2 rounded-lg w-full tooltipbtn" data-title="Customer Support" data-placement="right" x-on:click="Open = true" >
                     <x-heroicon-o-question-mark-circle class="w-6 h-6  " />
                 </div>
 
                 <div class="cursor-default text-gray-900">
-                    <x-general.modal modalActive="Open" title="Customer Support" modalSize="lg">
+                    <x-general.modal2 modalActive="Open" title="Customer Support" modalSize="lg" headerbg="pink-600">
+                        <x-slot name="icon">
+                            <x-heroicon-s-question-mark-circle class="h-8 w-8 mr-1" />
+                        </x-slot>
                         <div class="flex justify-center mt-4 text-base font-semibold text-center">
                             <p>If you need any assitance please contact us via <br> WhatsApp/SMS/Call </p>
                         </div>
                         <div class="flex justify-center mt-2 text-base font-semibold">
-                            <p class='bg-yellow-400 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
+                            <p class='bg-pink-600 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
                         </div>
-                    </x-general.modal>
+                    </x-general.modal2>
                 </div>
             </div>
 
@@ -87,28 +124,18 @@
         </div>
 
         <!-- User avatar -->
-        <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
-            <button @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
+        <div class="relative flex items-center flex-shrink-0 p-2">
+            <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="tooltipbtn"
+            data-title="Log out" data-placement="right">
                     <div class="py-2 px-2 bg-white text-yellow-400 align-middle rounded-full hover:text-white hover:bg-yellow-400 focus:outline-none ">
-                        <x-heroicon-o-cog class="w-6 h-6" />
+                        <x-heroicon-o-logout class="w-6 h-6" />
                     </div>
-                <span class="sr-only">User menu</span>
-            </button>
-            <div x-show="isOpen" @click.away="isOpen = false" @keydown.escape="isOpen = false" x-ref="userMenu"
-                tabindex="-1"
-                class="absolute w-48 py-1 mt-2 origin-bottom-left bg-yellow-400 rounded-md shadow-lg left-10 bottom-14 focus:outline-none"
-                role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
-                <a href="{{route('profile')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-yellow-400" role="menuitem">
-                    Your Profile
-                </a>
-
-                <a href="{{ route('logout') }}" class="block px-4 py-2 font-semibold text-white hover:bg-gray-50 hover:text-yellow-400" role="menuitem"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                     style="display: none;">
                     @csrf
                 </form>
-            </div>
+            </a>
         </div>
+
+        
     </nav>

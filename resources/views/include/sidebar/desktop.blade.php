@@ -22,13 +22,17 @@
                     <x-logo class="w-auto h-12 " />
                 </div>
             </div>
-            <div class="flex flex-shrink-0">
-                <div class="p-2 mx-auto  rounded-lg">
-                    <img class="w-24 h-24 rounded-full shadow-md border-4 border-yellow-400 "
+            <div class="relative flex justify-center">
+                <img class="w-24 h-24 rounded-full shadow-md border-4 border-yellow-400 "
                     src="https://image.flaticon.com/icons/png/512/149/149071.png" alt=""
                     aria-hidden="true" />
-                    <p class="pt-1  text-white text-base font-bold">{{auth()->user()->name}}</p>
-                </div>
+                <a href="{{route('profile')}}" class="bottom-0 right-20 absolute  w-6 h-6  bg-white border-2 border-yellow-400 rounded-full text-yellow-400 flex items-center justify-center tooltipbtn"
+                    data-title="Edit Profile" data-placement="right">
+                    <x-heroicon-o-pencil-alt class="w-4 h-4" />
+                </a>	
+            </div>
+            <div class="text-center pb-2 ">
+                <p class="pt-1 mx-auto text-white text-base font-bold">{{auth()->user()->name}}</p>
             </div>
 
             <!-- Links -->
@@ -105,36 +109,6 @@
                     <x-heroicon-o-shield-check class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @endif
-
-                <x-sidebar.dropdown-nav-item active="open" title="Shop" uri="product/*">
-                    <x-slot name="icon">
-                        <x-heroicon-o-shopping-bag class="w-5 h-5" />
-                    </x-slot>
-                    <div class="leading-7">
-                        @if (auth()->user()->role == 2)
-                        <x-sidebar.dropdown-item title="Buy Product" route="{{route('product-view')}}" 
-                            uri="product/view">
-                            <x-slot name="icon">
-                                <x-heroicon-o-cube class="w-5 h-5" />
-                            </x-slot>
-                        </x-sidebar.dropdown-item>
-                        <x-sidebar.dropdown-item title="Sell Product" route="{{route('product-sell')}}" 
-                            uri="product/sell">
-                            <x-slot name="icon">
-                                <x-heroicon-o-cube class="w-5 h-5" />
-                            </x-slot>
-                        </x-sidebar.dropdown-item>
-                        @endif
-                        @if (auth()->user()->role == 1)
-                        <x-sidebar.dropdown-item title="Sell Product" route="{{route('admin.product-sell-hq')}}"
-                            uri="product/admin/product/sell">
-                            <x-slot name="icon">
-                                <x-heroicon-o-cube class="w-5 h-5" />
-                            </x-slot>
-                        </x-sidebar.dropdown-item>
-                        @endif
-                    </div>
-                </x-sidebar.dropdown-nav-item>
 
                 <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
                     <x-slot name="icon">
