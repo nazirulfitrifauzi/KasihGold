@@ -25,32 +25,31 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
-        <div class="h-screen overflow-y-hidden bg-gray-700">
-            <div class="px-2 py-2 font-bold text-center text-white bg-red-500">
-                <div class="flex items-center justify-center animate-pulse">
-                    <x-heroicon-o-exclamation class="w-8 h-8 mr-1" />
                     <p>System currently on development. This is not the final version</p>
-                </div>
+        <div class="bg-red-500 py-1 px-1 text-white text-center text-sm font-bold absolute z-50 right-0 w-full">
+            <div class="flex justify-center items-center">
+                <x-heroicon-o-exclamation class="w-6 h-6" />
+                <p>System currently on development. This is not the final version</p>
             </div>
-            <div class="flex">
-                <!-- Loading screen -->
-                <div x-ref="loading">
-                    @include('misc.loading')
+        </div>
+        <div class="flex h-screen overflow-y-hidden bg-gray-700">
+            <!-- Loading screen -->
+            <div x-ref="loading">
+                @include('misc.loading')
+            </div>
+        
+            <!--Sidebar-->
+            @include('include.sidebar.desktop')
+
+            <!-- content -->
+            <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
+                {{-- @include('include.sidebar.navbar') --}}
+                <main class="overflow-y-auto">
+                <div class="grid px-8 pb-10 mx-auto">
+                    
+                    @yield('content')
                 </div>
-
-                <!--Sidebar-->
-                @include('include.sidebar.desktop')
-
-                <!-- content -->
-                <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
-                    {{-- @include('include.sidebar.navbar') --}}
-                    <main class="overflow-y-auto">
-                    <div class="grid px-8 pb-10 mx-auto">
-
-                        @yield('content')
-                    </div>
-                    </main>
-                </div>
+                </main>
             </div>
         </div>
 
