@@ -26,7 +26,7 @@
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
         <div class="bg-red-500 py-1 px-1 text-white text-center text-sm font-bold absolute z-50 right-0 w-full">
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center animate-pulse">
                 <x-heroicon-o-exclamation class="w-6 h-6" />
                 <p>System currently on development. This is not the final version</p>
             </div>
