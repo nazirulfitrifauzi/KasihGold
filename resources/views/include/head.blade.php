@@ -25,24 +25,32 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
-        <div class="flex h-screen overflow-y-hidden bg-gray-700">
-            <!-- Loading screen -->
-            <div x-ref="loading">
-                @include('misc.loading')
-            </div>
-            
-            <!--Sidebar-->
-            @include('include.sidebar.desktop')
-
-            <!-- content -->
-            <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
-                {{-- @include('include.sidebar.navbar') --}}
-                <main class="overflow-y-auto">
-                <div class="grid px-8 pb-10 mx-auto">
-                    
-                    @yield('content')
+        <div class="h-screen overflow-y-hidden bg-gray-700">
+            <div class="bg-red-500 py-2 px-2 text-white text-center font-bold">
+                <div class="flex justify-center items-center animate-pulse">
+                    <x-heroicon-o-exclamation class="w-8 h-8 mr-1" />
+                    <p>System currently on development this is not the final version</p>
                 </div>
-                </main>
+            </div>
+            <div class="flex">
+                <!-- Loading screen -->
+                <div x-ref="loading">
+                    @include('misc.loading')
+                </div>
+            
+                <!--Sidebar-->
+                @include('include.sidebar.desktop')
+
+                <!-- content -->
+                <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
+                    {{-- @include('include.sidebar.navbar') --}}
+                    <main class="overflow-y-auto">
+                    <div class="grid px-8 pb-10 mx-auto">
+                        
+                        @yield('content')
+                    </div>
+                    </main>
+                </div>
             </div>
         </div>
 
