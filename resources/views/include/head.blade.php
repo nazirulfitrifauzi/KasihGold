@@ -6,7 +6,7 @@
     <title>Kasih Gold</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
 
@@ -19,17 +19,17 @@
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
-    
+
 
     @livewireStyles
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');" >
         <div class="h-screen overflow-y-hidden bg-gray-700">
-            <div class="bg-red-500 py-2 px-2 text-white text-center font-bold">
-                <div class="flex justify-center items-center animate-pulse">
+            <div class="px-2 py-2 font-bold text-center text-white bg-red-500">
+                <div class="flex items-center justify-center animate-pulse">
                     <x-heroicon-o-exclamation class="w-8 h-8 mr-1" />
-                    <p>System currently on development this is not the final version</p>
+                    <p>System currently on development. This is not the final version</p>
                 </div>
             </div>
             <div class="flex">
@@ -37,7 +37,7 @@
                 <div x-ref="loading">
                     @include('misc.loading')
                 </div>
-            
+
                 <!--Sidebar-->
                 @include('include.sidebar.desktop')
 
@@ -46,7 +46,7 @@
                     {{-- @include('include.sidebar.navbar') --}}
                     <main class="overflow-y-auto">
                     <div class="grid px-8 pb-10 mx-auto">
-                        
+
                         @yield('content')
                     </div>
                     </main>
@@ -71,7 +71,7 @@
         currentSidebarTab: "linksTab",
     }
 }
-    
+
 </script>
 <script>
 	tippy('.tooltipbtn', {
