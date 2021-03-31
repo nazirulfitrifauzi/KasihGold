@@ -4,11 +4,35 @@ namespace App\Http\Livewire\Page\Shop;
 
 use App\Models\InvMaster;
 use App\Models\NewOrders;
+use App\Models\States;
 use Livewire\Component;
 
 class ProductBuy extends Component
 {
     public $iid, $item_id;
+    public $fname, $lname, $cname, $nric;
+    public $address1, $address2, $address3, $town, $postcode, $state;
+
+    public function mount()
+    {
+        $this->state               = States::all();
+    }
+
+    public function updated($field)
+    {
+        $this->validateOnly($field, [
+            'fname'               => 'required|string',
+            'lname'               => 'required|string',
+            'cname'               => 'required|string',
+            'nric'               => 'required|digits:12',
+            'address1'            => 'required|string',
+            'address2'            => 'nullable|string',
+            'address3'            => 'nullable|string',
+            'town'                => 'required|string',
+            'postcode'            => 'required|digits:5',
+            'state'               => 'required|string',
+        ]);
+    }
 
     public function buy()
     {
