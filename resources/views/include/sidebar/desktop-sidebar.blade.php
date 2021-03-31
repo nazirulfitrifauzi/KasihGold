@@ -2,13 +2,11 @@
 <div class="flex flex-shrink-0 transition-all mt-4">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
-
     <!-- Mobile bottom bar -->
-    @include('include.sidebar.mobile')
+    @include('include.sidebar.mobile-sidebar')
 
     <!-- Left mini bar -->
     @include('include.sidebar.mini-sidebar')
-
 
     <div x-transition:enter="transform transition-transform duration-300" x-transition:enter-start="-translate-x-full"
         x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform duration-300"
@@ -215,7 +213,5 @@
                 </div>
             </div>
         </section>
-
     </div>
-
 </div>
