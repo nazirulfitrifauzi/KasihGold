@@ -1,7 +1,7 @@
 <div class="">
     <div class="bg-white rounded-lg">
         <main class="my-8 py-6 px-4">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto">
                 <h3 class="text-gray-700 text-2xl font-medium">Checkout</h3>
                 <div class="flex flex-col lg:flex-row mt-2">
                     <div class="w-full lg:w-1/2 order-2">
@@ -121,7 +121,7 @@
                                                 </div>
                                                 <div class=" flex items-center justify-between w-full bg-white  border p-4 focus:outline-none">
                                                     <label class="flex items-center">
-                                                        <input type="radio" id="" value="" name="method" class="form-radio h-5 w-5 text-blue-600">
+                                                        <input @click="accordion = accordion == 2 ? 0 : 2"  type="radio" id="" value="" name="method" class="form-radio h-5 w-5 text-blue-600">
                                                         <span class="ml-2 text-sm text-gray-700">SELF COLLECT AT HEADQUARTERS</span>
                                                     </label>
                                                     <span class="text-sm text-gray-700 font-semibold">FREE</span>
@@ -129,24 +129,51 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
-                                        <div class="lg:w-full mt-5">
+                                    <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
+                                        <div class="lg:w-full mt-5" x-data="{ show: true }">
                                             <div>
                                                 <h4 class="text-base text-gray-600 font-medium">Shipping Address</h4>
                                                 <div class="mt-3">
                                                     <div class="flex items-center justify-between w-full bg-white   border  p-4 focus:outline-none">
-                                                        <label class="flex items-center">
-                                                            <input type="radio"  id="" value="" name="method"  class="form-radio h-5 w-5 text-blue-600" >
-                                                            <span class="ml-2 text-sm text-gray-700">POSLAJU</span>
-                                                        </label>
-                                                        <span class="text-sm text-gray-700 font-semibold">RM 6.00</span>
+                                                        <div class="flex items-center">
+                                                            <input type="checkbox"
+                                                                class="form-checkbox w-4 h-4 text-blue-700 transition duration-150 ease-in-out" 
+                                                                @click="show = !show" :aria-expanded="show ? 'true' : 'false'" :class="{ 'active': show }"/>
+                                                            <label class="block ml-2 text-sm text-gray-700 leading-5">
+                                                                Same with billing details
+                                                            </label>
+                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+                                            <div class="border-2  rounded-b-lg  px-4 py-4" x-show="show">
+                                                <x-form.basic-form>
+                                                    <x-slot name="content">
+                                                        <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                                            <x-form.input type="text" label="First Name" value="" livewire="wire:model.lazy=fname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                            <x-form.input type="text" label="Last Name" value="" livewire="wire:model.lazy=lname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                        </div>
+                                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                            <x-form.input type="text" label="Company Name (optional)" value="" livewire="wire:model.lazy=cname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                            <x-form.input type="text" label="IC Number *" value="" livewire="wire:model.lazy=nric wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
+                                                            <x-form.address class="" 
+                                                                label="Address" 
+                                                                value1="address1" 
+                                                                value2="address2" 
+                                                                value3="address3" 
+                                                                value4="town" 
+                                                                value5="postcode" 
+                                                                value6="state" 
+                                                                condition="state"
+                                                            />
+                                                        </div>
+                                                    </x-slot>
+                                                </x-form.basic-form>
+                                            </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
+                                    <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 2 }" x-cloak></div> 
                                 </div>
 
                                 <div class="pb-8 mt-8">
