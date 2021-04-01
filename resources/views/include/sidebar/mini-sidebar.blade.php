@@ -7,25 +7,22 @@
             <!-- Menu button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'linksTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'linksTab'"
-                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
-                :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-yellow-400' : 'text-gray-500 bg-white'"
+                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none"
+                :class="(isSidebarOpen && currentSidebarTab == 'linksTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
                 data-title="Menu" data-placement="right">
-                <span class="sr-only">Toggle sidebar</span>
-                <svg aria-hidden="true" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-                </svg>
+                <x-heroicon-o-menu-alt-2 class="w-6 h-6" />
             </button>
 
             <!-- cart button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'cartTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'cartTab'"
-                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none"
                 :class="(isSidebarOpen && currentSidebarTab == 'cartTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
                 data-title="Cart" data-placement="right">
                 <span class="sr-only">Toggle notifications panel</span>
 
-                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">1
+                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                    1
                 </span>
                 <x-heroicon-o-shopping-cart class="w-6 h-6" />
             </button>
@@ -33,18 +30,17 @@
             <!-- notification button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
-                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
+                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none"
                 :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
                 data-title="Notification" data-placement="right">
-                <span class="sr-only">Toggle notifications panel</span>
-
-                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">1
+                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                    1
                 </span>
                 <x-heroicon-o-bell class="w-6 h-6" />
             </button>
 
             <!-- Shop -->
-            <div class="relative flex items-center flex-shrink-0 p-2" x-data="{ isOpen: false }">
+            <div class="relative flex items-center flex-shrink-0" x-data="{ isOpen: false }">
                 <button class="focus:outline-none" @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
                     <div class="cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-2 rounded-lg w-full tooltipbtn" 
                     data-title="Shop" data-placement="right" x-on:click="Open = true" >
@@ -97,6 +93,7 @@
                 </div>
             </div>
 
+            <!-- Screening passed -->
             <div>
                 @if(auth()->user()->active == 0)
                     <div class="w-full px-2 py-2 text-white bg-orange-400 rounded-lg tooltipbtn"  data-title="Screening in process" data-placement="right">
