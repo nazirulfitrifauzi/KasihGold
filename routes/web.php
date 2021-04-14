@@ -35,6 +35,7 @@ use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\MyNetworkController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\UplineController;
+use App\Http\Controllers\CartController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -79,6 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::get('my-network', [MyNetworkController::class, 'index'])->name('my-network');
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
         Route::get('upline-detail', [UplineController::class, 'index'])->name('upline-detail');
+        Route::get('cart', [CartController::class, 'index'])->name('cart');
     });
 
     Route::middleware('auth.admin')->group(function () {

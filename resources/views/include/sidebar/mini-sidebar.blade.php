@@ -13,20 +13,6 @@
                 <x-heroicon-o-menu-alt-2 class="w-6 h-6" />
             </button>
 
-            <!-- cart button -->
-            <button
-                @click="(isSidebarOpen && currentSidebarTab == 'cartTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'cartTab'"
-                class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none"
-                :class="(isSidebarOpen && currentSidebarTab == 'cartTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
-                data-title="Cart" data-placement="right">
-                <span class="sr-only">Toggle notifications panel</span>
-
-                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
-                    1
-                </span>
-                <x-heroicon-o-shopping-cart class="w-6 h-6" />
-            </button>
-
             <!-- notification button -->
             <button
                 @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
@@ -38,6 +24,16 @@
                 </span>
                 <x-heroicon-o-bell class="w-6 h-6" />
             </button>
+
+            <!-- cart button -->
+            <a href="{{route('cart')}}"
+                class="relative p-2 transition-colors rounded-lg shadow-md tooltipbtn bg-purple-500 hover:bg-purple-600 text-white focus:outline-none"
+                data-title="Cart" data-placement="right">
+                <span class="absolute flex items-center justify-center w-4 h-4 text-white right-0 top-0 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                    1
+                </span>
+                <x-heroicon-o-shopping-cart class="w-6 h-6" />
+            </a>
 
             <!-- Shop -->
             <div class="relative flex items-center flex-shrink-0" x-data="{ isOpen: false }">
