@@ -1,5 +1,5 @@
 <!-- Desktop sidebar -->
-<div class="flex flex-shrink-0 transition-all mt-4">
+<div class="flex flex-shrink-0 mt-4 transition-all">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
     <!-- Mobile bottom bar -->
@@ -39,28 +39,25 @@
                     <x-heroicon-o-home class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                <!-- comment for presentation-->
-                @if (auth()->user()->role == 1)
-                    <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
-                        <x-slot name="icon">
-                            <x-heroicon-o-archive class="w-5 h-5" />
-                        </x-slot>
-                        <div class="leading-7">
-                            <x-sidebar.dropdown-item title="Stock Management" route="{{route('stock-management')}}"
-                                uri="stock/management">
-                                <x-slot name="icon">
-                                    <x-heroicon-o-cube class="w-5 h-5" />
-                                </x-slot>
-                            </x-sidebar.dropdown-item>
-                            <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}"
-                                uri="stock/movement">
-                                <x-slot name="icon">
-                                    <x-heroicon-o-cube class="w-5 h-5" />
-                                </x-slot>
-                            </x-sidebar.dropdown-item>
-                        </div>
-                    </x-sidebar.dropdown-nav-item>
-                @endif
+                <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
+                    <x-slot name="icon">
+                        <x-heroicon-o-archive class="w-5 h-5" />
+                    </x-slot>
+                    <div class="leading-7">
+                        <x-sidebar.dropdown-item title="Stock Management" route="{{route('stock-management')}}"
+                            uri="stock/management">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                        <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}"
+                            uri="stock/movement">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
 
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
