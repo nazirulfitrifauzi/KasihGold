@@ -15,7 +15,7 @@
                         {{ ucfirst(strtolower($item->name)) }}
                     </div>
                     <div class="">
-                        {{ $item->master()->count() }} Items
+                        {{ $item->master()->where('user_id', auth()->user()->id)->count() }} Items
                     </div>
                 </div>
             </x-general.card-tab>
