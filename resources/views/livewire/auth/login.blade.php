@@ -86,7 +86,13 @@
             </div>
         </div>
     </div>
-    <div wire:loading.inline wire:target="authenticate">
-        @include('misc.loading')
+    <div wire:loading.inline wire:target="authenticate" class="flex h-screen overflow-y-hidden">
+        <div
+            class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
+            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+            <div class="flex flex-col items-center justify-center mx-auto">
+                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
+            </div>
+        </div>
     </div>
 </div>
