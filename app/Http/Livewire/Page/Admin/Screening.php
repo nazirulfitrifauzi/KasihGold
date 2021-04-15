@@ -5,11 +5,12 @@ namespace App\Http\Livewire\Page\Admin;
 use App\Models\SanctionListWebsites;
 use App\Models\Screening as ModelsScreening;
 use App\Models\User;
+use App\Notifications\ScreeningNotification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Screening extends Component
-{    
+{
     use WithPagination;
 
     public $search = '';
@@ -34,9 +35,14 @@ class Screening extends Component
                     'active' => 1
                 ]);
 
+            // flash for host
             session()->flash('type', 'success');
             session()->flash('title', 'Info');
             session()->flash('message', 'User successfully approved.');
+
+            // realtime flash for client
+            $user = User::where('id', $user_id)->first();
+            $user->notify(new ScreeningNotification($user_id, 'success', 'Success', 'You passed the screening.'));
         }
         elseif ($status == 'tolak')
         {
@@ -52,7 +58,7 @@ class Screening extends Component
 
         return redirect()->to('/admin/screening');
     }
-    
+
     public function render()
     {
         return view('livewire.page.admin.screening',[
