@@ -51,7 +51,7 @@
     </style>
 
     <!-- Scripts -->
-    <script src="{{ url(mix('js/app.js')) }}" defer></script>
+    {{-- <script src="{{ url(mix('js/app.js')) }}" defer></script> --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -102,6 +102,7 @@
             duration :1000
         });
     </script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

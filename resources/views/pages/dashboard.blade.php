@@ -2,7 +2,6 @@
 @section('content')
     <livewire:page.dashboard/>
 
-
 {{-- lineChart --}}
 <script>
     var chart = document.querySelector('#chartline')
@@ -120,4 +119,3 @@
 </script>
 {{-- pie Chart --}}
 @endsection
-
