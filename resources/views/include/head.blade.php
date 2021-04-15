@@ -24,7 +24,7 @@
     @livewireStyles
 </head>
 <body>
-    <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
+    <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
         <div class="bg-red-500 py-1 px-1 text-white text-center text-sm font-bold absolute z-50 right-0 w-full">
             <div class="flex justify-center items-center animate-pulse">
                 <x-heroicon-o-exclamation class="w-6 h-6" />
@@ -32,11 +32,14 @@
             </div>
         </div>
         <div class="flex h-screen overflow-y-hidden bg-gray-700">
-            <!-- Loading screen -->
-            <div x-ref="loading">
-                @include('misc.loading')
+            <div 
+                id="global-loader" 
+                x-ref="loading" 
+                class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50" 
+                style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
             </div>
-        
+
             <!--Sidebar-->
             @include('include.sidebar.desktop-sidebar')
 
@@ -85,6 +88,16 @@
         },
         allowHTML: true,
     });
+</script>
+<script>
+    document.onreadystatechange = function () {
+        if (document.readyState !== "complete") {
+            document.querySelector("#global-loader").style.display = "block"
+        }
+        else {
+            document.querySelector("#global-loader").style.display = "none";
+        }
+    }
 </script>
 @stack('js')
 </html>
