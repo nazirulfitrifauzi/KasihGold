@@ -38,13 +38,8 @@
             </div>
         </div>
         <div class="flex h-screen overflow-y-hidden bg-gray-700">
-            <div 
-                id="global-loader" 
-                x-ref="loading" 
-                class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50" 
-                style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
-                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
-            </div>
+            <div x-ref="loading"></div>
+            @include('misc.main-loading')
 
             <!--Sidebar-->
             @include('include.sidebar.desktop-sidebar')
@@ -128,15 +123,5 @@
                 }
             });
     </script>
-<script>
-    document.onreadystatechange = function () {
-        if (document.readyState !== "complete") {
-            document.querySelector("#global-loader").style.display = "block"
-        }
-        else {
-            document.querySelector("#global-loader").style.display = "none";
-        }
-    }
-</script>
     @stack('js')
 </html>
