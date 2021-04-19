@@ -51,31 +51,33 @@
                                             <tbody>
                                                 <div class="text-center">
                                                     @if ($lists->screening->count() == 11)
-                                                        <div class="mt-6">
-                                                            <span class="text-base font-semibold ">Currently Screening:</span>
-                                                            <p class="text-base font-semibold text-gray-500 ">11 Screenings</p>
-                                                        </div>
-                                                        <div class="mt-6">
-                                                            <span class="text-base font-semibold ">Approved:</span>
-                                                            <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',1)->count() }} Screenings</p>
-                                                        </div>
-                                                        <div class="mt-6">
-                                                            <span class="text-base font-semibold ">Declined:</span>
-                                                            <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',0)->count() }} Screenings</p>
-                                                            @php
-                                                                $failed = $lists->screening->where('status',0);
-                                                            @endphp
-                                                            @foreach ($failed as $fail)
-                                                                <p class="text-base font-semibold text-gray-500 ">( {{ $fail->sanction->name }} )</p>
-                                                            @endforeach
+                                                        <div class="flex justify-center  space-x-3">
+                                                            <div class="mt-6 px-4 border-r-2 border-l-2">
+                                                                <span class="text-base font-semibold ">Currently Screening:</span>
+                                                                <p class="text-base font-semibold text-gray-500 ">11 Screenings</p>
+                                                            </div>
+                                                            <div class="mt-6 px-4 border-r-2">
+                                                                <span class="text-base font-semibold ">Approved:</span>
+                                                                <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',1)->count() }} Screenings</p>
+                                                            </div>
+                                                            <div class="mt-6 px-4 border-r-2">
+                                                                <span class="text-base font-semibold ">Declined:</span>
+                                                                <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',0)->count() }} Screenings</p>
+                                                                @php
+                                                                    $failed = $lists->screening->where('status',0);
+                                                                @endphp
+                                                                @foreach ($failed as $fail)
+                                                                    <p class="text-base font-semibold text-gray-500 ">( {{ $fail->sanction->name }} )</p>
+                                                                @endforeach
+                                                            </div>
                                                         </div>
                                                         <div class="flex items-center justify-center mt-6">
-                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-green-300 rounded-sm cursor-pointer" wire:click=finalResult({{ $lists->id }},'terima')>
+                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg" wire:click=finalResult({{ $lists->id }},'terima')>
                                                                 <x-heroicon-s-check class="-ml-0.5 mr-2 h-4 w-4"/>
                                                                 Approve this user
                                                             </button>
                                 
-                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-yellow-300 rounded-sm cursor-pointer" wire:click=finalResult({{ $lists->id }},'tolak')>
+                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg" wire:click=finalResult({{ $lists->id }},'tolak')>
                                                                 <x-heroicon-s-trash class="-ml-0.5 mr-2 h-4 w-4"/>
                                                                 Decline this user
                                                             </button>
@@ -116,11 +118,11 @@
                                                                                     </div>
                                                                                 @endif
                                                                             @else
-                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-green-300 rounded-sm cursor-pointer" wire:click="screenResult({{ $lists->id }},{{ $item->id }},'pass')">
+                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg" wire:click="screenResult({{ $lists->id }},{{ $item->id }},'pass')">
                                                                                     Approve
                                                                                 </button>
                                 
-                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-yellow-300 rounded-sm cursor-pointer" wire:click="screenResult({{ $lists->id }},{{ $item->id }},'fail')">
+                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg " wire:click="screenResult({{ $lists->id }},{{ $item->id }},'fail')">
                                                                                     Decline
                                                                                 </button>
                                                                             @endif
@@ -135,6 +137,9 @@
                                         </table>
                                     </div>
                                 </form>
+                                <div wire:loading>
+                                    @include('misc.loading')
+                                </div>
                             </x-general.modal>
                             {{-- End Modal Screening --}}
                         </div>
