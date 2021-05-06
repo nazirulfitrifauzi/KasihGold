@@ -14,6 +14,9 @@
         <title>{{ config('app.name') }}</title>
     @endif
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}"> 
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
