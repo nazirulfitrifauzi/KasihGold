@@ -5,6 +5,7 @@
                 <h3 class="text-gray-700 text-2xl font-medium">Checkout</h3>
                 <div class="flex flex-col lg:flex-row mt-2">
                     <div class="w-full lg:w-1/2 order-2">
+                        @if ($state_id==10) @php $postage=9; @endphp @elseif ($state_id==11) @php $postage=8.50; @endphp @else @php $postage=6; @endphp @endif
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
                                 <div class="pb-8">
@@ -36,7 +37,7 @@
                                                                         value4="town" 
                                                                         value5="postcode" 
                                                                         value6="state_id" 
-                                                                        condition="state"
+                                                                        condition="state_id"
                                                                     />
                                                                 </div>
                                                             </x-slot>
@@ -67,8 +68,8 @@
                                                                         value3="address3" 
                                                                         value4="town" 
                                                                         value5="postcode" 
-                                                                        value6="state" 
-                                                                        condition="state"
+                                                                        value6="state_id" 
+                                                                        condition="state_id"
                                                                     />
                                                                 </div>
                                                             </x-slot>
@@ -79,34 +80,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="pb-8">
-                                    <div class="lg:w-full">
-                                        <div>
-                                            <div class="mt-6">
-                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none">
-                                                    <label class="block text-sm font-semibold leading-5 ml-2 text-gray-700 ">
-                                                        Contact:
-                                                    </label>
-                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                        <div class="w-full ml-2">
-                                                            <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{auth()->user()->email}}" disabled />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full bg-white  border leading-5 p-4 focus:outline-none">
-                                                    <label class="block text-sm font-semibold leading-5 ml-2 text-gray-700 ">
-                                                        Ship To:
-                                                    </label>
-                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                        <div class="w-full ml-2">
-                                                            <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="No. 11 Jalan 9/6, Taman IKS Seksyen 9, 43650 Bandar Baru Bangi, Selangor, Malaysia" disabled />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+
                                 <div x-data="{ accordion: 0 }">
                                     <div class="lg:w-full">
                                         <div>
@@ -117,7 +91,8 @@
                                                         <input @click="accordion = accordion == 1 ? 0 : 1" type="radio"  id="" value="" name="method"  class="form-radio h-5 w-5 text-blue-600" >
                                                         <span class="ml-2 text-sm text-gray-700">POSLAJU</span>
                                                     </label>
-                                                    <span class="text-sm text-gray-700 font-semibold">RM 6.00</span>
+                                                    {{-- <span class="text-sm text-gray-700 font-semibold">RM @if ($state_id==10) 9.00 @elseif ($state_id==11) 8.50 @else 6.00 @endif </span> --}}
+                                                    <span class="text-sm text-gray-700 font-semibold">RM {{number_format($postage,2)}}</span>
                                                 </div>
                                                 <div class=" flex items-center justify-between w-full bg-white  border p-4 focus:outline-none">
                                                     <label class="flex items-center">
@@ -217,85 +192,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div>
-                                    <div class="lg:w-full">
-                                        <div>
-                                            <h4 class="text-base text-gray-600 font-medium">Billing Details</h4>
-                                            <div class="mt-6" x-data="{ accordion: 0 }">
-                                                <div class="flex items-center justify-between w-full bg-white border  p-4 focus:outline-none">
-                                                    <label class="flex items-center">
-                                                        <input @click="accordion = accordion == 1 ? 0 : 1" type="radio"  id="" value="" name="address"  class="form-radio h-5 w-5 text-blue-600" >
-                                                            <span class="ml-2 text-sm text-gray-700">Purchase for Myself</span>
-                                                    </label>
-                                                </div>
-                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }">
-                                                    <div class="border-2 px-4 py-4">
-                                                        <x-form.basic-form>
-                                                            <x-slot name="content">
-                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                                    <x-form.input type="text" label="First Name" value="fname" livewire="wire:model.lazy=fname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                    <x-form.input type="text" label="Last Name" value="lname" livewire="wire:model.lazy=lname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                </div>
-                                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.input type="text" label="Company Name (optional)" value="cname" livewire="wire:model.lazy=cname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                   
-                                                                    <x-form.address class="" 
-                                                                        label="Address" 
-                                                                        value1="address1" 
-                                                                        value2="address2" 
-                                                                        value3="address3" 
-                                                                        value4="town" 
-                                                                        value5="postcode" 
-                                                                        value6="state" 
-                                                                        condition="state"
-                                                                    />
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-form.basic-form>
-                                                    </div>
-                                                </div>
-                                                <div class=" flex items-center justify-between w-full bg-white rounded-b-none border p-4 focus:outline-none">
-                                                    <label class="flex items-center">
-                                                        <input @click="accordion = accordion == 2 ? 0 : 2" type="radio" id="" value="" name="address" class="form-radio h-5 w-5 text-blue-600">
-                                                        <span class="ml-2 text-sm text-gray-700">Purchase for Others</span>
-                                                    </label>
-                                                </div>
-                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 2 }">
-                                                    <div class="border-2  rounded-b-lg  px-4 py-4">
-                                                        <x-form.basic-form>
-                                                            <x-slot name="content">
-                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
-                                                                    <x-form.input type="text" label="First Name" value="fname" livewire="wire:model.lazy=fname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                    <x-form.input type="text" label="Last Name" value="lname" livewire="wire:model.lazy=lname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                </div>
-                                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.input type="text" label="Company Name (optional)" value="cname" livewire="wire:model.lazy=cname wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                    <x-form.input type="text" label="IC Number *" value="nric" livewire="wire:model.lazy=nric wire:loading.attr=readonly wire:loading.class=bg-gray-300 wire:target=submit"/>
-                                                                    <x-form.address class="" 
-                                                                        label="Address" 
-                                                                        value1="address1" 
-                                                                        value2="address2" 
-                                                                        value3="address3" 
-                                                                        value4="town" 
-                                                                        value5="postcode" 
-                                                                        value6="state" 
-                                                                        condition="state"
-                                                                    />
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-form.basic-form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center justify-end mt-8">
-                                            <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
-                                                <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
-                                                <span>COMPLETE ORDER</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div> --}}
+
                                 <div class="flex items-center justify-end mt-2">
                                     <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
                                         <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
@@ -351,7 +248,7 @@
                                             <p>Shipping</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>Free</p>
+                                            <p>{{number_format($postage,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +258,7 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
-                                        <p>RM {{$prod->prod_price}}</p>
+                                        <p>RM {{number_format($prod->prod_price+$postage,2)}}</p>
                                     </div>
                                 </div>
                             </div>

@@ -64,17 +64,17 @@
                                         modalSize="sm" closeBtn="yes">
                                         <div class="">
                                             <div class="py-4 font-semibold text-center text-black font">
-                                                Are you sure you want to delete?
+                                                Are you sure you want to delete this item?
                                             </div>
                                             <div class="flex justify-center mt-3">
                                                 <button
-                                                    class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none"
-                                                    x-on:click="deleteOpen3 = false">
-                                                    Cancel
+                                                    class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none">
+                                                    Yes
                                                 </button>
                                                 <button
-                                                    class="flex px-4 py-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none">
-                                                    yes,Delete
+                                                    class="flex px-4 py-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none"
+                                                    x-on:click="deleteOpen3 = false">
+                                                    No
                                                 </button>
                                             </div>
                                         </div>
@@ -198,7 +198,9 @@
         );
         const target = btn.nextElementSibling;
         let value = Number(target.value);
-        value--;
+        if (value > 1){
+            value--;
+        }
         target.value = value;
     }
 
@@ -208,7 +210,9 @@
         );
         const target = btn.nextElementSibling;
         let value = Number(target.value);
-        value++;
+        if (value < 10){
+            value++;
+        }
         target.value = value;
     }
     const decrementButtons = document.querySelectorAll(
