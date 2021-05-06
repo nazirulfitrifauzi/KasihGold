@@ -8,7 +8,7 @@
                     <x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500" @click="openModal = true"/>
                     {{-- Start modal --}}
                         <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl">
-                            <div x-data="{ active: 0 }">
+                            {{-- <div x-data="{ active: 0 }">
                                 <div class="flex w-full my-2 bg-gray-100 shadow-sm">
                                     <x-tab.nav-tab name="0" livewire="">
                                         <div class="flex font-medium">
@@ -94,7 +94,30 @@
                                     </x-form.basic-form>
                                 </x-tab.nav-content>
                                 <!-- End Add Item -->
-                            </div>
+                            </div> --}}
+                            <x-form.basic-form wire:submit.prevent="">
+                                <x-slot name="content">
+                                    <div class="p-4 leading-4">
+                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                            <x-form.input type="text" label="Category Name" value="addCategoryName" wire:model="addCategoryName" />
+                                        </div>
+                                        <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-2">
+                                            <x-form.input type="text" label="Type Name" value="addTypeName" wire:model="addTypeName" />
+                                            <x-form.input type="text" label="Type Brand" value="addTypeBrand" wire:model="addTypeBrand" />
+                                            <x-form.input type="text" label="Type Purity" value="addTypePurity" wire:model="addTypePurity" />
+                                        </div>
+                                        <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                            <x-form.input type="text" label="Item Name" value="addItemName" wire:model="addItemName" />
+                                        </div>
+                                        <div class="flex justify-end mt-4">
+                                            <button
+                                                class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </x-slot>
+                            </x-form.basic-form>
                         </x-general.modal>
                     {{-- End modal --}}
                 </span>
