@@ -39,6 +39,12 @@
                     <x-heroicon-o-home class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
+                @if (auth()->user()->role == 1)
+                    <x-sidebar.nav-item title="Dealership" route="https://cscabs.net.my" uri="#">
+                        <x-heroicon-o-user-group class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
+
                 <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
                     <x-slot name="icon">
                         <x-heroicon-o-archive class="w-5 h-5" />
