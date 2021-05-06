@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Page\Shop;
 
+use App\Models\InvCart;
 use App\Models\InvInfo;
 use App\Models\InvMaster;
 use App\Models\User;
@@ -15,6 +16,24 @@ class ProductDetail extends Component
 
     public $prod_qty;
 
+    public function addCart($prod_qty)
+    {
+        InvCart::updateOrCreate(
+            [
+                'user_id'       => auth()->user()->id,
+            ],
+            [
+                'user_id'       => auth()->user()->id,
+                'item_id'       => $this->iid,
+                'prod_qty'      => $prod_qty,
+                'created_by'    => auth()->user()->id,
+                'updated_by'    => auth()->user()->id,
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]
+        );
+    }
+
     public function render()
     {
         $masterProducts = InvMaster::join('inv_items', 'inv_items.id', '=', 'inv_masters.item_id')
@@ -26,7 +45,6 @@ class ProductDetail extends Component
 
         return view('livewire.page.shop.product-detail', [
             'info' => $productDetails,
-            'totalProduct' => $masterProducts,
             'userInfo' => $sellerInfo,
         ]);
     }

@@ -83,11 +83,9 @@
                                     <div>
                                         <select value="prod_qty" wire:model="prod_qty" default="yes"
                                             class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 pt-5 h-14 flex items-end pb-1">
-                                            @forelse ($totalProduct as $total)
-                                            <option value="{{$loop->index+1}}">{{$loop->index+1}}</option>
-                                            @empty
-                                            <option value="">NaN</option>
-                                            @endforelse
+                                            @for ($i = 1; $i <= 10; $i++)
+                                            <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
                                         </select>
 
                                         <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
@@ -112,7 +110,7 @@
                                         class="cursor-pointer items-center px-6 py-4 font-semibold rounded-xl bg-green-400 hover:bg-green-300 text-white focus:outline-none">
                                         Buy Now
                                     </button> --}}
-                                    <button type="button" @click="cartOpen = !cartOpen"
+                                    <button type="button" @if ($prod_qty==null) wire:click="addCart({{1}})" @else wire:click="addCart({{$prod_qty}})" @endif
                                         class="ml-2 h-14 px-6 py-2 font-semibold rounded-xl bg-yellow-400 hover:bg-yellow-300 text-white focus:outline-none">
                                         Add to Cart
                                     </button>
