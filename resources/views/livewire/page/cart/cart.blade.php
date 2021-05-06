@@ -13,7 +13,7 @@
                     <x-table.table-header class="text-left" value="Unit Price" sort="" />
                     <x-table.table-header class="text-left" value="Quantity" sort="" />
                     <x-table.table-header class="text-left" value="Total Price" sort="" />
-                    <x-table.table-header class="text-left" value="Actions" sort="" />
+                    <x-table.table-header class="text-center" value="Actions" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
                     <tr>
@@ -84,11 +84,109 @@
                             </div>
                         </x-table.table-body>
                     </tr>
+                    <tr>
+                        <x-table.table-body colspan="5" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex justify-between">
+                                <div  class="flex space-x-2">
+                                    <div>
+                                        <x-form.input type="text" label="" value="" livewire="" placeholder="Coupon code" /> 
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="#"  class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                                            <p>Apply coupon</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <a href="#"  class=" cursor-not-allowed flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                                        <p>Update Cart</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
                 </x-slot>
                 <div class="px-2 py-2">
                     {{-- {{ $list->links('pagination::tailwind') }} --}}
                 </div>
             </x-table.table>
+
+
+            <! -- Start Checkout -->
+            <div class="flex justify-end my-6">
+                <div class="bg-white py-4 px-4  rounded-lg w-1/2 border-2">
+                    <div class="border-b-2 py-4">
+                        <h1 class="text-3xl font-semibold">Cart totals</h1>
+                    </div>
+                    <div class="flex justify-between border-b-2 py-4">
+                        <div class="font-semibold text-lg">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="font-semibold text-lg">
+                            <p>RM 370.32</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between border-b-2 py-4">
+                        <div class="font-semibold text-lg">
+                            <p>Shipping</p>
+                        </div>
+                        <div class="font-semibold text-lg" x-data="{ show: false }">
+                            <a href="#" class="text-yellow-400 hover:text-yellow-500" @click="show = !show">
+                                Calculate shipping
+                            </a>
+                            <div x-show="show">
+                                <x-form.basic-form >
+                                    <x-slot name="content">
+                                        <x-form.dropdown label="" value="" default="" >
+                                            <option value="MY" selected="selected">Malaysia</option>
+                                        </x-form.dropdown>
+                                        <x-form.dropdown label="" value="" default="" >
+                                            <option value="JHR">Johor</option>
+                                            <option value="KDH">Kedah</option>
+                                            <option value="KTN">Kelantan</option>
+                                            <option value="LBN">Labuan</option>
+                                            <option value="MLK">Malacca (Melaka)</option>
+                                            <option value="NSN" selected>Negeri Sembilan</option>
+                                            <option value="PHG">Pahang</option>
+                                            <option value="PNG">Penang (Pulau Pinang)</option>
+                                            <option value="PRK">Perak</option>
+                                            <option value="PLS">Perlis</option>
+                                            <option value="SBH">Sabah</option>
+                                            <option value="SWK">Sarawak</option>
+                                            <option value="SGR">Selangor</option>
+                                            <option value="TRG">Terengganu</option>
+                                            <option value="PJY">Putrajaya</option>
+                                            <option value="KUL">Kuala Lumpur</option>
+                                        </x-form.dropdown>
+                                        <x-form.input type="text" label="" value="" livewire="" placeholder="Town / City" /> 
+                                        <x-form.input type="text" label="" value="" livewire="" placeholder="Postcode / ZIP" /> 
+                                        <div class="flex justify-center">
+                                            <button class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                                                <p>Update</p>
+                                            </button>
+                                        </div>
+                                    </x-slot>
+                                </x-form.basic-form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between border-b-2 py-4">
+                        <div class="font-semibold text-lg">
+                            <p>Total</p>
+                        </div>
+                        <div class="font-semibold text-lg">
+                            <p>RM 370.32</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center my-6">
+                        <a href="#"  class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                            <p>Proceed to checkout</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <! -- End Checkout -->
         </div>
     </div>
 </div>
