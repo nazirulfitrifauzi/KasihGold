@@ -35,9 +35,9 @@
                         <x-form.input label="Name" wire:model="name" value="name"/>
                         <x-form.input type="email" label="Email Address" wire:model="email" value="email"/>
                         <x-form.input label="New IC" wire:model="ic" value="ic"/>
-                        <x-form.input label="Old IC" wire:model="" value=""/>
-                        <x-form.input label="Passport / Foreign ID" wire:model="" value=""/>
-                        <x-form.input label="Police / Army" wire:model="" value=""/>
+                        <x-form.input label="Old IC" value=""/>
+                        <x-form.input label="Passport / Foreign ID" value=""/>
+                        <x-form.input label="Police / Army" value=""/>
                         <x-form.input label="Phone No" wire:model="phone1" value="phone1"/>
                     </div>
                     <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
@@ -48,7 +48,7 @@
                             Save
                         </button>
                     </div>
-                </div>  
+                </div>
             </div>
         </x-slot>
     </x-form.basic-form>
