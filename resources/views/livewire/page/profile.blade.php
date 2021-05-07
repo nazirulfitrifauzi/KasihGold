@@ -13,8 +13,8 @@
                         <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                     </div>
                     <div class="ml-4 mr-auto">
-                        <div class="text-base font-medium">Admin</div>
-                        <div class="text-gray-600">Headquarters</div>
+                        <div class="text-base font-medium">{{ $name }}</div>
+                <div class="text-gray-600">{{ $pgCode }}</div>
                     </div>
                 </div>
                     <div class="flex flex-col p-4 border-t border-gray-200 sm:flex-row">
