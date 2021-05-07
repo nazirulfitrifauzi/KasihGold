@@ -13,4 +13,9 @@ class InvCart extends Model
 
     protected $table = 'inv_cart';
     protected $guarded = [];
+
+    public function products()
+    {
+        return $this->belongsTo('App\Models\InvInfo', 'item_id', 'id');
+    }
 }
