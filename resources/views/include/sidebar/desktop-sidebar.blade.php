@@ -40,7 +40,7 @@
                 </x-sidebar.nav-item>
 
                 @if (auth()->user()->role == 1)
-                    <x-sidebar.nav-item title="Dealership" route="https://cscabs.net.my" uri="#">
+                    <x-sidebar.nav-item title="Dealership" route="http://cscapps.net.my/demoKasih/siskop" uri="#">
                         <x-heroicon-o-user-group class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
