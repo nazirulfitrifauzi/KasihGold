@@ -18,19 +18,126 @@
                 <x-slot name="tbody">
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                            <p>1.</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
-                        </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                            <p>102210570</p>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                            <p>07/03/2021</p>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                            <p>Delivered</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-check class="w-5 h-5 mr-1 text-green-500" />
+                                <p class="text-green-500">Paid</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+                    
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>2.</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>102210896</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>23/04/2021</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-check class="w-5 h-5 mr-1 text-green-500" />
+                                <p class="text-green-500">Paid</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>3.</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>102211139</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>27/04/2021</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-check class="w-5 h-5 mr-1 text-green-500" />
+                                <p class="text-green-500">Paid</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>4.</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>102214367</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>03/05/2021</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-check class="w-5 h-5 mr-1 text-green-500" />
+                                <p class="text-green-500">Paid</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>5.</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>102214943</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>10/05/2021</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Pending</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-x class="w-5 h-5 mr-1 text-red-500" />
+                                <p class="text-red-500">Unpaid</p>
+                            </div>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

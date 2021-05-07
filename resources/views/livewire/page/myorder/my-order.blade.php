@@ -21,25 +21,166 @@
                 <x-slot name="tbody">
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                            <p>002002210074</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Agent Kasih Gold</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>02/04/2021</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Direct Debit</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Ownself</p>
                         </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
+                                <p class="text-blue-500">Show</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+                    
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>002002210345</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            Agent Kasih Gold
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>06/04/2021</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Direct Debit</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Ownself</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
+                                <p class="text-blue-500">Show</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>002002210347</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            Agent Kasih Gold
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>07/04/2021</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Direct Debit</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Ownself</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
+                                <p class="text-blue-500">Show</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>002002210364</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            Agent Kasih Gold
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>23/04/2021</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>SnapNPay</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Ownself</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
+                                <p class="text-blue-500">Show</p>
+                            </div>
+                        </x-table.table-body>
+                    </tr>
+
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>002002210374</p>
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            Agent Kasih Gold
+                        </x-table.table-body>
+
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>29/04/2021</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Delivered</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>SnapNPay</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Ownself</p>
+                        </x-table.table-body>
+                        
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <div class="flex">
+                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
+                                <p class="text-blue-500">Show</p>
+                            </div>
                         </x-table.table-body>
                     </tr>
                 </x-slot>
