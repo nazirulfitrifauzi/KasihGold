@@ -5,6 +5,9 @@
                 <h3 class="text-gray-700 text-2xl font-medium">Checkout</h3>
                 <div class="flex flex-col lg:flex-row mt-2">
                     <div class="w-full lg:w-1/2 order-2">
+                        @php
+                            $total=0;
+                        @endphp
                         @if ($state_id==10) @php $postage=9; @endphp @elseif ($state_id==11) @php $postage=8.50; @endphp @else @php $postage=6; @endphp @endif
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
@@ -207,19 +210,27 @@
                         <div class="flex justify-center lg:justify-end">
                             <div class="border  max-w-md w-full px-4 py-3">
                                 <div class="flex items-center justify-between">
-                                    <h3 class="text-gray-700 font-medium">Order total (1)</h3>
+                                    
+                                    <h3 class="text-gray-700 font-medium">Order total ({{$tprod}})</h3>
                                 </div>
+
+                                @foreach ($products as $prod)
+                                    
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
                                     <div class="flex">
                                         <img class="h-20 w-20 object-cover rounded"
-                                            src="{{ asset('storage/'.$prod->prod_img1) }}"
+                                            src="{{ asset('storage/'.$prod->products->prod_img1) }}"
                                             alt="">
                                         <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">{{$prod->prod_name}}</h3>
+                                            <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
                                         </div>
                                     </div>
-                                    <span class="text-gray-600 my-3">{{$prod->prod_price}}</span>
+                                    <span class="font-semibold text-gray-600 my-3">RM {{number_format($prod->products->prod_price*$prod->prod_qty,2)}}</span>
                                 </div>
+                                @php
+                                    $total+=$prod->products->prod_price*$prod->prod_qty;
+                                @endphp
+                                @endforeach
 
                                 <x-form.basic-form wire:submit.prevent="">
                                     <x-slot name="content">
@@ -239,7 +250,7 @@
                                             <p>Subtotal</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM {{$prod->prod_price}}</p>
+                                            <p>RM {{number_format($total,2)}}</p>
                                         </div>
                                     </div>
 
@@ -248,7 +259,7 @@
                                             <p>Shipping</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>{{number_format($postage,2)}}</p>
+                                            <p>RM {{number_format($postage,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +269,7 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
-                                        <p>RM {{number_format($prod->prod_price+$postage,2)}}</p>
+                                        <p>RM {{number_format($total+$postage,2)}}</p>
                                     </div>
                                 </div>
                             </div>

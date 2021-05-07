@@ -21,6 +21,7 @@ class ProductDetail extends Component
         InvCart::updateOrCreate(
             [
                 'user_id'       => auth()->user()->id,
+                'item_id'       => $this->iid,
             ],
             [
                 'user_id'       => auth()->user()->id,
@@ -32,6 +33,27 @@ class ProductDetail extends Component
                 'updated_at'    => now(),
             ]
         );
+    }
+
+    public function buyNow($prod_qty)
+    {
+        InvCart::updateOrCreate(
+            [
+                'user_id'       => auth()->user()->id,
+                'item_id'       => $this->iid,
+            ],
+            [
+                'user_id'       => auth()->user()->id,
+                'item_id'       => $this->iid,
+                'prod_qty'      => $prod_qty,
+                'created_by'    => auth()->user()->id,
+                'updated_by'    => auth()->user()->id,
+                'created_at'    => now(),
+                'updated_at'    => now(),
+            ]
+        );
+
+        return redirect('cart');
     }
 
     public function render()

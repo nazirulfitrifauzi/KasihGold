@@ -15,7 +15,6 @@
                     <x-table.table-header class="text-left" value="Status" sort="" />
                     <x-table.table-header class="text-left" value="Payment Type" sort="" />
                     <x-table.table-header class="text-left" value="Ordered For" sort="" />
-                    <x-table.table-header class="text-left" value="Action" sort="" />
 
                 </x-slot>
                 <x-slot name="tbody">
@@ -43,13 +42,6 @@
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>Ownself</p>
                         </x-table.table-body>
-                        
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                <p class="text-blue-500">Show</p>
-                            </div>
-                        </x-table.table-body>
                     </tr>
                     
                     <tr>
@@ -75,13 +67,6 @@
                         
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>Ownself</p>
-                        </x-table.table-body>
-                        
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                <p class="text-blue-500">Show</p>
-                            </div>
                         </x-table.table-body>
                     </tr>
 
@@ -109,13 +94,6 @@
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>Ownself</p>
                         </x-table.table-body>
-                        
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                <p class="text-blue-500">Show</p>
-                            </div>
-                        </x-table.table-body>
                     </tr>
 
                     <tr>
@@ -142,13 +120,6 @@
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>Ownself</p>
                         </x-table.table-body>
-                        
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                <p class="text-blue-500">Show</p>
-                            </div>
-                        </x-table.table-body>
                     </tr>
 
                     <tr>
@@ -174,13 +145,6 @@
                         
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>Ownself</p>
-                        </x-table.table-body>
-                        
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                <p class="text-blue-500">Show</p>
-                            </div>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

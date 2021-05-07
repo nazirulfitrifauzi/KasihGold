@@ -22,7 +22,7 @@
                         </div>
                         <div class="px-5 py-3">
                             <h3 class="text-gray-700 uppercase font-semibold text-xl">{{$item->prod_name}}</h3>
-                            <span class="text-yellow-400 mt-2 font-semibold text-lg">RM {{$item->prod_price}}</span>
+                            <span class="text-yellow-400 mt-2 font-semibold text-lg">RM {{number_format($item->prod_price,2)}}</span>
                         </div>
                     </a> 
                     @endforeach

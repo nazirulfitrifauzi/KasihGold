@@ -16,18 +16,27 @@
                     <x-table.table-header class="text-center" value="Actions" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
+                    @php
+                    $total=0;
+                    @endphp
+                    @foreach ($cart as $carts)
+                    @php
+                        $total+=$carts->products->prod_price*$carts->prod_qty;
+                    @endphp
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex space-x-3 items-center">
-                                <img class="object-cover w-16 h-16 rounded" src="" alt="">
+                                <img class="object-cover w-16 h-16 rounded" src="{{ asset('storage/'.$carts->products->prod_img1) }}" alt="">
                                 <div>
-                                    <h3 class="text-sm font-semibold">GOLD 0.25g</h3>
+                                    <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
                                 </div>
                             </div>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 185.16</p>
+                            <p>RM {{$carts->products->prod_price}}</p>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
                                 <button data-action="decrement"
@@ -40,16 +49,18 @@
                                     justify-center
                                     text-gray-700 
                                     outline-none"
-                                    name="custom-input-number" value="0"></input>
+                                    name="custom-input-number" value="{{$carts->prod_qty}}" ></input>
                                 <button data-action="increment"
                                     class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
                                     <span class="m-auto text-2xl font-thin">+</span>
                                 </button>
                             </div>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 370.32</p>
+                            <p>RM {{number_format($carts->products->prod_price*$carts->prod_qty,2)}}</p>
                         </x-table.table-body>
+
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div x-data="{ deleteOpen3 : false  }" class="flex justify-center">
                                 <x-btn.tooltip-btn
@@ -84,6 +95,8 @@
                             </div>
                         </x-table.table-body>
                     </tr>
+                    @endforeach
+{{-- 
                     <tr>
                         <x-table.table-body colspan="5" class="text-xs font-medium text-gray-700 ">
                             <div class="flex justify-between">
@@ -104,7 +117,7 @@
                                 </div>
                             </div>
                         </x-table.table-body>
-                    </tr>
+                    </tr> --}}
                 </x-slot>
                 <div class="px-2 py-2">
                     {{-- {{ $list->links('pagination::tailwind') }} --}}
@@ -120,54 +133,10 @@
                     </div>
                     <div class="flex justify-between border-b-2 py-4">
                         <div class="font-semibold text-lg">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="font-semibold text-lg">
-                            <p>RM 370.32</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between border-b-2 py-4">
-                        <div class="font-semibold text-lg">
                             <p>Shipping</p>
                         </div>
-                        <div class="font-semibold text-lg" x-data="{ show: false }">
-                            <a href="#" class="text-yellow-400 hover:text-yellow-500" @click="show = !show">
-                                Calculate shipping
-                            </a>
-                            <div x-show="show">
-                                <x-form.basic-form >
-                                    <x-slot name="content">
-                                        <x-form.dropdown label="" value="" default="" >
-                                            <option value="MY" selected="selected">Malaysia</option>
-                                        </x-form.dropdown>
-                                        <x-form.dropdown label="" value="" default="" >
-                                            <option value="JHR">Johor</option>
-                                            <option value="KDH">Kedah</option>
-                                            <option value="KTN">Kelantan</option>
-                                            <option value="LBN">Labuan</option>
-                                            <option value="MLK">Malacca (Melaka)</option>
-                                            <option value="NSN" selected>Negeri Sembilan</option>
-                                            <option value="PHG">Pahang</option>
-                                            <option value="PNG">Penang (Pulau Pinang)</option>
-                                            <option value="PRK">Perak</option>
-                                            <option value="PLS">Perlis</option>
-                                            <option value="SBH">Sabah</option>
-                                            <option value="SWK">Sarawak</option>
-                                            <option value="SGR">Selangor</option>
-                                            <option value="TRG">Terengganu</option>
-                                            <option value="PJY">Putrajaya</option>
-                                            <option value="KUL">Kuala Lumpur</option>
-                                        </x-form.dropdown>
-                                        <x-form.input type="text" label="" value="" livewire="" placeholder="Town / City" /> 
-                                        <x-form.input type="text" label="" value="" livewire="" placeholder="Postcode / ZIP" /> 
-                                        <div class="flex justify-center">
-                                            <button class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
-                                                <p>Update</p>
-                                            </button>
-                                        </div>
-                                    </x-slot>
-                                </x-form.basic-form>
-                            </div>
+                        <div class="font-semibold text-lg">
+                            <p>Will be calculated on checkout page</p>
                         </div>
                     </div>
                     <div class="flex justify-between border-b-2 py-4">
@@ -175,12 +144,12 @@
                             <p>Total</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM 370.32</p>
+                            <p>RM {{number_format($total,2)}}</p>
                         </div>
                     </div>
 
                     <div class="flex justify-center my-6">
-                        <a href="#"  class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                        <a href="product/buy"  class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
                             <p>Proceed to checkout</p>
                         </a>
                     </div>
