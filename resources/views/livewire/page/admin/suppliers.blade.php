@@ -24,7 +24,7 @@
                 <x-form.search-input/>
             </div>
         </div>
-        
+
         @if (!$suppliers->isEmpty())
             <x-table.table>
                 <x-slot name="thead">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                         <x-form.address class="" label="Address" value1="add.address1" value2="add.address2"
-                            value3="add.address3" value4="add.town" value5="add.postcode" value6="add.state" :states="$states" condition="" x-on:click="modalAdd = false"/>
+                            value3="add.address3" value4="add.town" value5="add.postcode" value6="add.state" :states="$states" condition=""/>
                     </div>
                     <div class="flex justify-end mt-5">
                         <button
