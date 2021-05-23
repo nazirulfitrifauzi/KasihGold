@@ -55,13 +55,14 @@ Route::middleware('auth')->group(function () {
     Route::get('password/confirm', Confirm::class)->name('password.confirm');
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+
 
     Route::middleware('passScreen')->group(function () {
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
-        Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
         Route::get('tracking', [TrackingController::class, 'index'])->name('tracking');
         Route::get('product/detail', [ProductDetailController::class, 'index'])->name('product-detail');

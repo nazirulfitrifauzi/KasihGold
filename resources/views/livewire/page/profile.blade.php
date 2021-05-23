@@ -3,6 +3,9 @@
         <h2 class="mr-auto text-lg font-medium">
             Profile
         </h2>
+        @if (session('warning'))
+            <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+        @endif
     </div>
     <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
         <!-- BEGIN: Profile Menu -->
