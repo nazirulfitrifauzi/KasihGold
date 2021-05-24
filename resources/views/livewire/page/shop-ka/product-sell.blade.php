@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </x-tab2.nav-tab>
-                    <x-tab2.nav-tab name="2" livewire="" class="bg-pink-500  hover:bg-pink-600 text-white rounded-lg" >
+                    <x-tab2.nav-tab name="2" livewire="" class="bg-pink-500  hover:bg-pink-600 text-white rounded-lg">
                         <div class="font-bold text-base text-white">
                             <div class="flex space-x-4 items-center">
                                 <div class="rounded-full py-4 px-4 flex item-center bg-white">
@@ -54,7 +54,6 @@
                 <x-general.card class="mt-2 bg-white shadow-lg">
                     1
                 </x-general.card>
-                
             </x-tab2.nav-content>
 
             <x-tab2.nav-content name="1">
