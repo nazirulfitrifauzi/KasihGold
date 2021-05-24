@@ -27,9 +27,9 @@
 
             <!-- cart button -->
             <a href="{{route('cart')}}"
-                class="relative p-2 transition-colors rounded-lg shadow-md tooltipbtn bg-purple-500 hover:bg-purple-600 text-white focus:outline-none"
+                class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
                 data-title="Cart" data-placement="right">
-                <span class="absolute flex items-center justify-center w-4 h-4 text-white right-0 top-0 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
                     1
                 </span>
                 <x-heroicon-o-shopping-cart class="w-6 h-6" />
@@ -38,29 +38,36 @@
             <!-- Shop -->
             <div class="relative flex items-center flex-shrink-0" x-data="{ isOpen: false }">
                 <button class="focus:outline-none" @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
-                    <div class="cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-2 rounded-lg w-full tooltipbtn" 
+                    <div class="w-full px-2 py-2 text-white bg-indigo-500 rounded-lg cursor-pointer hover:bg-indigo-600 tooltipbtn"
                     data-title="Shop" data-placement="right" x-on:click="Open = true" >
-                        <x-heroicon-o-shopping-bag class="w-6 h-6  " />
+                        <x-heroicon-o-shopping-bag class="w-6 h-6 " />
                     </div>
                 </button>
                 <div x-show="isOpen" @click.away="isOpen = false" @keydown.escape="isOpen = false" x-ref="userMenu"
                     tabindex="-1"
-                    class="absolute w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 bottom-0  focus:outline-none"
+                    class="absolute bottom-0 w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
 
                     @if (auth()->user()->role == 2)
-                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
+                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
                         Buy Product
                     </a>
 
-                    <a href="{{route('product-sell')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
-                    role="menuitem">
+                    <a
+                        @if (auth()->user()->client == '1')
+                            href="{{ route('product-sell') }}"
+                        @else
+                            href="{{route('product-ka-sell')}}"
+                        @endif
+
+                        class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" role="menuitem">
                         Sell Product
                     </a>
                     @endif
+
                     @if (auth()->user()->role == 1)
-                    <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" 
+                    <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
                         Sell Product
                     </a>
@@ -74,16 +81,16 @@
                     <x-heroicon-o-question-mark-circle class="w-6 h-6 " />
                 </div>
 
-                <div class="cursor-default text-gray-900">
+                <div class="text-gray-900 cursor-default">
                     <x-general.modal2 modalActive="Open" title="Customer Support" modalSize="lg" headerbg="pink-600">
                         <x-slot name="icon">
-                            <x-heroicon-s-question-mark-circle class="h-8 w-8 mr-1" />
+                            <x-heroicon-s-question-mark-circle class="w-8 h-8 mr-1" />
                         </x-slot>
                         <div class="flex justify-center mt-4 text-base font-semibold text-center">
                             <p>If you need any assitance please contact us via <br> WhatsApp/SMS/Call </p>
                         </div>
                         <div class="flex justify-center mt-2 text-base font-semibold">
-                            <p class='bg-pink-600 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
+                            <p class='px-4 py-2 text-white bg-pink-600 rounded-lg'>+606-851 8151</p>
                         </div>
                     </x-general.modal2>
                 </div>
@@ -118,7 +125,7 @@
         <div class="relative flex items-center flex-shrink-0 p-2">
             <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="tooltipbtn"
             data-title="Log out" data-placement="right">
-                    <div class="py-2 px-2 bg-white text-yellow-400 align-middle rounded-full hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                    <div class="px-2 py-2 text-yellow-400 align-middle bg-white rounded-full hover:text-white hover:bg-yellow-400 focus:outline-none ">
                         <x-heroicon-o-logout class="w-6 h-6" />
                     </div>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -128,5 +135,5 @@
             </a>
         </div>
 
-        
+
     </nav>

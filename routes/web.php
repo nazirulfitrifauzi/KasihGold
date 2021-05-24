@@ -36,6 +36,7 @@ use App\Http\Controllers\MyNetworkController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\UplineController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductKAController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -59,6 +60,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::middleware('passScreen')->group(function () {
+        //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
@@ -82,6 +84,9 @@ Route::middleware('auth')->group(function () {
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
         Route::get('upline-detail', [UplineController::class, 'index'])->name('upline-detail');
         Route::get('cart', [CartController::class, 'index'])->name('cart');
+
+        //-- KASIH AP --//
+        Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
     });
 
     Route::middleware('auth.admin')->group(function () {
