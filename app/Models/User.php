@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'client'
     ];
 
     /**
@@ -80,7 +81,7 @@ class User extends Authenticatable
     {
         return $this->roles()->where('description', 'Retail - Public')->exists();
     }
-    
+
     public function screening()
     {
         return $this->hasMany('App\Models\Screening', 'user_id', 'id');

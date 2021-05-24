@@ -11,17 +11,11 @@ use Livewire\Component;
 
 class Register extends Component
 {
-    /** @var string */
     public $name = '';
-
-    /** @var string */
     public $email = '';
-
-    /** @var string */
     public $password = '';
-
-    /** @var string */
     public $passwordConfirmation = '';
+    public $client = '';
 
     public function register()
     {
@@ -31,10 +25,13 @@ class Register extends Component
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         ]);
 
+        // dd($this->client);
+
         $user = User::create([
             'email' => $this->email,
             'name' => $this->name,
             'password' => Hash::make($this->password),
+            'client' => $this->client,
         ]);
 
         event(new Registered($user));
