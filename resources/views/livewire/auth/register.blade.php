@@ -62,14 +62,13 @@
                     </div>
 
                     <div class="mt-6">
-                        <div class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <div class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                             <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
                                 <option value="0" disabled selected>-- PLEASE SELECT CLIENTS --</option>
                                 <option value="1">KASIH GOLD</option></option>
                                 <option value="2">KASIH AP</option>
                             </select>
                         </div>
-                        {{ $client }}
                     </div>
 
                     <div class="mt-6">
