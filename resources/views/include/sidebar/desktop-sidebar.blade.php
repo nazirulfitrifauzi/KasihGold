@@ -31,13 +31,9 @@
             <div class="pb-2 text-center ">
                 <p class="pt-1 mx-auto text-base font-bold text-white">{{auth()->user()->name}}</p>
             </div>
-            <div class="pb-2 flex justify-center">
-                <div class="rounded-lg bg-orange-500  text-white py-2 px-2 leading-none flex items-center text-xs ">
-                    @if (auth()->user()->role == 1)
-                        ADMIN
-                    @elseif (auth()->user()->role == 2)
-                        USER
-                    @endif
+            <div class="flex justify-center pb-2">
+                <div class="flex items-center px-2 py-2 text-xs leading-none text-white bg-orange-500 rounded-lg ">
+                    {{ strtoupper(auth()->user()->clients->name) }}
                 </div>
             </div>
 

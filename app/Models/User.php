@@ -91,4 +91,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Profile', 'user_id', 'id');
     }
+
+    public function clients()
+    {
+        return $this->belongsTo('App\Models\ClientsInfo', 'client', 'id');
+    }
 }
