@@ -31,6 +31,15 @@
             <div class="pb-2 text-center ">
                 <p class="pt-1 mx-auto text-base font-bold text-white">{{auth()->user()->name}}</p>
             </div>
+            <div class="pb-2 flex justify-center">
+                <div class="rounded-lg bg-orange-500  text-white py-2 px-2 leading-none flex items-center text-xs ">
+                    @if (auth()->user()->role == 1)
+                        ADMIN
+                    @elseif (auth()->user()->role == 2)
+                        USER
+                    @endif
+                </div>
+            </div>
 
             <!-- Links -->
             <div class="flex-1 px-4 pr-0 mt-2 space-y-2 overflow-auto">
