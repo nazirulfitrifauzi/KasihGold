@@ -37,6 +37,9 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\UplineController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductKAController;
+use App\Http\Controllers\DigitalGoldController;
+use App\Http\Controllers\PhysicalGoldController;
+use App\Http\Controllers\PurchaseHistoryController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -62,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('passScreen')->group(function () {
         //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
+        Route::get('dashboard', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
@@ -87,6 +91,9 @@ Route::middleware('auth')->group(function () {
 
         //-- KASIH AP --//
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
+        Route::get('digital-gold', [DigitalGoldController::class, 'index'])->name('digital-gold');
+        Route::get('physical-gold', [physicalGoldController::class, 'index'])->name('physical-gold');
+        Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
     });
 
     Route::middleware('auth.admin')->group(function () {

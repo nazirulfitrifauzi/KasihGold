@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view ('pages.dashboard');
     }
+
+    public function dashboardUser()
+    {
+        return view ('pages.dashboard-user');
+    }
 }
