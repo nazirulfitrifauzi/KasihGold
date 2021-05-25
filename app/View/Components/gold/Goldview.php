@@ -7,9 +7,12 @@ use Illuminate\View\Component;
 class Goldview extends Component
 {
     public $percentage ;
-    public function __construct($percentage)
+    public $type ;
+
+    public function __construct($percentage,$type)
     {
         $this->percentage = $percentage;
+        $this->type = $type;
     }
     public function render()
     {

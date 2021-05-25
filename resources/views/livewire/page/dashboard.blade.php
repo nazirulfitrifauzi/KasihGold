@@ -8,6 +8,7 @@
     </div> --}}
     <!-- end term & condition modal -->
 
+
     <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
         <div class="col-span-12 mt-8">
             <div class="flex items-center h-10 intro-y">

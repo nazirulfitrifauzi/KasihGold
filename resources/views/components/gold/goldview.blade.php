@@ -83,7 +83,23 @@
             }
         }
     </style>
-    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold.png') }}')">
+
+    @if ($type == '1g')
+    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold1g.png') }}')">
         <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
     </div>
+    @elseif ($type == '2.5g')
+    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold2.5g.png') }}')">
+        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+    </div>
+    @elseif ($type == '5g')
+    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold5g.png') }}')">
+        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+    </div>
+    @elseif ($type == '10g')
+    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold10g.png') }}')">
+        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+    </div>
+    @endif
+
 </div>
