@@ -9,8 +9,15 @@ class ProductView extends Component
 {
     public function render()
     {
-        return view('livewire.page.shop.product-view', [
-            'list' => InvInfo::all(),
-        ]);
+        if (auth()->user()->role == '3') { // user dashboard
+            return view('livewire.page.shop.product-view', [
+                'list' => InvInfo::where('user_id', 10)->get(),
+            ]);
+        } else { // agent n admin dashboard
+            return view('livewire.page.shop.product-view', [
+                'list' => InvInfo::where('user_id', 1)->get(),
+
+            ]);
+        }
     }
 }

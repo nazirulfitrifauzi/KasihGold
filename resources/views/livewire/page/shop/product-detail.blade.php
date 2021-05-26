@@ -24,6 +24,7 @@
                                     <img id="main" :src="imageUrl" class="object-contain w-full h-full bg-cover" />
                                 </div>
                             </div>
+                            @if (auth()->user()->role != '3')
                             <div class="grid grid-cols-4 gap-6 mt-6 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                                 <button class="flex items-center justify-center w-full h-24 bg-gray-100 rounded-lg focus:outline-none md:h-32">
                                     <img src="{{ asset('storage/'.$info->prod_img1) }}"
@@ -53,6 +54,7 @@
                                         />
                                 </button>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <!--End detail of image -->
@@ -60,13 +62,15 @@
                     <!--Start detail for buying -->
                     <div class="px-4 mt-8 lg:flex-1 md:mt-0">
                         <h2 class="mb-2 text-2xl font-bold leading-tight tracking-tight text-gray-800 md:text-3xl">{{$info->prod_name}}</h2>
+                        @if (auth()->user()->role != '3')
                         <p class="text-sm text-gray-500">By
                             <span class="text-yellow-400">{{$userInfo->name}}</span>
                         </p>
+                        @endif
                         <div class="flex items-center my-4 space-x-4">
                             <div>
                                 <div class="flex px-3 py-2 bg-gray-100 rounded-lg">
-                                    <span class="text-xl font-bold text-yellow-400">{{$info->prod_price}}</span>
+                                    <span class="text-xl font-bold text-yellow-400">RM {{$info->prod_price}}</span>
                                 </div>
                             </div>
                             <div class="flex-1">
