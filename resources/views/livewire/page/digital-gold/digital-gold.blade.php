@@ -54,7 +54,7 @@
                             </div>
                     </x-general.price-card>
                 </div>
-                <div class="flex flex-col flex-auto " x-data="{ openModal1: false, openModal2: false}">
+                <div class="flex flex-col flex-auto " x-data="{ openModal1: false, openModal2: false, openModal3: false}">
                     <h1 class="text-base font-bold">Exit / Sell</h1>
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
                         <div class="text-base font-bold text-white">
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                     </x-general.price-card>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal3 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
@@ -190,13 +190,78 @@
                                             </p>
                                         </div>
                                         <div class="mt-4">
-                                            <p class="text-xs italic leading-none text-red-500 ">All your certificate will be revoked onced you submit this request and please allow up to 3 working days to process your payment.</p>
+                                            <p class="text-xs italic leading-none text-red-500 ">All your certificate will be revoked onced you submit this request and please allow up to 3 working days to process your transactions.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </x-general.new-modal>
                     {{-- End modal 2--}}
+
+                    {{-- Start modal 3--}}
+                        <x-general.new-modal modalName="openModal3" size="xl">
+                            <div>
+                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-yellow-100 rounded-full">
+                                    <x-heroicon-o-library class="w-6 h-6 text-yellow-600" />
+                                </div>
+                                <div class="mt-3 text-center sm:mt-5">
+                                    <h1 class="text-lg font-bold">Sell Now, Buyback Later</h1>
+                                    <div class="mt-2">
+                                        <div class="p-4 border-l-4 border-blue-400 bg-blue-50">
+                                            <div class="flex">
+                                                <div class="flex-shrink-0">
+                                                    <x-heroicon-o-information-circle class="w-5 h-5 text-blue-400"/>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-sm text-blue-700">Please note that you only can get 80% (maximum) from this transactions.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
+                                            <p class="text-sm text-gray-500">
+                                                0.51 gram
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-center mt-4">
+                                            <div class="mr-4">
+                                                <h3 class="text-base font-semibold leading-6 text-gray-900">Current Price</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    RM 200.00
+                                                </p>
+                                            </div>
+                                            <div class="flex items-center ">
+                                                <x-heroicon-o-chevron-double-right class="h-8 text-green-500 -8 "/>
+                                            </div>
+                                            <div class="ml-4">
+                                                <h3 class="text-base font-semibold leading-6 text-yellow-600">80% Max</h3>
+                                                <p class="text-sm text-yellow-500">
+                                                    RM 160.00
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Amount Apply</h3>
+                                            <div class="px-44 ">
+                                                <div class="relative mt-1 rounded-md shadow-sm">
+                                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                        <span class="text-gray-500 sm:text-sm">
+                                                            RM
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="price" id="price" class="block w-full pl-12 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="0.00" aria-describedby="price-currency">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mt-4">
+                                            <p class="text-xs italic leading-none text-red-500 ">Please allow up to 3 working days to process your transactions.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </x-general.new-modal>
+                    {{-- End modal 3--}}
                 </div>
             </div>
 
