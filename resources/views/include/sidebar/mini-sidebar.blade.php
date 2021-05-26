@@ -48,6 +48,13 @@
                     class="absolute bottom-0 w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
 
+                    @if (auth()->user()->role == 3)
+                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
+                    role="menuitem">
+                        Buy Product
+                    </a>
+                    @endif
+
                     @if (auth()->user()->role == 2)
                     <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">

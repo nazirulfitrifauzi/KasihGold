@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            @if (auth()->user()->role != '3')
                                 <div x-data="{ accordion: 0 }">
                                     <div class="lg:w-full">
                                         <div>
@@ -153,6 +153,7 @@
                                     </div>
                                     <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 2 }" x-cloak></div> 
                                 </div>
+                            @endif
 
                                 <div class="pb-8 mt-8">
                                     <div class="lg:w-full">
@@ -259,7 +260,11 @@
                                             <p>Shipping</p>
                                         </div>
                                         <div class="font-semibold">
+                                            @if (auth()->user()->role == '3')
+                                            <p>RM 0.00</p>
+                                            @else
                                             <p>RM {{number_format($postage,2)}}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +274,11 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
+                                        @if (auth()->user()->role == '3')
+                                        <p>RM {{number_format($total,2)}}</p>
+                                        @else
                                         <p>RM {{number_format($total+$postage,2)}}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
