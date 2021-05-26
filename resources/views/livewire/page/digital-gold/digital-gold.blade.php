@@ -54,9 +54,9 @@
                             </div>
                     </x-general.price-card>
                 </div>
-                <div class="flex flex-col flex-auto ">
+                <div class="flex flex-col flex-auto " x-data="{ openModal1: false}">
                     <h1 class="text-base font-bold">Exit / Sell</h1>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
@@ -92,6 +92,26 @@
                                 </div>
                             </div>
                     </x-general.price-card>
+
+                    {{-- Start modal --}}
+                        <x-general.new-modal modalName="openModal1" size="2xl">
+                            <div>
+                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+                                    <x-heroicon-o-check class="w-6 h-6 text-green-600" />
+                                </div>
+                                <div class="mt-3 text-center sm:mt-5">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
+                                    Payment successful
+                                    </h3>
+                                    <div class="mt-2">
+                                        <p class="text-sm text-gray-500">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </x-general.new-modal>
+                    {{-- End modal --}}
                 </div>
             </div>
 
