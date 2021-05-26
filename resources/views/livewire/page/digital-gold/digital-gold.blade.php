@@ -54,7 +54,7 @@
                             </div>
                     </x-general.price-card>
                 </div>
-                <div class="flex flex-col flex-auto " x-data="{ openModal1: false}">
+                <div class="flex flex-col flex-auto " x-data="{ openModal1: false, openModal2: false}">
                     <h1 class="text-base font-bold">Exit / Sell</h1>
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
                         <div class="text-base font-bold text-white">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                     </x-general.price-card>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal2 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
@@ -93,7 +93,7 @@
                             </div>
                     </x-general.price-card>
 
-                    {{-- Start modal --}}
+                    {{-- Start modal 1--}}
                         <x-general.new-modal modalName="openModal1" size="xl">
                             <div>
                                 <div class="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
@@ -165,7 +165,38 @@
                                 </div>
                             </div>
                         </x-general.new-modal>
-                    {{-- End modal --}}
+                    {{-- End modal 1--}}
+
+                    {{-- Start modal 2--}}
+                        <x-general.new-modal modalName="openModal2" size="xl">
+                            <div>
+                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+                                    <x-heroicon-o-cash class="w-6 h-6 text-green-600" />
+                                </div>
+
+                                <div class="mt-3 text-center sm:mt-5">
+                                    <h1 class="text-lg font-bold">Surrender your gold</h1>
+                                    <div class="mt-2">
+                                        <div>
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
+                                            <p class="text-sm text-gray-500">
+                                                0.51 gram
+                                            </p>
+                                        </div>
+                                        <div class="mt-2">
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Current Price</h3>
+                                            <p class="text-sm text-gray-500">
+                                                RM 200.00
+                                            </p>
+                                        </div>
+                                        <div class="mt-4">
+                                            <p class="text-xs italic leading-none text-red-500 ">All your certificate will be revoked onced you submit this request and please allow up to 3 working days to process your payment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </x-general.new-modal>
+                    {{-- End modal 2--}}
                 </div>
             </div>
 
