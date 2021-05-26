@@ -7,47 +7,94 @@
         </div>
 
         <div class="p-4 mt-8 bg-white">
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 mb-6">
-                <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
-                    <div class="font-bold text-base text-white">
-                            <div class="flex space-x-4 items-center">
-                                <div class="rounded-full py-4 px-4 flex item-center bg-white">
-                                    <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
-                                </div>
-                                <div class="text-xl">
-                                    <p>Total Grams</p>
-                                    <p class="text-lg">RM 500.00</p>
-                                </div>
-                            </div>
-                        </div>
-                </x-general.price-card>
-                <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
-                    <div class="font-bold text-base text-white">
-                            <div class="flex space-x-4 items-center">
-                                <div class="rounded-full py-4 px-4 flex item-center bg-white">
-                                    <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
-                                </div>
-                                <div class="text-xl">
-                                    <p>Total Price Bought</p>
-                                    <p class="text-lg">RM 300.00</p>
+
+            <div class="flex flex-row p-4 mb-10 bg-gray-300 rounded-md shadow-lg">
+                <div class="flex items-center justify-center flex-auto ">
+                    <x-gold.goldview type="1g" percentage="25"/>
+                </div>
+                <div class="flex flex-col flex-auto mr-5">
+                    <h1 class="text-base font-bold">My Gold</h1>
+                    <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Total Grams</p>
+                                        <p class="text-lg">RM 500.00</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                </x-general.price-card>
-                <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
-                    <div class="font-bold text-base text-white">
-                            <div class="flex space-x-4 items-center">
-                                <div class="rounded-full py-4 px-4 flex item-center bg-white">
-                                    <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
-                                </div>
-                                <div class="text-xl">
-                                    <p>Total Price Now</p>
-                                    <p class="text-lg">RM 200.00</p>
+                    </x-general.price-card>
+                    <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Total Price Bought</p>
+                                        <p class="text-lg">RM 300.00</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                </x-general.price-card>
-            </x-general.grid>
+                    </x-general.price-card>
+                    <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Total Price Now</p>
+                                        <p class="text-lg">RM 200.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </x-general.price-card>
+                </div>
+                <div class="flex flex-col flex-auto ">
+                    <h1 class="text-base font-bold">Exit / Sell</h1>
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-refresh class="w-8 h-8 text-red-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Change Physical</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </x-general.price-card>
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Outright</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </x-general.price-card>
+                    <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                        <x-heroicon-o-library class="w-8 h-8 text-red-400" />
+                                    </div>
+                                    <div class="text-xl">
+                                        <p>Buy Back</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </x-general.price-card>
+                </div>
+            </div>
+
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="Grams" sort="" />
@@ -74,4 +121,3 @@
         </div>
     </div>
 </div>
-
