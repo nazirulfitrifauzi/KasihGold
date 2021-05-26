@@ -94,19 +94,73 @@
                     </x-general.price-card>
 
                     {{-- Start modal --}}
-                        <x-general.new-modal modalName="openModal1" size="2xl">
+                        <x-general.new-modal modalName="openModal1" size="xl">
                             <div>
-                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
-                                    <x-heroicon-o-check class="w-6 h-6 text-green-600" />
+                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
+                                    <x-heroicon-o-refresh class="w-6 h-6 text-blue-600" />
                                 </div>
+
                                 <div class="mt-3 text-center sm:mt-5">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
-                                    Payment successful
-                                    </h3>
+                                    <h1 class="text-lg font-bold">Change to Physical Gold</h1>
                                     <div class="mt-2">
-                                        <p class="text-sm text-gray-500">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur amet labore.
-                                        </p>
+                                        <div>
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
+                                            <p class="text-sm text-gray-500">
+                                                0.51 gram
+                                            </p>
+                                    </div>
+                                        <div class="px-20 py-5">
+                                            <fieldset>
+                                                <div class="-space-y-px bg-white rounded-md" x-data="{ isOn1:false, isOn2: false }">
+                                                    <label
+                                                        @click="isOn1 = true, isOn2 = false"
+                                                        :aria-checked="isOn1"
+                                                        :class="{'bg-indigo-50 border-indigo-200 z-10': isOn1, 'border-gray-200': !isOn1 }"
+                                                        class="relative flex p-4 border border-gray-200 cursor-pointer rounded-tl-md rounded-tr-md">
+                                                        <input type="radio" name="privacy_setting" value="Private to Project Members" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-1-label" aria-describedby="privacy-setting-1-description">
+                                                        <div class="flex flex-col ml-3">
+                                                            <span
+                                                            @click="isOn1 = true, isOn2 = false"
+                                                            :aria-checked="isOn1"
+                                                            :class="{'text-indigo-900': isOn1, 'text-gray-900': !isOn1 }"
+                                                            id="privacy-setting-1-label" class="block text-sm font-medium text-gray-900">
+                                                                0.25 gram physical
+                                                            </span>
+                                                            <span
+                                                                @click="isOn1 = true, isOn2 = false"
+                                                                :aria-checked="isOn1"
+                                                                :class="{'text-indigo-700': isOn1, 'text-gray-500': !isOn1 }"
+                                                                id="privacy-setting-1-description" class="block text-sm text-gray-500">
+                                                                Your digital gold is enough for this change.
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                    <label
+                                                        @click="isOn2 = true, isOn1 = false"
+                                                        :aria-checked="isOn2"
+                                                        :class="{'bg-red-50 border-red-200 z-10': isOn2, 'border-gray-200': !isOn2 }"
+                                                        class="relative flex p-4 border border-gray-200 cursor-pointer rounded-bl-md rounded-br-md">
+                                                        <input disabled type="radio" name="privacy_setting" value="Private to you" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-2-label" aria-describedby="privacy-setting-2-description">
+                                                        <div class="flex flex-col ml-3">
+                                                            <span
+                                                                @click="isOn2 = true, isOn1 = false"
+                                                                :aria-checked="isOn2"
+                                                                :class="{'text-red-900': isOn2, 'text-gray-900': !isOn2 }"
+                                                                id="privacy-setting-2-label" class="block text-sm font-medium text-gray-900">
+                                                            1.0 gram
+                                                            </span>
+                                                            <span
+                                                                @click="isOn2 = true, isOn1 = false"
+                                                                :aria-checked="isOn2"
+                                                                :class="{'text-red-700': isOn2, 'text-gray-500': !isOn2 }"
+                                                                id="privacy-setting-2-description" class="block text-sm text-gray-500">
+                                                            Your digital gold is not sufficient for this change.
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
