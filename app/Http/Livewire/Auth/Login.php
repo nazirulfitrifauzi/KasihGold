@@ -32,7 +32,11 @@ class Login extends Component
             return;
         }
 
-        return redirect()->intended(route('home'));
+        if(auth()->user()->role == '3'){ // user dashboard
+            return redirect()->to('/dashboard');
+        } else { // agent n admin dashboard
+            return redirect()->to('/home');
+        }
     }
 
     public function render()
