@@ -5,7 +5,6 @@
             <div class="flex items-center h-10 intro-y">
                 <h2 class="mr-5 text-lg font-medium truncate">General Report</h2>
             </div>
-
             <div class="grid grid-cols-12 gap-6 mt-5">
                 <x-dashboard.info-card-user   bg="white" title="Digital Gold" value="4.510 G" iconColor='yellow' cardRoute="{{route('digital-gold')}}">
                     <x-slot name="svg">

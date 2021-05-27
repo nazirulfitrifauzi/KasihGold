@@ -10,7 +10,7 @@
 
             <div class="flex flex-row p-4 mb-10 bg-gray-300 rounded-md shadow-lg">
                 <div class="flex items-center justify-center flex-auto ">
-                    <x-gold.goldview type="1g" percentage="25"/>
+                    <x-gold.goldview type="1g" percentage="80"/>
                 </div>
                 <div class="flex flex-col flex-auto mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>

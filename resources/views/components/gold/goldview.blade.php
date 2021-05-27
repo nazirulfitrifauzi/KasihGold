@@ -5,20 +5,13 @@
             position: absolute;
             left: 52px;
             width: 9.7rem;
-            height: auto;
             box-sizing: border-box;
             animation: grow 1.5s ease-out forwards;
             transform-origin: bottom;
             opacity: 0.9;
+            height: {{$percentage }}%;
         }
 
-        .bar-value::before {
-            position: absolute;
-            bottom: 10px;
-            left: 5px;
-            color: white;
-
-        }
 
         @keyframes grow {
             from {
@@ -35,70 +28,70 @@
 
         @-webkit-keyframes slideIn {
             0% {
-                height: 0;
+                height: 100%;
             }
 
             100% {
-                height: normal;
+                height: {{$percentage }}%;
             }
         }
 
         @-moz-keyframes slideIn {
             0% {
-                height: 0;
+                height: 100%;
             }
 
             100% {
-                height: normal;
+                height:{{$percentage }}%;
             }
         }
 
         @-ms-keyframes slideIn {
             .progress-bar 0% {
-                height: 0;
+                height: 100%;
             }
 
             .progress-bar 100% {
-                height: normal;
+                height: {{$percentage }}%;
             }
         }
 
         @-o-keyframes slideIn {
             0% {
-                height: 0;
+                height: 100%;
             }
 
             100% {
-                height: normal;
+                height: {{$percentage }}%;
             }
         }
 
         @keyframes slideIn {
             0% {
-                height: 0;
+                height: 100%;
             }
 
             100% {
-                height: normal;
+                height: {{$percentage }}%;
             }
         }
     </style>
 
     @if ($type == '1g')
     <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold1g.png') }}')">
-        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+        <div class="bar-value" style="border-radius: 1.5rem" ></div>
     </div>
     @elseif ($type == '2.5g')
     <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold2.5g.png') }}')">
-        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+        <div class="bar-value" style="border-radius: 1.5rem" ></div>
     </div>
     @elseif ($type == '5g')
     <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold5g.png') }}')">
-        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+        <div class="bar-value" style="border-radius: 1.5rem" ></div>
     </div>
     @elseif ($type == '10g')
     <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold10g.png') }}')">
-        <div class="bar-value" style="height:{{$percentage }}%; border-radius: 1.5rem" ></div>
+        <div class="bar-value" style="border-radius: 1.5rem" ></div>
     </div>
     @endif
 
