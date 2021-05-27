@@ -1,5 +1,5 @@
 <div
-    class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end" style="top:auto !important">
+    class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-40" style="top:auto !important">
     <div class="max-w-sm w-full bg-green-600 shadow-lg rounded-lg pointer-events-auto border-l-4 border-green-500"
         x-data="{ show: true }" 
         x-show="show"
@@ -23,10 +23,10 @@
                     </div>
                     <div class="ml-4 w-0 flex-1">
                         <p class="text-base leading-5 font-medium capitalize  text-white">
-                            success
+                            {{$title}}
                         </p>
                         <p class="mt-1 text-sm leading-5  text-white ">
-                            {{$title}}
+                            {{$message}}
                         </p>
                     </div>
                     <div class="ml-4 flex-shrink-0 flex">
