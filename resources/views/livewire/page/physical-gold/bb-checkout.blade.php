@@ -82,7 +82,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                
                                                             </x-slot>
                                                         </x-form.basic-form>
                                                     </div>
@@ -91,6 +90,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="flex items-center justify-end mt-2">
                                     <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
                                         <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
@@ -105,7 +105,7 @@
                             <div class="border  max-w-md w-full px-4 py-3">
                                 <div class="flex items-center justify-between">
                                     
-                                    <h3 class="text-gray-700 font-medium">Outright total </h3>
+                                    <h3 class="text-gray-700 font-medium">Buyback total </h3>
                                 </div>
 
                                 
@@ -116,24 +116,32 @@
                                             src="{{ asset('storage/d1.png') }}"
                                             alt="">
                                         <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">Kasih Gold Digital 1g</h3>
+                                            <h3 class="text-sm text-gray-600">Digital Gold at Hand</h3>
                                         </div>
                                     </div>
-                                    <span class="font-semibold text-gray-600 my-3">RM 630.00</span>
+                                    <span class="font-semibold text-gray-600 my-3">RM 1,015.56</span>
                                 </div>
                                     
-                                <div class="flex justify-between mt-6 border-b-2 pb-4">
-                                    <div class="flex">
-                                        <img class="h-20 w-20 object-cover rounded"
-                                            src="{{ asset('storage/d025.png') }}"
-                                            alt="">
-                                        <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">Kasih Gold Digital 0.25g</h3>
+
+                                <div class="mt-6 border-b-2 pb-4">
+                                    <div class="flex justify-between">
+                                        <div class="text-gray-500">
+                                            <p>Receivable Money</p>
+                                        </div>
+                                        <div class="font-semibold">
+                                            <p>RM 812.40</p>
                                         </div>
                                     </div>
-                                    <span class="font-semibold text-gray-600 my-3">RM 200.00</span>
-                                </div>
 
+                                    <div class="flex justify-between">
+                                        <div class="text-gray-500">
+                                            <p>Buyback price at 31/01/2022</p>
+                                        </div>
+                                        <div class="font-semibold">
+                                            <p>RM 861.14</p>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
                                     <div class="font-semibold">

@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="text-xl">
                                         <p>Total Grams</p>
-                                        <p class="text-lg">RM 500.00</p>
+                                        <p class="text-lg">4.03 g</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="text-xl">
                                         <p>Total Price Bought</p>
-                                        <p class="text-lg">RM 300.00</p>
+                                        <p class="text-lg">RM 987.05</p>
                                     </div>
                                 </div>
                             </div>
@@ -47,8 +47,8 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="text-xl">
-                                        <p>Total Price Now</p>
-                                        <p class="text-lg">RM 200.00</p>
+                                        <p>Current Market Price</p>
+                                        <p class="text-lg">RM 1,015.56</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                0.51 gram
+                                                4.03 gram
                                             </p>
                                     </div>
                                         <div class="px-20 py-5">
@@ -124,7 +124,7 @@
                                                             :aria-checked="isOn1"
                                                             :class="{'text-indigo-900': isOn1, 'text-gray-900': !isOn1 }"
                                                             id="privacy-setting-1-label" class="block text-sm font-medium text-gray-900">
-                                                                0.25 gram physical
+                                                                0.25 gram Physical
                                                             </span>
                                                             <span
                                                                 @click="isOn1 = true, isOn2 = false"
@@ -140,8 +140,8 @@
                                                         :aria-checked="isOn2"
                                                         :class="{'bg-red-50 border-red-200 z-10': isOn2, 'border-gray-200': !isOn2 }"
                                                         class="relative flex p-4 border border-gray-200 cursor-pointer rounded-bl-md rounded-br-md">
-                                                        <input disabled type="radio" name="privacy_setting" value="Private to you" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-2-label" aria-describedby="privacy-setting-2-description">
-                                                        <div class="flex flex-col ml-3">
+                                                        <input  type="radio" name="privacy_setting" value="Private to you" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-2-label" aria-describedby="privacy-setting-2-description">
+                                                        {{-- <div class="flex flex-col ml-3">
                                                             <span
                                                                 @click="isOn2 = true, isOn1 = false"
                                                                 :aria-checked="isOn2"
@@ -156,12 +156,36 @@
                                                                 id="privacy-setting-2-description" class="block text-sm text-gray-500">
                                                             Your digital gold is not sufficient for this change.
                                                             </span>
+                                                        </div> --}}
+                                                        <div class="flex flex-col ml-3">
+                                                            <span
+                                                            @click="isOn1 = true, isOn2 = false"
+                                                            :aria-checked="isOn1"
+                                                            :class="{'text-indigo-900': isOn2, 'text-gray-900': !isOn2 }"
+                                                            id="privacy-setting-1-label" class="block text-sm font-medium text-gray-900">
+                                                                1 gram Physical
+                                                            </span>
+                                                            <span
+                                                                @click="isOn1 = true, isOn2 = false"
+                                                                :aria-checked="isOn1"
+                                                                :class="{'text-indigo-700': isOn2, 'text-gray-500': !isOn2 }"
+                                                                id="privacy-setting-1-description" class="block text-sm text-gray-500">
+                                                                Your digital gold is enough for this change.
+                                                            </span>
                                                         </div>
                                                     </label>
                                                 </div>
                                             </fieldset>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal1 = false">
+                                        Cancel
+                                    </button>
+                                    <a href="physical-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal1 = false">
+                                        Submit
+                                    </a>
                                 </div>
                             </div>
                         </x-general.new-modal>
@@ -175,23 +199,31 @@
                                 </div>
 
                                 <div class="mt-3 text-center sm:mt-5">
-                                    <h1 class="text-lg font-bold">Surrender your gold</h1>
+                                    <h1 class="text-lg font-bold">Sell Your gold</h1>
                                     <div class="mt-2">
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                0.51 gram
+                                                4.03 gram
                                             </p>
                                         </div>
                                         <div class="mt-2">
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Current Price</h3>
+                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                             <p class="text-sm text-gray-500">
-                                                RM 200.00
+                                                RM 1,015.56
                                             </p>
                                         </div>
                                         <div class="mt-4">
                                             <p class="text-xs italic leading-none text-red-500 ">All your certificate will be revoked onced you submit this request and please allow up to 3 working days to process your transactions.</p>
                                         </div>
+                                    </div>
+                                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                                        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal2 = false">
+                                            Cancel
+                                        </button>
+                                        <a href="outright-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal2 = false">
+                                            Submit
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +237,7 @@
                                     <x-heroicon-o-library class="w-6 h-6 text-yellow-600" />
                                 </div>
                                 <div class="mt-3 text-center sm:mt-5">
-                                    <h1 class="text-lg font-bold">Sell Now, Buyback Later</h1>
+                                    <h1 class="text-lg font-bold">Sell Now, Buy Back Later</h1>
                                     <div class="mt-2">
                                         <div class="p-4 border-l-4 border-blue-400 bg-blue-50">
                                             <div class="flex">
@@ -220,14 +252,14 @@
                                         <div class="mt-2">
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                0.51 gram
+                                                4.03 gram
                                             </p>
                                         </div>
                                         <div class="flex justify-center mt-4">
                                             <div class="mr-4">
-                                                <h3 class="text-base font-semibold leading-6 text-gray-900">Current Price</h3>
+                                                <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                                 <p class="text-sm text-gray-500">
-                                                    RM 200.00
+                                                    RM 1,015.56
                                                 </p>
                                             </div>
                                             <div class="flex items-center ">
@@ -236,7 +268,7 @@
                                             <div class="ml-4">
                                                 <h3 class="text-base font-semibold leading-6 text-yellow-600">80% Max</h3>
                                                 <p class="text-sm text-yellow-500">
-                                                    RM 160.00
+                                                    RM 812.40
                                                 </p>
                                             </div>
                                         </div>
@@ -257,6 +289,14 @@
                                         <div class="mt-4">
                                             <p class="text-xs italic leading-none text-red-500 ">Please allow up to 3 working days to process your transactions.</p>
                                         </div>
+                                    </div>
+                                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                                        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal3 = false">
+                                            Cancel
+                                        </button>
+                                        <a href="/bb-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal3 = false">
+                                            Submit
+                                        </a>
                                     </div>
                                 </div>
                             </div>

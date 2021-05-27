@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Grams</p>
-                                    <p class="text-lg">RM 500.00</p>
+                                    <p class="text-lg">4.03 g</p>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Price Bought</p>
-                                    <p class="text-lg">RM 300.00</p>
+                                    <p class="text-lg">RM 968.13</p>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Price Now</p>
-                                    <p class="text-lg">RM 200.00</p>
+                                    <p class="text-lg">RM 1015.17</p>
                                 </div>
                             </div>
                         </div>
@@ -60,10 +60,10 @@
                             <p>2.5g</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 300.00</p>
+                            <p>RM 631.73</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 200.00</p>
+                            <p>RM 687.17</p>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

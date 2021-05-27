@@ -1,5 +1,7 @@
 <div class="grid grid-cols-12 gap-6">
-
+    @if (session('success'))
+    <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @endif
     <div class="grid grid-cols-12 col-span-12 gap-6">
         <div class="col-span-12 mt-8">
             <div class="flex items-center h-10 intro-y">
@@ -117,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-start col-span-12 lg:col-span-6 xxl:col-span-6 lg:block">
+                <div class="flex justify-start col-span-12 lg:col-span-6 xxl:col-span-6 lg:block z-20">
                     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                     <script type="text/javascript">
                         new TradingView.widget(
