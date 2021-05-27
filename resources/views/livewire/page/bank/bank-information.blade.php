@@ -82,6 +82,12 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="flex items-center justify-end mt-2">
+                                                                    <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
+                                                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
+                                                                        <span>CONFIRM</span>
+                                                                    </button>
+                                                                </div>
                                                             </x-slot>
                                                         </x-form.basic-form>
                                                     </div>
@@ -89,12 +95,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="flex items-center justify-end mt-2">
-                                    <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
-                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
-                                        <span>CONFIRM</span>
-                                    </button>
                                 </div>
                             </x-slot>
                         </x-form.basic-form>
