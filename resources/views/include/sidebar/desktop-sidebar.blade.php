@@ -40,9 +40,15 @@
             <!-- Links -->
             <div class="flex-1 px-4 pr-0 mt-2 space-y-2 overflow-auto">
 
-                <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
-                    <x-heroicon-o-home class="w-5 h-5" />
-                </x-sidebar.nav-item>
+                @if (auth()->user()->role == 3)
+                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardUser')}}" uri="dashboardUser">
+                        <x-heroicon-o-home class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @else
+                    <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
+                        <x-heroicon-o-home class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
 
                 @if (auth()->user()->role == 1)
                     <x-sidebar.nav-item title="Dealership" route="http://cscapps.net.my/demoKasih/siskop" uri="#">
