@@ -40,6 +40,7 @@ use App\Http\Controllers\ProductKAController;
 use App\Http\Controllers\DigitalGoldController;
 use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\BankInformationController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function () {
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
         Route::get('upline-detail', [UplineController::class, 'index'])->name('upline-detail');
         Route::get('cart', [CartController::class, 'index'])->name('cart');
+        Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
         //-- KASIH AP --//
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
