@@ -8,9 +8,9 @@
 
         <div class="p-4 mt-8 bg-white">
 
-            <div class="flex flex-row p-4 mb-10 bg-gray-300 rounded-md shadow-lg">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 bg-white rounded-lg border-2 mb-6 py-6 px-6">
                 <div class="flex items-center justify-center flex-auto ">
-                    <x-gold.goldview type="1g" percentage="80"/>
+                    <x-gold.goldview type="1g" percentage="80" totalGram="0.30" reachGram="0.70" />
                 </div>
                 <div class="flex flex-col flex-auto mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
@@ -303,7 +303,7 @@
                         </x-general.new-modal>
                     {{-- End modal 3--}}
                 </div>
-            </div>
+            </x-general.grid>
 
             <x-table.table>
                 <x-slot name="thead">
