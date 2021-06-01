@@ -6,7 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8 bg-white">
+        <div class="p-4 mt-8">
 
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 bg-white rounded-lg border-2 mb-6 py-6 px-6">
                 <div class="flex items-center justify-center flex-auto ">
@@ -305,29 +305,6 @@
                 </div>
             </x-general.grid>
 
-            <x-table.table>
-                <x-slot name="thead">
-                    <x-table.table-header class="text-left" value="Grams" sort="" />
-                    <x-table.table-header class="text-left" value="Price Bought" sort="" />
-                    <x-table.table-header class="text-left" value="Price Now" sort="" />
-                </x-slot>
-                <x-slot name="tbody">
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>2.5g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 300.00</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 200.00</p>
-                        </x-table.table-body>
-                    </tr>
-                </x-slot>
-                <div class="px-2 py-2">
-                    {{-- {{ $list->links('pagination::tailwind') }} --}}
-                </div>
-            </x-table.table>
         </div>
     </div>
 </div>
