@@ -92,7 +92,8 @@
                                 </p>
                             </div>
                             <div class="cursor-pointer border-b-2 p-4 bg-white hover:bg-gray-100">
-                                <h1 class="font-semibold text-lg pb-2">
+                                
+                                <h1 class="font-semibold text-lg pb-2"> 
                                     <span class="flex items-center text-yellow-500">
                                         <x-heroicon-o-calendar class="h-5 w-5 mr-2"/> 
                                         08-5-2021
