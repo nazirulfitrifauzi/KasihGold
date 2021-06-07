@@ -60,10 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::get('password/confirm', Confirm::class)->name('password.confirm');
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified');
 
-
-    Route::middleware('passScreen')->group(function () {
+    Route::middleware(['passScreen','verified'])->group(function () {
         //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('dashboard', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
