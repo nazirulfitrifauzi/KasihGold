@@ -2,18 +2,21 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Mail\RequestMembershipIdKasihAP;
 use App\Models\BankAccId;
-use App\Models\BankInfo;
 use App\Models\Banks;
 use App\Models\InvMovement;
-use App\Models\Profile as ModelsProfile;
+use App\Models\Profile_bank_info;
+use App\Models\Profile_personal;
 use App\Models\States;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Profile extends Component
 {
-    public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $pgCode, $introducer, $introducerName, $preferredBranch;
+    public $temp_code;
+    public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $membership_id;
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment, $bankAccId;
     public $states, $banks;
     public $movement;
@@ -22,11 +25,20 @@ class Profile extends Component
     {
         $this->states = States::all();
         $this->banks = Banks::all();
-        
-        $this->pgCode = auth()->user()->profile->pg_code ?? "";
+
+        // check user with respective client code that has profile attached, and get the last code;
+        $client = auth()->user()->client;
+        $last_code = User::has('profile')->where('client', $client)->get()->pluck('profile.code')->last();
+
+        $this->temp_code = sprintf('%06d', $last_code + 1);
+        if(auth()->user()->profile != NULL) {
+            $this->code = auth()->user()->profile->code;
+        } else {
+            $this->code = $this->temp_code;
+        }
         $this->introducer = auth()->user()->profile->introducer ?? "";
         $this->introducerName = auth()->user()->profile->introducer_name ?? "";
-        $this->preferredBranch = auth()->user()->profile->preferred_branch ?? "";
+        $this->membership_id = auth()->user()->profile->membership_id ?? "";
 
         $this->name = auth()->user()->name;
         $this->ic = auth()->user()->profile->ic ?? "";
@@ -40,8 +52,8 @@ class Profile extends Component
         $this->postcode = auth()->user()->profile->postcode ?? "";
         $this->town = auth()->user()->profile->town ?? "";
         $this->state = auth()->user()->profile->state_id ?? 0;
-        
-        $bankInfo = BankInfo::where('user_id', auth()->user()->id)->first();
+
+        $bankInfo = Profile_bank_info::where('user_id', auth()->user()->id)->first();
 
         $this->bankId = $bankInfo->bank_id ?? "";
         $this->swiftCode = $bankInfo->swift_code ?? "";
@@ -49,20 +61,14 @@ class Profile extends Component
         $this->accHolderName = $bankInfo->acc_holder_name ?? "";
         $this->bankAccId = $bankInfo->acc_id ?? "";
         $this->bankAttachment = $bankInfo->attachment ?? "";
-        
+
         $this->movement = InvMovement::where('from_user_id', auth()->user()->id)->orWhere('to_user_id', auth()->user()->id)->get();
     }
 
-    public function updated($propertyName)
-    {
+    public function updated($propertyName) {
         $this->validateOnly($propertyName, [
-            'pgCode' => 'required',
-            'introducer' => 'required',
-            'introducerName' => 'required',
-            'preferredBranch' => 'required',
             'name' => 'required',
             'ic' => 'required',
-            'email' => 'required',
             'gender' => 'required',
             'phone1' => 'required',
             'address1' => 'required',
@@ -80,8 +86,7 @@ class Profile extends Component
         ]);
     }
 
-    public function savePersonal()
-    {
+    public function savePersonal() {
         $data = $this->validate([
             'name' => 'required',
             'ic' => 'required',
@@ -95,76 +100,76 @@ class Profile extends Component
             'town' => 'required',
             'state' => 'required',
         ]);
-        
 
         User::where('id', auth()->user()->id)
             ->update([
                 'name' => $data['name'],
-                'email' => $data['email'],
             ]);
 
-        ModelsProfile::updateOrCreate([
+        Profile_personal::updateOrCreate([
             'user_id' => auth()->user()->id
         ],[
-            'ic' => $data['ic'],
+            'code'      => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
+            'ic'        => $data['ic'],
             'gender_id' => $data['gender'],
-            'phone1' => $data['phone1'],
-            'address1' => $data['address1'],
-            'address2' => $data['address2'],
-            'address3' => $data['address3'],
-            'postcode' => $data['postcode'],
-            'town' => $data['town'],
-            'state_id' => $data['state'],
+            'phone1'    => $data['phone1'],
+            'address1'  => $data['address1'],
+            'address2'  => $data['address2'],
+            'address3'  => $data['address3'],
+            'postcode'  => $data['postcode'],
+            'town'      => $data['town'],
+            'state_id'  => $data['state'],
+            'completed' => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
         ]);
 
-        session()->flash('success', 'Profile updated.');
-    }
+        $this->checkCompleted();
 
-    public function saveReferrer()
-    {
-        $data = $this->validate([
-            'pgCode' => 'required',
-            'introducer' => 'required',
-            'introducerName' => 'required',
-            'preferredBranch' => 'required',
-        ]);
-
-        ModelsProfile::updateOrCreate([
-            'user_id' => auth()->user()->id
-        ],[
-            'pg_code' => $data['pgCode'],
-            'introducer' => $data['introducer'],
-            'introducer_name' => $data['introducerName'],
-            'preferred_branch' => $data['preferredBranch'],
-        ]);
-
-        session()->flash('success', 'Profile updated.');
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Your personal information has been updated.');
     }
 
     public function saveBank()
     {
         $data = $this->validate([
-            'bankId' => 'required',
-            'swiftCode' => 'required',
-            'accNo' => 'required',
-            'accHolderName' => 'required',
-            'bankAccId' => 'required',
-            'bankAttachment' => 'nullable',
+            'bankId'            => 'required',
+            'swiftCode'         => 'required',
+            'accNo'             => 'required',
+            'accHolderName'     => 'required',
+            'bankAccId'         => 'required',
         ]);
 
-        BankInfo::updateOrCreate([
+        Profile_bank_info::updateOrCreate([
             'user_id' => auth()->user()->id
         ],[
-            'bank_id' => $data['bankId'],
-            'swift_code' => $data['swiftCode'],
-            'acc_no' => $data['accNo'],
-            'acc_holder_name' => $data['accHolderName'],
-            'acc_id' => $data['bankAccId'],
+            'bank_id'           => $data['bankId'],
+            'swift_code'        => $data['swiftCode'],
+            'acc_no'            => $data['accNo'],
+            'acc_holder_name'   => $data['accHolderName'],
+            'acc_id'            => $data['bankAccId'],
+            'completed'         => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
         ]);
 
-        session()->flash('success', 'Profile updated.');
+        $this->checkCompleted();
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Your bank information has been updated.');
     }
-    
+
+    public function checkCompleted() {
+        if(auth()->user()->profile_c == 0) {
+            if(auth()->user()->profile->completed == 1 && auth()->user()->bank->completed == 1) {
+                User::where('id', auth()->user()->id)->update(['profile_c' => 1]);
+
+                // send email to KASIH AP to provide membership ID for this particular user.
+                if(auth()->user()->client == 2 && auth()->user()->profile->membership_id == NULL) {
+                    Mail::to('kasihAp.hq@gmail.com')->send(new RequestMembershipIdKasihAP());
+                }
+            }
+        }
+    }
+
     public function render()
     {
         return view('livewire.page.profile');

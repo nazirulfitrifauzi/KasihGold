@@ -20,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role',
         'client'
     ];
 
@@ -89,7 +90,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profile()
     {
-        return $this->hasOne('App\Models\Profile', 'user_id', 'id');
+        return $this->hasOne('App\Models\Profile_personal', 'user_id', 'id');
+    }
+
+    public function bank()
+    {
+        return $this->hasOne('App\Models\Profile_bank_info', 'user_id', 'id');
     }
 
     public function clients()
