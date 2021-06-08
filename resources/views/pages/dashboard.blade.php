@@ -118,4 +118,76 @@
         chart.render();
 </script>
 {{-- pie Chart --}}
+
+{{-- bar chart --}}
+<script>
+    var chart = document.querySelector('#chartbar')
+        var options = {
+        series: [{
+            name: 'Gold 1g',
+            data: [44, 55, 41, 37]
+            }, {
+            name: 'Gold 2.5g',
+            data: [53, 32, 33, 52]
+            }, {
+            name: 'Gold 5g',
+            data: [12, 17, 11, 9]
+            }, {
+            name: 'Gold 10g',
+            data: [9, 7, 5, 8]
+            }, 
+        ],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+        },
+        plotOptions: {
+            bar: {
+                horizontal: true,
+            },
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        title: {
+            text: 'Yearly Gold Sales'
+        },
+        xaxis: {
+            categories: [2018, 2019, 2020, 2021],
+            labels: {
+                formatter: function (val) {
+                return val + " Gold"
+                }
+            }
+        },
+        yaxis: {
+            title: {
+                text: undefined
+            },
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                return val + " Gold"
+                }
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'left',
+            offsetX: 40
+        }
+        };
+
+    var chart = new ApexCharts(chart, options);
+    chart.render();
+</script>
+
+{{-- bar chart --}}
+
 @endsection

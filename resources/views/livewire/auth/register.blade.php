@@ -62,9 +62,9 @@
                     </div>
 
                     <div class="mt-6">
-                        <div class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
+                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                             <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" disabled selected>-- PLEASE SELECT CLIENTS --</option>
+                                <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
                                 <option value="1">KASIH GOLD</option></option>
                                 <option value="2">KASIH AP</option>
                             </select>
@@ -90,6 +90,15 @@
                         <p class="text-sm text-white">Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div wire:loading.inline wire:target="register" class="flex h-screen overflow-y-hidden">
+        <div
+            class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
+            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+            <div class="flex flex-col items-center justify-center mx-auto">
+                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
             </div>
         </div>
     </div>
