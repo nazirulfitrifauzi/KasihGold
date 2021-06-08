@@ -25,8 +25,6 @@ class Register extends Component
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         ]);
 
-        // dd($this->client);
-
         $user = User::create([
             'email' => $this->email,
             'name' => $this->name,
