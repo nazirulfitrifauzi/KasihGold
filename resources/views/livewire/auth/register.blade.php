@@ -15,70 +15,150 @@
                     </a>
                 </div>
             </div>
-            <div class="z-40 w-full px-4 sm:px-24">
-                <div class="mb-6 sm:mx-auto sm:w-full">
+            <div class="z-40 w-full px-4 sm:px-24"  x-data="{ active: 0 }">
+
+                <div class="my-8 sm:mx-auto sm:w-full">
                     <h2 class="text-3xl font-extrabold text-left text-gray-700">
                         Register
                     </h2>
                     <h2 class="max-w-sm mt-2 text-base font-semibold leading-7 text-left text-gray-500">
                         Welcome! Please fill information in below
                     </h2>
+                    <div class="mt-2 w-full flex justify-center bg-gray-100 rounded-xl py-2 px-2">
+                        <x-regtab.title name="0" livewire="">
+                            <div class="flex justify-center space-x-1">
+                                <x-heroicon-o-user class="w-5 h-5" />
+                                <p>Users</p>
+                            </div>
+                        </x-regtab.title>
+                        <x-regtab.title name="1" livewire="">
+                            <div class="flex justify-center space-x-1">
+                                <x-heroicon-o-user-circle class="w-5 h-5" />
+                                <p>Agent</p>
+                            </div>
+                        </x-regtab.title>
+                    </div>
                 </div>
-                <form wire:submit.prevent="register">
-                    <div>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+
+                <!-- Register Form User  -->
+                <x-regtab.content name="0">
+                    <form wire:submit.prevent="register">
+                        <div>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
+
+                            @error('name')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        @error('name')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="email" id="email" type="email" required  placeholder="Type your email" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
 
-                    <div class="mt-6">
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="email" id="email" type="email" required  placeholder="Type your email" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            @error('email')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        @error('email')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
 
-                    <div class="mt-6">
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            @error('password')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
                         </div>
 
-                        @error('password')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mt-6">
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mt-6">
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
-                                <option value="1">KASIH GOLD</option></option>
-                                <option value="2">KASIH AP</option>
-                            </select>
+                        <div class="mt-6">
+                            <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
+                                <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
+                                    <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
+                                    <option value="1">KASIH GOLD</option></option>
+                                    <option value="2">KASIH AP</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mt-6">
-                        <span class="block w-full rounded-md shadow-sm">
-                            <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
-                                Register
-                            </button>
-                        </span>
-                    </div>
-                </form>
+                        <div class="mt-6">
+                            <span class="block w-full rounded-md shadow-sm">
+                                <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
+                                    Register
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </x-regtab.content>
+
+
+                <!-- Register Form Agent  -->
+                <x-regtab.content name="1">
+                    <form wire:submit.prevent="register" x-cloak>
+                        <div>
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
+
+                            @error('name')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="email" id="email" type="email" required  placeholder="Type your email" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
+
+                            @error('email')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            </div>
+
+                            @error('password')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
+                                <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
+                                    <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
+                                    <option value="1">KASIH GOLD</option></option>
+                                    <option value="2">KASIH AP</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <span class="block w-full rounded-md shadow-sm">
+                                <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
+                                    Register
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </x-regtab.content>
+
             </div>
         </div>
         <div class="z-40 hidden col-span-12 lg:block md:col-span-4 lg:col-span-7" >
