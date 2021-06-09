@@ -40,14 +40,34 @@
             <!-- Links -->
             <div class="flex-1 px-4 pr-0 mt-2 space-y-2 overflow-auto">
 
-                @if (auth()->user()->role == 3)
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardUser')}}" uri="dashboardUser">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @else
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
+                @if(auth()->user()->client == 1)  <!--Kasih Gold-->
+                    @if (auth()->user()->role == 1) <!--hq-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @elseif (auth()->user()->role == 3)  <!--agent-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @elseif (auth()->user()->role == 5) { <!--user-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @endif
+                @else <!--Kasih AP-->
+                    @if (auth()->user()->role == 2)  <!--hq-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardHqkasihAp')}}" uri="dashboardHqkasihAp">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @elseif (auth()->user()->role == 4)  <!--agent-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardAgentkasihAp')}}" uri="dashboardAgentkasihAp">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @elseif (auth()->user()->role == 6)  <!--user-->
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardkasihAp">
+                            <x-heroicon-o-home class="w-5 h-5" />
+                        </x-sidebar.nav-item>
+                    @endif
                 @endif
 
                 @if (auth()->user()->role == 1)

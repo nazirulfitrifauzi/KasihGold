@@ -11,14 +11,14 @@ class DashboardController extends Controller
         return view ('pages.dashboard');
     }
 
-    public function dashboardUser()
-    {
-        return view ('pages.dashboard-user');
-    }
-
     public function dashboardKasihAp()
     {
         return view ('pages.dashboard-kasih-ap');
+    }
+
+    public function dashboardAgentKasihAp()
+    {
+        return view ('pages.dashboard-agent-kasih-ap');
     }
 
     public function dashboardHqKasihAp()
