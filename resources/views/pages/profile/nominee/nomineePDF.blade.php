@@ -180,7 +180,7 @@
                             <td class="text-left pt-6" colspan="5"><b>MAKLUMAT PENTING</b></td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size:10px" colspan="5" style="padding-left: 30px;">
+                            <td class="text-left" style="font-size:10px; padding-left: 30px;" colspan="5">
                                 1. Orang Yang Layak Dinamakan : <br>
                                 <p style="padding-left: 44px">
                                     a.Tuan/puan adalah dinasihatkan supaya menamakan waris/benefisiari yang berhak menerima insentif tuan/puan.<br>
