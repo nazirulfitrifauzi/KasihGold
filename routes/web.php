@@ -66,11 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['passScreen','verified'])->group(function () {
         //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
-        Route::get('dashboard', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
-
-        Route::get('dashboardkasihAp', [DashboardController::class, 'dashboardkasihAp'])->name('dashboardkasihAp');
-        Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
-
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
@@ -96,6 +91,9 @@ Route::middleware('auth')->group(function () {
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
         //-- KASIH AP --//
+        Route::get('dashboardkasihAp', [DashboardController::class, 'dashboardKasihAp'])->name('dashboardKasihAp');
+        Route::get('dashboardAgentkasihAp', [DashboardController::class, 'dashboardAgentKasihAp'])->name('dashboardAgentkasihAp');
+        Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
         Route::get('digital-gold', [DigitalGoldController::class, 'index'])->name('digital-gold');
         Route::get('physical-gold', [physicalGoldController::class, 'index'])->name('physical-gold');
