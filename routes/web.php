@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified');
+    Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
     Route::middleware(['passScreen','verified'])->group(function () {
         //-- KASIH GOLD --//
