@@ -67,6 +67,10 @@ Route::middleware('auth')->group(function () {
         //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('dashboard', [DashboardController::class, 'dashboardUser'])->name('dashboardUser');
+
+        Route::get('dashboardkasihAp', [DashboardController::class, 'dashboardkasihAp'])->name('dashboardkasihAp');
+        Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
+
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
