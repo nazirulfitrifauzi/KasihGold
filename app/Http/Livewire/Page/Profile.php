@@ -162,9 +162,9 @@ class Profile extends Component
             if(auth()->user()->profile->completed == 1 && auth()->user()->bank->completed == 1) {
                 User::where('id', auth()->user()->id)->update(['profile_c' => 1]);
 
-                // send email to KASIH AP to provide membership ID for this particular user.
+                // pass to cooperrative dashboard to update membership ID
                 if(auth()->user()->client == 2 && auth()->user()->profile->membership_id == NULL) {
-                    Mail::to('kasihAp.hq@gmail.com')->send(new RequestMembershipIdKasihAP());
+                    // Mail::to('kasihAp.hq@gmail.com')->send(new RequestMembershipIdKasihAP());
                 }
             }
         }

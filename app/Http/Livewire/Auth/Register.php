@@ -17,8 +17,7 @@ class Register extends Component
     public $passwordConfirmation = '';
     public $client = '';
 
-    public function register()
-    {
+    public function register() {
         $this->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
@@ -35,9 +34,31 @@ class Register extends Component
 
         event(new Registered($user));
 
-        Auth::login($user, true);
+        // Auth::login($user, true);
 
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('login'));
+    }
+
+    public function registerAgent() {
+        $this->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+        ]);
+
+        $user = User::create([
+            'email'     => $this->email,
+            'name'      => $this->name,
+            'password'  => Hash::make($this->password),
+            'role'      => ($this->client == 1) ? 3 : 4,
+            'client'    => $this->client,
+        ]);
+
+        event(new Registered($user));
+
+        session()->flash('message', 'Please wait for admin approval. You will be notified through email, once approved.');
+
+        return redirect()->to('/login');
     }
 
     public function render()
