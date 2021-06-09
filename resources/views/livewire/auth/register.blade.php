@@ -16,15 +16,23 @@
                 </div>
             </div>
             <div class="z-40 w-full px-4 sm:px-24"  x-data="{ active: 0 }">
-
                 <div class="my-8 sm:mx-auto sm:w-full">
+                    @if (session('error'))
+                        <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+                    @elseif (session('info'))
+                        <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+                    @elseif (session('success'))
+                        <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+                    @elseif (session('warning'))
+                        <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+                    @endif
                     <h2 class="text-3xl font-extrabold text-left text-gray-700">
                         Register
                     </h2>
                     <h2 class="max-w-sm mt-2 text-base font-semibold leading-7 text-left text-gray-500">
                         Welcome! Please fill information in below
                     </h2>
-                    <div class="mt-2 w-full flex justify-center bg-gray-100 rounded-xl py-2 px-2">
+                    <div class="flex justify-center w-full px-2 py-2 mt-2 bg-gray-100 rounded-xl">
                         <x-regtab.title name="0" livewire="">
                             <div class="flex justify-center space-x-1">
                                 <x-heroicon-o-user class="w-5 h-5" />
@@ -102,7 +110,7 @@
 
                 <!-- Register Form Agent  -->
                 <x-regtab.content name="1">
-                    <form wire:submit.prevent="register" x-cloak>
+                    <form wire:submit.prevent="registerAgent" x-cloak>
                         <div>
                             <div class="mt-1 rounded-md shadow-sm">
                                 <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
