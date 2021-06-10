@@ -41,6 +41,7 @@ use App\Http\Controllers\DigitalGoldController;
 use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
+use App\Http\Controllers\KapController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -102,6 +103,7 @@ Route::middleware('auth')->group(function () {
         Route::get('outright-gold-cart', [physicalGoldController::class, 'ocart'])->name('outright-gold-cart');
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
+        Route::get('pending-approval-kap', [KapController::class, 'pendingApproval'])->name('pending-approval-kap');
     });
 
     Route::middleware('auth.admin')->group(function () {
