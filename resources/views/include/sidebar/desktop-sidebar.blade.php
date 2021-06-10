@@ -215,11 +215,9 @@
                     </x-sidebar.nav-item>
                 @endif
                 
-                @if(auth()->user()->client == 2)
-                    <x-sidebar.nav-item title="Setting" route="#" uri="upline-detail">
-                        <x-heroicon-o-collection class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @endif
+                <x-sidebar.nav-item title="Setting" route="setting" uri="setting">
+                    <x-heroicon-o-cog class="w-5 h-5" />
+                </x-sidebar.nav-item>
             </div>
         </nav>
 

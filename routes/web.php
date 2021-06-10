@@ -42,6 +42,7 @@ use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
 use App\Http\Controllers\KapController;
+use App\Http\Controllers\SettingController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -105,6 +106,7 @@ Route::middleware('auth')->group(function () {
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
         Route::get('pending-approval-kap', [KapController::class, 'pendingApproval'])->name('pending-approval-kap');
         Route::get('pending-approval-kap-agent', [KapController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
+        Route::get('setting', [settingController::class, 'setting'])->name('setting');
     });
 
     Route::middleware('auth.admin')->group(function () {
