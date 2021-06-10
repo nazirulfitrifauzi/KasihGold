@@ -20,7 +20,9 @@ class CreateProfilePersonalTable extends Migration
             $table->string('membership_id')->nullable();
             $table->string('introducer_code')->nullable();
             $table->string('introducer_name')->nullable();
-            $table->string('ic');
+
+            $table->string('ic')->nullable();
+            $table->string('company_no')->nullable();
             $table->unsignedBigInteger('gender_id');
             $table->string('address1');
             $table->string('address2');
@@ -30,6 +32,7 @@ class CreateProfilePersonalTable extends Migration
             $table->bigInteger('state_id');
             $table->bigInteger('country_id')->nullable();
             $table->string('phone1');
+            $table->string('fax_no')->nullable();
             $table->integer('completed')->default(0);
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ class Register extends Component
     public $email = '';
     public $password = '';
     public $passwordConfirmation = '';
+    public $type = '';
     public $client = '';
 
     public function register() {
@@ -29,6 +30,7 @@ class Register extends Component
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
             'role'      => ($this->client == 1) ? 5 : 6,
+            'type'      => $this->type,
             'client'    => $this->client,
         ]);
 
@@ -36,7 +38,11 @@ class Register extends Component
 
         Auth::login($user, true);
 
-        return redirect()->intended(route('home'));
+        if ($this->client == 1) { // kg
+            return redirect()->intended(route('home'));
+        } elseif ($this->client == 2) { // kasihap
+            return redirect()->intended(route('dashboardkasihAp'));
+        }
     }
 
     public function registerAgent() {
@@ -51,14 +57,21 @@ class Register extends Component
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
             'role'      => ($this->client == 1) ? 3 : 4,
+            'type'      => $this->type,
             'client'    => $this->client,
         ]);
 
         event(new Registered($user));
 
-        session()->flash('message', 'Please wait for admin approval. You will be notified through email, once approved.');
+        Auth::login($user, true);
 
-        return redirect()->to('/login');
+        if ($this->client == 1) { // kg
+            return redirect()->intended(route('home'));
+        } elseif ($this->client == 2) { // kasihap
+            return redirect()->intended(route('dashboardAgentkasihAp'));
+        }
+
+        return redirect()->intended(route('home'));
     }
 
     public function render()
