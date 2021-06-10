@@ -2,7 +2,7 @@
     <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
         <div class="col-span-12 mt-8">
             <div class="flex items-center h-10 intro-y">
-                <h2 class="mr-5 text-lg font-medium truncate">General Report</h2>
+                <h2 class="mr-5 text-lg font-medium truncate">Dashboard {{auth()->user()->name}}</h2>
             </div>
 
             <div class="grid grid-cols-12 gap-6 mt-5">
