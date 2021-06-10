@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default('avatar.png');
             $table->integer('role')->default(2);
             $table->integer('active')->default(0);
+            $table->integer('type');
             $table->timestamps();
         });
     }

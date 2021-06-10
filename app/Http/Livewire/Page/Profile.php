@@ -16,7 +16,7 @@ use Livewire\Component;
 class Profile extends Component
 {
     public $temp_code;
-    public $name, $ic, $email, $gender, $gender_description, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $membership_id;
+    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $membership_id;
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment, $bankAccId;
     public $states, $banks;
     public $movement;
@@ -42,10 +42,12 @@ class Profile extends Component
 
         $this->name = auth()->user()->name;
         $this->ic = auth()->user()->profile->ic ?? "";
+        $this->comp_no = auth()->user()->profile->comp_no ?? "";
         $this->email = auth()->user()->email;
         $this->gender = auth()->user()->profile->gender_id ?? 1;
         $this->gender_description = ucwords(auth()->user()->profile->gender->description ?? "MALE");
         $this->phone1 = auth()->user()->profile->phone1 ?? "";
+        $this->fax_no = auth()->user()->profile->fax_no ?? "";
         $this->address1 = auth()->user()->profile->address1 ?? "";
         $this->address2 = auth()->user()->profile->address2 ?? "";
         $this->address3 = auth()->user()->profile->address3 ?? "";
@@ -67,38 +69,42 @@ class Profile extends Component
 
     public function updated($propertyName) {
         $this->validateOnly($propertyName, [
-            'name' => 'required',
-            'ic' => 'required',
-            'gender' => 'required',
-            'phone1' => 'required',
-            'address1' => 'required',
-            'address2' => 'required',
-            'address3' => 'nullable',
-            'postcode' => 'required',
-            'town' => 'required',
-            'state' => 'required',
-            'bankId' => 'required',
-            'swiftCode' => 'required',
-            'accNo' => 'required',
-            'accHolderName' => 'required',
-            'bankAccId' => 'required',
-            'bankAttachment' => 'required',
+            'name'              => 'required',
+            'ic'                => auth()->user()->type == 1 ? 'required' : '',
+            'comp_no'           => auth()->user()->type == 2 ? 'required' : '',
+            'gender'            => 'required',
+            'phone1'            => 'required',
+            'fax_no'            => auth()->user()->type == 2 ? 'required' : '',
+            'address1'          => 'required',
+            'address2'          => 'required',
+            'address3'          => 'nullable',
+            'postcode'          => 'required',
+            'town'              => 'required',
+            'state'             => 'required',
+            'bankId'            => 'required',
+            'swiftCode'         => 'required',
+            'accNo'             => 'required',
+            'accHolderName'     => 'required',
+            'bankAccId'         => 'required',
+            'bankAttachment'    => 'required',
         ]);
     }
 
     public function savePersonal() {
         $data = $this->validate([
-            'name' => 'required',
-            'ic' => 'required',
-            'email' => 'required',
-            'gender' => 'required',
-            'phone1' => 'required',
-            'address1' => 'required',
-            'address2' => 'required',
-            'address3' => 'nullable',
-            'postcode' => 'required',
-            'town' => 'required',
-            'state' => 'required',
+            'name'          => 'required',
+            'ic'            => auth()->user()->type == 1 ? 'required' : '',
+            'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
+            'email'         => 'required',
+            'gender'        => 'required',
+            'phone1'        => 'required',
+            'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
+            'address1'      => 'required',
+            'address2'      => 'required',
+            'address3'      => 'nullable',
+            'postcode'      => 'required',
+            'town'          => 'required',
+            'state'         => 'required',
         ]);
 
         User::where('id', auth()->user()->id)
@@ -109,18 +115,32 @@ class Profile extends Component
         Profile_personal::updateOrCreate([
             'user_id' => auth()->user()->id
         ],[
-            'code'      => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
-            'ic'        => $data['ic'],
-            'gender_id' => $data['gender'],
-            'phone1'    => $data['phone1'],
-            'address1'  => $data['address1'],
-            'address2'  => $data['address2'],
-            'address3'  => $data['address3'],
-            'postcode'  => $data['postcode'],
-            'town'      => $data['town'],
-            'state_id'  => $data['state'],
-            'completed' => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
+            'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
+            'gender_id'     => $data['gender'],
+            'phone1'        => $data['phone1'],
+            'address1'      => $data['address1'],
+            'address2'      => $data['address2'],
+            'address3'      => $data['address3'],
+            'postcode'      => $data['postcode'],
+            'town'          => $data['town'],
+            'state_id'      => $data['state'],
+            'completed'     => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
         ]);
+
+        if(auth()->user()->type == 1) {
+            Profile_personal::updateOrCreate([
+                'user_id' => auth()->user()->id
+            ], [
+                'ic'            => $data['ic'],
+            ]);
+        } else {
+            Profile_personal::updateOrCreate([
+                'user_id' => auth()->user()->id
+            ], [
+                'comp_no'       => $data['comp_no'],
+                'fax_no'        => $data['fax_no'],
+            ]);
+        }
 
         $this->checkCompleted();
 
@@ -158,12 +178,12 @@ class Profile extends Component
     }
 
     public function checkCompleted() {
-        if(auth()->user()->profile_c == 0) {
-            if(auth()->user()->profile->completed == 1 && auth()->user()->bank->completed == 1) {
+        if(auth()->user()->profile != NULL && auth()->user()->bank != NULL){
+            if (auth()->user()->profile->completed == 1 && auth()->user()->bank->completed == 1) {
                 User::where('id', auth()->user()->id)->update(['profile_c' => 1]);
 
                 // pass to cooperrative dashboard to update membership ID
-                if(auth()->user()->client == 2 && auth()->user()->profile->membership_id == NULL) {
+                if (auth()->user()->client == 2 && auth()->user()->profile->membership_id == NULL) {
                     // Mail::to('kasihAp.hq@gmail.com')->send(new RequestMembershipIdKasihAP());
                 }
             }

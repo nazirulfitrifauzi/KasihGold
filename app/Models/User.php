@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'type',
         'client'
     ];
 
@@ -53,35 +54,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo('App\Models\Roles', 'role', 'id');
     }
 
-    public function isAdmin()
+    public function type()
     {
-        return $this->roles()->where('description', 'Administrator')->exists();
+        return $this->belongsTo('App\Models\UserType', 'type', 'id');
     }
 
-    public function isMasterDealer()
-    {
-        return $this->roles()->where('description', 'Master Dealer')->exists();
-    }
-
-    public function isPremiumAgent()
-    {
-        return $this->roles()->where('description', 'Premium Agent')->exists();
-    }
-
-    public function isAgent()
-    {
-        return $this->roles()->where('description', 'Agent')->exists();
-    }
-
-    public function isRetailVvip()
-    {
-        return $this->roles()->where('description', 'Retail - VVIP')->exists();
-    }
-
-    public function isRetailPublic()
-    {
-        return $this->roles()->where('description', 'Retail - Public')->exists();
-    }
+    // public function isAdmin()
+    // {
+    //     return $this->roles()->where('description', 'Administrator')->exists();
+    // }
 
     public function screening()
     {

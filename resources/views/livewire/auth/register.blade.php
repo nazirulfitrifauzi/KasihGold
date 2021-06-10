@@ -89,6 +89,16 @@
 
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
+                                <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
+                                    <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
+                                    <option value="1">INDIVIDUAL</option></option>
+                                    <option value="2">INSTITUTION</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
                                     <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
                                     <option value="1">KASIH GOLD</option></option>
@@ -144,6 +154,16 @@
                         <div class="mt-6">
                             <div class="mt-1 rounded-md shadow-sm">
                                 <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
+                                <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
+                                    <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
+                                    <option value="1">INDIVIDUAL</option></option>
+                                    <option value="2">INSTITUTION</option>
+                                </select>
                             </div>
                         </div>
 
