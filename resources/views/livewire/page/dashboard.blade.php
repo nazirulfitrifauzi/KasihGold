@@ -1,17 +1,7 @@
 
 <div>
-    <div class="z-20 relative mx-auto px-0 my-3">
+    <div class="-mt-52">
         <div class="grid grid-cols-12 gap-6">
-
-            <!-- term & condition modal -->
-            {{-- <div x-data="{ Open : true  }">
-                <x-general.modal modalActive="Open" title="Term & Condition" modalSize="lg">
-
-                </x-general.modal>
-            </div> --}}
-            <!-- end term & condition modal -->
-
-
             <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
                 <div class="col-span-12 mt-8">
                     <div class="flex items-center">
@@ -20,8 +10,8 @@
                             <p class="text-sm text-white" id="getDate"></p>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-12 gap-6 mt-5">
+                    
+                    <div class="grid grid-cols-12 gap-6 mt-10">
                         <x-dashboard.info-card bg="white" title="item Sales" value="4.510" cardRoute="#" >
                             <x-slot name="svg">
                                 <x-heroicon-o-shopping-cart class="text-blue-400 h-7 w-7"/>
@@ -71,16 +61,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-    <div class="absolute top-0 left-0 right-2 z-0">
-        <header >
-            <div class="w-full bg-cover bg-center" style="height:13rem; background-image: url({{ asset('img/header.jpg') }});">
-                <div class=" px-8 py-4 h-full w-full bg-opacity-75">
-                </div>
-            </div>
-        </header>
     </div>
 </div>

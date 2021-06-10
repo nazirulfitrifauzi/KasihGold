@@ -1,6 +1,6 @@
 
 <div>
-    <div class="z-20 relative mx-auto px-0 my-3">
+    <div class="-mt-52">
         <div class="grid grid-cols-12 gap-6">
             @if (session('success'))
             <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -13,7 +13,7 @@
                             <p class="text-sm text-white" id="getDate"></p>
                         </div>
                     </div>
-                    <div class="grid grid-cols-12 gap-6 mt-5">
+                    <div class="grid grid-cols-12 gap-6 mt-10">
                         <x-dashboard.info-card-user   bg="white" title="Digital Gold" value="4.510 G" iconColor='yellow' cardRoute="{{route('digital-gold')}}">
                             <x-slot name="svg">
                                 <x-heroicon-o-desktop-computer class="text-white h-8 w-8"/>
@@ -150,14 +150,6 @@
                 </div>
             </div>
         </div> 
-    </div>
-    <div class="absolute top-0 left-0 right-2 z-0">
-        <header >
-            <div class="w-full bg-cover bg-center" style="height:13rem; background-image: url({{ asset('img/header.jpg') }});">
-                <div class=" px-8 py-4 h-full w-full bg-opacity-75">
-                </div>
-            </div>
-        </header>
     </div>
 </div>
 
