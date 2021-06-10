@@ -123,5 +123,27 @@
                 }
             });
     </script>
+    <script>
+        var myDate = new Date();
+        var hrs = myDate.getHours();
+        var greet;
+        if (hrs < 12)
+            greet = 'Good Morning';
+        else if (hrs >= 12 && hrs <= 17)
+            greet = 'Good Afternoon';
+        else if (hrs >= 17 && hrs <= 24)
+            greet = 'Good Evening';
+        document.getElementById('lblGreetings').innerHTML = greet + ' {{ Auth()->user()->name }}';
+    </script>
+    <script>
+        const date = new Date();
+        const formattedDate = date.toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        }).replace(/ /g, ' ');
+        console.log(formattedDate);
+        document.getElementById('getDate').innerHTML = 'Here are your stats for Today, ' + formattedDate;
+    </script>
     @stack('js')
 </html>
