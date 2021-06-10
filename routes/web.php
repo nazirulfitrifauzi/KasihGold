@@ -104,6 +104,7 @@ Route::middleware('auth')->group(function () {
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
         Route::get('pending-approval-kap', [KapController::class, 'pendingApproval'])->name('pending-approval-kap');
+        Route::get('pending-approval-kap-agent', [KapController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
     });
 
     Route::middleware('auth.admin')->group(function () {

@@ -6,9 +6,9 @@
             </div>
 
             <div class="grid grid-cols-12 gap-6 mt-5">
-                <x-dashboard.info-card bg="white" title="item Sales" value="4.510" cardRoute="#" >
+                <x-dashboard.info-card bg="white" title="Pending Approval" value="2 Users" cardRoute="{{route('pending-approval-kap')}}" >
                     <x-slot name="svg">
-                        <x-heroicon-o-shopping-cart class="text-blue-400 h-7 w-7"/>
+                        <x-heroicon-o-user-group class="text-blue-400 h-7 w-7"/>
                     </x-slot>
                 </x-dashboard.info-card>
 
