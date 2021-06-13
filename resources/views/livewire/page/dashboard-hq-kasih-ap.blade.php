@@ -1,4 +1,3 @@
-
 <div>
     <div class="-mt-52">
         <div class="grid grid-cols-12 gap-6">
@@ -12,19 +11,19 @@
                     </div>
 
                     <div class="grid grid-cols-12 gap-6 mt-10">
-                        <x-dashboard.info-card bg="white" title="Pending Approval" value="2 Users" cardRoute="{{route('pending-approval-kap')}}" >
+                        <x-dashboard.info-card bg="white" title="Pending Approval" value="{{ $pendingApproval->count() }} Users" cardRoute="{{route('pending-approval-kap')}}" >
                             <x-slot name="svg">
-                                <x-heroicon-o-user-group class="text-blue-400 h-7 w-7"/>
+                                <x-heroicon-o-shield-check class="text-blue-400 h-7 w-7"/>
                             </x-slot>
                         </x-dashboard.info-card>
 
-                        {{-- <x-dashboard.info-card bg="white" title="New Orders" value="3.521" percentage="2%" percentageBg="red" cardRoute="{{route('new-orders')}}" >
+                        <x-dashboard.info-card bg="white" title="My Agents" value="{{ $myAgent->count() }} Agent{{ ($myAgent->count() > 1) ? 's' : '' }}" cardRoute="{{route('new-orders')}}" >
                             <x-slot name="svg">
-                                <x-heroicon-o-desktop-computer class="text-yellow-400 h-7 w-7"/>
+                                <x-heroicon-o-user-group class="text-yellow-400 h-7 w-7"/>
                             </x-slot>
                         </x-dashboard.info-card>
 
-                        <x-dashboard.info-card bg="white" title="Total Products" value="2.145" percentage="12%" percentageBg="green" cardRoute="#" >
+                        {{-- <x-dashboard.info-card bg="white" title="Total Products" value="2.145" percentage="12%" percentageBg="green" cardRoute="#" >
                             <x-slot name="svg">
                                 <x-heroicon-o-desktop-computer class="text-yellow-400 h-7 w-7"/>
                             </x-slot>
