@@ -83,4 +83,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('App\Models\ClientsInfo', 'client', 'id');
     }
+
+    public function upline()
+    {
+        return $this->hasOne('App\Models\UserUpline', 'user_id', 'id');
+    }
+
+    public function downline()
+    {
+        return $this->hasMany('App\Models\UserDownline', 'user_id', 'id');
+    }
 }
