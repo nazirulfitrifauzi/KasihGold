@@ -336,15 +336,17 @@ img {
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        content
+                                        <p>APPROVED</p>
+                                        <p>Your request to access the system as agent has been approved.</p>
+                                        <p>Please sign in with your credential.</p>
 
-                                        <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                        {{-- <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
                                                     subcopy
                                                 </td>
                                             </tr>
-                                        </table>
+                                        </table> --}}
                                     </td>
                                 </tr>
                             </table>

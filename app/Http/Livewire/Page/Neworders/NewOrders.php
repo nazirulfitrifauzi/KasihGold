@@ -9,8 +9,8 @@ use Livewire\Component;
 
 class NewOrders extends Component
 {
-
     public $serial_no, $newOrders, $inv_master;
+
     public function approve()
     {
         $this->inv_master = InvMaster::where('serial_no', $this->serial_no)->first();
