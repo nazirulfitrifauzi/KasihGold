@@ -100,12 +100,13 @@
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                @if (auth()->user()->role == 1)
+                @if (auth()->user()->client == 1 && auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Suppliers" route="{{route('admin.suppliers')}}" uri="admin/suppliers">
                     <x-heroicon-o-inbox class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @endif
 
+                @if (auth()->user()->client == 1)
                 <x-sidebar.dropdown-nav-item active="open" title="Tracking" uri="tracking/*">
                     <x-slot name="icon">
                         <x-heroicon-o-map class="w-5 h-5" />
@@ -125,19 +126,23 @@
                         </x-sidebar.dropdown-item>
                     </div>
                 </x-sidebar.dropdown-nav-item>
+                @endif
 
-                @if (auth()->user()->role == 2)
+                @if (auth()->user()->role != 1 && auth()->user()->role != 2)
                 <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}"
                     uri="incident-reporting">
                     <x-heroicon-o-exclamation-circle class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @endif
-                @if (auth()->user()->role == 1)
+
+                @if (auth()->user()->role == 1 || auth()->user()->role == 2)
                 <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}"
                     uri="admin/incident-reporting">
                     <x-heroicon-o-exclamation-circle class="w-5 h-5" />
                 </x-sidebar.nav-item>
+                @endif
 
+                @if (auth()->user()->client == 1 && auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" uri="admin/screening">
                     <x-heroicon-o-shield-check class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -177,7 +182,7 @@
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                @if (auth()->user()->role == 2)
+                @if (auth()->user()->role == 3 || auth()->user()->role == 5)
                     <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
                         <x-slot name="icon">
                             <x-heroicon-o-shopping-cart class="w-5 h-5" />
@@ -214,7 +219,7 @@
                         <x-heroicon-o-collection class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
-                
+
                 <x-sidebar.nav-item title="Setting" route="setting" uri="setting">
                     <x-heroicon-o-cog class="w-5 h-5" />
                 </x-sidebar.nav-item>

@@ -2,10 +2,60 @@
 
 namespace App\Http\Livewire\Page\Kap;
 
+use App\Mail\KAP\ApprovedAgent;
+use App\Models\Profile_personal;
+use App\Models\User;
+use App\Models\UserDownline;
+use App\Models\UserUpline;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class PendingApprovalKap extends Component
 {
+    public $list;
+
+    protected $listeners = ['reload' => '$refresh'];
+
+    public function mount()
+    {
+        $this->list = User::whereClient(2)->whereRole(4)->whereActive(0)->get();
+    }
+
+    public function approve($id)
+    {
+        //update user for active
+        User::whereId($id)->update(['active' => 1]);
+
+        //update profile info for the successor
+        Profile_personal::where('user_id', $id)->update([
+            'introducer_code' => auth()->user()->id,
+            'introducer_name' => auth()->user()->name,
+        ]);
+
+        //update downline for the iniator
+        UserDownline::create([
+            'user_id'       => auth()->user()->id,
+            'downline_id'   => $id,
+        ]);
+
+        //update upline for the successor
+        UserUpline::create([
+            'user_id'       => $id,
+            'upline_id'   => auth()->user()->id,
+        ]);
+
+        //send out email to the successor to notified their status
+        $user = User::whereId($id)->first();
+        Mail::to($user->email)->send(new ApprovedAgent());
+
+        //flash message to initiator
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Agent has been approved.');
+
+        return redirect()->to('/pending-approval-kap');
+    }
+
     public function render()
     {
         return view('livewire.page.kap.pending-approval-kap');
