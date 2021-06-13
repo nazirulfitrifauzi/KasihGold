@@ -9,4 +9,9 @@ class UserDownline extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'downline_id', 'id');
+    }
 }

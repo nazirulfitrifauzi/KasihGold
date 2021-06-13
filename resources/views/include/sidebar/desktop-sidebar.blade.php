@@ -214,7 +214,9 @@
                     <x-sidebar.nav-item title="My Commission" route="{{route('commission')}}" uri="commission">
                         <x-heroicon-o-currency-dollar class="w-5 h-5" />
                     </x-sidebar.nav-item>
+                @endif
 
+                @if (auth()->user()->role != 1 || auth()->user()->role != 2)
                     <x-sidebar.nav-item title="Upline Details" route="{{route('upline-detail')}}" uri="upline-detail">
                         <x-heroicon-o-collection class="w-5 h-5" />
                     </x-sidebar.nav-item>
