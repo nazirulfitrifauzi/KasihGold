@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             FeedbackSeeder::class,
             SupplierSeeder::class,
             RoleSeeder::class,
+            MemberRelationshipSeeder::class,
         ]);
     }
 }

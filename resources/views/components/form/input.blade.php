@@ -1,7 +1,8 @@
 @props([
     'type'=>'text',
     'label'=>'',
-    'value'=>''
+    'value'=>'',
+    'disable' => ''
 ])
 
 <div>

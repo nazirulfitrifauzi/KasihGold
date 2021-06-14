@@ -14,9 +14,8 @@ class ProfileController extends Controller
 
     public function nomineePDF()
     {
-        $pdf = PDF::loadView('pages.profile.nominee.nomineePDF')->setPaper('A4','portrait');
+        $testdata = 'hehe';
+        $pdf = PDF::loadView('pages.profile.nominee.nomineePDF', compact('testdata'))->setPaper('A4','portrait');
         return $pdf->stream();
     }
-
-    
 }

@@ -47,8 +47,9 @@
                     </x-form.dropdown>
                 </x-table.table-body>
 
-                <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                <x-table.table-body colspan="" class="flex items-center gap-4 text-sm font-medium text-gray-700">
                     <x-form.input type="text" label="" value="date_birth" wire:model=""/>
+                    <button type="button" class="px-4 py-2 text-sm text-center text-white bg-blue-400 rounded shadow-sm focus:outline-none hover:bg-blue-300">Save</button>
                 </x-table.table-body>
             </tr>
         </x-slot>
