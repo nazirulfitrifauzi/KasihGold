@@ -119,6 +119,16 @@
             <p class="text-xs text-gray-400">{{$reachGram}} g more to reach 10 g</p>
         </div>
     </div>
+    @elseif ($type == '1kg')
+    <div class="relative w-64 h-64 bg-no-repeat bg-center" style="background-image: url('{{ asset('img/gold/gold1kg.png') }}')">
+        <div class="bar-value" style="border-radius: 1.5rem" ></div>
+    </div>
+    <div class="flex justify-center items-center mt-2">
+        <div class='text-center'>
+            <p class="font-bold text-2xl ordinal">{{$totalGram}} g <span class="text-gray-400">/ 1000 g</span></p>
+            <p class="text-xs text-gray-400">{{$reachGram}} g available gold</p>
+        </div>
+    </div>
     @endif
 
 </div>
