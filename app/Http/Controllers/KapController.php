@@ -15,4 +15,9 @@ class KapController extends Controller
     {
         return view('pages.kap.pending-approval-kap-agent');
     }
+
+    public function myAgent()
+    {
+        return view('pages.kap.my-agent-kap');
+    }
 }
