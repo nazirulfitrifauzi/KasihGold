@@ -53,7 +53,7 @@
                     @click="modalOpen4 = true">Stock In / Out
                 </a> --}}
                 {{-- Start modal Stock In / Out --}}
-                <x-general.modal modalActive="modalOpen4" title="Stock In / Out" modalSize="lg">
+                {{-- <x-general.modal modalActive="modalOpen4" title="Stock In / Out" modalSize="lg">
                     <x-form.basic-form action="">
                         <x-slot name="content">
                             <div class="p-4 mt-4 leading-4">
@@ -71,11 +71,20 @@
                             </div>
                         </x-slot>
                     </x-form.basic-form>
-                </x-general.modal>
+                </x-general.modal> --}}
                 {{-- End Modal Stock In / Out --}}
             </div>
             <!-- BEGIN: Item List -->
             {{-- <div class="col-span-12 intro-y lg:col-span-8"> --}}
+                <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 bg-white rounded-lg border-2 mb-6 py-6 px-6">
+                    <div class="flex items-center justify-center flex-auto ">
+                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
+                    </div>
+                    <div class="flex items-center justify-center flex-auto ">
+                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
+                    </div>
+                    </div>
+                </x-general.grid>
             <div class="col-span-12 intro-y">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-no-wrap">
