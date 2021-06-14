@@ -10,4 +10,9 @@ class UplineController extends Controller
     {
         return view('pages.upline.upline-detail');
     }
+
+    public function downline()
+    {
+        return view('pages.downline.downline-detail');
+    }
 }

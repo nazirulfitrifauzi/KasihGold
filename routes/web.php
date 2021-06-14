@@ -88,7 +88,9 @@ Route::middleware('auth')->group(function () {
         Route::get('shipment', [ShipmentController::class, 'index'])->name('shipment');
         Route::get('my-network', [MyNetworkController::class, 'index'])->name('my-network');
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
-        Route::get('upline-detail', [UplineController::class, 'index'])->name('upline-detail');
+        Route::get('my-network/upline-detail', [UplineController::class, 'index'])->name('upline-detail');
+        Route::get('my-network/downline-detail', [UplineController::class, 'downline'])->name('downline-detail');
+
         Route::get('cart', [CartController::class, 'index'])->name('cart');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
@@ -106,6 +108,7 @@ Route::middleware('auth')->group(function () {
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
         Route::get('pending-approval-kap', [KapController::class, 'pendingApproval'])->name('pending-approval-kap');
         Route::get('pending-approval-kap-agent', [KapController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
+        Route::get('my-agent-kap', [KapController::class, 'myAgent'])->name('my-agent-kap');
         Route::get('setting', [settingController::class, 'setting'])->name('setting');
     });
 
