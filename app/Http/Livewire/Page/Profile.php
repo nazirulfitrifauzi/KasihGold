@@ -185,6 +185,11 @@ class Profile extends Component
         }
     }
 
+    public function saveNominee()
+    {
+        //
+    }
+
     public function render()
     {
         return view('livewire.page.profile');

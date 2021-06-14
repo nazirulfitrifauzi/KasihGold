@@ -58,7 +58,7 @@
                         <td class="text-left" colspan="5">NAMA : <b>ELI ZAITHUL ZANA BT MOHD PODZI</b></td>
                     </tr>
                     <tr>
-                        <td class="text-left"colspan="3">PG CODE : <b>PG00214563</b></td>
+                        <td class="text-left"colspan="3">PG CODE : <b>PG00214563</b> {{ $testdata }}</td>
                         <td class="text-left" colspan="2">I/C NO :  <b>750827017218</b></td>
                     </tr>
                     <tr>
@@ -163,12 +163,12 @@
                     </tr>
                     <tbody style="border:1px solid black;"colspan="5" >
                         <tr>
-                            <td class="text-left py-6" colspan="3">
+                            <td class="py-6 text-left" colspan="3">
                                 <p>TANDATANGAN PEMOHON : 
                                     <input type="text" value="" readonly="" style="border-bottom: 1px solid black;">
                                 </p>
                             </td>
-                            <td class="text-left py-6" colspan="2">
+                            <td class="py-6 text-left" colspan="2">
                                 <p>TARIKH :
                                     <input type="text" value="" readonly="" style="border-bottom: 1px solid black;">
                                 </p>
@@ -177,7 +177,7 @@
                     </tbody>
                     <tbody style="border:1px solid black;"colspan="5" >
                         <tr>
-                            <td class="text-left pt-6" colspan="5"><b>MAKLUMAT PENTING</b></td>
+                            <td class="pt-6 text-left" colspan="5"><b>MAKLUMAT PENTING</b></td>
                         </tr>
                         <tr>
                             <td class="text-left" style="font-size:10px; padding-left: 30px;" colspan="5">
