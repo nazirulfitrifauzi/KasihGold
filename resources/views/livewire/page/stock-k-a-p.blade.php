@@ -1,9 +1,17 @@
 <div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
-
         <h2 class="flex mr-auto text-lg font-medium">
             Stock Management
-                <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}">
+        </h2>
+    </div>
+
+    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y">
+        <div class="grid grid-cols-12 col-span-12 gap-5  border-t border-theme-5 pt-4">
+            <div class="flex space-x-2 col-span-12">
+                <h2 class="text-lg font-medium">
+                    Gold Bar List
+                </h2>
+                <div class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}">
                     <x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500" @click="openModal = true"/>
                     {{-- Start modal --}}
                         <x-general.modal modalActive="openModal" title="Stock Management" modalSize="2xl">
@@ -37,54 +45,27 @@
                             </div>
                         </x-general.modal>
                     {{-- End modal --}}
-                </span>
-
-        </h2>
-
-    </div>
-
-    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y">
-        <div class="grid grid-cols-12 col-span-12 gap-5 pt-5 mt-5 border-t border-theme-5">
-            <h2 class="col-span-6 mr-auto text-lg font-medium ">
-                Gold Bar List
-            </h2>
-            <div class="flex justify-end w-full col-span-6 mt-4 sm:w-auto sm:mt-0" x-data="{ modalOpen4: false}">
-                {{-- <a href="#" class="flex px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none"
-                    @click="modalOpen4 = true">Stock In / Out
-                </a> --}}
-                {{-- Start modal Stock In / Out --}}
-                {{-- <x-general.modal modalActive="modalOpen4" title="Stock In / Out" modalSize="lg">
-                    <x-form.basic-form action="">
-                        <x-slot name="content">
-                            <div class="p-4 mt-4 leading-4">
-                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                    <x-form.input label="Name" value=""/>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none" @click="modalOpen4 = false" >
-                                        Cancel
-                                    </button>
-                                    <button class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none">
-                                        Submit
-                                    </button>
-                                </div>
-                            </div>
-                        </x-slot>
-                    </x-form.basic-form>
-                </x-general.modal> --}}
-                {{-- End Modal Stock In / Out --}}
+                </div>
             </div>
             <!-- BEGIN: Item List -->
-            {{-- <div class="col-span-12 intro-y lg:col-span-8"> --}}
-                <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 bg-white rounded-lg border-2 mb-6 py-6 px-6">
-                    <div class="flex items-center justify-center flex-auto ">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 ">
+                <div class="flex justify-start bg-white rounded-lg border-2 mb-6 py-6 px-4 overflow-y-auto">
+                    <div class="flex items-center  flex-auto ">
+                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
                         <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
                     </div>
-                    <div class="flex items-center justify-center flex-auto ">
-                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
-                    </div>
-                    </div>
-                </x-general.grid>
+                </div>
+            </x-general.grid>
+
+            {{-- <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 bg-white rounded-lg border-2 mb-6 py-6">
+                <div class="flex items-center  flex-auto ">
+                    <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
+                </div>
+                <div class="flex items-center  flex-auto ">
+                    <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
+                </div>
+            </x-general.grid> --}}
+            
             <div class="col-span-12 intro-y">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-no-wrap">
