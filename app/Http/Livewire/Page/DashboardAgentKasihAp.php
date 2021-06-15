@@ -12,7 +12,11 @@ class DashboardAgentKasihAp extends Component
 
     public function mount()
     {
-        $this->pendingApproval = User::whereClient(2)->whereRole(6)->whereActive(0)->get();
+        $logged_user = auth()->user()->id;
+        $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
+            $query->where('agent_id', '=', $logged_user);
+        })->whereClient(2)->whereRole(6)->whereActive(0)->get();
+
         $this->activeUser = User::where('client', 2)->where('role', 6)->where('active', 1)->get();
     }
 

@@ -51,18 +51,18 @@
 
                 <main class="overflow-y-auto">
                     @if(
-                            Route::current()->uri == 'home' || 
-                            Route::current()->uri == 'dashboardkasihAp' || 
-                            Route::current()->uri == 'dashboardAgentkasihAp'|| 
+                            Route::current()->uri == 'home' ||
+                            Route::current()->uri == 'dashboardKasihAp' ||
+                            Route::current()->uri == 'dashboardAgentkasihAp'||
                             Route::current()->uri == 'dashboardHqkasihAp'
                         )
                         <div>
                             <header>
-                                <div class="w-full bg-cover bg-center" style="height:13rem; 
+                                <div class="w-full bg-center bg-cover" style="height:13rem;
                                     background-image: url(
                                         @if(
-                                                auth()->user()->role == 1 || 
-                                                auth()->user()->role == 3 || 
+                                                auth()->user()->role == 1 ||
+                                                auth()->user()->role == 3 ||
                                                 auth()->user()->role == 5
                                             )
                                             {{ asset('img/headerKG.png') }}
@@ -70,7 +70,7 @@
                                             {{ asset('img/header.jpg') }}
                                         @endif
                                         );">
-                                    <div class=" px-8 py-4 h-full w-full bg-opacity-75"></div>
+                                    <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                                 </div>
                             </header>
                         </div>

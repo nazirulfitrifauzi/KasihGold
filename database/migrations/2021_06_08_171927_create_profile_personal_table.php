@@ -17,6 +17,7 @@ class CreateProfilePersonalTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('code');
+            $table->unsignedBigInteger('agent_id')->nullable();
             $table->string('membership_id')->nullable();
             $table->string('introducer_code')->nullable();
             $table->string('introducer_name')->nullable();

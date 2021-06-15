@@ -34,6 +34,13 @@
                         @if (auth()->user()->client == "2")
                             <x-form.input label="KAP Code" wire:model="code" value="code" disable="true"/>
                             @if (auth()->user()->type == "1")
+                                <x-form.dropdown label="Agent" default="no" wire:model="agentId" value="agentId">
+                                    <option value="" hide selected>Select an Agent</option>
+                                        @foreach ($agent as $agents)
+                                            <option value="{{ $agents->id }}">{{ $agents->name }}</option>
+                                        @endforeach
+                                </x-form.dropdown>
+                                {{ $agentId }}
                                 <x-form.input label="Membership ID" wire:model="membership_id" value="membership_id" disable="true"/>
                             @endif
                         @endif

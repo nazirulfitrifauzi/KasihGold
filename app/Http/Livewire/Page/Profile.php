@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Page;
 
-use App\Mail\RequestMembershipIdKasihAP;
-use App\Models\BankAccId;
 use App\Models\Banks;
 use App\Models\InvMovement;
 use App\Models\MemberRelationship;
@@ -12,7 +10,6 @@ use App\Models\Profile_nominee;
 use App\Models\Profile_personal;
 use App\Models\States;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -20,11 +17,11 @@ use Livewire\WithFileUploads;
 class Profile extends Component
 {
     use WithFileUploads;
-    
+
     public $temp_code;
-    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $membership_id;
+    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $agentId, $membership_id;
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment, $bankAccId;
-    public $states, $banks;
+    public $states, $banks, $agent;
     public $movement;
     public $memberRelationshipList;
     public $nom_name, $nom_id, $nom_dob, $nom_mem_rel, $nom_perc;
@@ -34,6 +31,7 @@ class Profile extends Component
 
     public function mount()
     {
+        $this->agent = User::whereRole(4)->whereClient(2)->whereActive(1)->get();
         $this->states = States::all();
         $this->banks = Banks::all();
         $this->memberRelationshipList = MemberRelationship::all();
@@ -93,6 +91,7 @@ class Profile extends Component
             'postcode'          => 'required',
             'town'              => 'required',
             'state'             => 'required',
+            // 'agentId'           => auth()->user()->type == 2 ? 'required' : '',
             'bankId'            => 'required',
             'swiftCode'         => 'required',
             'accNo'             => 'required',
@@ -111,41 +110,78 @@ class Profile extends Component
     }
 
     public function savePersonal() {
-        $data = $this->validate([
-            'name'          => 'required',
-            'ic'            => auth()->user()->type == 1 ? 'required' : '',
-            'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
-            'email'         => 'required',
-            'gender'        => 'required',
-            'phone1'        => 'required',
-            'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
-            'address1'      => 'required',
-            'address2'      => 'required',
-            'address3'      => 'nullable',
-            'postcode'      => 'required',
-            'town'          => 'required',
-            'state'         => 'required',
-        ]);
+        if (auth()->user()->type == 1) {
+            $data = $this->validate([
+                'agentId'       => auth()->user()->type == 2 ? 'required' : '',
+                'name'          => 'required',
+                'ic'            => auth()->user()->type == 1 ? 'required' : '',
+                'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
+                'email'         => 'required',
+                'gender'        => 'required',
+                'phone1'        => 'required',
+                'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
+                'address1'      => 'required',
+                'address2'      => 'required',
+                'address3'      => 'nullable',
+                'postcode'      => 'required',
+                'town'          => 'required',
+                'state'         => 'required',
+            ]);
+        } else {
+            $data = $this->validate([
+                'name'          => 'required',
+                'ic'            => auth()->user()->type == 1 ? 'required' : '',
+                'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
+                'email'         => 'required',
+                'gender'        => 'required',
+                'phone1'        => 'required',
+                'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
+                'address1'      => 'required',
+                'address2'      => 'required',
+                'address3'      => 'nullable',
+                'postcode'      => 'required',
+                'town'          => 'required',
+                'state'         => 'required',
+            ]);
+        }
 
         User::where('id', auth()->user()->id)
             ->update([
                 'name' => $data['name'],
             ]);
 
-        Profile_personal::updateOrCreate([
-            'user_id' => auth()->user()->id
-        ],[
-            'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
-            'gender_id'     => $data['gender'],
-            'phone1'        => $data['phone1'],
-            'address1'      => $data['address1'],
-            'address2'      => $data['address2'],
-            'address3'      => $data['address3'],
-            'postcode'      => $data['postcode'],
-            'town'          => $data['town'],
-            'state_id'      => $data['state'],
-            'completed'     => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
-        ]);
+        if (auth()->user()->type == 1){
+            Profile_personal::updateOrCreate([
+                'user_id' => auth()->user()->id
+            ], [
+                'agent_id'      => $data['agentId'],
+                'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
+                'gender_id'     => $data['gender'],
+                'phone1'        => $data['phone1'],
+                'address1'      => $data['address1'],
+                'address2'      => $data['address2'],
+                'address3'      => $data['address3'],
+                'postcode'      => $data['postcode'],
+                'town'          => $data['town'],
+                'state_id'      => $data['state'],
+                'completed'     => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
+            ]);
+        } else {
+            Profile_personal::updateOrCreate([
+                'user_id' => auth()->user()->id
+            ], [
+                'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
+                'gender_id'     => $data['gender'],
+                'phone1'        => $data['phone1'],
+                'address1'      => $data['address1'],
+                'address2'      => $data['address2'],
+                'address3'      => $data['address3'],
+                'postcode'      => $data['postcode'],
+                'town'          => $data['town'],
+                'state_id'      => $data['state'],
+                'completed'     => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
+            ]);
+        }
 
         if(auth()->user()->type == 1) {
             Profile_personal::updateOrCreate([
@@ -261,7 +297,7 @@ class Profile extends Component
     {
         // Delete storage directory
         $delete = Storage::deleteDirectory('public/nominee/' . auth()->user()->id);
-        
+
         // Delete nominee profile details
         Profile_nominee::where('user_id', auth()->user()->id)->delete();
 
@@ -282,7 +318,7 @@ class Profile extends Component
             $docDirList['name'][] = end($nameArr);
             $docDirList['dir'][] = $dir;
         }
-        
+
         return $docDirList;
     }
 
