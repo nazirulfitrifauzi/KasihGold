@@ -51,7 +51,7 @@ class PendingApprovalKapAgent extends Component
         //flash message to initiator
         session()->flash('success');
         session()->flash('title', 'Success!');
-        session()->flash('message', 'Agent has been approved.');
+        session()->flash('message', 'User has been approved.');
 
         return redirect()->to('/pending-approval-kap-agent');
     }
