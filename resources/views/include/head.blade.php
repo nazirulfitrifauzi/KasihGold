@@ -58,9 +58,19 @@
                         )
                         <div>
                             <header>
-                                <div class="w-full bg-cover bg-center" style="height:13rem; background-image: url({{ asset('img/header.jpg') }});">
-                                    <div class=" px-8 py-4 h-full w-full bg-opacity-75">
-                                    </div>
+                                <div class="w-full bg-cover bg-center" style="height:13rem; 
+                                    background-image: url(
+                                        @if(
+                                                auth()->user()->role == 1 || 
+                                                auth()->user()->role == 3 || 
+                                                auth()->user()->role == 5
+                                            )
+                                            {{ asset('img/headerKG.png') }}
+                                        @else
+                                            {{ asset('img/header.jpg') }}
+                                        @endif
+                                        );">
+                                    <div class=" px-8 py-4 h-full w-full bg-opacity-75"></div>
                                 </div>
                             </header>
                         </div>
