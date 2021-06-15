@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
         //-- KASIH AP --//
-        Route::get('dashboardkasihAp', [DashboardController::class, 'dashboardKasihAp'])->name('dashboardKasihAp');
+        Route::get('dashboardKasihAp', [DashboardController::class, 'dashboardKasihAp'])->name('dashboardKasihAp');
         Route::get('dashboardAgentkasihAp', [DashboardController::class, 'dashboardAgentKasihAp'])->name('dashboardAgentkasihAp');
         Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');

@@ -64,7 +64,7 @@
                             <x-heroicon-o-home class="w-5 h-5" />
                         </x-sidebar.nav-item>
                     @elseif (auth()->user()->role == 6)  <!--user-->
-                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardkasihAp">
+                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardKasihAp">
                             <x-heroicon-o-home class="w-5 h-5" />
                         </x-sidebar.nav-item>
                     @endif
@@ -233,12 +233,14 @@
                                 </x-slot>
                             </x-sidebar.dropdown-item>
                         @endif
-                        <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
-                            uri="my-network/downline-detail">
-                            <x-slot name="icon">
-                                <x-heroicon-o-cube class="w-5 h-5" />
-                            </x-slot>
-                        </x-sidebar.dropdown-item>
+                        @if (auth()->user()->role != 5 && auth()->user()->role != 6)
+                            <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
+                                uri="my-network/downline-detail">
+                                <x-slot name="icon">
+                                    <x-heroicon-o-cube class="w-5 h-5" />
+                                </x-slot>
+                            </x-sidebar.dropdown-item>
+                        @endif
                     </div>
                 </x-sidebar.dropdown-nav-item>
 

@@ -41,7 +41,7 @@ class Register extends Component
         if ($this->client == 1) { // kg
             return redirect()->intended(route('home'));
         } elseif ($this->client == 2) { // kasihap
-            return redirect()->intended(route('dashboardkasihAp'));
+            return redirect()->intended(route('dashboardKasihAp'));
         }
     }
 

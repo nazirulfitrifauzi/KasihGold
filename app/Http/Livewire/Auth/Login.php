@@ -52,7 +52,7 @@ class Login extends Component
             } elseif (auth()->user()->role == 4) { // agent
                 return redirect()->to('/dashboardAgentkasihAp');
             } elseif (auth()->user()->role == 6) { // user
-                return redirect()->to('/dashboardkasihAp');
+                return redirect()->to('/dashboardKasihAp');
             }
         }
     }
