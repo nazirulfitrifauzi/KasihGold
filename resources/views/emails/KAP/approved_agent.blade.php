@@ -242,6 +242,12 @@
             text-align: center;
         }
 
+        .content-cell4 {
+            max-width: 100vw;
+            padding: 10px;
+            text-align: center;
+        }
+
         /* Buttons */
 
         .action {
@@ -288,6 +294,15 @@
             border-left: 18px solid #e53e3e;
             border-right: 18px solid #e53e3e;
             border-top: 8px solid #e53e3e;
+        }
+
+        .button-yellow,
+        .button-warning {
+            background-color: rgba(253, 194, 2, 0.979);
+            border-bottom: 8px solid rgba(253, 194, 2, 0.979);
+            border-left: 18px solid rgba(253, 194, 2, 0.979);
+            border-right: 18px solid rgba(253, 194, 2, 0.979);
+            border-top: 8px solid rgba(253, 194, 2, 0.979);
         }
 
         /* Panels */
@@ -359,6 +374,7 @@
                                         <p style="font-weight: bold; font-size:20px; color:#48bb78">APPROVED</p>
                                         <p>Your request to access the system as agent has been approved.</p>
                                         <p>Please sign in with your credential.</p>
+                                        <a href="{{ route('login') }}" class="button button-warning">Login here</a>
                                     </td>
                                 </tr>
                             </table>
