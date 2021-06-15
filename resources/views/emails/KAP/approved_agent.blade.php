@@ -106,7 +106,7 @@
             -premailer-cellpadding: 0;
             -premailer-cellspacing: 0;
             -premailer-width: 100%;
-            background-color: #edf2f7;
+            background-color: #2c2b2b;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -154,9 +154,9 @@
             -premailer-cellpadding: 0;
             -premailer-cellspacing: 0;
             -premailer-width: 100%;
-            background-color: #edf2f7;
-            border-bottom: 1px solid #edf2f7;
-            border-top: 1px solid #edf2f7;
+            background-color: #2c2b2b;
+            border-bottom: 1px solid #2c2b2b;
+            border-top: 1px solid #2c2b2b;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -240,7 +240,6 @@
             max-width: 100vw;
             padding: 32px;
             text-align: center;
-
         }
 
         /* Buttons */
@@ -330,7 +329,7 @@
     <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
         <tr>
             <td align="center">
-                <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <table class="" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
                         <td class="header"></td>
                     </tr>
@@ -371,7 +370,7 @@
                             <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0"
                                 role="presentation">
                                 <tr>
-                                    <td class="content-cell" align="center">
+                                    <td class="content-cell" align="center" style="color:rgba(253, 194, 2, 0.979)">
                                         © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
                                     </td>
                                 </tr>
