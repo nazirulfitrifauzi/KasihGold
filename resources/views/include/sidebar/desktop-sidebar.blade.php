@@ -216,31 +216,27 @@
                     </x-sidebar.nav-item>
                 @endif
 
-                @if (auth()->user()->role != 1 || auth()->user()->role != 2)
-                    {{-- <x-sidebar.nav-item title="Upline Details" route="{{route('upline-detail')}}" uri="upline-detail">
+                <x-sidebar.dropdown-nav-item active="open" title="My Network" uri="my-network/*">
+                    <x-slot name="icon">
                         <x-heroicon-o-collection class="w-5 h-5" />
-                    </x-sidebar.nav-item> --}}
-
-                    <x-sidebar.dropdown-nav-item active="open" title="My Network" uri="my-network/*">
-                        <x-slot name="icon">
-                            <x-heroicon-o-collection class="w-5 h-5" />
-                        </x-slot>
-                        <div class="leading-7">
+                    </x-slot>
+                    <div class="leading-7">
+                        @if (auth()->user()->role != 1 && auth()->user()->role != 2)
                             <x-sidebar.dropdown-item title="Upline Details" route="{{route('upline-detail')}}"
                                 uri="my-network/upline-detail">
                                 <x-slot name="icon">
                                     <x-heroicon-o-cube class="w-5 h-5" />
                                 </x-slot>
                             </x-sidebar.dropdown-item>
-                            <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
-                                uri="my-network/downline-detail">
-                                <x-slot name="icon">
-                                    <x-heroicon-o-cube class="w-5 h-5" />
-                                </x-slot>
-                            </x-sidebar.dropdown-item>
-                        </div>
-                    </x-sidebar.dropdown-nav-item>
-                @endif
+                        @endif
+                        <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
+                            uri="my-network/downline-detail">
+                            <x-slot name="icon">
+                                <x-heroicon-o-cube class="w-5 h-5" />
+                            </x-slot>
+                        </x-sidebar.dropdown-item>
+                    </div>
+                </x-sidebar.dropdown-nav-item>
 
                 <x-sidebar.nav-item title="Setting" route="{{route('setting')}}" uri="setting">
                     <x-heroicon-o-cog class="w-5 h-5" />

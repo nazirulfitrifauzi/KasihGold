@@ -14,8 +14,6 @@ class PendingApprovalKap extends Component
 {
     public $list;
 
-    protected $listeners = ['reload' => '$refresh'];
-
     public function mount()
     {
         $this->list = User::whereClient(2)->whereRole(4)->whereActive(0)->get();

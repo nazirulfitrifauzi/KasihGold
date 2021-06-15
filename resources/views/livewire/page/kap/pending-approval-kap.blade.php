@@ -126,7 +126,7 @@
                     @empty
                         <tr>
                             <x-table.table-body colspan="4" class="text-center text-gray-500">
-                                No new orders
+                                No New Request
                             </x-table.table-body>
                         </tr>
                     @endforelse
