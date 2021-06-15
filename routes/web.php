@@ -41,7 +41,6 @@ use App\Http\Controllers\DigitalGoldController;
 use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
-use App\Http\Controllers\KapController;
 use App\Http\Controllers\SettingController;
 
 Route::middleware('guest')->group(function () {
@@ -98,6 +97,10 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboardkasihAp', [DashboardController::class, 'dashboardKasihAp'])->name('dashboardKasihAp');
         Route::get('dashboardAgentkasihAp', [DashboardController::class, 'dashboardAgentKasihAp'])->name('dashboardAgentkasihAp');
         Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
+        Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
+        Route::get('my-agent-kap', [DashboardController::class, 'myAgent'])->name('my-agent-kap');
+        Route::get('pending-approval-kap', [DashboardController::class, 'pendingApproval'])->name('pending-approval-kap');
+
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
         Route::get('digital-gold', [DigitalGoldController::class, 'index'])->name('digital-gold');
         Route::get('physical-gold', [physicalGoldController::class, 'index'])->name('physical-gold');
@@ -106,9 +109,7 @@ Route::middleware('auth')->group(function () {
         Route::get('outright-gold-cart', [physicalGoldController::class, 'ocart'])->name('outright-gold-cart');
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
-        Route::get('pending-approval-kap', [KapController::class, 'pendingApproval'])->name('pending-approval-kap');
-        Route::get('pending-approval-kap-agent', [KapController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
-        Route::get('my-agent-kap', [KapController::class, 'myAgent'])->name('my-agent-kap');
+
         Route::get('setting', [settingController::class, 'setting'])->name('setting');
     });
 

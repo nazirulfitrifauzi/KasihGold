@@ -25,4 +25,14 @@ class DashboardController extends Controller
     {
         return view ('pages.dashboard-hq-kasih-ap');
     }
+
+    public function pendingApproval()
+    {
+        return view('pages.kap.pending-approval-kap');
+    }
+
+    public function pendingApprovalAgent()
+    {
+        return view('pages.kap.pending-approval-kap-agent');
+    }
 }

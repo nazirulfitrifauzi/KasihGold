@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Page\Kap;
 
-use App\Mail\KAP\ApprovedAgent;
+use App\Mail\KAP\ApprovedUser;
 use App\Models\Profile_personal;
 use App\Models\User;
 use App\Models\UserDownline;
@@ -44,7 +44,7 @@ class PendingApprovalKap extends Component
 
         //send out email to the successor to notified their status
         $user = User::whereId($id)->first();
-        Mail::to($user->email)->send(new ApprovedAgent());
+        Mail::to($user->email)->send(new ApprovedUser());
 
         //flash message to initiator
         session()->flash('success');

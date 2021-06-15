@@ -17,7 +17,7 @@
                             </x-slot>
                         </x-dashboard.info-card>
 
-                        <x-dashboard.info-card bg="white" title="My Agents" value="{{ $myAgent->count() }} Agent{{ ($myAgent->count() > 1) ? 's' : '' }}" cardRoute="{{route('my-agent-kap')}}" >
+                        <x-dashboard.info-card bg="white" title="My Agents" value="{{ $myAgent->count() }} Agent{{ ($myAgent->count() > 1) ? 's' : '' }}" cardRoute="{{route('downline-detail')}}" >
                             <x-slot name="svg">
                                 <x-heroicon-o-user-group class="text-yellow-400 h-7 w-7"/>
                             </x-slot>
@@ -33,7 +33,7 @@
                             <x-slot name="svg">
                                 <x-heroicon-o-user class="text-green-400 h-7 w-7"/>
                             </x-slot>
-                        </x-dashboard.info-card> 
+                        </x-dashboard.info-card>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                     <div class="grid grid-cols-12 gap-6">
                         <!-- chart -->
                         <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                            <div class="bg-white p-2 shadow-lg h-auto" id="chart-container">
+                            <div class="h-auto p-2 bg-white shadow-lg" id="chart-container">
                                 <div class="flex justify-end" data-html2canvas-ignore="true">
                                     <button onclick="saveAsPDF();" class="flex px-2 py-1 text-sm font-bold text-white bg-orange-400 rounded cursor-pointer focus:outline-none hover:bg-orange-500">
                                         <div class="flex space-x-2">
@@ -63,7 +63,7 @@
                                         </div>
                                     </button>
                                 </div>
-                                <div class="h-96 w-full" id="chart"></div>
+                                <div class="w-full h-96" id="chart"></div>
                             </div>
                         </div>
                         <!-- end chart -->
