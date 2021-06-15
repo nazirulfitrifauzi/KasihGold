@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Price Bought</p>
-                                    <p class="text-lg">RM 968.13</p>
+                                    <p class="text-lg">RM 971.56</p>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Price Now</p>
-                                    <p class="text-lg">RM 1015.17</p>
+                                    <p class="text-lg">RM 1015.56</p>
                                 </div>
                             </div>
                         </div>
@@ -57,13 +57,78 @@
                 <x-slot name="tbody">
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>2.5g</p>
+                            <p>1 g</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 631.73</p>
+                            <p>RM 241.00</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 687.17</p>
+                            <p>RM 252.00</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>1 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 241.00</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 252.00</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>0.01 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>0.01 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>0.01 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>1 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 241.00</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 252.00</p>
+                        </x-table.table-body>
+                    </tr><tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>1 g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 241.00</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 252.00</p>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

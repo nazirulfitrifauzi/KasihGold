@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="text-xl">
                                         <p>Total Price Bought</p>
-                                        <p class="text-lg">RM 987.05</p>
+                                        <p class="text-lg">RM 971.56</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="text-xl">
                                         <p>Current Market Price</p>
-                                        <p class="text-lg">RM 1,015.56</p>
+                                        <p class="text-lg">RM 1015.56</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                         <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
                                     </div>
                                     <div class="text-xl">
-                                        <p>Outright</p>
+                                        <p>Outright Sell</p>
                                     </div>
                                 </div>
                             </div>

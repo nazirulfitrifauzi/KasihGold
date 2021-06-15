@@ -53,6 +53,10 @@ class ProductBuy extends Component
             ]);
         }
         session()->flash('message', 'Product successfully ordered! Awaiting for HQ approval!');
+
+        if (auth()->user()->role == '3') {
+            return redirect()->to('/dashboard');
+        }
         return redirect()->to('/home');
     }
 

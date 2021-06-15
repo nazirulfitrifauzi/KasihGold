@@ -20,7 +20,7 @@
         }
 
         .bar-value {
-            -webkit-animation: slideIn 10s;
+            -webkit-animation: slideIn 3s;
         }
 
         @-webkit-keyframes slideIn {

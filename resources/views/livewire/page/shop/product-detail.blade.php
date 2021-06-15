@@ -18,7 +18,7 @@
                 <div class="flex flex-col -mx-4 md:flex-row">
                     <!-Start detail of image -->
                     <div class="px-4 md:flex-1">
-                        <div x-data="{imageUrl: '{{ asset('storage/'.$info->prod_img1) }}'}" x-cloak>
+                        <div x-data="{imageUrl: '{{ asset('img/gold/'.$info->prod_img1) }}'}" x-cloak>
                             <div class="h-64 mb-4 bg-gray-100 rounded-lg md:h-80">
                                 <div class="flex items-center justify-center h-64 mb-4 bg-gray-100 rounded-lg md:h-80">
                                     <img id="main" :src="imageUrl" class="object-contain w-full h-full bg-cover" />
@@ -27,9 +27,9 @@
                             @if (auth()->user()->role != '3')
                             <div class="grid grid-cols-4 gap-6 mt-6 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                                 <button class="flex items-center justify-center w-full h-24 bg-gray-100 rounded-lg focus:outline-none md:h-32">
-                                    <img src="{{ asset('storage/'.$info->prod_img1) }}"
+                                    <img src="{{ asset('img/gold/'.$info->prod_img1) }}"
                                         class="object-contain w-full h-full bg-cover"
-                                        @click="imageUrl = '{{ asset('storage/'.$info->prod_img1) }}'"
+                                        @click="imageUrl = '{{ asset('img/gold/'.$info->prod_img1) }}'"
                                         />
                                 </button>
                                 <button
@@ -62,7 +62,7 @@
                     <!--Start detail for buying -->
                     <div class="px-4 mt-8 lg:flex-1 md:mt-0">
                         <h2 class="mb-2 text-2xl font-bold leading-tight tracking-tight text-gray-800 md:text-3xl">{{$info->prod_name}}</h2>
-                        @if (auth()->user()->role != '3')
+                        @if (auth()->user()->role != '4' && auth()->user()->role != '6')
                         <p class="text-sm text-gray-500">By
                             <span class="text-yellow-400">{{$userInfo->name}}</span>
                         </p>

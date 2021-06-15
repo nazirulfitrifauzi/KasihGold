@@ -236,7 +236,11 @@
                                 <x-form.basic-form wire:submit.prevent="">
                                     <x-slot name="content">
                                         <div class=" mt-6 border-b-2 pb-4">
+                                            @if (auth()->user()->role == '3')
+                                            <x-form.input label="Agent Referral Code" value=""  />
+                                            @else
                                             <x-form.input label="Gift card or discount code" value=""  />
+                                            @endif
                                             <button class="flex items-center px-3 py-2 my-auto bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 focus:outline-none">
                                                 <x-heroicon-o-badge-check class="w-5 h-5 mr-2" />
                                                 <span>Apply</span>
