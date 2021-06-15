@@ -28,7 +28,7 @@
 
                     {{-- Start modal edit type --}}
                     <div class="cursor-default text-gray-900">
-                        <x-general.modal modalActive="editOpen2" title="Edit Type" modalSize="lg">
+                        <x-general.modal modalActive="editOpen2" title="Edit Type" modalSize="lg"  closeBtn="no">
                             <x-form.basic-form >
                                 <x-slot name="content">
                                     <div class="p-4 mt-4 leading-4">
@@ -65,11 +65,18 @@
                     </x-btn.tooltip-btn>
                     {{-- Start modal delete --}}
                     <div class="cursor-default">
-                        <x-general.modal modalActive="deleteOpen2" title="Delete Confirmation" modalSize="sm" closeBtn="yes">
+                        <x-general.new-modal modalName="deleteOpen2" size="sm">
+                            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-red-100 rounded-full">
+                                <x-heroicon-o-trash class="w-8 h-8 text-red-600" />
+                            </div>
+                            <div class="py-2 text-center ">
+                                <h1 class="text-lg font-bold">Are you sure you want to delete?</h1>
+                            </div>
                             <div class="">
-                                <div class="py-4 font-semibold text-center text-black font">
-                                    Are you sure you want to delete :<br>
+                                <div class="pb-2 font-semibold text-center text-gray-400 text-xs">
+                                    Do you really want to delete your
                                     Type "{{ucfirst(strtolower($type->name)) }}"?
+                                    This process cannot be undone
                                 </div>
                                 <div class="flex justify-center mt-3">
                                     <button class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none" x-on:click="deleteOpen2 = false">
@@ -80,7 +87,8 @@
                                     </button>
                                 </div>
                             </div>
-                        </x-general.modal>
+                        </x-general.new-modal>
+
                     </div>
                     {{-- End modal delete  --}}
                 </div>
