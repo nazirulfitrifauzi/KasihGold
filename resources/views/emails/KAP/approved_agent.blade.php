@@ -168,7 +168,7 @@
             -premailer-width: 570px;
             background-color: #ffffff;
             border-color: #e8e5ef;
-            border-radius: 2px;
+            border-radius: 20px;
             border-width: 1px;
             box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015);
             margin: 0 auto;
@@ -298,11 +298,11 @@
 
         .button-yellow,
         .button-warning {
-            background-color: rgba(253, 194, 2, 0.979);
-            border-bottom: 8px solid rgba(253, 194, 2, 0.979);
-            border-left: 18px solid rgba(253, 194, 2, 0.979);
-            border-right: 18px solid rgba(253, 194, 2, 0.979);
-            border-top: 8px solid rgba(253, 194, 2, 0.979);
+            background-color: #fcc200;
+            border-bottom: 8px solid #fcc200;
+            border-left: 18px solid #fcc200;
+            border-right: 18px solid #fcc200;
+            border-top: 8px solid #fcc200;
         }
 
         /* Panels */
@@ -346,7 +346,11 @@
             <td align="center">
                 <table class="" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
-                        <td class="header"></td>
+                        <td class="header">
+                            <a href="#" style="display: inline-block;">
+                                <img src="{{ asset('img/kasih-gold-logo.png') }}" style="width:150px; heigth:150px; "/>
+                            </a>
+                        </td>
                     </tr>
 
                     <!-- Email Body -->
@@ -356,21 +360,14 @@
                                 role="presentation">
                                 <!-- Body content -->
                                 <tr>
-                                    <td class="header">
-                                        <a href="#" style="display: inline-block;">
-                                            <x-logo class="w-auto h-12 " />
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td class="header1">
                                         <a href="#" style="display: inline-block;">
-                                            <img src="{{ asset('img/email.png') }}" style="width:200px; heigth:200px; "/>
+                                            <img src="{{ asset('img/email.png') }}" style="width:250px; heigth:200px; "/>
                                         </a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="content-cell">
+                                    <td class="content-cell" style="padding-top: 4px !important;">
                                         <p style="font-weight: bold; font-size:20px; color:#48bb78">APPROVED</p>
                                         <p>Your request to access the system as agent has been approved.</p>
                                         <p>Please sign in with your credential.</p>
