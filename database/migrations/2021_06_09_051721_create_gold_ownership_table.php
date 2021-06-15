@@ -16,6 +16,7 @@ class CreateGoldOwnershipTable extends Migration
         Schema::create('gold_ownership', function (Blueprint $table) {
             $table->id();
             $table->integer('gold_id');
+            $table->integer('user_id');
             $table->uuid('ouid');
             $table->double('weight', 4, 2);
             $table->integer('active_ownership');

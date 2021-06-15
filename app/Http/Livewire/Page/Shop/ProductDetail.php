@@ -58,7 +58,7 @@ class ProductDetail extends Component
 
     public function render()
     {
-        if (auth()->user()->role == '3') { // AP Customer
+        if (auth()->user()->role == '4' || auth()->user()->role == '6') { // AP Customer
             $masterProducts = InvInfo::where('inv_info.id', $this->iid)
                 ->first();
 

@@ -19,18 +19,17 @@
                                 <div class="flex w-full my-2 bg-gray-100 shadow-sm">
                                     <x-tab.nav-tab name="0" livewire="">
                                         <div class="flex font-medium">
-                                            <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Serial Number
+                                            <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>New Gold Bar
                                         </div>
                                     </x-tab.nav-tab>
                                 </div>
                                 <!-- Start Add Category -->
                                 <x-tab.nav-content name="0">
-                                    <x-form.basic-form wire:submit.prevent="">
+                                    <x-form.basic-form wire:submit.prevent="addGold">
                                         <x-slot name="content">
                                             <div class="p-4 leading-4">
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Serial Number" value="addSerialNumber" wire:model=""/>
-                                                    <x-form.input  label="Total Weight" value="addTotalWeight" wire:model=""/>
+                                                    <x-form.input  label="Total Weight (g)" value="addTotalWeight" wire:model="addTotalWeight" placeholder="in grams"/>
                                                 </div>
                                                 <div class="flex justify-end mt-4">
                                                     <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -51,8 +50,12 @@
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 ">
                 <div class="flex justify-start bg-white rounded-lg border-2 mb-6 py-6 px-4 overflow-y-auto">
                     <div class="flex items-center  flex-auto ">
-                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
-                        <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
+                        @foreach ($golds as $gold)
+                        @php
+                        $percentage = ($gold->weight_occupied/1000)*100;
+                        @endphp
+                        <x-gold.goldview type="1kg" percentage="{{$percentage}}" totalGram="{{number_format($gold->weight_occupied,2)}}" reachGram="{{number_format($gold->weight_vacant,2)}}" />
+                        @endforeach
                     </div>
                 </div>
             </x-general.grid>
@@ -93,30 +96,32 @@
                         <x-table.table>
                                 <x-slot name="thead">
                                     <x-table.table-header class="text-left" value="No" sort=""/>
-                                    <x-table.table-header class="text-left" value="Serial Number" sort=""/>
+                                    <x-table.table-header class="text-left" value="Goldbar Unique Number" sort=""/>
                                     <x-table.table-header class="text-left" value="Weight Occupied" sort=""/>
                                     <x-table.table-header class="text-left" value="Weight Vacant" sort=""/>
                                     <x-table.table-header class="text-left" value="Created Date" sort=""/>
                                 </x-slot>
                                 <x-slot name="tbody">
+                                    @foreach ($golds as $gold)
                                         <tr>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                1
+                                                {{ $loop->iteration  }}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                001/001/001/K45621
+                                                {{str_shuffle($gold->guid)}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                463.7 g
+                                                {{$gold->weight_occupied}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                536.3 g
+                                                {{$gold->weight_vacant}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                30/03/2021
+                                                {{$gold->created_at->format('d/m/Y')}}
                                             </x-table.table-body>
                                             
                                         </tr>
+                                    @endforeach
                                 </x-slot>
                         </x-table.table>
                     </div>

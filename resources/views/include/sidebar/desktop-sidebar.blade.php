@@ -76,6 +76,7 @@
                     </x-sidebar.nav-item>
                 @endif
 
+                @if (auth()->user()->role == 1 || auth()->user()->role == 2 || auth()->user()->role == 3)
                 <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
                     <x-slot name="icon">
                         <x-heroicon-o-archive class="w-5 h-5" />
@@ -87,14 +88,17 @@
                                 <x-heroicon-o-cube class="w-5 h-5" />
                             </x-slot>
                         </x-sidebar.dropdown-item>
+                    @if (auth()->user()->role != 2)
                         <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}"
                             uri="stock/movement">
                             <x-slot name="icon">
                                 <x-heroicon-o-cube class="w-5 h-5" />
                             </x-slot>
                         </x-sidebar.dropdown-item>
+                    @endif
                     </div>
                 </x-sidebar.dropdown-nav-item>
+                @endif
 
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />

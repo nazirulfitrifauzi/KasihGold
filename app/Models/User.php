@@ -93,4 +93,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\UserDownline', 'user_id', 'id');
     }
+
+    public function gold()
+    {
+        return $this->hasMany('App\Models\GoldbarOwnership', 'user_id', 'id');
+    }
 }
