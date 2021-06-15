@@ -15,7 +15,7 @@
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div class="flex-1 text-base font-medium leading-tight">
                             <div x-show="step === 1">
-                                <div>Insert Nomination Details</div>
+                                <div>Insert Nomination Details (Max. 2)</div>
                             </div>
                             <div x-show="step === 2">
                                 <div>Preview and Download</div>
@@ -25,7 +25,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-1 text-xs font-bold leading-tight tracking-wide text-gray-500 uppercase" x-text="`Step: ${step} of 3`"></div>
+                    @if (count($nomineeList) < 2)
+                        <div class="mb-1 text-xs font-bold leading-tight tracking-wide text-gray-500 uppercase" x-text="`Step: ${step} of 3`"></div>
+                    @else
+                        <button type="button" class="px-4 py-2 text-sm font-semibold tracking-wider text-black transition duration-300 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400" wire:click="resetNominee">Reset Nominee</button>
+                    @endif
                 </div>
             </div>
             <!-- End Top Navigation -->
@@ -54,14 +58,16 @@
                 </button>
             </div>
             <div class="w-1/2 text-right">
-                <button x-show="step < 3" @click="step++"
-                    class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
-                    >Next
-                </button>
-                <button x-show="step === 3" 
-                    class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
-                    >Sumbit
-                </button>
+                @if (Storage::exists('public/nominee/' . auth()->user()->id) == false)
+                    <button x-show="step < 3" @click="step++"
+                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
+                        >Next
+                    </button>
+                    <button x-show="step === 3" 
+                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" wire:click="nomineeUpload" 
+                        >Sumbit
+                    </button>
+                @endif
             </div>
         </div>
         <!-- End Button -->

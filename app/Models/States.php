@@ -9,4 +9,9 @@ class States extends Model
 {
     use HasFactory;
     protected $table = 'states';
+
+    public function profile()
+    {
+        return $this->hasMany('App\Models\Profile', 'state_id', 'id');
+    }
 }
