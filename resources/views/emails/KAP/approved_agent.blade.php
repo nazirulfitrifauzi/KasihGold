@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <style>
 @media only screen and (max-width: 600px) {
 .inner-body {
@@ -317,7 +318,7 @@ img {
 </head>
 <body>
 
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    {{-- <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
         <tr>
             <td align="center">
                 <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -339,14 +340,6 @@ img {
                                         <p>APPROVED</p>
                                         <p>Your request to access the system as agent has been approved.</p>
                                         <p>Please sign in with your credential.</p>
-
-                                        {{-- <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                                            <tr>
-                                                <td>
-                                                    subcopy
-                                                </td>
-                                            </tr>
-                                        </table> --}}
                                     </td>
                                 </tr>
                             </table>
@@ -358,7 +351,7 @@ img {
                             <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
                                 <tr>
                                     <td class="content-cell" align="center">
-                                        © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+                                        © {{ date('Y') }} KASIH GOLD. @lang('All rights reserved.')
                                     </td>
                                 </tr>
                             </table>
@@ -367,6 +360,41 @@ img {
                 </table>
             </td>
         </tr>
-    </table>
+    </table> --}}
+    <!-- start -->
+    <div class="h-full bg-gray-800">
+        <div class="container flex flex-col justify-center items-center mx-auto  py-10">
+            <!-- Card -->
+            <div class=" border-t-4 border-yellow-400 bg-white  shadow-md rounded-lg overflow-hidden">
+                <div class="items-center justify-between py-10 px-5 bg-white shadow-2xl rounded-lg mx-auto text-center">
+                    <div class="px-2 -mt-6">
+                        <div class="text-center">
+                            <div class="font-normal text-3xl text-grey-800 font-medium leading-loose my-3 w-full">
+                                <a href="#" style="display: inline-block;">
+                                    <x-logo class="w-auto h-12 " />
+                                </a>
+                                <div class="flex justify-center">
+                                    <img src="{{ asset('img/email.png') }}"  class="w-auto h-64"/>
+                                </div>
+                                <div class="text-center text-base">
+                                    <h4 class="text-green-500 text-xl py-2 font-bold">
+                                        APPROVED
+
+                                    </h4>
+                                    <h4>Your request to access the system as agent has been approved.</h4>
+                                    <h4>Please sign in with your credential.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center text-base bg-yellow-500 text-white py-2 px-2">
+                    <h4> © {{ date('Y') }} KASIH GOLD. @lang('All rights reserved.')</h4>
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+    </div>
+    <!-- end -->
 </body>
 </html>
