@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <style>
 @media only screen and (max-width: 600px) {
 .inner-body {
@@ -316,55 +317,40 @@ img {
 </style>
 </head>
 <body>
+    <!-- start -->
+    <div class="h-full bg-gray-800">
+        <div class="container flex flex-col items-center justify-center py-10 mx-auto">
+            <!-- Card -->
+            <div class="overflow-hidden bg-white border-t-4 border-yellow-400 rounded-lg shadow-md ">
+                <div class="items-center justify-between px-5 py-10 mx-auto text-center bg-white rounded-lg shadow-2xl">
+                    <div class="px-2 -mt-6">
+                        <div class="text-center">
+                            <div class="w-full my-3 text-3xl font-normal font-medium leading-loose text-grey-800">
+                                <a href="#" style="display: inline-block;">
+                                    <x-logo class="w-auto h-12 " />
+                                </a>
+                                <div class="flex justify-center">
+                                    <img src="{{ asset('img/email.png') }}"  class="w-auto h-64"/>
+                                </div>
+                                <div class="text-base text-center">
+                                    <h4 class="py-2 text-xl font-bold text-green-500">
+                                        APPROVED
 
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-        <tr>
-            <td align="center">
-                <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                    <tr>
-                        <td class="header">
-                            <a href="#" style="display: inline-block;">
-                                <x-logo class="w-auto h-12 " />
-                            </a>
-                        </td>
-                    </tr>
-
-                <!-- Email Body -->
-                    <tr>
-                        <td class="body" width="100%" cellpadding="0" cellspacing="0">
-                            <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-                                <!-- Body content -->
-                                <tr>
-                                    <td class="content-cell">
-                                        content
-
-                                        <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                                            <tr>
-                                                <td>
-                                                    subcopy
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-                                <tr>
-                                    <td class="content-cell" align="center">
-                                        © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+                                    </h4>
+                                    <h4>Your request to access the system has been approved.</h4>
+                                    <h4>Please sign in with your credential.</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-2 py-2 text-base text-center text-white bg-yellow-500">
+                    <h4> © {{ date('Y') }} KASIH GOLD. @lang('All rights reserved.')</h4>
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+    </div>
+    <!-- end -->
 </body>
 </html>

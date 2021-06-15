@@ -37,13 +37,13 @@
                                 <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Bank Information
                             </div>
                         </x-tab.title>
-                        @if (auth()->user()->client == 1)
+                        {{-- @if (auth()->user()->client == 1) --}}
                             <x-tab.title name="2" livewire="">
                                 <div class="flex font-semibold">
                                     <x-heroicon-o-presentation-chart-line class="w-6 h-6 mr-2"/>Nominee
                                 </div>
                             </x-tab.title>
-                        @endif
+                        {{-- @endif --}}
                     </div>
             </x-general.card>
         </div>
