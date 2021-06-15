@@ -9,7 +9,7 @@ class Profile_nominee extends Model
 {
     use HasFactory;
 
-    protected $table = 'profile_nominee';
+    protected $table = 'profile_nominees';
     protected $guarded = [];
 
     public function user()

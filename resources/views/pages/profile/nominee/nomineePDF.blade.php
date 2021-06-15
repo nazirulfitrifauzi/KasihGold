@@ -55,11 +55,11 @@
                         <th class="text-left header" style="border:1px solid black;"colspan="5" >(A) MAKLUMAT PENGEDAR</th>
                     </tr>
                     <tr>
-                        <td class="text-left" colspan="5">NAMA : <b>ELI ZAITHUL ZANA BT MOHD PODZI</b></td>
+                        <td class="text-left" colspan="5">NAMA : <b>{{ strtoupper(auth()->user()->name) }}</b></td>
                     </tr>
                     <tr>
-                        <td class="text-left"colspan="3">PG CODE : <b>PG00214563</b> {{ $testdata }}</td>
-                        <td class="text-left" colspan="2">I/C NO :  <b>750827017218</b></td>
+                        <td class="text-left"colspan="3">PG CODE : <b>{{ strtoupper(auth()->user()->profile->code) }}</b></td>
+                        <td class="text-left" colspan="2">I/C NO :  <b>{{ strtoupper(auth()->user()->profile->ic) }}</b></td>
                     </tr>
                     <tr>
                         <th class="text-left header" style="border:1px solid black;"colspan="5" >(B) PERSETUJUAN PENGEDAR BERHUBUNG PENAMAAN</th>
@@ -108,42 +108,28 @@
                                         <b>BAHAGIAN / PERATUSAN</b>
                                     </th>
                                 </tr>
-                                <tr>
-                                    <td style="border:1px solid black;">
-                                        1
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        AZMAN BIN IMRAN
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        880110105011
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        HUSBAND
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        100%
-                                    </td>
-                                    <br>
-                                </tr>
-                                <tr>
-                                    <td style="border:1px solid black;">
-                                        2
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        AZMAN BIN IMRAN
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        880110105011
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        HUSBAND
-                                    </td>
-                                    <td style="border:1px solid black;">
-                                        100%
-                                    </td>
-                                    <br>
-                                </tr>
+                                @if (!is_null($nomineeList))
+                                    @foreach ($nomineeList as $nominee)
+                                        <tr>
+                                            <td style="border:1px solid black;">
+                                                {{ $loop->iteration }}
+                                            </td>
+                                            <td style="border:1px solid black;">
+                                                {{ strtoupper($nominee->nominee_name) }}
+                                            </td>
+                                            <td style="border:1px solid black;">
+                                                {{ strtoupper($nominee->nominee_id) }}
+                                            </td>
+                                            <td style="border:1px solid black;">
+                                                {{ strtoupper($nominee->memberRelationship->description) }}
+                                            </td>
+                                            <td style="border:1px solid black;">
+                                                {{ strtoupper($nominee->percentage) }}%
+                                            </td>
+                                            <br>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </table>
                         </td>
                     </tr>
@@ -151,14 +137,14 @@
                         <th class="text-left header" style="border:1px solid black;"colspan="5" >(D) BUTIRAN PENGEDAR</th>
                     </tr>
                     <tr>
-                        <td class="text-left" colspan="5">ALAMAT SURAT- MENYURAT: <b>NO 13 JALAN IMPIAN GEMILANG 1 9 SAUJANA IMPIAN</b></td>
+                        <td class="text-left" colspan="5">ALAMAT SURAT- MENYURAT: <b>{{ strtoupper(auth()->user()->profile->fullAddress) }}</b></td>
                     </tr>
                     <tr>
-                        <td class="text-left" colspan="3">ALAMAT E-MEL : <b>elimohd75@gmail.com</b></td>
-                        <td class="text-left" colspan="2">NO. TEL RUMAH : <b> </b></td>
+                        <td class="text-left" colspan="3">ALAMAT E-MEL : <b>{{ auth()->user()->email }}</b></td>
+                        <td class="text-left" colspan="2">NO. TEL RUMAH : <b>{{ (Str::substr(auth()->user()->profile->phone1, 0, 2) == "03") ? auth()->user()->profile->phone1 : "" }}</b></td>
                     </tr>
                     <tr>
-                        <td class="text-left" colspan="3">NO. TEL BIMBIT : <b> </b></td>
+                        <td class="text-left" colspan="3">NO. TEL BIMBIT : <b>{{ (Str::substr(auth()->user()->profile->phone1, 0, 2) == "01") ? auth()->user()->profile->phone1 : "" }}</b></td>
                         <td class="text-left" colspan="2">NO. TEL PEJABAT : <b> </b></td>
                     </tr>
                     <tbody style="border:1px solid black;"colspan="5" >
