@@ -15,7 +15,7 @@
                     </a>
                 </div>
             </div>
-            <div class="z-40 w-full px-4 sm:px-24"  x-data="{ active: 0 }">
+            <div class="z-40 w-full px-4 mt-14 md:mt-4 sm:px-24"  x-data="{ active: 0 }">
                 <div class="my-8 sm:mx-auto sm:w-full">
                     @if (session('error'))
                         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -70,23 +70,23 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="col-span-6 w-full">
+                            <div class="mt-6">
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                </div>
 
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                @error('password')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            @error('password')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                            <div class="mt-6">
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                                </div>
                             </div>
-                        </div>
-
+                        </x-general.grid>
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
@@ -140,22 +140,23 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="col-span-6 w-full">
+                            <div class="mt-6">
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                </div>
 
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                @error('password')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            @error('password')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                            <div class="mt-6">
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                                </div>
                             </div>
-                        </div>
+                        </x-general.grid>
 
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
