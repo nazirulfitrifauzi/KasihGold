@@ -9,8 +9,11 @@
                             $total=0;
                         @endphp
                         @if ($state_id==10) @php $postage=9; @endphp @elseif ($state_id==11) @php $postage=8.50; @endphp @else @php $postage=6; @endphp @endif
+
                         <x-form.basic-form wire:submit.prevent="buy">
+                        
                             <x-slot name="content">
+                            @if (auth()->user()->role != '4' && auth()->user()->role != '6')
                                 <div class="pb-8">
                                     <div class="lg:w-full">
                                         <div>
@@ -83,7 +86,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            @if (auth()->user()->role != '3')
+                            @endif
+
+                            @if (auth()->user()->role != '4' && auth()->user()->role != '6')
                                 <div x-data="{ accordion: 0 }">
                                     <div class="lg:w-full">
                                         <div>
@@ -165,7 +170,7 @@
                                             <div class="mr-auto text-lg font-medium bg-white text-white py-2 px-2 ">
                                                 <div class="flex justify-between">
                                                     <div>
-                                                        <img src="{{ asset('img/ipay88.png') }}"  class="w-auto h-10"/>
+                                                        <img src="{{ asset('img/snap.png') }}"  class="w-auto h-10"/>
                                                     </div>
                                                     <div>
                                                         <img src="{{ asset('img/visa-mastercard-.jpg') }}"  class="w-auto h-10"/>
@@ -220,7 +225,7 @@
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
                                     <div class="flex">
                                         <img class="h-20 w-20 object-cover rounded"
-                                            src="{{ asset('storage/'.$prod->products->prod_img1) }}"
+                                            src="{{ asset('img/gold/'.$prod->products->prod_img1) }}"
                                             alt="">
                                         <div class="mx-3 my-3">
                                             <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
@@ -236,7 +241,7 @@
                                 <x-form.basic-form wire:submit.prevent="">
                                     <x-slot name="content">
                                         <div class=" mt-6 border-b-2 pb-4">
-                                            @if (auth()->user()->role == '3')
+                                            @if (auth()->user()->role == '4'||auth()->user()->role == '6')
                                             <x-form.input label="Agent Referral Code" value=""  />
                                             @else
                                             <x-form.input label="Gift card or discount code" value=""  />
@@ -264,7 +269,7 @@
                                             <p>Shipping</p>
                                         </div>
                                         <div class="font-semibold">
-                                            @if (auth()->user()->role == '3')
+                                            @if (auth()->user()->role == '4'||auth()->user()->role == '6')
                                             <p>RM 0.00</p>
                                             @else
                                             <p>RM {{number_format($postage,2)}}</p>
@@ -278,7 +283,7 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
-                                        @if (auth()->user()->role == '3')
+                                        @if (auth()->user()->role == '4'||auth()->user()->role == '6')
                                         <p>RM {{number_format($total,2)}}</p>
                                         @else
                                         <p>RM {{number_format($total+$postage,2)}}</p>

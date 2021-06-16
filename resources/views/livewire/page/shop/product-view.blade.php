@@ -16,8 +16,6 @@
      
                 <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
                     @foreach ($list as $item)
-                    {{-- @if (auth()->user()->role == 1 || auth()->user()->role == 5 || auth()->user()->role == 3) --}}
-
                     <a  href="{{route('product-detail',['iid'=>$item->id])}}" class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden cursor-pointer hover:shadow-2xl">
                         <div class="flex h-56 w-full bg-cover"
                             style="background-image: url('{{ asset('img/gold/'.$item->prod_img1) }}')">

@@ -42,6 +42,7 @@ use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SnapAPI;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -64,7 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified');
     Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
-    Route::middleware(['passScreen','verified'])->group(function () {
+    Route::middleware(['passScreen', 'verified'])->group(function () {
         //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
@@ -89,6 +90,11 @@ Route::middleware('auth')->group(function () {
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
         Route::get('my-network/upline-detail', [UplineController::class, 'index'])->name('upline-detail');
         Route::get('my-network/downline-detail', [UplineController::class, 'downline'])->name('downline-detail');
+
+        Route::get('pay', [SnapAPI::class, 'index'])->name('pay');
+        Route::post('pay2', [SnapAPI::class, 'callback'])->name('pay2');
+        Route::post('snapBuy', [SnapAPI::class, 'snapBuy'])->name('snapBuy');
+
 
         Route::get('cart', [CartController::class, 'index'])->name('cart');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');

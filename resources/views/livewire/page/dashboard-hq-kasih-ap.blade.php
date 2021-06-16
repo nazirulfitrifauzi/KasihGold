@@ -8,6 +8,15 @@
                             <h2 class="mr-5 text-4xl font-bold text-white" id="lblGreetings"></h2>
                             <p class="text-sm text-white" id="getDate"></p>
                         </div>
+                        @if (session('error'))
+                            <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+                        @elseif (session('info'))
+                            <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+                        @elseif (session('success'))
+                            <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+                        @elseif (session('warning'))
+                            <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+                        @endif
                     </div>
 
                     <div class="grid grid-cols-12 gap-6 mt-10">

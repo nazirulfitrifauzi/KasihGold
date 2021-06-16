@@ -26,7 +26,7 @@
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex space-x-3 items-center">
-                                <img class="object-cover w-16 h-16 rounded" src="{{ asset('storage/'.$carts->products->prod_img1) }}" alt="">
+                                <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
                                 <div>
                                     <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
                                 </div>
