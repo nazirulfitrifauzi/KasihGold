@@ -49,7 +49,7 @@
                         <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
                             <x-heroicon-o-home class="w-5 h-5" />
                         </x-sidebar.nav-item>
-                    @elseif (auth()->user()->role == 5) { <!--user-->
+                    @elseif (auth()->user()->role == 5)  <!--user-->
                         <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
                             <x-heroicon-o-home class="w-5 h-5" />
                         </x-sidebar.nav-item>
