@@ -16,7 +16,7 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role == 1)
+        if (auth()->user()->isAdminKG || auth()->user()->isAdminKAP)
         {
             return $next($request);
         }

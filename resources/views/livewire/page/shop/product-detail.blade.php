@@ -24,7 +24,7 @@
                                     <img id="main" :src="imageUrl" class="object-contain w-full h-full bg-cover" />
                                 </div>
                             </div>
-                            @if (auth()->user()->client == 1 && auth()->user()->role != 3)
+                            @if (auth()->user()->isUserKG()) <!-- bukan agent kg -->
                             <div class="grid grid-cols-4 gap-6 mt-6 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                                 <button class="flex items-center justify-center w-full h-24 bg-gray-100 rounded-lg focus:outline-none md:h-32">
                                     <img src="{{ asset('img/gold/'.$info->prod_img1) }}"

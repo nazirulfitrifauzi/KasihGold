@@ -58,7 +58,7 @@ class ProductDetail extends Component
 
     public function render()
     {
-        if (auth()->user()->client == 2 && auth()->user()->role != 1) {
+        if (auth()->user()->isAgentKAP() || auth()->user()->isUserKAP()) { //kap bukan admin
             $masterProducts = InvInfo::where('inv_info.id', $this->iid)->first();
 
             return view('livewire.page.shop.product-detail', [

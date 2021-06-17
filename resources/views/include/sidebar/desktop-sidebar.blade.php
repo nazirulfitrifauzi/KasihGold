@@ -46,20 +46,18 @@
                     <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
                         <x-heroicon-o-home class="w-5 h-5" />
                     </x-sidebar.nav-item>
-                @else <!--Kasih AP-->
-                    @if (auth()->user()->role == 1)  <!--hq-->
-                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardHqkasihAp')}}" uri="dashboardHqkasihAp">
-                            <x-heroicon-o-home class="w-5 h-5" />
-                        </x-sidebar.nav-item>
-                    @elseif (auth()->user()->role == 3)  <!--agent-->
-                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardAgentkasihAp')}}" uri="dashboardAgentkasihAp">
-                            <x-heroicon-o-home class="w-5 h-5" />
-                        </x-sidebar.nav-item>
-                    @elseif (auth()->user()->role == 4)  <!--user-->
-                        <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardKasihAp">
-                            <x-heroicon-o-home class="w-5 h-5" />
-                        </x-sidebar.nav-item>
-                    @endif
+                @elseif (auth()->user()->isAdminKAP())  <!--hq-->
+                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardHqkasihAp')}}" uri="dashboardHqkasihAp">
+                        <x-heroicon-o-home class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @elseif (auth()->user()->isAgentKAP())  <!--agent-->
+                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardAgentkasihAp')}}" uri="dashboardAgentkasihAp">
+                        <x-heroicon-o-home class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @elseif (auth()->user()->isUserKAP())  <!--user-->
+                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardKasihAp">
+                        <x-heroicon-o-home class="w-5 h-5" />
+                    </x-sidebar.nav-item>
                 @endif
 
                 {{-- @if (auth()->user()->role == 1)
@@ -68,7 +66,7 @@
                     </x-sidebar.nav-item>
                 @endif --}}
 
-                @if (auth()->user()->client == 1 && auth()->user()->role != 4)
+                @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isAdminKAP()) {{-- kg bukan user --}}
                     <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
                         <x-slot name="icon">
                             <x-heroicon-o-archive class="w-5 h-5" />
@@ -80,28 +78,13 @@
                                     <x-heroicon-o-cube class="w-5 h-5" />
                                 </x-slot>
                             </x-sidebar.dropdown-item>
-                            <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}"
-                                uri="stock/movement">
-                                <x-slot name="icon">
-                                    <x-heroicon-o-cube class="w-5 h-5" />
-                                </x-slot>
-                            </x-sidebar.dropdown-item>
-                        </div>
-                    </x-sidebar.dropdown-nav-item>
-                @endif
-
-                @if (auth()->user()->client == 2 && auth()->user()->role == 1)
-                    <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
-                        <x-slot name="icon">
-                            <x-heroicon-o-archive class="w-5 h-5" />
-                        </x-slot>
-                        <div class="leading-7">
-                            <x-sidebar.dropdown-item title="Stock Management" route="{{route('stock-management')}}"
-                                uri="stock/management">
-                                <x-slot name="icon">
-                                    <x-heroicon-o-cube class="w-5 h-5" />
-                                </x-slot>
-                            </x-sidebar.dropdown-item>
+                            @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG())
+                                <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}" uri="stock/movement">
+                                    <x-slot name="icon">
+                                        <x-heroicon-o-cube class="w-5 h-5" />
+                                    </x-slot>
+                                </x-sidebar.dropdown-item>
+                            @endif
                         </div>
                     </x-sidebar.dropdown-nav-item>
                 @endif
@@ -149,7 +132,7 @@
                     </x-sidebar.nav-item>
                 @endif
 
-                @if (auth()->user()->client == 1 && auth()->user()->role == 1)
+                @if (auth()->user()->isAdminKG())
                 <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" uri="admin/screening">
                     <x-heroicon-o-shield-check class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -189,7 +172,7 @@
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                @if (auth()->user()->client == 1 && auth()->user()->role != 1)
+                @if (auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) <!-- kg bukan admin -->
                     <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
                         <x-slot name="icon">
                             <x-heroicon-o-shopping-cart class="w-5 h-5" />

@@ -32,37 +32,15 @@ class Login extends Component
             return;
         }
 
-        if(auth()->user()->client == 1) { // Kasih Gold
-            if (auth()->user()->role == 1) { // hq
-                return redirect()->to('/home');
-            } elseif (auth()->user()->role == 3) { // agent
-                return redirect()->to('/home');
-            } elseif (auth()->user()->role == 4) { // user
-                return redirect()->to('/home');
-            }
-        } else { //kasih AP
-            if (auth()->user()->role == 1) { // hq
-                return redirect()->to('/dashboardHqkasihAp');
-            } elseif (auth()->user()->role == 3) { // agent
-                return redirect()->to('/dashboardAgentkasihAp');
-            } elseif (auth()->user()->role == 4) { // user
-                return redirect()->to('/dashboardKasihAp');
-            }
+        if (auth()->user()->isAdminKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) { // hq
+            return redirect()->to('/home');
+        } elseif (auth()->user()->isAdminKAP()) { // hq
+            return redirect()->to('/dashboardHqkasihAp');
+        } elseif (auth()->user()->isAgentKAP()) { // agent
+            return redirect()->to('/dashboardAgentkasihAp');
+        } elseif (auth()->user()->isUserKAP()) { // user
+            return redirect()->to('/dashboardKasihAp');
         }
-
-        // if (auth()->user()->isAdminKG()) { // hq
-        //     return redirect()->to('/home');
-        // } elseif (auth()->user()->isAgentKG()) { // agent
-        //     return redirect()->to('/home');
-        // } elseif (auth()->user()->isUserKG()) { // user
-        //     return redirect()->to('/home');
-        // } elseif (auth()->user()->isAdminKAP()) { // hq
-        //     return redirect()->to('/dashboardHqkasihAp');
-        // } elseif (auth()->user()->isAgentKAP() == 3) { // agent
-        //     return redirect()->to('/dashboardAgentkasihAp');
-        // } elseif (auth()->user()->isUserKAP() == 4) { // user
-        //     return redirect()->to('/dashboardKasihAp');
-        // }
     }
 
     public function render()

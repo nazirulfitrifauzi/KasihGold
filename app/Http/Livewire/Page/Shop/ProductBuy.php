@@ -46,7 +46,7 @@ class ProductBuy extends Component
         $refNumber = uniqid(("KG"));
         $total = 0.0;
 
-        if(auth()->user()->client == 2 && auth()->user()->role != 1) {
+        if(auth()->user()->isAgentKAP() || auth()->user()->isUserKAP()) { //kap bukan admin
             foreach ($products as $prod) {
                 $total += $prod->products->prod_price * $prod->prod_qty;
                 // Search for available gold bar to be filled
