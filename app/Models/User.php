@@ -46,37 +46,58 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdminKG()
     {
-        return $this->whereClient(1)->whereRole(1)->exists();
+        if ($this->client == 1 && $this->role == 1) {
+            return true;
+        }
+        return false;
     }
 
     public function isMasterDealerKG()
     {
-        return $this->whereClient(1)->whereRole(2)->exists();
+        if ($this->client == 1 && $this->role == 2) {
+            return true;
+        }
+        return false;
     }
 
     public function isAgentKG()
     {
-        return $this->whereClient(1)->whereRole(3)->exists();
+        if ($this->client == 1 && $this->role == 3) {
+            return true;
+        }
+        return false;
     }
 
     public function isUserKG()
     {
-        return $this->whereClient(1)->whereRole(4)->exists();
+        if ($this->client == 1 && $this->role == 4) {
+            return true;
+        }
+        return false;
     }
 
     public function isAdminKAP()
     {
-        return $this->whereClient(2)->whereRole(1)->exists();
+        if ($this->client == 2 && $this->role == 1) {
+            return true;
+        }
+        return false;
     }
 
     public function isAgentKAP()
     {
-        return $this->whereClient(2)->whereRole(3)->exists();
+        if ($this->client == 2 && $this->role == 3) {
+            return true;
+        }
+        return false;
     }
 
     public function isUserKAP()
     {
-        return $this->whereClient(2)->whereRole(4)->exists();
+        if ($this->client == 2 && $this->role == 4) {
+            return true;
+        }
+        return false;
     }
 
     public function feedback()

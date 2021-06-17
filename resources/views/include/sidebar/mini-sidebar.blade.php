@@ -72,7 +72,7 @@
                     </a>
                     @endif
 
-                    @if (auth()->user()->client == 1 && auth()->user()->role == 1)
+                    @if (auth()->user()->isAdminKG) <!-- kg admin-->
                     <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
                         Sell Product
