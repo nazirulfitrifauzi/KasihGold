@@ -72,11 +72,11 @@
                     @endif
                 @endif
 
-                @if (auth()->user()->role == 1)
+                {{-- @if (auth()->user()->role == 1)
                     <x-sidebar.nav-item title="Dealership" route="http://cscapps.net.my/demoKasih/siskop" uri="#">
                         <x-heroicon-o-user-group class="w-5 h-5" />
                     </x-sidebar.nav-item>
-                @endif
+                @endif --}}
 
                 @if (auth()->user()->role == 1 || auth()->user()->role == 2 || auth()->user()->role == 3)
                 <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
@@ -106,11 +106,11 @@
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                @if (auth()->user()->client == 1 && auth()->user()->role == 1)
+                {{-- @if (auth()->user()->client == 1 && auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Suppliers" route="{{route('admin.suppliers')}}" uri="admin/suppliers">
                     <x-heroicon-o-inbox class="w-5 h-5" />
                 </x-sidebar.nav-item>
-                @endif
+                @endif --}}
 
                 @if (auth()->user()->client == 1)
                 <x-sidebar.dropdown-nav-item active="open" title="Tracking" uri="tracking/*">
