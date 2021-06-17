@@ -44,6 +44,41 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdminKG()
+    {
+        return $this->whereClient(1)->whereRole(1)->exists();
+    }
+
+    public function isMasterDealerKG()
+    {
+        return $this->whereClient(1)->whereRole(2)->exists();
+    }
+
+    public function isAgentKG()
+    {
+        return $this->whereClient(1)->whereRole(3)->exists();
+    }
+
+    public function isUserKG()
+    {
+        return $this->whereClient(1)->whereRole(4)->exists();
+    }
+
+    public function isAdminKAP()
+    {
+        return $this->whereClient(2)->whereRole(1)->exists();
+    }
+
+    public function isAgentKAP()
+    {
+        return $this->whereClient(2)->whereRole(3)->exists();
+    }
+
+    public function isUserKAP()
+    {
+        return $this->whereClient(2)->whereRole(4)->exists();
+    }
+
     public function feedback()
     {
         return $this->hasMany('App\Models\FeedbackList', 'created_by', 'id');
@@ -58,11 +93,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('App\Models\UserType', 'type', 'id');
     }
-
-    // public function isAdmin()
-    // {
-    //     return $this->roles()->where('description', 'Administrator')->exists();
-    // }
 
     public function screening()
     {

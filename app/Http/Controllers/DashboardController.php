@@ -8,16 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->role == '2') {
-            return view('pages.dashboard-hq-kasih-ap');
-        }
-        if (auth()->user()->role == '4') {
-            return view('pages.dashboard-agent-kasih-ap');
-        }
-        if (auth()->user()->role == '6') {
-            return view('pages.dashboard-kasih-ap');
-        } else
-            return view('pages.dashboard');
+        return view('pages.dashboard');
     }
 
     public function dashboardKasihAp()

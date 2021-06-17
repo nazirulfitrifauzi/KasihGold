@@ -48,12 +48,12 @@
                     class="absolute bottom-0 w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 focus:outline-none"
                     role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
 
-                    @if (auth()->user()->role != 1 && auth()->user()->role != 2)
+                    @if (auth()->user()->role != 1)
                     <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
                         Buy Product
                     </a>
-                    
+
                     @else
                     <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
@@ -72,7 +72,7 @@
                     </a>
                     @endif
 
-                    @if (auth()->user()->role == 1)
+                    @if (auth()->user()->client == 1 && auth()->user()->role == 1)
                     <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
                     role="menuitem">
                         Sell Product

@@ -8,10 +8,10 @@ class StockManagementController extends Controller
 {
     public function index()
     {
-
-        if (auth()->user()->role == 2) {
+        if (auth()->user()->role == 1 && auth()->user->client == 2) {
             return view('pages.stock.stock_management_kap');
-        } else
+        } else{
             return view('pages.stock.stock_management');
+        }
     }
 }
