@@ -166,7 +166,6 @@
             month: 'short',
             year: 'numeric'
         }).replace(/ /g, ' ');
-        console.log(formattedDate);
         document.getElementById('getDate').innerHTML = 'Here are your stats for Today, ' + formattedDate;
     </script>
     @stack('js')
