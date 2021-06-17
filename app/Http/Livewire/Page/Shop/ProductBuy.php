@@ -46,12 +46,10 @@ class ProductBuy extends Component
         $refNumber = uniqid(("KG"));
         $total = 0.0;
 
-        if (auth()->user()->role == '4' || auth()->user()->role == '6') {
-
+        if(auth()->user()->client == 2 && auth()->user()->role != 1) {
             foreach ($products as $prod) {
-
                 $total += $prod->products->prod_price * $prod->prod_qty;
-                // Search for available gold bar to be filled    
+                // Search for available gold bar to be filled
                 $goldbar = Goldbar::where('weight_vacant', '>=', $prod->products->prod_weight)->first();
                 for ($i = 0; $i < $prod->prod_qty; $i++) {
                     GoldbarOwnershipPending::create([
@@ -85,7 +83,6 @@ class ProductBuy extends Component
             );
 
             $url = 'https://prod.snapnpay.co/payments/api';
-
             $response = Http::asForm()->post($url, $bill);
 
             session()->flash('success');
@@ -93,7 +90,6 @@ class ProductBuy extends Component
             session()->flash('message', 'Product successfully added to your Gold Shelf!');
             return redirect()->to('/home');
         } else {
-
             foreach ($products as $prod) {
                 NewOrders::create([
                     'user_id'       => auth()->user()->id,
@@ -115,13 +111,7 @@ class ProductBuy extends Component
             return redirect()->to('/home');
         }
 
-
         // return redirect($url);
-
-
-
-
-
     }
 
     public function render()

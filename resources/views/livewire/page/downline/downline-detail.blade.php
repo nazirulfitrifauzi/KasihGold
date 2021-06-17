@@ -33,7 +33,7 @@
                     <x-table.table-header class="text-left" value="No" sort="" />
                     <x-table.table-header class="text-left" value="Name" sort="" />
                     <x-table.table-header class="text-left" value="Email" sort="" />
-                    @if (auth()->user()->role != 1 && auth()->user()->role != 2)
+                    @if (auth()->user()->role != 1)
                         <x-table.table-header class="text-left" value="Membership ID" sort="" />
                     @endif
                     {{-- <x-table.table-header class="text-left" value="Action" sort="" /> --}}
@@ -53,7 +53,7 @@
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>{{ $lists->user->email }}</p>
                             </x-table.table-body>
-                            @if (auth()->user()->role != 1 && auth()->user()->role != 2)
+                            @if (auth()->user()->role != 1)
                                 <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                     <p>{{ $lists->user->profile->membership_id }}</p>
                                 </x-table.table-body>

@@ -3,7 +3,7 @@
 
         <h2 class="flex mr-auto text-lg font-medium">
             Stock Management
-            @if(auth()->user()->role == 1)
+            @if(auth()->user()->client == 1 && auth()->user()->role == 1)
                 <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}">
                     <x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500" @click="openModal = true"/>
                     {{-- Start modal --}}
@@ -128,7 +128,7 @@
                                         @endforeach
                                     @endif
                                 </x-form.dropdown>
-                                @if(auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
+                                @if(auth()->user()->client == 1 && auth()->user()->role == 1 && $stockStatus == 1) <!-- if admin and stock in -->
                                     <x-form.dropdown label="Supplier" value="stockSupplier" default="yes" wire:model="stockSupplier">
                                         @foreach ($suppliers as $supplier)
                                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>

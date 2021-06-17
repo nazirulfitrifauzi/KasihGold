@@ -62,13 +62,9 @@
                         )
                         <div>
                             <header>
-                                <div class="w-full bg-center bg-cover hidden sm:block" style="height:13rem;
+                                <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
                                     background-image: url(
-                                        @if(
-                                                auth()->user()->role == 1 ||
-                                                auth()->user()->role == 3 ||
-                                                auth()->user()->role == 5
-                                            )
+                                        @if(auth()->user()->client == 1)
                                             {{ asset('img/headerKG.png') }}
                                         @else
                                             {{ asset('img/header.jpg') }}
