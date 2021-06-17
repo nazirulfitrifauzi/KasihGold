@@ -48,7 +48,7 @@
                 </div>
 
                 <!--Start Slider View -->
-                <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                {{-- <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                     <div class="grid grid-cols-12 gap-6">
                         <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                             <div class="p-4 bg-gray-200 shadow-lg h-full rounded-lg">
@@ -72,9 +72,9 @@
                             </div>
                         </div>
                     </div>
-                 </div>
-                  <!--End Slider View -->
-                  
+                </div> --}}
+                <!--End Slider View -->
+
                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                     <div class="grid grid-cols-12 gap-6">
 
