@@ -1,3 +1,4 @@
+
 <div>
     <div class="-mt-52">
         <div class="grid grid-cols-12 gap-6">
@@ -45,7 +46,31 @@
                         </x-dashboard.info-card>
                     </div>
                 </div>
-
+                <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                        <div class="p-4 bg-gray-200 shadow-lg h-full rounded-lg">
+                            <div class="swiper-container mySwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide bg-no-repeat bg-center">
+                                        <img src="https://cdn.statically.io/img/www.kasihgold.com/f=auto/wp-content/uploads/2021/03/WhatsApp-Image-2021-04-19-at-12.28.13.jpeg"/>
+                                    </div>
+                                    <div class="swiper-slide bg-no-repeat bg-center">
+                                        <img src="https://cdn.statically.io/img/www.kasihgold.com/f=auto/wp-content/uploads/2021/06/promo_tq.png"/>
+                                    </div>
+                                    <div class="swiper-slide bg-no-repeat bg-center">
+                                        <img src="https://cdn.statically.io/img/www.kasihgold.com/f=auto/wp-content/uploads/2020/06/WhatsApp-Image-2021-04-19-at-11.14.34-3.jpeg"/>
+                                    </div>
+                                    <div class="swiper-slide bg-no-repeat bg-center">
+                                        <img src="https://cdn.statically.io/img/www.kasihgold.com/f=auto/wp-content/uploads/2020/06/WhatsApp-Image-2021-04-19-at-11.14.34-3.jpeg"/>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                     <div class="grid grid-cols-12 gap-6">
 
