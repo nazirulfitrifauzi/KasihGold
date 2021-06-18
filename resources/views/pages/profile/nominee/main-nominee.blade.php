@@ -4,9 +4,9 @@
         <div x-show.transition="step != 'complete'">
             
             <x-note-card>  
-                1. This nomination is only for dealership. Product and etc is not applied.
+                1. This nomination is only for dealerships. Products and et cetera is not applied.
                 <br>
-                2. You are required to fill in the details of your nomation to be updated accordingly
+                2. You are required to fill in the details of your nomination to be updated accordingly
             </x-note-card>  
 
             <!-- Start Top Navigation -->
@@ -65,7 +65,7 @@
                     </button>
                     <button x-show="step === 3" 
                         class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" wire:click="nomineeUpload" 
-                        >Sumbit
+                        >Submit
                     </button>
                 @endif
             </div>
