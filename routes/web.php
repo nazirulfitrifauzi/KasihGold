@@ -42,6 +42,7 @@ use App\Http\Controllers\PhysicalGoldController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\SnapAPI;
 
 Route::middleware('guest')->group(function () {
@@ -117,6 +118,7 @@ Route::middleware('auth')->group(function () {
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
 
         Route::get('setting', [settingController::class, 'setting'])->name('setting');
+        Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
     });
 
     Route::middleware('auth.admin')->group(function () {
