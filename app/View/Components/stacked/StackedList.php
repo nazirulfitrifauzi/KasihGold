@@ -7,12 +7,10 @@ use Illuminate\View\Component;
 class StackedList extends Component
 {
     public $title;
-    public $headerTitle;
 
-    public function __construct($title,$headerTitle)
+    public function __construct($title)
     {
         $this->title = $title;
-        $this->headerTitle = $headerTitle;
     }
 
     public function render()
