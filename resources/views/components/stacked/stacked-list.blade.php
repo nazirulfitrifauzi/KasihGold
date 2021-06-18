@@ -23,20 +23,14 @@
 </div> --}}
 
 <!-------------------------------------------- end jgn padam ------------------------------------>
-<style>
-    .max-h-60{
-        max-height: 46rem;
-    }
-</style>
+
 <div {{ $attributes->merge(['class' => 'relative bg-white shadow-lg rounded-lg']) }}>
     <div class="mt-10">
         <h1 class="font-semibold text-lg px-6 py-4 bg-blue-500 text-white rounded-t-lg">{{$title}}</h1>
     </div>
-    <div class="p-4 mt-2" x-data="{ expanded: false }">
+    <div class="p-4 mt-2">
         <div class="h-full ">
-            <ul class="-my-5 divide-y divide-gray-200 overflow-hidden "
-                x-bind:class="{'max-h-60': !expanded}" x-ref="container"
-                x-bind:style="expanded ? 'max-height: ' + $refs.container.offsetHeight + 'px' : ''">
+            <ul class="-my-5 divide-y divide-gray-200 overflow-hidden" style="max-height: 44.5rem;">
                 {{$slot}}
             </ul>
         </div>
