@@ -1,6 +1,6 @@
 <x-general.card class="mt-2 bg-white shadow-lg">
     <x-note-card>  
-        1. Please take note that the information submitted will not be reflected on your account untill it has been reviewd by Public Gold's staffs.
+        1. Please take note that the information submitted will not be reflected on your account untill it has been reviewed by Public Gold's staffs.
         <br>
         2. To change information in locked field, please contact your nearest branch.
     </x-note-card>  

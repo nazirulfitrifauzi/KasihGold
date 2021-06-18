@@ -66,8 +66,9 @@
                     </tr>
                     <tr>
                         <td class="text-left" colspan="5" style="padding-left: 30px;">
-                            1.Penama adalah benefisiari untuk menerima insentif bagi akaun Public Gold <br> 
-                            saya. 2.Pembayaran insentif saya kepada penama akan terbatal JIKA : - <br>
+                            1.Penama adalah benefisiari untuk menerima insentif bagi akaun Public Gold saya. 
+                            <br>
+                            2.Pembayaran insentif saya kepada penama akan terbatal JIKA : - <br>
                             <ol>
                                 <li>Penama belum mencapai umur 18 tahun 
                                     <br>
@@ -177,18 +178,21 @@
                                 <p style="padding-left: 44px">
                                     a.Telah mencapai umur 18 tahun atau lebih.<br>
                                     b.Penamaan perlu dibuat oleh pengedar sendiri.<br>
-                                    c.Borang Penamaan mestilah diisi dengan lengkap. (Dokumen pengenalan diri pengedar & penama, sila cetak bahagian hadapan & belakang Mykad atas muka surat yang sama kertas A4).
+                                    c.Borang Penamaan mestilah diisi dengan lengkap. (Dokumen pengenalan diri pengedar & penama, sila cetak bahagian hadapan & belakang 
+                                    <br>&nbsp;&nbsp;&nbsp;Mykad atas muka surat yang sama kertas A4).
                                 </p>
                                 3.Kuat kuasa Penamaan:- <br>
                                 <p style="padding-left: 44px">
-                                    a.Borang penamaan hendaklah diterima oleh Public Gold semasa pengedar masih hidup. 
+                                    a.Borang penamaan hendaklah diterima oleh Public Gold semasa pengedar masih hidup.<br> 
                                     b.Penamaan berkuat kuasa pada tarikh Public Gold menerima Borang Penamaan daripada pengedar.<br>
-                                    c.Insentif pengedar akan dibayar kepada penama selepas Public Gold menerima maklumat dan butiran yang lengkap (pengenalan diri Pengedar dan Penama, Certified True Copy-Sijil Kematian) selepas kematian pengedar. (Tiada bayaran balik dari tarikh kematian pengedar sehingga tarikh kemaskini)
+                                    c.Insentif pengedar akan dibayar kepada penama selepas Public Gold menerima maklumat dan butiran yang lengkap (pengenalan diri 
+                                    <br>&nbsp;&nbsp;&nbsp;Pengedar dan Penama, Certified True Copy-Sijil Kematian) selepas kematian pengedar. 
+                                    <br>&nbsp;&nbsp;&nbsp;(Tiada bayaran balik dari tarikh kematian pengedar sehinggatarikh kemaskini)
                                 </p>
-                                4.Penamaan Terbatal Apabila:- a.Pengedar<br>
+                                4.Penamaan Terbatal Apabila:-
                                 <p style="padding-left: 44px">
-                                    membatalkan penamaan. b.Penama<br> 
-                                    meninggal dunia sebelum pengedar.<br>
+                                    a.Pengedar membatalkan penamaan.<br> 
+                                    b.Penama meninggal dunia sebelum pengedar.<br>
                                     c.Penamaan baharu dibuat.<br>
                                     d.Maklumat yang dikemukakan dalam Penamaan pengedar adalah maklumat palsu.<br>
                                     e.Penama meninggal dunia (selepas kematian pengedar) dan insentif pengedar belum dibayar kepada penama.<br>

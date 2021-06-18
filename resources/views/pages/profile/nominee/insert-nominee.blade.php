@@ -8,7 +8,7 @@
             </th>
             <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                 <div class="flex cursor-pointer">
-                    <span class="mr-2">identification number/birth <br> ceterficate/passport/others</span>
+                    <span class="mr-2">identification number/birth <br> certificate/passport/others</span>
                 </div>
             </th>
             <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -23,7 +23,7 @@
             </th>
             <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                 <div class="flex cursor-pointer">
-                    <span class="mr-2">Percentange</span>
+                    <span class="mr-2">percentage</span>
                 </div>
             </th>
         </x-slot>

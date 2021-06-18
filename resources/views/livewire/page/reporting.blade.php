@@ -16,7 +16,7 @@
                         </x-tab.nav-tab>
                         <x-tab.nav-tab name="1" livewire="">
                             <div class="flex font-semibold">
-                                <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Insurannce
+                                <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Insurance
                             </div>
                         </x-tab.nav-tab>
                         <x-tab.nav-tab name="2" livewire="">

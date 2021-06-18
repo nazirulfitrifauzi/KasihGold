@@ -54,10 +54,10 @@
         <div class="col-span-12  sm:hidden xl:block intro-y lg:col-span-4">
             <div class="w-full px-5 py-4 mt-4 mb-2 text-white rounded-md bg-yellow-400">
                 <div class="flex items-center">
-                    <div class="text-lg font-medium">Send us your incident reporting</div>
+                    <div class="text-lg font-medium">Send us your incident report</div>
                 </div>
-                <div class="mt-3 tex-sm">Do you have any suggestion or found some bugs?</div>
-                <div class="text-sm">let us know in the form given</div>
+                <div class="mt-3 tex-sm">Do you have any suggestions or found some bugs?</div>
+                <div class="text-sm">Let us know in the form given</div>
             </div>
             <div class="w-full px-5 py-4 mt-4 mb-2 text-gray-900 bg-white rounded-md shadow-lg">
                 <div class="flex items-center">
