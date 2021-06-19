@@ -67,8 +67,9 @@ Route::middleware('auth')->group(function () {
     Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
     Route::middleware(['passScreen', 'verified'])->group(function () {
-        //-- KASIH GOLD --//
         Route::get('home', [DashboardController::class, 'index'])->name('home');
+
+        //-- KASIH GOLD --//
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
@@ -101,9 +102,6 @@ Route::middleware('auth')->group(function () {
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
         //-- KASIH AP --//
-        Route::get('dashboardKasihAp', [DashboardController::class, 'dashboardKasihAp'])->name('dashboardKasihAp');
-        Route::get('dashboardAgentkasihAp', [DashboardController::class, 'dashboardAgentKasihAp'])->name('dashboardAgentkasihAp');
-        Route::get('dashboardHqkasihAp', [DashboardController::class, 'dashboardHqkasihAp'])->name('dashboardHqkasihAp');
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
         Route::get('my-agent-kap', [DashboardController::class, 'myAgent'])->name('my-agent-kap');
         Route::get('pending-approval-kap', [DashboardController::class, 'pendingApproval'])->name('pending-approval-kap');

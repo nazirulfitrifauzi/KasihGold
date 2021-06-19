@@ -1,7 +1,8 @@
 @extends('default.default')
 @section('content')
-    <livewire:page.dashboard-agent-kasih-ap />
-    {{-- lineChart --}}
+    <livewire:page.home />
+
+{{-- lineChart --}}
 <script>
     var charts = document.querySelector('#chartline')
     var options = {

@@ -32,15 +32,7 @@ class Login extends Component
             return;
         }
 
-        if (auth()->user()->isAdminKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) { // hq
-            return redirect()->to('/home');
-        } elseif (auth()->user()->isAdminKAP()) { // hq
-            return redirect()->to('/dashboardHqkasihAp');
-        } elseif (auth()->user()->isAgentKAP()) { // agent
-            return redirect()->to('/dashboardAgentkasihAp');
-        } elseif (auth()->user()->isUserKAP()) { // user
-            return redirect()->to('/dashboardKasihAp');
-        }
+        return redirect()->to('/home');
     }
 
     public function render()

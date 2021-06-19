@@ -38,11 +38,7 @@ class Register extends Component
 
         Auth::login($user, true);
 
-        if ($this->client == 1) { // kg
-            return redirect()->intended(route('home'));
-        } elseif ($this->client == 2) { // kasihap
-            return redirect()->intended(route('dashboardKasihAp'));
-        }
+        return redirect()->intended(route('home'));
     }
 
     public function registerAgent() {
@@ -64,12 +60,6 @@ class Register extends Component
         event(new Registered($user));
 
         Auth::login($user, true);
-
-        if ($this->client == 1) { // kg
-            return redirect()->intended(route('home'));
-        } elseif ($this->client == 2) { // kasihap
-            return redirect()->intended(route('dashboardAgentkasihAp'));
-        }
 
         return redirect()->intended(route('home'));
     }

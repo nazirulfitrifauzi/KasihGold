@@ -42,23 +42,9 @@
             <!-- Links -->
             <div class="flex-1 px-4 pr-0 mt-2 space-y-2 overflow-auto">
 
-                @if(auth()->user()->client == 1)  <!--Kasih Gold-->
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @elseif (auth()->user()->isAdminKAP())  <!--hq-->
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardHqkasihAp')}}" uri="dashboardHqkasihAp">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @elseif (auth()->user()->isAgentKAP())  <!--agent-->
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardAgentkasihAp')}}" uri="dashboardAgentkasihAp">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @elseif (auth()->user()->isUserKAP())  <!--user-->
-                    <x-sidebar.nav-item title="Dashboard" route="{{route('dashboardKasihAp')}}" uri="dashboardKasihAp">
-                        <x-heroicon-o-home class="w-5 h-5" />
-                    </x-sidebar.nav-item>
-                @endif
+                <x-sidebar.nav-item title="Dashboard" route="{{route('home')}}" uri="home">
+                    <x-heroicon-o-home class="w-5 h-5" />
+                </x-sidebar.nav-item>
 
                 {{-- @if (auth()->user()->role == 1)
                     <x-sidebar.nav-item title="Dealership" route="http://cscapps.net.my/demoKasih/siskop" uri="#">
