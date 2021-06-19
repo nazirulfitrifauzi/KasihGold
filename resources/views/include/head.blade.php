@@ -54,27 +54,14 @@
                 @include('include.sidebar.mobile-navbar')
 
                 <main class="overflow-y-auto">
-                    @if(
-                            Route::current()->uri == 'home' ||
-                            Route::current()->uri == 'dashboardKasihAp' ||
-                            Route::current()->uri == 'dashboardAgentkasihAp'||
-                            Route::current()->uri == 'dashboardHqkasihAp'
-                        )
-                        <div>
-                            <header>
-                                <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
-                                    background-image: url(
-                                        @if(auth()->user()->client == 1)
-                                            {{ asset('img/headerKG.png') }}
-                                        @else
-                                            {{ asset('img/header.jpg') }}
-                                        @endif
-                                        );">
-                                    <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
-                                </div>
-                            </header>
-                        </div>
-                    @endif
+                    <div>
+                        <header>
+                            <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
+                                background-image: url({{ asset('img/header.jpg') }});">
+                                <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
+                            </div>
+                        </header>
+                    </div>
                     <div class="grid px-8 pb-10 mx-auto">
                         @yield('content')
                     </div>
