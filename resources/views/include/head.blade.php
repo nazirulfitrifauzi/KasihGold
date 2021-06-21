@@ -54,14 +54,29 @@
                 @include('include.sidebar.mobile-navbar')
 
                 <main class="overflow-y-auto">
-                    <div>
+                    @if(Route::current()->uri == 'home')
                         <header>
                             <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
-                                background-image: url({{ asset('img/header.jpg') }});">
+                                background-image: url(
+                                    @if(
+                                            auth()->user()->isAdminKAP() || 
+                                            auth()->user()->isAgentKAP()
+                                        )
+                                            {{ asset('img/header.jpg') }}
+
+                                    @elseif(
+                                            auth()->user()->isAdminKG() || 
+                                            auth()->user()->isMasterDealerKG() || 
+                                            auth()->user()->isAgentKG() ||
+                                            auth()->user()->isUserKG()
+                                        )
+                                            {{ asset('img/headerKG.png') }}
+                                    @endif
+                                    );">
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                             </div>
                         </header>
-                    </div>
+                    @endif
                     <div class="grid px-8 pb-10 mx-auto">
                         @yield('content')
                     </div>
