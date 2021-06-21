@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
         //-- KASIH GOLD --//
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
+        Route::get('stock/management/add', [StockManagementController::class, 'add'])->name('stockManagementAdd');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
         Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
