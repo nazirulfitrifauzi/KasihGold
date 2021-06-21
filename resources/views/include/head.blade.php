@@ -57,22 +57,7 @@
                     @if(Route::current()->uri == 'home')
                         <header>
                             <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
-                                background-image: url(
-                                    @if(
-                                            auth()->user()->isAdminKAP() || 
-                                            auth()->user()->isAgentKAP()
-                                        )
-                                            {{ asset('img/header.jpg') }}
-
-                                    @elseif(
-                                            auth()->user()->isAdminKG() || 
-                                            auth()->user()->isMasterDealerKG() || 
-                                            auth()->user()->isAgentKG() ||
-                                            auth()->user()->isUserKG()
-                                        )
-                                            {{ asset('img/headerKG.png') }}
-                                    @endif
-                                    );">
+                                background-image: url({{ asset('img/header.jpg') }});">
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                             </div>
                         </header>
