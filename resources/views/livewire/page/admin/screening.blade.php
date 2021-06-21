@@ -44,99 +44,110 @@
                                 Screening
                             </button>
                             {{-- Start modal Screening --}}
-                            <x-general.modal modalActive="OpenScreening" title="Screening" modalSize="4xl" closeBtn="yes">
-                                <form>
-                                    <div class="col-span-12 pt-4 overflow-auto intro-y lg:overflow-visible">
-                                        <table class="w-full border border-gray-300 table-auto ">
-                                            <tbody>
-                                                <div class="text-center">
-                                                    @if ($lists->screening->count() == 11)
-                                                        <div class="flex justify-center  space-x-3">
-                                                            <div class="mt-6 px-4 border-r-2 border-l-2">
-                                                                <span class="text-base font-semibold ">Currently Screening:</span>
-                                                                <p class="text-base font-semibold text-gray-500 ">11 Screenings</p>
-                                                            </div>
-                                                            <div class="mt-6 px-4 border-r-2">
-                                                                <span class="text-base font-semibold ">Approved:</span>
-                                                                <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',1)->count() }} Screenings</p>
-                                                            </div>
-                                                            <div class="mt-6 px-4 border-r-2">
-                                                                <span class="text-base font-semibold ">Declined:</span>
-                                                                <p class="text-base font-semibold text-gray-500 ">{{ $lists->screening->where('status',0)->count() }} Screenings</p>
-                                                                @php
-                                                                    $failed = $lists->screening->where('status',0);
-                                                                @endphp
-                                                                @foreach ($failed as $fail)
-                                                                    <p class="text-base font-semibold text-gray-500 ">( {{ $fail->sanction->name }} )</p>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex items-center justify-center mt-6">
-                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg" wire:click=finalResult({{ $lists->id }},'terima')>
-                                                                <x-heroicon-s-check class="-ml-0.5 mr-2 h-4 w-4"/>
-                                                                Approve this user
-                                                            </button>
-                                
-                                                            <button type="button" class="flex items-center px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg" wire:click=finalResult({{ $lists->id }},'tolak')>
-                                                                <x-heroicon-s-trash class="-ml-0.5 mr-2 h-4 w-4"/>
-                                                                Decline this user
-                                                            </button>
-                                                        </div>
-                                                    @else
-                                                        <table class="w-full mt-5 table-fixed">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="px-4 py-2 border">Institution</th>
-                                                                    <th class="px-4 py-2 border">LInk</th>
-                                                                    <th class="px-4 py-2 border">Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($sanctionList as $item)
-                                                                    <tr>
-                                                                        <td class="px-4 py-2 text-left border">
-                                                                            <p class="break-words whitespace-normal">{{ $item->name }}</p>
-                                                                        </td>
-                                                                        <td class="px-4 py-2 text-left border">
-                                                                            <a href="{{ $item->website }}" target="_blank" class="text-teal-600 break-words whitespace-normal transition duration-150 ease-in-out hover:text-teal-500 focus:outline-none focus:underline">{{ $item->website }}</a>
-                                                                        </td>
-                                                                        <td class="px-4 py-2 border">
-                                                                            @php
-                                                                                $status = $item->screening->where('user_id', $lists->id)->first();
-                                                                            @endphp
-                                
-                                                                            @if ($status != null)
-                                                                                @if ($status->status == 1)
-                                                                                    <div class="flex items-center justify-center">
-                                                                                        <x-heroicon-o-check-circle class="w-5 h-5 mr-2 text-green-600 cursor-pointer"/>
-                                                                                        Approve
-                                                                                    </div>
-                                                                                @else
-                                                                                    <div class="flex items-center justify-center">
-                                                                                        <x-heroicon-o-x-circle class="w-5 h-5 mr-2 text-red-600 cursor-pointer"/>
-                                                                                        Decline
-                                                                                    </div>
-                                                                                @endif
-                                                                            @else
-                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg" wire:click="screenResult({{ $lists->id }},{{ $item->id }},'pass')">
-                                                                                    Approve
-                                                                                </button>
-                                
-                                                                                <button type="button" class="px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg " wire:click="screenResult({{ $lists->id }},{{ $item->id }},'fail')">
-                                                                                    Decline
-                                                                                </button>
-                                                                            @endif
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    @endif
+                            <x-general.modal modalActive="OpenScreening" title="Screening" modalSize="4xl"
+                                closeBtn="yes">
+                                <table class="w-full border border-gray-300 table-auto ">
+                                    <tbody>
+                                        @if ($lists->screening->count() == 11)
+                                            <div class="flex justify-center  space-x-3">
+                                                <div class="mt-6 px-4 border-r-2 border-l-2">
+                                                    <span class="text-base font-semibold ">Currently Screening:</span>
+                                                    <p class="text-base font-semibold text-gray-500 ">11 Screenings</p>
                                                 </div>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </form>
+                                                <div class="mt-6 px-4 border-r-2">
+                                                    <span class="text-base font-semibold ">Approved:</span>
+                                                    <p class="text-base font-semibold text-gray-500 ">
+                                                        {{ $lists->screening->where('status',1)->count() }} Screenings</p>
+                                                </div>
+                                                <div class="mt-6 px-4 border-r-2">
+                                                    <span class="text-base font-semibold ">Declined:</span>
+                                                    <p class="text-base font-semibold text-gray-500 ">
+                                                        {{ $lists->screening->where('status',0)->count() }} Screenings</p>
+                                                    @php
+                                                    $failed = $lists->screening->where('status',0);
+                                                    @endphp
+                                                    @foreach ($failed as $fail)
+                                                    <p class="text-base font-semibold text-gray-500 ">(
+                                                        {{ $fail->sanction->name }} )</p>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center justify-center mt-6">
+                                                <button type="button"
+                                                    class="flex items-center px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg"
+                                                    wire:click=finalResult({{ $lists->id }},'terima')>
+                                                    <x-heroicon-s-check class="-ml-0.5 mr-2 h-4 w-4" />
+                                                    Approve this user
+                                                </button>
+
+                                                <button type="button"
+                                                    class="flex items-center px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg"
+                                                    wire:click=finalResult({{ $lists->id }},'tolak')>
+                                                    <x-heroicon-s-trash class="-ml-0.5 mr-2 h-4 w-4" />
+                                                    Decline this user
+                                                </button>
+                                            </div>
+                                        @else
+                                            <table class="w-full mt-5 table-fixed">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="px-4 py-2 border">Institution</th>
+                                                        <th class="px-4 py-2 border">LInk</th>
+                                                        <th class="px-4 py-2 border">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($sanctionList as $item)
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-left border">
+                                                            <p class="break-words whitespace-normal">{{ $item->name }}</p>
+                                                        </td>
+                                                        <td class="px-4 py-2 text-left border">
+                                                            <a href="{{ $item->website }}" target="_blank"
+                                                                class="text-teal-600 break-words whitespace-normal transition duration-150 ease-in-out hover:text-teal-500 focus:outline-none focus:underline">{{ $item->website }}</a>
+                                                        </td>
+                                                        <td class="px-4 py-2 border">
+                                                            @php
+                                                            $status = $item->screening->where('user_id',
+                                                            $lists->id)->first();
+                                                            @endphp
+
+                                                            @if ($status != null)
+                                                            @if ($status->status == 1)
+                                                            <div class="flex items-center justify-center">
+                                                                <x-heroicon-o-check-circle
+                                                                    class="w-5 h-5 mr-2 text-green-600 cursor-pointer" />
+                                                                Approve
+                                                            </div>
+                                                            @else
+                                                            <div class="flex items-center justify-center">
+                                                                <x-heroicon-o-x-circle
+                                                                    class="w-5 h-5 mr-2 text-red-600 cursor-pointer" />
+                                                                Decline
+                                                            </div>
+                                                            @endif
+                                                            @else
+                                                            <button type="button"
+                                                                class="px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg"
+                                                                wire:click="screenResult({{ $lists->id }},{{ $item->id }},'pass')">
+                                                                Approve
+                                                            </button>
+
+                                                            <button type="button"
+                                                                class="px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg "
+                                                                wire:click="screenResult({{ $lists->id }},{{ $item->id }},'fail')">
+                                                                Decline
+                                                            </button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endif
+                                    </tbody>
+                                </table>
                                 <div wire:loading>
                                     @include('misc.loading')
                                 </div>
