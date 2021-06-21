@@ -63,7 +63,8 @@ class Screening extends Component
     {
         return view('livewire.page.admin.screening',[
             'list' => User::where('name', 'like', '%' . $this->search . '%')
-                            ->whereRole(2)
+                            ->where('role', '!=', 1)
+                            ->whereClient(1)
                             ->whereActive(0)
                             ->paginate(10),
             'sanctionList' => SanctionListWebsites::all(),
