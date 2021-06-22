@@ -57,6 +57,7 @@
                     </x-table.table-body>
                 </tr>
             @endforelse
+
             @if (count($nomineeList) < 2)
                 <tr>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
@@ -113,7 +114,7 @@
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                             {{ $name }}
                         </x-table.table-body>
-        
+
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                             <a href="{{ asset($docDirList['dir'][$key]) }}" target="blank" class="px-4 py-2 text-sm font-semibold tracking-wider text-white transition duration-300 ease-in-out bg-green-500 rounded-lg hover:bg-green-400">View</a>
                         </x-table.table-body>

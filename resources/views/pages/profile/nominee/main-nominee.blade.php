@@ -1,17 +1,16 @@
 <x-general.card class="mt-2 bg-white shadow-lg"  x-data="app()" x-cloak>
-
     <div class="w-full">
         <div x-show.transition="step != 'complete'">
-            
-            <x-note-card>  
+
+            <x-note-card>
                 1. This nomination is only for dealerships. Products and et cetera is not applied.
                 <br>
                 2. You are required to fill in the details of your nomination to be updated accordingly
-            </x-note-card>  
+            </x-note-card>
 
             <!-- Start Top Navigation -->
             <div class="px-4 py-4 border-b-2">
-                <div class="flex justify-between"> 
+                <div class="flex justify-between">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                         <div class="flex-1 text-base font-medium leading-tight">
                             <div x-show="step === 1">
@@ -35,7 +34,7 @@
             <!-- End Top Navigation -->
 
             <!-- Start Step Content -->
-            <div class="px-4 py-4">	
+            <div class="px-4 py-4">
                 <div x-show.transition.in="step === 1">
                     @include('pages.profile.nominee.insert-nominee')
                 </div>
@@ -53,18 +52,18 @@
         <div class="flex justify-between">
             <div class="w-1/2">
                 <button x-show="step > 1" @click="step--"
-                        class="w-32 px-5 py-2 text-center bg-gray-200 rounded-lg focus:outline-none hover:bg-gray-300 " 
+                        class="w-32 px-5 py-2 text-center bg-gray-200 rounded-lg focus:outline-none hover:bg-gray-300 "
                     >Back
                 </button>
             </div>
             <div class="w-1/2 text-right">
                 @if (Storage::exists('public/nominee/' . auth()->user()->id) == false)
                     <button x-show="step < 3" @click="step++"
-                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" 
+                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300"
                         >Next
                     </button>
-                    <button x-show="step === 3" 
-                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" wire:click="nomineeUpload" 
+                    <button x-show="step === 3"
+                        class="w-32 px-5 py-2 text-center text-white bg-yellow-400 rounded-lg shadow-sm focus:outline-none hover:bg-yellow-300" wire:click="nomineeUpload"
                         >Submit
                     </button>
                 @endif
@@ -77,7 +76,7 @@
 <script>
     function app() {
         return {
-            step: 1, 
+            step: 1,
             togglePassword: false,
         }
     }
