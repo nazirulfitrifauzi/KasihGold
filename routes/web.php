@@ -97,7 +97,6 @@ Route::middleware('auth')->group(function () {
         Route::post('pay2', [SnapAPI::class, 'callback'])->name('pay2');
         Route::post('snapBuy', [SnapAPI::class, 'snapBuy'])->name('snapBuy');
 
-
         Route::get('cart', [CartController::class, 'index'])->name('cart');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 

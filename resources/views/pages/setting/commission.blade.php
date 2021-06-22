@@ -22,27 +22,19 @@
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                     <div class="flex cursor-pointer">
-                        <span class="mr-2">Dropship</span>
-                    </div>
-                </th>
-                <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
                         <span class="mr-2">Action</span>
                     </div>
                 </th>
             </x-slot>
             <x-slot name="tbody">
+                @foreach ($items as $item)
                     <tr>
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700">
-                            GOLD - 24 KARAT<br>0.25 GRAM
+                            {{ $item->name }}
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model=""/>
-                        </x-table.table-body>
-
-                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model=""/>
+                            <x-form.input type="text" label="" value="" wire:model="md_rate" data="10.00"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
@@ -54,8 +46,8 @@
                                 Add Item
                             </button>
                         </x-table.table-body>
-
                     </tr>
+                @endforeach
             </x-slot>
         </x-table.table>
     </div>

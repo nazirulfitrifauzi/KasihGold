@@ -1,9 +1,9 @@
-@props([
+{{-- @props([
     'type'=>'text',
     'label'=>'',
     'value'=>'',
     'disable' => ''
-])
+]) --}}
 
 <div>
     @if($label != "")
@@ -13,7 +13,7 @@
     @endif
 
     <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-        <input {{ $disable == "true" ? 'disabled' : '' }}
+        <input {{ $disable == "true" ? 'disabled' : '' }} value="{{ $data }}"
             {{ $attributes->merge(['type'=>$type]) }}
             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 {{ ($disable == 'true') ? 'bg-gray-400' : '' }} {{ ($errors->has($value)) ? 'border-red-300 bg-red-50 text-red-900' : ''}}"
         >
