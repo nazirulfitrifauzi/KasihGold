@@ -32,4 +32,9 @@ class InvItem extends Model
     {
         return $this->hasMany('App\Models\InvMovement', 'item_id', 'id');
     }
+
+    public function rates()
+    {
+        return $this->hasOne('App\Models\CommissionRate', 'item_id', 'id');
+    }
 }
