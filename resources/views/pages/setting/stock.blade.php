@@ -1,24 +1,6 @@
-<div>
-    <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
-        <h2 class="flex mr-auto text-lg font-medium">
-            Add Stock Management
-            <span class="flex items-center mx-2 cursor-pointer">
-                <a href="{{ route('stock-management') }}"><x-heroicon-o-reply class="w-6 h-6 text-green-400 hover:text-green-500"/></a>
-            </span>
-        </h2>
-        @if (session('error'))
-            <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
-        @elseif (session('info'))
-            <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
-        @elseif (session('success'))
-            <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
-        @elseif (session('warning'))
-            <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
-        @endif
-    </div>
-
+<div class="px-4 py-6 sm:p-6 lg:pb-8">
     {{-- Category --}}
-    <div class="py-4 mt-8">
+    <div>
         <h2 class="flex mb-4 mr-auto text-lg font-medium">
             Add Category
         </h2>

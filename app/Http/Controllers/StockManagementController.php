@@ -14,9 +14,4 @@ class StockManagementController extends Controller
             return view('pages.stock.stock_management');
         }
     }
-
-    public function add()
-    {
-        return view('pages.stock.add');
-    }
 }
