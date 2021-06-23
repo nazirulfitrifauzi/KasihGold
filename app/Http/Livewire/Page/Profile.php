@@ -31,7 +31,7 @@ class Profile extends Component
 
     public function mount()
     {
-        $this->agent = User::whereRole(4)->whereClient(2)->whereActive(1)->get();
+        $this->agent = User::whereRole(3)->whereClient(2)->whereActive(1)->get();
         $this->states = States::all();
         $this->banks = Banks::all();
         $this->memberRelationshipList = MemberRelationship::all();

@@ -40,7 +40,6 @@
                                             <option value="{{ $agents->id }}">{{ $agents->name }}</option>
                                         @endforeach
                                 </x-form.dropdown>
-                                {{ $agentId }}
                                 <x-form.input label="Membership ID" wire:model="membership_id" value="membership_id" disable="true"/>
                             @endif
                         @endif

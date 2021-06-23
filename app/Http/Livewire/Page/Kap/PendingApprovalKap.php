@@ -16,7 +16,7 @@ class PendingApprovalKap extends Component
 
     public function mount()
     {
-        $this->list = User::whereClient(2)->whereRole(4)->whereActive(0)->get();
+        $this->list = User::whereClient(2)->whereRole(3)->whereActive(0)->get();
     }
 
     public function approve($id)
