@@ -108,74 +108,62 @@
                                             <p class="text-sm text-gray-500">
                                                 4.03 gram
                                             </p>
-                                    </div>
+                                        </div>
+
                                         <div class="px-20 py-5">
-                                            <fieldset>
-                                                <div class="-space-y-px bg-white rounded-md" x-data="{ isOn1:false, isOn2: false }">
-                                                    <label
-                                                        @click="isOn1 = true, isOn2 = false"
-                                                        :aria-checked="isOn1"
-                                                        :class="{'bg-indigo-50 border-indigo-200 z-10': isOn1, 'border-gray-200': !isOn1 }"
-                                                        class="relative flex p-4 border border-gray-200 cursor-pointer rounded-tl-md rounded-tr-md">
-                                                        <input type="radio" name="privacy_setting" value="Private to Project Members" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-1-label" aria-describedby="privacy-setting-1-description">
-                                                        <div class="flex flex-col ml-3">
-                                                            <span
-                                                            @click="isOn1 = true, isOn2 = false"
-                                                            :aria-checked="isOn1"
-                                                            :class="{'text-indigo-900': isOn1, 'text-gray-900': !isOn1 }"
-                                                            id="privacy-setting-1-label" class="block text-sm font-medium text-gray-900">
-                                                                0.25 gram Physical
-                                                            </span>
-                                                            <span
-                                                                @click="isOn1 = true, isOn2 = false"
-                                                                :aria-checked="isOn1"
-                                                                :class="{'text-indigo-700': isOn1, 'text-gray-500': !isOn1 }"
-                                                                id="privacy-setting-1-description" class="block text-sm text-gray-500">
-                                                                Your digital gold is enough for this change.
-                                                            </span>
-                                                        </div>
+                                            <div x-data="{ accordion: 0 ,accordion1: 0  }">
+                                                <div class="w-full p-4 bg-white border focus:outline-none">
+                                                    <label class="flex">
+                                                        <input @click="accordion = accordion == 1 ? 0 : 1" type="checkbox"  id="" value="" name="physical_gold"  
+                                                        class="w-5 h-5 text-blue-600 form-checkbox" >
                                                     </label>
-                                                    <label
-                                                        @click="isOn2 = true, isOn1 = false"
-                                                        :aria-checked="isOn2"
-                                                        :class="{'bg-red-50 border-red-200 z-10': isOn2, 'border-gray-200': !isOn2 }"
-                                                        class="relative flex p-4 border border-gray-200 cursor-pointer rounded-bl-md rounded-br-md">
-                                                        <input  type="radio" name="privacy_setting" value="Private to you" class="h-4 w-4 mt-0.5 cursor-pointer text-indigo-600 border-gray-300 focus:ring-indigo-500" aria-labelledby="privacy-setting-2-label" aria-describedby="privacy-setting-2-description">
-                                                        {{-- <div class="flex flex-col ml-3">
-                                                            <span
-                                                                @click="isOn2 = true, isOn1 = false"
-                                                                :aria-checked="isOn2"
-                                                                :class="{'text-red-900': isOn2, 'text-gray-900': !isOn2 }"
-                                                                id="privacy-setting-2-label" class="block text-sm font-medium text-gray-900">
-                                                            1.0 gram
-                                                            </span>
-                                                            <span
-                                                                @click="isOn2 = true, isOn1 = false"
-                                                                :aria-checked="isOn2"
-                                                                :class="{'text-red-700': isOn2, 'text-gray-500': !isOn2 }"
-                                                                id="privacy-setting-2-description" class="block text-sm text-gray-500">
-                                                            Your digital gold is not sufficient for this change.
-                                                            </span>
-                                                        </div> --}}
-                                                        <div class="flex flex-col ml-3">
-                                                            <span
-                                                            @click="isOn1 = true, isOn2 = false"
-                                                            :aria-checked="isOn1"
-                                                            :class="{'text-indigo-900': isOn2, 'text-gray-900': !isOn2 }"
-                                                            id="privacy-setting-1-label" class="block text-sm font-medium text-gray-900">
-                                                                1 gram Physical
-                                                            </span>
-                                                            <span
-                                                                @click="isOn1 = true, isOn2 = false"
-                                                                :aria-checked="isOn1"
-                                                                :class="{'text-indigo-700': isOn2, 'text-gray-500': !isOn2 }"
-                                                                id="privacy-setting-1-description" class="block text-sm text-gray-500">
-                                                                Your digital gold is enough for this change.
-                                                            </span>
-                                                        </div>
-                                                    </label>
+                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-6">
+                                                        <span class="block text-sm font-medium text-gray-900">
+                                                            0.25 gram Physical
+                                                        </span>
+                                                        <span class="block text-sm text-gray-500">
+                                                            Your digital gold is enough for this change.
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                            </fieldset>
+                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
+                                                    <div class="px-4 py-4 border-2">
+                                                        <x-form.basic-form>
+                                                            <x-slot name="content">
+                                                                <x-form.dropdown label="" default="no" wire:model="" value="">
+                                                                    <option value="" hidden>Select an Quantity</option>
+                                                                </x-form.dropdown>
+                                                            </x-slot>
+                                                        </x-form.basic-form>
+                                                    </div>
+                                                </div>
+
+                                                <div class="w-full p-4 bg-white border rounded-b-none focus:outline-none">
+                                                    <label class="flex ">
+                                                        <input @click="accordion1 = accordion1 == 1 ? 0 : 1" type="checkbox" id="" value="" name="physical_gold" 
+                                                        class="w-5 h-5 text-blue-600 form-checkbox ">
+                                                    </label>
+                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-6">
+                                                        <span class="block text-sm font-medium text-gray-900">
+                                                            1 gram Physical
+                                                        </span>
+                                                        <span class="block text-sm text-gray-500">
+                                                            Your digital gold is enough for this change.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion1 !== 1 }" x-cloak>
+                                                    <div class="px-4 py-4 border-2 rounded-b-lg">
+                                                        <x-form.basic-form>
+                                                            <x-slot name="content">
+                                                                <x-form.dropdown label="" default="no" wire:model="" value="">
+                                                                    <option value="" hidden>Select an Quantity</option>
+                                                                </x-form.dropdown>
+                                                            </x-slot>
+                                                        </x-form.basic-form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
