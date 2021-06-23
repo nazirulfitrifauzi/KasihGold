@@ -111,22 +111,14 @@ class ProductBuy extends Component
                     'fulfillment'   => 0,
                 ]);
                 $prod->delete();
+            }
+
+            session()->flash('success');
+            session()->flash('title', 'Success!');
+            session()->flash('message', 'Product successfully ordered! Awaiting for HQ approval!');
+            return redirect()->to('/home');
         }
-
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'Product successfully ordered! Awaiting for HQ approval!');
-        return redirect()->to('/home');
     }
-
-
-    // return redirect($url);
-
-
-
-
-
-    // }
 
     public function render()
     {
