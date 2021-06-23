@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Page\Shop;
 
 use App\Models\Goldbar;
+use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
 use App\Models\InvCart;
 use App\Models\InvMaster;
@@ -46,7 +47,7 @@ class ProductBuy extends Component
         $refNumber = uniqid(("KG"));
         $total = 0.0;
 
-        if (auth()->user()->role == '4' || auth()->user()->role == '6') {
+        if (auth()->user()->client == '2') {
 
             foreach ($products as $prod) {
 
@@ -55,17 +56,31 @@ class ProductBuy extends Component
                 // Search for available gold bar to be filled    
                 $goldbar = Goldbar::where('weight_vacant', '>=', $prod->products->prod_weight)->first();
                 for ($i = 0; $i < $prod->prod_qty; $i++) {
-                    GoldbarOwnershipPending::create([
+                    // GoldbarOwnershipPending::create([
+                    //     'referenceNumber'   => $refNumber,
+                    //     'gold_id'           => $goldbar->gold_id,
+                    //     'user_id'           => auth()->user()->id,
+                    //     'weight'            => $prod->products->prod_weight,
+                    //     'status'            => 2,
+                    //     'created_by'        => auth()->user()->id,
+                    //     'updated_by'        => auth()->user()->id,
+                    //     'created_at'        => now(),
+                    //     'updated_at'        => now(),
+                    // ]);
+
+                    GoldbarOwnership::create([
                         'referenceNumber'   => $refNumber,
                         'gold_id'           => $goldbar->gold_id,
                         'user_id'           => auth()->user()->id,
+                        'ouid'              => uniqid(),
                         'weight'            => $prod->products->prod_weight,
-                        'status'            => 2,
+                        'active_ownership'  => 1,
                         'created_by'        => auth()->user()->id,
                         'updated_by'        => auth()->user()->id,
                         'created_at'        => now(),
                         'updated_at'        => now(),
                     ]);
+
 
                     // update available gold bar weight
                     Goldbar::where('gold_id', $goldbar->gold_id)
