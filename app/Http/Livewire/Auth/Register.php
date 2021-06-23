@@ -29,7 +29,7 @@ class Register extends Component
             'email'     => $this->email,
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
-            'role'      => ($this->client == 1) ? 5 : 6,
+            'role'      => 4,
             'type'      => $this->type,
             'client'    => $this->client,
         ]);
@@ -52,7 +52,7 @@ class Register extends Component
             'email'     => $this->email,
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
-            'role'      => ($this->client == 1) ? 3 : 4,
+            'role'      => 3,
             'type'      => $this->type,
             'client'    => $this->client,
         ]);

@@ -12,7 +12,7 @@ class BankInformation extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your Outright request has successfully submitted');
-        return redirect('dashboard');
+        return redirect('home');
     }
 
     public function render()
