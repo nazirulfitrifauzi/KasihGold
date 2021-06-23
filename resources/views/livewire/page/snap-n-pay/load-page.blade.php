@@ -37,9 +37,14 @@
 
 </head>
 
-<body style="background-color: rgba(255, 202, 3);">
-
-    <center><img src="{{ asset('img/load.gif')}}"></center>
+<body>
+    <div style="background-color: rgba(255, 202, 3);">
+        <div class="flex items-center justify-center h-screen">
+            <div>
+                <img src="{{ asset('img/load.gif')}}">
+            </div>
+        </div>
+    </div>
 
     {{-- Disabled snapnpay Payment Gateway
         
