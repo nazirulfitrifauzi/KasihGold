@@ -23,8 +23,10 @@ class SnapAPI extends Controller
 
     public function snapBuy()
     {
-        $response = request()->all(['status', 'orderNo', 'refNo', 'amount', 'fpxTxnId', 'extraData']);
+        // $response = request()->all(['status', 'orderNo', 'refNo', 'amount', 'fpxTxnId', 'extraData']);
         // Log::info($response);
-        dd($response);
+        return view('pages.snap-n-pay.load-page');
+
+        // dd($response);
     }
 }
