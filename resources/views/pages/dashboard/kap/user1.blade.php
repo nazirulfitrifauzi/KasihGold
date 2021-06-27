@@ -18,9 +18,15 @@
                 <x-heroicon-o-clipboard-copy class="w-8 h-8 text-pink-400" />
             </x-slot>
         </x-dashboard.info-card-user>
+        <x-dashboard.info-card-user bg="indigo-400" title="" value="Buy Product" iconColor='white'
+            cardRoute="{{route('product-view')}}">
+            <x-slot name="svg">
+                <x-heroicon-o-shopping-bag class="w-8 h-8 text-indigo-400" />
+            </x-slot>
+        </x-dashboard.info-card-user>
     </div>
-    <div class="z-20 col-span-12 p-4 mt-4 mb-4 bg-white rounded-lg shadow-xl lg:col-span-12 xxl:col-span-12 lg:block" style="height: 40rem;">
-        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <div class="z-20 col-span-12 p-4 mt-4 mb-4 bg-white rounded-lg shadow-xl lg:col-span-12 xxl:col-span-12 lg:block" id="chartpie">
+        {{-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
         <script type="text/javascript">
             new TradingView.widget({
                 "autosize": true,
@@ -35,6 +41,6 @@
                 "allow_symbol_change": true,
                 "container_id": "tradingview_61970"
             });
-        </script>
+        </script> --}}
     </div>
 </div>
