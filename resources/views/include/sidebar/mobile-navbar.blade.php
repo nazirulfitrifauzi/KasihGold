@@ -1,16 +1,26 @@
-<header class="relative items-center flex justify-end flex-shrink-0 p-4 block md:hidden">
+<header class="relative items-center flex justify-start flex-shrink-0 space-x-4 p-4 block md:hidden bg-gray-700">
+
     <!-- Mobile sub header button -->
     <button @click="isSubHeaderOpen = !isSubHeaderOpen"
         class="p-2 text-white bg-yellow-400 rounded-lg shadow-md sm:hidden  focus:outline-none ">
         <x-heroicon-o-dots-vertical class="w-5 h-5" />
     </button>
 
+    <a href="{{route('cart')}}"
+        class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
+        data-title="Cart" data-placement="right">
+        <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+            1
+        </span>
+        <x-heroicon-o-shopping-cart class="w-6 h-6" />
+    </a>
+
     <!-- Mobile sub header -->
     <div x-transition:enter="transform transition-transform" x-transition:enter-start="translate-y-full opacity-0"
         x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transform transition-transform"
         x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-full opacity-0"
         x-show="isSubHeaderOpen" @click.away="isSubHeaderOpen = false"
-        class="absolute flex items-center justify-between p-2 bg-gray-700 rounded-md shadow-lg sm:hidden top-16 left-5 right-5 z-50" x-cloak>
+        class="absolute flex items-center justify-between p-2 bg-gray-800 rounded-md shadow-lg sm:hidden top-16 left-5 right-5 z-50" x-cloak>
 
         <x-general.grid mobile="5" gap="3" sm="5" md="5" lg="5" xl="5" class="col-span-6 p-6">
 
@@ -22,13 +32,6 @@
                 <x-heroicon-o-bell class="w-6 h-6" />
             </button>
 
-            <!-- Cart button -->
-            <button @click="isSidebarOpenMobile = true; currentSidebarTab = 'cartTab'; isSubHeaderOpen = false"
-                class="p-2 text-yellow-400 bg-white rounded-lg shadow-md hover:text-gray-600 focus:outline-none">
-                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">1
-                </span>
-                <x-heroicon-o-shopping-cart class="w-6 h-6" />
-            </button>
 
             <!-- Shop -->
             <div class="relative" x-data="{ isOpen: false }">
