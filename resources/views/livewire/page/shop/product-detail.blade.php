@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container border-2 rounded-lg px-4 py-6">
                 <div class="flex flex-col -mx-4 md:flex-row">
                     <!-Start detail of image -->
                     <div class="px-4 md:flex-1">
@@ -86,25 +86,17 @@
                                     <div class="relative">
                                         <div>
                                             <select value="prod_qty" wire:model="prod_qty" default="yes"
-                                                class="flex items-end pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">
+                                                class="flex items-start pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">
                                                 @for ($i = 1; $i <= 10; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
                                             </select>
-
-                                            <svg class="absolute bottom-0 right-0 w-5 h-5 mb-2 mr-2 text-gray-400"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                                            </svg>
                                         </div>
                                         <div
                                             class="absolute top-0 block px-4 py-1 text-xs font-semibold tracking-wide text-center text-gray-400 uppercase">
                                             Qty
                                         </div>
                                     </div>
-
                                     <div class="flex">
                                         <button type="button" @if ($prod_qty==null) wire:click="buyNow({{1}})" @else wire:click="buyNow({{$prod_qty}})" @endif
                                             class="px-6 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
