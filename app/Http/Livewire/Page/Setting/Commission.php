@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Page\Setting;
 
+use App\Models\CommissionRate;
 use App\Models\InvItem;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Commission extends Component
@@ -11,18 +13,31 @@ class Commission extends Component
 
     public function mount()
     {
-        $this->items = InvItem::where('item_type_id',1)->with('rates')->get();
+        $this->items = InvItem::leftJoin('commission_rates', 'inv_items.id', '=', 'commission_rates.item_id')
+        ->select('inv_items.*', 'commission_rates.md_rate', 'commission_rates.agent_rate')
+        ->where('inv_items.item_type_id','=','1')
+        ->get();
     }
 
     protected $rules = [
-        'items.*.rates.md_rate' => 'required|between:0.01,99.99',
-        'items.*.rates.agent_rate' => 'required|between:0.01,99.99',
+        'items.*.md_rate' => 'required|between:0.01,99.99',
+        'items.*.agent_rate' => 'required|between:0.01,99.99',
     ];
 
-    public function hydrate()
+    public function updateRate($key, $itemID)
     {
-        $this->items['*']['rates']['md_rate']->jsonserialize();
-        dump($this->items['*']['rates']['md_rate']);
+        CommissionRate::updateOrCreate([
+            'item_id' => $itemID
+        ], [
+            'md_rate'       => $this->items[$key]['md_rate'],
+            'agent_rate'    => $this->items[$key]['agent_rate'],
+            'created_by'    => auth()->user()->id,
+            'created_at'    => now(),
+        ]);
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Commission Rate successfully updated.');
     }
 
     public function render()
