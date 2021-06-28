@@ -37,11 +37,11 @@
 
                     <div class="lg:col-span-10">
                         <x-settingTab.content name="0" x-cloak>
-                            @include('pages.setting.stock')
+                            <livewire:page.setting.stock/>
                         </x-settingTab.content>
 
                         <x-settingTab.content name="1" x-cloak>
-                                @include('pages.setting.commission')
+                            <livewire:page.setting.commission/>
                         </x-settingTab.content>
 
                         <x-settingTab.content name="2" x-cloak>
