@@ -75,8 +75,7 @@
                     </x-sidebar.dropdown-nav-item>
                 @endif
 
-                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
-                @else
+                @if (auth()->user()->role != 4)
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -146,8 +145,7 @@
                     </div>
                 </x-sidebar.dropdown-nav-item> --}}
 
-                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
-                @else
+                @if (auth()->user()->role != 4)
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -212,8 +210,7 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
-                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
-                @else
+                @if (auth()->user()->role != 4)
                 <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
                     <x-heroicon-o-cog class="w-5 h-5" />
                 </x-sidebar.nav-item>
