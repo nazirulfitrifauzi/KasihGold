@@ -27,18 +27,18 @@
                 </th>
             </x-slot>
             <x-slot name="tbody">
-                @foreach ($items as $item)
-                    <tr>
+                @foreach ($items as $key => $item)
+                    <tr wire:key="item-{{ $item->id }}">
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700">
                             {{ $item->name }}
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model="md_rate"/>
+                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.rates.md_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model=""/>
+                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.rates.agent_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
