@@ -9,6 +9,8 @@ class CommissionRate extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function item()
     {
         return $this->belongsTo('App\Models\InvItem', 'item_id', 'id');

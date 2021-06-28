@@ -34,15 +34,15 @@
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.rates.md_rate"/>
+                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.md_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.rates.agent_rate"/>
+                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.agent_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <button type="button" class="px-5 py-2 text-sm text-center text-white bg-blue-500 rounded shadow-sm focus:outline-none hover:bg-blue-400">
+                            <button type="button" class="px-5 py-2 text-sm text-center text-white bg-blue-500 rounded shadow-sm focus:outline-none hover:bg-blue-400" wire:click="updateRate({{ $key }}, {{ $item->id }})">
                                 Add Item
                             </button>
                         </x-table.table-body>
