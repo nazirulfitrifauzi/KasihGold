@@ -42,16 +42,19 @@
 <script>
     var charts = document.querySelector('#chartpie')
     var options = {
-            series: [44, 55, 13,],
+            series: [1, 0.25, 0.1,0.01],
             chart: {
             height: 350,
             type: 'donut',
             },
             title: {
-                text: 'Weekly Top Seller',
+                text: 'Kasih Digital Gold',
                 align: 'left'
             },
-            labels: ['17 - 30 Years old', '31 - 50 Years old', '>= 50 Years old'],
+            labels: ['Kasih Digital Gold 1G', 
+                    'Kasih Digital Gold 0.25G',
+                    'Kasih Digital Gold 0.1G',
+                    'Kasih Digital Gold 0.01G',],
             responsive: [{
             breakpoint: 480,
             options: {
