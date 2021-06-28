@@ -75,9 +75,12 @@
                     </x-sidebar.dropdown-nav-item>
                 @endif
 
+                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
+                @else
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
+                @endif
 
                 {{-- @if (auth()->user()->client == 1 && auth()->user()->role == 1)
                 <x-sidebar.nav-item title="Suppliers" route="{{route('admin.suppliers')}}" uri="admin/suppliers">
@@ -105,17 +108,6 @@
                         </x-sidebar.dropdown-item>
                     </div>
                 </x-sidebar.dropdown-nav-item>
-                @endif
-
-                @if (auth()->user()->role != 1)
-                <x-sidebar.nav-item title="Incident Reporting" route="{{route('incidentReporting')}}"
-                    uri="incident-reporting">
-                    <x-heroicon-o-exclamation-circle class="w-5 h-5" />
-                </x-sidebar.nav-item>
-                @else
-                    <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
-                        <x-heroicon-o-exclamation-circle class="w-5 h-5" />
-                    </x-sidebar.nav-item>
                 @endif
 
                 @if (auth()->user()->isAdminKG())
@@ -154,9 +146,12 @@
                     </div>
                 </x-sidebar.dropdown-nav-item> --}}
 
+                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
+                @else
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
+                @endif
 
                 @if (auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) <!-- kg bukan admin -->
                     <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
@@ -217,9 +212,23 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
+                @if (auth()->user()->isUserKG() || auth()->user()->isUserKAP())
+                @else
                 <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
                     <x-heroicon-o-cog class="w-5 h-5" />
                 </x-sidebar.nav-item>
+                @endif
+
+                @if (auth()->user()->role != 1)
+                <x-sidebar.nav-item title="Contact Us" route="{{route('incidentReporting')}}"
+                    uri="incident-reporting">
+                    <x-heroicon-o-mail class="w-5 h-5" />
+                </x-sidebar.nav-item>
+                @else
+                    <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
+                        <x-heroicon-o-exclamation-circle class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
             </div>
         </nav>
 
