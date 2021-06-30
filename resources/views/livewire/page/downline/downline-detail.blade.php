@@ -39,9 +39,6 @@
                     {{-- <x-table.table-header class="text-left" value="Action" sort="" /> --}}
                 </x-slot>
                 <x-slot name="tbody">
-                    {{-- @foreach ( as )
-
-                    @endforeach --}}
                     @forelse ($activeUser as $index => $lists)
                         <tr wire:key="lists-{{ $lists->id }}">
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
@@ -58,9 +55,6 @@
                                     <p>{{ $lists->user->profile->membership_id }}</p>
                                 </x-table.table-body>
                             @endif
-                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                button details sini
-                            </x-table.table-body> --}}
                         </tr>
                     @empty
                         <tr>
