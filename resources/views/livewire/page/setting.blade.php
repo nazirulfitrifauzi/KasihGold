@@ -34,21 +34,23 @@
                                             <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Commission
                                         </x-settingTab.title>
 
-                                        <div class="lg:col-span-10">
-                                            <x-settingTab.content name="0" x-cloak>
-                                                <livewire:page.setting.daily-cost/>
-                                            </x-settingTab.content>
-
-                                            <x-settingTab.content name="1" x-cloak>
-                                                <livewire:page.setting.stock/>
-                                            </x-settingTab.content>
-
-                                            <x-settingTab.content name="2" x-cloak>
-                                                <livewire:page.setting.commission/>
-                                            </x-settingTab.content>
-                                        </div>
                                     </nav>
                                 </aside>
+
+                                <div class="lg:col-span-10">
+                                    <x-settingTab.content name="0" x-cloak>
+                                        <livewire:page.setting.daily-cost/>
+                                    </x-settingTab.content>
+
+                                    <x-settingTab.content name="1" x-cloak>
+                                        <livewire:page.setting.stock/>
+                                    </x-settingTab.content>
+
+                                    <x-settingTab.content name="2" x-cloak>
+                                        <livewire:page.setting.commission/>
+                                    </x-settingTab.content>
+                                </div>
+        
                             </div>
                         </div>
                     </div>
