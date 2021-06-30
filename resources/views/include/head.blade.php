@@ -63,7 +63,7 @@
                             </div>
                         </header>
                     @endif
-                    <div class="grid px-4 lg:px-8 pb-10 mx-auto mt-10 lg:mt-0">
+                    <div class="grid px-4 lg:px-8 pb-10 mx-auto">
                         @yield('content')
                     </div>
                 </main>
