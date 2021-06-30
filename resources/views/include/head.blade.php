@@ -41,7 +41,7 @@
                 <p>System currently on development. This is not the final version</p>
             </div>
         </div>
-        <div class="flex h-auto overflow-y-auto bg-gray-700">
+        <div class="flex h-auto lg:h-screen bg-gray-700">
             <div x-ref="loading"></div>
             @include('misc.main-loading')
 
@@ -51,7 +51,7 @@
             <!-- content -->
             <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
                 @include('include.sidebar.mobile-navbar')
-                <main class="">
+                <main class="overflow-y-auto">
                     @if(Route::current()->uri == 'home')
                         <header>
                             <div class="w-full bg-center bg-cover" style="height:13rem;
