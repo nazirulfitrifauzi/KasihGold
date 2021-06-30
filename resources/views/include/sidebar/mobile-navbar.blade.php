@@ -1,4 +1,4 @@
-<header class="relative items-center flex justify-start flex-shrink-0 space-x-4 p-4 block md:hidden bg-gray-700">
+<header class="fixed relative items-center flex justify-start flex-shrink-0 space-x-4 p-4 block md:hidden bg-gray-700">
 
     <!-- Mobile sub header button  jgn padam-->
     {{-- <button @click="isSubHeaderOpen = !isSubHeaderOpen"
