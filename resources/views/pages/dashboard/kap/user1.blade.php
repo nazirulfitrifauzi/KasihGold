@@ -1,12 +1,12 @@
 <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8">
     <div class="grid grid-cols-12 gap-6 mt-10">
-        <x-dashboard.info-card-user bg="yellow-400" title="Digital Gold" value="4.510 G" iconColor='white'
+        <x-dashboard.info-card-user bg="yellow-400" title="Digital Gold" value="1.36 G" iconColor='white'
             cardRoute="{{route('digital-gold')}}">
             <x-slot name="svg">
                 <x-heroicon-o-desktop-computer class="w-8 h-8 text-yellow-400" />
             </x-slot>
         </x-dashboard.info-card-user>
-        <x-dashboard.info-card-user bg="teal-400" title="Physical Gold" value="5.510 G" iconColor='white'
+        <x-dashboard.info-card-user bg="teal-400" title="Physical Gold" value="0.00 G" iconColor='white'
             cardRoute="{{route('physical-gold')}}">
             <x-slot name="svg">
                 <x-heroicon-o-user class="w-8 h-8 text-teal-400" />

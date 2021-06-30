@@ -16,13 +16,46 @@
                 <x-slot name="tbody">
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>Gold 2.5g</p>
+                            <p>Gold 1.0g</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>25-5-2021</p>
+                            <p>23-6-2021</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 200.00</p>
+                            <p>RM 252.00</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Gold 0.01g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>23-6-2021</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 2.52</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Gold 0.1g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>23-6-2021</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 25.20</p>
+                        </x-table.table-body>
+                    </tr>
+                    <tr>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>Gold 0.25g</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>23-6-2021</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>RM 63.00</p>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

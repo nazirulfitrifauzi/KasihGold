@@ -16,10 +16,13 @@ class CreateTableOutrightSell extends Migration
         Schema::create('outright_sell', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('one_gram');
+            $table->integer('status');
+            $table->integer('centigram');
+            $table->integer('decigram');
             $table->integer('quarter_gram');
-            $table->double('total_outright', 8, 2);
-            $table->string('ref_payment');
+            $table->integer('one_gram');
+            $table->double('surrendered_amount', 8, 2);
+            $table->string('ref_payment')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

@@ -1,3 +1,4 @@
+
 <div
     class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end" style="top:auto !important">
     <div class="max-w-sm w-full bg-red-600 shadow-lg rounded-lg pointer-events-auto border-l-4 border-red-500"
@@ -14,7 +15,8 @@
         <div class="relative rounded-lg shadow-xs overflow-hidden">
             <div class="p-4">
                 <div class="flex items-start">
-                    <div class="inline-flex items-center bg-white p-2 text-red-600 text-sm rounded-full flex-shrink-0">
+                    <div
+                        class="inline-flex items-center bg-white p-2 text-red-600 text-sm rounded-full flex-shrink-0">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="x w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12"></path>
@@ -22,10 +24,10 @@
                     </div>
                     <div class="ml-4 w-0 flex-1">
                         <p class="text-base leading-5 font-medium capitalize text-white">
-                            error
+                            {{$title}}
                         </p>
                         <p class="mt-1 text-sm leading-5 text-white">
-                            {{$title}}
+                            {{$message}}
                         </p>
                     </div>
                     <div class="ml-4 flex-shrink-0 flex">
