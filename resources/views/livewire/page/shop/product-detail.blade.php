@@ -82,8 +82,9 @@
                         </p>
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
-                                <div class="flex py-4 space-x-4">
-                                    <div class="relative">
+                                <div class="flex flex-col lg:flex-row py-4 space-x-0 lg:space-x-4">
+                                    <div class="relative mb-4 lg:mb-0
+                                    ">
                                         <div>
                                             <select value="prod_qty" wire:model="prod_qty" default="yes"
                                                 class="flex items-start pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">
@@ -99,11 +100,11 @@
                                     </div>
                                     <div class="flex">
                                         <button type="button" @if ($prod_qty==null) wire:click="buyNow({{1}})" @else wire:click="buyNow({{$prod_qty}})" @endif
-                                            class="px-6 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
+                                            class="px-2 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
                                             Buy Now
                                         </button>
                                         <button type="button" @if ($prod_qty==null) wire:click="addCart({{1}})" @else wire:click="addCart({{$prod_qty}})" @endif
-                                            class="px-6 py-2 ml-2 font-semibold text-white bg-yellow-400 h-14 rounded-xl hover:bg-yellow-300 focus:outline-none">
+                                            class="px-2 py-2 ml-2 font-semibold text-white bg-yellow-400 h-14 rounded-xl hover:bg-yellow-300 focus:outline-none">
                                             Add to Cart
                                         </button>
                                     </div>

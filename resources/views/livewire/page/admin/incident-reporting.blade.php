@@ -29,8 +29,8 @@
                     <p class="text-sm">Waiting<span class="animate-ping">...</span></p>
                 </div>
             </div>
-            <div class="flex items-center">
-                <span class="mr-2 text-base text-gray-500 -mt-3">Select Date: </span>
+            <div class="flex flex-col lg:flex-row items-start lg:items-center">
+                <p class="mr-2 text-left text-base text-gray-500 -mt-3">Select Date: </p>
                 <x-form.input type="date" label="" value="" wire:model="search" />
             </div>
         </div>

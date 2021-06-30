@@ -12,15 +12,15 @@
                 <div class="flex items-center justify-center flex-auto ">
                     <x-gold.goldview type="1g" percentage="80" totalGram="0.30" reachGram="0.70" />
                 </div>
-                <div class="flex flex-col flex-auto mr-5">
+                <div class="flex flex-col flex-auto mr-0 lg:mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Total Grams</p>
                                         <p class="text-lg">4.03 g</p>
                                     </div>
@@ -29,11 +29,11 @@
                     </x-general.price-card>
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Total Price Bought</p>
                                         <p class="text-lg">RM 971.56</p>
                                     </div>
@@ -42,11 +42,11 @@
                     </x-general.price-card>
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Current Market Price</p>
                                         <p class="text-lg">RM 1015.56</p>
                                     </div>
@@ -58,11 +58,11 @@
                     <h1 class="text-base font-bold">Exit / Sell</h1>
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-refresh class="w-8 h-8 text-red-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Change Physical</p>
                                     </div>
                                 </div>
@@ -70,11 +70,11 @@
                     </x-general.price-card>
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal2 = true">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Outright Sell</p>
                                     </div>
                                 </div>
@@ -82,11 +82,11 @@
                     </x-general.price-card>
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal3 = true">
                         <div class="text-base font-bold text-white">
-                                <div class="flex items-center space-x-4">
+                                <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-library class="w-8 h-8 text-red-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Buy Back</p>
                                     </div>
                                 </div>
@@ -110,14 +110,14 @@
                                             </p>
                                         </div>
 
-                                        <div class="px-20 py-5">
+                                        <div class="px-4 lg:px-20 py-5">
                                             <div x-data="{ accordion: 0 ,accordion1: 0  }">
                                                 <div class="w-full p-4 bg-white border focus:outline-none">
                                                     <label class="flex">
                                                         <input @click="accordion = accordion == 1 ? 0 : 1" type="checkbox"  id="" value="" name="physical_gold"  
                                                         class="w-5 h-5 text-blue-600 form-checkbox" >
                                                     </label>
-                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-6">
+                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-4 lg:-mt-6">
                                                         <span class="block text-sm font-medium text-gray-900">
                                                             0.25 gram Physical
                                                         </span>
@@ -143,7 +143,7 @@
                                                         <input @click="accordion1 = accordion1 == 1 ? 0 : 1" type="checkbox" id="" value="" name="physical_gold" 
                                                         class="w-5 h-5 text-blue-600 form-checkbox ">
                                                     </label>
-                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-6">
+                                                    <div class="flex flex-col ml-3 text-center justify-center -mt-4 lg:-mt-6">
                                                         <span class="block text-sm font-medium text-gray-900">
                                                             1 gram Physical
                                                         </span>

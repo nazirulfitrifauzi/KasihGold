@@ -6,7 +6,7 @@
                 <div class="col-span-12 mt-8">
                     <div class="flex items-center">
                         <div>
-                            <h2 class="mr-5 text-4xl font-bold text-white" id="lblGreetings"></h2>
+                            <h2 class="mr-5 text-xl lg:text-4xl font-bold text-white" id="lblGreetings"></h2>
                             <p class="text-sm text-white" id="getDate"></p>
                         </div>
                         @if (session('error'))
@@ -99,7 +99,10 @@
                             <!-- chart -->
                             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                                 <div class="h-auto p-2 bg-white shadow-lg" id="chart-container">
-                                    <div class="flex justify-end" data-html2canvas-ignore="true">
+                                    <div class="flex justify-between" data-html2canvas-ignore="true">
+                                        <div class="text-lg font-bold px-2">
+                                            <h1>Revenue</h1>
+                                        </div>
                                         <button onclick="saveAsPDF();" class="flex px-2 py-1 text-sm font-bold text-white bg-orange-400 rounded cursor-pointer focus:outline-none hover:bg-orange-500">
                                             <div class="flex space-x-2">
                                                 <x-heroicon-o-document-text class="w-5 h-5" />
@@ -107,7 +110,7 @@
                                             </div>
                                         </button>
                                     </div>
-                                    <div class="w-full h-96" id="chart"></div>
+                                    <div class="w-full h-96 mt-2 lg:mt-4" id="chart"></div>
                                 </div>
                             </div>
                             <!-- end chart -->
@@ -128,7 +131,6 @@
             hooks: new ChartisanHooks()
             .colors(['#16bdca', '#3f83f8','#e74694'])
             .legend({ position: 'bottom' })
-            .title('Revenue')
             .tooltip()
             .datasets([{ type: 'bar', fill: false }, 'bar']),
             });

@@ -26,7 +26,7 @@
         @forelse ($list as $lists)
         <div class="col-span-12 intro-y md:col-span-6">
             <div class="bg-gray-100 border-l-4 border-yellow-400 shadow-lg rounded-xl">
-                <div class="flex flex-row items-center px-4 py-4 lg:p-5">
+                <div class="flex flex-col lg:flex-row items-center px-4 py-4 lg:p-5">
                     <div class="w-16 lg:h-16 image-fit lg:mr-1">
                         <img alt="avatar" class="border-4 border-white rounded-full"
                             src="https://image.flaticon.com/icons/png/512/149/149071.png">
@@ -107,7 +107,7 @@
                                                             <a href="{{ $item->website }}" target="_blank"
                                                                 class="text-teal-600 break-words whitespace-normal transition duration-150 ease-in-out hover:text-teal-500 focus:outline-none focus:underline">{{ $item->website }}</a>
                                                         </td>
-                                                        <td class="px-4 py-2 border">
+                                                        <td class="px-2 lg:px-4 py-2 border">
                                                             @php
                                                             $status = $item->screening->where('user_id',
                                                             $lists->id)->first();
@@ -129,13 +129,13 @@
                                                             @endif
                                                             @else
                                                             <button type="button"
-                                                                class="px-4 py-2 mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg"
+                                                                class="px-4 py-2 my-2 lg:my-0 mx-0 lg:mx-2 text-sm bg-green-500 text-white hover:bg-green-600 rounded-lg"
                                                                 wire:click="screenResult({{ $lists->id }},{{ $item->id }},'pass')">
                                                                 Approve
                                                             </button>
 
                                                             <button type="button"
-                                                                class="px-4 py-2 mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg "
+                                                                class="px-4 py-2 mx-0 lg:mx-2 text-sm bg-red-500 text-white hover:bg-red-600 rounded-lg "
                                                                 wire:click="screenResult({{ $lists->id }},{{ $item->id }},'fail')">
                                                                 Decline
                                                             </button>
