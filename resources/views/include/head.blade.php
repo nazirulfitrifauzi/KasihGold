@@ -53,7 +53,7 @@
 
                 <main class="overflow-y-auto">
 
-                    @include('include.sidebar.mobile-navbar')
+                   
 
                     @if(Route::current()->uri == 'home')
                         <header>
@@ -64,7 +64,10 @@
                         </header>
                     @endif
                     <div class="grid px-4 lg:px-8 pb-10 mx-auto">
-                        @yield('content')
+                        @include('include.sidebar.mobile-navbar')
+                        <div class="mt-10 md:mt-0">
+                            @yield('content')
+                        </div>
                     </div>
                 </main>
             </div>
