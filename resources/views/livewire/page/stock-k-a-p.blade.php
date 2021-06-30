@@ -111,10 +111,10 @@
                                                 {{str_shuffle($gold->guid)}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                {{$gold->weight_occupied}}
+                                                {{number_format($gold->weight_occupied,2)}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                {{$gold->weight_vacant}}
+                                                {{number_format($gold->weight_vacant,2)}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
                                                 {{$gold->created_at->format('d/m/Y')}}

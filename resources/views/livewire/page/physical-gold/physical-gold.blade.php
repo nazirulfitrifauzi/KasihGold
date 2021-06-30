@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="text-xl">
                                     <p>Total Grams</p>
-                                    <p class="text-lg">4.03 g</p>
+                                    <p class="text-lg">2.03 g</p>
                                 </div>
                             </div>
                         </div>
@@ -28,8 +28,8 @@
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
                                 <div class="text-xl">
-                                    <p>Total Price Bought</p>
-                                    <p class="text-lg">RM 971.56</p>
+                                    <p>Total Convertable 1g Gold</p>
+                                    <p class="text-lg">Upto 2 pcs</p>
                                 </div>
                             </div>
                         </div>
@@ -41,8 +41,8 @@
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
                                 <div class="text-xl">
-                                    <p>Total Price Now</p>
-                                    <p class="text-lg">RM 1015.56</p>
+                                    <p>Total Convertable 0.25g Gold</p>
+                                    <p class="text-lg">Upto 8 pcs</p>
                                 </div>
                             </div>
                         </div>
@@ -108,27 +108,6 @@
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>RM 2.52</p>
-                        </x-table.table-body>
-                    </tr>
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>1 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 241.00</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 252.00</p>
-                        </x-table.table-body>
-                    </tr><tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>1 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 241.00</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 252.00</p>
                         </x-table.table-body>
                     </tr>
                 </x-slot>

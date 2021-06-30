@@ -9,6 +9,7 @@ use App\Models\InvCart;
 use App\Models\InvMaster;
 use App\Models\NewOrders;
 use App\Models\States;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -69,10 +70,9 @@ class ProductBuy extends Component
                     // ]);
 
                     GoldbarOwnership::create([
-                        'referenceNumber'   => $refNumber,
                         'gold_id'           => $goldbar->gold_id,
                         'user_id'           => auth()->user()->id,
-                        'ouid'              => uniqid(),
+                        'ouid'              => (string) Str::uuid(),
                         'weight'            => $prod->products->prod_weight,
                         'active_ownership'  => 1,
                         'created_by'        => auth()->user()->id,
@@ -86,6 +86,7 @@ class ProductBuy extends Component
                     Goldbar::where('gold_id', $goldbar->gold_id)
                         ->update(array(
                             'weight_on_hold'    => ($goldbar->weight_on_hold + $prod->products->prod_weight),
+                            'weight_occupied'    => ($goldbar->weight_on_hold + $prod->products->prod_weight),
                             'weight_vacant'     => ($goldbar->weight_vacant - $prod->products->prod_weight),
                         ));
                 }

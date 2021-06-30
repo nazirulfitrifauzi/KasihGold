@@ -16,11 +16,15 @@ class CreateTableBuyBack extends Migration
         Schema::create('buy_back', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('one_gram');
+            $table->integer('status');
+            $table->integer('centigram');
+            $table->integer('decigram');
             $table->integer('quarter_gram');
+            $table->integer('one_gram');
             $table->double('surrendered_amount', 8, 2);
             $table->double('buyback_price', 8, 2);
-            $table->string('ref_payment');
+            $table->string('ref_payment')->nullable();
+            $table->datetime('buyback_date');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

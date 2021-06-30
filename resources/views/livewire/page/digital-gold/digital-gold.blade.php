@@ -10,7 +10,7 @@
 
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 bg-white rounded-lg border-2 mb-6 py-6 px-6">
                 <div class="flex items-center justify-center flex-auto ">
-                    <x-gold.goldview type="1g" percentage="80" totalGram="0.30" reachGram="0.70" />
+                    <x-gold.goldview type="1g" percentage="100" totalGram="0.00" reachGram="1.00" />
                 </div>
                 <div class="flex flex-col flex-auto mr-0 lg:mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
@@ -22,12 +22,12 @@
                                     </div>
                                     <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Total Grams</p>
-                                        <p class="text-lg">4.03 g</p>
+                                        <p class="text-lg">1.36 g</p>
                                     </div>
                                 </div>
                             </div>
                     </x-general.price-card>
-                    <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
+                    {{-- <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
@@ -35,20 +35,20 @@
                                     </div>
                                     <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Total Price Bought</p>
-                                        <p class="text-lg">RM 971.56</p>
+                                        <p class="text-lg">RM 342.72</p>
                                     </div>
                                 </div>
                             </div>
-                    </x-general.price-card>
+                    </x-general.price-card> --}}
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
-                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
-                                        <p>Current Market Price</p>
-                                        <p class="text-lg">RM 1015.56</p>
+                                    <div class="text-xl">
+                                        <p>Current Price</p>
+                                        <p class="text-lg">RM 342.72</p>
                                     </div>
                                 </div>
                             </div>
@@ -74,13 +74,13 @@
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
                                         <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
                                     </div>
-                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
-                                        <p>Outright Sell</p>
+                                    <div class="text-xl">
+                                        <p>Outright Sell/Buy Back</p>
                                     </div>
                                 </div>
                             </div>
                     </x-general.price-card>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal3 = true">
+                    {{-- <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal3 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
                                     <div class="flex px-4 py-4 bg-white rounded-full item-center">
@@ -91,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                    </x-general.price-card>
+                    </x-general.price-card> --}}
 
                     {{-- Start modal 1--}}
                         <x-general.new-modal modalName="openModal1" size="xl">
@@ -106,7 +106,7 @@
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                4.03 gram
+                                                0.25 gram
                                             </p>
                                         </div>
 
@@ -115,7 +115,7 @@
                                                 <div class="w-full p-4 bg-white border focus:outline-none">
                                                     <label class="flex">
                                                         <input @click="accordion = accordion == 1 ? 0 : 1" type="checkbox"  id="" value="" name="physical_gold"  
-                                                        class="w-5 h-5 text-blue-600 form-checkbox" >
+                                                        class="w-5 h-5 text-blue-600 form-checkbox">
                                                     </label>
                                                     <div class="flex flex-col ml-3 text-center justify-center -mt-4 lg:-mt-6">
                                                         <span class="block text-sm font-medium text-gray-900">
@@ -130,8 +130,13 @@
                                                     <div class="px-4 py-4 border-2">
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
-                                                                <x-form.dropdown label="" default="no" wire:model="" value="">
-                                                                    <option value="" hidden>Select an Quantity</option>
+                                                                <x-form.dropdown label="" default="no"  value="">
+                                                                    <option value="" hidden>Select Available Quantity</option>
+                                                                    <option value="1" >1</option>
+                                                                    <option value="2" >2</option>
+                                                                    <option value="3" >3</option>
+                                                                    <option value="4" >4</option>
+                                                                    <option value="5" >5</option>
                                                                 </x-form.dropdown>
                                                             </x-slot>
                                                         </x-form.basic-form>
@@ -141,7 +146,7 @@
                                                 <div class="w-full p-4 bg-white border rounded-b-none focus:outline-none">
                                                     <label class="flex ">
                                                         <input @click="accordion1 = accordion1 == 1 ? 0 : 1" type="checkbox" id="" value="" name="physical_gold" 
-                                                        class="w-5 h-5 text-blue-600 form-checkbox ">
+                                                        class="w-5 h-5 text-blue-600 form-checkbox " >
                                                     </label>
                                                     <div class="flex flex-col ml-3 text-center justify-center -mt-4 lg:-mt-6">
                                                         <span class="block text-sm font-medium text-gray-900">
@@ -156,8 +161,9 @@
                                                     <div class="px-4 py-4 border-2 rounded-b-lg">
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
-                                                                <x-form.dropdown label="" default="no" wire:model="" value="">
-                                                                    <option value="" hidden>Select an Quantity</option>
+                                                                <x-form.dropdown label="" default="no" value="">
+                                                                    <option value="" hidden>Select Available Quantity</option>
+                                                                    <option value="1" >1</option>
                                                                 </x-form.dropdown>
                                                             </x-slot>
                                                         </x-form.basic-form>
@@ -192,13 +198,13 @@
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                4.03 gram
+                                                1.36 gram
                                             </p>
                                         </div>
                                         <div class="mt-2">
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                             <p class="text-sm text-gray-500">
-                                                RM 1,015.56
+                                                RM 342.72
                                             </p>
                                         </div>
                                         <div class="mt-4">
@@ -233,47 +239,25 @@
                                                     <x-heroicon-o-information-circle class="w-5 h-5 text-blue-400"/>
                                                 </div>
                                                 <div class="ml-3">
-                                                    <p class="text-sm text-blue-700">Please note that you only can get 80% (maximum) from this transactions.</p>
+                                                    <p class="text-sm text-blue-700">Please note that you'll get 100% from this transaction and required to pay in 6 + 1 months time.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt-2">
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                4.03 gram
+                                                1.36 gram
                                             </p>
                                         </div>
                                         <div class="flex justify-center mt-4">
                                             <div class="mr-4">
                                                 <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                                 <p class="text-sm text-gray-500">
-                                                    RM 1,015.56
-                                                </p>
-                                            </div>
-                                            <div class="flex items-center ">
-                                                <x-heroicon-o-chevron-double-right class="h-8 text-green-500 -8 "/>
-                                            </div>
-                                            <div class="ml-4">
-                                                <h3 class="text-base font-semibold leading-6 text-yellow-600">80% Max</h3>
-                                                <p class="text-sm text-yellow-500">
-                                                    RM 812.40
+                                                    RM 342.72
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="mt-4">
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Amount Apply</h3>
-                                            <div class="px-44 ">
-                                                <div class="relative mt-1 rounded-md shadow-sm">
-                                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                        <span class="text-gray-500 sm:text-sm">
-                                                            RM
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" name="price" id="price" class="block w-full pl-12 border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="0.00" aria-describedby="price-currency">
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                        
                                         <div class="mt-4">
                                             <p class="text-xs italic leading-none text-red-500 ">Please allow up to 3 working days to process your transactions.</p>
                                         </div>

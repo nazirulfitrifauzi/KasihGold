@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Page\DigitalGold;
 
+use App\Models\GoldbarOwnership;
 use Livewire\Component;
 
 class DigitalGold extends Component

@@ -5,7 +5,7 @@
                 <h3 class="text-gray-700 text-2xl font-medium">Bank Information</h3>
                 <div class="flex flex-col lg:flex-row mt-2">
                     <div class="w-full lg:w-1/2 order-2">
-                        <x-form.basic-form wire:submit.prevent="buy">
+                        <x-form.basic-form wire:submit.prevent="submit">
                             <x-slot name="content">
                                 <div class="pb-8">
                                     <div class="lg:w-full">
@@ -21,30 +21,18 @@
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.dropdown label="Bank" default="no" value="">
+                                                                    <x-form.dropdown label="Bank" wire:model="bankId" default="no" value="bankId">
                                                                         <option value="0">Choose Bank</option>
-                                                                        <option value="1" selected>Maybank</option>
-                                                                        <option value="2">CIMB</option>
-                                                                        <option value="3">Affin Bank</option>
-                                                                        <option value="4">RHB</option>
-                                                                        <option value="5">Hong Leong Bank</option>
-                                                                        <option value="6">HSBC Bank</option>
-                                                                        <option value="7">AmBank</option>
-                                                                        <option value="8">Standard Chartered Bank</option>
-                                                                        <option value="9">Public Bank</option>
-                                                                        <option value="10">Alliance Bank</option>
-                                                                        <option value="11">Agro Bank</option>
-                                                                        <option value="12">Bank Muamalat</option>
-                                                                        <option value="13">UOB</option>
-                                                                        <option value="14">OCBC Bank</option>
-                                                                        <option value="15">Exim Bank</option>
+                                                                        @foreach ($banks as $item)
+                                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                        @endforeach
                                                                     </x-form.dropdown>
                                                                     <div>
                                                                         <label class="block text-sm font-semibold leading-5 text-gray-700">
                                                                             Bank Swift Code
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="PMFAUS66"
+                                                                            <input value="" wire:model="swiftCode"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             >
                                                                         </div>
@@ -54,7 +42,7 @@
                                                                             Bank Account No
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="1210014610727"
+                                                                            <input value="" wire:model="accNo"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             >
                                                                         </div>
@@ -64,7 +52,7 @@
                                                                             Bank Account Holder Name
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="Client AP"
+                                                                            <input value="" wire:model="accHolderName"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             >
                                                                         </div>
@@ -76,7 +64,7 @@
                                                                             Bank Account ID (IC or others ID registered with bank)
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="971212104088"
+                                                                            <input value="" wire:model="bankAccId"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             >
                                                                         </div>
@@ -104,43 +92,52 @@
                         <div class="flex justify-center lg:justify-end">
                             <div class="border  max-w-md w-full px-4 py-3">
                                 <div class="flex items-center justify-between">
-                                    
+                                    @if(session('outright')==1)
+                                    <h3 class="text-gray-700 font-medium">Outright total </h3>
+                                    @else
                                     <h3 class="text-gray-700 font-medium">Buyback total </h3>
+                                    @endif
                                 </div>
 
                                 
-                                    
-                                <div class="flex justify-between mt-6 border-b-2 pb-4">
-                                    <div class="flex">
-                                        <img class="h-20 w-20 object-cover rounded"
-                                            src="{{ asset('storage/d1.png') }}"
-                                            alt="">
-                                        <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">Digital Gold at Hand</h3>
+                                @if(session('products'))
+                                    @foreach (session('products') as $product)
+                                        @if($product['qty']!=0)
+                                        <div class="flex justify-between mt-6 border-b-2 pb-4">
+                                            <div class="flex">
+                                                <img class="h-20 w-20 object-cover rounded"
+                                                    src="{{ asset('img/gold/'.$product['prod_img']) }}"
+                                                    alt="">
+                                                <div class="mx-3 my-3">
+                                                    <h3 class="text-sm text-gray-600">{{$product['prod_name']}}</h3>
+                                                    <h4 class="text-sm text-gray-600"><b>{{$product['qty']}} pcs</b></h4>
+                                                </div>
+                                            </div>
+                                            <span class="font-semibold text-gray-600 my-3">RM {{number_format($product['prod_price']*$product['qty'],2)}}</span>
                                         </div>
-                                    </div>
-                                    <span class="font-semibold text-gray-600 my-3">RM 1,015.56</span>
-                                </div>
-                                    
+                                        @endif
+                                    @endforeach
+                                @endif
 
                                 <div class="mt-6 border-b-2 pb-4">
                                     <div class="flex justify-between">
                                         <div class="text-gray-500">
-                                            <p>Receivable Money</p>
+                                            <p>Surrender Price</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM 812.40</p>
+                                            <p>RM {{number_format(session('total'),2)}}</p>
                                         </div>
                                     </div>
-
+                                    @if(session('outright')!=1)
                                     <div class="flex justify-between">
                                         <div class="text-gray-500">
                                             <p>Buyback price at 31/01/2022</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM 861.14</p>
+                                            <p>RM {{number_format((session('total')*1.06),2)}}</p>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
 
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
@@ -148,7 +145,7 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
-                                        <p>RM 830.00</p>
+                                        <p>RM {{number_format((session('total')*1.06),2)}}</p>
                                     </div>
                                 </div>
                             </div>
