@@ -1,5 +1,5 @@
 <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-4 xxl:col-span-4">
-    <x-stacked.stacked-list title="Announcements" class="">
+    <x-stacked.stacked-list title="Announcements" class="mb-6">
         <li class="px-2 py-5 bg-white hover:bg-gray-100"  x-data="{ modalOpen: false}">
             <div class="relative focus-within:ring-2 focus-within:ring-indigo-500" @click="modalOpen = true">
                 <h3 class="text-sm font-semibold text-gray-800" >

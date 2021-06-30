@@ -35,7 +35,7 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
-        <div class="absolute right-0 z-50 w-full px-1 py-1 text-sm font-bold text-center text-white bg-red-500">
+        <div class="hidden lg:block absolute right-0 z-50 w-full px-1 py-1 text-sm font-bold text-center text-white bg-red-500">
             <div class="flex items-center justify-center animate-pulse">
                 <x-heroicon-o-exclamation class="w-6 h-6" />
                 <p>System currently on development. This is not the final version</p>
@@ -56,13 +56,13 @@
                 <main class="overflow-y-auto">
                     @if(Route::current()->uri == 'home')
                         <header>
-                            <div class="hidden w-full bg-center bg-cover sm:block" style="height:13rem;
+                            <div class="w-full bg-center bg-cover" style="height:13rem;
                                 background-image: url({{ asset('img/header.jpg') }});">
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                             </div>
                         </header>
                     @endif
-                    <div class="grid px-8 pb-10 mx-auto">
+                    <div class="grid px-4 lg:px-8 pb-10 mx-auto">
                         @yield('content')
                     </div>
                 </main>

@@ -25,9 +25,9 @@
                     @endphp
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex space-x-3 items-center">
+                            <div class="flex flex-col lg:flex-row space-x-3 items-center">
                                 <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
-                                <div>
+                                <div class="mt-4 lg:mt-0">
                                     <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                             <p>RM {{number_format($carts->products->prod_price*$carts->prod_qty,2)}}</p>
                         </x-table.table-body>
 
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 relative">
                             <div x-data="{ deleteOpen3 : false  }" class="flex justify-center">
                                 <x-btn.tooltip-btn
                                     class="flex items-center justify-center text-xs bg-red-600 rounded-full hover:bg-red-700"
@@ -71,10 +71,13 @@
 
                                 {{-- Start modal delete --}}
                                 <div class="cursor-default">
-                                    <x-general.modal modalActive="deleteOpen3" title="Delete Confirmation"
+                                    <x-general.new-modal modalName="deleteOpen3" size="sm"
                                         modalSize="sm" closeBtn="yes">
                                         <div class="">
-                                            <div class="py-4 font-semibold text-center text-black font">
+                                            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-red-100 rounded-full">
+                                                <x-heroicon-o-trash class="w-8 h-8 text-red-600" />
+                                            </div>
+                                            <div class="py-4 font-semibold text-center text-black ">
                                                 Are you sure you want to delete this item?
                                             </div>
                                             <div class="flex justify-center mt-3">
@@ -89,7 +92,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </x-general.modal>
+                                    </x-general.new-modal>
                                 </div>
                                 {{-- End modal delete  --}}
                             </div>
@@ -127,7 +130,7 @@
 
             <! -- Start Checkout -->
             <div class="flex justify-end my-6">
-                <div class="bg-white py-4 px-4  rounded-lg w-1/2 border-2">
+                <div class="bg-white py-4 px-4  rounded-lg w-full lg:w-1/2 border-2">
                     <div class="border-b-2 py-4">
                         <h1 class="text-3xl font-semibold">Cart totals</h1>
                     </div>
