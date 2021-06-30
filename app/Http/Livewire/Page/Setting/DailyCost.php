@@ -3,14 +3,18 @@
 namespace App\Http\Livewire\Page\Setting;
 
 use App\Models\CostDaily;
+use App\Models\CostHistory;
 use App\Models\InvItem;
 use Livewire\Component;
 
 class DailyCost extends Component
 {
     public $items;
+    public $item_id;
 
     protected $rules = [
+        'items.*' => 'required',
+        'items.*.id' => 'required',
         'items.*.cost' => 'required|between:0.01,99.99',
     ];
 
@@ -19,9 +23,6 @@ class DailyCost extends Component
         // check data in cost daily table; if created date not same with todays date, it will delete all data.
         $this->checkData();
 
-        // rollback migrate
-        // buat satu lg table utk store current cost & history cost
-        // bile admin update, akan tembak 2 table, current n history
         $this->items = InvItem::leftJoin('cost_dailies', 'inv_items.id', '=', 'cost_dailies.item_id')
                         ->select('inv_items.*', 'cost_dailies.cost')
                         ->where('inv_items.item_type_id', '=', '1')
@@ -43,14 +44,32 @@ class DailyCost extends Component
         }
     }
 
-    public function updateCost($key, $itemID)
+    public function submit()
     {
-        CostDaily::updateOrCreate([
-            'item_id'       => $itemID
-        ], [
-            'cost'          => $this->items[$key]['cost'],
-            'created_at'    => now(),
-        ]);
+        $this->validate();
+
+        $max = $this->items->count();
+
+        // insert data to cost_dailies
+        for ($x = 0; $x < $max; $x++) {
+            CostDaily::updateOrCreate([
+                'item_id'       => $this->items[$x]['id']
+            ], [
+                'cost'          => $this->items[$x]['cost'],
+                'created_at'    => now(),
+            ]);
+        }
+
+        // insert data to cost_histories
+        for ($x = 0; $x < $max; $x++) {
+            CostHistory::updateOrCreate([
+                'item_id'       => $this->items[$x]['id'],
+                'created_at'    => now()->format('Y-m-d'),
+            ], [
+                'cost'          => $this->items[$x]['cost'],
+                'created_by'    => auth()->user()->id,
+            ]);
+        }
 
         session()->flash('success');
         session()->flash('title', 'Success!');

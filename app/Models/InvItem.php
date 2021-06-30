@@ -42,4 +42,9 @@ class InvItem extends Model
     {
         return $this->hasOne('App\Models\CostDaily', 'item_id', 'id');
     }
+
+    public function costHistory()
+    {
+        return $this->hasMany('App\Models\CostHistory', 'item_id', 'id');
+    }
 }
