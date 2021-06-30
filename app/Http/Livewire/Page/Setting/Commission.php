@@ -14,9 +14,9 @@ class Commission extends Component
     public function mount()
     {
         $this->items = InvItem::leftJoin('commission_rates', 'inv_items.id', '=', 'commission_rates.item_id')
-        ->select('inv_items.*', 'commission_rates.md_rate', 'commission_rates.agent_rate')
-        ->where('inv_items.item_type_id','=','1')
-        ->get();
+                        ->select('inv_items.*', 'commission_rates.md_rate', 'commission_rates.agent_rate')
+                        ->where('inv_items.item_type_id','=','1')
+                        ->get();
     }
 
     protected $rules = [

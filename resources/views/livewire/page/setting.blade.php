@@ -15,7 +15,6 @@
     </div>
     <div class="relative mt-4" x-data="{ active: 0 }">
         <div class="">
-
             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
@@ -23,40 +22,35 @@
                             <div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
                                 <aside class="py-6 lg:col-span-2">
                                     <nav class="space-y-1">
-
                                         <x-settingTab.title name="0" livewire="">
-                                            <x-heroicon-o-archive class="w-6 h-6 mr-2" />Stock Management
+                                            <x-heroicon-o-calendar class="w-6 h-6 mr-2"/>Daily Cost
                                         </x-settingTab.title>
 
                                         <x-settingTab.title name="1" livewire="">
-                                            <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2" />Commission
+                                            <x-heroicon-o-archive class="w-6 h-6 mr-2"/>Stock Management
                                         </x-settingTab.title>
 
                                         <x-settingTab.title name="2" livewire="">
-                                            <x-heroicon-o-home class="w-6 h-6 mr-2" />content 3
+                                            <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Commission
                                         </x-settingTab.title>
 
+                                        <div class="lg:col-span-10">
+                                            <x-settingTab.content name="0" x-cloak>
+                                                <livewire:page.setting.daily-cost/>
+                                            </x-settingTab.content>
+
+                                            <x-settingTab.content name="1" x-cloak>
+                                                <livewire:page.setting.stock/>
+                                            </x-settingTab.content>
+
+                                            <x-settingTab.content name="2" x-cloak>
+                                                <livewire:page.setting.commission/>
+                                            </x-settingTab.content>
+                                        </div>
                                     </nav>
                                 </aside>
-
-                                <div class="lg:col-span-10">
-                                    <x-settingTab.content name="0" x-cloak>
-                                        <livewire:page.setting.stock />
-                                    </x-settingTab.content>
-
-                                    <x-settingTab.content name="1" x-cloak>
-                                        <livewire:page.setting.commission />
-                                    </x-settingTab.content>
-
-                                    <x-settingTab.content name="2" x-cloak>
-                                        <div class="px-4 py-6 sm:p-6 lg:pb-8">
-                                            content 3
-                                        </div>
-                                    </x-settingTab.content>
-                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

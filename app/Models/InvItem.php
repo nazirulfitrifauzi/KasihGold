@@ -37,4 +37,9 @@ class InvItem extends Model
     {
         return $this->hasOne('App\Models\CommissionRate', 'item_id', 'id');
     }
+
+    public function costDaily()
+    {
+        return $this->hasOne('App\Models\CostDaily', 'item_id', 'id');
+    }
 }
