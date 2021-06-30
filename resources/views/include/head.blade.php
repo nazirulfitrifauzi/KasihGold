@@ -50,11 +50,8 @@
 
             <!-- content -->
             <div class="flex flex-col flex-1 w-full mx-2 my-4 ml-2 bg-white rounded-lg md:ml-0">
-
+                @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto">
-
-                   
-
                     @if(Route::current()->uri == 'home')
                         <header>
                             <div class="w-full bg-center bg-cover" style="height:13rem;
@@ -64,7 +61,6 @@
                         </header>
                     @endif
                     <div class="grid px-4 lg:px-8 pb-10 mx-auto">
-                        @include('include.sidebar.mobile-navbar')
                         <div class="mt-10 md:mt-0">
                             @yield('content')
                         </div>
