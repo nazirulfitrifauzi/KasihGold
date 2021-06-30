@@ -210,7 +210,7 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
-                @if (auth()->user()->role != 4)
+                @if (auth()->user()->role != 4 && auth()->user()->client != 2)
                 <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
                     <x-heroicon-o-cog class="w-5 h-5" />
                 </x-sidebar.nav-item>
