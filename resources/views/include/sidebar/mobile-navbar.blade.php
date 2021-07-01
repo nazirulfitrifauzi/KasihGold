@@ -1,5 +1,5 @@
 
-<div class="fixed z-50 w-full top-0 left-0">
+<div class="fixed z-20 w-full top-0 left-0">
     <header class="relative items-center flex justify-start flex-shrink-0 space-x-4 p-4 block md:hidden bg-gray-700 ">
 
         <!-- Mobile sub header button  jgn padam-->
