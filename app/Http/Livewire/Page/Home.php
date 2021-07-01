@@ -12,6 +12,7 @@ class Home extends Component
     public $myAgent;
     public $activeUser;
     public $userGold;
+    public $tGold, $goldInfo;
 
     public function mount()
     {
@@ -25,6 +26,12 @@ class Home extends Component
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
 
             $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
+        }
+
+        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
+        $this->tGold = 0;
+        foreach ($goldInfo as $golds) {
+            $this->tGold += $golds->weight;
         }
     }
 
