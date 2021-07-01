@@ -25,7 +25,7 @@
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center ml-3 lg:ml-0">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
@@ -38,10 +38,10 @@
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center ml-3 lg:ml-0">
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Current Price</p>
                                         <p class="text-lg">RM {{number_format($this->tPrice,2)}}</p>
                                     </div>
@@ -54,7 +54,7 @@
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center ml-3 lg:ml-0">
                                         <x-heroicon-o-refresh class="w-8 h-8 text-red-400" />
                                     </div>
                                     <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
@@ -66,10 +66,10 @@
                     <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal2 = true">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
+                                    <div class="flex px-4 py-4 bg-white rounded-full item-center  ml-3 lg:ml-0">
                                         <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
                                     </div>
-                                    <div class="text-xl">
+                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Outright Sell/Buy Back</p>
                                     </div>
                                 </div>
