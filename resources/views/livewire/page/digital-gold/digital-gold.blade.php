@@ -10,7 +10,15 @@
 
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 bg-white rounded-lg border-2 mb-6 py-6 px-6">
                 <div class="flex items-center justify-center flex-auto ">
-                    <x-gold.goldview type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="1.00" />
+                    @if($this->tGold<=1.0)
+                    <x-gold.goldview type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="{{1-$this->tGold}}" />
+                    @elseif ($this->tGold<=2.5)
+                    <x-gold.goldview type="2.5g" percentage="{{($this->tGold/2.5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{2.5-$this->tGold}}" />
+                    @elseif ($this->tGold<=5)
+                    <x-gold.goldview type="5g" percentage="{{($this->tGold/5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{5-$this->tGold}}" />
+                    @elseif ($this->tGold<=10)
+                    <x-gold.goldview type="10g" percentage="{{($this->tGold/10)*100}}" totalGram="{{$this->tGold}}" reachGram="{{10-$this->tGold}}" />
+                    @endif
                 </div>
                 <div class="flex flex-col flex-auto mr-0 lg:mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
