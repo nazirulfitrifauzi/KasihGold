@@ -10,7 +10,7 @@
 
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 bg-white rounded-lg border-2 mb-6 py-6 px-6">
                 <div class="flex items-center justify-center flex-auto ">
-                    <x-gold.goldview type="1g" percentage="100" totalGram="0.00" reachGram="1.00" />
+                    <x-gold.goldview type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="1.00" />
                 </div>
                 <div class="flex flex-col flex-auto mr-0 lg:mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
@@ -22,24 +22,11 @@
                                     </div>
                                     <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
                                         <p>Total Grams</p>
-                                        <p class="text-lg">1.36 g</p>
+                                        <p class="text-lg">{{$this->tGold}} g</p>
                                     </div>
                                 </div>
                             </div>
                     </x-general.price-card>
-                    {{-- <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
-                        <div class="text-base font-bold text-white">
-                                <div class="flex flex-col lg:flex-row items-center space-x-4">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
-                                        <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
-                                    </div>
-                                    <div class="text-base lg:text-xl text-center lg:text-left pt-2 lg:pt-0">
-                                        <p>Total Price Bought</p>
-                                        <p class="text-lg">RM 342.72</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </x-general.price-card> --}}
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
                         <div class="text-base font-bold text-white">
                                 <div class="flex flex-col lg:flex-row items-center space-x-4">
@@ -48,7 +35,7 @@
                                     </div>
                                     <div class="text-xl">
                                         <p>Current Price</p>
-                                        <p class="text-lg">RM 342.72</p>
+                                        <p class="text-lg">RM {{number_format($this->tPrice,2)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +93,7 @@
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                0.25 gram
+                                                {{$this->tGold}} gram
                                             </p>
                                         </div>
 
@@ -198,13 +185,13 @@
                                         <div>
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                1.36 gram
+                                                {{$this->tGold}} gram
                                             </p>
                                         </div>
                                         <div class="mt-2">
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                             <p class="text-sm text-gray-500">
-                                                RM 342.72
+                                                RM {{number_format($this->tPrice,2)}}
                                             </p>
                                         </div>
                                         <div class="mt-4">
@@ -246,14 +233,14 @@
                                         <div class="mt-2">
                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
                                             <p class="text-sm text-gray-500">
-                                                1.36 gram
+                                                {{$this->tGold}} gram
                                             </p>
                                         </div>
                                         <div class="flex justify-center mt-4">
                                             <div class="mr-4">
                                                 <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
                                                 <p class="text-sm text-gray-500">
-                                                    RM 342.72
+                                                    RM {{number_format($this->tPrice,2)}}
                                                 </p>
                                             </div>
                                         </div>
