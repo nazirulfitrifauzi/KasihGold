@@ -31,6 +31,15 @@
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                     <x-form.input  label="Total Weight (g)" value="addTotalWeight" wire:model="addTotalWeight" placeholder="in grams"/>
                                                 </div>
+                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                    <x-form.input  label="Serial Number" value="addSerialID" wire:model="addSerialID" />
+                                                </div>
+                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                    <x-form.input  label="Supplier Name" value="addSupplierName" wire:model="addSupplierName" />
+                                                </div>
+                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                    <x-form.input  label="Vault Location" value="addVaultLocation" wire:model="addVaultLocation" />
+                                                </div>
                                                 <div class="flex justify-end mt-4">
                                                     <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                                         Submit

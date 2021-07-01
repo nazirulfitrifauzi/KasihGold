@@ -9,17 +9,23 @@ use Livewire\Component;
 class StockKAP extends Component
 {
 
-    public $addTotalWeight;
+    public $addTotalWeight, $addSerialID, $addSupplierName, $addVaultLocation;
 
     public function addGold()
     {
         $data = $this->validate([
-            'addTotalWeight' => 'required|numeric|min:3',
+            'addTotalWeight'     => 'required',
+            'addSerialID'        => 'required',
+            'addSupplierName'    => 'required',
+            'addVaultLocation'   => 'required',
         ]);
 
         Goldbar::create([
             'guid'              => (string) Str::uuid(),
             'total_weight'      => $this->addTotalWeight,
+            'serial_id'         => $this->addSerialID,
+            'supplier_name'     => $this->addSupplierName,
+            'vault_location'    => $this->addVaultLocation,
             'weight_occupied'   => 0.00,
             'weight_on_hold'    => 0.00,
             'weight_vacant'     => $this->addTotalWeight,
