@@ -2,8 +2,37 @@
 
 <div>
     <div class="grid w-screen h-screen grid-cols-12 bg-gray-800">
-        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5">
-            <div class="absolute top-0 w-full px-4 pt-8">
+        <!-- Mobile view -->
+        <div class="h-full col-span-12 w-full block md:hidden">
+            <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
+
+                <div class="items-center justify-center w-full h-full bg-gray-800 bg-opacity-50 px-4 pt-8">
+                    <div class="z-40 flex justify-between w-full">
+                        <a href="/">
+                            <div class="flex justify-center">
+                                <x-logo class="w-auto h-12 " />
+                            </div>
+                        </a>
+                        <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
+                            <p>Login</p>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-center w-full pt-32 pb-6">
+                        <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
+                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Memperkasakan Wakaf Ekonomi</p>
+                            <p class="my-2 border-b"></p>
+                            <p class="text-xs text-white text-center">
+                                Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Mobile view -->
+        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl
+        md:rounded-t-none">
+            <div class="absolute top-0 w-full px-4 pt-8 hidden md:block">
                 <div class="flex justify-between">
                     <a href="/">
                         <div class="flex justify-center">
@@ -15,7 +44,7 @@
                     </a>
                 </div>
             </div>
-            <div class="z-40 w-full px-4 mt-14 md:mt-4 sm:px-24"  x-data="{ active: 0 }">
+            <div class="z-40 w-full px-4 py-6 sm:px-24 mt-0 md:mt-14"  x-data="{ active: 0 }">
                 <div class="my-8 sm:mx-auto sm:w-full">
                     @if (session('error'))
                         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -26,10 +55,10 @@
                     @elseif (session('warning'))
                         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
                     @endif
-                    <h2 class="text-3xl font-extrabold text-left text-gray-700">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-left text-gray-700">
                         Register
                     </h2>
-                    <h2 class="max-w-sm mt-2 text-base font-semibold leading-7 text-left text-gray-500">
+                    <h2 class="max-w-sm mt-2 text-xs md:text-base font-semibold leading-7 text-left text-gray-500">
                         Welcome! Please fill information in below
                     </h2>
                     <div class="flex justify-center w-full px-2 py-2 mt-2 bg-gray-100 rounded-xl">
