@@ -22,6 +22,7 @@
         @livewireStyles
 
         <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="{{ url(mix('js/app.js')) }}" defer></script>
 
         <!-- CSRF Token -->
