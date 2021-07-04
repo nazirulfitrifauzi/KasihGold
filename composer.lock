@@ -4,8 +4,43 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1719638a414107ac021915cc1d856731",
+    "content-hash": "5910929bed0d664e4c200f89b8ee086f",
     "packages": [
+        {
+            "name": "afzafri/poslaju-tracking-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/afzafri/Poslaju-Tracking-API.git",
+                "reference": "e6a1c0802df9adbd6d037f2a05352fbd0b20f65e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/afzafri/Poslaju-Tracking-API/zipball/e6a1c0802df9adbd6d037f2a05352fbd0b20f65e",
+                "reference": "e6a1c0802df9adbd6d037f2a05352fbd0b20f65e",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Afzafri\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Afif Zafri",
+                    "email": "afzafri@gmail.com"
+                }
+            ],
+            "description": "Return JSON formatted string of Poslaju Tracking details",
+            "support": {
+                "issues": "https://github.com/afzafri/Poslaju-Tracking-API/issues",
+                "source": "https://github.com/afzafri/Poslaju-Tracking-API/tree/master"
+            },
+            "time": "2021-01-08T14:51:54+00:00"
+        },
         {
             "name": "asantibanez/livewire-charts",
             "version": "v2.3.0",
@@ -9652,7 +9687,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "afzafri/poslaju-tracking-api": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
