@@ -44,6 +44,7 @@ use App\Http\Controllers\BankInformationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\SnapAPI;
+use App\Http\Controllers\ToyyibpayController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
@@ -116,6 +117,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('setting', [settingController::class, 'setting'])->name('setting');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
+
+        // -- Toyyib Pay -- //
+        Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatus'])->name('toyyibpay-status');
+        Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
     });
 
     Route::middleware('auth.admin')->group(function () {

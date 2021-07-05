@@ -6,7 +6,7 @@
                 <div class="flex flex-col lg:flex-row mt-2">
                     <div class="w-full lg:w-1/2 order-2">
                         
-                         <x-form.basic-form wire:submit.prevent="buy">
+                         <x-form.basic-form wire:submit.prevent="convert">
                             <x-slot name="content">
                                 <div class="pb-8">
                                     <div class="lg:w-full">
@@ -22,7 +22,7 @@
                                                                     <x-form.input label="Name" wire:model="name" value="name"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.input label="Company Name (Optional)" wire:model="company_name" value="company_name"/>
+                                                                    <x-form.input label="Phone Number" wire:model="phone1" value="phone1"/>
                                                                     <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                                         <x-form.address class="" label="Address" value1="address1" value2="address2" value3="address3" value4="town" value5="postcode" value6="state" :state="$states" condition="state"/>
                                                                     </div>
