@@ -3,23 +3,24 @@
 namespace App\Http\Livewire\Page\PhysicalGold;
 
 use App\Models\GoldbarOwnership;
+use App\Models\InvInfo;
 use Livewire\Component;
 
 class PhyCheckout extends Component
 {
-    public $prod_qty, $type, $totalGoldbar, $gb63, $gb64, $goldbar063, $goldbar064, $total;
+    public $prod_qty, $type, $totalGoldbar, $goldbar063, $goldbar064, $total, $totalW;
+    public $info_bar063, $info_bar064;
 
 
     public function mount()
     {
         $this->totalGoldbar = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
+        $this->info_bar063 = InvInfo::where('user_id', 10)->where('prod_weight', 0.25)->first();
+        $this->info_bar064 = InvInfo::where('user_id', 10)->where('prod_weight', 1)->first();
 
         foreach ($this->totalGoldbar as $tGold) {
             $this->total += $tGold->weight;
         }
-
-        $this->gb63 = intval($this->total / 0.25); //3 will have 12
-        $this->gb64 = intval($this->total / 1);   // 3 will have 3
 
         $this->goldbar063 = 0;
         $this->goldbar064 = 0;
@@ -45,8 +46,35 @@ class PhyCheckout extends Component
         }
     }
 
+    public function convert()
+    {
+        $cart = collect([
+            ['prod_name' => $this->info_bar064->prod_name, 'prod_img' => $this->info_bar064->prod_img1, 'prod_weight' => $this->info_bar064->prod_weight, 'qty' => $this->goldbar064],
+            ['prod_name' => $this->info_bar063->prod_name, 'prod_img' => $this->info_bar063->prod_img1, 'prod_weight' => $this->info_bar063->prod_weight, 'qty' => $this->goldbar063],
+        ]);
+
+        $total =  $this->goldbar063 +  $this->goldbar064;
+
+        $totalW =  ($this->info_bar063->prod_weight * $this->goldbar063) +  ($this->info_bar064->prod_weight * $this->goldbar064);
+        session()->flash('products', $cart);
+        session()->flash('total', $total);
+        session()->flash('totalWeight', $totalW);
+
+        return redirect('physical-gold-confirmation');
+    }
+
     public function render()
     {
-        return view('livewire.page.physical-gold.phy-checkout');
+        $goldtype = InvInfo::orWhere(function ($query) {
+            $query->where('prod_weight', 0.25)
+                ->orWhere('prod_weight', 1);
+        })
+            ->where('user_id', 10)
+            ->orderBy('prod_weight', 'desc')
+            ->get();
+
+        return view('livewire.page.physical-gold.phy-checkout', [
+            'gtype' => $goldtype,
+        ]);
     }
 }

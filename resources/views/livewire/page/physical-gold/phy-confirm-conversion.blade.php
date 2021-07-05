@@ -53,21 +53,27 @@
                             <div class="border  max-w-md w-full px-4 py-3">
                                 <div class="flex items-center justify-between">
                                     
-                                    <h3 class="text-gray-700 font-medium">Physical Gold Conversion Total (1)</h3>
+                                    <h3 class="text-gray-700 font-medium">Physical Gold Conversion Total ({{session('total')}})</h3>
                                 </div>
 
-                                    
-                                <div class="flex justify-between mt-6 border-b-2 pb-4">
-                                    <div class="flex">
-                                        <img class="h-20 w-20 object-cover rounded"
-                                            src="{{ asset('storage/d1.png') }}"
-                                            alt="">
-                                        <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">Kasih Gold Digital 1g</h3>
+                                @if(session('products'))
+                                    @foreach (session('products') as $product)
+                                        @if($product['qty']!=0)
+                                        <div class="flex justify-between mt-6 border-b-2 pb-4">
+                                            <div class="flex">
+                                                <img class="h-20 w-20 object-cover rounded"
+                                                    src="{{ asset('img/gold/'.$product['prod_img']) }}"
+                                                    alt="">
+                                                <div class="mx-3 my-3">
+                                                    <h3 class="text-sm text-gray-600">{{$product['prod_name']}}</h3>
+                                                    <h4 class="text-sm text-gray-600"><b>{{$product['qty']}} pcs</b></h4>
+                                                </div>
+                                            </div>
+                                            <span class="font-semibold text-gray-600 my-3">{{number_format($product['prod_weight']*$product['qty'],2)}} Grams</span>
                                         </div>
-                                    </div>
-                                    <span class="font-semibold text-gray-600 my-3">1 pcs</span>
-                                </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                                     
                                 {{-- <div class="flex justify-between mt-6 border-b-2 pb-4">
                                     <div class="flex">
@@ -88,7 +94,7 @@
                                             <p>Subtotal</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>1 Gram</p>
+                                            <p>{{session('totalWeight')}} Grams</p>
                                         </div>
                                     </div>
 
