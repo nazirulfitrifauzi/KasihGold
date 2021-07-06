@@ -2,6 +2,9 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     theme: {
+        minHeight: {
+            '160': '160',
+        },
         extend: {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],

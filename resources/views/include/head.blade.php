@@ -20,6 +20,7 @@
     <script src="{{ asset('dist/apexcharts.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('js/init-alpine.js')}}"></script>
+    <script src="{{ asset('js/accounting.js')}}"></script>
 
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -35,13 +36,13 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
-        <div class="hidden lg:block absolute right-0 z-50 w-full px-1 py-1 text-sm font-bold text-center text-white bg-red-500">
+        <div class="absolute right-0 z-50 hidden w-full px-1 py-1 text-sm font-bold text-center text-white bg-red-500 lg:block">
             <div class="flex items-center justify-center animate-pulse">
                 <x-heroicon-o-exclamation class="w-6 h-6" />
                 <p>System currently on development. This is not the final version</p>
             </div>
         </div>
-        <div class="flex h-auto md:h-screen bg-white md:bg-gray-700">
+        <div class="flex h-auto bg-white md:h-screen md:bg-gray-700">
             <div x-ref="loading"></div>
             @include('misc.main-loading')
 
@@ -60,7 +61,7 @@
                             </div>
                         </header>
                     @endif
-                    <div class="grid px-4 lg:px-8 pb-10 mx-auto">
+                    <div class="grid px-4 pb-10 mx-auto lg:px-8">
                         <div class="mt-10 md:mt-0">
                             @yield('content')
                         </div>

@@ -18,6 +18,7 @@
   <script src="{{ asset('dist/apexcharts.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <script src="{{ asset('js/init-alpine.js')}}"></script>
+  <script src="{{ asset('js/accounting.js')}}"></script>
 
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
@@ -47,7 +48,7 @@
     </div>
 
     {{-- Disabled snapnpay Payment Gateway
-        
+
         <form method="post" action="https://prod.snapnpay.co/payments/api" name="load">
         <input type="hidden" size=40 name="agency" value="{{session('agency')}}" class="form-control" id="agency"/>
         <input type="hidden" size=40 name="refNo" value="{{session('refNo')}}" class="form-control" id="refNo"/>

@@ -3,7 +3,7 @@
     <livewire:page.home />
 
 {{-- lineChart --}}
-<script>
+{{-- <script>
     var charts = document.querySelector('#chartline')
     var options = {
         series: [{
@@ -35,11 +35,11 @@
         };
         var charts = new ApexCharts(charts, options);
         charts.render();
-</script>
+</script> --}}
 {{-- lineChart --}}
 
 {{-- pie Chart --}}
-<script>
+{{-- <script>
     var charts = document.querySelector('#chartpie')
     var options = {
             series: [1, 0.25, 0.1,0.01],
@@ -51,7 +51,7 @@
                 text: 'Kasih Digital Gold',
                 align: 'left'
             },
-            labels: ['Kasih Digital Gold 1G', 
+            labels: ['Kasih Digital Gold 1G',
                     'Kasih Digital Gold 0.25G',
                     'Kasih Digital Gold 0.1G',
                     'Kasih Digital Gold 0.01G',],
@@ -66,6 +66,6 @@
         };
         var charts = new ApexCharts(charts, options);
         charts.render();
-</script>
+</script> --}}
 {{-- pie Chart --}}
 @endsection
