@@ -26,7 +26,8 @@
     },
     "dependencies": {
         "@tailwindcss/forms": "^0.3.3",
-        "apexcharts": "^3.22.2",
+        "accounting-js": "^1.1.1",
+        "apexcharts": "^3.27.1",
         "toastr": "^2.1.4"
     }
 }
