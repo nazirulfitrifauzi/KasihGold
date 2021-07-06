@@ -98,7 +98,7 @@
                 @empty
                 <tr>
                     <x-table.table-body colspan="4" class="text-gray-500 text-center">
-                        Dont have incident reporting
+                        No incident to report
                     </x-table.table-body>
                 </tr>
                 @endforelse
