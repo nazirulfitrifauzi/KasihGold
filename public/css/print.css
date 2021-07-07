@@ -1,0 +1,20 @@
+    @media print {
+        @page {
+            size: landscape
+        }
+
+        .printContent {
+            margin-top : 0px;
+            overflow-y: hidden;
+        }
+
+        .printHide {
+            display: none;
+        }
+
+        div {
+            box-shadow: none !important;
+            border: none !important;
+            overflow: hidden !important;
+        }
+    }

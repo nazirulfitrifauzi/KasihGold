@@ -1,7 +1,7 @@
 <!-- Desktop sidebar -->
 <x-sidebar-loading/>
 
-<div class="flex flex-shrink-0 mt-4 transition-all">
+<div class="flex flex-shrink-0 mt-4 transition-all  printHide">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
     <!-- Mobile bottom bar -->

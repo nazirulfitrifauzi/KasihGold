@@ -1,9 +1,9 @@
 
 <div>
-    <div class="-mt-52">
+    <div class="-mt-52 printContent">
         <div class="grid grid-cols-12 gap-6">
-            <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
-                <div class="col-span-12 mt-8">
+            <div class="grid grid-cols-12 col-span-12 gap-6">
+                <div class="col-span-12 mt-8 printHide">
                     <div class="flex items-center">
                         <div>
                             <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
@@ -22,7 +22,7 @@
 
                     @if (auth()->user()->isUserKAP())
                     @else
-                        <div class="grid grid-cols-12 gap-6 mt-10">
+                        <div class="grid grid-cols-12 gap-6 mt-10 ">
                             @if (auth()->user()->isAdminKAP())
                                 @include('pages.dashboard.kap.hq')
                             @elseif (auth()->user()->isAgentKAP())
@@ -81,106 +81,124 @@
                 @if (auth()->user()->isUserKAP())
                     @include('pages.dashboard.kap.user2')
                 @else
-                    <div class="col-span-12">
-                        <div class="grid grid-cols-3 gap-8">
-                            <div class=" min-h-160" id="chart-spark1"></div>
-                            <div class=" min-h-160" id="chart-spark2"></div>
-                            <div class=" min-h-160" id="chart-spark3"></div>
+                    <div class="col-span-12 mt-8 bg-gray-50 border-2 border-gray-100 rounded-lg shadow-xl p-4 ">
+                        <div class="flex justify-end mb-3">
+                            <button onclick="window.print()" class="printHide flex px-2 py-1 text-sm font-bold text-white bg-yellow-300 rounded cursor-pointer focus:outline-none hover:bg-yellow-400">
+                                <div class="flex space-x-1">
+                                    <x-heroicon-o-printer class="w-5 h-5" />
+                                    <p>Print</p>
+                                </div>
+                            </button>
                         </div>
-
-                        <div class="mt-4">
-                            <table class="min-w-full">
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Total Value</th>
-                                        <th>Percentage of Portfolio</th>
-                                        <th>Last 10 Days</th>
-                                        <th>Monthly Volume</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">Kasih Digital 0.01 g</td>
-                                        <td class="text-center">
-                                            RM {{ number_format( array_sum($chart1->where('weight',0.01)->pluck('bought_price')->toArray()),2) }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class="min-h-160" id="chart-1"></div>
+                        <div class="grid grid-cols-12 gap-6" id="DIV_ID">
+                            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                                <x-general.grid mobile="1" gap="5" sm="3" md="3" lg="3" xl="3" class="col-span-6">
+                                    <div class="mb-4 bg-white shadow-lg p-4 rounded-lg" id="chart-spark1"></div>
+                                    <div class="mb-4 bg-white shadow-lg p-4 rounded-lg" id="chart-spark2"></div>
+                                    <div class="mb-4 bg-white shadow-lg p-4 rounded-lg" id="chart-spark3"></div>
+                                </x-general.grid>
+                            </div>
+                            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                                <div class="mt-4 flex flex-col printContent">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"> 
+                                                <table class="min-w-full divide-y divide-gray-200 bg-white">
+                                                    <thead>
+                                                        <tr class="bg-gray-200 rounded-lg">
+                                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Total Value</th>
+                                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage of Portfolio</th>
+                                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Last 10 Days</th>
+                                                            <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Monthly Volume</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">Kasih Digital <br>0.01 g</td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.01)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-1"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-5"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">Kasih Digital <br>0.10 g</td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.1)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-2"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-6"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">Kasih Digital <br>0.25 g</td>
+                                                            <td class="text-center">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.25)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-3"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-7"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">Kasih Digital <br>1.00 g</td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',1)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-4"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-8"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class=" min-h-160" id="chart-5"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">Kasih Digital 0.10 g</td>
-                                        <td class="text-center">
-                                            RM {{ number_format( array_sum($chart1->where('weight',0.1)->pluck('bought_price')->toArray()),2) }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class="min-h-160" id="chart-2"></div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class=" min-h-160" id="chart-6"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">Kasih Digital 0.25 g</td>
-                                        <td class="text-center">
-                                            RM {{ number_format( array_sum($chart1->where('weight',0.25)->pluck('bought_price')->toArray()),2) }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class="min-h-160" id="chart-3"></div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class=" min-h-160" id="chart-7"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">Kasih Digital 1.00 g</td>
-                                        <td class="text-center">
-                                            RM {{ number_format( array_sum($chart1->where('weight',1)->pluck('bought_price')->toArray()),2) }}
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class="min-h-160" id="chart-4"></div>
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="flex justify-center">
-                                                <div class=" min-h-160" id="chart-8"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div/>
                     </div>
-
                 @endif
 
             </div>
@@ -216,6 +234,7 @@
         chart: {
             type: 'area',
             height: 160,
+            renderTo: 'chart-1-container',
             sparkline: {
                 enabled: true
             },
@@ -241,7 +260,7 @@
         yaxis: {
             min: 0
         },
-        colors: ['#DCE6EC'],
+        colors: ['#84ff80'],
         title: {
             text: accounting.formatMoney(@json(array_sum($chart1->pluck('bought_price')->toArray()))),
             offsetX: 0,
@@ -255,7 +274,7 @@
             style: {
                 fontSize: '14px',
             }
-        }
+        },
     };
 
     var chart = new ApexCharts(document.querySelector("#chart-spark1"), options);
@@ -295,7 +314,7 @@
         yaxis: {
             min: 0
         },
-        colors: ['#DCE6EC'],
+        colors: ['#ff70b8'],
         title: {
             text: accounting.formatMoney(@json(array_sum($chart2->pluck('bought_price')->toArray()))),
             offsetX: 0,
@@ -340,6 +359,7 @@
         yaxis: {
             min: 0
         },
+       
         title: {
             text: '$135,965',
             offsetX: 0,
@@ -354,6 +374,7 @@
                 fontSize: '14px',
             }
         }
+        
     };
 
     var chartSpark3 = new ApexCharts(document.querySelector("#chart-spark3"), optionsSpark3);
@@ -656,5 +677,9 @@
 
     var chart8 = new ApexCharts(document.querySelector("#chart-8"), options8);
     chart8.render();
+
 </script>
+
+
+
 @endpush
