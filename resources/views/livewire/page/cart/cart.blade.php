@@ -1,11 +1,10 @@
 <div>
     <div>
-        <div class="flex flex-col  mt-8 intro-y sm:flex-row w-full">
+        <div class="flex flex-col w-full mt-8 intro-y sm:flex-row">
             <h2 class="text-lg font-medium">
                 Cart
             </h2>
         </div>
-
 
         <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
             <div class="grid grid-cols-12 gap-6">
@@ -31,7 +30,7 @@
                                 @endphp
                                 <tr>
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <div class="flex flex-col lg:flex-row space-x-3 items-center">
+                                        <div class="flex flex-col items-center space-x-3 lg:flex-row">
                                             <img class="object-cover w-16 h-16 rounded"
                                                 src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
                                             <div class="mt-4 lg:mt-0">
@@ -45,18 +44,14 @@
                                     </x-table.table-body>
 
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                                        <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
                                             <button data-action="decrement"
-                                                class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
+                                                class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                 <span class="m-auto text-2xl font-thin">−</span>
                                             </button>
-                                            <input type="text" class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
-                                                hover:text-black focus:text-black  md:text-basecursor-default flex items-center
-                                                justify-center
-                                                text-gray-700 
-                                                outline-none" name="custom-input-number" value="{{$carts->prod_qty}}"></input>
+                                            <input type="text" class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default" name="custom-input-number" value="{{$carts->prod_qty}}"></input>
                                             <button data-action="increment"
-                                                class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
+                                                class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                 <span class="m-auto text-2xl font-thin">+</span>
                                             </button>
                                         </div>
@@ -66,7 +61,7 @@
                                         <p>RM {{number_format($carts->products->prod_price*$carts->prod_qty,2)}}</p>
                                     </x-table.table-body>
 
-                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 relative">
+                                    <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
                                         <div x-data="{ deleteOpen3 : false  }" class="flex justify-center">
                                             <x-btn.tooltip-btn
                                                 class="flex items-center justify-center text-xs bg-red-600 rounded-full hover:bg-red-700"
@@ -111,7 +106,7 @@
                                         <div class="flex justify-between">
                                             <div  class="flex space-x-2">
                                                 <div>
-                                                    <x-form.input type="text" label="" value="" livewire="" placeholder="Coupon code" /> 
+                                                    <x-form.input type="text" label="" value="" livewire="" placeholder="Coupon code" />
                                                 </div>
                                                 <div class="mt-2">
                                                     <a href="#"  class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
@@ -120,7 +115,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-2">
-                                                <a href="#"  class=" cursor-not-allowed flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                                                <a href="#"  class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-not-allowed  focus:outline-none hover:bg-yellow-500">
                                                     <p>Update Cart</p>
                                                 </a>
                                             </div>
@@ -135,30 +130,30 @@
 
                         <! -- Start Checkout -->
                         <div class="flex justify-end my-6">
-                            <div class="bg-white py-4 px-4  rounded-lg w-full lg:w-1/2 border-2">
-                                <div class="border-b-2 py-4">
+                            <div class="w-full px-4 py-4 bg-white border-2 rounded-lg lg:w-1/2">
+                                <div class="py-4 border-b-2">
                                     <h1 class="text-3xl font-semibold">Cart totals</h1>
                                 </div>
-                                <div class="flex flex-col lg:flex-row justify-between border-b-2 py-4">
-                                    <div class="font-semibold text-sm lg:text-lg">
+                                <div class="flex flex-col justify-between py-4 border-b-2 lg:flex-row">
+                                    <div class="text-sm font-semibold lg:text-lg">
                                         <p>Shipping</p>
                                     </div>
-                                    <div class="font-semibold text-sm lg:text-lg">
+                                    <div class="text-sm font-semibold lg:text-lg">
                                         <p>Will be calculated on checkout page</p>
                                     </div>
                                 </div>
-                                <div class="flex justify-between border-b-2 py-4">
-                                    <div class="font-semibold text-lg">
+                                <div class="flex justify-between py-4 border-b-2">
+                                    <div class="text-lg font-semibold">
                                         <p>Total</p>
                                     </div>
-                                    <div class="font-semibold text-lg">
+                                    <div class="text-lg font-semibold">
                                         <p>RM {{number_format($total,2)}}</p>
                                     </div>
                                 </div>
 
                                 <div class="flex justify-center my-6">
                                     <a href="product/buy"
-                                        class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
+                                        class="flex items-center justify-center w-full px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
                                         <p>Proceed to checkout</p>
                                     </a>
                                 </div>
