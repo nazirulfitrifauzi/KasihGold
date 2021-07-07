@@ -16,7 +16,7 @@ class Home extends Component
     public $activeUser;
     public $userGold;
     public $tGold, $goldInfo;
-    public $chart1, $mainchart1, $chart2, $mainchart2;
+    public $chart1, $mainchart1, $chart2, $mainchart2, $chart3, $mainchart3;
     public $subchart1day, $subchart1month, $subchart2day, $subchart2month, $subchart3day, $subchart3month, $subchart4day, $subchart4month;
 
     public function mount()
@@ -28,18 +28,20 @@ class Home extends Component
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
             $this->chart1 = GoldbarOwnership::get();
             $this->mainchart1 = DB::table('gold_ownership')
-                                ->select(DB::raw('top 10 CAST(created_at AS DATE) as x'), DB::raw('SUM(bought_price) as y'))
-                                ->groupBy(DB::raw("CAST(created_at AS DATE)"))
-                                ->orderBy(DB::raw("CAST(created_at AS DATE)"), 'desc')
+                                ->select(DB::raw("top 12 CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2)) as x"), DB::raw('SUM(bought_price) as y'))
+                                ->groupBy(DB::raw("CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2))"))
+                                ->orderBy(DB::raw("CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2))"), 'desc')
                                 ->get()
                                 ->toArray();
             $this->chart2 = Goldbar::get();
             $this->mainchart2 = DB::table('goldbar')
-                                ->select(DB::raw('top 10 CAST(created_at AS DATE) as x'), DB::raw('SUM(bought_price) as y'))
-                                ->groupBy(DB::raw("CAST(created_at AS DATE)"))
-                                ->orderBy(DB::raw("CAST(created_at AS DATE)"), 'desc')
+                                ->select(DB::raw("top 12 CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2)) as x"), DB::raw('SUM(bought_price) as y'))
+                                ->groupBy(DB::raw("CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2))"))
+                                ->orderBy(DB::raw("CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2))"), 'desc')
                                 ->get()
                                 ->toArray();
+            $this->mainchart3 = DB::select('SET NOCOUNT ON ; exec calculate_revenue');
+            $this->chart3 = collect($this->mainchart3);
 
             $this->subchart1day = DB::table('gold_ownership')
                                 ->select(DB::raw('top 10 CAST(created_at AS DATE) as x'), DB::raw('SUM(bought_price) as y'))
@@ -107,9 +109,9 @@ class Home extends Component
             $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
                 $query->where('agent_id', '=', $logged_user);
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
-
             $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
 
+            // $this->chart1 = auth()->user();
         }
 
 
