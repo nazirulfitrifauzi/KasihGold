@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
 
+    <link rel="stylesheet" href="{{ asset('css/print.css')}}" />
+
     <link rel="stylesheet" href="{{ asset('dist/apexcharts.css')}}" />
     <script src="{{ asset('dist/apexcharts.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -52,9 +54,9 @@
             <!-- content -->
             <div class="flex flex-col flex-1 w-full mx-0 my-4 bg-white rounded-lg">
                 @include('include.sidebar.mobile-navbar')
-                <main class="overflow-y-auto">
+                <main class="overflow-y-auto printContent">
                     @if(Route::current()->uri == 'home')
-                        <header>
+                        <header class="printHide">
                             <div class="w-full bg-center bg-cover" style="height:13rem;
                                 background-image: url({{ asset('img/header.jpg') }});">
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>

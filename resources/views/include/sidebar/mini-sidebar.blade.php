@@ -1,6 +1,6 @@
 <!-- Left mini bar -->
     <nav aria-label="Options"
-        class="z-40 flex-col items-center flex-shrink-0 hidden w-16 py-4 bg-gray-700 border-indigo-100 shadow-xl sm:flex ">
+        class="z-40 flex-col items-center flex-shrink-0 hidden w-16 py-4 bg-gray-700 border-indigo-100 shadow-xl sm:flex  printHide">
 
         <div class="flex flex-col items-center flex-1 p-2 space-y-4">
 
