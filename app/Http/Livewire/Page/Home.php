@@ -111,7 +111,17 @@ class Home extends Component
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
             $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
 
-            // $this->chart1 = auth()->user();
+            $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user ));
+            $this->mainchart1 = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY '.$logged_user.', "0.00"');
+            $this->subchart1day = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DAILY '.$logged_user.', "0.01" ');
+            $this->subchart1month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "0.01" ');
+            $this->subchart2day = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DAILY ' . $logged_user . ', "0.1" ');
+            $this->subchart2month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "0.1" ');
+            $this->subchart3day = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DAILY ' . $logged_user . ', "0.25" ');
+            $this->subchart3month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "0.25" ');
+            $this->subchart4day = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DAILY ' . $logged_user . ', "1" ');
+            $this->subchart4month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "1" ');
+
         }
 
 
