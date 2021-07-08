@@ -3,10 +3,10 @@
 <div>
     <div class="grid w-screen h-screen grid-cols-12 bg-gray-800">
         <!-- Mobile view -->
-        <div class="h-full col-span-12 w-full block md:hidden">
+        <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
 
-                <div class="items-center justify-center w-full h-full bg-gray-800 bg-opacity-50 px-4 pt-8">
+                <div class="items-center justify-center w-full h-full px-4 pt-8 bg-gray-800 bg-opacity-50">
                     <div class="z-40 flex justify-between w-full">
                         <a href="/">
                             <div class="flex justify-center">
@@ -21,7 +21,7 @@
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
                             <p class="text-xl font-bold leading-tight text-center text-yellow-400">Memperkasakan Wakaf Ekonomi</p>
                             <p class="my-2 border-b"></p>
-                            <p class="text-xs text-white text-center">
+                            <p class="text-xs text-center text-white">
                                 Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang
                             </p>
                         </div>
@@ -30,9 +30,8 @@
             </div>
         </div>
         <!-- End Mobile view -->
-        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl
-        md:rounded-t-none">
-            <div class="absolute top-0 w-full px-4 pt-8 hidden md:block">
+        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl md:rounded-t-none">
+            <div class="absolute top-0 hidden w-full px-4 pt-8 md:block">
                 <div class="flex justify-between">
                     <a href="/">
                         <div class="flex justify-center">
@@ -44,7 +43,7 @@
                     </a>
                 </div>
             </div>
-            <div class="z-40 w-full px-4 py-6 sm:px-24 mt-0 md:mt-14"  x-data="{ active: 0 }">
+            <div class="z-40 w-full px-4 py-6 mt-0 sm:px-24 md:mt-14"  x-data="{ active: 0 }">
                 <div class="my-8 sm:mx-auto sm:w-full">
                     @if (session('error'))
                         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -55,10 +54,10 @@
                     @elseif (session('warning'))
                         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
                     @endif
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-left text-gray-700">
+                    <h2 class="text-2xl font-extrabold text-left text-gray-700 md:text-3xl">
                         Register
                     </h2>
-                    <h2 class="max-w-sm mt-2 text-xs md:text-base font-semibold leading-7 text-left text-gray-500">
+                    <h2 class="max-w-sm mt-2 text-xs font-semibold leading-7 text-left text-gray-500 md:text-base">
                         Welcome! Please fill information in below
                     </h2>
                     <div class="flex justify-center w-full px-2 py-2 mt-2 bg-gray-100 rounded-xl">
@@ -99,7 +98,7 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="col-span-6 w-full">
+                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
                             <div class="mt-6">
                                 <div class="mt-1 rounded-md shadow-sm">
                                     <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
@@ -136,9 +135,18 @@
                             </div>
                         </div>
 
+                        <div class="flex items-center mt-6">
+                            <div class="flex items-center">
+                                <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <label for="tnc" class="block ml-2 text-sm text-gray-900">
+                                        I agree to the <a class="text-indigo-600 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                    </label>
+                            </div>
+                        </div>
+
                         <div class="mt-6">
                             <span class="block w-full rounded-md shadow-sm">
-                                <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
+                                <button id="submit" type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full disabled:opacity-50 disabled:cursor-not-allowed hover:bg-yellow-300 focus:outline-none" disabled>
                                     Register
                                 </button>
                             </span>
@@ -169,7 +177,7 @@
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="col-span-6 w-full">
+                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
                             <div class="mt-6">
                                 <div class="mt-1 rounded-md shadow-sm">
                                     <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
@@ -204,6 +212,19 @@
                                     <option value="1">KASIH GOLD</option></option>
                                     <option value="2">KASIH AP</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center mt-6">
+                            <div class="flex items-center">
+                                <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <label for="tnc" class="block ml-2 text-sm text-gray-900">
+                                        I agree to the <a class="text-indigo-600 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                    </label>
+
+                                @error('tnc')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
