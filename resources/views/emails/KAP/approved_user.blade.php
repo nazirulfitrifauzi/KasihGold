@@ -336,6 +336,7 @@
         .break-all {
             word-break: break-all;
         }
+
     </style>
 </head>
 
@@ -368,8 +369,20 @@
                                 </tr>
                                 <tr>
                                     <td class="content-cell" style="padding-top: 4px !important;">
-                                        <p style="font-weight: bold; font-size:20px; color:#48bb78">APPROVED</p>
-                                        <p>Your request to access the system as agent has been approved.</p>
+                                        <p style="font-weight: bold; font-size:20px; color:#48bb78">Congratulations! You are now a gold investor! </p>
+
+                                        <blockquote className="relative p-4 text-xl italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 quote">
+                                            <p className="mb-4">"Successful investing starts with courage."</p>
+                                            <cite className="flex items-center">
+                                                <div className="flex flex-col items-start">
+                                                    <span className="mb-1 text-sm italic font-bold">
+                                                        Warren Buffet
+                                                    </span>
+                                                </div>
+                                            </cite>
+                                            </blockquote>
+
+                                        <p class="mt-6">Your request to access the system has been approved.</p>
                                         <p>Please sign in with your credential.</p>
                                         <a href="{{ route('login') }}" class="button button-warning">Login here</a>
                                     </td>
