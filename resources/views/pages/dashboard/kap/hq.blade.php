@@ -10,7 +10,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="white" title="Today's Transaction" value="RM 6,000.00" cardRoute="#" >
+<x-dashboard.info-card bg="white" title="Today's Transaction" value="RM {{ number_format($todayTrans, 2) }}" cardRoute="#" >
     <x-slot name="svg">
         <x-heroicon-o-currency-dollar class="text-green-400 h-7 w-7"/>
     </x-slot>
