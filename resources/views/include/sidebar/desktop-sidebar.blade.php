@@ -1,7 +1,7 @@
 <!-- Desktop sidebar -->
 <x-sidebar-loading/>
 
-<div class="flex flex-shrink-0 mt-4 transition-all  printHide">
+<div class="flex flex-shrink-0 mt-4 transition-all printHide">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
     <!-- Mobile bottom bar -->
@@ -75,7 +75,7 @@
                     </x-sidebar.dropdown-nav-item>
                 @endif
 
-                @if (auth()->user()->role != 4)
+                @if (auth()->user()->role != 4 && auth()->user()->client == 1)
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -145,7 +145,7 @@
                     </div>
                 </x-sidebar.dropdown-nav-item> --}}
 
-                @if (auth()->user()->role != 4)
+                @if (auth()->user()->role != 4 && auth()->user()->client == 1)
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -200,7 +200,7 @@
                         @endif
 
                         @if (auth()->user()->role != 4)
-                            <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
+                            <x-sidebar.dropdown-item title="{{ (auth()->user()->role == 1 && auth()->user()->client = 2) ? 'Agent List' : 'Downline Details' }}" route="{{route('downline-detail')}}"
                                 uri="my-network/downline-detail">
                                 <x-slot name="icon">
                                     <x-heroicon-o-cube class="w-5 h-5" />

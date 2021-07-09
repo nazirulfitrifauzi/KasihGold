@@ -22,7 +22,7 @@
 
                     @if (auth()->user()->isUserKAP())
                     @else
-                        <div class="grid grid-cols-12 gap-6 mt-10 ">
+                        <div class="grid grid-cols-5 gap-6 mt-10 ">
                             @if (auth()->user()->isAdminKAP())
                                 @include('pages.dashboard.kap.hq')
                             @elseif (auth()->user()->isAgentKAP())
@@ -30,18 +30,6 @@
                             @elseif (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG())
                                 @include('pages.dashboard.kg.all')
                             @endif
-
-                            <x-dashboard.info-card bg="white" title="Total Products" value="2.145" percentage="12%" percentageBg="green" cardRoute="#" >
-                                <x-slot name="svg">
-                                    <x-heroicon-o-desktop-computer class="text-yellow-400 h-7 w-7"/>
-                                </x-slot>
-                            </x-dashboard.info-card>
-
-                            <x-dashboard.info-card bg="white" title="Total Visitor" value="152.00" percentage="22%" percentageBg="green" cardRoute="#" >
-                                <x-slot name="svg">
-                                    <x-heroicon-o-user class="text-green-400 h-7 w-7"/>
-                                </x-slot>
-                            </x-dashboard.info-card>
                         </div>
                     @endif
                 </div>
