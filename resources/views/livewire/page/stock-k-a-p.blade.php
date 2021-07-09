@@ -40,6 +40,9 @@
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                     <x-form.input  label="Vault Location" value="addVaultLocation" wire:model="addVaultLocation" />
                                                 </div>
+                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
+                                                    <x-form.input  label="Bought Price" value="addBoughtPrice" wire:model="addBoughtPrice" />
+                                                </div>
                                                 <div class="flex justify-end mt-4">
                                                     <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                                         Submit
@@ -105,7 +108,7 @@
                         <x-table.table>
                                 <x-slot name="thead">
                                     <x-table.table-header class="text-left" value="No" sort=""/>
-                                    <x-table.table-header class="text-left" value="Goldbar Unique Number" sort=""/>
+                                    <x-table.table-header class="text-left" value="Goldbar Serial Number" sort=""/>
                                     <x-table.table-header class="text-left" value="Weight Occupied" sort=""/>
                                     <x-table.table-header class="text-left" value="Weight Vacant" sort=""/>
                                     <x-table.table-header class="text-left" value="Created Date" sort=""/>
@@ -117,7 +120,7 @@
                                                 {{ $loop->iteration  }}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                {{str_shuffle($gold->guid)}}
+                                                {{$gold->serial_id}}
                                             </x-table.table-body>
                                             <x-table.table-body colspan="" class="font-medium text-gray-900">
                                                 {{number_format($gold->weight_occupied,2)}}

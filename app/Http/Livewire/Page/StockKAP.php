@@ -9,7 +9,7 @@ use Livewire\Component;
 class StockKAP extends Component
 {
 
-    public $addTotalWeight, $addSerialID, $addSupplierName, $addVaultLocation;
+    public $addTotalWeight, $addSerialID, $addSupplierName, $addVaultLocation, $addBoughtPrice;
 
     public function addGold()
     {
@@ -26,6 +26,7 @@ class StockKAP extends Component
             'serial_id'         => $this->addSerialID,
             'supplier_name'     => $this->addSupplierName,
             'vault_location'    => $this->addVaultLocation,
+            'bought_price'      => $this->addBoughtPrice,
             'weight_occupied'   => 0.00,
             'weight_on_hold'    => 0.00,
             'weight_vacant'     => $this->addTotalWeight,
