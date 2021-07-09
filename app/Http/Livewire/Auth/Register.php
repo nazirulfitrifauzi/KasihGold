@@ -17,6 +17,7 @@ class Register extends Component
     public $passwordConfirmation = '';
     public $type = '';
     public $client = '';
+    public $tnc;
 
     public function register()
     {
@@ -24,6 +25,7 @@ class Register extends Component
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            'tnc' => ['required'],
         ]);
 
         $user = User::create([
@@ -48,6 +50,7 @@ class Register extends Component
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            'tnc' => ['required'],
         ]);
 
         $user = User::create([
