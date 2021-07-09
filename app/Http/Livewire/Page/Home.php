@@ -12,8 +12,7 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $pendingApproval;
-    public $myAgent;
+    public $pendingApproval, $myAgent, $todayTrans;
     public $activeUser;
     public $userGold;
     public $tGold, $goldInfo;
@@ -27,6 +26,7 @@ class Home extends Component
 
             $this->pendingApproval = User::where('client', 2)->where('role', 3)->where('active', 0)->get();
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
+            $this->todayTrans = GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
             $this->chart1 = GoldbarOwnership::get();
             $this->mainchart1 = DB::table('gold_ownership')
                                 ->select(DB::raw("top 12 CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2)) as x"), DB::raw('SUM(bought_price) as y'))
@@ -110,8 +110,14 @@ class Home extends Component
             $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
                 $query->where('agent_id', '=', $logged_user);
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
-            // $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
             $this->activeUser = UserDownline::where('user_id', $logged_user)->get();
+            $x= User::whereId($logged_user)->first();
+            $this->todayTrans = 0;
+            foreach($x->downline as $y) {
+                foreach ($y->user->gold as $z) {
+                    $this->todayTrans += $z->bought_price;
+                }
+            }
 
             $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user ));
             $this->mainchart1 = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY '.$logged_user.', "0.00"');
