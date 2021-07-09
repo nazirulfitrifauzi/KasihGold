@@ -1,7 +1,7 @@
 @section('title', 'Create a new account')
 
 <div>
-    <div class="grid w-screen h-screen grid-cols-12 bg-gray-800">
+    <div class="grid h-screen grid-cols-12 bg-gray-800">
         <!-- Mobile view -->
         <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -136,6 +136,18 @@
                         </div>
 
                         <div class="mt-6">
+                            <div class="flex items-center">
+                                <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-yellow-400 transition duration-150 ease-in-out form-checkbox">
+                                <label for="tnc" class="block ml-2 text-sm text-gray-900">
+                                    I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                </label>
+                            </div>
+                            @error('tnc')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mt-6">
                             <span class="block w-full rounded-md shadow-sm">
                                 <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
                                     Register
@@ -207,6 +219,18 @@
                         </div>
 
                         <div class="mt-6">
+                            <div class="flex items-center">
+                                <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-yellow-400 transition duration-150 ease-in-out form-checkbox">
+                                <label for="tnc" class="block ml-2 text-sm text-gray-900">
+                                    I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                </label>
+                            </div>
+                            @error('tnc')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mt-6">
                             <span class="block w-full rounded-md shadow-sm">
                                 <button type="submit" class="flex justify-center w-full px-4 py-3 text-sm font-medium text-white bg-yellow-400 border border-transparent rounded-full hover:bg-yellow-300 focus:outline-none">
                                     Register
@@ -230,7 +254,7 @@
             </div>
         </div>
     </div>
-    <div wire:loading.inline wire:target="register" class="flex h-screen overflow-y-hidden">
+    <div wire:loading.inline wire:target="register , registerAgent" class="flex h-screen overflow-y-hidden">
         <div
             class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
             style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
