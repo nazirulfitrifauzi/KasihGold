@@ -373,14 +373,8 @@
 
                                         <blockquote className="relative p-4 text-xl italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 quote">
                                             <p className="mb-4">"Successful investing starts with courage."</p>
-                                            <cite className="flex items-center">
-                                                <div className="flex flex-col items-start">
-                                                    <span className="mb-1 text-sm italic font-bold">
-                                                        Warren Buffet
-                                                    </span>
-                                                </div>
-                                            </cite>
-                                            </blockquote>
+                                            <p className="mb-4">"Warren Buffet"</p>
+                                        </blockquote>
 
                                         <p class="mt-6">Your request to access the system has been approved.</p>
                                         <p>Please sign in with your credential.</p>
