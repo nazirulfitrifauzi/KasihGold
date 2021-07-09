@@ -44,3 +44,35 @@
         </script> --}}
     </div>
 </div>
+@push('js')
+{{-- pie Chart --}}
+<script>
+    var charts = document.querySelector('#chartpie')
+    var options = {
+            series: [1, 0.25, 0.1,0.01],
+            chart: {
+            height: 350,
+            type: 'donut',
+            },
+            title: {
+                text: 'Kasih Digital Gold',
+                align: 'left'
+            },
+            labels: ['Kasih Digital Gold 1G', 
+                    'Kasih Digital Gold 0.25G',
+                    'Kasih Digital Gold 0.1G',
+                    'Kasih Digital Gold 0.01G',],
+            responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                position: 'bottom'
+                }
+            }
+            }]
+        };
+        var charts = new ApexCharts(charts, options);
+        charts.render();
+</script>
+{{-- pie Chart --}}
+@endpush
