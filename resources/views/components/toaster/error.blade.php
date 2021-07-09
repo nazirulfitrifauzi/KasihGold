@@ -1,4 +1,4 @@
-
+{{-- 
 <div
     class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-40" style="top:auto !important">
     <div class="max-w-sm w-full bg-red-600 shadow-lg rounded-lg pointer-events-auto border-l-4 border-red-500"
@@ -44,4 +44,15 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+<script>
+    $( document ).ready(function() {
+        Swal.fire({
+            icon: 'error',
+            title: `{{$message}}`,
+            showConfirmButton: false,
+            timer: 2500
+        })
+    });
+</script>
