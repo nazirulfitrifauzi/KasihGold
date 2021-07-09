@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\User;
+use App\Models\UserDownline;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -109,7 +110,8 @@ class Home extends Component
             $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
                 $query->where('agent_id', '=', $logged_user);
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
-            $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
+            // $this->activeUser = User::where('client', 2)->where('role', 4)->where('active', 1)->get();
+            $this->activeUser = UserDownline::where('user_id', $logged_user)->get();
 
             $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user ));
             $this->mainchart1 = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY '.$logged_user.', "0.00"');
