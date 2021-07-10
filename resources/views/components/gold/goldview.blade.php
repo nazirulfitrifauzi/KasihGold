@@ -39,8 +39,8 @@
     </div>
     <div class="flex items-center justify-center mt-2">
         <div class='text-center'>
-            @if($name == 'yes')
-            <p class="text-2xl font-bold ordinal">name</p>
+            @if($name != "")
+                <p class="text-2xl font-bold ordinal">{{ $name }}</p>
             @endif
             <p class="text-2xl font-bold ordinal">{{$totalGram}} g <span class="text-gray-400">/ 1 g</span></p>
             <p class="text-xs text-gray-400">{{$reachGram}} g more to reach 1 g</p>
@@ -53,8 +53,8 @@
     </div>
     <div class="flex items-center justify-center mt-2">
         <div class='text-center'>
-            @if($name == 'yes')
-            <p class="text-2xl font-bold ordinal">name</p>
+            @if($name != "")
+                <p class="text-2xl font-bold ordinal">{{ $name }}</p>
             @endif
             <p class="text-2xl font-bold ordinal">{{$totalGram}} g <span class="text-gray-400">/ 2.5 g</span></p>
             <p class="text-xs text-gray-400">{{$reachGram}} g more to reach 2.5 g</p>
@@ -66,8 +66,8 @@
     </div>
     <div class="flex items-center justify-center mt-2">
         <div class='text-center'>
-            @if($name == 'yes')
-            <p class="text-2xl font-bold ordinal">name</p>
+            @if($name != "")
+                <p class="text-2xl font-bold ordinal">{{ $name }}</p>
             @endif
             <p class="text-2xl font-bold ordinal">{{$totalGram}} g <span class="text-gray-400">/ 5 g</span></p>
             <p class="text-xs text-gray-400">{{$reachGram}} g more to reach 5 g</p>
@@ -79,8 +79,8 @@
     </div>
     <div class="flex items-center justify-center mt-2">
         <div class='text-center'>
-            @if($name == 'yes')
-            <p class="text-2xl font-bold ordinal">name</p>
+            @if($name != "")
+                <p class="text-2xl font-bold ordinal">{{ $name }}</p>
             @endif
             <p class="text-2xl font-bold ordinal">{{$totalGram}} g <span class="text-gray-400">/ 10 g</span></p>
             <p class="text-xs text-gray-400">{{$reachGram}} g more to reach 10 g</p>
@@ -92,8 +92,8 @@
     </div>
     <div class="flex items-center justify-center mt-2">
         <div class='text-center'>
-            @if($name == 'yes')
-            <p class="text-2xl font-bold ordinal">name</p>
+            @if($name != "")
+                <p class="text-2xl font-bold ordinal">{{ $name }}</p>
             @endif
             <p class="text-2xl font-bold ordinal">{{$totalGram}} g <span class="text-gray-400">/ 1000 g</span></p>
             <p class="text-xs text-gray-400">{{$reachGram}} g available gold</p>
