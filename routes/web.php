@@ -51,7 +51,7 @@ Route::middleware('guest')->group(function () {
     Route::view('/', 'welcome')->name('home');
     Route::view('/mengenai-kami', 'about')->name('aboutUs');
 
-    /** Authentication */
+    // /** Authentication *
     Route::get('login', Login::class)->name('login');
     Route::get('register', Register::class)->name('register');
     Route::get('password/reset', Email::class)->name('password.request');
@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
         Route::get('my-agent-kap', [DashboardController::class, 'myAgent'])->name('my-agent-kap');
         Route::get('pending-approval-kap', [DashboardController::class, 'pendingApproval'])->name('pending-approval-kap');
+        Route::get('withdrawal-request', [DashboardController::class, 'withdrawalRequest'])->name('withdrawal-request');
 
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
         Route::get('digital-gold', [DigitalGoldController::class, 'index'])->name('digital-gold');

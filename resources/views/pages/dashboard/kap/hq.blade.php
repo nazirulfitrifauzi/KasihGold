@@ -16,7 +16,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="white" title="Withdrawal Request" value="RM 1,300.00" cardRoute="#" >
+<x-dashboard.info-card bg="white" title="Withdrawal Request" value="RM 1,300.00" cardRoute="{{route('withdrawal-request')}}" >
     <x-slot name="svg">
         <x-heroicon-o-currency-dollar class="text-pink-400 h-7 w-7"/>
     </x-slot>
