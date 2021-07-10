@@ -6,8 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8">
-
+        <div class="p-4 mt-4">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 px-6 py-6 mb-6 bg-white border-2 rounded-lg">
                 <div class="flex items-center justify-center flex-auto ">
                     @if($this->tGold<=1.0)
@@ -273,5 +272,43 @@
             </x-general.grid>
 
         </div>
+
+        @if(auth()->user()->isAgentKAP())
+            <div>
+                <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
+                    <h2 class="mr-auto text-lg font-medium">
+                        Purchase History
+                    </h2>
+                </div>
+
+                <div class="p-4 mt-4 bg-white">
+                    <x-table.table>
+                        <x-slot name="thead">
+                            <x-table.table-header class="text-left" value="Items" sort="" />
+                            <x-table.table-header class="text-left" value="Price (RM)" sort="" />
+                            <x-table.table-header class="text-left" value="Purchase Date" sort="" />
+                        </x-slot>
+                        <x-slot name="tbody">
+                            @foreach ($history as $item)
+                                <tr>
+                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                        <p>Kasih Digital Gold {{ $item->weight }}g</p>
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                        <p>{{ number_format($item->bought_price,2) }}</p>
+                                    </x-table.table-body>
+                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                        <p>{{ $item->created_at->format('d F Y') }}</p>
+                                    </x-table.table-body>
+                                </tr>
+                            @endforeach
+                        </x-slot>
+                        <div class="px-2 py-2">
+                            {{-- {{ $list->links('pagination::tailwind') }} --}}
+                        </div>
+                    </x-table.table>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

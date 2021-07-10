@@ -22,7 +22,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="white" title="My Wallet" value="RM 260.00" cardRoute="#" >
+<x-dashboard.info-card bg="white" title="My Wallet" value="RM {{ number_format($myWallet, 2) }}" cardRoute="{{ route('digital-gold') }}" >
     <x-slot name="svg">
         <x-heroicon-o-cash class="text-pink-400 h-7 w-7"/>
     </x-slot>

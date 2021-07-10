@@ -21,35 +21,21 @@
         <x-dashboard.info-card-user bg="indigo-400" title="" value="Buy Product" iconColor='white'
             cardRoute="{{route('product-view')}}">
             <x-slot name="svg">
+                @json($mainchart1)
                 <x-heroicon-o-shopping-bag class="w-8 h-8 text-indigo-400" />
             </x-slot>
         </x-dashboard.info-card-user>
     </div>
-    <div class="z-20 col-span-12 p-4 mt-4 mb-4 bg-white rounded-lg shadow-xl lg:col-span-12 xxl:col-span-12 lg:block" id="chartpie">
-        {{-- <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-        <script type="text/javascript">
-            new TradingView.widget({
-                "autosize": true,
-                "symbol": "TVC:GOLD",
-                "timezone": "Asia/Singapore",
-                "theme": "ligth",
-                "style": "1",
-                "locale": "en",
-                "toolbar_bg": "#f1f3f6",
-                "enable_publishing": false,
-                "range": "ALL",
-                "allow_symbol_change": true,
-                "container_id": "tradingview_61970"
-            });
-        </script> --}}
-    </div>
+    <div class="z-20 col-span-12 p-4 mt-4 mb-4 bg-white rounded-lg shadow-xl lg:col-span-12 xxl:col-span-12 lg:block" id="chartpie"></div>
 </div>
 @push('js')
 {{-- pie Chart --}}
+
 <script>
     var charts = document.querySelector('#chartpie')
+    var chart_data = @json($mainchart1);
     var options = {
-            series: [1, 0.25, 0.1,0.01],
+            series: chart_data,
             chart: {
             height: 350,
             type: 'donut',
@@ -58,10 +44,12 @@
                 text: 'Kasih Digital Gold',
                 align: 'left'
             },
-            labels: ['Kasih Digital Gold 1G', 
-                    'Kasih Digital Gold 0.25G',
-                    'Kasih Digital Gold 0.1G',
-                    'Kasih Digital Gold 0.01G',],
+            labels: [
+                'Kasih Digital Gold 0.01G',
+                'Kasih Digital Gold 0.1G',
+                'Kasih Digital Gold 0.25G',
+                'Kasih Digital Gold 1G',
+            ],
             responsive: [{
             breakpoint: 480,
             options: {
