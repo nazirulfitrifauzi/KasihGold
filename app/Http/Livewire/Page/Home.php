@@ -132,32 +132,26 @@ class Home extends Component
             $this->subchart4month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "1" ');
 
         } else {
-            $this->mainchart1 = DB::table('gold_ownership')
-                                ->select(DB::raw("count(case when weight = 0.01 then 1 else null end) as '0.01'"), DB::raw("count(case when weight = 0.1 then 1 else null end) as '0.1'"), DB::raw("count(case when weight = 0.25 then 1 else null end) as '0.25'"), DB::raw("count(case when weight = 1 then 1 else null end) as '1'"))
-                                ->where('user_id', auth()->user()->id)
-                                ->get()
-                                ->toArray();
-
             $chartQuery1 = DB::table('gold_ownership')
                             ->select(DB::raw("count(weight) as weight"))
                             ->where('user_id', auth()->user()->id)
                             ->where('weight','0.01')
-                ->value('weight');
+                            ->value('weight');
             $chartQuery2 = DB::table('gold_ownership')
-            ->select(DB::raw("count(weight) as weight"))
-            ->where('user_id', auth()->user()->id)
-                ->where('weight', '0.1')
-            ->value('weight');
+                            ->select(DB::raw("count(weight) as weight"))
+                            ->where('user_id', auth()->user()->id)
+                            ->where('weight', '0.1')
+                            ->value('weight');
             $chartQuery3 = DB::table('gold_ownership')
-            ->select(DB::raw("count(weight) as weight"))
-            ->where('user_id', auth()->user()->id)
-                ->where('weight', '0.25')
-            ->value('weight');
+                            ->select(DB::raw("count(weight) as weight"))
+                            ->where('user_id', auth()->user()->id)
+                            ->where('weight', '0.25')
+                            ->value('weight');
             $chartQuery4 = DB::table('gold_ownership')
-            ->select(DB::raw("count(weight) as weight"))
-            ->where('user_id', auth()->user()->id)
-                ->where('weight', '1')
-                ->value('weight');
+                            ->select(DB::raw("count(weight) as weight"))
+                            ->where('user_id', auth()->user()->id)
+                            ->where('weight', '1')
+                            ->value('weight');
 
             $dataArray = array($chartQuery1,$chartQuery2,$chartQuery3,$chartQuery4);
             $chartData = array_map('intval', $dataArray);
