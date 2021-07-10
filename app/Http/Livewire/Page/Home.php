@@ -23,7 +23,6 @@ class Home extends Component
     {
         // admin KAP
         if (auth()->user()->isAdminKAP()) {
-
             $this->pendingApproval = User::where('client', 2)->where('role', 3)->where('active', 0)->get();
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
             $this->todayTrans = GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
@@ -105,7 +104,6 @@ class Home extends Component
                                     ->toArray();
 
         } elseif (auth()->user()->isAgentKAP()) {
-
             $logged_user = auth()->user()->id;
             $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
                 $query->where('agent_id', '=', $logged_user);
@@ -131,7 +129,7 @@ class Home extends Component
             $this->subchart4day = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DAILY ' . $logged_user . ', "1" ');
             $this->subchart4month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "1" ');
 
-        } else {
+        } elseif (auth()->user()->isUserKAP()) {
             $chartQuery1 = DB::table('gold_ownership')
                             ->select(DB::raw("count(weight) as weight"))
                             ->where('user_id', auth()->user()->id)
@@ -156,14 +154,13 @@ class Home extends Component
             $dataArray = array($chartQuery1,$chartQuery2,$chartQuery3,$chartQuery4);
             $chartData = array_map('intval', $dataArray);
             $this->mainchart1 = $chartData;
-            // dd($x);
-        }
 
-        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
-        $this->tGold = 0;
+            $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
+            $this->tGold = 0;
 
-        foreach ($goldInfo as $golds) {
-            $this->tGold += $golds->weight;
+            foreach ($goldInfo as $golds) {
+                $this->tGold += $golds->weight;
+            }
         }
     }
 

@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateInvItemsTable extends Migration
+class CreateCommissionRateKapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +13,10 @@ class CreateInvItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inv_items', function (Blueprint $table) {
+        Schema::create('commission_rate_kaps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('client');
-            $table->unsignedBigInteger('item_type_id')->nullable();
-            $table->string('code', 9);
-            $table->string('name', 100);
-            $table->string('remarks')->nullable();
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedDecimal('agent_rate', 8, 2);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
@@ -37,6 +32,6 @@ class CreateInvItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inv_items');
+        Schema::dropIfExists('commission_rate_kaps');
     }
 }

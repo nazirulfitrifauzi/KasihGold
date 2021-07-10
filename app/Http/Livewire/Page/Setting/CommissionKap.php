@@ -2,35 +2,31 @@
 
 namespace App\Http\Livewire\Page\Setting;
 
-use App\Models\CommissionRate;
+use App\Models\CommissionRateKap;
 use App\Models\InvItem;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Commission extends Component
+class CommissionKap extends Component
 {
     public $items;
 
     public function mount()
     {
-        $this->items = InvItem::leftJoin('commission_rates', 'inv_items.id', '=', 'commission_rates.item_id')
-                        ->select('inv_items.*', 'commission_rates.md_rate', 'commission_rates.agent_rate')
-                        ->where('inv_items.item_type_id','=','1')
-                        ->where('inv_items.client','=','1')
+        $this->items = InvItem::leftJoin('commission_rate_kaps', 'inv_items.id', '=', 'commission_rate_kaps.item_id')
+                        ->select('inv_items.*','commission_rate_kaps.agent_rate')
+                        ->where('inv_items.client', 2)
                         ->get();
     }
 
     protected $rules = [
-        'items.*.md_rate' => 'required|between:0.01,99.99',
         'items.*.agent_rate' => 'required|between:0.01,99.99',
     ];
 
     public function updateRate($key, $itemID)
     {
-        CommissionRate::updateOrCreate([
+        CommissionRateKap::updateOrCreate([
             'item_id' => $itemID
         ], [
-            'md_rate'       => $this->items[$key]['md_rate'],
             'agent_rate'    => $this->items[$key]['agent_rate'],
             'created_by'    => auth()->user()->id,
             'created_at'    => now(),
@@ -43,6 +39,6 @@ class Commission extends Component
 
     public function render()
     {
-        return view('livewire.page.setting.commission');
+        return view('livewire.page.setting.commission-kap');
     }
 }

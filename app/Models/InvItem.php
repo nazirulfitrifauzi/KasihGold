@@ -28,6 +28,21 @@ class InvItem extends Model
         return $this->hasMany('App\Models\InvMaster', 'item_id', 'id');
     }
 
+    public function info()
+    {
+        return $this->hasOne('App\Models\InvInfo', 'prod_code', 'code');
+    }
+
+    public function marketPrice()
+    {
+        return $this->hasOne('App\Models\MarketPrice', 'item_id', 'id');
+    }
+
+    public function commissionKAP()
+    {
+        return $this->hasOne('App\Models\CommissionRateKap', 'item_id', 'id');
+    }
+
     public function movement()
     {
         return $this->hasMany('App\Models\InvMovement', 'item_id', 'id');

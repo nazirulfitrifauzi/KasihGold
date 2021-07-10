@@ -107,7 +107,7 @@ class Stock extends Component
         return view('livewire.page.setting.stock', [
             'categories' => InvCategory::all(),
             'types' => InvItemType::all(),
-            'items' => InvItem::all(),
+            'items' => InvItem::where('client',1)->get(),
         ]);
     }
 }

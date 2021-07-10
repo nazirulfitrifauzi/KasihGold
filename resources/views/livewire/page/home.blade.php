@@ -96,6 +96,7 @@
                                 </div>
                             @endif
 
+                            @if(auth()->user()->client == 2) <!-- once graph for kg done, delete this condition -->
                             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                                 <div class="flex flex-col mt-4 printContent">
                                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -195,6 +196,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         <div/>
                     </div>
 
