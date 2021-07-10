@@ -50,7 +50,7 @@
                                                 </div>
                                             </div>
                                         </x-slot>
-                                    </x-form.basic-form>
+                                    </x-form.basic-form> 
                                 </x-tab.nav-content>
                                 <!-- End Add Category -->
                             </div>
@@ -59,16 +59,36 @@
                 </div>
             </div>
             <!-- BEGIN: Item List -->
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 ">
-                <div class="flex justify-start bg-white rounded-lg border-2 mb-6 py-6 px-4 overflow-y-auto">
-                    <div class="flex items-center  flex-auto ">
-                        @foreach ($golds as $gold)
-                        @php
-                        $percentage = ($gold->weight_occupied/1000)*100;
-                        @endphp
-                        <x-gold.goldview type="1kg" percentage="{{$percentage}}" totalGram="{{number_format($gold->weight_occupied,2)}}" reachGram="{{number_format($gold->weight_vacant,2)}}" />
-                        @endforeach
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 bg-white rounded-lg border-2 overflow-y-auto" x-data="{ active: 0 }">
+                    <div class="flex bg-white border-b-2 p-4">
+                        <x-tab.title name="0" livewire="">
+                            <div class="flex font-semibold">
+                                <x-heroicon-o-check-circle class="w-6 h-6 mr-2"/>Active Goldbar
+                            </div>
+                        </x-tab.title>
+                        <x-tab.title name="1" livewire="">
+                            <div class="flex font-semibold">
+                                <x-heroicon-o-archive class="w-6 h-6 mr-2"/>Archived Goldbar
+                            </div>
+                        </x-tab.title>
                     </div>
+                <div class="flex justify-start mb-6 py-6 px-4 ">
+                    <x-tab.content name="0">
+                        <div class="flex items-center  flex-auto ">
+                            @foreach ($golds as $gold)
+                            @php
+                            $percentage = ($gold->weight_occupied/1000)*100;
+                            @endphp
+                            <x-gold.goldview name="no" type="1kg" percentage="{{$percentage}}" totalGram="{{number_format($gold->weight_occupied,2)}}" reachGram="{{number_format($gold->weight_vacant,2)}}" />
+                            @endforeach
+                            </div>
+                    </x-tab.content>
+
+                    <x-tab.content name="1">
+                        <div class="flex items-center  flex-auto ">
+                        </div>
+                    </x-tab.content>
+
                 </div>
             </x-general.grid>
 

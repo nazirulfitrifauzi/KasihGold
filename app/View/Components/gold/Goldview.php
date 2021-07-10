@@ -10,13 +10,15 @@ class Goldview extends Component
     public $type ;
     public $totalGram;
     public $reachGram;
+    public $name;
 
-    public function __construct($percentage,$type,$totalGram,$reachGram)
+    public function __construct($percentage,$type,$totalGram,$reachGram , $name)
     {
         $this->percentage = $percentage;
         $this->type = $type;
         $this->totalGram = $totalGram;
         $this->reachGram = $reachGram;
+        $this->name = $name;
     }
     public function render()
     {

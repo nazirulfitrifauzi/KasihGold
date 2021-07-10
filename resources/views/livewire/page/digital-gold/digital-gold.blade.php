@@ -11,13 +11,13 @@
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 px-6 py-6 mb-6 bg-white border-2 rounded-lg">
                 <div class="flex items-center justify-center flex-auto ">
                     @if($this->tGold<=1.0)
-                    <x-gold.goldview type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="{{1-$this->tGold}}" />
+                    <x-gold.goldview name="" type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="{{1-$this->tGold}}" />
                     @elseif ($this->tGold<=2.5)
-                    <x-gold.goldview type="2.5g" percentage="{{($this->tGold/2.5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{2.5-$this->tGold}}" />
+                    <x-gold.goldview name="" type="2.5g" percentage="{{($this->tGold/2.5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{2.5-$this->tGold}}" />
                     @elseif ($this->tGold<=5)
-                    <x-gold.goldview type="5g" percentage="{{($this->tGold/5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{5-$this->tGold}}" />
+                    <x-gold.goldview  name="" type="5g" percentage="{{($this->tGold/5)*100}}" totalGram="{{$this->tGold}}" reachGram="{{5-$this->tGold}}" />
                     @elseif ($this->tGold<=10)
-                    <x-gold.goldview type="10g" percentage="{{($this->tGold/10)*100}}" totalGram="{{$this->tGold}}" reachGram="{{10-$this->tGold}}" />
+                    <x-gold.goldview name="" type="10g" percentage="{{($this->tGold/10)*100}}" totalGram="{{$this->tGold}}" reachGram="{{10-$this->tGold}}" />
                     @endif
                 </div>
                 <div class="flex flex-col flex-auto mr-0 lg:mr-5">
