@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::get('commission', [CommissionController::class, 'index'])->name('commission');
         Route::get('my-network/upline-detail', [UplineController::class, 'index'])->name('upline-detail');
         Route::get('my-network/downline-detail', [UplineController::class, 'downline'])->name('downline-detail');
+        Route::get('setting', [settingController::class, 'setting'])->name('setting');
 
         Route::get('pay', [SnapAPI::class, 'index'])->name('pay');
         Route::get('pay2', [SnapAPI::class, 'callback'])->name('pay2');
@@ -100,6 +101,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('cart', [CartController::class, 'index'])->name('cart');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
+
 
         //-- KASIH AP --//
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
@@ -116,7 +118,7 @@ Route::middleware('auth')->group(function () {
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
 
-        Route::get('setting', [settingController::class, 'setting'])->name('setting');
+        Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
 
         // -- Toyyib Pay -- //

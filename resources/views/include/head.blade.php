@@ -109,38 +109,6 @@
         });
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <!-- echo scripts -->
-    <script>
-        var userId = document.querySelector('meta[name="userId"]').content;
-        Echo.private('App.Models.User.' + userId)
-            .notification((notification) => {
-                toastr.options =
-                {
-                    "closeButton": true,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                if (notification.status == 'success') {
-                    toastr.success(notification.message,notification.title);
-                } else if (notification.status == 'info') {
-                    toastr.info(notification.message,notification.title);
-                } else if (notification.status == 'warning') {
-                    toastr.warning(notification.message,notification.title);
-                } else {
-                    toastr.error(notification.message,notification.title);
-                }
-            });
-    </script>
     <script>
         var myDate = new Date();
         var hrs = myDate.getHours();

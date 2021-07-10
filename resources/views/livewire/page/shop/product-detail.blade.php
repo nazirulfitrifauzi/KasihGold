@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container border-2 rounded-lg px-4 py-6">
+            <div class="container px-4 py-6 border-2 rounded-lg">
                 <div class="flex flex-col -mx-4 md:flex-row">
                     <!-Start detail of image -->
                     <div class="px-4 md:flex-1">
@@ -70,21 +70,26 @@
                         <div class="flex items-center my-4 space-x-4">
                             <div>
                                 <div class="flex px-3 py-2 bg-gray-100 rounded-lg">
-                                    <span class="text-xl font-bold text-yellow-400">RM {{$info->prod_price}}</span>
+                                    @if(auth()->user()->isAgentKAP())
+                                        <span class="text-xl font-bold text-yellow-400">
+                                            RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                        </span>
+                                    @else
+                                        <span class="text-xl font-bold text-yellow-400">RM {{ number_format($info->item->marketPrice->price,2) }}</span>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="flex-1">
+                            {{-- <div class="flex-1">
                                 <p class="text-xl font-semibold text-green-500">Save 12%</p>
                                 <p class="text-sm text-gray-400">Inclusive of all Taxes.</p>
-                            </div>
+                            </div> --}}
                         </div>
                         <p class="text-gray-500">{{$info->prod_desc}}
                         </p>
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
-                                <div class="flex flex-col lg:flex-row py-4 space-x-0 lg:space-x-4">
-                                    <div class="relative mb-4 lg:mb-0
-                                    ">
+                                <div class="flex flex-col py-4 space-x-0 lg:flex-row lg:space-x-4">
+                                    <div class="relative mb-4 lg:mb-0 ">
                                         <div>
                                             <select value="prod_qty" wire:model="prod_qty" default="yes"
                                                 class="flex items-start pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">

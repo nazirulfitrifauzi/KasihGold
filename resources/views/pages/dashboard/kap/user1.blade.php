@@ -21,7 +21,6 @@
         <x-dashboard.info-card-user bg="indigo-400" title="" value="Buy Product" iconColor='white'
             cardRoute="{{route('product-view')}}">
             <x-slot name="svg">
-                @json($mainchart1)
                 <x-heroicon-o-shopping-bag class="w-8 h-8 text-indigo-400" />
             </x-slot>
         </x-dashboard.info-card-user>

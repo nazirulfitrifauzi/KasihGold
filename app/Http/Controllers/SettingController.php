@@ -10,4 +10,9 @@ class SettingController extends Controller
     {
         return view('pages.setting');
     }
+
+    public function settingKAP()
+    {
+        return view('pages.setting-kap');
+    }
 }

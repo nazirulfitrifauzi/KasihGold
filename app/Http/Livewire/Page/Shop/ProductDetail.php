@@ -13,7 +13,6 @@ use Livewire\Component;
 class ProductDetail extends Component
 {
     public $iid;
-
     public $prod_qty;
 
     public function addCart($prod_qty)
@@ -59,11 +58,13 @@ class ProductDetail extends Component
     public function render()
     {
         if (auth()->user()->isAgentKAP() || auth()->user()->isUserKAP()) { //kap bukan admin
+
             $masterProducts = InvInfo::where('inv_info.id', $this->iid)->first();
 
             return view('livewire.page.shop.product-detail', [
                 'info' => $masterProducts,
             ]);
+
         } else { // KG Customer, agent, admin dashboard
             $masterProducts = InvMaster::join('inv_items', 'inv_items.id', '=', 'inv_masters.item_id')
             ->join('inv_info', 'inv_info.prod_code', '=', 'inv_items.code')
