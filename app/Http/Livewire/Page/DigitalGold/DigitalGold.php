@@ -9,6 +9,7 @@ class DigitalGold extends Component
 {
     public $goldInfo;
     public $tGold, $tPrice;
+    public $history;
 
     public function mount()
     {
@@ -18,6 +19,10 @@ class DigitalGold extends Component
             $this->tGold += $golds->weight;
         }
         $this->tPrice = $this->tGold * 252;
+
+        if(auth()->user()->isAgentKAP()) {
+            $this->history = GoldbarOwnership::where('user_id', auth()->user()->id)->get();
+        }
     }
 
     public function render()
