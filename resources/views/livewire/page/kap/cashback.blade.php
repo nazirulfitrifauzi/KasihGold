@@ -68,19 +68,19 @@
 
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{$item->user->bank->acc_holder_name}}"
+                                                            <input disabled type="text" value=""
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{$item->user->bank->swift_code}}"
+                                                            <input disabled type="text" value=""
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{$item->user->bank->acc_no}}"
+                                                            <input disabled type="text" value=""
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
@@ -88,7 +88,7 @@
 
                                                     <div class="mt-3">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="RM {{number_format($item->surrendered_amount,2)}}"
+                                                            <input disabled type="text" value=""
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
