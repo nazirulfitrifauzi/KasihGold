@@ -10,7 +10,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="pink-500" title="Withdrawal Request" value="RM 1,300.00" cardRoute="{{route('withdrawal-request')}}" >
+<x-dashboard.info-card bg="pink-500" title="Withdrawal Request" value="" cardRoute="{{route('withdrawal-request')}}" >
     <x-slot name="svg">
         <x-heroicon-o-currency-dollar class="w-10 h-10 text-pink-400"/>
     </x-slot>
@@ -22,7 +22,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="purple-500" title="Cashback Reporting" value="RM {{ number_format($cashback, 2) }}" cardRoute="{{route('cashback')}}" >
+<x-dashboard.info-card bg="purple-500" title="Cashback Reporting" value="" cardRoute="{{route('cashback')}}" >
     <x-slot name="svg">
         <x-heroicon-o-cash class="w-10 h-10 text-purple-400"/>
     </x-slot>
