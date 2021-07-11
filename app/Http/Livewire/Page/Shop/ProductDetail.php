@@ -36,6 +36,8 @@ class ProductDetail extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your cart has been updated.');
+
+        return redirect('product/detail?iid=' . $this->iid);
     }
 
     public function buyNow($prod_qty)

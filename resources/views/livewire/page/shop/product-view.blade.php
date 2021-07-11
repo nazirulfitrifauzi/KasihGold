@@ -15,7 +15,7 @@
             <div class="px-6">
                 <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     @foreach ($list as $item)
-                    <a  href="{{route('product-detail',['iid'=>$item->info->id])}}" class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md cursor-pointer hover:shadow-2xl">
+                    <a  href="{{ route('product-detail',['iid'=>$item->info->id]) }}" class="w-full max-w-sm mx-auto overflow-hidden rounded-md shadow-md cursor-pointer hover:shadow-2xl">
                         <div class="flex w-full h-56 bg-cover"
                             style="background-image: url('{{ asset('img/gold/'.$item->info->prod_img1) }}')">
                         </div>

@@ -19,9 +19,9 @@
                 class="p-2 transition-colors rounded-lg shadow-md tooltipbtn hover:bg-yellow-400 hover:text-white focus:outline-none"
                 :class="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? 'text-white bg-yellow-400' : 'text-yellow-400 bg-white'"
                 data-title="Notification" data-placement="right">
-                <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                {{-- <span class="absolute items-center inline-block w-4 h-4 text-white transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
                     1
-                </span>
+                </span> --}}
                 <x-heroicon-o-bell class="w-6 h-6" />
             </button>
 
@@ -29,15 +29,17 @@
             <a href="{{route('cart')}}"
                 class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
                 data-title="Cart" data-placement="right">
-                <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
-                    @php
-                        $cartCount = 0;
-                        foreach (auth()->user()->cart as $cart) {
-                            $cartCount += $cart->prod_qty;
-                        }
-                    @endphp
-                    {{ $cartCount }}
-                </span>
+                @php
+                    $cartCount = 0;
+                    foreach (auth()->user()->cart as $cart) {
+                        $cartCount += $cart->prod_qty;
+                    }
+                @endphp
+                @if($cartCount > 0)
+                    <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                        {{ $cartCount }}
+                    </span>
+                @endif
                 <x-heroicon-o-shopping-cart class="w-6 h-6" />
             </a>
 
