@@ -4,7 +4,7 @@
             <div class="container mx-auto">
                 <h3 class="text-2xl font-medium text-gray-700">Checkout</h3>
                 <div class="flex flex-col mt-2 lg:flex-row">
-                    <div class="order-2 w-full lg:w-1/2">
+                    <div class="order-2 w-full ">
                         @php
                             $total=0;
                         @endphp
@@ -166,37 +166,97 @@
                                             <h4 class="text-base font-medium text-gray-600">Payment</h4>
                                             <span class="text-sm text-gray-500">All transactions are secure and encrypted</span>
                                         </div>
-                                        <div class="pt-0 pl-0 pr-0 bg-gray-200 border">
-                                            <div class="px-2 py-2 mr-auto text-lg font-medium text-white bg-white ">
+                                        <div class="p-0 bg-gray-100 shadow-lg border">
+                                            <div class="px-2 py-2 mr-auto text-lg font-medium text-white bg-white border-b">
                                                 <div class="flex justify-between">
                                                     <div>
-                                                        <img src="{{ asset('img/snap.png') }}"  class="w-auto h-10"/>
+                                                        <img src="{{ asset('img/toyyibpay.png') }}"  class="w-auto h-10"/>
                                                     </div>
                                                     <div>
                                                         <img src="{{ asset('img/visa-mastercard-.jpg') }}"  class="w-auto h-10"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="px-4 py-12">
-                                                <div class="flex items-center justify-center"  x-data="{ open : false  }">
-                                                    <a href="#" class="animate-bounce" x-on:click="open = true">
-                                                        <x-heroicon-o-credit-card class="w-auto text-gray-400 h-28" />
-                                                    </a>
-                                                    <x-general.modal modalActive="open" title="Payment" modalSize="lg">
-                                                        <div class="flex flex-col gap-3">
-                                                            <div class="overflow-y-auto h-96">
-                                                                <img src="{{ asset('img/senangPay-demo.png') }}" />
-                                                            </div>
-                                                            <a x-on:click="open = false"
-                                                                class="items-center px-4 py-2 text-sm text-center text-white bg-green-500 rounded cursor-pointer hover:bg-green-600 focus:outline-none" >
-                                                                Ok
-                                                            </a>
+                                            <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 ">
+                                                <div class="px-4 py-6">
+                                                    <div class="w-full  px-4 py-3 border">
+                                                        <div class="flex items-center justify-between">
+
+                                                            <h3 class="font-medium text-gray-700">Order total ({{$tprod}})</h3>
                                                         </div>
-                                                    </x-general.modal>
+
+                                                        @foreach ($products as $prod)
+
+                                                        <div class="flex justify-between pb-4 mt-6 border-b-2">
+                                                            <div class="flex">
+                                                                <img class="object-cover w-20 h-20 rounded"
+                                                                    src="{{ asset('img/gold/'.$prod->products->prod_img1) }}"
+                                                                    alt="">
+                                                                <div class="mx-3 my-3">
+                                                                    <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <span class="my-3 font-semibold text-gray-600">RM {{number_format($prod->products->prod_price*$prod->prod_qty,2)}}</span>
+                                                        </div>
+                                                        @php
+                                                            $total+=$prod->products->prod_price*$prod->prod_qty;
+                                                        @endphp
+                                                        @endforeach
+
+                                                        {{-- <x-form.basic-form wire:submit.prevent="">
+                                                            <x-slot name="content">
+                                                                <div class="pb-4 mt-6 border-b-2 ">
+                                                                    @if (auth()->user()->client == 2)
+                                                                    <x-form.input label="Agent Referral Code" value=""  />
+                                                                    @else
+                                                                    <x-form.input label="Gift card or discount code" value=""  />
+                                                                    @endif
+                                                                    <button class="flex items-center px-3 py-2 my-auto text-sm font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none">
+                                                                        <x-heroicon-o-badge-check class="w-5 h-5 mr-2" />
+                                                                        <span>Apply</span>
+                                                                    </button>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-form.basic-form> --}}
+
+                                                        <div class="pb-4 mt-6 border-b-2">
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>Subtotal</p>
+                                                                </div>
+                                                                <div class="font-semibold">
+                                                                    <p>RM {{number_format($total,2)}}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>Shipping</p>
+                                                                </div>
+                                                                <div class="font-semibold">
+                                                                    @if (auth()->user()->client == 2)
+                                                                    <p>RM 0.00</p>
+                                                                    @else
+                                                                    <p>RM {{number_format($postage,2)}}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex justify-between pb-4 mt-6 border-b-2">
+                                                            <div class="font-semibold">
+                                                                <p>Total</p>
+                                                            </div>
+                                                            <div class="text-lg font-semibold">
+                                                                @if (auth()->user()->client == 2)
+                                                                    <p>RM {{number_format($total,2)}}</p>
+                                                                @else
+                                                                    <p>RM {{number_format($total+$postage,2)}}</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <span class="flex items-center justify-center text-sm text-center text-gray-400">
-                                                    You have now selected and will be redirected to IPay88to <br>Complete your purchase securely
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -233,7 +293,7 @@
                         </x-form.basic-form>
                     </div>
 
-                    <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 lg:w-1/2 lg:mb-0 lg:order-2">
+                    {{-- <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 lg:w-1/2 lg:mb-0 lg:order-2">
                         <div class="flex justify-center lg:justify-end">
                             <div class="w-full max-w-md px-4 py-3 border">
                                 <div class="flex items-center justify-between">
@@ -313,7 +373,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
