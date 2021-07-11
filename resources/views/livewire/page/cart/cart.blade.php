@@ -169,6 +169,7 @@
                                             <p>RM 0.00</p>
                                         </div>
                                     </div>
+                                    @if(auth()->user()->isAgentKAP())
                                     <div class="flex flex-col justify-between lg:flex-row">
                                         <div class="text-sm lg:text-base">
                                             <p>Commission</p>
@@ -177,6 +178,7 @@
                                             <p>RM 0.00</p>
                                         </div>
                                     </div>
+                                    @endif
                                     <div class="flex flex-col justify-between lg:flex-row">
                                         <div class="text-sm lg:text-base">
                                             <p>Promotions</p>
