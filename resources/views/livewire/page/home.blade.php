@@ -79,7 +79,7 @@
                                 </div>
                             </button>
                         </div>
-                        <div class="grid grid-cols-12 gap-6" id="DIV_ID">
+                        <div id="DIV_ID">
                             @if (auth()->user()->isAdminKAP())
                                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                                     <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="3" class="col-span-12">
@@ -235,6 +235,7 @@
             }],
             chart: {
                 type: 'area',
+                height: 160,
                 renderTo: 'chart-1-container',
                 sparkline: {
                     enabled: true
@@ -298,6 +299,7 @@
             }],
             chart: {
                 type: 'area',
+                height: 160,
                 sparkline: {
                     enabled: true
                 },
@@ -358,7 +360,8 @@
                 data: data_chart3
             }],
             chart: {
-                type: 'area',              
+                type: 'area',
+                height: 160,
                 sparkline: {
                     enabled: true
                 },
