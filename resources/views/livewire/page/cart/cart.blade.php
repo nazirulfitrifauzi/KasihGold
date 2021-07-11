@@ -134,12 +134,56 @@
                                 <div class="py-4 border-b-2">
                                     <h1 class="text-3xl font-semibold">Cart totals</h1>
                                 </div>
-                                <div class="flex flex-col justify-between py-4 border-b-2 lg:flex-row">
-                                    <div class="text-sm font-semibold lg:text-lg">
-                                        <p>Shipping</p>
+                                <div class="flex flex-col py-4 border-b-2">
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm font-semibold lg:text-lg">
+                                            <p>Misc. Charges</p>
+                                        </div>
+                                        <div class="text-sm font-semibold lg:text-lg">
+                                            <p>RM 0.00</p>
+                                        </div>
                                     </div>
-                                    <div class="text-sm font-semibold lg:text-lg">
-                                        <p>Will be calculated on checkout page</p>
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm lg:text-base">
+                                            <p>Shipping</p>
+                                        </div>
+                                        <div class="text-sm lg:text-base">
+                                            <p>Will be calculated on checkout page</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm lg:text-base">
+                                            <p>Insurances</p>
+                                        </div>
+                                        <div class="text-sm lg:text-base">
+                                            <p>RM 0.00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col py-4 border-b-2">
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm font-semibold lg:text-lg">
+                                            <p>Deduction</p>
+                                        </div>
+                                        <div class="text-sm font-semibold lg:text-lg">
+                                            <p>RM 0.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm lg:text-base">
+                                            <p>Commission</p>
+                                        </div>
+                                        <div class="text-sm lg:text-base">
+                                            <p>RM 0.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-sm lg:text-base">
+                                            <p>Promotions</p>
+                                        </div>
+                                        <div class="text-sm lg:text-base">
+                                            <p>RM 0.00</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="flex justify-between py-4 border-b-2">

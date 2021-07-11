@@ -166,7 +166,7 @@
                                             <h4 class="text-base font-medium text-gray-600">Payment</h4>
                                             <span class="text-sm text-gray-500">All transactions are secure and encrypted</span>
                                         </div>
-                                        <div class="p-0 bg-gray-100 shadow-lg border">
+                                        <div class="p-0 bg-gray-100 border shadow-lg">
                                             <div class="px-2 py-2 mr-auto text-lg font-medium text-white bg-white border-b">
                                                 <div class="flex justify-between">
                                                     <div>
@@ -179,7 +179,7 @@
                                             </div>
                                             <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 ">
                                                 <div class="px-4 py-6">
-                                                    <div class="w-full  px-4 py-3 border">
+                                                    <div class="w-full px-4 py-3 border">
                                                         <div class="flex items-center justify-between">
 
                                                             <h3 class="font-medium text-gray-700">Order total ({{$tprod}})</h3>
@@ -221,7 +221,7 @@
 
                                                         <div class="pb-4 mt-6 border-b-2">
                                                             <div class="flex justify-between">
-                                                                <div class="text-gray-500">
+                                                                <div class="font-semibold">
                                                                     <p>Subtotal</p>
                                                                 </div>
                                                                 <div class="font-semibold">
@@ -229,16 +229,61 @@
                                                                 </div>
                                                             </div>
 
+                                                            <div class="flex justify-between mt-4">
+                                                                <div class="font-semibold">
+                                                                    <p>Misc. Charges</p>
+                                                                </div>
+                                                                <div class="font-semibold">
+                                                                    <p>RM 0.00</p>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="flex justify-between">
                                                                 <div class="text-gray-500">
                                                                     <p>Shipping</p>
                                                                 </div>
-                                                                <div class="font-semibold">
+                                                                <div class="text-gray-500">
                                                                     @if (auth()->user()->client == 2)
                                                                     <p>RM 0.00</p>
                                                                     @else
                                                                     <p>RM {{number_format($postage,2)}}</p>
                                                                     @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>Insurances</p>
+                                                                </div>
+                                                                <div class="text-gray-500">
+                                                                    <p>RM 0.00</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-between mt-4">
+                                                                <div class="font-semibold">
+                                                                    <p>Deductions</p>
+                                                                </div>
+                                                                <div class="font-semibold">
+                                                                    <p>RM 0.00</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>Commissions</p>
+                                                                </div>
+                                                                <div class="text-gray-500">
+                                                                    <p>RM 0.00</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>Promotions</p>
+                                                                </div>
+                                                                <div class="text-gray-500">
+                                                                    <p>RM 0.00</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -263,7 +308,7 @@
                                 </div>
 
                                 @if(auth()->user()->active == 1)
-                                    <div class="flex items-center justify-end mt-2">
+                                    <div class="flex items-center justify-end">
                                         <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none">
                                             <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
                                             <span>COMPLETE ORDER</span>
