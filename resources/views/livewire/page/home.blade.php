@@ -34,6 +34,7 @@
                     @endif
                 </div>
 
+
                 @if (auth()->user()->isUserKAP())
                     @include('pages.dashboard.kap.user1')
                 @endif
