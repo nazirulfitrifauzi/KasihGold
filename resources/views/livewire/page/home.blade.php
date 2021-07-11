@@ -22,7 +22,7 @@
 
                     @if (auth()->user()->isUserKAP())
                     @else
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-10 ">
+                        <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="5" class="col-span-6 mt-10">
                             @if (auth()->user()->isAdminKAP())
                                 @include('pages.dashboard.kap.hq')
                             @elseif (auth()->user()->isAgentKAP())
@@ -30,7 +30,7 @@
                             @elseif (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG())
                                 @include('pages.dashboard.kg.all')
                             @endif
-                        </div>
+                        </x-general.grid>
                     @endif
                 </div>
 
@@ -82,7 +82,7 @@
                         <div class="grid grid-cols-12 gap-6" id="DIV_ID">
                             @if (auth()->user()->isAdminKAP())
                                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                                    <x-general.grid mobile="1" gap="5" sm="3" md="3" lg="3" xl="3" class="col-span-6">
+                                    <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="3" class="col-span-6">
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark2"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark3"></div>
