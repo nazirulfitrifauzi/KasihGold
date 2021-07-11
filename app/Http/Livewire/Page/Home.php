@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
+use App\Models\InvCart;
 use App\Models\User;
 use App\Models\UserDownline;
 use Carbon\Carbon;
@@ -12,7 +14,8 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $pendingApproval, $myAgent, $todayTrans;
+    public $cart;
+    public $pendingApproval, $myAgent, $todayTrans, $cashback;
     public $activeUser, $myWallet;
     public $userGold;
     public $tGold, $goldInfo;
@@ -26,6 +29,7 @@ class Home extends Component
             $this->pendingApproval = User::where('client', 2)->where('role', 3)->where('active', 0)->get();
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
             $this->todayTrans = GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
+            $this->cashback = CommissionDetailKap::sum('commission');
             $this->chart1 = GoldbarOwnership::get();
             $this->mainchart1 = DB::table('gold_ownership')
                                 ->select(DB::raw("top 12 CAST(YEAR(created_at) AS VARCHAR(4)) + '-' +  CAST(MONTH(created_at) AS VARCHAR(2)) as x"), DB::raw('SUM(bought_price) as y'))
@@ -116,6 +120,7 @@ class Home extends Component
                     $this->todayTrans += $z->bought_price;
                 }
             }
+            $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->sum('commission');
             $this->myWallet = array_sum(GoldbarOwnership::where('user_id', auth()->user()->id)->pluck('bought_price')->toArray());
 
             $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user ));

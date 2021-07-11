@@ -1,4 +1,13 @@
 <div>
+    @if (session('error'))
+        <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('info'))
+        <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('success'))
+        <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('warning'))
+        <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @endif
     <div class="py-6 my-10 bg-white">
         <div class="w-full px-4 mt-1 sm:px-6 lg:px-8">
             <div class="px-1 mb-8">
