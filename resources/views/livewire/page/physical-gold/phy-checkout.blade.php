@@ -8,8 +8,22 @@
         @if (session('error'))
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
         @endif
-        <p class="text-lg">My wallet Gold : {{$this->tGold}} g</p>
         <div class="p-4 mt-8 bg-white">
+            <x-general.grid mobile="4" gap="5" sm="4" md="4" lg="4" xl="4" class="col-span-6 mb-4">
+                <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
+                    <div class="font-bold text-base text-white">
+                            <div class="flex space-x-4 items-center">
+                                <div class="rounded-full py-4 px-4 flex item-center bg-white">
+                                    <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
+                                </div>
+                                <div class="text-xl">
+                                    <p>My wallet Gold </p>
+                                    <p class="text-lg">{{$this->tGold}} g</p>
+                                </div>
+                            </div>
+                        </div>
+                </x-general.price-card>
+            </x-general.grid>
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="Product" sort="" />
