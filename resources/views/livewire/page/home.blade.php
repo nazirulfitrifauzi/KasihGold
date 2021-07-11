@@ -82,7 +82,7 @@
                         <div class="grid grid-cols-12 gap-6" id="DIV_ID">
                             @if (auth()->user()->isAdminKAP())
                                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                                    <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="3" class="col-span-6">
+                                    <x-general.grid mobile="1" gap="5" sm="1" md="3" lg="3" xl="3" class="col-span-12">
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark2"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark3"></div>
@@ -235,7 +235,7 @@
             }],
             chart: {
                 type: 'area',
-                height: 160,
+               
                 renderTo: 'chart-1-container',
                 sparkline: {
                     enabled: true
