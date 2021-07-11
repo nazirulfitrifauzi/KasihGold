@@ -18,6 +18,7 @@ class Register extends Component
     public $type = '';
     public $client = '';
     public $tnc;
+    
 
     public function register()
     {
