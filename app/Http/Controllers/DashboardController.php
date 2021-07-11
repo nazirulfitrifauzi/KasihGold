@@ -21,8 +21,13 @@ class DashboardController extends Controller
         return view('pages.kap.pending-approval-kap-agent');
     }
 
-     public function withdrawalRequest()
+    public function withdrawalRequest()
     {
         return view('pages.kap.withdrawal-request');
+    }
+
+    public function cashback()
+    {
+        return view('pages.kap.cashback');
     }
 }

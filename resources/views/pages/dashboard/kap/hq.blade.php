@@ -22,7 +22,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="white" title="Cashback" value="RM {{ number_format($cashback, 2) }}" cardRoute="#" >
+<x-dashboard.info-card bg="white" title="Cashback" value="RM {{ number_format($cashback, 2) }}" cardRoute="{{route('cashback')}}" >
     <x-slot name="svg">
         <x-heroicon-o-cash class="text-purple-400 h-7 w-7"/>
     </x-slot>
