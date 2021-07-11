@@ -19,7 +19,7 @@
                     <x-gold.goldview name="" type="10g" percentage="{{($this->tGold/10)*100}}" totalGram="{{$this->tGold}}" reachGram="{{10-$this->tGold}}" />
                     @endif
                 </div>
-                
+
                 <div class="flex flex-col flex-auto mr-0 lg:mr-5">
                     <h1 class="text-base font-bold">My Gold</h1>
                     <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
@@ -49,10 +49,11 @@
                             </div>
                     </x-general.price-card>
                 </div>
-                <div class="flex flex-col flex-auto " x-data="{ openModal1: false, openModal2: false, openModal3: false}">
+                <div class="flex flex-col flex-auto ">
                     <h1 class="text-base font-bold">Exit / Sell</h1>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal1 = true">
-                        <div class="text-base font-bold text-white">
+                    <a href="physical-gold-cart">
+                        <x-general.price-card  class="text-white bg-red-400 rounded-lg" >
+                            <div class="text-base font-bold text-white">
                                 <div class="flex flex-col items-center space-x-4 lg:flex-row">
                                     <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
                                         <x-heroicon-o-refresh class="w-8 h-8 text-red-400" />
@@ -62,213 +63,22 @@
                                     </div>
                                 </div>
                             </div>
-                    </x-general.price-card>
-                    <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal2 = true">
-                        <div class="text-base font-bold text-white">
-                                <div class="flex flex-col items-center space-x-4 lg:flex-row">
-                                    <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
-                                        <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
-                                    </div>
-                                    <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Outright Sell/Buy Back</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </x-general.price-card>
-                    {{-- <x-general.price-card  class="text-white bg-red-400 rounded-lg" @click="openModal3 = true">
-                        <div class="text-base font-bold text-white">
-                                <div class="flex flex-col items-center space-x-4 lg:flex-row">
-                                    <div class="flex px-4 py-4 bg-white rounded-full item-center">
-                                        <x-heroicon-o-library class="w-8 h-8 text-red-400" />
-                                    </div>
-                                    <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Buy Back</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </x-general.price-card> --}}
-
-                    {{-- Start modal 1--}}
-                        <x-general.new-modal modalName="openModal1" size="xl">
-                            <div>
-                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
-                                    <x-heroicon-o-refresh class="w-6 h-6 text-blue-600" />
-                                </div>
-
-                                <div class="mt-3 text-center sm:mt-5">
-                                    <h1 class="text-lg font-bold">Change to Physical Gold</h1>
-                                    <div class="mt-2">
-                                        <div>
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
-                                            <p class="text-sm text-gray-500">
-                                                {{$this->tGold}} gram
-                                            </p>
+                        </x-general.price-card>
+                    </a>
+                    <a href="outright-gold-cart">
+                        <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                            <div class="text-base font-bold text-white">
+                                    <div class="flex flex-col items-center space-x-4 lg:flex-row">
+                                        <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
+                                            <x-heroicon-o-cash class="w-8 h-8 text-red-400" />
                                         </div>
-
-                                        <div class="px-4 py-5 lg:px-20">
-                                            <div x-data="{ accordion: 0 ,accordion1: 0  }">
-                                                <div class="w-full p-4 bg-white border focus:outline-none">
-                                                    <label class="flex">
-                                                        <input @click="accordion = accordion == 1 ? 0 : 1" type="checkbox"  id="" value="" name="physical_gold"
-                                                        class="w-5 h-5 text-blue-600 form-checkbox">
-                                                    </label>
-                                                    <div class="flex flex-col justify-center ml-3 -mt-4 text-center lg:-mt-6">
-                                                        <span class="block text-sm font-medium text-gray-900">
-                                                            0.25 gram Physical
-                                                        </span>
-                                                        <span class="block text-sm text-gray-500">
-                                                            Your digital gold is enough for this change.
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion !== 1 }" x-cloak>
-                                                    <div class="px-4 py-4 border-2">
-                                                        <x-form.basic-form>
-                                                            <x-slot name="content">
-                                                                <x-form.dropdown label="" default="no"  value="">
-                                                                    <option value="" hidden>Select Available Quantity</option>
-                                                                    <option value="1" >1</option>
-                                                                    <option value="2" >2</option>
-                                                                    <option value="3" >3</option>
-                                                                    <option value="4" >4</option>
-                                                                    <option value="5" >5</option>
-                                                                </x-form.dropdown>
-                                                            </x-slot>
-                                                        </x-form.basic-form>
-                                                    </div>
-                                                </div>
-
-                                                <div class="w-full p-4 bg-white border rounded-b-none focus:outline-none">
-                                                    <label class="flex ">
-                                                        <input @click="accordion1 = accordion1 == 1 ? 0 : 1" type="checkbox" id="" value="" name="physical_gold"
-                                                        class="w-5 h-5 text-blue-600 form-checkbox " >
-                                                    </label>
-                                                    <div class="flex flex-col justify-center ml-3 -mt-4 text-center lg:-mt-6">
-                                                        <span class="block text-sm font-medium text-gray-900">
-                                                            1 gram Physical
-                                                        </span>
-                                                        <span class="block text-sm text-gray-500">
-                                                            Your digital gold is enough for this change.
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="overflow-hidden bg-white" :class="{ 'h-0': accordion1 !== 1 }" x-cloak>
-                                                    <div class="px-4 py-4 border-2 rounded-b-lg">
-                                                        <x-form.basic-form>
-                                                            <x-slot name="content">
-                                                                <x-form.dropdown label="" default="no" value="">
-                                                                    <option value="" hidden>Select Available Quantity</option>
-                                                                    <option value="1" >1</option>
-                                                                </x-form.dropdown>
-                                                            </x-slot>
-                                                        </x-form.basic-form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
+                                            <p>Outright Sell/Buy Back</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal1 = false">
-                                        Cancel
-                                    </button>
-                                    <a href="physical-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal1 = false">
-                                        Submit
-                                    </a>
-                                </div>
-                            </div>
-                        </x-general.new-modal>
-                    {{-- End modal 1--}}
-
-                    {{-- Start modal 2--}}
-                        <x-general.new-modal modalName="openModal2" size="xl">
-                            <div>
-                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
-                                    <x-heroicon-o-cash class="w-6 h-6 text-green-600" />
-                                </div>
-
-                                <div class="mt-3 text-center sm:mt-5">
-                                    <h1 class="text-lg font-bold">Sell Your gold</h1>
-                                    <div class="mt-2">
-                                        <div>
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
-                                            <p class="text-sm text-gray-500">
-                                                {{$this->tGold}} gram
-                                            </p>
-                                        </div>
-                                        <div class="mt-2">
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
-                                            <p class="text-sm text-gray-500">
-                                                RM {{number_format($this->tPrice,2)}}
-                                            </p>
-                                        </div>
-                                        <div class="mt-4">
-                                            <p class="text-xs italic leading-none text-red-500 ">All your certificate will be revoked onced you submit this request and please allow up to 3 working days to process your transactions.</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                                        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal2 = false">
-                                            Cancel
-                                        </button>
-                                        <a href="outright-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal2 = false">
-                                            Submit
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </x-general.new-modal>
-                    {{-- End modal 2--}}
-
-                    {{-- Start modal 3--}}
-                        <x-general.new-modal modalName="openModal3" size="xl">
-                            <div>
-                                <div class="flex items-center justify-center w-12 h-12 mx-auto bg-yellow-100 rounded-full">
-                                    <x-heroicon-o-library class="w-6 h-6 text-yellow-600" />
-                                </div>
-                                <div class="mt-3 text-center sm:mt-5">
-                                    <h1 class="text-lg font-bold">Sell Now, Buy Back Later</h1>
-                                    <div class="mt-2">
-                                        <div class="p-4 border-l-4 border-blue-400 bg-blue-50">
-                                            <div class="flex">
-                                                <div class="flex-shrink-0">
-                                                    <x-heroicon-o-information-circle class="w-5 h-5 text-blue-400"/>
-                                                </div>
-                                                <div class="ml-3">
-                                                    <p class="text-sm text-blue-700">Please note that you'll get 100% from this transaction and required to pay in 6 + 1 months time.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-2">
-                                            <h3 class="text-base font-semibold leading-6 text-gray-900">Your Gold</h3>
-                                            <p class="text-sm text-gray-500">
-                                                {{$this->tGold}} gram
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-center mt-4">
-                                            <div class="mr-4">
-                                                <h3 class="text-base font-semibold leading-6 text-gray-900">Current Market Price</h3>
-                                                <p class="text-sm text-gray-500">
-                                                    RM {{number_format($this->tPrice,2)}}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <p class="text-xs italic leading-none text-red-500 ">Please allow up to 3 working days to process your transactions.</p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                                        <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal3 = false">
-                                            Cancel
-                                        </button>
-                                        <a href="/bb-gold-cart" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm" @click="openModal3 = false">
-                                            Submit
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </x-general.new-modal>
-                    {{-- End modal 3--}}
+                        </x-general.price-card>
+                    </a>
                 </div>
             </x-general.grid>
 
@@ -276,9 +86,9 @@
 
         @if(auth()->user()->isAgentKAP())
             <div x-data="{ active: 0 }">
-                <div class="grid grid-cols-12 border-2 rounded-lg mx-4">
+                <div class="grid grid-cols-12 mx-4 border-2 rounded-lg">
                     <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
-                        <div class="flex bg-white border-b-2 p-4 mb-6  overflow-x-auto">
+                        <div class="flex p-4 mb-6 overflow-x-auto bg-white border-b-2">
                             <x-tab.title name="0" livewire="">
                                 <div class="flex font-semibold">
                                     <x-heroicon-o-clipboard-list class="w-6 h-6 mr-2"/>Transaction History
@@ -301,7 +111,7 @@
                             </x-tab.title>
                             <x-tab.title name="4" livewire="">
                                 <div class="flex font-semibold">
-                                    <x-heroicon-o-clipboard-copy class="w-6 h-6 mr-2"/>Exit Request 
+                                    <x-heroicon-o-clipboard-copy class="w-6 h-6 mr-2"/>Exit Request
                                 </div>
                             </x-tab.title>
                         </div>
@@ -309,7 +119,7 @@
                         <!-- Start Transaction History -->
                         <x-tab.content name="0">
                             <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="mr-auto text-lg font-medium px-6">
+                                <h2 class="px-6 mr-auto text-lg font-medium">
                                     Purchase History
                                 </h2>
                             </div>
@@ -346,7 +156,7 @@
                         <!-- Start Success -->
                         <x-tab.content name="1">
                             <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="mr-auto text-lg font-medium px-6">
+                                <h2 class="px-6 mr-auto text-lg font-medium">
                                     Success
                                 </h2>
                             </div>
@@ -387,7 +197,7 @@
                         <!-- Start Pending -->
                         <x-tab.content name="2">
                             <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="mr-auto text-lg font-medium px-6">
+                                <h2 class="px-6 mr-auto text-lg font-medium">
                                     Pending
                                 </h2>
                             </div>
@@ -428,7 +238,7 @@
                         <!-- Start Fail -->
                         <x-tab.content name="3">
                             <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="mr-auto text-lg font-medium px-6">
+                                <h2 class="px-6 mr-auto text-lg font-medium">
                                     Fail
                                 </h2>
                             </div>
@@ -469,8 +279,8 @@
                         <!-- Start Exit Request  -->
                         <x-tab.content name="4">
                             <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="mr-auto text-lg font-medium px-6">
-                                    Exit Request 
+                                <h2 class="px-6 mr-auto text-lg font-medium">
+                                    Exit Request
                                 </h2>
                             </div>
                             <div class="p-4 mt-4 bg-white">
