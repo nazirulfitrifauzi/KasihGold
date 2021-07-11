@@ -6,7 +6,8 @@
                 <div class="flex flex-col mt-2 lg:flex-row">
                     <div class="order-2 w-full ">
                         @php
-                            $total=0;
+                            $total = 0;
+                            $comm = 0;
                         @endphp
                         @if ($state_id==10) @php $postage=9; @endphp @elseif ($state_id==11) @php $postage=8.50; @endphp @else @php $postage=6; @endphp @endif
 
@@ -181,12 +182,10 @@
                                                 <div class="px-4 py-6">
                                                     <div class="w-full px-4 py-3 border">
                                                         <div class="flex items-center justify-between">
-
-                                                            <h3 class="font-medium text-gray-700">Order total ({{$tprod}})</h3>
+                                                            <h3 class="font-medium text-gray-700">Order total ({{ $tprod }})</h3>
                                                         </div>
 
                                                         @foreach ($products as $prod)
-
                                                         <div class="flex justify-between pb-4 mt-6 border-b-2">
                                                             <div class="flex">
                                                                 <img class="object-cover w-20 h-20 rounded"
@@ -196,13 +195,15 @@
                                                                     <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
                                                                 </div>
                                                             </div>
-                                                            <span class="my-3 font-semibold text-gray-600">RM {{number_format($prod->products->prod_price*$prod->prod_qty,2)}}</span>
+                                                            <span class="my-3 font-semibold text-gray-600">
+                                                                RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_qty, 2) }}
+                                                            </span>
                                                         </div>
                                                         @php
-                                                            $total+=$prod->products->prod_price*$prod->prod_qty;
+                                                            $total += $prod->products->item->marketPrice->price*$prod->prod_qty;
+                                                            $comm += $prod->products->item->commissionKAP->agent_rate*$prod->prod_qty;
                                                         @endphp
                                                         @endforeach
-
                                                         {{-- <x-form.basic-form wire:submit.prevent="">
                                                             <x-slot name="content">
                                                                 <div class="pb-4 mt-6 border-b-2 ">
@@ -261,21 +262,21 @@
                                                             </div>
 
                                                             <div class="flex justify-between mt-4">
-                                                                <div class="font-semibold">
-                                                                    <p>Deductions</p>
+                                                                <div class="font-semibold text-red-600">
+                                                                    <p>Less</p>
                                                                 </div>
-                                                                <div class="font-semibold">
+                                                                <div class="font-semibold text-red-600">
                                                                     <p>RM 0.00</p>
                                                                 </div>
                                                             </div>
 
                                                             @if(auth()->user()->isAgentKAP())
                                                             <div class="flex justify-between">
-                                                                <div class="text-gray-500">
-                                                                    <p>Commissions</p>
+                                                                <div class="text-red-500 ">
+                                                                    <p>Rebate</p>
                                                                 </div>
-                                                                <div class="text-gray-500">
-                                                                    <p>RM 0.00</p>
+                                                                <div class="text-red-500 ">
+                                                                    <p>RM {{ number_format($comm,2) }}</p>
                                                                 </div>
                                                             </div>
                                                             @endif
@@ -292,11 +293,11 @@
 
                                                         <div class="flex justify-between pb-4 mt-6 border-b-2">
                                                             <div class="font-semibold">
-                                                                <p>Total</p>
+                                                                <p>Total Payment</p>
                                                             </div>
                                                             <div class="text-lg font-semibold">
                                                                 @if (auth()->user()->client == 2)
-                                                                    <p>RM {{number_format($total,2)}}</p>
+                                                                    <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($total-$comm,2) : number_format($total,2) }}</p>
                                                                 @else
                                                                     <p>RM {{number_format($total+$postage,2)}}</p>
                                                                 @endif

@@ -167,7 +167,7 @@
                                             <p>Less</p>
                                         </div>
                                         <div class="text-sm font-semibold text-red-600 lg:text-lg">
-                                            <p>- RM {{ number_format($comm,2) }}</p>
+                                            <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($comm,2) : '0.00' }}</p>
                                         </div>
                                     </div>
                                     @if(auth()->user()->isAgentKAP())
@@ -203,7 +203,7 @@
                                             <p>Total Payment</p>
                                         </div>
                                         <div class="text-lg font-semibold">
-                                            <p>RM {{number_format($total-$comm,2)}}</p>
+                                            <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($total-$comm,2) : number_format($total,2) }}</p>
                                         </div>
                                     </div>
                                 </div>
