@@ -378,7 +378,7 @@
 
                                         <p class="mt-6">Your request to access the system has been approved.</p>
                                         <p>Please sign in with your credential.</p>
-                                        <a href="{{ route('login') }}" class="button button-warning">Login here</a>
+                                        <a href="{{ config('app.url') }}/login" class="button button-warning">Login here</a>
                                     </td>
                                 </tr>
                             </table>
