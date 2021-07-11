@@ -48,11 +48,16 @@ class ProductBuy extends Component
 
         $products = InvCart::where('user_id', auth()->user()->id)->get();
         $total = 0.0;
+        $comm = 0.0;
 
         if (auth()->user()->client == '2') {
 
             foreach ($products as $prod) { // Count total price for the transaction
-                $total += $prod->products->prod_price * $prod->prod_qty;
+                // $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+                $comm += $prod->products->item->commissionKAP->agent_rate * $prod->prod_qty;
+
+                // $total += $prod->products->prod_price * $prod->prod_qty;
+                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }
             $refPayment = (string) Str::uuid();
 
@@ -63,7 +68,7 @@ class ProductBuy extends Component
                 'billDescription' => 'Digital Gold Purchase',
                 'billPriceSetting' => 1,
                 'billPayorInfo' => 1,
-                'billAmount' => ($total * 100),
+                'billAmount' => (auth()->user()->isAgentKAP()) ? (($total-$comm) * 100) : ($total * 100),
                 'billReturnUrl' => route('toyyibpay-status-buy'),
                 'billCallbackUrl' => route('toyyibpay-callback'),
                 'billExternalReferenceNo' => $refPayment,
@@ -193,7 +198,10 @@ class ProductBuy extends Component
     public function render()
     {
         $products = InvCart::where('user_id', auth()->user()->id)->get();
-        $tProducts = $products->count();
+        $tProducts = 0;
+        foreach ($products as $prod) {
+            $tProducts += $prod->prod_qty;
+        }
 
         return view('livewire.page.shop.product-buy', [
             'products' => $products,
