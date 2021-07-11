@@ -41,7 +41,7 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Current Price</p>
+                                        <p>Current Value</p>
                                         <p class="text-lg">RM {{number_format($this->tPrice,2)}}</p>
                                     </div>
                                 </div>
@@ -273,6 +273,45 @@
 
         </div>
 
+        <div>
+            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
+                <h2 class="mr-auto text-lg font-medium">
+                    Exit Request 
+                </h2>
+            </div>
+
+            <div class="p-4 mt-4 bg-white">
+                <x-table.table>
+                    <x-slot name="thead">
+                        <x-table.table-header class="text-left" value="Type of Exit" sort="" />
+                        <x-table.table-header class="text-left" value="Surrendered Price (RM)" sort="" />
+                        <x-table.table-header class="text-left" value="Applied Date" sort="" />
+                        <x-table.table-header class="text-left" value="Approval Status" sort="" />
+                    </x-slot>
+                    <x-slot name="tbody">
+                            <tr>
+                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                    <p>Outright Sell</p>
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                    <p>RM 226.80</p>
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                    <p>11/07/2021</p>
+                                </x-table.table-body>
+                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">Pending</span>
+
+                                </x-table.table-body>
+                            </tr>
+                    </x-slot>
+                    <div class="px-2 py-2">
+                        {{-- {{ $list->links('pagination::tailwind') }} --}}
+                    </div>
+                </x-table.table>
+            </div>
+        </div>
+
         @if(auth()->user()->isAgentKAP())
             <div>
                 <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
@@ -285,8 +324,8 @@
                     <x-table.table>
                         <x-slot name="thead">
                             <x-table.table-header class="text-left" value="Items" sort="" />
-                            <x-table.table-header class="text-left" value="Price (RM)" sort="" />
-                            <x-table.table-header class="text-left" value="Purchase Date" sort="" />
+                            <x-table.table-header class="text-left" value="Purchased Price (RM)" sort="" />
+                            <x-table.table-header class="text-left" value="Purchased Date" sort="" />
                         </x-slot>
                         <x-slot name="tbody">
                             @foreach ($history as $item)
