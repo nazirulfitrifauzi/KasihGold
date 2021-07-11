@@ -202,12 +202,33 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-end mt-2">
-                                    <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none">
-                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
-                                        <span>COMPLETE ORDER</span>
-                                    </button>
-                                </div>
+                                @if(auth()->user()->active == 1)
+                                    <div class="flex items-center justify-end mt-2">
+                                        <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none">
+                                            <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
+                                            <span>COMPLETE ORDER</span>
+                                        </button>
+                                    </div>
+                                @else
+                                    <div class="p-4 rounded-md bg-red-50">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <x-heroicon-o-x-circle class="w-5 h-5 text-red-400" />
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="text-sm font-medium text-red-800">
+                                                    You cannot making any transaction until your account has been approved by Admin.
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-end mt-2">
+                                        <a type="button" class="flex items-center px-3 py-2 text-sm font-medium text-white bg-gray-500 rounded-md cursor-not-allowed hover:bg-gray-600 focus:outline-none">
+                                            <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
+                                            <span>COMPLETE ORDER</span>
+                                        </a>
+                                    </div>
+                                @endif
                             </x-slot>
                         </x-form.basic-form>
                     </div>
