@@ -1,6 +1,6 @@
 <!-- Left mini bar -->
     <nav aria-label="Options"
-        class="z-40 flex-col items-center flex-shrink-0 hidden w-16 py-4 bg-gray-700 border-indigo-100 shadow-xl sm:flex  printHide">
+        class="z-40 flex-col items-center flex-shrink-0 hidden w-16 py-4 bg-gray-700 border-indigo-100 shadow-xl sm:flex printHide">
 
         <div class="flex flex-col items-center flex-1 p-2 space-y-4">
 
@@ -30,7 +30,13 @@
                 class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
                 data-title="Cart" data-placement="right">
                 <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
-                    1
+                    @php
+                        $cartCount = 0;
+                        foreach (auth()->user()->cart as $cart) {
+                            $cartCount += $cart->prod_qty;
+                        }
+                    @endphp
+                    {{ $cartCount }}
                 </span>
                 <x-heroicon-o-shopping-cart class="w-6 h-6" />
             </a>

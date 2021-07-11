@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class Cart extends Component
 {
-
     public function render()
     {
         $cartInfo = InvCart::where('user_id', auth()->user()->id)->get();

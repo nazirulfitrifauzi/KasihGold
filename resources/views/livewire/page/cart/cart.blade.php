@@ -115,7 +115,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-2">
-                                                <a href="#"  class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-not-allowed  focus:outline-none hover:bg-yellow-500">
+                                                <a href="#"  class="flex items-center px-2 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-not-allowed focus:outline-none hover:bg-yellow-500">
                                                     <p>Update Cart</p>
                                                 </a>
                                             </div>
@@ -152,7 +152,7 @@
                                 </div>
 
                                 <div class="flex justify-center my-6">
-                                    <a href="product/buy"
+                                    <a href="{{ route('product-buy') }}"
                                         class="flex items-center justify-center w-full px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
                                         <p>Proceed to checkout</p>
                                     </a>

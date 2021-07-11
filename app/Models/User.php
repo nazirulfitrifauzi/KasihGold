@@ -149,4 +149,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Models\GoldbarOwnership', 'user_id', 'id');
     }
+
+    public function cart()
+    {
+        return $this->hasMany('App\Models\InvCart', 'user_id', 'id');
+    }
 }
