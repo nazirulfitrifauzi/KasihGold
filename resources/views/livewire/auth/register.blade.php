@@ -198,8 +198,7 @@
                                 </div>
                             </div>
                         </x-general.grid>
-                        
-                        
+
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
@@ -210,7 +209,7 @@
                             </div>
                         </div>
 
-                        
+                        @if($client == 1)
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
@@ -220,7 +219,7 @@
                                 </select>
                             </div>
                         </div>
-
+                        @endif
 
                         <div class="mt-6">
                             <div class="flex items-center">
@@ -268,6 +267,3 @@
         </div>
     </div>
 </div>
-
-
-

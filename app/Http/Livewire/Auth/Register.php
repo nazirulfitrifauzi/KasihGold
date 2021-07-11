@@ -18,7 +18,7 @@ class Register extends Component
     public $type = '';
     public $client = '';
     public $tnc;
-    
+
 
     public function register()
     {
@@ -59,8 +59,8 @@ class Register extends Component
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
             'role'      => 3,
-            'type'      => $this->type,
             'client'    => $this->client,
+            'type'      => ($this->client == 1) ? $this->type : 2,
         ]);
 
         event(new Registered($user));
