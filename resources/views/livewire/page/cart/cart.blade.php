@@ -10,7 +10,6 @@
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                     <div class="p-4 mt-8 bg-white">
-
                         <x-table.table>
                             <x-slot name="thead">
                                     <x-table.table-header class="text-left" value="Product" sort="" />
@@ -23,10 +22,12 @@
                             <x-slot name="tbody">
                                 @php
                                 $total=0;
+                                $comm=0
                                 @endphp
                                 @foreach ($cart as $carts)
                                 @php
-                                $total+=$carts->products->prod_price*$carts->prod_qty;
+                                $total += $carts->products->item->marketPrice->price*$carts->prod_qty;
+                                $comm += $carts->products->item->commissionKAP->agent_rate*$carts->prod_qty;
                                 @endphp
                                 <tr>
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
@@ -40,7 +41,7 @@
                                     </x-table.table-body>
 
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <p>RM {{$carts->products->prod_price}}</p>
+                                        <p>RM {{ number_format($carts->products->item->marketPrice->price, 2) }}</p>
                                     </x-table.table-body>
 
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
@@ -58,7 +59,7 @@
                                     </x-table.table-body>
 
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <p>RM {{number_format($carts->products->prod_price*$carts->prod_qty,2)}}</p>
+                                        <p>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
                                     </x-table.table-body>
 
                                     <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
@@ -162,38 +163,48 @@
                                 </div>
                                 <div class="flex flex-col py-4 border-b-2">
                                     <div class="flex flex-col justify-between lg:flex-row">
-                                        <div class="text-sm font-semibold lg:text-lg">
-                                            <p>Deduction</p>
+                                        <div class="text-sm font-semibold text-red-600 lg:text-lg">
+                                            <p>Less</p>
                                         </div>
-                                        <div class="text-sm font-semibold lg:text-lg">
-                                            <p>RM 0.00</p>
+                                        <div class="text-sm font-semibold text-red-600 lg:text-lg">
+                                            <p>- RM {{ number_format($comm,2) }}</p>
                                         </div>
                                     </div>
                                     @if(auth()->user()->isAgentKAP())
                                     <div class="flex flex-col justify-between lg:flex-row">
-                                        <div class="text-sm lg:text-base">
-                                            <p>Commission</p>
+                                        <div class="text-sm text-red-500 lg:text-base">
+                                            <p>Rebate</p>
                                         </div>
-                                        <div class="text-sm lg:text-base">
-                                            <p>RM 0.00</p>
+                                        <div class="text-sm text-red-500 lg:text-base">
+                                            <p>RM {{ number_format($comm,2) }}</p>
                                         </div>
                                     </div>
                                     @endif
                                     <div class="flex flex-col justify-between lg:flex-row">
-                                        <div class="text-sm lg:text-base">
+                                        <div class="text-sm text-red-500 lg:text-base">
                                             <p>Promotions</p>
                                         </div>
-                                        <div class="text-sm lg:text-base">
+                                        <div class="text-sm text-red-500 lg:text-base">
                                             <p>RM 0.00</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex justify-between py-4 border-b-2">
-                                    <div class="text-lg font-semibold">
-                                        <p>Total</p>
+                                <div class="flex flex-col py-4 border-b-2">
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-lg font-semibold">
+                                            <p>Sub Total</p>
+                                        </div>
+                                        <div class="text-lg font-semibold">
+                                            <p>RM {{number_format($total,2)}}</p>
+                                        </div>
                                     </div>
-                                    <div class="text-lg font-semibold">
-                                        <p>RM {{number_format($total,2)}}</p>
+                                    <div class="flex flex-col justify-between lg:flex-row">
+                                        <div class="text-lg font-semibold">
+                                            <p>Total Payment</p>
+                                        </div>
+                                        <div class="text-lg font-semibold">
+                                            <p>RM {{number_format($total-$comm,2)}}</p>
+                                        </div>
                                     </div>
                                 </div>
 
