@@ -19,34 +19,38 @@
                     <x-form.search-input />
                 </div>
             </div>
-
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="No" sort="" />
-                    <x-table.table-header class="text-left" value="Name" sort="" />
-                    <x-table.table-header class="text-left" value="Email" sort="" />
-                    <x-table.table-header class="text-left" value="Phone Number" sort="" />
+                    <x-table.table-header class="text-left" value="Agent ID/Name" sort="" />
+                    <x-table.table-header class="text-left" value="Product" sort="" />
+                    <x-table.table-header class="text-left" value="Bought By" sort="" />
+                    <x-table.table-header class="text-left" value="Bought At" sort="" />
+                    <x-table.table-header class="text-left" value="Commision (RM)" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
+                    @foreach ($lists as $list)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>1</p>
+                                <p>{{ $loop->iteration }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>Agent Kasih AP</p>
+                                <p>{{ $list->user->profile->code }} - {{ $list->user->name }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>agent2@kap.net.my</p>
+                                <p>{{ $list->item->name}}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                                <p>01112903171</p>
+                                <p>{{ $list->boughtUser->profile->code }} - {{ $list->boughtUser->name }}</p>
+                            </x-table.table-body>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
+                                <p>{{ $list->created_at->format('d F Y') }}</p>
+                            </x-table.table-body>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
+                                <p>{{ number_format($list->commission, 2) }}</p>
                             </x-table.table-body>
                         </tr>
-                        {{-- <tr>
-                            <x-table.table-body colspan="4" class="text-center text-gray-500">
-                                No data
-                            </x-table.table-body>
-                        </tr> --}}
+                    @endforeach
                 </x-slot>
                 <div class="px-2 py-2">
                     {{-- {{ $list->links('pagination::tailwind') }} --}}
