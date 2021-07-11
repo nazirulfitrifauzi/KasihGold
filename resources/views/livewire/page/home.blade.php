@@ -22,7 +22,7 @@
 
                     @if (auth()->user()->isUserKAP())
                     @else
-                        <div class="grid grid-cols-5 gap-6 mt-10 ">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-10 ">
                             @if (auth()->user()->isAdminKAP())
                                 @include('pages.dashboard.kap.hq')
                             @elseif (auth()->user()->isAgentKAP())
