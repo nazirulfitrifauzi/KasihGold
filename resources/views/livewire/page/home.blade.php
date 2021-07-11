@@ -235,7 +235,6 @@
             }],
             chart: {
                 type: 'area',
-               
                 renderTo: 'chart-1-container',
                 sparkline: {
                     enabled: true
@@ -299,7 +298,6 @@
             }],
             chart: {
                 type: 'area',
-                height: 160,
                 sparkline: {
                     enabled: true
                 },
@@ -360,8 +358,7 @@
                 data: data_chart3
             }],
             chart: {
-                type: 'area',
-                height: 160,
+                type: 'area',              
                 sparkline: {
                     enabled: true
                 },
