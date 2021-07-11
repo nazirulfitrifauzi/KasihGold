@@ -102,7 +102,7 @@
                                         <div>
                                             <select value="prod_qty" wire:model="prod_qty" default="yes"
                                                 class="flex items-start pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">
-                                                @for ($i = 1; $i <= 10; $i++)
+                                                @for ($i = 1; $i <= 9; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
                                             </select>

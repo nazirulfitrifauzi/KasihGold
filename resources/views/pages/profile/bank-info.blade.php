@@ -1,9 +1,9 @@
 <x-general.card class="mt-2 bg-white shadow-lg">
-    <x-note-card>  
+    <x-note-card>
         1. Please take note that the information submitted will not be reflected on your account untill it has been reviewed by Public Gold's staffs.
         <br>
         2. To change information in locked field, please contact your nearest branch.
-    </x-note-card>  
+    </x-note-card>
     <div class="flex items-center px-5 py-5 border-b border-gray-200 sm:py-3">
         <h2 class="mr-auto text-base font-medium">
             Bank Information
@@ -20,10 +20,10 @@
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </x-form.dropdown>
-                        <x-form.input label="Bank Swift Code" value="swiftCode" wire:model="swiftCode"/> 
+                        <x-form.input label="Bank Swift Code" value="swiftCode" wire:model="swiftCode"/>
                         <x-form.input label="Bank Account No" value="accNo" wire:model="accNo"/>
                         <x-form.input label="Bank Account Holder Name" value="accHolderName" wire:model="accHolderName"/>
-                        <x-form.input label="Bank Account ID (IC or others ID registered with bank)" value="bankAccId" wire:model="bankAccId"/>
+                        <x-form.input label="Bank Account ID (Reg. No / NRIC / Army ID / Police ID / Passport or others ID registered with bank)" value="bankAccId" wire:model="bankAccId"/>
                         {{-- <x-form.input type="file" label="Bank Copy Attachement (1st page of bank's Pass book) (Max size 2MB)" value="bankAttachment" wire:model="bankAttachment"/> --}}
                     </div>
                     <div class="flex justify-end py-4">
@@ -33,6 +33,6 @@
                     </div>
                 </div>
             </x-slot>
-        </x-form.basic-form>  
+        </x-form.basic-form>
     </div>
 </x-general.card>

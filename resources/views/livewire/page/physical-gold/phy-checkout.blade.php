@@ -8,6 +8,7 @@
         @if (session('error'))
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
         @endif
+        <p class="text-lg">My wallet Gold : {{$this->tGold}} g</p>
         <div class="p-4 mt-8 bg-white">
             <x-table.table>
                 <x-slot name="thead">
@@ -21,7 +22,7 @@
                     @foreach ($gtype as $types)
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex space-x-3 items-center">
+                            <div class="flex items-center space-x-3">
                                 <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
                                 <div>
                                     <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
@@ -34,20 +35,16 @@
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                            <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
                                 <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
-                                    class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
+                                    class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                     <span class="m-auto text-2xl font-thin">−</span>
                                 </button>
                                 <input type="text"
-                                    class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
-                                    hover:text-black focus:text-black  md:text-basecursor-default flex items-center
-                                    justify-center
-                                    text-gray-700 
-                                    outline-none"
+                                    class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
                                     name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
                                 <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
-                                    class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
+                                    class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                     <span class="m-auto text-2xl font-thin">+</span>
                                 </button>
                             </div>
@@ -63,7 +60,7 @@
 
                     </tr>
                     @endforeach
-                   
+
 
                 </x-slot>
                 <div class="px-2 py-2">
@@ -74,22 +71,22 @@
 
             <! -- Start Checkout -->
             <div class="flex justify-end my-6">
-                <div class="bg-white py-4 px-4  rounded-lg w-2/5 border-2">
-                    <div class="border-b-2 py-4">
+                <div class="w-2/5 px-4 py-4 bg-white border-2 rounded-lg">
+                    <div class="py-4 border-b-2">
                         <h1 class="text-3xl font-semibold">Total Physical Gold Conversion</h1>
                     </div>
-                    
-                    <div class="flex justify-between border-b-2 py-4">
-                        <div class="font-semibold text-lg">
+
+                    <div class="flex justify-between py-4 border-b-2">
+                        <div class="text-lg font-semibold">
                             <p>Total Grams</p>
                         </div>
-                        <div class="font-semibold text-lg">
+                        <div class="text-lg font-semibold">
                             <p>{{($this->goldbar063*0.25)+($this->goldbar064)}} grams </p>
                         </div>
                     </div>
 
                     <div class="flex justify-center my-6">
-                        <button type="button" class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500" wire:click="convert()">
+                        <button type="button" class="flex items-center justify-center w-full px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500" wire:click="convert()">
                             <p>Proceed to checkout</p>
                         </button>
                     </div>
