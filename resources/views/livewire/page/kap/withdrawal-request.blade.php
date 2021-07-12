@@ -437,7 +437,7 @@
                                                                 </div>
                     
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="phyConvApp({{$physicals->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                    <button wire:click="pConvApp({{$physicals->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                                                         Submit
                                                                     </button>
                                                                 </div>
