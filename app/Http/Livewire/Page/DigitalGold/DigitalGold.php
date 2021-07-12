@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Page\DigitalGold;
 
+use App\Models\BuyBack;
 use App\Models\GoldbarOwnership;
+use App\Models\OutrightSell;
 use Livewire\Component;
 
 class DigitalGold extends Component
@@ -10,6 +12,7 @@ class DigitalGold extends Component
     public $goldInfo;
     public $tGold, $tPrice;
     public $history;
+    public $outright, $bb;
 
     public function mount()
     {
@@ -22,6 +25,8 @@ class DigitalGold extends Component
 
         if (auth()->user()->isAgentKAP()) {
             $this->history = GoldbarOwnership::where('user_id', auth()->user()->id)->get();
+            $this->outright = OutrightSell::where('user_id', auth()->user()->id)->get();
+            $this->bb = BuyBack::where('user_id', auth()->user()->id)->get();
         }
     }
 
