@@ -37,30 +37,6 @@ class PhyConfirmConversion extends Component
         $quarter_gram = 0;
         $one_gram = 0;
 
-        foreach ($this->data as $product) {
-
-            if ($product['prod_weight'] == 0.25) {
-                $quarter_gram = $product['qty'];
-            } elseif ($product['prod_weight'] == 1) {
-                $one_gram = $product['qty'];
-            }
-            if ($product['qty'] != 0) {
-                for ($i = 0; $i < $product['qty']; $i++) {
-                    $gold = GoldbarOwnership::where('user_id', auth()->user()->id)
-                        ->where('weight', $product['prod_weight'])
-                        ->where('active_ownership', 1)
-                        ->first();
-
-                    if ($gold) {
-                        $gold->update(array(
-                            'active_ownership' => 0,
-                        ));
-                    }
-                }
-            }
-        }
-
-
         $option = array(
             'userSecretKey' => config('toyyibpay.key'),
             'categoryCode' => config('toyyibpay.category'),
@@ -86,10 +62,12 @@ class PhyConfirmConversion extends Component
         $response = Http::asForm()->post($url, $option);
         $billCode = $response[0]['BillCode'];
 
-        PhysicalConvert::create([
+
+
+        $physicalConv = PhysicalConvert::create([
             'user_id'       => auth()->user()->id,
-            'one_gram'      => $one_gram,
-            'quarter_gram'  => $quarter_gram,
+            'one_gram'      => $this->data[0]['qty'],
+            'quarter_gram'  => $this->data[1]['qty'],
             'ref_payment'   => $billCode,
             'status'        => 2,
             'name'          => $this->name,
@@ -103,6 +81,30 @@ class PhyConfirmConversion extends Component
             'created_at'    => now(),
             'updated_at'    => now(),
         ]);
+
+        $physicalId = $physicalConv->id;
+
+        foreach ($this->data as $product) {
+
+            if ($product['qty'] != 0) {
+                for ($i = 0; $i < $product['qty']; $i++) {
+                    $gold = GoldbarOwnership::where('user_id', auth()->user()->id)
+                        ->where('weight', $product['prod_weight'])
+                        ->where('active_ownership', 1)
+                        ->first();
+
+
+
+                    if ($gold) {
+                        $gold->active_ownership = 0;
+                        $gold->referenceNumber = $billCode;
+                        $gold->ex_flag = 0;
+                        $gold->ex_id = $physicalId;
+                        $gold->save();
+                    }
+                }
+            }
+        }
 
         return redirect('https://dev.toyyibpay.com/' . $billCode);
     }
