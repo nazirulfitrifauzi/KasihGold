@@ -42,7 +42,7 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Current Value</p>
+                                        <p>Purchased Price</p>
                                         <p class="text-lg">RM {{number_format($this->tPrice,2)}}</p>
                                     </div>
                                 </div>
