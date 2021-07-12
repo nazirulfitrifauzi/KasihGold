@@ -20,7 +20,8 @@ class CreateGoldOwnershipTable extends Migration
             $table->uuid('ouid');
             $table->double('weight', 4, 2);
             $table->integer('active_ownership');
-            $table->integer('bbo_id');
+            $table->integer('ex_id');
+            $table->string('referenceNumber');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();

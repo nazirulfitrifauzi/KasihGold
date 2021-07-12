@@ -16,26 +16,42 @@ class ToyyibpayController extends Controller
 {
 
 
+
     public function paymentStatusConv()
     {
         $response = request()->all(['status_id', 'billcode', 'order_id']);
 
-        $gold = PhysicalConvert::where('user_id', auth()->user()->id)
-            ->where('ref_payment', $response['billcode'])
-            ->where('status', 2)
-            ->first();
+        if ($response['status_id'] == 1) {
+            $gold = PhysicalConvert::where('user_id', auth()->user()->id)
+                ->where('ref_payment', $response['billcode'])
+                ->where('status', 2)
+                ->first();
 
-        if ($gold) {
-            $gold->update(array(
-                'status' => 1,
-            ));
+            if ($gold) {
+                $gold->update(['status' => 1]);
 
+                session()->flash('message', 'Your Physical Gold Conversion Request Has Successfully Submitted.');
 
-            session()->flash('message', 'Your Physical Gold Conversion Request Has Successfully Submitted.');
+                session()->flash('success');
+                session()->flash('title', 'Success!');
+            }
+        } elseif ($response['status_id'] == 3) {
+            $gold = PhysicalConvert::where('user_id', auth()->user()->id)
+                ->where('ref_payment', $response['billcode'])
+                ->where('status', 2)
+                ->first();
 
-            session()->flash('success');
-            session()->flash('title', 'Success!');
+            if ($gold) {
+                $gold->update(['status' => 3]);
+
+                session()->flash('message', 'Your Physical Gold Conversion Request is Unsuccessful.');
+
+                session()->flash('error');
+                session()->flash('title', 'Error!');
+            }
         }
+
+
         return redirect('home');
         // return $response;
     }
