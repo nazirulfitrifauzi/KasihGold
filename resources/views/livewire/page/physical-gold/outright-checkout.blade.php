@@ -2,7 +2,11 @@
     <div>
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
-                Outright Checkout
+                @if ($this->buybackStatus==0)
+                    Outright Checkout
+                @else
+                    Buyback Checkout
+                @endif
             </h2>
         </div>
         @if (session('error'))
@@ -15,6 +19,8 @@
                     <x-table.table-header class="text-left" value="Current Product Price" sort="" />
                     <x-table.table-header class="text-left" value="Quantity" sort="" />
                     <x-table.table-header class="text-left" value="Outright Price" sort="" />
+                   
+                    
                 </x-slot>
                 <x-slot name="tbody">
 
@@ -98,7 +104,11 @@
                 
                 <div class="bg-white py-4 px-4  rounded-lg w-2/5 border-2">
                     <div class="border-b-2 py-4">
+                    @if ($this->buybackStatus==0)
                         <h1 class="text-3xl font-semibold">Total Outright</h1>
+                    @else
+                        <h1 class="text-3xl font-semibold">Total Buyback</h1>
+                    @endif
                     </div>
                     
                     <div class="flex justify-between border-b-2 py-4">
@@ -106,9 +116,19 @@
                             <p>Total Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM {{($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064)}}</p>
+                            <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064),2)}}</p>
                         </div>
                     </div>
+                    @if ($this->buybackStatus==1)
+                    <div class="flex justify-between border-b-2 py-4">
+                        <div class="font-semibold text-lg">
+                            <p>Total Buyback Price</p>
+                        </div>
+                        <div class="font-semibold text-lg">
+                            <p>RM {{number_format((($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064))*1.06,2)}}</p>
+                        </div>
+                    </div>
+                    @endif
                     <div class="flex justify-center my-6">
                         <button type="button" class="w-full flex items-center justify-center px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500" wire:click="outright()">
                             <p>Proceed to checkout</p>
