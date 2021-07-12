@@ -107,7 +107,6 @@ Route::middleware('auth')->group(function () {
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
         Route::get('my-agent-kap', [DashboardController::class, 'myAgent'])->name('my-agent-kap');
         Route::get('pending-approval-kap', [DashboardController::class, 'pendingApproval'])->name('pending-approval-kap');
-        Route::get('withdrawal-request', [DashboardController::class, 'withdrawalRequest'])->name('withdrawal-request');
         Route::get('cashback', [DashboardController::class, 'cashback'])->name('cashback');
 
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
@@ -132,6 +131,10 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/screening', [ScreeningController::class, 'index'])->name('admin.screening');
         Route::get('admin/incident-reporting', [IncidentReportingController::class, 'admin'])->name('admin.incidentReporting');
         Route::get('admin/suppliers', [SuppliersController::class, 'index'])->name('admin.suppliers');
+        Route::get('withdrawal-request', [DashboardController::class, 'withdrawalRequest'])->name('withdrawal-request');
+        Route::get('admin/exit-approval', [ProductKAController::class, 'exitApp'])->name('exit-approval');
+        Route::get('admin/exit-approval-bb', [ProductKAController::class, 'exitAppBB'])->name('exit-approval-bb');
+        Route::get('admin/exit-approval-outright', [ProductKAController::class, 'exitAppOutright'])->name('exit-approval-outright');
         Route::get('product/admin/product/sell', [ProductAddController::class, 'admin'])->name('admin.product-sell-hq');
         Route::get('product/admin/product/sell-add', [ProductAddController::class, 'adminAdd'])->name('admin.product-add-hq');
     });

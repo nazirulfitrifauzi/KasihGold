@@ -13,4 +13,9 @@ class OutrightSell extends Model
 
     protected $table = 'outright_sell';
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
 }
