@@ -122,7 +122,7 @@ Route::middleware('auth')->group(function () {
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
 
         // -- Toyyib Pay -- //
-        Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
+        Route::get('toyyibpay-status-conv', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
         Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatusBuy'])->name('toyyibpay-status-buy');
         Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
     });
