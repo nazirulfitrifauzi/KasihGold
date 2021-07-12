@@ -18,9 +18,9 @@ class DigitalGold extends Component
         foreach ($goldInfo as $golds) {
             $this->tGold += $golds->weight;
         }
-        $this->tPrice = $this->tGold * 252;
+        $this->tPrice = $this->tGold * 340;
 
-        if(auth()->user()->isAgentKAP()) {
+        if (auth()->user()->isAgentKAP()) {
             $this->history = GoldbarOwnership::where('user_id', auth()->user()->id)->get();
         }
     }
