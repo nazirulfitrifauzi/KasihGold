@@ -27,69 +27,69 @@
 
             @if(auth()->user()->isAdminKAP())
             @else
-            <!-- cart button -->
-            <a href="{{route('cart')}}"
-                class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
-                data-title="Cart" data-placement="right">
-                @php
-                    $cartCount = 0;
-                    foreach (auth()->user()->cart as $cart) {
-                        $cartCount += $cart->prod_qty;
-                    }
-                @endphp
-                @if($cartCount > 0)
-                    <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
-                        {{ $cartCount }}
-                    </span>
-                @endif
-                <x-heroicon-o-shopping-cart class="w-6 h-6" />
-            </a>
+                <!-- cart button -->
+                <a href="{{route('cart')}}"
+                    class="relative p-2 text-white transition-colors bg-purple-500 rounded-lg shadow-md tooltipbtn hover:bg-purple-600 focus:outline-none"
+                    data-title="Cart" data-placement="right">
+                    @php
+                        $cartCount = 0;
+                        foreach (auth()->user()->cart as $cart) {
+                            $cartCount += $cart->prod_qty;
+                        }
+                    @endphp
+                    @if($cartCount > 0)
+                        <span class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-white bg-red-600 border-2 border-white rounded-full" style="font-size: 9px">
+                            {{ $cartCount }}
+                        </span>
+                    @endif
+                    <x-heroicon-o-shopping-cart class="w-6 h-6" />
+                </a>
 
-            <!-- Shop -->
-            <div class="relative flex items-center flex-shrink-0" x-data="{ isOpen: false }">
-                <button class="focus:outline-none" @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
-                    <div class="w-full px-2 py-2 text-white bg-indigo-500 rounded-lg cursor-pointer hover:bg-indigo-600 tooltipbtn"
-                    data-title="Shop" data-placement="right" x-on:click="Open = true" >
-                        <x-heroicon-o-shopping-bag class="w-6 h-6 " />
-                    </div>
-                </button>
-                <div x-show="isOpen" @click.away="isOpen = false" @keydown.escape="isOpen = false" x-ref="userMenu"
-                    tabindex="-1"
-                    class="absolute bottom-0 w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 focus:outline-none"
-                    role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
+                <!-- Shop -->
+                <div class="relative flex items-center flex-shrink-0" x-data="{ isOpen: false }">
+                    <button class="focus:outline-none" @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
+                        <div class="w-full px-2 py-2 text-white bg-indigo-500 rounded-lg cursor-pointer hover:bg-indigo-600 tooltipbtn"
+                        data-title="Shop" data-placement="right" x-on:click="Open = true" >
+                            <x-heroicon-o-shopping-bag class="w-6 h-6 " />
+                        </div>
+                    </button>
+                    <div x-show="isOpen" @click.away="isOpen = false" @keydown.escape="isOpen = false" x-ref="userMenu"
+                        tabindex="-1"
+                        class="absolute bottom-0 w-48 py-1 mt-2 origin-bottom-left bg-indigo-500 rounded-md shadow-lg left-14 focus:outline-none"
+                        role="menu" aria-orientation="vertical" aria-label="user menu" x-cloak>
 
-                    @if (auth()->user()->role != 1)
-                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
-                    role="menuitem">
-                        Buy Product
-                    </a>
+                        @if (auth()->user()->role != 1)
+                        <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
+                        role="menuitem">
+                            Buy Product
+                        </a>
 
-                    @else
-                    <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
-                    role="menuitem">
-                        Buy Product
-                    </a>
-
-                    <a
-                        @if (auth()->user()->client == '1')
-                            href="{{ route('product-sell') }}"
                         @else
-                            href="{{route('product-ka-sell')}}"
+                        <a href="{{route('product-view')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
+                        role="menuitem">
+                            Buy Product
+                        </a>
+
+                        <a
+                            @if (auth()->user()->client == '1')
+                                href="{{ route('product-sell') }}"
+                            @else
+                                href="{{route('product-ka-sell')}}"
+                            @endif
+
+                            class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" role="menuitem">
+                            Sell Product
+                        </a>
                         @endif
 
-                        class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400" role="menuitem">
-                        Sell Product
-                    </a>
-                    @endif
-
-                    @if (auth()->user()->isAdminKG()) <!-- kg admin-->
-                    <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
-                    role="menuitem">
-                        Sell Product
-                    </a>
-                    @endif
+                        @if (auth()->user()->isAdminKG()) <!-- kg admin-->
+                        <a href="{{route('admin.product-sell-hq')}}" class="block px-4 py-2 text-sm font-semibold text-white hover:bg-gray-50 hover:text-indigo-400"
+                        role="menuitem">
+                            Sell Product
+                        </a>
+                        @endif
+                    </div>
                 </div>
-            </div>
             @endif
 
 
