@@ -10,7 +10,7 @@
                     <div class="z-40 flex justify-between w-full">
                         <a href="/">
                             <div class="flex justify-center">
-                                <x-logo class="w-auto h-12 " />
+                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 bg-white p-2 rounded-md">
                             </div>
                         </a>
                         <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
@@ -36,7 +36,7 @@
                 <div class="flex justify-between">
                     <a href="/">
                         <div class="flex justify-center">
-                            <x-logo class="w-auto h-12 " />
+                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-8">
                         </div>
                     </a>
                     <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">

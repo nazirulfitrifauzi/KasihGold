@@ -9,7 +9,7 @@
                     <div class="z-40 flex justify-between w-full">
                         <a href="/">
                             <div class="flex justify-center">
-                                <x-logo class="w-auto h-12 " />
+                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 bg-white p-2 rounded-md">
                             </div>
                         </a>
                         <a href="{{ route('register') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
@@ -21,7 +21,7 @@
                             <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
                             <p class="text-xs text-white text-center">
-                               Are you ready to join us in empowering economy thru Waqf?
+                                Are you ready to join us in empowering economy thru Waqf?
                             </p>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                 <div class="flex justify-between">
                     <a href="/">
                         <div class="flex justify-center">
-                            <x-logo class="w-auto h-12 " />
+                            <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-8">
                         </div>
                     </a>
                     <a href="{{ route('register') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
@@ -120,7 +120,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
             style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
             <div class="flex flex-col items-center justify-center mx-auto">
-                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
+                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-16 animate-bounce">
             </div>
         </div>
     </div>
