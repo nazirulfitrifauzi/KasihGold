@@ -111,12 +111,13 @@
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                    <p class='text-sm font-semibold'>RM {{$types->outright_price}}</p>
+                                    <p class='text-sm font-semibold text-right'>RM {{$types->outright_price}}</p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
+            </div>
             <!--End Mobile view-->
 
 

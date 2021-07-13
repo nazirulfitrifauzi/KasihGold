@@ -186,7 +186,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-xs text-gray-500">TOTAL PRICE</p>
-                                                    <p class='text-sm font-semibold'>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
+                                                    <p class='text-sm font-semibold text-right'>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
                                                 </div>
                                             </div>
                                         </div>
