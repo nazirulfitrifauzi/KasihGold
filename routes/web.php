@@ -48,7 +48,7 @@ use App\Http\Controllers\ToyyibpayController;
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
-    Route::view('/', 'welcome')->name('home');
+    Route::view('/', 'welcome')->name('leadingpage');
     Route::view('/mengenai-kami', 'about')->name('aboutUs');
 
     // /** Authentication *

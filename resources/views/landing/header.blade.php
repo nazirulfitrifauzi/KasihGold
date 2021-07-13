@@ -1,12 +1,12 @@
 <header class="relative z-50 w-full h-24">
     <div class="container flex items-center justify-center h-full max-w-6xl px-8 mx-auto sm:justify-between xl:px-0">
 
-        <a href="/" class="relative flex items-center inline-block h-5 h-full font-black leading-none">
+        <a href="{{route('leadingpage')}}" class="relative flex items-center inline-block h-5 h-full font-black leading-none">
             <x-logo class="w-auto h-16 text-indigo-600 fill-current" />
         </a>
 
         <nav id="nav" class="absolute top-0 left-0 z-50 flex flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
-            <a href="/" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Main Page</a>
+            <a href="{{route('leadingpage')}}" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Main Page</a>
             <a href="{{route('aboutUs')}}" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">About Us</a>
             <a href="/#sertai" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Join Us</a>
             <a href="#footer" class="font-bold duration-100 transition-color hover:text-yellow-400">Contact Us</a>
