@@ -48,8 +48,8 @@
 
             <!--Start Outright -->
             <x-cardtab.content name="0">
-                <div class="grid grid-cols-12 rounded-lg mx-4">
-                    <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12 ">
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -82,11 +82,10 @@
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-800">{{ ($outlist->status == 1) ? 'Successful': 'Pending'}}</span>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
-                                            <div x-data="{ openShow: false ,  openModal : false}">
-                                                <div class="flex space-x-2">
-
+                                            <div class="flex" x-data="{ openShow: false ,  openModal : false}">
+                                            
                                                 <a href="#detail_{{$outlist->id}}" @click="openShow = true" 
-                                                class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+                                                    class="mr-1 inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
                                                         <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                                         Show
                                                 </a>
@@ -96,7 +95,7 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                <div class="h-full">
                                                                     <h2 class="text-lg font-bold">Customer Bank Information</h2>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
@@ -152,7 +151,7 @@
                                                 
 
                                                 <button  @click="openModal = true"
-                                                    class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
+                                                    class="mr-1 inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
                                                     <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
                                                     Details
                                                 </button>
@@ -215,7 +214,7 @@
                                                     <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
                                                     Approve
                                                 </button>
-                                            </div>
+                                            
                                             </div>
                                         </x-table.table-body>
                                     </tr>
@@ -237,8 +236,8 @@
         
             <!--Start Buyback -->
             <x-cardtab.content name="1" x-cloak>
-                <div class="grid grid-cols-12 rounded-lg mx-4">
-                    <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12">
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -287,7 +286,7 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                <div class="h-full">
                                                                     <h2 class="text-lg font-bold">Customer Bank Information</h2>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
@@ -367,8 +366,8 @@
 
             <!--Start Physical conversion -->
             <x-cardtab.content name="2" x-cloak>
-                <div class="grid grid-cols-12 rounded-lg mx-4">
-                    <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12">
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -417,7 +416,7 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                <div class="h-full">
                                                                     <h2 class="text-lg font-bold">Customer Address Information</h2>
                                                                     <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
                                                                         Name
