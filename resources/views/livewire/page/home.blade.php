@@ -83,7 +83,7 @@
                         <div id="DIV_ID">
                             @if (auth()->user()->isAdminKAP())
                                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                                    <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12">
+                                    <x-general.grid mobile="1" gap="5" sm="3" md="3" lg="3" xl="3">
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark2"></div>
                                         <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark3"></div>
@@ -288,6 +288,7 @@
                     fontSize: '14px',
                 }
             },
+            
         };
 
         var chart = new ApexCharts(document.querySelector("#chart-spark1"), options);
