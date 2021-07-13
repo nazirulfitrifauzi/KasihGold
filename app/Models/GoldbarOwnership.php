@@ -21,6 +21,6 @@ class GoldbarOwnership extends Model
 
     public function goldbar()
     {
-        return $this->belongsTo('App\Models\Goldbar', 'gold_id', 'gold_id');
+        return $this->belongsTo('App\Models\Goldbar', 'gold_id', 'id');
     }
 }

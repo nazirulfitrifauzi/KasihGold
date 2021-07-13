@@ -15,18 +15,18 @@ class Register extends Component
     public $email = '';
     public $password = '';
     public $passwordConfirmation = '';
-    public $type = '';
-    public $client = '';
+    // public $type = '';
+    // public $client = ''; hide for live KAP
     public $tnc;
 
 
     public function register()
     {
         $this->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'same:passwordConfirmation'],
-            'tnc' => ['required'],
+            'name'      => ['required'],
+            'email'     => ['required', 'email', 'unique:users'],
+            'password'  => ['required', 'min:8', 'same:passwordConfirmation'],
+            'tnc'       => ['required'],
         ]);
 
         $user = User::create([
@@ -34,8 +34,10 @@ class Register extends Component
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
             'role'      => 4,
-            'type'      => $this->type,
-            'client'    => $this->client,
+            // 'type'      => $this->type,
+            'type'      => 1,
+            // 'client'    => $this->client, hide utk live Kasih AP
+            'client'    => 2,
         ]);
 
         event(new Registered($user));
@@ -59,8 +61,9 @@ class Register extends Component
             'name'      => $this->name,
             'password'  => Hash::make($this->password),
             'role'      => 3,
-            'client'    => $this->client,
-            'type'      => ($this->client == 1) ? $this->type : 2,
+            // 'client'    => $this->client, hide utk live Kasih AP
+            'client'    => 2,
+            'type'      => 2,
         ]);
 
         event(new Registered($user));

@@ -19,7 +19,7 @@
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 mb-10">
                 <x-cardtab.title name="0" livewire="" bg="pink">
                     <x-slot name="icon">
-                        <x-heroicon-o-clipboard-list class="text-pink-500 h-10 w-10"/>
+                        <x-heroicon-o-clipboard-list class="w-10 h-10 text-pink-500"/>
                     </x-slot>
                     <div class="flex justify-center text-center">
                         <div class="mt-1 text-xl font-bold text-white">Outright Sell List </div>
@@ -28,7 +28,7 @@
 
                 <x-cardtab.title name="1" livewire="" bg="green">
                     <x-slot name="icon">
-                        <x-heroicon-o-login class="text-green-400 h-10 w-10"/>
+                        <x-heroicon-o-login class="w-10 h-10 text-green-400"/>
                     </x-slot>
                     <div class="flex justify-center text-center">
                         <div class="mt-1 text-xl font-bold text-white">Buyback</div>
@@ -37,7 +37,7 @@
 
                 <x-cardtab.title name="2" livewire="" bg="indigo">
                     <x-slot name="icon">
-                        <x-heroicon-o-presentation-chart-bar class="text-indigo-400 h-10 w-10"/>
+                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-indigo-400"/>
                     </x-slot>
                     <div class="flex justify-center text-center">
                         <div class="mt-1 text-xl font-bold text-white">Physical conversion</div>
@@ -81,15 +81,15 @@
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-800">{{ ($outlist->status == 1) ? 'Successful': 'Pending'}}</span>
                                         </x-table.table-body>
-                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                             <div class="flex" x-data="{ openShow: false ,  openModal : false}">
-                                            
-                                                <a href="#detail_{{$outlist->id}}" @click="openShow = true" 
-                                                    class="mr-1 inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+
+                                                <a href="#detail_{{$outlist->id}}" @click="openShow = true"
+                                                    class="inline-flex items-center px-4 py-2 mr-1 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
                                                         <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                                         Show
                                                 </a>
-                    
+
                                                 <! -- Start modal Show -->
                                                 <x-general.modal modalActive="openShow" title="Electronic Fund Transfer" modalSize="lg">
                                                     <x-form.basic-form >
@@ -100,35 +100,35 @@
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$outlist->user->bank->acc_holder_name}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$outlist->user->bank->swift_code}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$outlist->user->bank->acc_no}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
-                        
+
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="RM {{number_format($outlist->surrendered_amount,2)}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
-                        
+
                                                                     <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
-                        
+
                                                                     <div class="flex mt-5">
                                                                         <label for="product-img1"
-                                                                            class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            class="w-full p-10 text-center bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
                                                                             <span
                                                                                 class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
                                                                                 <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
@@ -148,10 +148,10 @@
                                                     </x-form.basic-form>
                                                 </x-general.modal>
                                                 <! -- Start modal Show -->
-                                                
+
 
                                                 <button  @click="openModal = true"
-                                                    class="mr-1 inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
+                                                    class="inline-flex items-center px-4 py-2 mr-1 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
                                                     <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
                                                     Details
                                                 </button>
@@ -164,10 +164,10 @@
                                                     <div class="my-3 text-center sm:mt-5">
                                                         <h1 class="text-lg font-bold">Personal Information</h1>
                                                     </div>
-                                                    <div class="py-4 px-4">
+                                                    <div class="px-4 py-4">
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
-                                                                <div class="mt-2 leading-4 h-96 overflow-auto">
+                                                                <div class="mt-2 overflow-auto leading-4 h-96">
                                                                     <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
                                                                         <x-form.input label="KAP Code" value="" disable="true" />
                                                                         <x-form.input label="Membership ID"  value="" disable="true" />
@@ -189,16 +189,11 @@
                                                                         <x-form.address class="" label="Address" value1="" value2="" value3="" value4="" value5="" value6=""  condition=""/>
                                                                     </div>
                                                                 </div>
-                                                                <div class="mt-5 grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base 
-                                                                            font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 
-                                                                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 
-                                                                            sm:text-sm" @click="openModal = false">
+                                                                <div class="grid gap-2 mt-5 lg:grid-cols-2 sm:grid-cols-1">
+                                                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal = false">
                                                                             Cancel
                                                                     </button>
-                                                                    <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base 
-                                                                            font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 
-                                                                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
+                                                                    <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
                                                                             Submit
                                                                     </a>
                                                                 </div>
@@ -214,13 +209,13 @@
                                                     <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
                                                     Approve
                                                 </button>
-                                            
+
                                             </div>
                                         </x-table.table-body>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <x-table.table-body colspan="7" class="text-gray-500 text-center">
+                                        <x-table.table-body colspan="7" class="text-center text-gray-500">
                                             No new outright sell request to be approved
                                         </x-table.table-body>
                                     </tr>
@@ -233,7 +228,7 @@
                 </div>
             </x-cardtab.content>
             <!-- End Outright -->
-        
+
             <!--Start Buyback -->
             <x-cardtab.content name="1" x-cloak>
                 <div class="grid grid-cols-12">
@@ -273,14 +268,14 @@
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($buyback->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($buyback->status == 1) ? 'green' : 'yellow'}}-800">{{ ($buyback->status == 1) ? 'Successful': 'Pending'}}</span>
                                         </x-table.table-body>
-                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                             <div x-data="{ openShow: false}">
                                                 <a href="#detail_{{$buyback->id}}" @click="openShow = true"
                                                     class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
                                                     <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                                     Show
                                                 </a>
-                    
+
                                                 {{-- Start modal Show --}}
                                                 <x-general.modal modalActive="openShow" title="Electronic Fund Transfer" modalSize="lg">
                                                     <x-form.basic-form >
@@ -291,43 +286,43 @@
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$buyback->user->bank->acc_holder_name}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$buyback->user->bank->swift_code}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <div class="mt-5">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$buyback->user->bank->acc_no}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
-                        
+
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="RM {{number_format($buyback->surrendered_amount,2)}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <h2 class="mt-5 text-lg font-bold">Buyback Price</h2>
-                        
+
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="RM {{number_format($buyback->buyback_price,2)}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
-                        
+
                                                                     <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
-                        
+
                                                                     <div class="flex mt-5">
                                                                         <label for="product-img1"
-                                                                            class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            class="w-full p-10 text-center bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
                                                                             <span
                                                                                 class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
                                                                                 <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
@@ -352,7 +347,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <x-table.table-body colspan="8" class="text-gray-500 text-center">
+                                        <x-table.table-body colspan="8" class="text-center text-gray-500">
                                             No new buyback request to be approved
                                         </x-table.table-body>
                                     </tr>
@@ -403,107 +398,59 @@
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
                                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($physicals->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($physicals->status == 1) ? 'green' : 'yellow'}}-800">{{ ($physicals->status == 1) ? 'Successful': 'Pending'}}</span>
                                         </x-table.table-body>
-                                        <x-table.table-body colspan="" class=" text-sm font-medium text-gray-700">
+                                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                             <div x-data="{ openShow: false}">
                                                 <a href="#detail_{{$physicals->id}}" @click="openShow = true"
                                                     class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
                                                     <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                                     Show
                                                 </a>
-                    
+
                                                 {{-- Start modal Show --}}
                                                 <x-general.modal modalActive="openShow" title="Physical Conversion" modalSize="lg">
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
                                                                 <div class="h-full">
-                                                                    <h2 class="text-lg font-bold">Customer Address Information</h2>
-                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
+                                                                    <h2 class="text-lg font-bold">Customer Information</h2>
+                                                                    <label class="block mt-3 text-sm font-semibold leading-5 text-gray-700">
                                                                         Name
                                                                     </label>
                                                                     <div>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$physicals->name}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
 
-                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
+                                                                    <label class="block mt-3 text-sm font-semibold leading-5 text-gray-700">
                                                                         Phone Number
                                                                     </label>
                                                                     <div>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$physicals->phone1}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
-                                                                        </div>
-                                                                    </div>
-                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
-                                                                        Address
-                                                                    </label>
-                                                                    <div>
-                                                                        <div class="flex mt-1 rounded-md shadow-sm">
-                                                                            <input disabled type="text" value="{{$physicals->address1}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="flex mt-1 rounded-md shadow-sm">
-                                                                            <input disabled type="text" value="{{$physicals->address2}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input disabled type="text" value="{{$physicals->address3}}"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="grid gap-2 mt-3 lg:grid-cols-3 sm:grid-cols-1"> 
-                                                                        <div>
-                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                                Town
-                                                                            </label>
-                                                                            <div class="flex mt-1 rounded-md shadow-sm">
-                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->town}}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                                Postcode
-                                                                            </label>
-                                                                            <div class="flex mt-1 rounded-md shadow-sm">
-                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->postcode}}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                                State
-                                                                            </label>
-                                                                            <div class="flex mt-1 rounded-md shadow-sm">
-                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->states->description}}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    
                                                                     <h2 class="mt-5 text-lg font-bold">Amount of 1 Gram</h2>
-                        
+
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$physicals->one_gram}} Pcs"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                     <h2 class="mt-5 text-lg font-bold">Amount of 0.25 Gram</h2>
-                        
+
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input disabled type="text" value="{{$physicals->quarter_gram}} Pcs"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="flex justify-end mt-4">
                                                                     <button wire:click="pConvApp({{$physicals->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                                                         Submit
@@ -519,7 +466,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <x-table.table-body colspan="8" class="text-gray-500 text-center">
+                                        <x-table.table-body colspan="8" class="text-center text-gray-500">
                                             No new physical conversion request to be approved
                                         </x-table.table-body>
                                     </tr>

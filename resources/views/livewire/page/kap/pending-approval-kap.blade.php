@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
-                Pending Approval
+                Pending Approval for New Agents
             </h2>
             @if (session('error'))
                 <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -54,7 +54,7 @@
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-2" x-data="{ openModal : false}">
-                                    
+
                                     {{-- <button  @click="openModal = true"
                                         class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
                                         <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
@@ -69,7 +69,7 @@
                                         <div class="my-3 text-center sm:mt-5">
                                             <h1 class="text-lg font-bold">Personal Information</h1>
                                         </div>
-                                        <div class="py-4 px-4">
+                                        <div class="px-4 py-4">
                                             <x-form.basic-form>
                                                 <x-slot name="content">
                                                     <div class="mt-2 leading-4">
@@ -93,16 +93,11 @@
                                                         <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                             <x-form.address class="" label="Address" value1="" value2="" value3="" value4="" value5="" value6=""  condition=""/>
                                                         </div>
-                                                        <div class="mt-5 grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                            <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base 
-                                                                    font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 
-                                                                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 
-                                                                    sm:text-sm" @click="openModal = false">
+                                                        <div class="grid gap-2 mt-5 lg:grid-cols-2 sm:grid-cols-1">
+                                                            <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal = false">
                                                                     Cancel
                                                             </button>
-                                                            <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base 
-                                                                    font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 
-                                                                    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
+                                                            <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
                                                                     Submit
                                                             </a>
                                                         </div>

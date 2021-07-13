@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
-                My Agents Listing
+                Today's Transaction Details
             </h2>
             @if (session('error'))
                 <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -17,31 +17,29 @@
 
         <div class="p-4 mt-8 bg-white">
             <div class="flex justify-between my-4">
-                {{-- <div wire:loading>
+                <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
                         style="left: 50%; top:50%">
                         <x-heroicon-o-cog class="-ml-0.5 mr-2 h-8 w-8 animate-spin" />
                         <p class="text-sm">Waiting<span class="animate-ping">...</span></p>
                     </div>
-                </div> --}}
+                </div>
                 <div class="flex items-center">
                     <x-form.search-input />
                 </div>
             </div>
+
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="No" sort="" />
-                    <x-table.table-header class="text-left" value="Name" sort="" />
-                    <x-table.table-header class="text-left" value="Email" sort="" />
-                    <x-table.table-header class="text-left" value="Contact No." sort="" />
-                    @if (auth()->user()->role != 1)
-                        <x-table.table-header class="text-left" value="Membership ID" sort="" />
-                    @endif
-                    {{-- <x-table.table-header class="text-left" value="Action" sort="" /> --}}
+                    <x-table.table-header class="text-left" value="Customer Name" sort="" />
+                    <x-table.table-header class="text-left" value="Agent Name" sort="" />
+                    <x-table.table-header class="text-left" value="Product Bought" sort="" />
+                    <x-table.table-header class="text-left" value="Gold Bar Serial" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
-                    @forelse ($activeUser as $index => $lists)
-                        <tr wire:key="lists-{{ $lists->id }}">
+                    @forelse ($list as $lists)
+                        <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>{{ $loop->iteration  }}</p>
                             </x-table.table-body>
@@ -49,21 +47,19 @@
                                 <p>{{ $lists->user->name }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $lists->user->email }}</p>
+                                <p>{{ $lists->user->upline->user->name }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $lists->user->profile->phone1 }}</p>
+                                <p>Kasih Digital Gold {{ $lists->weight }}g</p>
                             </x-table.table-body>
-                            @if (auth()->user()->role != 1)
-                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                    <p>{{ $lists->user->profile->membership_id }}</p>
-                                </x-table.table-body>
-                            @endif
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>{{ $lists->goldbar->serial_id }}</p>
+                            </x-table.table-body>
                         </tr>
                     @empty
                         <tr>
                             <x-table.table-body colspan="4" class="text-center text-gray-500">
-                                No New Request
+                                No Transaction yet
                             </x-table.table-body>
                         </tr>
                     @endforelse
