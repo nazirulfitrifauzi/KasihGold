@@ -99,10 +99,16 @@
                             <x-heroicon-s-question-mark-circle class="h-8 w-8 mr-1" />
                         </x-slot>
                         <div class="px-4 flex justify-center mt-4 text-sm font-semibold text-center ">
-                            <p>If you need any assitance please contact us via <br> WhatsApp/SMS/Call </p>
+                            <p>If you need any assitance please contact us via <br> WhatsApp only</p>
                         </div>
                         <div class="flex justify-center mt-2 text-sm font-semibold">
-                            <p class='bg-pink-600 py-2 px-4 text-white rounded-lg'>+606-851 8151</p> 
+                            <p class='bg-pink-600 py-2 px-4 text-white rounded-lg'>
+                                @if (auth()->user()->client == 1)
+                                    +606-851 8151
+                                @else
+                                    012 749 9771
+                                @endif
+                            </p> 
                         </div>
                     </x-general.modal2>
                 </div>

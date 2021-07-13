@@ -105,10 +105,17 @@
                             <x-heroicon-s-question-mark-circle class="w-8 h-8 mr-1" />
                         </x-slot>
                         <div class="flex justify-center mt-4 text-base font-semibold text-center">
-                            <p>If you need any assitance please contact us via <br> WhatsApp only </p>
+                            <p>If you need any assitance please contact us via <br> WhatsApp only 
+                            </p>
                         </div>
                         <div class="flex justify-center mt-2 text-base font-semibold">
-                            <p class='px-4 py-2 text-white bg-pink-600 rounded-lg'>012 749 9771</p>
+                            <p class='px-4 py-2 text-white bg-pink-600 rounded-lg'>
+                                @if (auth()->user()->client == 1)
+                                    +606-851 8151
+                                @else
+                                    012 749 9771
+                                @endif
+                            </p>
                         </div>
                     </x-general.modal2>
                 </div>
