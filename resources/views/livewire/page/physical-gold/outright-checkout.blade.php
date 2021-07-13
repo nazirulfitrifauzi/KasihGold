@@ -13,73 +13,119 @@
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
         @endif
         <div class="p-4 mt-8 bg-white">
-            <x-table.table>
-                <x-slot name="thead">
-                    <x-table.table-header class="text-left" value="Product" sort="" />
-                    <x-table.table-header class="text-left" value="Current Product Price" sort="" />
-                    <x-table.table-header class="text-left" value="Quantity" sort="" />
-                    <x-table.table-header class="text-left" value="Outright Price" sort="" />
-                   
-                    
-                </x-slot>
-                <x-slot name="tbody">
 
+            <!--Start desktop view-->
+            <div class="hidden lg:block">
+                <x-table.table>
+                    <x-slot name="thead">
+                        <x-table.table-header class="text-left" value="Product" sort="" />
+                        <x-table.table-header class="text-left" value="Current Product Price" sort="" />
+                        <x-table.table-header class="text-left" value="Quantity" sort="" />
+                        <x-table.table-header class="text-left" value="Outright Price" sort="" />
+                    </x-slot>
+                    <x-slot name="tbody">
+
+                        @foreach ($gtype as $types)
+                        <tr>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <div class="flex space-x-3 items-center">
+                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
+                                    <div>
+                                        <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
+                                    </div>
+                                </div>
+                            </x-table.table-body>
+
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>RM {{$types->prod_price}}</p>
+                            </x-table.table-body>
+
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                                    <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
+                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="text"
+                                        class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                        hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                        justify-center
+                                        text-gray-700 
+                                        outline-none"
+                                        name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
+                                    <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
+                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </x-table.table-body>
+
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>RM {{$types->outright_price}}</p>
+                            </x-table.table-body>
+
+                        </tr>
+                        @endforeach
+                        
+
+                    </x-slot>
+                    <div class="px-2 py-2">
+                        {{-- {{ $list->links('pagination::tailwind') }} --}}
+                    </div>
+                </x-table.table>
+            </div>
+            <!--End desktop view-->
+
+            <!--Start Mobile view-->
+            <div class="block lg:hidden">
+                <div class="border-2 p-4 rounded-md">
                     @foreach ($gtype as $types)
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex space-x-3 items-center">
-                                <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
+                        <div class="border-b-2 py-2">
+                            <div class="flex justify-between items-center">
                                 <div>
+                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
                                     <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
                                 </div>
+                                <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                                    <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
+                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="text"
+                                        class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                        hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                        justify-center
+                                        text-gray-700 
+                                        outline-none"
+                                        name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
+                                    <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
+                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
                             </div>
-                        </x-table.table-body>
-
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM {{$types->prod_price}}</p>
-                        </x-table.table-body>
-
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
-                                    class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
-                                    <span class="m-auto text-2xl font-thin">−</span>
-                                </button>
-                                <input type="text"
-                                    class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
-                                    hover:text-black focus:text-black  md:text-basecursor-default flex items-center
-                                    justify-center
-                                    text-gray-700 
-                                    outline-none"
-                                    name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
-                                <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
-                                    class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
-                                    <span class="m-auto text-2xl font-thin">+</span>
-                                </button>
+                            <div class="flex justify-between mt-1">
+                                <div>
+                                    <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
+                                    <p class='text-sm font-semibold'>RM {{$types->prod_price}}</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
+                                    <p class='text-sm font-semibold'>RM {{$types->outright_price}}</p>
+                                </div>
                             </div>
-                        </x-table.table-body>
-
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM {{$types->outright_price}}</p>
-                        </x-table.table-body>
-
-                    </tr>
+                        </div>
                     @endforeach
-                    
-
-                </x-slot>
-                <div class="px-2 py-2">
-                    {{-- {{ $list->links('pagination::tailwind') }} --}}
                 </div>
-            </x-table.table>
+            <!--End Mobile view-->
 
 
 
             <! -- Start Checkout -->
-            <div class="flex justify-end my-6">
-                <div class="bg-white py-4 w-2/5">
+            <x-general.grid mobile="1" gap="8" sm="1" md="2" lg="2" xl="2" class="w-full col-span-12 mt-6">
+                <div class="bg-white py-2">
                     <div x-data="{ accordion: 0 ,accordion1: 0  }">
-                        <div class="w-full p-4  focus:outline-none">
+                        <div class="w-full px-2 py-4  focus:outline-none">
                             <label class="flex">
                                 <input @click="accordion = accordion == 1 ? 0 : 1" type="checkbox"  id="" value="" name="physical_gold" wire:click="buyback()"
                                 class="w-5 h-5 text-blue-600 form-checkbox">
@@ -99,10 +145,8 @@
                         </div>
                     </div>
                 </div>
-                <div class=" w-1/5 ">
-                </div>
-                
-                <div class="bg-white py-4 px-4  rounded-lg w-2/5 border-2">
+    
+                <div class="bg-white py-2 px-4  rounded-lg  border-2">
                     <div class="border-b-2 py-4">
                     @if ($this->buybackStatus==0)
                         <h1 class="text-3xl font-semibold">Total Outright</h1>
@@ -135,7 +179,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </x-general.grid>
             <! -- End Checkout -->
         </div>
     </div>
