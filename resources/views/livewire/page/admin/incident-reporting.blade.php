@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
-            Incident Reporting
+            Request/Inquiry
         </h2>
     </div>
 

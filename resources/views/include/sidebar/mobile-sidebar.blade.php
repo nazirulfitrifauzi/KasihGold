@@ -45,7 +45,11 @@
             <!-- Logo -->
             <div class="flex flex-shrink-0 pt-4 pb-1">
                 <div class="p-2 mx-auto rounded-lg">
-                    <x-logo class="w-auto h-12 " />
+                    @if (auth()->user()->client == 1)
+                        <img src="{{ asset('img/kasih-gold-logo.png') }}" alt="" class="w-auto h-12 ">
+                    @else
+                        <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
+                    @endif
                 </div>
             </div>
             <div class="relative flex justify-center">
@@ -207,7 +211,7 @@
                     </x-sidebar.nav-item>
                 @endif
 
-                <x-sidebar.dropdown-nav-item active="open" title="My Network" uri="my-network/*">
+                <x-sidebar.dropdown-nav-item active="open" title="My Agents" uri="my-network/*">
                     <x-slot name="icon">
                         <x-heroicon-o-collection class="w-5 h-5" />
                     </x-slot>
@@ -244,7 +248,7 @@
                     <x-heroicon-o-mail class="w-5 h-5" />
                 </x-sidebar.nav-item>
                 @else
-                    <x-sidebar.nav-item title="Incident Reporting" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
+                    <x-sidebar.nav-item title="Request/Inquiry" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
                         <x-heroicon-o-exclamation-circle class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
