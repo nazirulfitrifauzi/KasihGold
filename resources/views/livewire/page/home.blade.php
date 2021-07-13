@@ -289,7 +289,7 @@
                     fontSize: '14px',
                 }
             },
-            
+
         };
 
         var chart = new ApexCharts(document.querySelector("#chart-spark1"), options);
@@ -345,7 +345,7 @@
                 }
             },
             subtitle: {
-                text: 'Expenses',
+                text: 'Cost Price',
                 offsetX: 0,
                 style: {
                     fontSize: '14px',

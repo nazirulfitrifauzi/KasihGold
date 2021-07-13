@@ -45,7 +45,6 @@ class ProductBuy extends Component
 
     public function buy()
     {
-
         $products = InvCart::where('user_id', auth()->user()->id)->get();
         $total = 0.0;
         $comm = 0.0;
@@ -53,10 +52,7 @@ class ProductBuy extends Component
         if (auth()->user()->client == '2') {
 
             foreach ($products as $prod) { // Count total price for the transaction
-                // $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
                 $comm += $prod->products->item->commissionKAP->agent_rate * $prod->prod_qty;
-
-                // $total += $prod->products->prod_price * $prod->prod_qty;
                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }
             $refPayment = (string) Str::uuid();

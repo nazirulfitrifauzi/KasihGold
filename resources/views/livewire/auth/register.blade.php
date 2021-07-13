@@ -30,6 +30,7 @@
             </div>
         </div>
         <!-- End Mobile view -->
+
         <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl md:rounded-t-none">
             <div class="absolute top-0 hidden w-full px-4 pt-8 md:block">
                 <div class="flex justify-between">
@@ -116,6 +117,7 @@
                             </div>
                         </x-general.grid>
 
+                        {{-- Hide for Live KAP
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
@@ -124,9 +126,9 @@
                                     <option value="2">KASIH AP</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="mt-6">
+                        {{-- <div class="mt-6"> hide for KAP live
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
                                     <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
@@ -134,7 +136,7 @@
                                     <option value="2">INSTITUTION</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="mt-6">
                             <div class="flex items-center">
@@ -199,6 +201,7 @@
                             </div>
                         </x-general.grid>
 
+                        {{-- Hide For Kasih AP LIVE
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
@@ -207,9 +210,9 @@
                                     <option value="2">KASIH AP</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        @if($client == 1)
+                        {{-- @if($client == 1) Hide for KAP live
                         <div class="mt-6">
                             <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
                                 <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
@@ -219,7 +222,7 @@
                                 </select>
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
 
                         <div class="mt-6">
                             <div class="flex items-center">

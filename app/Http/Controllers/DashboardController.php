@@ -30,4 +30,9 @@ class DashboardController extends Controller
     {
         return view('pages.kap.cashback');
     }
+
+    public function todaysTransaction()
+    {
+        return view('pages.kap.todays-transaction');
+    }
 }

@@ -1,4 +1,4 @@
-<x-dashboard.info-card bg="blue-500" title="Pending Approval" value="{{ $pendingApproval->count() }} Users" cardRoute="{{route('pending-approval-kap')}}" >
+<x-dashboard.info-card bg="blue-500" title="Pending Approval" value="{{ $pendingApproval->count() }} Agents" cardRoute="{{route('pending-approval-kap')}}" >
     <x-slot name="svg">
         <x-heroicon-o-shield-check class="w-10 h-10 text-blue-400"/>
     </x-slot>
@@ -16,7 +16,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="green-400" title="Today's Transaction" value="RM {{ number_format($todayTrans, 2) }}" cardRoute="#" >
+<x-dashboard.info-card bg="green-400" title="Today's Transaction" value="RM {{ number_format($todayTrans, 2) }}" cardRoute="{{ route('todays-transaction') }}" >
     <x-slot name="svg">
         <x-heroicon-o-currency-dollar class="w-10 h-10 text-green-400"/>
     </x-slot>
