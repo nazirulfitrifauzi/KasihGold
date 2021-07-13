@@ -55,6 +55,31 @@
             <div class="flex flex-col flex-1 w-full mx-0 my-4 bg-white rounded-lg">
                 @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto printContent">
+                    <div class="hidden md:block">
+                        <div @if(Route::current()->uri == 'home') 
+                                class="px-6 flex items-center justify-end absolute top-9 right-0 px-2" 
+                            @else 
+                                class="px-6 pt-6 flex  justify-between "
+                                style="height:8rem; background-image: url({{ asset('img/header.jpg') }});" 
+                            @endif>
+                            <div>
+                                @if(Route::current()->uri == 'home') 
+                                @else
+                                <h2 class="mr-5 mt-2 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
+                                @endif
+                            </div>
+                            <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
+                                <div class="mt-4 flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                                    <x-heroicon-o-logout class="w-5 h-5 mr-1" />
+                                    <p class="font-semibold">Log out</p>
+                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </a>
+                        </div>
+                    </div>
                     @if(Route::current()->uri == 'home')
                         <header class="printHide">
                             <div class="w-full bg-center bg-cover" style="height:13rem;
@@ -63,6 +88,7 @@
                             </div>
                         </header>
                     @endif
+                    <!-- User avatar -->
                     <div class="grid px-4 pb-10 mx-auto lg:px-8">
                         <div class="mt-10 md:mt-0">
                             @yield('content')
