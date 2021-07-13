@@ -52,11 +52,10 @@
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                 <div x-data="{ openShow: false}">
-                                    <a href="#detail_{{$list->id}}" @click="openShow = true">
-                                        <div class="flex">
-                                            <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500" />
-                                            <p class="text-blue-500">Show</p>
-                                        </div>
+                                    <a href="#detail_{{$list->id}}" @click="openShow = true" 
+                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+                                        <x-heroicon-o-eye class="w-5 h-5 mr-1" />
+                                        Show
                                     </a>
 
                                     {{-- Start modal Show --}}
