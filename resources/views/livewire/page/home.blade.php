@@ -232,8 +232,8 @@
 
         var options = {
             series: [{
-                data: data_chart1
-            }],
+                data:  data_chart1
+            },],
             chart: {
                 type: 'area',
                 height: 160,
@@ -243,15 +243,15 @@
                     enabled: true
                 },
             },
-            xaxis: {
-                type: 'datetime',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
+            // xaxis: {
+            //     type: 'datetime',
+            //     axisBorder: {
+            //         show: false
+            //     },
+            //     axisTicks: {
+            //         show: false
+            //     }
+            // },
             tooltip: {
                 enabled: true,
                 x: {
@@ -268,6 +268,7 @@
                 curve: 'straight'
             },
             fill: {
+                type:'solid',
                 opacity: 0.3,
             },
             yaxis: {
@@ -326,15 +327,15 @@
             fill: {
                 opacity: 0.3,
             },
-            xaxis: {
-                type: 'datetime',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
+            // xaxis: {
+            //     type: 'datetime',
+            //     axisBorder: {
+            //         show: false
+            //     },
+            //     axisTicks: {
+            //         show: false
+            //     }
+            // },
             colors: ['#ff70b8'],
             title: {
                 text: accounting.formatMoney(@json(array_sum($chart2->pluck('bought_price')->toArray()))),
@@ -392,15 +393,15 @@
                     fontSize: '14px',
                 }
             },
-            xaxis: {
-                type: 'datetime',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
+            // xaxis: {
+            //     type: 'datetime',
+            //     axisBorder: {
+            //         show: false
+            //     },
+            //     axisTicks: {
+            //         show: false
+            //     }
+            // },
             fill: {
                 opacity: 0.5
             },
