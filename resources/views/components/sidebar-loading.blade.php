@@ -25,7 +25,11 @@
     }
 </style>
 <div  id="myDIV"  class="loader bg-black bg-opacity-50" style="visibility: hidden;">
-    <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
+        @if (auth()->user()->client == 1)
+            <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
+        @else
+            <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-16 animate-bounce">
+        @endif
 </div>
 <script>
     function loading() {
