@@ -96,47 +96,48 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <h2 class="text-lg font-bold">Customer Bank Information</h2>
-                    
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$outlist->user->bank->acc_holder_name}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                    <h2 class="text-lg font-bold">Customer Bank Information</h2>
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$outlist->user->bank->acc_holder_name}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$outlist->user->bank->swift_code}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$outlist->user->bank->swift_code}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$outlist->user->bank->acc_no}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$outlist->user->bank->acc_no}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
-                    
-                                                                <div class="mt-3">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="RM {{number_format($outlist->surrendered_amount,2)}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
+                        
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="RM {{number_format($outlist->surrendered_amount,2)}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                    
-                                                                <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
-                    
-                                                                <div class="flex mt-5">
-                                                                    <label for="product-img1"
-                                                                        class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
-                                                                        <span
-                                                                            class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
-                                                                            <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
-                                                                        </span>
-                                                                    </label>
-                                                                    <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
-                                                                        name="product-img1" wire:model="proofdoc">
+                        
+                                                                    <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
+                        
+                                                                    <div class="flex mt-5">
+                                                                        <label for="product-img1"
+                                                                            class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            <span
+                                                                                class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
+                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
+                                                                            </span>
+                                                                        </label>
+                                                                        <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
+                                                                            name="product-img1" wire:model="proofdoc">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
                                                                     <button wire:click="outApp({{$outlist->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -286,55 +287,56 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <h2 class="text-lg font-bold">Customer Bank Information</h2>
-                    
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$buyback->user->bank->acc_holder_name}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                    <h2 class="text-lg font-bold">Customer Bank Information</h2>
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$buyback->user->bank->acc_holder_name}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$buyback->user->bank->swift_code}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$buyback->user->bank->swift_code}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="mt-5">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$buyback->user->bank->acc_no}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$buyback->user->bank->acc_no}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
-                    
-                                                                <div class="mt-3">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="RM {{number_format($buyback->surrendered_amount,2)}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
+                        
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="RM {{number_format($buyback->surrendered_amount,2)}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <h2 class="mt-5 text-lg font-bold">Buyback Price</h2>
-                    
-                                                                <div class="mt-3">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="RM {{number_format($buyback->buyback_price,2)}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <h2 class="mt-5 text-lg font-bold">Buyback Price</h2>
+                        
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="RM {{number_format($buyback->buyback_price,2)}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                    
-                                                                <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
-                    
-                                                                <div class="flex mt-5">
-                                                                    <label for="product-img1"
-                                                                        class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
-                                                                        <span
-                                                                            class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
-                                                                            <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
-                                                                        </span>
-                                                                    </label>
-                                                                    <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
-                                                                        name="product-img1" wire:model="proofdoc">
+                        
+                                                                    <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
+                        
+                                                                    <div class="flex mt-5">
+                                                                        <label for="product-img1"
+                                                                            class="w-full p-10 text-center  bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            <span
+                                                                                class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
+                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
+                                                                            </span>
+                                                                        </label>
+                                                                        <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
+                                                                            name="product-img1" wire:model="proofdoc">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
                                                                     <button wire:click="bbApp({{$buyback->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -415,90 +417,91 @@
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
-                                                                <h2 class="text-lg font-bold">Customer Address Information</h2>
-                                                                
-                                                                <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
-                                                                    Name
-                                                                </label>
-                                                                <div>
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->name}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                <div class="h-72 overflow-y-auto lg:h-full">
+                                                                    <h2 class="text-lg font-bold">Customer Address Information</h2>
+                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
+                                                                        Name
+                                                                    </label>
+                                                                    <div>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->name}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
-                                                                    Phone Number
-                                                                </label>
-                                                                <div>
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->phone1}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
+                                                                        Phone Number
+                                                                    </label>
+                                                                    <div>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->phone1}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
-                                                                    Address
-                                                                </label>
-                                                                <div>
-                                                                    <div class="flex mt-1 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->address1}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <label class="mt-3 block text-sm font-semibold leading-5 text-gray-700">
+                                                                        Address
+                                                                    </label>
+                                                                    <div>
+                                                                        <div class="flex mt-1 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->address1}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="flex mt-1 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->address2}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div>
+                                                                        <div class="flex mt-1 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->address2}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div>
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->address3}}"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                    <div>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->address3}}"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="grid gap-2 mt-3 lg:grid-cols-3 sm:grid-cols-1"> 
-                                                                    <div>
-                                                                        <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                            Town
-                                                                        </label>
-                                                                        <div class="flex mt-1 rounded-md shadow-sm">
-                                                                            <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->town}}">
+                                                                    <div class="grid gap-2 mt-3 lg:grid-cols-3 sm:grid-cols-1"> 
+                                                                        <div>
+                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
+                                                                                Town
+                                                                            </label>
+                                                                            <div class="flex mt-1 rounded-md shadow-sm">
+                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->town}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
+                                                                                Postcode
+                                                                            </label>
+                                                                            <div class="flex mt-1 rounded-md shadow-sm">
+                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->postcode}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <label class="block text-sm font-semibold leading-5 text-gray-700">
+                                                                                State
+                                                                            </label>
+                                                                            <div class="flex mt-1 rounded-md shadow-sm">
+                                                                                <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->states->description}}">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                            Postcode
-                                                                        </label>
-                                                                        <div class="flex mt-1 rounded-md shadow-sm">
-                                                                            <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->postcode}}">
+                                                                    
+                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 1 Gram</h2>
+                        
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->one_gram}} Pcs"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
                                                                         </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <label class="block text-sm font-semibold leading-5 text-gray-700">
-                                                                            State
-                                                                        </label>
-                                                                        <div class="flex mt-1 rounded-md shadow-sm">
-                                                                            <input class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" value="{{$physicals->states->description}}">
+                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 0.25 Gram</h2>
+                        
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$physicals->quarter_gram}} Pcs"
+                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                                <h2 class="mt-5 text-lg font-bold">Amount of 1 Gram</h2>
-                    
-                                                                <div class="mt-3">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->one_gram}} Pcs"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
-                                                                    </div>
-                                                                </div>
-                                                                <h2 class="mt-5 text-lg font-bold">Amount of 0.25 Gram</h2>
-                    
-                                                                <div class="mt-3">
-                                                                    <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                        <input disabled type="text" value="{{$physicals->quarter_gram}} Pcs"
-                                                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 text-gray-400">
                                                                     </div>
                                                                 </div>
                     

@@ -18,7 +18,11 @@
 
         <!-- Logo -->
         <div class="p-2 mx-auto  rounded-lg">
-            <x-logo class="w-auto h-12 " />
+            @if (auth()->user()->client == 1)
+                <img src="{{ asset('img/kasih-gold-logo.png') }}" alt="" class="w-auto h-12 ">
+            @else
+                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
+            @endif
         </div>
 
         <!-- User avatar -->
