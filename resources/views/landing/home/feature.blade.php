@@ -1,6 +1,6 @@
 <div id="features" class="relative w-full px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 bg-gradient-to-b from-cool-gray-50 to-cool-gray-600">
     <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
-        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Kenapa perlu terlibat dengan pelaburan <span class="text-yellow-400">Emas</span>?</h3>
+        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Why <span class="text-yellow-400">Gold</span> Investment?</h3>
         <div class="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
 
             <div data-aos="flip-right" class="w-95vw max-w-md p-4 -ml-5 mb-0 sm:mb-16 sm:w-full sm:mx-auto lg:mb-0 lg:mx-auto lg:w-full lg:w-1/3">
@@ -14,8 +14,8 @@
                     </svg>
                     <!-- FEATURE Icon 1 -->
                     <x-heroicon-s-globe class="relative text-green-500 w-15 h-15" />
-                    <h4 class="relative mt-4 text-lg font-bold text-center">Diterima di seluruh dunia</h4>
-                    <p class="relative mt-2 text-base text-center text-gray-600">Emas adalah aset yang diterima secara meluas dimana sahaja di dunia.</p>
+                    <h4 class="relative mt-4 text-lg font-bold text-center">Accepted globally</h4>
+                    <p class="relative mt-2 text-base text-center text-gray-600">Gold is the only widely accepted asset everywhere around the world</p>
                 </div>
             </div>
 
@@ -30,9 +30,9 @@
                     </svg>
                     <!-- FEATURE Icon 2 -->
                     <x-heroicon-s-presentation-chart-line class="relative text-indigo-600 w-15 h-15" />
-                    <h4 class="relative mt-4 text-lg font-bold">Kalis Inflasi</h4>
-                    <p class="relative mt-2 text-base text-center text-gray-600">Simpan <span class="font-semibold">DUIT</span>: Duit <span class="font-semibold text-green-600">bertambah</span>, Nilai <span class="font-semibold text-red-600">berkurang</span>.</p>
-                    <p class="relative mt-2 text-base text-center text-gray-600">Simpan <span class="font-semibold">EMAS</span>: EMAS <span class="font-semibold text-green-600">bertambah</span>, Nilai <span class="font-semibold text-green-600">bertambah</span>.</p>
+                    <h4 class="relative mt-4 text-lg font-bold">Inflation proof</h4>
+                    <p class="relative mt-2 text-base text-center text-gray-600">Save <span class="font-semibold">MONEY</span>: Money <span class="font-semibold text-green-600">increases</span>, value  <span class="font-semibold text-red-600">decreases</span>.</p>
+                    <p class="relative mt-2 text-base text-center text-gray-600">Save <span class="font-semibold">GOLD</span>: Gold  <span class="font-semibold text-green-600">increases</span>, value <span class="font-semibold text-green-600">increases</span>.</p>
                 </div>
             </div>
 
@@ -41,8 +41,8 @@
                     <svg class="absolute w-full h-full text-yellow-300 fill-current" viewBox="0 0 378 410" xmlns="http://www.w3.org/2000/svg"><g><g><path d="M305.9 14.4c23.8 24.6 16.3 84.9 26.6 135.1 10.4 50.2 38.6 90.3 43.7 137.8 5.1 47.5-12.8 102.4-50.7 117.4-37.9 15.1-95.7-9.8-151.7-12.2-56.1-2.5-110.3 17.6-130-3.4-19.7-20.9-4.7-82.9-11.5-131.2C25.5 209.5-3 174.7 1.2 147c4.2-27.7 41-48.3 75-69.6C110.1 56.1 141 34.1 184 17.5c43.1-16.6 98.1-27.7 121.9-3.1z"/></g></g></svg>
                     <!-- FEATURE Icon 3 -->
                     <x-heroicon-s-currency-dollar class="relative text-orange-600 w-15 h-15" />
-                    <h4 class="relative mt-6 text-lg font-bold">Senang Dicairkan</h4>
-                    <p class="relative mt-2 text-base text-center text-gray-600">Emas boleh dijual pada bila-bila masa, dan di mana sahaja sekiranya memerlukan.</p>
+                    <h4 class="relative mt-6 text-lg font-bold">Easy to melt</h4>
+                    <p class="relative mt-2 text-base text-center text-gray-600">Gold can be sold anytime,anywhere when in times of need</p>
                 </div>
             </div>
 

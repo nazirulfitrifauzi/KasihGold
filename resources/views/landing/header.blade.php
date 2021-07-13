@@ -6,19 +6,19 @@
         </a>
 
         <nav id="nav" class="absolute top-0 left-0 z-50 flex flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
-            <a href="/" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Laman Utama</a>
-            <a href="/mengenai-kami" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Mengenai Kami</a>
-            <a href="/#sertai" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Sertai Kami</a>
-            <a href="#footer" class="font-bold duration-100 transition-color hover:text-yellow-400">Hubungi Kami</a>
+            <a href="/" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Main Page</a>
+            <a href="{{route('aboutUs')}}" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">About Us</a>
+            <a href="/#sertai" class="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-yellow-400">Join Us</a>
+            <a href="#footer" class="font-bold duration-100 transition-color hover:text-yellow-400">Contact Us</a>
             <div class="flex flex-col block w-full font-medium border-t border-gray-200 md:hidden">
-                <a href="{{ route('login') }}" class="w-full py-2 font-bold text-center text-yellow-400">Log Masuk</a>
-                <a href="{{ route('register') }}" class="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-yellow-400 bg-gray-900 fold-bold">Daftar</a>
+                <a href="{{ route('login') }}" class="w-full py-2 font-bold text-center text-yellow-400">Login</a>
+                <a href="{{ route('register') }}" class="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-yellow-400 bg-gray-900 fold-bold">Register</a>
             </div>
         </nav>
 
         <div class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:flex md:justify-between">
-            <a href="{{ route('login') }}" class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-yellow-400 hover:text-yellow-300 md:px-5 lg:text-white lg:hover:text-yellow-300 sm:mr-3 md:mt-0 sm:w-full">Log Masuk</a>
-            <a href="{{ route('register') }}" class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-center text-yellow-400 transition-all duration-300 bg-gray-800 rounded shadow-md hover:text-yellow-300 hover:bg-gray-600 fold-bold lg:bg-gray-800 lg:text-yellow-300 lg:shadow-none hover:shadow-xl lg:hover:bg-gray-600 lg:hover:text-white">Daftar</a>
+            <a href="{{ route('login') }}" class="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-yellow-400 hover:text-yellow-300 md:px-5 lg:text-white lg:hover:text-yellow-300 sm:mr-3 md:mt-0 sm:w-full">Login</a>
+            <a href="{{ route('register') }}" class="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-center text-yellow-400 transition-all duration-300 bg-gray-800 rounded shadow-md hover:text-yellow-300 hover:bg-gray-600 fold-bold lg:bg-gray-800 lg:text-yellow-300 lg:shadow-none hover:shadow-xl lg:hover:bg-gray-600 lg:hover:text-white">Register</a>
 
             <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -ml-6 lg:block -mt-60" viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>

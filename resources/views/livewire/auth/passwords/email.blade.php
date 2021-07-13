@@ -19,10 +19,10 @@
                     </div>
                     <div class="flex items-center justify-center w-full pt-32 pb-6">
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
-                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Memperkasakan Wakaf Ekonomi</p>
+                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
                             <p class="text-xs text-white text-center">
-                                Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang
+                                Are you ready to join us in empowering economy thru Waqf?
                             </p>
                         </div>
                     </div>
@@ -93,9 +93,9 @@
             <div class="w-auto bg-cover bg-center" style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
                 <div class="flex items-center justify-center h-full w-full bg-gray-800 bg-opacity-50">
                     <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
-                        <p class="text-6xl  font-bold text-yellow-400 text-left leading-tight">Memperkasakan Wakaf Ekonomi</p>
+                        <p class="text-5xl  font-bold text-yellow-400 text-left leading-tight">Empowering Economic Endowment (Waqf)</p>
                         <p class="border-b mb-2"></p>
-                        <p class="text-sm text-white">Adakah anda bersedia untuk menyertai kami membangunkan ekonomi melalui wakaf? Daftar Sekarang</p>
+                        <p class="text-sm text-white">Are you ready to join us in empowering economy thru Waqf?</p>
                     </div>
                 </div>
             </div>
