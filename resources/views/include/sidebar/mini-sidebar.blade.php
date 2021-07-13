@@ -146,7 +146,7 @@
             </div>
         </div>
 
-        <!-- User avatar -->
+        {{-- <!-- User avatar -->
         <div class="relative flex items-center flex-shrink-0 p-2">
             <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="tooltipbtn"
             data-title="Log out" data-placement="right">
@@ -158,7 +158,7 @@
                     @csrf
                 </form>
             </a>
-        </div>
+        </div> --}}
 
 
     </nav>
