@@ -1,6 +1,6 @@
 <div class="relative w-full px-8 py-10 md:py-16 lg:py-24 xl:py-40 xl:px-0 bg-gradient-to-r from-yellow-200 to-yellow-400">
     <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
-        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">Inspirasi Penubuhan <span class="text-white">Kasih Gold</span></h3>
+        <h3 data-aos="fade-right" class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl"><span class="text-white">Kasih Gold</span> Establishment Inspiration</h3>
 
         <div data-aos="zoom-in" class="flex flex-col w-full max-w-4xl mt-0 lg:flex-row sm:mt-10 lg:mt-20">
 
@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-4">
-                            <h5 class="text-lg font-medium leading-6 text-gray-500">Ditubuhkan setelah timbul kesedaran daripada pandemic Covid-19, dimana kebanyakan ummah terjejas kerana kehilangan sumber pendapatan.</h5>
+                            <h5 class="text-lg font-medium leading-6 text-gray-500">Kasih Gold was established after the realization of Covid-19 pandemic, where most ummah are affected by lost of job and / or income.</h5>
                         </div>
                     </div>
                 </li>
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-4">
-                            <h5 class="text-lg font-medium leading-6 text-gray-500">Penubuhan KASIHGold dengan kerjasama Bank Waqaf International (BWI) ingin mengembalikan dan membangkitkan ekonomi Islam berlandandaskan “waqaf embedded business”.</h5>
+                            <h5 class="text-lg font-medium leading-6 text-gray-500">The establishment of Kasih Gold, with cooperation from Bank Waqf International (BWI) will restore and increases the islamic economy with "waqf embedded business" as core.</h5>
                         </div>
                     </div>
                 </li>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-4">
-                            <h5 class="text-lg font-medium leading-6 text-gray-500">“Waqaf embedded business” ialah element waqaf yand disepadukan dalam perniagaan.</h5>
+                            <h5 class="text-lg font-medium leading-6 text-gray-500">"Waqf embedded business" is a waqf element which should be integrated into business.</h5>
                         </div>
                     </div>
                 </li>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-4">
-                            <h5 class="text-lg font-medium leading-6 text-gray-500">KasihGold menetapkan sebahagian dari keuntungan perniagaan KasihGold sebanyak 10% akan diwaqafkan bagi tujuan memberikan hak kepada mensejahterakan ekonomi ummah dengan mengembalikan sebahagian keuntungannya dalam bentuk waqaf.</h5>
+                            <h5 class="text-lg font-medium leading-6 text-gray-500">Kasih Gold sets aside 10% of profit gained from Kasih Gold trading as waqf to gives rights to improving ummah's economy by returning a portion of the profit as waqf.</h5>
                         </div>
                     </div>
                 </li>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="flex items-center ml-4">
-                            <h5 class="text-lg font-medium leading-6 text-gray-500">Pelanggan, ejen dan KasihGold mendapatkan pahala waqaf kerana tanpa kerjasama ketiga2 entiti ini, tidak mungkin system “waqaf embedded business” boleh terlaksana.</h5>
+                            <h5 class="text-lg font-medium leading-6 text-gray-500">Customer, agents and Kasih Gold gains "waqf rewards", as without these three entities, there would be no possibilities in creating "waqf embedded business".</h5>
                         </div>
                     </div>
                 </li>
