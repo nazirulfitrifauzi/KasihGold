@@ -109,6 +109,7 @@ Route::middleware('auth')->group(function () {
         Route::get('snapBuy', [SnapAPI::class, 'snapBuy'])->name('snapBuy');
 
         Route::get('cart', [CartController::class, 'index'])->name('cart');
+        Route::post('cart/{id}', [CartController::class, 'destroy'])->name('cart.detroy');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
 

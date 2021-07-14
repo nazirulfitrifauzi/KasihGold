@@ -1,5 +1,5 @@
 <script>
-    function {{ $name }}() {
+    function {{ $name }}({{ $variable }}) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -9,48 +9,34 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-                )
-            }
-        })
-    };
-</script>
-
-{{-- <script>
-    function deleteConfirmation(id) {
-        swal({
-            title: "Delete?",
-            text: "Please ensure and then confirm!",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel!",
-            reverseButtons: !0
-        }).then(function (e) {
-            if (e.value === true) {
+            if (result.value === true) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'POST',
-                    url: "{{url('/users')}}/" + id,
+                    url: '{{ $posturl }}' + {{ $variable }},
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {
                         if (results.success === true) {
-                            swal("Done!", results.message, "success");
+                            Swal.fire({
+                                title: "Success!",
+                                text: "Your cart has been updated!",
+                                icon: "success"
+                            }).then(() => {
+                                window.location.href = '{{ $posturl }}';
+                            });
                         } else {
-                            swal("Error!", results.message, "error");
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Your cart has not been updated!",
+                                icon: "warning"
+                            }).then(() => {
+                                window.location.href = '{{ $posturl }}';
+                            });
                         }
                     }
                 });
-            } else {
-                e.dismiss;
             }
-        }, function (dismiss) {
-            return false;
         })
-    }
-</script> --}}
+    };
+</script>

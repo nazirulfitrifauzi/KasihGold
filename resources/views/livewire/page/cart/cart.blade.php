@@ -69,41 +69,14 @@
 
 
                                                 <div class="flex justify-center">
-                                                    <button class="tooltip" data-id="" onclick="">
+                                                    <button class="tooltip" data-id="{{ $carts->id }}" onclick="deleteConfirmation({{ $carts->id }})">
                                                         <div class="flex items-center justify-center px-2 py-2 text-xs bg-red-600 rounded-full hover:bg-red-700">
                                                             <x-heroicon-o-trash class="w-4 h-4 text-white" />
                                                             <span class="text-white bg-black border rounded opacity-75 tooltip-text -mt-14">Delete</span>
                                                         </div>
                                                     </button>
 
-                                                    <x-popup.delete name="deleteConfirmation" />
-                                                    {{-- Start modal delete --}}
-                                                    {{-- <div class="cursor-default">
-                                                        <x-general.new-modal modalName="deleteOpen3" size="sm" modalSize="sm"
-                                                            closeBtn="yes">
-                                                            <div class="">
-                                                                <div
-                                                                    class="flex items-center justify-center w-16 h-16 mx-auto bg-red-100 rounded-full">
-                                                                    <x-heroicon-o-trash class="w-8 h-8 text-red-600" />
-                                                                </div>
-                                                                <div class="py-4 font-semibold text-center text-black ">
-                                                                    Are you sure you want to delete this item?
-                                                                </div>
-                                                                <div class="flex justify-center mt-3">
-                                                                    <button
-                                                                        class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-700 rounded focus:outline-none">
-                                                                        Yes
-                                                                    </button>
-                                                                    <button
-                                                                        class="flex px-4 py-2 text-sm font-bold text-white bg-gray-400 rounded focus:outline-none"
-                                                                        x-on:click="deleteOpen3 = false">
-                                                                        No
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </x-general.new-modal>
-                                                    </div> --}}
-                                                    {{-- End modal delete  --}}
+                                                    <x-popup.delete name="deleteConfirmation" variable="id" posturl="{{ url('/cart') }}/"  />
                                                 </div>
                                             </x-table.table-body>
                                         </tr>
