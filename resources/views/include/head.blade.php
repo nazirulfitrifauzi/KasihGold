@@ -60,7 +60,7 @@
                                 class="px-6 flex items-center justify-end absolute top-9 right-0 px-2" 
                             @else 
                                 class="px-6 pt-6 flex  justify-between "
-                                style="height:8rem; background-image: url({{ asset('img/header.jpg') }});" 
+                                style="height:13rem; background-image: url({{ asset('img/header.jpg') }});" 
                             @endif>
                             <div>
                                 @if(Route::current()->uri == 'home') 
