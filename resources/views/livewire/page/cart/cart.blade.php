@@ -65,15 +65,20 @@
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
-                                                <div x-data="{ deleteOpen3 : false  }" class="flex justify-center">
-                                                    <x-btn.tooltip-btn
-                                                        class="flex items-center justify-center text-xs bg-red-600 rounded-full hover:bg-red-700"
-                                                        btnRoute="#" tooltipTitle="Delete" x-on:click="deleteOpen3 = true">
-                                                        <x-heroicon-o-trash class="w-4 h-4 text-white" />
-                                                    </x-btn.tooltip-btn>
+                                                {{-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $user->id }}" data-action="{{ route('users.destroy',$user->id) }}" > Delete</button> --}}
 
+
+                                                <div class="flex justify-center">
+                                                    <button class="tooltip" data-id="" onclick="">
+                                                        <div class="flex items-center justify-center px-2 py-2 text-xs bg-red-600 rounded-full hover:bg-red-700">
+                                                            <x-heroicon-o-trash class="w-4 h-4 text-white" />
+                                                            <span class="text-white bg-black border rounded opacity-75 tooltip-text -mt-14">Delete</span>
+                                                        </div>
+                                                    </button>
+
+                                                    <x-popup.delete name="deleteConfirmation" />
                                                     {{-- Start modal delete --}}
-                                                    <div class="cursor-default">
+                                                    {{-- <div class="cursor-default">
                                                         <x-general.new-modal modalName="deleteOpen3" size="sm" modalSize="sm"
                                                             closeBtn="yes">
                                                             <div class="">
@@ -97,13 +102,13 @@
                                                                 </div>
                                                             </div>
                                                         </x-general.new-modal>
-                                                    </div>
+                                                    </div> --}}
                                                     {{-- End modal delete  --}}
                                                 </div>
                                             </x-table.table-body>
                                         </tr>
                                         @endforeach
-                                    
+
                                     </x-slot>
                                     <div class="px-2 py-2">
                                         {{-- {{ $list->links('pagination::tailwind') }} --}}
@@ -114,7 +119,7 @@
 
                             <!--Start Mobile view-->
                             <div class="block lg:hidden">
-                                <div class="border-2 p-4 rounded-md">
+                                <div class="p-4 border-2 rounded-md">
                                         @php
                                         $total=0;
                                         $comm=0
@@ -124,11 +129,11 @@
                                         $total += $carts->products->item->marketPrice->price*$carts->prod_qty;
                                         $comm += $carts->products->item->commissionKAP->agent_rate*$carts->prod_qty;
                                         @endphp
-                                        <div class="border-b-2 py-2">
-                                            <div class="flex justify-between items-center">
+                                        <div class="py-2 border-b-2">
+                                            <div class="flex items-center justify-between">
                                                 <div>
-                                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">    
-                                                    <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>       
+                                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
+                                                    <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
                                                 </div>
                                                 <div>
                                                     <div x-data="{ deleteOpen3 : false  }" class="flex justify-end pb-2">
