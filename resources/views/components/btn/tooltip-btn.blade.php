@@ -16,6 +16,6 @@
     <a href="{{$btnRoute}}" class="tooltip">
         <div {{ $attributes->merge(['class' => 'flex items-center px-2 py-2']) }} >
             {{$slot}}
-            <span class="tooltip-text bg-black border rounded opacity-75 text-white -mt-14">{{$tooltipTitle}}</span>
+            <span class="text-white bg-black border rounded opacity-75 tooltip-text -mt-14">{{$tooltipTitle}}</span>
         </div>
     </a>

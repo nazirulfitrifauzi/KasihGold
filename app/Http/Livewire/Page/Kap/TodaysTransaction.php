@@ -11,7 +11,7 @@ class TodaysTransaction extends Component
     {
         return view('livewire.page.kap.todays-transaction',[
             // 'list' => GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->get(),
-            'list' => GoldbarOwnership::whereDate('created_at', '=', '2021-07-13')->get(),
+            'list' => GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->get(),
         ]);
     }
 }
