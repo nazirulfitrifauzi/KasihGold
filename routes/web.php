@@ -45,6 +45,15 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    return "All Cache is cleared";
+});
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
