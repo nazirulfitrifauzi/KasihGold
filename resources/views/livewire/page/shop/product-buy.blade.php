@@ -266,7 +266,7 @@
                                                                     <p>Less</p>
                                                                 </div>
                                                                 <div class="font-semibold text-red-600">
-                                                                    <p>RM 0.00</p>
+                                                                    <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($comm,2) : '0.00' }}</p>
                                                                 </div>
                                                             </div>
 

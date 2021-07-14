@@ -65,9 +65,6 @@
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
-                                                {{-- <button class="btn btn-danger btn-flat btn-sm remove-user" data-id="{{ $user->id }}" data-action="{{ route('users.destroy',$user->id) }}" > Delete</button> --}}
-
-
                                                 <div class="flex justify-center">
                                                     <button class="tooltip" data-id="{{ $carts->id }}" onclick="deleteConfirmation({{ $carts->id }})">
                                                         <div class="flex items-center justify-center px-2 py-2 text-xs bg-red-600 rounded-full hover:bg-red-700">
