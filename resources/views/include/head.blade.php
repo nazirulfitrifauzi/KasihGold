@@ -57,9 +57,9 @@
                 <main class="overflow-y-auto printContent">
                     <div class="hidden md:block">
                         <div @if(Route::current()->uri == 'home') 
-                                class="px-6 flex items-center justify-end absolute top-9 right-0 px-2" 
+                                class="hidden" 
                             @else 
-                                class="px-6 pt-6 flex  justify-between "
+                                class="px-6 pt-6 flex  justify-between bg-center bg-cover"
                                 style="height:13rem; background-image: url({{ asset('img/header.jpg') }});" 
                             @endif>
                             <div>
@@ -87,6 +87,7 @@
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                             </div>
                         </header>
+                        
                     @endif
                     <!-- User avatar -->
                     <div class="grid px-4 pb-10 mx-auto lg:px-8">

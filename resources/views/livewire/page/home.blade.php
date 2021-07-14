@@ -5,9 +5,23 @@
             <div class="grid grid-cols-12 col-span-12 gap-6">
                 <div class="col-span-12 mt-8 printHide">
                     <div class="flex items-center">
-                        <div>
-                            <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
-                            <p class="text-sm text-white" id="getDate"></p>
+                        <div class="flex justify-between w-full">
+                            <div>
+                                <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
+                                <p class="text-sm text-white" id="getDate"></p>
+                            </div>
+                            <div>
+                                <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
+                                    <div class="flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                                        <x-heroicon-o-logout class="w-5 h-5 mr-1" />
+                                        <p class="font-semibold">Log out</p>
+                                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </a>
+                            </div>
                         </div>
                         @if (session('error'))
                             <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
