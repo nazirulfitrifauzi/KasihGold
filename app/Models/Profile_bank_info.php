@@ -16,4 +16,9 @@ class Profile_bank_info extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function bankName()
+    {
+        return $this->belongsTo('App\Models\Banks', 'bank_id', 'id');
+    }
 }
