@@ -23,42 +23,31 @@
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="No" sort="" />
                     <x-table.table-header class="text-left" value="Agent ID/Name" sort="" />
-                    <x-table.table-header class="text-left" value="Product" sort="" />
-                    <x-table.table-header class="text-left" value="Bought By" sort="" />
-                    <x-table.table-header class="text-left" value="Bought At" sort="" />
-                    <x-table.table-header class="text-left" value="Commision (RM)" sort="" />
+                    <x-table.table-header class="text-left" value="Total Commision (RM)" sort="" />
                     <x-table.table-header class="text-left" value="Action" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
+
                     @foreach ($lists as $list)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>{{ $loop->iteration }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $list->user->profile->code }} - {{ $list->user->name }}</p>
-                            </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $list->item->name}}</p>
+                                <p>{{ $list->user->name }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                                <p>{{ $list->boughtUser->profile->code }} - {{ $list->boughtUser->name }}</p>
-                            </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                                <p>{{ $list->created_at->format('d F Y') }}</p>
-                            </x-table.table-body>
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                                <p>{{ number_format($list->commission, 2) }}</p>
+                                <p>{{ number_format($list->total, 2) }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                 <div x-data="{ openShow: false}">
-                                    <a href="#detail_{{$list->id}}" @click="openShow = true" 
+                                    <a href="#detail_{{$list->id}}" @click="openShow = true"
                                         class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
                                         <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                         Show
                                     </a>
 
-                                    {{-- Start modal Show --}}
+                                    <!-- Start modal Show -->
                                     <x-general.modal modalActive="openShow" title="Electronic Fund Transfer" modalSize="lg">
                                         <x-form.basic-form wire:submit.prevent="submit">
                                             <x-slot name="content">
@@ -114,7 +103,7 @@
                                             </x-slot>
                                         </x-form.basic-form>
                                     </x-general.modal>
-                                    {{-- End modal Show --}}
+                                    <!-- End modal Show -->
                                 </div>
                             </x-table.table-body>
                         </tr>
