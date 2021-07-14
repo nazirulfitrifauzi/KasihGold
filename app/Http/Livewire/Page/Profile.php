@@ -50,6 +50,8 @@ class Profile extends Component
         $this->introducerName = auth()->user()->profile->introducer_name ?? "";
         $this->membership_id = auth()->user()->profile->membership_id ?? "";
 
+        $this->agentId = auth()->user()->profile->agent_id ?? 0;
+
         $this->name = auth()->user()->name;
         $this->ic = auth()->user()->profile->ic ?? "";
         $this->comp_no = auth()->user()->profile->comp_no ?? "";
@@ -91,7 +93,7 @@ class Profile extends Component
             'postcode'          => 'required',
             'town'              => 'required',
             'state'             => 'required',
-            // 'agentId'           => auth()->user()->type == 2 ? 'required' : '',
+            'agentId'           => auth()->user()->type == 2 ? 'required' : '',
             'bankId'            => 'required',
             'swiftCode'         => 'required',
             'accNo'             => 'required',
@@ -112,14 +114,12 @@ class Profile extends Component
     public function savePersonal() {
         if (auth()->user()->type == 1) {
             $data = $this->validate([
-                'agentId'       => auth()->user()->type == 2 ? 'required' : '',
+                'agentId'       => 'required',
                 'name'          => 'required',
-                'ic'            => auth()->user()->type == 1 ? 'required' : '',
-                'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
+                'ic'            => 'required',
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
-                'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
                 'address1'      => 'required',
                 'address2'      => 'required',
                 'address3'      => 'nullable',
@@ -130,12 +130,11 @@ class Profile extends Component
         } else {
             $data = $this->validate([
                 'name'          => 'required',
-                'ic'            => auth()->user()->type == 1 ? 'required' : '',
-                'comp_no'       => auth()->user()->type == 2 ? 'required' : '',
+                'comp_no'       => 'required',
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
-                'fax_no'        => auth()->user()->type == 2 ? 'required' : '',
+                'fax_no'        => 'required',
                 'address1'      => 'required',
                 'address2'      => 'required',
                 'address3'      => 'nullable',

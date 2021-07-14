@@ -25,6 +25,10 @@ class PendingApprovalKapAgent extends Component
 
     public function approve($id)
     {
+        $data = $this->validate([
+            'membership_id'       => 'required',
+        ]);
+
         //update user for active
         User::whereId($id)->update(['active' => 1]);
 

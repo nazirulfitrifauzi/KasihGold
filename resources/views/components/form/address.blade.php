@@ -17,7 +17,7 @@
     </div>
     @if($errors->has($value3)) <p class="text-sm text-red-600">{{ $errors->first($value3) }}</p> @endif
 </div>
-<div class="grid gap-2 mt-3 lg:grid-cols-3 sm:grid-cols-1"> 
+<div class="grid gap-2 mt-3 lg:grid-cols-3 sm:grid-cols-1">
     <div>
         <label class="block text-sm font-semibold leading-5 text-gray-700">
             Town
@@ -37,9 +37,9 @@
         @if($errors->has($value5)) <p class="text-sm text-red-600">{{ $errors->first($value5) }}</p> @endif
     </div>
     <x-form.state-dropdown label="State" value="{{ $value6 }}" >
-                <option value="0">CHOOSE STATE</option>
-            @foreach ($state as $item)
-                <option value="{{ $item->id }}" >{{ $item->description }}</option>
-            @endforeach
+        <option value="" hide selected>SELECT STATE</option>
+        @foreach ($state as $item)
+            <option value="{{ $item->id }}" >{{ $item->description }}</option>
+        @endforeach
     </x-form.state-dropdown>
 </div>
