@@ -19,11 +19,15 @@ class CommissionKap extends Component
     }
 
     protected $rules = [
-        'items.*.agent_rate' => 'required|between:0.01,99.99',
+        'items.*.agent_rate' => 'required',
     ];
 
     public function updateRate($key, $itemID)
     {
+        $data = $this->validate([
+            'items.*.agent_rate'          => 'required',
+        ]);
+
         CommissionRateKap::updateOrCreate([
             'item_id' => $itemID
         ], [
