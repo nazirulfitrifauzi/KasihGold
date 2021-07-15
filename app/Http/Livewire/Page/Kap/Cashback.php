@@ -21,6 +21,7 @@ class Cashback extends Component
 
         $date = now()->endOfMonth()->subDay('3'); // cashback only count to (-3 days from end month)
         $photo_name = now()->format('F Y') . '.' . $this->photo->extension();
+
         $this->photo->storeAs('public/cashback/' . $id , $photo_name);
 
         CommissionDetailKap::where('user_id', $id)
@@ -31,6 +32,7 @@ class Cashback extends Component
                                 'path' => 'cashback/' . $id . '/' . $photo_name,
                             ]);
 
+        $this->photo = "";
         $this->dispatchBrowserEvent('close-modal'); // close modal if success
 
         session()->flash('success');
