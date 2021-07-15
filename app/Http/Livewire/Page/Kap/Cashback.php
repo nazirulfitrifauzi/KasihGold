@@ -19,9 +19,23 @@ class Cashback extends Component
             'photo' => 'image|max:5024', // 5MB Max
         ]);
 
-        $this->photo->storeAs('public/cashback/' . $id , 'cashback_payment_' . now()->format('Y-m-d') . '.' . $this->photo->extension());
-        // dd($id);
-        // $this->photo->store('photos');
+        $date = now()->endOfMonth()->subDay('3'); // cashback only count to (-3 days from end month)
+        $photo_name = now()->format('F Y') . '.' . $this->photo->extension();
+        $this->photo->storeAs('public/cashback/' . $id , $photo_name);
+
+        CommissionDetailKap::where('user_id', $id)
+                            ->whereDate('created_at', '<=', $date->toDateString())
+                            ->whereStatus(0)
+                            ->update([
+                                'status' => 1,
+                                'path' => 'cashback/' . $id . '/' . $photo_name,
+                            ]);
+
+        $this->dispatchBrowserEvent('close-modal'); // close modal if success
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Cashback Proof has been updated.');
     }
 
     public function render()
@@ -33,6 +47,7 @@ class Cashback extends Component
             'date' => $date,
             'lists' => CommissionDetailKap::select("user_id", DB::raw("SUM(commission) as total"))
                                             ->whereDate('created_at', '<=', $date->toDateString())
+                                            ->whereStatus(0)
                                             ->groupBy("user_id")
                                             ->get(),
         ]);

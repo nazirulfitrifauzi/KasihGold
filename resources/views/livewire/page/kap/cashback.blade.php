@@ -4,6 +4,15 @@
             <h2 class="mr-auto text-lg font-medium">
                 Cashback Collection from {{ $from->format('d F Y') }} - {{ $date->format('d F Y') }}
             </h2>
+            @if (session('error'))
+                <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('info'))
+                <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('success'))
+                <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('warning'))
+                <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @endif
         </div>
 
         <div class="p-4 mt-8 bg-white">
@@ -42,7 +51,8 @@
                             <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                 <div x-data="{ openShow: false}">
                                     <button @click="openShow = true"
-                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none"
+                                        x-on:close-modal.window="openShow = false">
                                         <x-heroicon-o-eye class="w-5 h-5 mr-1" />
                                         Show
                                     </button>

@@ -19,6 +19,8 @@ class CreateCommissionDetailKapsTable extends Migration
             $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('bought_id');
             $table->unsignedDecimal('commission', 8, 2);
+            $table->integer('status')->default(0)->nullable();
+            $table->string('path')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
