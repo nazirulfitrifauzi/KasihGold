@@ -28,12 +28,14 @@ class Cashback extends Component
                             ->whereDate('created_at', '<=', $date->toDateString())
                             ->whereStatus(0)
                             ->update([
-                                'status' => 1,
-                                'path' => 'cashback/' . $id . '/' . $photo_name,
+                                'status'        => 1,
+                                'path'          => 'cashback/' . $id . '/' . $photo_name,
+                                'updated_by'    => $id,
+                                'updated_at'    => now(),
                             ]);
 
         $this->photo = "";
-        $this->dispatchBrowserEvent('close-modal'); // close modal if success
+        $this->dispatchBrowserEvent('close-modal'); // close modal when done
 
         session()->flash('success');
         session()->flash('title', 'Success!');
