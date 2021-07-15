@@ -94,7 +94,7 @@
                                                     <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
 
                                                     <div class="flex mt-5">
-                                                        <label for="photo" class="w-full p-10 text-center bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                        <label for="photo" class="w-full p-10 text-center {{ ($errors->has('photo')) ? 'bg-red-400  hover:bg-red-500': 'bg-gray-200  hover:bg-gray-300' }} rounded-lg shadow cursor-pointer group">
                                                             @if ($photo)
                                                                 <img src="{{ $photo->temporaryUrl() }}">
                                                             @else
