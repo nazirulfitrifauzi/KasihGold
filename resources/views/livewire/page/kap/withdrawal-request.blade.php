@@ -128,10 +128,10 @@
 
                                                                     <div class="flex mt-5">
                                                                         <label for="product-img1"
-                                                                            class="w-full p-10 text-center bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            class="w-full p-10 text-center {{ ($errors->has('proofdoc')) ? 'bg-red-400  hover:bg-red-500': 'bg-gray-200  hover:bg-gray-300' }} rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
                                                                             <span
-                                                                                class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
-                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
+                                                                                class="inline-flex items-center font-medium {{ ($errors->has('proofdoc')) ? 'text-red-400 ': 'text-gray-600' }} {{ ($errors->has('proofdoc')) ? 'group-hover:text-red-500': 'group-hover:text-gray-700' }}">
+                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 {{ ($errors->has('proofdoc')) ? 'text-red-600 ': 'text-yellow-400' }} " />
                                                                             </span>
                                                                         </label>
                                                                         <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
@@ -322,10 +322,10 @@
 
                                                                     <div class="flex mt-5">
                                                                         <label for="product-img1"
-                                                                            class="w-full p-10 text-center bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                            class="w-full p-10 text-center {{ ($errors->has('proofdoc')) ? 'bg-red-400  hover:bg-red-500': 'bg-gray-200  hover:bg-gray-300' }} rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
                                                                             <span
-                                                                                class="inline-flex items-center font-medium text-gray-600 group-hover:text-gray-700">
-                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 text-yellow-400 " />
+                                                                                class="inline-flex items-center font-medium {{ ($errors->has('proofdoc')) ? 'text-red-400 ': 'text-gray-600' }} {{ ($errors->has('proofdoc')) ? 'group-hover:text-red-500': 'group-hover:text-gray-700' }}">
+                                                                                <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 {{ ($errors->has('proofdoc')) ? 'text-red-600 ': 'text-yellow-400' }} " />
                                                                             </span>
                                                                         </label>
                                                                         <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
