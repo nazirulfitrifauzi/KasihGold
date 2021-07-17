@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
-            Incident Reporting
+            Contact us
         </h2>
     </div>
     <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y">
@@ -15,7 +15,7 @@
                                 <x-toaster.success title="{{ session('success') }}"/>
                             @endif
                             <div class="font-medium flex items-center border-b border-gray-200 pb-5">
-                                <x-heroicon-o-chevron-down class="w-5 h-5 mr-2  text-gray-600 "/> Incident Reporting Form 
+                                <x-heroicon-o-chevron-down class="w-5 h-5 mr-2  text-gray-600 "/> Contact us form 
                             </div>
                             <div class="mt-5">
                                 <x-form.dropdown label="" value="category" default="no" wire:model="category" name="category" id="category">
@@ -64,14 +64,15 @@
                     <div class="text-lg font-medium">Contact us</div>
                 </div>
                 <div class="mt-2 tex-sm">
-                    <span class="flex items-center mt-5 mb-4"><x-heroicon-o-phone class="w-5 h-5 mr-2  text-yellow-400 "/>  606-851 8151 </span>
-                    <span class="flex items-center mt-5 mb-4"><x-heroicon-o-mail class="w-5 h-5 mr-2  text-yellow-400 "/>  enquirykasihgold@gmail.com </span>
-                    <span class="flex items-center mt-5 mb-4"> <x-heroicon-o-chat class="w-5 h-5 mr-2  text-yellow-400 "/> 601160602291 </span>
+                    <span class="flex items-center mt-5 mb-4"><x-heroicon-o-phone class="w-5 h-5 mr-2  text-yellow-400 "/>012 749 9771</span>
+                    <span class="flex items-center mt-5 mb-4"><x-heroicon-o-mail class="w-5 h-5 mr-2  text-yellow-400 "/>customersupport@kasihapgold.com</span>
+                    {{-- <span class="flex items-center mt-5 mb-4"> <x-heroicon-o-chat class="w-5 h-5 mr-2  text-yellow-400 "/> 601160602291 </span> --}}
                     <span class="flex items-center mt-5 mb-4 "><x-heroicon-o-home class="w-5 h-5 mr-2  text-yellow-400 "/>  Address </span>
                     <div class="flex justify-center mapouter">
+                        
                         <div class="w-full gmap_canvas">
                             <iframe  height="220" width="100%" id="gmap_canvas"
-                                src="https://maps.google.com/maps?q=Business%20Square%2C%20Lavender%20Height%2C%2070450%20Seremban%2C%20Negeri%20Sembilan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                src="https://www.google.com/maps/embed/v1/place?q=Address+No+18,+Menara+2,+Menara+Kembar+Bank+Rakyat,+No+33,+Jalan+Rakyat,+Brickfields,+50470+Kuala+Lumpur&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
                                 >
                             </iframe>
                             <a href="https://www.whatismyip-address.com/divi-discount/"></a>
