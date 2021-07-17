@@ -69,7 +69,7 @@
                                 @endif
                             </div>
                             <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
-                                <div class="mt-4 flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                                <div class="mt-4 flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none">
                                     <x-heroicon-o-logout class="w-5 h-5 mr-1" />
                                     <p class="font-semibold">Log out</p>
                                 </div>

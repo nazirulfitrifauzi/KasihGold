@@ -18,11 +18,12 @@
             <!-- Logo -->
             <div class="flex flex-shrink-0 pt-4 pb-1">
                 <div class="p-2 mx-auto rounded-lg">
-                    @if (auth()->user()->client == 1)
+                    {{-- @if (auth()->user()->client == 1)
                     <img src="{{ asset('img/kasih-gold-logo.png') }}" alt="" class="w-auto h-12 ">
                     @else
                     <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
-                    @endif
+                    @endif --}}
+                    <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
                 </div>
             </div>
             <div class="relative flex justify-center">

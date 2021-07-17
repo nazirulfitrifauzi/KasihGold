@@ -26,11 +26,13 @@
 </style>
 <div 
     class="loader bg-black bg-opacity-50">
-        @if (auth()->user()->client == 1)
+        {{-- @if (auth()->user()->client == 1)
             <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
         @else
             <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-16 animate-bounce">
-        @endif
+        @endif --}}
+        
+        <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-16 animate-bounce">
 </div>
 <script>
     window.addEventListener("load", function () {

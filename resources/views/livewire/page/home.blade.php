@@ -10,7 +10,7 @@
                                 <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
                                 <p class="text-sm text-white" id="getDate"></p>
                             </div>
-                            <div>
+                            <div class="hidden md:block">
                                 <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
                                     <div class="flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none ">
                                         <x-heroicon-o-logout class="w-5 h-5 mr-1" />

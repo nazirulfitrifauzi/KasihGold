@@ -349,7 +349,7 @@
                     <tr>
                         <td class="header">
                             <a href="#" style="display: inline-block;">
-                                <img src="{{ asset('img/kasih-gold-logo.png') }}" style="width:150px; heigth:150px; "/>
+                                <img src="{{ asset('img/kasihAPGold.png') }}" style="width:150px; heigth:150px; "/>
                             </a>
                         </td>
                     </tr>
