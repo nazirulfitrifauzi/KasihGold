@@ -110,7 +110,7 @@
                     </x-sidebar.dropdown-nav-item>
                 @endif
 
-                @if (auth()->user()->role != 4)
+                @if (auth()->user()->role != 4 && auth()->user()->client == 1)
                 <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
                     <x-heroicon-o-clipboard-list class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -180,7 +180,7 @@
                     </div>
                 </x-sidebar.dropdown-nav-item> --}}
 
-                @if (auth()->user()->role != 4)
+                @if (auth()->user()->role != 4 && auth()->user()->client == 1)
                 <x-sidebar.nav-item title="Analytics" route="{{route('analytics')}}" uri="analytics">
                     <x-heroicon-o-chart-bar class="w-5 h-5" />
                 </x-sidebar.nav-item>
@@ -220,6 +220,8 @@
                     </x-sidebar.nav-item>
                 @endif
 
+
+
                 <x-sidebar.dropdown-nav-item active="open" title="My Agents" uri="my-network/*">
                     <x-slot name="icon">
                         <x-heroicon-o-collection class="w-5 h-5" />
@@ -235,7 +237,7 @@
                         @endif
 
                         @if (auth()->user()->role != 4)
-                            <x-sidebar.dropdown-item title="Downline Details" route="{{route('downline-detail')}}"
+                            <x-sidebar.dropdown-item title="{{ (auth()->user()->role == 1) ? 'Agent List' : 'Downline Details' }}" route="{{route('downline-detail')}}"
                                 uri="my-network/downline-detail">
                                 <x-slot name="icon">
                                     <x-heroicon-o-cube class="w-5 h-5" />
@@ -245,12 +247,6 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
-                @if (auth()->user()->role != 4)
-                <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
-                    <x-heroicon-o-cog class="w-5 h-5" />
-                </x-sidebar.nav-item>
-                @endif
-
                 @if (auth()->user()->role != 1)
                 <x-sidebar.nav-item title="Contact Us" route="{{route('incidentReporting')}}"
                     uri="incident-reporting">
@@ -259,6 +255,22 @@
                 @else
                     <x-sidebar.nav-item title="Request/Inquiry" route="{{route('admin.incidentReporting')}}" uri="admin/incident-reporting">
                         <x-heroicon-o-exclamation-circle class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
+
+                @if (auth()->user()->isAdminKG())
+                    <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
+                        <x-heroicon-o-cog class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @elseif (auth()->user()->isAdminKAP())
+                    <x-sidebar.nav-item title="Settings" route="{{route('setting-kap')}}" uri="setting-kap">
+                        <x-heroicon-o-cog class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
+
+                @if(auth()->user()->client == 2)
+                    <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc_kap.pdf') }}" uri="">
+                        <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
             </div>
