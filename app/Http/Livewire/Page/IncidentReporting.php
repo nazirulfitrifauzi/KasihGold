@@ -44,7 +44,10 @@ class IncidentReporting extends Component
         $category_name      = FeedbackCategory::where('id',$this->category)->first()->name;
         $subcategory_name   = FeedbackSubCategory::where('id',$this->subcategory)->first()->name;
 
-        session()->flash('success', $category_name.' - '.$subcategory_name.' successfully sent.');
+      
+		session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', $category_name.' - '.$subcategory_name.' successfully sent.');
     }
 
     public function render()

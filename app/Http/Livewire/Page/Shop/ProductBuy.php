@@ -78,7 +78,7 @@ class ProductBuy extends Component
                 'billChargeToCustomer' => 1
             );
 
-            $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+            $url = 'https://toyyibpay.com/index.php/api/createBill';
             $response = Http::asForm()->post($url, $option);
             $billCode = $response[0]['BillCode'];
 
@@ -143,7 +143,7 @@ class ProductBuy extends Component
                 $prod->delete();
             }
 
-            return redirect('https://dev.toyyibpay.com/' . $billCode);
+            return redirect('https://toyyibpay.com/' . $billCode);
 
             // $_SERVER['SERVER_PORT'] == 80;
             // $returnUrl = sprintf("%s://%s", 'http', $_SERVER['HTTP_HOST']);

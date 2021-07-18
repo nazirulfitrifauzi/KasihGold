@@ -34,7 +34,7 @@
                     <x-table.table-header class="text-left" value="No" sort="" />
                     <x-table.table-header class="text-left" value="Name" sort="" />
                     <x-table.table-header class="text-left" value="Email" sort="" />
-                    <x-table.table-header class="text-left" value="Pofile Completion" sort="" />
+                    <x-table.table-header class="text-left" value="Profile Completion" sort="" />
                     <x-table.table-header class="text-left" value="Action" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
