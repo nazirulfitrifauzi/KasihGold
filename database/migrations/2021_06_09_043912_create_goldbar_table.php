@@ -16,6 +16,7 @@ class CreateGoldbarTable extends Migration
         Schema::create('goldbar', function (Blueprint $table) {
             $table->id('gold_id');
             $table->uuid('guid');
+            $table->double('bought_price');
             $table->double('total_weight', 4, 2);
             $table->double('weight_occupied', 4, 2);
             $table->double('weight_on_hold', 4, 2);
