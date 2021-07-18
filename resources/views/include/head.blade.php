@@ -38,12 +38,6 @@
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
-        <div class="absolute right-0 z-50 hidden w-full px-1 py-1 text-sm font-bold text-center text-white bg-red-500 lg:block">
-            <div class="flex items-center justify-center animate-pulse">
-                <x-heroicon-o-exclamation class="w-6 h-6" />
-                <p>System currently on development. This is not the final version</p>
-            </div>
-        </div>
         <div class="flex h-auto bg-white md:h-screen md:bg-gray-700">
             <div x-ref="loading"></div>
             @include('misc.main-loading')
@@ -52,7 +46,7 @@
             @include('include.sidebar.desktop-sidebar')
 
             <!-- content -->
-            <div class="flex flex-col flex-1 w-full mx-0 my-4 bg-white rounded-lg">
+            <div class="flex flex-col flex-1 w-full mx-0 bg-white">
                 @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto printContent">
                     <div class="hidden md:block">

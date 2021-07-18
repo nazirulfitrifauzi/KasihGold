@@ -1,7 +1,7 @@
 <!-- Desktop sidebar -->
 <x-sidebar-loading/>
 
-<div class="flex flex-shrink-0 mt-4 transition-all printHide">
+<div class="flex flex-shrink-0  transition-all printHide">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
     <!-- Mobile bottom bar -->
@@ -13,7 +13,7 @@
     <div x-transition:enter="transform transition-transform duration-300" x-transition:enter-start="-translate-x-full"
         x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform duration-300"
         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-show="isSidebarOpen"
-        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 hidden w-64 bg-gray-800 shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 md:block">
+        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 hidden w-64 bg-gray-800 shadow-lg sm:left-16  sm:w-72 lg:static lg:w-60 md:block">
         <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full pb-4">
             <!-- Logo -->
             <div class="flex flex-shrink-0 pt-4 pb-1">
