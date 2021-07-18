@@ -24,6 +24,9 @@ class UserSeeder extends Seeder
                 'avatar'                => 'avatar.png',
                 'role'                  => 1,
                 'active'                => 1,
+                'type'                  => 2,
+                'client'                => 1,
+                'profile_c'             => 1,
                 'created_at'            => now()
             ],
             [
@@ -34,6 +37,9 @@ class UserSeeder extends Seeder
                 'avatar'                => 'avatar.png',
                 'role'                  => 2,
                 'active'                => 1,
+                'type'                  => 2,
+                'client'                => 2,
+                'profile_c'             => 1,
                 'created_at'            => now()
             ]
         ]);
