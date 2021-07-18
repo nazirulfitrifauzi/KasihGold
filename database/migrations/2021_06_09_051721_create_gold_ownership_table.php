@@ -19,6 +19,7 @@ class CreateGoldOwnershipTable extends Migration
             $table->integer('user_id');
             $table->uuid('ouid');
             $table->double('weight', 4, 2);
+            $table->double('bought_price', 4, 2);
             $table->integer('active_ownership');
             $table->integer('ex_id');
             $table->string('referenceNumber');
