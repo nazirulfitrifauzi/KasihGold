@@ -16,7 +16,7 @@
         class="fixed inset-y-0 left-0 z-30 flex-shrink-0 hidden w-64 bg-gray-800 shadow-lg sm:left-16  sm:w-72 lg:static lg:w-60 md:block">
         <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full pb-4">
             <!-- Logo -->
-            <div class="flex flex-shrink-0 pt-4 pb-1">
+            <div class="flex flex-shrink-0 pb-1">
                 <div class="p-2 mx-auto rounded-lg">
                     {{-- @if (auth()->user()->client == 1)
                     <img src="{{ asset('img/kasih-gold-logo.png') }}" alt="" class="w-auto h-12 ">
