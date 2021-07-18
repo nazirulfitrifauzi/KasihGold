@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->integer('role')->default(2);
             $table->integer('active')->default(0);
             $table->integer('type');
+            $table->integer('client');
+            $table->integer('profile_c')->default(0);
             $table->timestamps();
         });
     }
