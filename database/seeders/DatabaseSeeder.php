@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SupplierSeeder::class,
             RoleSeeder::class,
             MemberRelationshipSeeder::class,
+            ClientSeeder::class,
         ]);
     }
 }
