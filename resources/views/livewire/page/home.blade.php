@@ -12,7 +12,7 @@
                             </div>
                             <div class="hidden md:block">
                                 <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
-                                    <div class="flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                                    <div class="flex items-center px-2 py-2 text-yellow-400 align-middle bg-white rounded-md hover:text-white hover:bg-yellow-400 focus:outline-none ">
                                         <x-heroicon-o-logout class="w-5 h-5 mr-1" />
                                         <p class="font-semibold">Log out</p>
                                     </div>
@@ -134,7 +134,11 @@
                                                                 RM {{ number_format( array_sum($chart1->where('weight',0.01)->pluck('bought_price')->toArray()),2) }}
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                                {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
                                                                 <div class="flex justify-center">
@@ -153,7 +157,11 @@
                                                                 RM {{ number_format( array_sum($chart1->where('weight',0.1)->pluck('bought_price')->toArray()),2) }}
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                                {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
                                                                 <div class="flex justify-center">
@@ -172,7 +180,11 @@
                                                                 RM {{ number_format( array_sum($chart1->where('weight',0.25)->pluck('bought_price')->toArray()),2) }}
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                                {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
                                                                 <div class="flex justify-center">
@@ -191,7 +203,11 @@
                                                                 RM {{ number_format( array_sum($chart1->where('weight',1)->pluck('bought_price')->toArray()),2) }}
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                                {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
                                                             </td>
                                                             <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
                                                                 <div class="flex justify-center">
