@@ -58,7 +58,7 @@ class PhyConfirmConversion extends Component
             'billChargeToCustomer' => 1
         );
 
-        $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+        $url = 'https://toyyibpay.com/index.php/api/createBill';
         $response = Http::asForm()->post($url, $option);
         $billCode = $response[0]['BillCode'];
 
