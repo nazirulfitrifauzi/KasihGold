@@ -30,12 +30,12 @@ class UserSeeder extends Seeder
                 'created_at'            => now()
             ],
             [
-                'name'                  => 'Agent Kasih Gold',
-                'email'                 => 'agent@csc.net.my',
+                'name'                  => 'Kasih AP Gold HQ',
+                'email'                 => 'hq@kap.net.my',
                 'email_verified_at'     => now(),
                 'password'              => Hash::make('Csc@1234'),
                 'avatar'                => 'avatar.png',
-                'role'                  => 2,
+                'role'                  => 1,
                 'active'                => 1,
                 'type'                  => 2,
                 'client'                => 2,
