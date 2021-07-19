@@ -17,11 +17,10 @@ class DigitalGold extends Component
     public function mount()
     {
         $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
-        $this->tGold = 0;
         foreach ($goldInfo as $golds) {
             $this->tGold += $golds->weight;
+            $this->tPrice += $golds->bought_price;
         }
-        $this->tPrice = $this->tGold * 340;
 
         if (auth()->user()->isAgentKAP()) {
             $this->history = GoldbarOwnership::where('user_id', auth()->user()->id)->get();
