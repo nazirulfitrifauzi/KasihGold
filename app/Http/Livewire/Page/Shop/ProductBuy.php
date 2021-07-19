@@ -82,16 +82,16 @@ class ProductBuy extends Component
             $response = Http::asForm()->post($url, $option);
             $billCode = $response[0]['BillCode'];
 
-            // ToyyibBills::create([
-            //     'ref_payment'       => $refPayment,
-            //     'bill_code'         => $billCode,
-            //     'bill_amount'       => $total,
-            //     'status'            => 2,
-            //     'created_by'        => auth()->user()->id,
-            //     'updated_by'        => auth()->user()->id,
-            //     'created_at'        => now(),
-            //     'updated_at'        => now(),
-            // ]);
+            ToyyibBills::create([
+                'ref_payment'       => $refPayment,
+                'bill_code'         => $billCode,
+                'bill_amount'       => $total,
+                'status'            => 2,
+                'created_by'        => auth()->user()->id,
+                'updated_by'        => auth()->user()->id,
+                'created_at'        => now(),
+                'updated_at'        => now(),
+            ]);
 
             foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
                 // Search for available gold bar to be filled
@@ -123,22 +123,7 @@ class ProductBuy extends Component
                     $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
                     $currentGoldbar->save();
 
-                    // distribute commission/cashback to the upline user
-                    if (auth()->user()->isUserKAP()) {
-                        $commission = $prod->products->item->commissionKAP->agent_rate;
-                        $upline_id = auth()->user()->upline->user->id;
-
-                        CommissionDetailKap::create([
-                            'user_id'           => $upline_id,
-                            'item_id'           => $prod->products->item->id,
-                            'bought_id'         => auth()->user()->id,
-                            'commission'        => $commission,
-                            'created_by'        => auth()->user()->id,
-                            'updated_by'        => auth()->user()->id,
-                            'created_at'        => now(),
-                            'updated_at'        => now(),
-                        ]);
-                    }
+                    
                 }
                 $prod->delete();
             }

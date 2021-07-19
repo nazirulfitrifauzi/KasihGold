@@ -93,6 +93,27 @@ class ToyyibpayController extends Controller
                 $currentGoldbar->weight_on_hold -= $golds->weight;
                 $currentGoldbar->weight_occupied += $golds->weight;
                 $currentGoldbar->save();
+
+                $gold_info = InvInfo::where('prod_weight', $golds->weight)
+                    ->where('user_id', 10)
+                    ->first();
+
+                // distribute commission/cashback to the upline user
+                if (auth()->user()->isUserKAP()) {
+                    $commission = $gold_info->item->commissionKAP->agent_rate;
+                    $upline_id = auth()->user()->upline->user->id;
+
+                    CommissionDetailKap::create([
+                        'user_id'           => $upline_id,
+                        'item_id'           => $gold_info->item->id,
+                        'bought_id'         => auth()->user()->id,
+                        'commission'        => $commission,
+                        'created_by'        => auth()->user()->id,
+                        'updated_by'        => auth()->user()->id,
+                        'created_at'        => now(),
+                        'updated_at'        => now(),
+                    ]);
+                }
             }
 
             session()->flash('message', 'Your Digital Gold Purchase is Successful.');
