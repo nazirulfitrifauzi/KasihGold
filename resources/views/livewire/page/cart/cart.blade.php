@@ -182,7 +182,7 @@
                                                 <p>Misc. Charges</p>
                                             </div>
                                             <div class="text-sm font-semibold lg:text-lg">
-                                                <p>RM 0.00</p>
+                                                <p>RM 1.00</p>
                                             </div>
                                         </div>
                                         <div class="flex flex-col justify-between lg:flex-row">
@@ -199,6 +199,14 @@
                                             </div>
                                             <div class="text-sm lg:text-base">
                                                 <p>RM 0.00</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col justify-between lg:flex-row">
+                                            <div class="text-sm lg:text-base">
+                                                <p>FPX Payment Fees</p>
+                                            </div>
+                                            <div class="text-sm lg:text-base">
+                                                <p>RM 1.00</p>
                                             </div>
                                         </div>
                                     </div>
@@ -236,7 +244,7 @@
                                                 <p>Sub Total</p>
                                             </div>
                                             <div class="text-lg font-semibold">
-                                                <p>RM {{number_format($total,2)}}</p>
+                                                <p>RM {{number_format($total+1,2)}}</p>
                                             </div>
                                         </div>
                                         <div class="flex flex-col justify-between lg:flex-row">
@@ -244,7 +252,7 @@
                                                 <p>Total Payment</p>
                                             </div>
                                             <div class="text-lg font-semibold">
-                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($total-$comm,2) : number_format($total,2) }}</p>
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($total-$comm)+1,2) : number_format($total+1,2) }}</p>
                                             </div>
                                         </div>
                                     </div>

@@ -46,7 +46,7 @@ class ProductBuy extends Component
     public function buy()
     {
         $products = InvCart::where('user_id', auth()->user()->id)->get();
-        $total = 0.0;
+        $total = 1.0; //Total is RM1 because of FPX Payment
         $comm = 0.0;
 
         if (auth()->user()->client == '2') {
@@ -64,7 +64,7 @@ class ProductBuy extends Component
                 'billDescription' => 'Digital Gold Purchase',
                 'billPriceSetting' => 1,
                 'billPayorInfo' => 1,
-                'billAmount' => (auth()->user()->isAgentKAP()) ? (($total-$comm) * 100) : ($total * 100),
+                'billAmount' => (auth()->user()->isAgentKAP()) ? (($total - $comm) * 100) : ($total * 100),
                 'billReturnUrl' => route('toyyibpay-status-buy'),
                 'billCallbackUrl' => route('toyyibpay-callback'),
                 'billExternalReferenceNo' => $refPayment,
@@ -78,14 +78,14 @@ class ProductBuy extends Component
                 'billChargeToCustomer' => 1
             );
 
-            $url = 'https://toyyibpay.com/index.php/api/createBill';
+            $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
             $response = Http::asForm()->post($url, $option);
             $billCode = $response[0]['BillCode'];
 
             ToyyibBills::create([
                 'ref_payment'       => $refPayment,
                 'bill_code'         => $billCode,
-                'bill_amount'       => $total,
+                'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
                 'status'            => 2,
                 'created_by'        => auth()->user()->id,
                 'updated_by'        => auth()->user()->id,
@@ -102,7 +102,7 @@ class ProductBuy extends Component
                         'gold_id'           => $goldbar->id,
                         'user_id'           => auth()->user()->id,
                         'weight'            => $prod->products->prod_weight,
-                        'bought_price'      => $prod->products->prod_price,
+                        'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->products->item->commissionKAP->agent_rate)) : ($prod->products->item->marketPrice->price),
                         'status'            => 2,
                         'created_by'        => auth()->user()->id,
                         'updated_by'        => auth()->user()->id,
@@ -111,24 +111,17 @@ class ProductBuy extends Component
                     ]);
 
                     // update available gold bar weight
-                    // Goldbar::where('id', $goldbar->gold_id)
-                    //     ->update(array(
-                    //         'weight_on_hold'    => ($goldbar->weight_on_hold + $prod->products->prod_weight),
-                    //         'weight_vacant'     => ($goldbar->weight_vacant - $prod->products->prod_weight),
-                    //     ));
 
                     $currentGoldbar = Goldbar::where('id', $goldbar->id)->first();
 
                     $currentGoldbar->weight_on_hold += $prod->products->prod_weight;
                     $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
                     $currentGoldbar->save();
-
-                    
                 }
                 $prod->delete();
             }
 
-            return redirect('https://toyyibpay.com/' . $billCode);
+            return redirect('https://dev.toyyibpay.com/' . $billCode);
 
             // $_SERVER['SERVER_PORT'] == 80;
             // $returnUrl = sprintf("%s://%s", 'http', $_SERVER['HTTP_HOST']);

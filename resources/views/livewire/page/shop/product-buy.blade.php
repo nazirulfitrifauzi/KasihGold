@@ -235,7 +235,7 @@
                                                                     <p>Misc. Charges</p>
                                                                 </div>
                                                                 <div class="font-semibold">
-                                                                    <p>RM 0.00</p>
+                                                                    <p>RM 1.00</p>
                                                                 </div>
                                                             </div>
 
@@ -258,6 +258,14 @@
                                                                 </div>
                                                                 <div class="text-gray-500">
                                                                     <p>RM 0.00</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex justify-between">
+                                                                <div class="text-gray-500">
+                                                                    <p>FPX Payment Fees</p>
+                                                                </div>
+                                                                <div class="text-gray-500">
+                                                                    <p>RM 1.00</p>
                                                                 </div>
                                                             </div>
 
@@ -297,9 +305,9 @@
                                                             </div>
                                                             <div class="text-lg font-semibold">
                                                                 @if (auth()->user()->client == 2)
-                                                                    <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format($total-$comm,2) : number_format($total,2) }}</p>
+                                                                    <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($total-$comm)+1,2) : number_format($total+1,2) }}</p>
                                                                 @else
-                                                                    <p>RM {{number_format($total+$postage,2)}}</p>
+                                                                    <p>RM {{number_format(($total+$postage)+1,2)}}</p>
                                                                 @endif
                                                             </div>
                                                         </div>
