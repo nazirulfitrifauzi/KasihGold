@@ -54,6 +54,19 @@ class PendingApprovalKap extends Component
         return redirect()->to('/pending-approval-kap');
     }
 
+    public function delete($id)
+    {
+        //Delete specific user
+        User::whereId($id)->delete();
+
+        //flash message to initiator
+        session()->flash('success');
+        session()->flash('title', 'Deleted!');
+        session()->flash('message', 'Agent has been deleted.');
+
+        return redirect()->to('/pending-approval-kap');
+    }
+
     public function render()
     {
         return view('livewire.page.kap.pending-approval-kap');
