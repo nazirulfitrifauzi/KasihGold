@@ -9,6 +9,7 @@ use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
 use App\Models\InvInfo;
 use App\Models\PhysicalConvert;
+use App\Models\ToyyibBills;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
@@ -116,6 +117,11 @@ class ToyyibpayController extends Controller
                         'updated_at'        => now(),
                     ]);
                 }
+
+                $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
+                    ->first();
+                $toyyibBill->status = 1;
+                $toyyibBill->save();
             }
 
             session()->flash('message', 'Your Digital Gold Purchase is Successful.');
