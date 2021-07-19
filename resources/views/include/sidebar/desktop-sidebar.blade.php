@@ -239,7 +239,7 @@
                 @endif
 
                 @if(auth()->user()->client == 2)
-                    <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc_kap.pdf') }}" uri="">
+                    <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc4th.pdf') }}" uri="">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif

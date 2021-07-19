@@ -228,7 +228,7 @@
                             <div class="flex items-center">
                                 <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-yellow-400 transition duration-150 ease-in-out form-checkbox">
                                 <label for="tnc" class="block ml-2 text-sm text-gray-900">
-                                    I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                    I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc4th.pdf') }}">terms and conditions.</a>
                                 </label>
                             </div>
                             @error('tnc')
