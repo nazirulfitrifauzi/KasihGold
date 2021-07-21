@@ -19,22 +19,25 @@ class CommissionKap extends Component
     }
 
     protected $rules = [
-        'items.*.agent_rate' => 'required',
+        'items.*' => 'required',
+        'items.*.id' => 'required',
+        'items.*.agent_rate' => 'required|between:0.01,99.99',
     ];
 
-    public function updateRate($key, $itemID)
+    public function submit()
     {
-        $data = $this->validate([
-            'items.*.agent_rate'          => 'required',
-        ]);
+        $this->validate();
 
-        CommissionRateKap::updateOrCreate([
-            'item_id' => $itemID
-        ], [
-            'agent_rate'    => $this->items[$key]['agent_rate'],
-            'created_by'    => auth()->user()->id,
-            'created_at'    => now(),
-        ]);
+        $max = $this->items->count();
+        for ($x = 0; $x < $max; $x++) {
+            CommissionRateKap::updateOrCreate([
+                'item_id'       => $this->items[$x]['id']
+            ], [
+                'agent_rate'    => $this->items[$x]['agent_rate'],
+                'created_by'    => auth()->user()->id,
+                'created_at'    => now(),
+            ]);
+        }
 
         session()->flash('success');
         session()->flash('title', 'Success!');
