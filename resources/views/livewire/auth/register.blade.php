@@ -10,7 +10,7 @@
                     <div class="z-40 flex justify-between w-full">
                         <a href="/">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 bg-white p-2 rounded-md">
+                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 p-2 bg-white rounded-md">
                             </div>
                         </a>
                         <a href="{{ route('login') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
@@ -65,7 +65,7 @@
                         <x-regtab.title name="0" livewire="">
                             <div class="flex justify-center space-x-1">
                                 <x-heroicon-o-user class="w-5 h-5" />
-                                <p>Users</p>
+                                <p>Customer</p>
                             </div>
                         </x-regtab.title>
                         <x-regtab.title name="1" livewire="">
