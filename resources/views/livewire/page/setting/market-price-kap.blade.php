@@ -12,6 +12,7 @@
         @elseif (session('warning'))
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}" />
         @endif
+
         <x-form.basic-form wire:submit.prevent="submit">
             <x-slot name="content">
                 <div class="flex items-center mb-4">
