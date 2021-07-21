@@ -818,7 +818,7 @@
             },
             colors: ['#84ff80'],
             title: {
-                text: @json(array_sum($chart1->pluck('bought_price')->toArray())),
+                text: accounting.formatMoney(@json(array_sum($chart1->pluck('bought_price')->toArray()))),
                 offsetX: 0,
                 style: {
                     fontSize: '24px',
