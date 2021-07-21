@@ -115,8 +115,10 @@ Route::middleware('auth')->group(function () {
 
         //-- KASIH AP --//
         Route::get('pending-approval-kap-agent', [DashboardController::class, 'pendingApprovalAgent'])->name('pending-approval-kap-agent');
+        Route::post('pending-approval-kap-agent/{id}', [DashboardController::class, 'delete'])->name('pending-approval-kap-agent-delete');
         Route::get('my-agent-kap', [DashboardController::class, 'myAgent'])->name('my-agent-kap');
         Route::get('pending-approval-kap', [DashboardController::class, 'pendingApproval'])->name('pending-approval-kap');
+        Route::post('pending-approval-kap/{id}', [DashboardController::class, 'delete'])->name('pending-approval-kap-delete');
         Route::get('cashback', [DashboardController::class, 'cashback'])->name('cashback');
         Route::get('todays-transaction', [DashboardController::class, 'todaysTransaction'])->name('todays-transaction');
 

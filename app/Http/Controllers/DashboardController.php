@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -34,5 +35,14 @@ class DashboardController extends Controller
     public function todaysTransaction()
     {
         return view('pages.kap.todays-transaction');
+    }
+
+    public function delete($id)
+    {
+        User::whereId($id)->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }

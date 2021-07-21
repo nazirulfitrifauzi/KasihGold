@@ -118,6 +118,17 @@
                                             Approve
                                         </button>
                                     @endif
+
+                                            
+                                        <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none" 
+                                                data-id="{{ $lists->id }}" 
+                                                onclick="deleteConfirmation({{ $lists->id }})"
+                                        >
+                                        <x-heroicon-o-trash class="w-5 h-5 mr-1" />
+                                            Delete
+                                        </button>
+                                        <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap-agent') }}/"  />
+
                                 </div>
                             </x-table.table-body>
                         </tr>
