@@ -57,10 +57,13 @@ Route::get('/clear-cache', function () {
 
 Route::middleware('guest')->group(function () {
     /** Landing Page */
-    Route::view('/', 'welcome')->name('leadingpage');
-    Route::view('/mengenai-kami', 'about')->name('aboutUs');
+    // Route::view('/', 'welcome')->name('leadingpage');
+    // Route::view('/mengenai-kami', 'about')->name('aboutUs');
 
-    // /** Authentication *
+    // Bypass landing page
+    Route::get('/', Login::class)->name('login');
+
+    // ** Authentication *
     Route::get('login', Login::class)->name('login');
     Route::get('register', Register::class)->name('register');
     Route::get('password/reset', Email::class)->name('password.request');
