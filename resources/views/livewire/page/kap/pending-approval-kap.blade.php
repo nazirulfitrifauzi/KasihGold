@@ -26,8 +26,8 @@
                 </div>
             </div>
 
-            <div class="flex">
-                <div class="flex justify-end">
+            <div class="flex justify-end">
+                <div class="w-56">
                     <x-form.search-input placeholder="Search by email address" wire:model="search"/>
                 </div>
             </div>
