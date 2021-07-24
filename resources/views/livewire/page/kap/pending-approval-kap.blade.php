@@ -24,8 +24,11 @@
                         <p class="text-sm">Waiting<span class="animate-ping">...</span></p>
                     </div>
                 </div>
-                <div class="flex items-center">
-                    <x-form.search-input />
+            </div>
+
+            <div class="flex">
+                <div class="flex justify-end">
+                    <x-form.search-input placeholder="Search by email address" wire:model="search"/>
                 </div>
             </div>
 
@@ -115,18 +118,15 @@
                                             Approve
                                         </button>
                                     @endif
-                                            
-                                        <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none" 
-                                                data-id="{{ $lists->id }}" 
-                                                onclick="deleteConfirmation({{ $lists->id }})"
-                                        >
-                                        <x-heroicon-o-trash class="w-5 h-5 mr-1" />
-                                            Delete
-                                        </button>
-                                        <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap') }}/"  />
 
-                                        
-
+                                    <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none"
+                                            data-id="{{ $lists->id }}"
+                                            onclick="deleteConfirmation({{ $lists->id }})"
+                                    >
+                                    <x-heroicon-o-trash class="w-5 h-5 mr-1" />
+                                        Delete
+                                    </button>
+                                    <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap') }}/"  />
                                 </div>
                             </x-table.table-body>
 
@@ -140,7 +140,7 @@
                     @endforelse
                 </x-slot>
                 <div class="px-2 py-2">
-                    {{-- {{ $list->links('pagination::tailwind') }} --}}
+                    {{ $list->links('pagination-links') }}
                 </div>
             </x-table.table>
         </div>

@@ -9,14 +9,17 @@ use App\Models\UserDownline;
 use App\Models\UserUpline;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PendingApprovalKap extends Component
 {
-    public $list;
+    use WithPagination;
 
-    public function mount()
+    public $search = '';
+
+    public function updatingSearch()
     {
-        $this->list = User::whereClient(2)->whereRole(3)->whereActive(0)->get();
+        $this->resetPage();
     }
 
     public function approve($id)
@@ -54,21 +57,14 @@ class PendingApprovalKap extends Component
         return redirect()->to('/pending-approval-kap');
     }
 
-    public function delete($id)
-    {
-        //Delete specific user
-        User::whereId($id)->delete();
-
-        //flash message to initiator
-        session()->flash('success');
-        session()->flash('title', 'Deleted!');
-        session()->flash('message', 'Agent has been deleted.');
-
-        return redirect()->to('/pending-approval-kap');
-    }
-
     public function render()
     {
-        return view('livewire.page.kap.pending-approval-kap');
+        return view('livewire.page.kap.pending-approval-kap', [
+            'list' => User::whereClient(2)
+                            ->whereRole(3)
+                            ->whereActive(0)
+                            ->where('email', 'like', '%' . $this->search . '%')
+                            ->paginate(10),
+        ]);
     }
 }
