@@ -370,11 +370,11 @@
                                 </tr>
                                 <tr>
                                     <td class="content-cell" style="padding-top: 2px !important;">
-                                        <p style="font-weight: bold; font-size:20px;">Verify Your email address</p>
+                                        <p style="font-weight: bold; font-size:20px; color:#2b2b2b">Verify Your email address</p>
                                         <blockquote className="relative p-4 text-xl italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 quote">
-                                            <p className="mb-1">Please verify this email address by clicking button below</p>
+                                            <p className="mb-1" style="color:#2b2b2b">Please verify this email address by clicking button below</p>
                                         </blockquote>
-                                        <a href="{{ config('app.url') }}/profile" class="button button-warning">Verify your email</a>
+                                        <a href=#" class="button button-warning">Verify your email</a>
                                     </td>
                                 </tr>
                             </table>
