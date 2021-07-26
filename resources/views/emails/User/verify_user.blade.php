@@ -369,17 +369,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="content-cell" style="padding-top: 4px !important;">
-                                        <p style="font-weight: bold; font-size:20px; color:#48bb78">Congratulations! You are now a gold investor! </p>
-
+                                    <td class="content-cell" style="padding-top: 2px !important;">
+                                        <p style="font-weight: bold; font-size:20px;">Verify Your email address</p>
                                         <blockquote className="relative p-4 text-xl italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 quote">
-                                            <p className="mb-4">"Successful investing starts with courage."</p>
-                                            <p className="mb-4">"Warren Buffet"</p>
+                                            <p className="mb-1">Please verify this email address by clicking button below</p>
                                         </blockquote>
-
-                                        <p class="mt-6">Your request to access the system has been approved.</p>
-                                        <p>Please sign in with your credential.</p>
-                                        <a href="{{ config('app.url') }}/login" class="button button-warning">Login here</a>
+                                        <a href="{{ config('app.url') }}/profile" class="button button-warning">Verify your email</a>
                                     </td>
                                 </tr>
                             </table>
