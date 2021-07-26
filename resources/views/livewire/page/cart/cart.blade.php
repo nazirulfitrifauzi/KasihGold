@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col w-full mt-8 intro-y sm:flex-row">
             <h2 class="text-lg font-medium">
-                Cart
+                Shopping Cart
             </h2>
         </div>
             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
@@ -19,41 +19,55 @@
                                             <x-table.table-header class="text-left" value="Quantity" sort="" />
                                             <x-table.table-header class="text-left" value="Total Price" sort="" />
                                             <x-table.table-header class="text-center" value="Actions" sort="" />
-                                        </div>
+                                        
                                     </x-slot>
                                     <x-slot name="tbody">
+                                       
+                                        @foreach ($this->karts as $cartInfo)
                                         @php
-                                        $total=0;
-                                        $comm=0
-                                        @endphp
-                                        @foreach ($cart as $carts)
-                                        @php
-                                        $total += $carts->products->item->marketPrice->price*$carts->prod_qty;
-                                        $comm += $carts->products->item->commissionKAP->agent_rate*$carts->prod_qty;
+                                            $category = "qty_".$cartInfo->products->prod_cat
                                         @endphp
                                         <tr>
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                                 <div class="flex flex-col items-center space-x-3 lg:flex-row">
                                                     <img class="object-cover w-16 h-16 rounded"
-                                                        src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
+                                                        src="{{ asset('img/gold/'.$cartInfo->products->prod_img1) }}" alt="">
                                                     <div class="mt-4 lg:mt-0">
-                                                        <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
+                                                        <h3 class="text-sm font-semibold">{{$cartInfo->products->prod_name}}</h3>
                                                     </div>
                                                 </div>
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                <p>RM {{ number_format($carts->products->item->marketPrice->price, 2) }}</p>
+                                                <p>RM {{ number_format($cartInfo->products->item->marketPrice->price, 2) }}</p>
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                                 <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
-                                                    <button data-action="decrement"
+                                                    
+                                                    
+                                                    @if($this->$category==1)
+                                                    <button  
+                                                    btnRoute="#" 
+                                                    data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})"
                                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
-                                                        <span class="m-auto text-2xl font-thin">−</span>
+                                                        <span class="m-auto text-2xl font-thin">-</span>
                                                     </button>
-                                                    <input type="text" class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default" name="custom-input-number" value="{{$carts->prod_qty}}"></input>
-                                                    <button data-action="increment"
+                                                    @else
+                                                    <button  wire:click="subProd({{$cartInfo->products->prod_weight}})"
+                                                        class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
+                                                        <span class="m-auto text-2xl font-thin">-</span>
+                                                    </button>
+                                                    @endif
+
+                                                    <input  type="text"
+                                                            class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                                            hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                                            justify-center
+                                                            text-gray-700 
+                                                            outline-none"
+                                                            name="custom-input-number" wire:model="qty_{{$cartInfo->products->prod_cat}}" value="qty_{{$cartInfo->products->prod_cat}}" ></input>
+                                                    <button  wire:click="addProd({{$cartInfo->products->prod_weight}})"
                                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                         <span class="m-auto text-2xl font-thin">+</span>
                                                     </button>
@@ -61,14 +75,14 @@
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                <p>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
+                                                <p>RM {{ number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty, 2) }}</p>
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
                                                 <div class="flex justify-center">
                                                     <x-btn.tooltip-btn  class="flex items-center justify-center text-xs bg-red-600 rounded-full hover:bg-red-700"  
                                                         btnRoute="#" tooltipTitle="Delete" 
-                                                        data-id="{{ $carts->id }}" onclick="deleteConfirmation({{ $carts->id }})">
+                                                        data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})">
                                                         <x-heroicon-o-trash class="w-4 h-4 text-white" />
                                                     </x-btn.tooltip-btn>
 
@@ -89,38 +103,52 @@
                             <!--Start Mobile view-->
                             <div class="block lg:hidden">
                                 <div class="p-4 border-2 rounded-md">
+                                        
+                                        @foreach ($this->karts as $cartInfo)
                                         @php
-                                        $total=0;
-                                        $comm=0
-                                        @endphp
-                                        @foreach ($cart as $carts)
-                                        @php
-                                        $total += $carts->products->item->marketPrice->price*$carts->prod_qty;
-                                        $comm += $carts->products->item->commissionKAP->agent_rate*$carts->prod_qty;
+                                            $category = "qty_".$cartInfo->products->prod_cat
                                         @endphp
                                         <div class="py-2 border-b-2">
                                             <div class="flex items-center justify-between">
                                                 <div>
-                                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$carts->products->prod_img1) }}" alt="">
-                                                    <h3 class="text-sm font-semibold">{{$carts->products->prod_name}}</h3>
+                                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$cartInfo->products->prod_img1) }}" alt="">
+                                                    <h3 class="text-sm font-semibold">{{$cartInfo->products->prod_name}}</h3>
                                                 </div>
                                                 <div>
                                                     <div class="flex justify-end pb-2">
                                                         <x-btn.tooltip-btn  class="flex items-center justify-center text-xs bg-red-600 rounded-full hover:bg-red-700"  
                                                             btnRoute="#" tooltipTitle="Delete" 
-                                                            data-id="{{ $carts->id }}" onclick="deleteConfirmation({{ $carts->id }})">
+                                                            data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})">
                                                             <x-heroicon-o-trash class="w-4 h-4 text-white" />
                                                         </x-btn.tooltip-btn>
 
                                                         <x-popup.delete name="deleteConfirmation" variable="id" posturl="{{ url('/cart') }}/"  />
                                                     </div>
+                                                    
                                                     <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
-                                                        <button data-action="decrement"
+                                                        
+                                                        @if($this->$category==1)
+                                                        <button  
+                                                        btnRoute="#" 
+                                                        data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})"
                                                             class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
-                                                            <span class="m-auto text-2xl font-thin">−</span>
+                                                            <span class="m-auto text-2xl font-thin">-</span>
                                                         </button>
-                                                        <input type="text" class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default" name="custom-input-number" value="{{$carts->prod_qty}}"></input>
-                                                        <button data-action="increment"
+                                                        @else
+                                                        <button  wire:click="subProd({{$cartInfo->products->prod_weight}})"
+                                                            class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
+                                                            <span class="m-auto text-2xl font-thin">-</span>
+                                                        </button>
+                                                        @endif
+
+                                                        <input  type="text"
+                                                                class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                                                hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                                                justify-center
+                                                                text-gray-700 
+                                                                outline-none"
+                                                                name="custom-input-number" wire:model="qty_{{$cartInfo->products->prod_cat}}" value="qty_{{$cartInfo->products->prod_cat}}" ></input>
+                                                        <button  wire:click="addProd({{$cartInfo->products->prod_weight}})"
                                                             class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                             <span class="m-auto text-2xl font-thin">+</span>
                                                         </button>
@@ -130,11 +158,12 @@
                                             <div class="flex justify-between mt-1">
                                                 <div>
                                                     <p class="text-xs text-gray-500">UNIT PRICE</p>
-                                                    <p class='text-sm font-semibold'>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
+                                                    <p class='text-sm font-semibold'>RM {{ number_format($cartInfo->products->item->marketPrice->price, 2) }}</p>
                                                 </div>
                                                 <div>
                                                     <p class="text-xs text-gray-500">TOTAL PRICE</p>
-                                                    <p class='text-sm font-semibold text-right'>RM {{ number_format($carts->products->item->marketPrice->price*$carts->prod_qty, 2) }}</p>
+                                                    <p class='text-sm font-semibold text-right'>RM {{ number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty, 2) }}</p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -217,7 +246,7 @@
                                                 <p>Sub Total</p>
                                             </div>
                                             <div class="text-lg font-semibold">
-                                                <p>RM {{number_format($total+1,2)}}</p>
+                                                <p>RM {{number_format($this->total+1,2)}}</p>
                                             </div>
                                         </div>
                                         <div class="flex flex-col justify-between lg:flex-row">
@@ -225,7 +254,7 @@
                                                 <p>Total Payment</p>
                                             </div>
                                             <div class="text-lg font-semibold">
-                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($total-$comm)+1,2) : number_format($total+1,2) }}</p>
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($this->total-$this->comm)+1,2) : number_format($this->total+1,2) }}</p>
                                             </div>
                                         </div>
                                     </div>
