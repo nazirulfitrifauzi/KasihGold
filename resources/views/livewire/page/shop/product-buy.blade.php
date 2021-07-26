@@ -193,6 +193,7 @@
                                                                     alt="">
                                                                 <div class="mx-3 my-3">
                                                                     <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
+                                                                    <h6 class="text-sm text-gray-600">{{$prod->prod_qty}} pcs</h6>
                                                                 </div>
                                                             </div>
                                                             <span class="my-3 font-semibold text-gray-600">
