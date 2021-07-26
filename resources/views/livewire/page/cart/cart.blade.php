@@ -39,7 +39,7 @@
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                <p>RM {{ number_format($cartInfo->products->item->marketPrice->price, 2) }}</p>
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) : number_format($cartInfo->products->item->marketPrice->price,2) }}</p>
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
@@ -75,7 +75,7 @@
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                <p>RM {{ number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty, 2) }}</p>
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$this->$category),2) : number_format($cartInfo->products->item->marketPrice->price*$this->$category,2) }}</p>
                                             </x-table.table-body>
 
                                             <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
@@ -158,12 +158,12 @@
                                             <div class="flex justify-between mt-1">
                                                 <div>
                                                     <p class="text-xs text-gray-500">UNIT PRICE</p>
-                                                    <p class='text-sm font-semibold'>RM {{ number_format($cartInfo->products->item->marketPrice->price, 2) }}</p>
+                                                    <p class='text-sm font-semibold'>RM {{ (auth()->user()->isAgentKAP()) ? number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) : number_format($cartInfo->products->item->marketPrice->price,2) }}</p>
                                                 </div>
                                                 <div>
                                                     <p class="text-xs text-gray-500">TOTAL PRICE</p>
-                                                    <p class='text-sm font-semibold text-right'>RM {{ number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty, 2) }}</p>
-
+                                                    <p class='text-sm font-semibold text-right'>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$this->$category),2) : number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty,2) }}</p>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
