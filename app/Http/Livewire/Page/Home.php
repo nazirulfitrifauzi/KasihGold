@@ -114,12 +114,13 @@ class Home extends Component
             })->whereClient(2)->whereRole(4)->whereActive(0)->get();
             $this->activeUser = UserDownline::where('user_id', $logged_user)->get();
             $x= User::whereId($logged_user)->first();
-            $this->todayTrans = 0;
+            $downline_id = array();
             foreach($x->downline as $y) {
-                foreach ($y->user->gold as $z) {
-                    $this->todayTrans += $z->bought_price;
-                }
+                $downline_id[] = array($y->downline_id);
             }
+            $this->todayTrans = GoldbarOwnership::whereIn('user_id', $downline_id)
+                                        ->whereDate('created_at', '=', now()->format('Y-m-d'))
+                                        ->sum('bought_price');
             $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->sum('commission');
             $this->myWallet = array_sum(GoldbarOwnership::where('user_id', auth()->user()->id)->pluck('bought_price')->toArray());
 
