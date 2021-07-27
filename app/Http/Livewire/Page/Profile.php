@@ -122,7 +122,7 @@ class Profile extends Component
                 $data = $this->validate([
                     'agentId'       => 'required',
                     'name'          => 'required',
-                    'ic'            => 'required',
+                    'ic'            => 'required|unique:profile_personal,ic',
                     'email'         => 'required',
                     'gender'        => 'required',
                     'phone1'        => 'required',
@@ -137,7 +137,7 @@ class Profile extends Component
                 $data = $this->validate([
                     'agentId'       => 'required',
                     'name'          => 'required',
-                    'ic'            => 'required|unique:profile_personal,ic',
+                    'ic'            => 'required',
                     'email'         => 'required',
                     'gender'        => 'required',
                     'phone1'        => 'required',
@@ -151,11 +151,11 @@ class Profile extends Component
             }
         } else {
             // check existing data
-            $check = Profile_personal::where('ic', $this->ic)->exists();
+            $check = Profile_personal::where('comp_no', $this->comp_no)->exists();
             if ($check == 'true') {
                 $data = $this->validate([
                     'name'          => 'required',
-                    'comp_no'       => 'required',
+                    'comp_no'       => 'required|unique:profile_personal,comp_no',
                     'email'         => 'required',
                     'gender'        => 'required',
                     'phone1'        => 'required',
@@ -170,7 +170,7 @@ class Profile extends Component
             } else {
                 $data = $this->validate([
                     'name'          => 'required',
-                    'comp_no'       => 'required|unique:profile_personal,comp_no',
+                    'comp_no'       => 'required',
                     'email'         => 'required',
                     'gender'        => 'required',
                     'phone1'        => 'required',
