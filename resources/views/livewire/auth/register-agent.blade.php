@@ -56,14 +56,14 @@
                         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
                     @endif
                     <h2 class="text-2xl font-extrabold text-left text-gray-700 md:text-3xl">
-                        Register
+                        Register Agent
                     </h2>
                     <h2 class="max-w-sm mt-2 text-xs font-semibold leading-7 text-left text-gray-500 md:text-base">
                         Welcome! Please fill information in below
                     </h2>
                 </div>
 
-                <form wire:submit.prevent="register">
+                <form wire:submit.prevent="registerAgent" x-cloak>
                     <div>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
@@ -101,32 +101,11 @@
                         </div>
                     </x-general.grid>
 
-                    {{-- Hide for Live KAP
-                    <div class="mt-6">
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
-                                <option value="1">KASIH GOLD</option></option>
-                                <option value="2">KASIH AP</option>
-                            </select>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="mt-6"> hide for KAP live
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
-                                <option value="1">INDIVIDUAL</option>
-                                <option value="2">INSTITUTION</option>
-                            </select>
-                        </div>
-                    </div> --}}
-
                     <div class="mt-6">
                         <div class="flex items-center">
                             <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-yellow-400 transition duration-150 ease-in-out form-checkbox">
                             <label for="tnc" class="block ml-2 text-sm text-gray-900">
-                                I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc4th.pdf') }}">terms and conditions.</a>
                             </label>
                         </div>
                         @error('tnc')
