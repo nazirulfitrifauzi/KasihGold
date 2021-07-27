@@ -44,7 +44,7 @@ class ProductDetail extends Component
             [
                 'user_id'       => auth()->user()->id,
                 'item_id'       => $this->iid,
-                'prod_qty'      => $prod_qty,
+                'prod_qty'      => $this->prod_qty,
                 'created_by'    => auth()->user()->id,
                 'updated_by'    => auth()->user()->id,
                 'created_at'    => now(),
@@ -69,7 +69,7 @@ class ProductDetail extends Component
             [
                 'user_id'       => auth()->user()->id,
                 'item_id'       => $this->iid,
-                'prod_qty'      => $prod_qty,
+                'prod_qty'      => $this->prod_qty,
                 'created_by'    => auth()->user()->id,
                 'updated_by'    => auth()->user()->id,
                 'created_at'    => now(),
