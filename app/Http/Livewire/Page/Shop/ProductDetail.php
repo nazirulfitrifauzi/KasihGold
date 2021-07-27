@@ -15,7 +15,26 @@ class ProductDetail extends Component
     public $iid;
     public $prod_qty;
 
-    public function addCart($prod_qty)
+    public function mount()
+    {
+        $this->prod_qty = 1;
+    }
+
+    public function addQty()
+    {
+        if ($this->prod_qty < 99) {
+            $this->prod_qty++;
+        }
+    }
+
+    public function subQty()
+    {
+        if ($this->prod_qty > 1) {
+            $this->prod_qty--;
+        }
+    }
+
+    public function addCart($qty)
     {
         InvCart::updateOrCreate(
             [
@@ -40,7 +59,7 @@ class ProductDetail extends Component
         return redirect('product/detail?iid=' . $this->iid);
     }
 
-    public function buyNow($prod_qty)
+    public function buyNow($qty)
     {
         InvCart::updateOrCreate(
             [
@@ -70,11 +89,10 @@ class ProductDetail extends Component
             return view('livewire.page.shop.product-detail', [
                 'info' => $masterProducts,
             ]);
-
         } else { // KG Customer, agent, admin dashboard
             $masterProducts = InvMaster::join('inv_items', 'inv_items.id', '=', 'inv_masters.item_id')
-            ->join('inv_info', 'inv_info.prod_code', '=', 'inv_items.code')
-            ->where('inv_info.id', $this->iid)
+                ->join('inv_info', 'inv_info.prod_code', '=', 'inv_items.code')
+                ->where('inv_info.id', $this->iid)
                 ->get();
             $productDetails = $masterProducts->first();
             $sellerInfo = User::where('id', $productDetails->user_id)->first();
