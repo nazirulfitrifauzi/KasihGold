@@ -126,7 +126,7 @@
                                     <div class="flex">
                                         <button type="button" wire:click="buyNow({{$this->prod_qty}})" 
                                             class="px-2 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
-                                            Buy Now{{$this->prod_qty}}
+                                            Buy Now
                                         </button>
                                         <button type="button" wire:click="addCart({{$prod_qty}})" 
                                             class="px-2 py-2 ml-2 font-semibold text-white bg-yellow-400 h-14 rounded-xl hover:bg-yellow-300 focus:outline-none">
