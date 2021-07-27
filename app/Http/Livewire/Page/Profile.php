@@ -85,8 +85,8 @@ class Profile extends Component
     public function updated($propertyName) {
         $this->validateOnly($propertyName, [
             'name'              => 'required',
-            'ic'                => auth()->user()->type == 1 ? 'required|unique:profile_personal,ic' : '',
-            'comp_no'           => auth()->user()->type == 2 ? 'required|unique:profile_personal,comp_no' : '',
+            'ic'                => auth()->user()->type == 1 ? 'required' : '',
+            'comp_no'           => auth()->user()->type == 2 ? 'required' : '',
             'gender'            => 'required',
             'phone1'            => 'required',
             'fax_no'            => auth()->user()->type == 2 ? 'required' : '',
@@ -116,35 +116,73 @@ class Profile extends Component
 
     public function savePersonal() {
         if (auth()->user()->type == 1) {
-            $data = $this->validate([
-                'agentId'       => 'required',
-                'name'          => 'required',
-                'ic'            => 'required|unique:profile_personal,ic',
-                'email'         => 'required',
-                'gender'        => 'required',
-                'phone1'        => 'required',
-                'address1'      => 'required',
-                'address2'      => 'required',
-                'address3'      => 'nullable',
-                'postcode'      => 'required',
-                'town'          => 'required',
-                'state'         => 'required',
-            ]);
+            // check existing data
+            $check = Profile_personal::where('ic', $this->ic)->exists();
+            if ($check == 'true') {
+                $data = $this->validate([
+                    'agentId'       => 'required',
+                    'name'          => 'required',
+                    'ic'            => 'required',
+                    'email'         => 'required',
+                    'gender'        => 'required',
+                    'phone1'        => 'required',
+                    'address1'      => 'required',
+                    'address2'      => 'required',
+                    'address3'      => 'nullable',
+                    'postcode'      => 'required',
+                    'town'          => 'required',
+                    'state'         => 'required',
+                ]);
+            } else {
+                $data = $this->validate([
+                    'agentId'       => 'required',
+                    'name'          => 'required',
+                    'ic'            => 'required|unique:profile_personal,ic',
+                    'email'         => 'required',
+                    'gender'        => 'required',
+                    'phone1'        => 'required',
+                    'address1'      => 'required',
+                    'address2'      => 'required',
+                    'address3'      => 'nullable',
+                    'postcode'      => 'required',
+                    'town'          => 'required',
+                    'state'         => 'required',
+                ]);
+            }
         } else {
-            $data = $this->validate([
-                'name'          => 'required',
-                'comp_no'       => 'required|unique:profile_personal,comp_no',
-                'email'         => 'required',
-                'gender'        => 'required',
-                'phone1'        => 'required',
-                'fax_no'        => 'required',
-                'address1'      => 'required',
-                'address2'      => 'required',
-                'address3'      => 'nullable',
-                'postcode'      => 'required',
-                'town'          => 'required',
-                'state'         => 'required',
-            ]);
+            // check existing data
+            $check = Profile_personal::where('ic', $this->ic)->exists();
+            if ($check == 'true') {
+                $data = $this->validate([
+                    'name'          => 'required',
+                    'comp_no'       => 'required',
+                    'email'         => 'required',
+                    'gender'        => 'required',
+                    'phone1'        => 'required',
+                    'fax_no'        => 'required',
+                    'address1'      => 'required',
+                    'address2'      => 'required',
+                    'address3'      => 'nullable',
+                    'postcode'      => 'required',
+                    'town'          => 'required',
+                    'state'         => 'required',
+                ]);
+            } else {
+                $data = $this->validate([
+                    'name'          => 'required',
+                    'comp_no'       => 'required|unique:profile_personal,comp_no',
+                    'email'         => 'required',
+                    'gender'        => 'required',
+                    'phone1'        => 'required',
+                    'fax_no'        => 'required',
+                    'address1'      => 'required',
+                    'address2'      => 'required',
+                    'address3'      => 'nullable',
+                    'postcode'      => 'required',
+                    'town'          => 'required',
+                    'state'         => 'required',
+                ]);
+            }
         }
 
         User::where('id', auth()->user()->id)
