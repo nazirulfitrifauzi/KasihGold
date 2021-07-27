@@ -98,26 +98,37 @@
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
                                 <div class="flex flex-col py-4 space-x-0 lg:flex-row lg:space-x-4">
-                                    <div class="relative mb-4 lg:mb-0 ">
-                                        <div>
-                                            <select value="prod_qty" wire:model="prod_qty" default="yes"
-                                                class="flex items-start pt-5 pb-1 pl-4 pr-8 border border-gray-200 appearance-none cursor-pointer rounded-xl h-14">
-                                                @for ($i = 1; $i <= 9; $i++)
-                                                <option value="{{$i}}">{{$i}}</option>
-                                                @endfor
-                                            </select>
-                                        </div>
-                                        <div
-                                            class="absolute top-0 block px-4 py-1 text-xs font-semibold tracking-wide text-center text-gray-400 uppercase">
-                                            Qty
-                                        </div>
+                                    
+
+                                    <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
+                                                    
+                                    <button type="button" wire:click="subQty"
+                                        class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">-</span>
+                                    </button>
+                                    
+                                    <input  type="text"
+                                        class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                        hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                        justify-center
+                                        text-gray-700 
+                                        outline-none"
+                                        name="custom-input-number" wire:model="prod_qty"  >
+                                    </input>
+
+                                    <button type="button" wire:click="addQty"
+                                        class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>      
+                                        
                                     </div>
+
                                     <div class="flex">
-                                        <button type="button" @if ($prod_qty==null) wire:click="buyNow({{1}})" @else wire:click="buyNow({{$prod_qty}})" @endif
+                                        <button type="button" wire:click="buyNow({{$this->prod_qty}})" 
                                             class="px-2 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
-                                            Buy Now
+                                            Buy Now{{$this->prod_qty}}
                                         </button>
-                                        <button type="button" @if ($prod_qty==null) wire:click="addCart({{1}})" @else wire:click="addCart({{$prod_qty}})" @endif
+                                        <button type="button" wire:click="addCart({{$prod_qty}})" 
                                             class="px-2 py-2 ml-2 font-semibold text-white bg-yellow-400 h-14 rounded-xl hover:bg-yellow-300 focus:outline-none">
                                             Add to Cart
                                         </button>
