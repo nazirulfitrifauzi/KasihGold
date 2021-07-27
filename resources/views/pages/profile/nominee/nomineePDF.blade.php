@@ -196,7 +196,7 @@
                                     c.Penamaan baharu dibuat.<br>
                                     d.Maklumat yang dikemukakan dalam Penamaan pengedar adalah maklumat palsu.<br>
                                     e.Penama meninggal dunia (selepas kematian pengedar) dan insentif pengedar belum dibayar kepada penama.<br>
-                                    f.Tiada notis dibuat oleh penama kepada Kasih ap Gold Marketing S/B dalam tempoh 3 bulan dari tarikh kematian pengedar.<br>
+                                    f.Tiada notis dibuat oleh penama kepada Kasih ap Gold dalam tempoh 3 bulan dari tarikh kematian pengedar.<br>
                                 </p>
                                 <br>
                             </td>
