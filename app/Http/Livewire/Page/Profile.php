@@ -19,7 +19,7 @@ class Profile extends Component
     use WithFileUploads;
 
     public $temp_code;
-    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $agentId, $membership_id;
+    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $agentId, $membership_id, $old_ic, $passport, $gov_id;
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment, $bankAccId;
     public $states, $banks, $agent;
     public $movement;
@@ -60,6 +60,9 @@ class Profile extends Component
         $this->gender_description = ucwords(auth()->user()->profile->gender->description ?? "MALE");
         $this->phone1 = auth()->user()->profile->phone1 ?? "";
         $this->fax_no = auth()->user()->profile->fax_no ?? "";
+        $this->old_ic = auth()->user()->profile->old_ic ?? "";
+        $this->passport = auth()->user()->profile->passport ?? "";
+        $this->gov_id = auth()->user()->profile->gov_id ?? "";
         $this->address1 = auth()->user()->profile->address1 ?? "";
         $this->address2 = auth()->user()->profile->address2 ?? "";
         $this->address3 = auth()->user()->profile->address3 ?? "";
@@ -82,8 +85,8 @@ class Profile extends Component
     public function updated($propertyName) {
         $this->validateOnly($propertyName, [
             'name'              => 'required',
-            'ic'                => auth()->user()->type == 1 ? 'required' : '',
-            'comp_no'           => auth()->user()->type == 2 ? 'required' : '',
+            'ic'                => auth()->user()->type == 1 ? 'required|unique:profile_personal,ic' : '',
+            'comp_no'           => auth()->user()->type == 2 ? 'required|unique:profile_personal,comp_no' : '',
             'gender'            => 'required',
             'phone1'            => 'required',
             'fax_no'            => auth()->user()->type == 2 ? 'required' : '',
@@ -116,7 +119,7 @@ class Profile extends Component
             $data = $this->validate([
                 'agentId'       => 'required',
                 'name'          => 'required',
-                'ic'            => 'required',
+                'ic'            => 'required|unique:profile_personal,ic',
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
@@ -130,7 +133,7 @@ class Profile extends Component
         } else {
             $data = $this->validate([
                 'name'          => 'required',
-                'comp_no'       => 'required',
+                'comp_no'       => 'required|unique:profile_personal,comp_no',
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
@@ -157,6 +160,9 @@ class Profile extends Component
                 'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
                 'gender_id'     => $data['gender'],
                 'phone1'        => $data['phone1'],
+                'old_ic'        => $this->old_ic,
+                'passport'      => $this->passport,
+                'gov_id'        => $this->gov_id,
                 'address1'      => $data['address1'],
                 'address2'      => $data['address2'],
                 'address3'      => $data['address3'],

@@ -47,9 +47,9 @@
                         <x-form.input type="email" label="Email Address" wire:model="email" value="email" disable="true"/>
                         @if (auth()->user()->type == "1")
                             <x-form.input label="New IC" wire:model="ic" value="ic"/>
-                            <x-form.input label="Old IC" value=""/>
-                            <x-form.input label="Passport / Foreign ID" value=""/>
-                            <x-form.input label="Police / Army ID" value=""/>
+                            <x-form.input label="Old IC" wire:model="old_ic" value="old_ic"/>
+                            <x-form.input label="Passport / Foreign ID" wire:model="passport" value="passport"/>
+                            <x-form.input label="Police / Army ID" wire:model="gov_id" value="gov_id"/>
                         @endif
                         @if (auth()->user()->type == "2")
                             <x-form.input label="Company No" wire:model="comp_no" value="comp_no"/>
