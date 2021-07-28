@@ -71,20 +71,19 @@ Route::middleware('guest')->group(function () {
     Route::get('register/agent', RegisterAgent::class)->name('register.agent');
     Route::get('password/reset', Email::class)->name('password.request');
     Route::get('password/reset/{token}', Reset::class)->name('password.reset');
-
-    Route::get('verify-otp', VerifyOtp::class)->name('verifyOTP');
 });
 
 Route::middleware('auth')->group(function () {
     /** Authentication */
+    Route::get('verify-otp', VerifyOtp::class)->name('verifyOTP');
     Route::get('email/verify', Verify::class)->middleware('throttle:6,1')->name('verification.notice');
     Route::get('password/confirm', Confirm::class)->name('password.confirm');
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified.otp');
     Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
-    Route::middleware(['passScreen', 'verified'])->group(function () {
+    Route::middleware(['passScreen', 'verified.otp'])->group(function () {
         Route::get('home', [DashboardController::class, 'index'])->name('home');
 
         //-- KASIH GOLD --//

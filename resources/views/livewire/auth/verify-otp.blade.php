@@ -31,6 +31,16 @@
     </div>
 </div>
 
+@if (session('error'))
+    <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+@elseif (session('info'))
+    <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+@elseif (session('success'))
+    <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+@elseif (session('warning'))
+    <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+@endif
+
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
     function OTPInput() {

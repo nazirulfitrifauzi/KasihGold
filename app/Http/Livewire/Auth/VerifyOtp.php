@@ -20,6 +20,6 @@ class VerifyOtp extends Component
 
     public function render()
     {
-        return view('livewire.auth.verify-otp');
+        return view('livewire.auth.verify-otp')->extends('layouts.auth');
     }
 }
