@@ -46,6 +46,7 @@ use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Livewire\Auth\RegisterAgent;
+use App\Http\Livewire\Auth\VerifyOtp;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -70,6 +71,8 @@ Route::middleware('guest')->group(function () {
     Route::get('register/agent', RegisterAgent::class)->name('register.agent');
     Route::get('password/reset', Email::class)->name('password.request');
     Route::get('password/reset/{token}', Reset::class)->name('password.reset');
+
+    Route::get('verify-otp', VerifyOtp::class)->name('verifyOTP');
 });
 
 Route::middleware('auth')->group(function () {
