@@ -22,10 +22,18 @@
                     </div>
                     {{-- {{ $first }}{{ $second }}{{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
                     <div class="flex justify-center mt-5 text-center">
-                        <button wire:click="resend" class="flex items-center justify-center px-6 py-4 text-white bg-yellow-400 rounded-lg hover:bg-yellow-300">
-                            <p class="ml-2 font-bold">Resend OTP</p>
-                            <x-heroicon-s-chevron-right class="w-6 h-6 "/>
-                        </button>
+                        <div id="timerBtn">
+                            <div class="bg-yellow-400 p-4 text-white rounded-md" id="time">
+                                05:00
+                            </div>
+                        </div>
+
+                        <div id="otpBtn" style="display:none;">
+                            <a wire:click="resend" onchange="resendOtp()" class="flex items-center bg-yellow-400 px-6 py-4 flex justify-center text-white hover:bg-yellow-300 rounded-lg">
+                                <p class="font-bold ml-2">Resend OTP</p>
+                                <x-heroicon-s-chevron-right class="w-6 h-6 "/>
+                            </a>
+                        </div>
                     </div>
             </div>
         </div>
@@ -76,4 +84,44 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 OTPInput(); });
+</script>
+<script>
+
+    function resendOtp() {
+        
+        var timerBtn = document.getElementById("timerBtn");
+        var otpBtn = document.getElementById("otpBtn");
+        timerBtn.style.display = "block";
+        otpBtn.style.display = "none";
+
+        var fiveMinutes = 60 * 1,
+        display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    }
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+                otpBtn.style.display = "block";
+                timerBtn.style.display = "none";
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        otpBtn.style.display = "none";
+        timerBtn.style.display = "block";
+        var fiveMinutes = 60 * 5,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
 </script>
