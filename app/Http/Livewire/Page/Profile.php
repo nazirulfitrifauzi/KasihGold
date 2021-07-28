@@ -19,7 +19,7 @@ class Profile extends Component
     use WithFileUploads;
 
     public $temp_code;
-    public $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $agentId, $membership_id, $old_ic, $passport, $gov_id;
+    public $profile_id, $name, $ic, $comp_no, $email, $gender, $gender_description, $phone1, $fax_no, $address1, $address2, $address3, $postcode, $town, $state, $code, $introducer, $introducerName, $agentId, $membership_id, $old_ic, $passport, $gov_id;
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAttachment, $bankAccId;
     public $states, $banks, $agent;
     public $movement;
@@ -31,6 +31,7 @@ class Profile extends Component
 
     public function mount()
     {
+        $this->profile_id = auth()->user()->profile->id ?? "";
         $this->agent = User::whereRole(3)->whereClient(2)->whereActive(1)->get();
         $this->states = States::all();
         $this->banks = Banks::all();
@@ -85,8 +86,8 @@ class Profile extends Component
     public function updated($propertyName) {
         $this->validateOnly($propertyName, [
             'name'              => 'required',
-            'ic'                => auth()->user()->type == 1 ? 'required|unique:profile_personal,ic' : '',
-            'comp_no'           => auth()->user()->type == 2 ? 'required|unique:profile_personal,comp_no' : '',
+            'ic'                => auth()->user()->type == 1 ? 'required|unique:profile_personal,ic,'. $this->profile_id : '',
+            'comp_no'           => auth()->user()->type == 2 ? 'required|unique:profile_personal,comp_no,' . $this->profile_id : '',
             'gender'            => 'required',
             'phone1'            => 'required',
             'fax_no'            => auth()->user()->type == 2 ? 'required' : '',
@@ -119,7 +120,7 @@ class Profile extends Component
             $data = $this->validate([
                 'agentId'       => 'required',
                 'name'          => 'required',
-                'ic'            => 'required|unique:profile_personal,ic',
+                'ic'            => 'required|unique:profile_personal,ic,' . $this->profile_id,
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
@@ -133,7 +134,7 @@ class Profile extends Component
         } else {
             $data = $this->validate([
                 'name'          => 'required',
-                'comp_no'       => 'required|unique:profile_personal,comp_no',
+                'comp_no'       => 'required|unique:profile_personal,comp_no,' . $this->profile_id,
                 'email'         => 'required',
                 'gender'        => 'required',
                 'phone1'        => 'required',
