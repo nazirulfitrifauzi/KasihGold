@@ -13,12 +13,12 @@
                         <span>Enter the OTP you received at</span> <span class="text-sm font-bold">{{ $phone_no }}</span>
                     </div>
                     <div class="flex flex-row justify-center px-2 mx-20 mt-5 text-center" >
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="first"  />
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="second"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="third"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="fourth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="fifth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model.silent="sixth" />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="first"  />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="second"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="third"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fourth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fifth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="sixth" />
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="hidden" maxlength="1" />
                     </div>
                     <div class="mt-5">
