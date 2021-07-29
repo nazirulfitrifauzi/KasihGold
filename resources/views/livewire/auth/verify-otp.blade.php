@@ -10,7 +10,7 @@
                 <img src="{{ asset('img/otp.png') }}" class="w-auto h-48 mx-auto" />
                     <h1 class="text-xl font-bold">OTP Verification</h1>
                     <div class="flex flex-col mt-1">
-                        <span>Enter the OTP you received at</span> <span class="font-bold text-sm">{{ $phone_no }}</span>
+                        <span>Enter the OTP you received at</span> <span class="text-sm font-bold">{{ $phone_no }}</span>
                     </div>
                     <div class="flex flex-row justify-center px-2 mx-20 mt-5 text-center" >
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="first" />
@@ -18,29 +18,29 @@
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="third"/>
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fourth"/>
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fifth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" id="sixth" maxlength="1" wire:model="sixth" onchange="submit()"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="sixth" />
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="hidden" maxlength="1" />
                     </div>
 
                     <div class="flex justify-center mt-3 text-center">
                         <div>
-                            <a href='#' class="flex items-center bg-yellow-400 px-6 py-4 flex justify-center text-white hover:bg-yellow-300 rounded-lg">
-                                <p class="font-bold ml-2">Verify OTP</p>
+                            <button wire:click="verifyOTP" class="flex items-center justify-center px-6 py-4 text-white bg-yellow-400 rounded-lg hover:bg-yellow-300">
+                                <p class="ml-2 font-bold">Verify OTP</p>
                                 <x-heroicon-s-chevron-right class="w-6 h-6 "/>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
                     <div class="flex justify-center mt-2 text-center">
                         <div id="timerBtn">
-                            <div class="text-red-600 border-red-400 border-2 p-4" id="time">
+                            <div class="p-4 text-red-600 border-2 border-red-400" id="time">
                                 05:00
                             </div>
                         </div>
 
                         <div class="cursor-pointer" id="otpBtn" style="display:none;" >
-                            <a wire:click="resend" href='#' onchange="resendOtp()" class="flex items-center bg-gray-800 px-6 py-4 flex justify-center text-white hover:bg-gray-700 rounded-lg">
-                                <p class="font-bold ml-2">Resend OTP</p>
+                            <button wire:click="resend" onchange="runtimer()" class="flex items-center justify-center px-6 py-4 text-white bg-gray-800 rounded-lg hover:bg-gray-700">
+                                <p class="ml-2 font-bold">Resend OTP</p>
                                 <x-heroicon-s-chevron-right class="w-6 h-6 "/>
                             </button>
                         </div>
@@ -61,15 +61,6 @@
 @endif
 
 <script>
-    $("#sixth").on('input', function(){
-        setTimeout(
-            function() {
-                Livewire.emit('submitData');
-            }, 3000);
-    });
-</script>
-
-<script>
     $(".inputs").keyup(function () {
         if (this.value.length == this.maxLength) {
         var $next = $(this).next('.inputs');
@@ -84,28 +75,26 @@
 </script>
 
 <script>
-    function resendOtp() {
-
+    function runtimer() {
         var timerBtn = document.getElementById("timerBtn");
         var otpBtn = document.getElementById("otpBtn");
         timerBtn.style.display = "none";
         otpBtn.style.display = "block";
 
-        var fiveMinutes = 60 * 5,
+        var fiveMinutes = 1 * 5,
+        // var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     }
+
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
         setInterval(function () {
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
-
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
-
             display.textContent = minutes + ":" + seconds;
-
             if (--timer < 0) {
                 timer = duration;
                 otpBtn.style.display = "block";
@@ -122,9 +111,10 @@
         otpBtn.style.display = 'none';
         timerBtn.style.display = "block";
         @endif
-        var fiveMinutes = 60 * 5,
+
+        // var fiveMinutes = 60 * 5,
+        var fiveMinutes = 1 * 5,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };
 </script>
-

@@ -10,8 +10,6 @@ class VerifyOtp extends Component
     public $phone_no;
     public $first, $second, $third, $fourth, $fifth, $sixth;
 
-    protected $listeners = ['submitData' => 'verifyOTP'];
-
     public function mount()
     {
         $no = auth()->user()->phone_no;
@@ -36,7 +34,6 @@ class VerifyOtp extends Component
         ]]);
 
         $content = json_decode($response->getBody(), true);
-        // dd($content);
 
         if ($content['status'] == 0) {  //success
             User::whereId(auth()->user()->id)->update([
@@ -46,18 +43,18 @@ class VerifyOtp extends Component
             session()->flash('success');
             session()->flash('title', 'Success!');
             session()->flash('message', 'Your phone has been verified.');
-
             return redirect('/profile');
         } elseif ($content['status'] == 16) {
             session()->flash('error');
             session()->flash('title', 'Failed!');
             session()->flash('message', 'The supplied OTP code is invalid.');
+            return redirect()->to('/verify-otp');
         } else {
             session()->flash('warning');
             session()->flash('title', 'Attention!');
             session()->flash('message', 'Server error. You may retry again shortly.');
+            return redirect()->to('/verify-otp');
         }
-        return redirect()->to('/verify-otp');
     }
 
     public function resend()
@@ -72,11 +69,10 @@ class VerifyOtp extends Component
             'duration'      => 5,
         ]]);
 
-        //yg ni pon x kluar bile da tekan resend
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'New OTP code has been sent to your phone.');
-        // return redirect()->to('/verify-otp');
+        return redirect()->to('/verify-otp');
     }
 
     public function render()
