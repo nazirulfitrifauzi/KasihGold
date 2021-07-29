@@ -6,7 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20">
+        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="Items" sort="" />

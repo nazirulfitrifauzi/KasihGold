@@ -4,7 +4,7 @@
             Setting
         </h2>
     </div>
-    <div class="relative mt-4 mb-20" x-data="{ active: 0 }">
+    <div class="relative mt-4 mb-20 sm:mb-0" x-data="{ active: 0 }">
         <div class="">
             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                 <div class="grid grid-cols-12 gap-6">

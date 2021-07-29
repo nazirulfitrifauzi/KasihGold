@@ -6,7 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20">
+        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 mb-6">
                 <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
                     <div class="font-bold text-base text-white">

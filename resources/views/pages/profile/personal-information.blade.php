@@ -1,4 +1,4 @@
-<x-general.card class="mt-2 bg-white shadow-lg mb-20">
+<x-general.card class="mt-2 bg-white shadow-lg mb-20 sm:mb-0">
     @if (session('success'))
         <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif

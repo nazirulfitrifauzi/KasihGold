@@ -4,7 +4,7 @@
             Ownership
         </h2>
     </div>
-    <div class="grid grid-cols-12 gap-6 mb-20">
+    <div class="grid grid-cols-12 gap-6 mb-20 sm:mb-0">
         <div class="flex col-span-12 lg:col-span-6 xxl:col-span-6 lg:block">
             <x-general.card class="bg-white shadow-lg">
                 <x-form.basic-form wire:submit.prevent="submit">
