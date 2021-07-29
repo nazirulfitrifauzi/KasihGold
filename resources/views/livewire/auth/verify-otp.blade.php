@@ -12,16 +12,18 @@
                     <div class="flex flex-col mt-1">
                         <span>Enter the OTP you received at</span> <span class="font-bold text-sm">{{ $phone_no }}</span>
                     </div>
-                    <div id="otp" class="otp flex flex-row justify-center px-2 mx-20 mt-5 text-center">
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="first" maxlength="1" wire:model="first" />
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="second" maxlength="1" wire:model="second"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="third" maxlength="1" wire:model="third"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="fourth" maxlength="1" wire:model="fourth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="fifth" maxlength="1" wire:model="fifth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="sixth" maxlength="1" wire:model="sixth" onchange="submit()"/>
+                    <div class="flex flex-row justify-center px-2 mx-20 mt-5 text-center" >
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="first" />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="second"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="third"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fourth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" maxlength="1" wire:model="fifth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" id="sixth" maxlength="1" wire:model="sixth" onchange="submit()"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="hidden" maxlength="1" />
                     </div>
                     
-                    {{-- {{ $first }}{{ $second }}{{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
+                    {{-- {{ $first }}{{ $second }}
+                    {{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
 
                     <div class="flex justify-center mt-3 text-center">
                         <div>
@@ -69,34 +71,21 @@
             }, 3000);
     });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-    function OTPInput() {
-         // const inputs = document.querySelectorAll('.otp > *[id]');
 
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].addEventListener('keydown', function(event) {
-                if (event.key==="Backspace" ) {
-                    inputs[i].value='' ;
-                    if (i !==0) inputs[i - 1].focus();
-                } else {
-                    if (i===inputs.length - 1 && inputs[i].value !=='' ) {
-                        return true;
-                    } else if (event.keyCode> 47 && event.keyCode < 58 || event.keyCode > 58  ) {
-                        inputs[i].value=event.key;
-                        if (i !==inputs.length - 1) inputs[i + 1].focus();
-                        event.preventDefault();
-                    } else if (event.keyCode> 64 && event.keyCode < 91) {
-                        inputs[i].value=String.fromCharCode(event.keyCode);
-                        if (i !==inputs.length - 1) inputs[i + 1].focus();
-                        event.preventDefault();
-                    }
-                }
-            });
+<script>
+    $(".inputs").keyup(function () {
+        if (this.value.length == this.maxLength) {
+        var $next = $(this).next('.inputs');
+        if ($next.length)
+            $(this).next('.inputs').focus();
+        else
+            $(this).blur();
+        }if (event.key==="Backspace"){
+            $(this).prev('.inputs').focus();
         }
-    }
-    OTPInput(); });
+    });
 </script>
+
 <script>
     function resendOtp() {
         
@@ -141,3 +130,4 @@
         startTimer(fiveMinutes, display);
     };
 </script>
+
