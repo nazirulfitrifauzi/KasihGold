@@ -15,7 +15,7 @@
             @endif
         </div>
 
-        <div class="p-4 mt-8 bg-white" x-data="{ active: 0 }">
+        <div class="p-4 mt-8 bg-white mb-20" x-data="{ active: 0 }">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 mb-10">
                 <x-cardtab.title name="0" livewire="" bg="pink">
                     <x-slot name="icon">

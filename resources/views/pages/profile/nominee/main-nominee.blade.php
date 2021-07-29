@@ -1,4 +1,4 @@
-<x-general.card class="mt-2 bg-white shadow-lg"  x-data="app()" x-cloak>
+<x-general.card class="mt-2 bg-white shadow-lg mb-20"  x-data="app()" x-cloak>
     <div class="w-full">
         <div x-show.transition="step != 'complete'">
 

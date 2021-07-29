@@ -6,7 +6,7 @@
             </h2>
         </div>
     </div>
-    <x-general.card class="bg-white shadow-lg">
+    <x-general.card class="bg-white shadow-lg mb-20">
         <div class="flex justify-end px-4 py-2">
             <a href="{{route('product-sell')}}" class="flex items-center px-4 py-1 text-sm font-bold text-white bg-yellow-400 rounded cursor-pointer focus:outline-none hover:bg-yellow-300">
                 <x-heroicon-o-arrow-circle-left class="w-5 h-5 mr-2 text-white" />

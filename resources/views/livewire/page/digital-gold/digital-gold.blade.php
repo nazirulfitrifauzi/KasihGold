@@ -1,5 +1,5 @@
 <div>
-    <div>
+    <div class="mb-20">
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
                 Digital Gold Details

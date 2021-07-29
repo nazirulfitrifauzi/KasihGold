@@ -15,7 +15,7 @@
 
         <x-form.basic-form wire:submit.prevent="submit">
             <x-slot name="content">
-                <div class="flex items-center mb-4">
+                <div class="flex items-start md:items-center mb-4 flex-col md:flex-row">
                     <label class="block text-sm font-semibold leading-5 text-gray-700 mr-2 {{ ($errors->has($start_date)) ? 'text-red-700' : ''}}">Start Date :</label>
                     <x-form.input type="date" label="" value="start_date" wire:model="start_date"/>
                     <label class="block text-sm font-semibold leading-5 text-gray-700 mr-2 ml-4 {{ ($errors->has($end_date)) ? 'text-red-700' : ''}}">End Date :</label>

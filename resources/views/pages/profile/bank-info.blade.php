@@ -1,4 +1,4 @@
-<x-general.card class="mt-2 bg-white shadow-lg">
+<x-general.card class="mt-2 bg-white shadow-lg mb-20">
     <x-note-card>
         1. Please take note that the information submitted will not be reflected on your account untill it has been reviewed by Kasih AP staffs.
         <br>

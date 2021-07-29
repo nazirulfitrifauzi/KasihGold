@@ -5,7 +5,7 @@
         </h2>
     </div>
 
-    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y" x-data="{ active: 0 }">
+    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y mb-20" x-data="{ active: 0 }">
         <div class="grid grid-cols-12 col-span-12 gap-5  border-t border-theme-5 pt-4">
             <div class="flex space-x-2 col-span-12">
                 <h2 class="text-lg font-medium">
@@ -59,8 +59,8 @@
                 </div>
             </div>
             <!-- BEGIN: Item List -->
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 bg-white rounded-lg border-2 overflow-y-auto" >
-                    <div class="flex bg-white border-b-2 p-4">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 bg-white rounded-lg border-2 overflow-y-auto " >
+                    <div class="flex bg-white border-b-2 p-4 w-full">
                         <x-tab.title name="0" livewire="">
                             <div class="flex font-semibold">
                                 <x-heroicon-o-check-circle class="w-6 h-6 mr-2"/>Active Goldbar

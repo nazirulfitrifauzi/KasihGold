@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="p-4 mt-4 bg-white">
+        <div class="p-4 mt-4 bg-white mb-20">
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="Tier" sort="" />

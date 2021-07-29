@@ -5,7 +5,7 @@
         </h2>
     </div>
 
-    <div class="p-4 mt-8 bg-white">
+    <div class="p-4 mt-8 bg-white mb-20">
         <div class="flex justify-between my-4">
             <div class="flex items-center">
                 <button x-on:click="modalAdd = true"
