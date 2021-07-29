@@ -21,9 +21,6 @@
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="text" id="sixth" maxlength="1" wire:model="sixth" onchange="submit()"/>
                         <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="hidden" maxlength="1" />
                     </div>
-                    
-                    {{-- {{ $first }}{{ $second }}
-                    {{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
 
                     <div class="flex justify-center mt-3 text-center">
                         <div>
@@ -45,7 +42,7 @@
                             <a wire:click="resend" href='#' onchange="resendOtp()" class="flex items-center bg-gray-800 px-6 py-4 flex justify-center text-white hover:bg-gray-700 rounded-lg">
                                 <p class="font-bold ml-2">Resend OTP</p>
                                 <x-heroicon-s-chevron-right class="w-6 h-6 "/>
-                            </a>
+                            </button>
                         </div>
                     </div>
             </div>
@@ -88,7 +85,7 @@
 
 <script>
     function resendOtp() {
-        
+
         var timerBtn = document.getElementById("timerBtn");
         var otpBtn = document.getElementById("otpBtn");
         timerBtn.style.display = "none";
