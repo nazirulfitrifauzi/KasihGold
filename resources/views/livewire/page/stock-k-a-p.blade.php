@@ -5,7 +5,7 @@
         </h2>
     </div>
 
-    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y mb-20" x-data="{ active: 0 }">
+    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y mb-20 sm:mb-0" x-data="{ active: 0 }">
         <div class="grid grid-cols-12 col-span-12 gap-5  border-t border-theme-5 pt-4">
             <div class="flex space-x-2 col-span-12">
                 <h2 class="text-lg font-medium">

@@ -5,7 +5,7 @@
                 Shopping Cart
             </h2>
         </div>
-        <div class="col-span-12 lg:col-span-12 xxl:col-span-12 mb-20">
+        <div class="col-span-12 lg:col-span-12 xxl:col-span-12 mb-20 sm:mb-0">
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                     <div class="p-4 mt-8 bg-white">

@@ -1,6 +1,6 @@
 <x-general.card class="px-4 pb-8 bg-white" x-data="{OpenScreening:false}">
 
-    <div class="grid grid-cols-12 gap-6 mt-2 mb-20">
+    <div class="grid grid-cols-12 gap-6 mt-2 mb-20 sm:mb-0">
         <div class="flex flex-wrap items-center justify-between col-span-12 mt-2 intro-y sm:flex-no-wrap">
             {{-- <div class="flex items-center">
                 <div class="relative dropdown" x-data="{open: false}">

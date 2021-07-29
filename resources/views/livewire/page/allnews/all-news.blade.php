@@ -6,7 +6,7 @@
             </h2>
         </div>
         
-        <div class="p-4 mt-2 bg-white mb-20">
+        <div class="p-4 mt-2 bg-white mb-20 sm:mb-0">
             <div class="flex justify-between my-4">
                 <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"

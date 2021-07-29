@@ -8,7 +8,7 @@
     @elseif (session('warning'))
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif
-    <div class="py-6 my-10 bg-white mb-20">
+    <div class="py-6 my-10 bg-white mb-20 sm:mb-0">
         <div class="w-full px-4 mt-1 sm:px-6 lg:px-8">
             <div class="px-1 mb-8">
                 <div class="flex justify-between">
