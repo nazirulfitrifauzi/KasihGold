@@ -6,11 +6,11 @@
         <div class="">
             <!--body-->
             <div class="justify-center flex-auto p-5 text-center">
-                <x-logo class="w-auto h-16 mx-auto" />
-                <img src="{{ asset('img/otp.png') }}" class="w-auto h-64 mx-auto" />
-                    <h1 class="text-2xl font-bold">OTP Verification</h1>
-                    <div class="flex flex-col mt-3">
-                        <span>Enter the OTP you received at</span> <span class="font-bold">{{ $phone_no }}</span>
+                <x-logo class="w-auto h-10 mx-auto" />
+                <img src="{{ asset('img/otp.png') }}" class="w-auto h-48 mx-auto" />
+                    <h1 class="text-xl font-bold">OTP Verification</h1>
+                    <div class="flex flex-col mt-1">
+                        <span>Enter the OTP you received at</span> <span class="font-bold text-sm">{{ $phone_no }}</span>
                     </div>
                     <div id="otp" class="otp flex flex-row justify-center px-2 mx-20 mt-5 text-center">
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="first" maxlength="1" wire:model="first" />
@@ -23,7 +23,7 @@
                     
                     {{-- {{ $first }}{{ $second }}{{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
 
-                    <div class="flex justify-center mt-2 text-center">
+                    <div class="flex justify-center mt-3 text-center">
                         <div>
                             <a href='#' class="flex items-center bg-yellow-400 px-6 py-4 flex justify-center text-white hover:bg-yellow-300 rounded-lg">
                                 <p class="font-bold ml-2">Verify OTP</p>
