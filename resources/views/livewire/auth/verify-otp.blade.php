@@ -12,7 +12,7 @@
                     <div class="flex flex-col mt-3">
                         <span>Enter the OTP you received at</span> <span class="font-bold">{{ $phone_no }}</span>
                     </div>
-                    <div id="otp" class="flex flex-row justify-center px-2 mx-20 mt-5 text-center">
+                    <div id="otp" class="otp flex flex-row justify-center px-2 mx-20 mt-5 text-center">
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="first" maxlength="1" wire:model="first" />
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="second" maxlength="1" wire:model="second"/>
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="third" maxlength="1" wire:model="third"/>
@@ -20,16 +20,27 @@
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="fifth" maxlength="1" wire:model="fifth"/>
                         <input class="w-10 h-10 m-2 text-center border rounded form-control" type="text" id="sixth" maxlength="1" wire:model="sixth" onchange="submit()"/>
                     </div>
+                    
                     {{-- {{ $first }}{{ $second }}{{ $third }}{{ $fourth }}{{ $fifth }}{{ $sixth }} --}}
-                    <div class="flex justify-center mt-5 text-center">
+
+                    <div class="flex justify-center mt-2 text-center">
+                        <div>
+                            <a href='#' class="flex items-center bg-yellow-400 px-6 py-4 flex justify-center text-white hover:bg-yellow-300 rounded-lg">
+                                <p class="font-bold ml-2">Verify OTP</p>
+                                <x-heroicon-s-chevron-right class="w-6 h-6 "/>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center mt-2 text-center">
                         <div id="timerBtn">
-                            <div class="bg-yellow-400 p-4 text-white rounded-md" id="time">
+                            <div class="text-red-600 border-red-400 border-2 p-4" id="time">
                                 05:00
                             </div>
                         </div>
 
-                        <div id="otpBtn" style="display:none;">
-                            <a wire:click="resend" onchange="resendOtp()" class="flex items-center bg-yellow-400 px-6 py-4 flex justify-center text-white hover:bg-yellow-300 rounded-lg">
+                        <div class="cursor-pointer" id="otpBtn" style="display:none;" >
+                            <a wire:click="resend" href='#' onchange="resendOtp()" class="flex items-center bg-gray-800 px-6 py-4 flex justify-center text-white hover:bg-gray-700 rounded-lg">
                                 <p class="font-bold ml-2">Resend OTP</p>
                                 <x-heroicon-s-chevron-right class="w-6 h-6 "/>
                             </a>
@@ -59,9 +70,10 @@
     });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function(event) {
     function OTPInput() {
-        // const inputs = document.querySelectorAll('#otp > *[id]');
+         // const inputs = document.querySelectorAll('.otp > *[id]');
+
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].addEventListener('keydown', function(event) {
                 if (event.key==="Backspace" ) {
@@ -83,18 +95,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
             });
         }
     }
-OTPInput(); });
+    OTPInput(); });
 </script>
 <script>
-
     function resendOtp() {
         
         var timerBtn = document.getElementById("timerBtn");
         var otpBtn = document.getElementById("otpBtn");
-        timerBtn.style.display = "block";
-        otpBtn.style.display = "none";
+        timerBtn.style.display = "none";
+        otpBtn.style.display = "block";
 
-        var fiveMinutes = 60 * 1,
+        var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     }
@@ -118,8 +129,13 @@ OTPInput(); });
     }
 
     window.onload = function () {
-        otpBtn.style.display = "none";
+        @if (session('error'))
+        otpBtn.style.display = 'block';
+        timerBtn.style.display = "none";
+        @else
+        otpBtn.style.display = 'none';
         timerBtn.style.display = "block";
+        @endif
         var fiveMinutes = 60 * 5,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);

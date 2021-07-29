@@ -36,6 +36,7 @@ class VerifyOtp extends Component
         ]]);
 
         $content = json_decode($response->getBody(), true);
+        // dd($content);
 
         if ($content['status'] == 0) {  //success
             User::whereId(auth()->user()->id)->update([
@@ -56,11 +57,12 @@ class VerifyOtp extends Component
             session()->flash('title', 'Attention!');
             session()->flash('message', 'Server error. You may retry again shortly.');
         }
+        return redirect()->to('/verify-otp');
     }
 
     public function resend()
     {
-        // generate OTP code n sms to the user
+        //generate OTP code n sms to the user
         $client     = new \GuzzleHttp\Client();
         $client->request('POST', "https://api.esms.com.my/sms/otp/generate", ['query' => [
             'api-key'       => config('esms.key'),
@@ -70,9 +72,11 @@ class VerifyOtp extends Component
             'duration'      => 5,
         ]]);
 
+        //yg ni pon x kluar bile da tekan resend
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'New OTP code has been sent to your phone.');
+        // return redirect()->to('/verify-otp');
     }
 
     public function render()
