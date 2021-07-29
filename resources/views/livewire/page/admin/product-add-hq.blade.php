@@ -6,7 +6,7 @@
             </h2>
         </div>
     </div>
-    <div class="bg-white shadow-lg">
+    <div class="bg-white shadow-lg mb-20">
         <div class="flex justify-end py-2 px-4">
             <a href="{{route('admin.product-sell-hq')}}" class="cursor-pointer flex items-center px-4 py-1 
                 text-sm font-bold text-white bg-yellow-400 rounded  focus:outline-none hover:bg-yellow-300">

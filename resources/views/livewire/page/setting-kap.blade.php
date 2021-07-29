@@ -13,7 +13,7 @@
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}" />
         @endif
     </div>
-    <div class="relative mt-4" x-data="{ active: 0 }">
+    <div class="relative mt-4 mb-20" x-data="{ active: 0 }">
         <div class="">
             <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
                 <div class="grid grid-cols-12 gap-6">

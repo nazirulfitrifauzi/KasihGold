@@ -28,7 +28,7 @@
             </x-general.card>
         </div>
         <!-- END: Profile Menu -->
-        <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+        <div class="col-span-12 lg:col-span-12 xxl:col-span-12 mb-20">
             <x-tab.nav-content name="0">
                 @include('pages.reporting.performance')
             </x-tab.nav-content>

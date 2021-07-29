@@ -12,12 +12,12 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-32">
                         <span class="mr-2">Category Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-32">
                         <span class="mr-2">Category Name</span>
                     </div>
                 </th>
@@ -83,22 +83,22 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-52">
                         <span class="mr-2">Parent Category</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-32">
                         <span class="mr-2">Type Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer w-32">
                         <span class="mr-2">Type Name</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer w-52">
                         <span class="mr-2">Purity</span>
                     </div>
                 </th>
@@ -178,17 +178,17 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-52">
                         <span class="mr-2">Parent Type</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer  w-32">
                         <span class="mr-2">Item Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer">
+                    <div class="flex cursor-pointer w-32">
                         <span class="mr-2">Item Name</span>
                     </div>
                 </th>

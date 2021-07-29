@@ -8,7 +8,7 @@
     @elseif (session('warning'))
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif
-    <div class="py-6 my-10 bg-white">
+    <div class="py-6 my-10 bg-white mb-20">
         <div class="w-full px-4 mt-1 sm:px-6 lg:px-8">
             <div class="px-1 mb-8">
                 <div class="flex justify-between">
@@ -100,7 +100,7 @@
                                 <div class="flex flex-col py-4 space-x-0 lg:flex-row lg:space-x-4">
                                     
 
-                                    <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
+                                    <div class="my-2 relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
                                                     
                                     <button type="button" wire:click="subQty"
                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">

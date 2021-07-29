@@ -6,7 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8 bg-white">
+        <div class="p-4 mt-8 bg-white mb-20">
             <div class="flex justify-between my-4">
                 <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
@@ -21,12 +21,31 @@
             </div>
             <x-table.table>
                 <x-slot name="thead">
-                    <x-table.table-header class="text-left" value="No" sort="" />
-                    <x-table.table-header class="text-left" value="Name" sort="" />
-                    <x-table.table-header class="text-left" value="Order Date" sort="" />
-                    <x-table.table-header class="text-left" value="Serial No" sort="" />
-                    <x-table.table-header class="text-left" value="Action" sort="" />
-
+                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                        <div class="flex">
+                            <span class="mr-2">No</span>
+                        </div>
+                    </th>
+                    <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                        <div class="flex cursor-pointer">
+                            <span class="mr-2">Name</span>
+                        </div>
+                    </th>
+                    <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                        <div class="flex">
+                            <span class="mr-2">Order Date</span>
+                        </div>
+                    </th>
+                    <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                        <div class="flex w-40">
+                            <span class="mr-2">Serial No</span>
+                        </div>
+                    </th>
+                    <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                        <div class="flex">
+                            <span class="mr-2">Action</span>
+                        </div>
+                    </th>
                 </x-slot>
                 <x-slot name="tbody">
                     @forelse ($orders as $item)
