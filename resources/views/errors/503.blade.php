@@ -1,5 +1,6 @@
 @extends('layouts.base')
 
+@section('body')
 {{-- 503 --}}
 <div class="flex items-center justify-center  h-screen bg-gray-100">
     <div class="container flex flex-col items-center justify-center px-5 text-gray-700  md:flex-row">
@@ -15,3 +16,5 @@
         </div>
     </div>
 </div>
+@endsection
+
