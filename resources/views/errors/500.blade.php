@@ -1,10 +1,12 @@
 @extends('layouts.base')
 
 {{-- 500 --}}
-<div class="flex items-center justify-center w-screen h-screen bg-gray-100">
-    <div class="container flex flex-col items-center justify-center px-5 text-gray-700 animate__animated animate__flipInX md:flex-row">
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="container flex flex-col items-center justify-center px-5 text-gray-700  md:flex-row">
         <div class="flex-col justify-center text-center md:text-left">
-            <img src="{{asset('img/kasihAPGold.png')}}" class="w-auto h-6"/>
+            <div class='flex justify-center sm:justify-start'>
+                <img src="{{asset('img/kasihAPGold.png')}}" class="w-auto h-6 "/>
+            </div>
             <div class="-mb-4 text-6xl font-bold font-dark">500</div>
             <p class="mb-5 text-2xl font-light md:text-xl">Server Error</p>
             <a href="{{route('login')}}" class="inline px-4 py-2 text-sm font-medium text-white bg-yellow-400 rounded-md hover:bg-yellow-300">
