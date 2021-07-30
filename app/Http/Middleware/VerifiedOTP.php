@@ -17,7 +17,7 @@ class VerifiedOTP
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->otp_verified_at == NULL) {
+        if ($request->user()->role == 4 && $request->user()->otp_verified_at == NULL) {  //only user need veriy otp
             // Auth::logout();
             session()->flash('warning');
             session()->flash('title', 'Attention!');
