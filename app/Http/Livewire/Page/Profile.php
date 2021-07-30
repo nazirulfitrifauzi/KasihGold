@@ -59,7 +59,13 @@ class Profile extends Component
         $this->email = auth()->user()->email;
         $this->gender = auth()->user()->profile->gender_id ?? 1;
         $this->gender_description = ucwords(auth()->user()->profile->gender->description ?? "MALE");
-        $this->phone1 = auth()->user()->profile->phone1 ?? "";
+
+        if (auth()->user()->role == 3) {
+            $this->phone1 = auth()->user()->profile->phone1 ?? "";
+        } else if (auth()->user()->role == 4) {
+            $this->phone1 = auth()->user()->phone_no ?? "";
+        }
+
         $this->fax_no = auth()->user()->profile->fax_no ?? "";
         $this->old_ic = auth()->user()->profile->old_ic ?? "";
         $this->passport = auth()->user()->profile->passport ?? "";
@@ -155,12 +161,12 @@ class Profile extends Component
 
         if (auth()->user()->type == 1){
             Profile_personal::updateOrCreate([
-                'user_id' => auth()->user()->id
+                'user_id'       => auth()->user()->id
             ], [
                 'agent_id'      => $data['agentId'],
                 'code'          => (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $this->temp_code,
                 'gender_id'     => $data['gender'],
-                'phone1'        => $data['phone1'],
+                // 'phone1'        => $data['phone1'],
                 'old_ic'        => $this->old_ic,
                 'passport'      => $this->passport,
                 'gov_id'        => $this->gov_id,
@@ -171,6 +177,10 @@ class Profile extends Component
                 'town'          => $data['town'],
                 'state_id'      => $data['state'],
                 'completed'     => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
+            ]);
+
+            User::whereId(auth()->user()->id)->update([
+                'phone_no'  => $data['phone1'],
             ]);
         } else {
             Profile_personal::updateOrCreate([

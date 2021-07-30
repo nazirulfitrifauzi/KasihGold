@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         // custom middleware
         'passScreen' => \App\Http\Middleware\PassScreening::class,
         'auth.admin' => \App\Http\Middleware\AuthAdmin::class,
+        'verified.otp' => \App\Http\Middleware\VerifiedOTP::class,
     ];
 }
