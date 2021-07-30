@@ -86,7 +86,7 @@
 
                     <div class="mt-6">
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="phone_no" id="phone_no" type="text" required  placeholder="Type your mobile phone number" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="phone_no" id="phone_no" type="text" required  placeholder="Type your mobile phone number. e.g: 0123456789" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('phone_no')
