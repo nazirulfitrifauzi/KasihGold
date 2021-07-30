@@ -1,7 +1,7 @@
 <!-- Desktop sidebar -->
 <x-sidebar-loading/>
 
-<div class="flex flex-shrink-0  transition-all printHide">
+<div class="flex flex-shrink-0 transition-all printHide">
     <div x-show="isSidebarOpenMobile" class="fixed inset-y-0 z-10 w-16 bg-white" x-cloak></div>
 
     <!-- Mobile bottom bar -->
@@ -13,7 +13,7 @@
     <div x-transition:enter="transform transition-transform duration-300" x-transition:enter-start="-translate-x-full"
         x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform duration-300"
         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-show="isSidebarOpen"
-        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 hidden w-64 bg-gray-800 shadow-lg sm:left-16  sm:w-72 lg:static lg:w-60 md:block">
+        class="fixed inset-y-0 left-0 z-30 flex-shrink-0 hidden w-64 bg-gray-800 shadow-lg sm:left-16 sm:w-72 lg:static lg:w-60 md:block">
         <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full pb-4">
             <!-- Logo -->
             <div class="flex flex-shrink-0 pb-1">
@@ -21,9 +21,9 @@
                     {{-- @if (auth()->user()->client == 1)
                     <img src="{{ asset('img/kasih-gold-logo.png') }}" alt="" class="w-auto h-12 ">
                     @else
-                    <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
+                    <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 p-2 my-2 bg-white rounded-md">
                     @endif --}}
-                    <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 bg-white p-2 rounded-md my-2">
+                    <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-12 p-2 my-2 bg-white rounded-md">
                 </div>
             </div>
             <div class="relative flex justify-center">
@@ -239,7 +239,7 @@
                 @endif
 
                 @if(auth()->user()->client == 2)
-                    <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc4th.pdf') }}" uri="">
+                    <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc_5.pdf') }}" uri="">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
