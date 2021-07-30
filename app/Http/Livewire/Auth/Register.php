@@ -59,16 +59,6 @@ class Register extends Component
             'duration'      => 5,
         ]]);
 
-        // $response = $client->request('POST', $endpoint, ['query' => [
-        //     'api-key' => $key,
-        //     'api-secret' => $secret,
-        //     'phone' => $nPhone,
-        //     'brand-name' => $brand,
-        //     'duration' => $duration,
-        // ]]);
-
-        // $content = json_decode($response->getBody(), true);
-
         return redirect()->intended(route('home'));
     }
 
