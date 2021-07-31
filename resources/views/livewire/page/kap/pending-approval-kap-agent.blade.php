@@ -57,16 +57,12 @@
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-2" x-data="{ openModal : false}">
-                                    <button  @click="openModal = true"
-                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
-                                        <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
-                                        Details
-                                    </button>
+                                    <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500 cursor-pointer tooltipbtn" @click="openModal = true" data-title="View Details" data-placement="top"/>
 
                                     <! -- Start modal Details -->
                                     <x-general.modal modalActive="openModal" title="Details" modalSize="2xl">
                                         <div x-data="{ active: 0 }">
-                                            <div class="flex w-full my-2 bg-gray-100 shadow-sm">
+                                            <div class="flex w-full my-2 bg-gray-100 shadow-sm justify-evenly">
                                                 <x-tab.nav-tab name="0" livewire="">
                                                     <div class="flex items-center font-medium">
                                                         <x-heroicon-o-user-circle class="w-4 h-4 mr-2"/>Personal
@@ -167,20 +163,10 @@
                                     <! -- End modal Details -->
 
                                     @if ($lists->profile_c == 1)
-                                        <button wire:click="approve({{ $lists->id }})"
-                                                class="inline-flex items-center px-4 py-2 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600">
-                                            <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
-                                            Approve
-                                        </button>
+                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1 text-green-500 cursor-pointer tooltipbtn" wire:click="approve({{ $lists->id }})" data-title="Approve User" data-placement="top"/>
                                     @endif
 
-                                    <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none"
-                                            data-id="{{ $lists->id }}"
-                                            onclick="deleteConfirmation({{ $lists->id }})"
-                                    >
-                                    <x-heroicon-o-trash class="w-5 h-5 mr-1" />
-                                        Delete
-                                    </button>
+                                    <x-heroicon-o-trash class="w-5 h-5 mr-1 text-red-600 cursor-pointer tooltipbtn" data-id="{{ $lists->id }}" onclick="deleteConfirmation({{ $lists->id }})" data-title="Reject User" data-placement="top"/>
                                     <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap-agent') }}/"  />
 
                                 </div>
