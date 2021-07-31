@@ -131,6 +131,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Profile_bank_info', 'user_id', 'id');
     }
 
+    public function nominees()
+    {
+        return $this->hasMany('App\Models\Profile_nominee', 'user_id', 'id');
+    }
+
     public function clients()
     {
         return $this->belongsTo('App\Models\ClientsInfo', 'client', 'id');
