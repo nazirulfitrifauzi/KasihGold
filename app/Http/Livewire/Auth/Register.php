@@ -49,7 +49,7 @@ class Register extends Component
 
         event(new Registered($user));
 
-        Auth::login($user, true);
+
 
         // generate OTP code n sms to the user
         // $client     = new \GuzzleHttp\Client();
@@ -64,6 +64,7 @@ class Register extends Component
         // $content = json_decode($response->getBody(), true);
 
         // if ($content['status'] == 0) {  //success
+        // Auth::login($user, true);
         //     return redirect()->intended(route('home'));
         // } else if ($content['status'] == 5) { // insufficient credit
         //     Mail::to('nazirulfitrifauzi@gmail.com')->send(new CreditBalance());
@@ -73,7 +74,11 @@ class Register extends Component
         $content = 5;
         if ($content == 5) { // insufficient credit
             Mail::to('nazirulfitrifauzi@gmail.com')->send(new CreditBalance());
-            return redirect()->route('/login');
+
+            session()->flash('error');
+            session()->flash('title', 'Warning!');
+            session()->flash('message', 'Problem detected. Try again in few minutes.');
+            return redirect()->route('login');
         }
     }
 

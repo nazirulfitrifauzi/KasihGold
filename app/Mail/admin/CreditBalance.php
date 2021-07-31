@@ -28,6 +28,6 @@ class CreditBalance extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.admin.credit_balance');
+        return $this->markdown('emails.admin.credit_balance')->subject('Insufficient SMS Credit Balance');
     }
 }
