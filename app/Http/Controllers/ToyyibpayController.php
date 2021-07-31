@@ -63,12 +63,18 @@ class ToyyibpayController extends Controller
     public function paymentStatusBuy()
     {
         $response = request()->all(['status_id', 'billcode', 'order_id']);
+        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
+            ->first();
 
-        if ($response['status_id'] == 1) {
+        if ($response['status_id'] == 1 && $toyyibBill->status != 1) {
 
             $gold = GoldbarOwnershipPending::where('referenceNumber', $response['billcode'])
                 ->where('status', 2)
                 ->get();
+
+
+            $toyyibBill->status = 1;
+            $toyyibBill->save();
 
             foreach ($gold as $golds) {
                 //Change the gold pending to successful payment
@@ -117,11 +123,6 @@ class ToyyibpayController extends Controller
                         'updated_at'        => now(),
                     ]);
                 }
-
-                $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
-                    ->first();
-                $toyyibBill->status = 1;
-                $toyyibBill->save();
             }
 
             session()->flash('message', 'Your Digital Gold Purchase is Successful.');

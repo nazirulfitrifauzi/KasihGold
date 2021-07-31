@@ -31,6 +31,21 @@ class ProductKAController extends Controller
         return view('pages.shop-ka.product-sell');
     }
 
+    public function exitApp()
+    {
+        return view('pages.admin.exit-approval');
+    }
+
+    public function exitAppBB()
+    {
+        return view('pages.admin.exit-approval-b-b');
+    }
+
+    public function exitAppOutright()
+    {
+        return view('pages.admin.exit-approval-outright');
+    }
+
     public function view()
     {
         return view('pages.shop-ka.product-view');

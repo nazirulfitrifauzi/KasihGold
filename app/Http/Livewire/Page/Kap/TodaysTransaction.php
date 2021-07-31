@@ -9,9 +9,10 @@ class TodaysTransaction extends Component
 {
     public function render()
     {
-        return view('livewire.page.kap.todays-transaction',[
+        return view('livewire.page.kap.todays-transaction', [
             // 'list' => GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->get(),
-            'list' => GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->get(),
+            'list' => GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))
+                ->get(),
         ]);
     }
 }

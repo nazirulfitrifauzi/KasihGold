@@ -42,7 +42,7 @@ class Profile extends Component
         $last_code = User::has('profile')->where('client', $client)->get()->pluck('profile.code')->last();
 
         $this->temp_code = sprintf('%06d', $last_code + 1);
-        if(auth()->user()->profile != NULL) {
+        if (auth()->user()->profile != NULL) {
             $this->code = auth()->user()->profile->code;
         } else {
             $this->code = $this->temp_code;
@@ -89,7 +89,8 @@ class Profile extends Component
         $this->movement = InvMovement::where('from_user_id', auth()->user()->id)->orWhere('to_user_id', auth()->user()->id)->get();
     }
 
-    public function updated($propertyName) {
+    public function updated($propertyName)
+    {
         $this->validateOnly($propertyName, [
             'name'              => 'required',
             'ic'                => auth()->user()->type == 1 ? 'required|unique:profile_personal,ic,'. $this->profile_id : '',
@@ -121,7 +122,8 @@ class Profile extends Component
         ]);
     }
 
-    public function savePersonal() {
+    public function savePersonal()
+    {
         if (auth()->user()->type == 1) {
             $data = $this->validate([
                 'agentId'       => 'required',
@@ -159,7 +161,7 @@ class Profile extends Component
                 'name' => $data['name'],
             ]);
 
-        if (auth()->user()->type == 1){
+        if (auth()->user()->type == 1) {
             Profile_personal::updateOrCreate([
                 'user_id'       => auth()->user()->id
             ], [
@@ -199,7 +201,7 @@ class Profile extends Component
             ]);
         }
 
-        if(auth()->user()->type == 1) {
+        if (auth()->user()->type == 1) {
             Profile_personal::updateOrCreate([
                 'user_id' => auth()->user()->id
             ], [
@@ -233,7 +235,7 @@ class Profile extends Component
 
         Profile_bank_info::updateOrCreate([
             'user_id' => auth()->user()->id
-        ],[
+        ], [
             'bank_id'           => $data['bankId'],
             'swift_code'        => $data['swiftCode'],
             'acc_no'            => $data['accNo'],
@@ -249,8 +251,9 @@ class Profile extends Component
         session()->flash('message', 'Your bank information has been updated.');
     }
 
-    public function checkCompleted() {
-        if(auth()->user()->profile != NULL && auth()->user()->bank != NULL){
+    public function checkCompleted()
+    {
+        if (auth()->user()->profile != NULL && auth()->user()->bank != NULL) {
             if (auth()->user()->profile->completed == 1 && auth()->user()->bank->completed == 1) {
                 User::where('id', auth()->user()->id)->update(['profile_c' => 1]);
             }
@@ -297,7 +300,7 @@ class Profile extends Component
 
         $this->doc_nom->storeAs('public/nominee/' . auth()->user()->id, 'nominee-form.pdf');
         $this->doc_ic->storeAs('public/nominee/' . auth()->user()->id, 'owner-ic.pdf');
-        foreach($this->doc_nom_ic as $key => $nom_ic) {
+        foreach ($this->doc_nom_ic as $key => $nom_ic) {
             $nom_ic->storeAs('public/nominee/' . auth()->user()->id, 'nominee-ic-' . uniqid() . '.pdf');
         }
 
@@ -328,7 +331,7 @@ class Profile extends Component
 
         $list = Storage::files('public/nominee/' . auth()->user()->id);
 
-        foreach($list as $dir) {
+        foreach ($list as $dir) {
             $dir = str_replace('public', 'storage', $dir);
             $nameArr = explode('/', $dir);
             $docDirList['name'][] = end($nameArr);

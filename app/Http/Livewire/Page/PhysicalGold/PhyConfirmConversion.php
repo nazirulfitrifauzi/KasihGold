@@ -34,79 +34,117 @@ class PhyConfirmConversion extends Component
 
     public function convert()
     {
-        $quarter_gram = 0;
-        $one_gram = 0;
+        $total_req_gram = ($this->data[0]['qty'] * $this->data[0]['prod_weight']) + ($this->data[1]['qty'] * $this->data[1]['prod_weight']);
+        $gold_ownId = array();
 
-        $option = array(
-            'userSecretKey' => config('toyyibpay.key'),
-            'categoryCode' => config('toyyibpay.category'),
-            'billName' => 'Kasih AP Digital',
-            'billDescription' => 'Digital Gold to Physical Gold Conversion Postage Fee',
-            'billPriceSetting' => 1,
-            'billPayorInfo' => 1,
-            'billAmount' => 1000, // Dikira dalam bentuk sen. Maksudnya dekat sini RM10
-            'billReturnUrl' => route('toyyibpay-status-conv'),
-            'billCallbackUrl' => route('toyyibpay-callback'),
-            'billExternalReferenceNo' => 'KAP21345411',
-            'billTo' => auth()->user()->name,
-            'billEmail' => auth()->user()->email,
-            'billPhone' => auth()->user()->profile->phone1,
-            'billSplitPayment' => 0,
-            'billSplitPaymentArgs' => '',
-            'billPaymentChannel' => '0',
-            'billContentEmail' => 'Thank you for purchasing our product!',
-            'billChargeToCustomer' => 1
-        );
+        // dd($total_req_gram);
 
-        $url = 'https://toyyibpay.com/index.php/api/createBill';
-        $response = Http::asForm()->post($url, $option);
-        $billCode = $response[0]['BillCode'];
+        $golds = GoldbarOwnership::where('user_id', auth()->user()->id)
+            ->where('active_ownership', 1)
+            ->orderByDesc('weight')
+            ->get();
+        array_push($gold_ownId, $total_req_gram);
 
+        foreach ($golds as $emas) {
+            if ($total_req_gram != 0) {
+                if ($emas->weight == 1.00 && $total_req_gram >= 1.00) {
+                    $total_req_gram = round($total_req_gram, 2) - round($emas->weight, 2);
 
+                    array_push($gold_ownId, $total_req_gram);
+                } elseif ($emas->weight == 0.25 && $total_req_gram >= 0.25) {
 
-        $physicalConv = PhysicalConvert::create([
-            'user_id'       => auth()->user()->id,
-            'one_gram'      => $this->data[0]['qty'],
-            'quarter_gram'  => $this->data[1]['qty'],
-            'ref_payment'   => $billCode,
-            'status'        => 2,
-            'name'          => $this->name,
-            'phone1'        => $this->phone1,
-            'address1'      => $this->address1,
-            'address2'      => $this->address2,
-            'address3'      => $this->address3,
-            'postcode'      => $this->postcode,
-            'town'          => $this->town,
-            'state'         => $this->state,
-            'created_at'    => now(),
-            'updated_at'    => now(),
-        ]);
+                    $total_req_gram = round($total_req_gram, 2) - round($emas->weight, 2);
 
-        $physicalId = $physicalConv->id;
+                    array_push($gold_ownId, $total_req_gram);
+                } elseif ($emas->weight == 0.10 && $total_req_gram >= 0.10) {
 
-        foreach ($this->data as $product) {
-
-            if ($product['qty'] != 0) {
-                for ($i = 0; $i < $product['qty']; $i++) {
-                    $gold = GoldbarOwnership::where('user_id', auth()->user()->id)
-                        ->where('weight', $product['prod_weight'])
-                        ->where('active_ownership', 1)
-                        ->first();
-
-
-
-                    if ($gold) {
-                        $gold->active_ownership = 0;
-                        $gold->referenceNumber = $billCode;
-                        $gold->ex_flag = 0;
-                        $gold->ex_id = $physicalId;
-                        $gold->save();
+                    $total_req_gram = round($total_req_gram, 2) - round($emas->weight, 2);
+                    if ($total_req_gram < 0.0) {
+                        dd(round($emas->weight, 2));
                     }
+                    array_push($gold_ownId, $total_req_gram);
+                } elseif ($emas->weight == 0.01 && $total_req_gram >= 0.01) {
+
+                    $total_req_gram = round($total_req_gram, 2) - round($emas->weight, 2);
+
+                    array_push($gold_ownId, $total_req_gram);
                 }
             }
         }
+        if ($total_req_gram > 0) {
+            dd($gold_ownId);
+        }
+        // dd(0.10 - 0.10);
 
-        return redirect('https://dev.toyyibpay.com/' . $billCode);
+        // $option = array(
+        //     'userSecretKey' => config('toyyibpay.key'),
+        //     'categoryCode' => config('toyyibpay.category'),
+        //     'billName' => 'Kasih AP Digital',
+        //     'billDescription' => 'Digital Gold to Physical Gold Conversion Postage Fee',
+        //     'billPriceSetting' => 1,
+        //     'billPayorInfo' => 1,
+        //     'billAmount' => 1000, // Dikira dalam bentuk sen. Maksudnya dekat sini RM10
+        //     'billReturnUrl' => route('toyyibpay-status-conv'),
+        //     'billCallbackUrl' => route('toyyibpay-callback'),
+        //     'billExternalReferenceNo' => 'KAP21345411',
+        //     'billTo' => auth()->user()->name,
+        //     'billEmail' => auth()->user()->email,
+        //     'billPhone' => auth()->user()->profile->phone1,
+        //     'billSplitPayment' => 0,
+        //     'billSplitPaymentArgs' => '',
+        //     'billPaymentChannel' => '0',
+        //     'billContentEmail' => 'Thank you for purchasing our product!',
+        //     'billChargeToCustomer' => 1
+        // );
+
+        // $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+        // $response = Http::asForm()->post($url, $option);
+        // $billCode = $response[0]['BillCode'];
+
+
+
+        // $physicalConv = PhysicalConvert::create([
+        //     'user_id'       => auth()->user()->id,
+        //     'one_gram'      => $this->data[0]['qty'],
+        //     'quarter_gram'  => $this->data[1]['qty'],
+        //     'ref_payment'   => $billCode,
+        //     'status'        => 2,
+        //     'name'          => $this->name,
+        //     'phone1'        => $this->phone1,
+        //     'address1'      => $this->address1,
+        //     'address2'      => $this->address2,
+        //     'address3'      => $this->address3,
+        //     'postcode'      => $this->postcode,
+        //     'town'          => $this->town,
+        //     'state'         => $this->state,
+        //     'created_at'    => now(),
+        //     'updated_at'    => now(),
+        // ]);
+
+        // $physicalId = $physicalConv->id;
+
+        // foreach ($this->data as $product) {
+
+        //     if ($product['qty'] != 0) {
+        //         for ($i = 0; $i < $product['qty']; $i++) {
+        //             $gold = GoldbarOwnership::where('user_id', auth()->user()->id)
+        //                 ->where('active_ownership', 1)
+        //                 ->first();
+
+
+
+        //             if ($gold) {
+        //                 $gold->active_ownership = 0;
+        //                 $gold->referenceNumber = $billCode;
+        //                 $gold->ex_flag = 0;
+        //                 $gold->ex_id = $physicalId;
+        //                 $gold->save();
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return redirect('https://dev.toyyibpay.com/' . $billCode);
     }
 
     public function render()

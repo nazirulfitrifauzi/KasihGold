@@ -119,7 +119,7 @@
                                             <h3 class="text-sm text-gray-600">Kasih Gold Digital 1g</h3>
                                         </div>
                                     </div>
-                                    <span class="font-semibold text-gray-600 my-3">RM 630.00</span>
+                                    <span class="font-semibold text-gray-600 my-3">RM 210.00</span>
                                 </div>
                                     
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
@@ -131,7 +131,7 @@
                                             <h3 class="text-sm text-gray-600">Kasih Gold Digital 0.25g</h3>
                                         </div>
                                     </div>
-                                    <span class="font-semibold text-gray-600 my-3">RM 200.00</span>
+                                    <span class="font-semibold text-gray-600 my-3">RM 50.00</span>
                                 </div>
 
 
@@ -140,7 +140,7 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
-                                        <p>RM 830.00</p>
+                                        <p>RM 260.00</p>
                                     </div>
                                 </div>
                             </div>

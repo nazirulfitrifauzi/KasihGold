@@ -17,8 +17,8 @@ class PendingApprovalKapAgent extends Component
 
     public function mount()
     {
-        $logged_user= auth()->user()->id;
-        $this->list = User::whereHas('profile', function ($query) use ($logged_user){
+        $logged_user = auth()->user()->id;
+        $this->list = User::whereHas('profile', function ($query) use ($logged_user) {
             $query->where('agent_id', '=', $logged_user);
         })->whereClient(2)->whereRole(4)->whereActive(0)->get();
     }
