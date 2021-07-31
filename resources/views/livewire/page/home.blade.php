@@ -1,7 +1,7 @@
 
 <div>
     <div class="-mt-52 printContent">
-        <div class="grid grid-cols-12 gap-6">
+        <div class="grid grid-cols-12 gap-6 mb-20 sm:mb-0">
             <div class="grid grid-cols-12 col-span-12 gap-6">
                 <div class="col-span-12 mt-8 printHide">
                     <div class="flex items-center">

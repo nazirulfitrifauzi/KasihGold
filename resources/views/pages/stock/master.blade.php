@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12 col-span-12 gap-5 pt-5 mt-5 border-t border-theme-5">
+<div class="grid grid-cols-12 col-span-12 gap-5 pt-5 mt-5 border-t border-theme-5 mb-20 sm:mb-0">
     <h2 class="col-span-6 mr-auto text-lg font-medium ">
         Master List
     </h2>

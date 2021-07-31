@@ -83,6 +83,17 @@
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <div class="mt-6">
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input wire:model.lazy="phone_no" id="phone_no" type="text" required  placeholder="Type your mobile phone number. e.g: 0123456789" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                        </div>
+
+                        @error('phone_no')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
                         <div class="mt-6">
                             <div class="mt-1 rounded-md shadow-sm">
@@ -126,7 +137,7 @@
                         <div class="flex items-center">
                             <input wire:model="tnc" id="tnc" name="tnc" type="checkbox" class="w-4 h-4 text-yellow-400 transition duration-150 ease-in-out form-checkbox">
                             <label for="tnc" class="block ml-2 text-sm text-gray-900">
-                                I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_kap.pdf') }}">terms and conditions.</a>
+                                I agree to the <a class="text-yellow-400 underline " target="_blank" href="{{ asset('pdf/tnc_5.pdf') }}">terms and conditions.</a>
                             </label>
                         </div>
                         @error('tnc')

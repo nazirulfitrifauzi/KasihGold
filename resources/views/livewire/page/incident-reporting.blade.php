@@ -4,7 +4,7 @@
             Contact us
         </h2>
     </div>
-    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y">
+    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y mb-20 sm:mb-0">
         <!-- BEGIN: Incident Reporting Form -->
         <div class="col-span-12 lg:col-span-8">
             <div class="post intro-y overflow-hidden bg-white mt-5 shadow-lg">

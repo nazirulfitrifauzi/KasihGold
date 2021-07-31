@@ -6,7 +6,7 @@
             </h2>
         </div>
     </div>
-    <x-general.card class="bg-white shadow-lg">
+    <x-general.card class="bg-white shadow-lg mb-20 sm:mb-0">
         <div class="flex justify-end py-2 px-4">
             {{--  --}}
         </div>

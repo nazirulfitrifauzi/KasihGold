@@ -6,7 +6,7 @@
             </h2>
         </div>
 
-        <div class="p-4 mt-8 bg-white">
+        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 mb-6">
                 <x-general.price-card  class="bg-yellow-400 text-white rounded-lg">
                     <div class="font-bold text-base text-white">
@@ -14,9 +14,9 @@
                                 <div class="rounded-full py-4 px-4 flex item-center bg-white">
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
-                                <div class="text-xl">
+                                <div class="text-lg">
                                     <p>Total Grams</p>
-                                    <p class="text-lg">2.03 g</p>
+                                    <p class="text-base">2.03 g</p>
                                 </div>
                             </div>
                         </div>
@@ -27,9 +27,9 @@
                                 <div class="rounded-full py-4 px-4 flex item-center bg-white">
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
-                                <div class="text-xl">
+                                <div class="text-lg">
                                     <p>Total Convertable 1g Gold</p>
-                                    <p class="text-lg">Upto 2 pcs</p>
+                                    <p class="text-base">Upto 2 pcs</p>
                                 </div>
                             </div>
                         </div>
@@ -40,9 +40,9 @@
                                 <div class="rounded-full py-4 px-4 flex item-center bg-white">
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
-                                <div class="text-xl">
+                                <div class="text-lg">
                                     <p>Total Convertable 0.25g Gold</p>
-                                    <p class="text-lg">Upto 8 pcs</p>
+                                    <p class="text-base">Upto 8 pcs</p>
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,7 @@
         @if (session('error'))
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
         @endif
-        <div class="p-4 mt-8 bg-white">
+        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
 
             <!--Start desktop view-->
             <div class="hidden lg:block">

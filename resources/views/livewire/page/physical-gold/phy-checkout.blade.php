@@ -8,7 +8,7 @@
         @if (session('error'))
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
         @endif
-        <div class="grid grid-cols-12 rounded-lg mx-4">
+        <div class="grid grid-cols-12 rounded-lg mx-4 mb-20 sm:mb-0">
             <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
                 <div class="p-4 mt-8 bg-white">
                     <x-general.grid mobile="1" gap="5" sm="4" md="4" lg="4" xl="4" class="col-span-6 mb-4">

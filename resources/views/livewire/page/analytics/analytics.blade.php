@@ -1,5 +1,5 @@
 <div class="grid grid-cols-12 gap-6">
-    <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+    <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9 mb-20 sm:mb-0">
         <div class="col-span-12 mt-8 ">
             <div class="flex items-center h-10 intro-y">
                 <h2 class="mr-5 text-xl font-medium truncate">Analytics</h2>

@@ -1,5 +1,5 @@
 <div class="">
-    <div class="bg-white rounded-lg">
+    <div class="bg-white rounded-lg mb-20 sm:mb-0">
         <main class="my-8 py-6 px-4">
             <div class="container mx-auto">
                 <h3 class="text-gray-700 text-2xl font-medium">Checkout</h3>

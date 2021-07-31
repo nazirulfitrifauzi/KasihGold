@@ -46,6 +46,7 @@ use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Livewire\Auth\RegisterAgent;
+use App\Http\Livewire\Auth\VerifyOtp;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -74,14 +75,15 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     /** Authentication */
+    Route::get('verify-otp', VerifyOtp::class)->name('verifyOTP');
     Route::get('email/verify', Verify::class)->middleware('throttle:6,1')->name('verification.notice');
     Route::get('password/confirm', Confirm::class)->name('password.confirm');
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified.otp');
     Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
-    Route::middleware(['passScreen', 'verified'])->group(function () {
+    Route::middleware(['passScreen', 'verified.otp'])->group(function () {
         Route::get('home', [DashboardController::class, 'index'])->name('home');
 
         //-- KASIH GOLD --//
