@@ -32,6 +32,16 @@
     </head>
 
     <body>
+        <style>
+            .inputNumber::-webkit-outer-spin-button,
+            .inputNumber::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+            .inputNumber {
+            -moz-appearance: textfield;
+            }
+        </style>
         @yield('body')
 
         @livewireScripts
