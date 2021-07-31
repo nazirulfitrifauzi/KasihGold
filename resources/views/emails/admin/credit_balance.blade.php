@@ -371,10 +371,11 @@
                                 <tr>
                                     <td class="content-cell" style="padding-top: 0px !important;">
                                         <p style="font-weight: bold; font-size:34px;">Oh no! <br>
-                                            <span style="font-weight: bold; font-size:20px;">Insuffiecient credit balance for sms.</span>
+                                            <span style="font-weight: bold; font-size:20px;">Insufficient credit balance for sms.</span>
                                             <br>
                                             <span style="font-weight: 400; font-size:18px;">Please topup, so user can verify to use our system.</span>
                                         </p>
+                                        <a href="https://cp.esms.com.my/login" class="button button-warning">Topup credit here</a>
                                     </td>
                                 </tr>
                             </table>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Mail\admin\CreditBalance;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class VerifyOtp extends Component
@@ -61,7 +63,7 @@ class VerifyOtp extends Component
     {
         //generate OTP code n sms to the user
         $client     = new \GuzzleHttp\Client();
-        $client->request('POST', "https://api.esms.com.my/sms/otp/generate", ['query' => [
+        $response = $client->request('POST', "https://api.esms.com.my/sms/otp/generate", ['query' => [
             'api-key'       => config('esms.key'),
             'api-secret'    => config('esms.secret'),
             'phone'         => '6' . auth()->user()->phone_no,
@@ -69,10 +71,22 @@ class VerifyOtp extends Component
             'duration'      => 5,
         ]]);
 
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'New OTP code has been sent to your phone.');
-        return redirect()->to('/verify-otp');
+        $content = json_decode($response->getBody(), true);
+
+        if ($content['status'] == 0) {  //success
+            session()->flash('success');
+            session()->flash('title', 'Success!');
+            session()->flash('message', 'New OTP code has been sent to your phone.');
+        } else if ($content['status'] == 5) { // insufficient credit
+            $admin = User::where('role', 1)->where('client', 2)->get();
+            Mail::to($admin->email)->send(new CreditBalance());
+
+            session()->flash('error');
+            session()->flash('title', 'Warning!');
+            session()->flash('message', 'Problem detected. Try again in few minutes.');
+        }
+
+        return redirect()->route('login');
     }
 
     public function render()
