@@ -15,7 +15,7 @@
             @endif
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
+        <div class="p-4 mt-8 mb-20 bg-white sm:mb-0">
             <div class="flex justify-between my-4">
                 {{-- <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
@@ -57,7 +57,7 @@
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-2" x-data="{ openModal : false}">
-                                    {{-- <button  @click="openModal = true"
+                                    <button  @click="openModal = true"
                                         class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
                                         <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
                                         Details
@@ -68,17 +68,17 @@
                                         <div x-data="{ active: 0 }">
                                             <div class="flex w-full my-2 bg-gray-100 shadow-sm">
                                                 <x-tab.nav-tab name="0" livewire="">
-                                                    <div class="flex font-medium flex items-center">
+                                                    <div class="flex items-center font-medium">
                                                         <x-heroicon-o-user-circle class="w-4 h-4 mr-2"/>Personal
                                                     </div>
                                                 </x-tab.nav-tab>
                                                 <x-tab.nav-tab name="1" livewire="">
-                                                    <div class="flex font-medium flex items-center">
+                                                    <div class="flex items-center font-medium">
                                                         <x-heroicon-o-currency-dollar class="w-4 h-4 mr-2"/>Bank
                                                     </div>
                                                 </x-tab.nav-tab>
                                                 <x-tab.nav-tab name="2" livewire="">
-                                                    <div class="flex font-medium flex items-center">
+                                                    <div class="flex items-center font-medium">
                                                         <x-heroicon-o-clipboard-list class="w-4 h-4 mr-2"/>Nominee
                                                     </div>
                                                 </x-tab.nav-tab>
@@ -86,38 +86,22 @@
 
                                             <! -- Start Personal Details -->
                                             <x-tab.nav-content name="0">
-                                                <div class="px-4 py-4">
+                                                <div class="py-2">
                                                     <x-form.basic-form>
                                                         <x-slot name="content">
-                                                            <div class="mt-2 leading-4 h-64 overflow-auto">
+                                                            <div class="h-64 mt-2 overflow-auto leading-4">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.input label="KAP Code" value="" disable="true" />
-                                                                    <x-form.input label="Membership ID"  value="" disable="true" />
-
-                                                                    <x-form.input label="Name"  value="" />
-                                                                    <x-form.input type="email" label="Email Address"  value="" disable="true" />
-
-                                                                    <x-form.input label="New IC"  value="" />
-                                                                    <x-form.input label="Old IC" value="" />
-                                                                    <x-form.input label="Passport / Foreign ID" value="" />
-                                                                    <x-form.input label="Police / Army" value="" />
-
-                                                                    <x-form.input label="Company No"  value="" />
-
-                                                                    <x-form.input label="Phone No" value="" />
-                                                                    <x-form.input label="Fax No" value=""/>
+                                                                    <x-form.display-input label="Name" value="{{ $lists->name }}"/>
+                                                                    <x-form.display-input label="Email" value="{{ $lists->email }}"/>
+                                                                    <x-form.display-input label="Phone No" value="{{ $lists->phone_no }}"/>
+                                                                    <x-form.display-input label="New IC" value="{{ $lists->profile->ic }}"/>
+                                                                    <x-form.display-input label="Old IC" value="{{ $lists->profile->old_ic }}"/>
+                                                                    <x-form.display-input label="Pasport" value="{{ $lists->profile->passport }}"/>
+                                                                    <x-form.display-input label="Police / Army ID" value="{{ $lists->profile->gov_id }}"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.address class="" label="Address" value1="" value2="" value3="" value4="" value5="" value6=""  condition=""/>
+                                                                    <x-form.display-input-address label="Address" address1="{{ $lists->profile->address1 }}" address2="{{ $lists->profile->address2 }}" address3="{{ $lists->profile->address3 }}" town="{{ $lists->profile->town }}" postcode="{{ $lists->profile->postcode }}" state="{{ $lists->profile->state->description }}" />
                                                                 </div>
-                                                            </div>
-                                                            <div class="grid gap-2 mt-5 lg:grid-cols-2 sm:grid-cols-1">
-                                                                <button @click="openModal = false" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal = false">
-                                                                    Cancel
-                                                                </button>
-                                                                <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
-                                                                    Submit
-                                                                </a>
                                                             </div>
                                                         </x-slot>
                                                     </x-form.basic-form>
@@ -130,7 +114,7 @@
                                                 <div class="px-4 py-4">
                                                     <x-form.basic-form>
                                                         <x-slot name="content">
-                                                            <div class="mt-2 leading-4 h-64 overflow-auto"">
+                                                            <div class="h-64 mt-2 overflow-auto leading-4"">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
                                                                     <x-form.input label="Bank" value="" disable="" />
                                                                     <x-form.input label="Bank Swift Code"  value="" disable="" />
@@ -138,14 +122,6 @@
                                                                     <x-form.input label="Bank Account Holder Name"  value="" disable="" />
                                                                     <x-form.input label="Bank Account ID"  value="" disable="" />
                                                                 </div>
-                                                            </div>
-                                                            <div class="grid gap-2 mt-5 lg:grid-cols-2 sm:grid-cols-1">
-                                                                <button @click="openModal = false" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal = false">
-                                                                    Cancel
-                                                                </button>
-                                                                <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
-                                                                    Submit
-                                                                </a>
                                                             </div>
                                                         </x-slot>
                                                     </x-form.basic-form>
@@ -162,7 +138,7 @@
 
                                         </div>
                                     </x-general.modal>
-                                    <! -- End modal Details --> --}}
+                                    <! -- End modal Details -->
 
                                     @if ($lists->profile_c == 1)
                                         <button wire:click="approve({{ $lists->id }})"
@@ -172,15 +148,14 @@
                                         </button>
                                     @endif
 
-                                            
-                                        <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none" 
-                                                data-id="{{ $lists->id }}" 
-                                                onclick="deleteConfirmation({{ $lists->id }})"
-                                        >
-                                        <x-heroicon-o-trash class="w-5 h-5 mr-1" />
-                                            Delete
-                                        </button>
-                                        <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap-agent') }}/"  />
+                                    <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 focus:outline-none"
+                                            data-id="{{ $lists->id }}"
+                                            onclick="deleteConfirmation({{ $lists->id }})"
+                                    >
+                                    <x-heroicon-o-trash class="w-5 h-5 mr-1" />
+                                        Delete
+                                    </button>
+                                    <x-popup.delete-admin name="deleteConfirmation" variable="id" posturl="{{ url('/pending-approval-kap-agent') }}/"  />
 
                                 </div>
                             </x-table.table-body>
