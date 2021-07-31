@@ -1,3 +1,4 @@
+@section('title', 'Verify OTP')
 <div class="fixed inset-0 top-0 left-0 z-50 flex items-center justify-center h-screen overflow-auto outline-none min-w-screen focus:outline-none"
     style="background: rgba(0, 0, 0, 0.5);">
     <div
@@ -13,13 +14,13 @@
                         <span>Enter the OTP you received at</span> <span class="text-sm font-bold">{{ $phone_no }}</span>
                     </div>
                     <div class="flex flex-row justify-center px-2 mx-20 mt-5 text-center" >
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="first"  />
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="second"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="third"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="fourth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="fifth"/>
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="number" maxlength="1" wire:model="sixth" />
-                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs" type="hidden" maxlength="1" />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="first"  />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="second"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="third"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="fourth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="fifth"/>
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="number" maxlength="1" wire:model="sixth" />
+                        <input class="w-10 h-10 m-2 text-center border rounded form-control inputs inputNumber" type="hidden" maxlength="1" />
                     </div>
                     <div class="mt-5">
                         <p class="text-gray-700 text-sm">didn't you receive the OTP? 
