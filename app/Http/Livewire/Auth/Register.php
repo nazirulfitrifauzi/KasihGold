@@ -49,31 +49,24 @@ class Register extends Component
 
         event(new Registered($user));
 
-
-
         // generate OTP code n sms to the user
-        // $client     = new \GuzzleHttp\Client();
-        // $response = $client->request('POST', "https://api.esms.com.my/sms/otp/generate", ['query' => [
-        //     'api-key'       => config('esms.key'),
-        //     'api-secret'    => config('esms.secret'),
-        //     'phone'         => '6' . $data['phone_no'],
-        //     'brand-name'    => 'KASIH AP GOLD',
-        //     'duration'      => 5,
-        // ]]);
+        $client     = new \GuzzleHttp\Client();
+        $response = $client->request('POST', "https://api.esms.com.my/sms/otp/generate", ['query' => [
+            'api-key'       => config('esms.key'),
+            'api-secret'    => config('esms.secret'),
+            'phone'         => '6' . $data['phone_no'],
+            'brand-name'    => 'KASIH AP GOLD',
+            'duration'      => 5,
+        ]]);
 
-        // $content = json_decode($response->getBody(), true);
+        $content = json_decode($response->getBody(), true);
 
-        // if ($content['status'] == 0) {  //success
-        // Auth::login($user, true);
-        //     return redirect()->intended(route('home'));
-        // } else if ($content['status'] == 5) { // insufficient credit
-        //     Mail::to('nazirulfitrifauzi@gmail.com')->send(new CreditBalance());
-        //     return redirect()->route('/login');
-        // }
-
-        $content = 5;
-        if ($content == 5) { // insufficient credit
-            Mail::to('nazirulfitrifauzi@gmail.com')->send(new CreditBalance());
+        if ($content['status'] == 0) {  //success
+            Auth::login($user, true);
+            return redirect()->intended(route('home'));
+        } else if ($content['status'] == 5) { // insufficient credit
+            $admin = User::where('role',1)->where('client',2)->get();
+            Mail::to($admin->email)->send(new CreditBalance());
 
             session()->flash('error');
             session()->flash('title', 'Warning!');
