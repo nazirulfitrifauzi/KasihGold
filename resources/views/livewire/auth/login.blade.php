@@ -1,15 +1,24 @@
 @section('title', 'Sign in to your account')
 <div>
+    @if (session('error'))
+        <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('info'))
+        <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('success'))
+        <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('warning'))
+        <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @endif
     <div class="grid w-screen h-screen grid-cols-12 bg-gray-800">
         <!-- Mobile view -->
-        <div class="h-full col-span-12 w-full block md:hidden">
+        <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
 
-                <div class="items-center justify-center w-full h-full bg-gray-800 bg-opacity-50 px-4 pt-8">
+                <div class="items-center justify-center w-full h-full px-4 pt-8 bg-gray-800 bg-opacity-50">
                     <div class="z-40 flex justify-between w-full">
                         <a href="/">
                             <div class="flex justify-center">
-                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 bg-white p-2 rounded-md">
+                                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 p-2 bg-white rounded-md">
                             </div>
                         </a>
                         <a href="{{ route('register') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
@@ -20,7 +29,7 @@
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
                             <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
-                            <p class="text-xs text-white text-center">
+                            <p class="text-xs text-center text-white">
                                 Are you ready to join us in empowering economy thru Waqf?
                             </p>
                         </div>
@@ -29,9 +38,8 @@
             </div>
         </div>
         <!-- End Mobile view -->
-        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl
-        md:rounded-t-none">
-            <div class="absolute top-0 w-full px-4 pt-8 hidden md:block">
+        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl md:rounded-t-none">
+            <div class="absolute top-0 hidden w-full px-4 pt-8 md:block">
                 <div class="flex justify-between">
                     <a href="/">
                         <div class="flex justify-center">
@@ -45,10 +53,10 @@
             </div>
             <div class="z-40 w-full px-4 py-6 sm:px-24 ">
                 <div class="mb-6 sm:mx-auto sm:w-full">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-left text-gray-700">
+                    <h2 class="text-2xl font-extrabold text-left text-gray-700 md:text-3xl">
                         Login
                     </h2>
-                    <h2 class="max-w-sm mt-2 text-xs md:text-base font-semibold leading-7 text-left text-gray-500">
+                    <h2 class="max-w-sm mt-2 text-xs font-semibold leading-7 text-left text-gray-500 md:text-base">
                         Welcome! Please fill username and password to sign in into your account
                     </h2>
                 </div>
