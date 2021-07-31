@@ -111,16 +111,16 @@
 
                                             <! -- Start Bank Details -->
                                             <x-tab.nav-content name="1">
-                                                <div class="px-4 py-4">
+                                                <div class="py-2">
                                                     <x-form.basic-form>
                                                         <x-slot name="content">
                                                             <div class="h-64 mt-2 overflow-auto leading-4"">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.input label="Bank" value="" disable="" />
-                                                                    <x-form.input label="Bank Swift Code"  value="" disable="" />
-                                                                    <x-form.input label="Bank Account No"  value="" disable="" />
-                                                                    <x-form.input label="Bank Account Holder Name"  value="" disable="" />
-                                                                    <x-form.input label="Bank Account ID"  value="" disable="" />
+                                                                    <x-form.display-input label="Bank" value="{{ $lists->bank->bankName->name }}"/>
+                                                                    <x-form.display-input label="Bank Swift Code" value="{{ $lists->bank->swift_code }}"/>
+                                                                    <x-form.display-input label="Bank Account No" value="{{ $lists->bank->acc_no }}"/>
+                                                                    <x-form.display-input label="Bank Account Holder Name" value="{{ $lists->bank->acc_holder_name }}"/>
+                                                                    <x-form.display-input label="Bank Account ID" value="{{ $lists->bank->acc_id }}"/>
                                                                 </div>
                                                             </div>
                                                         </x-slot>
