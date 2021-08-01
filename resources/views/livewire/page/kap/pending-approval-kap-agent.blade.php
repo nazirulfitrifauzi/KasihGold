@@ -87,16 +87,16 @@
                                                         <x-slot name="content">
                                                             <div class="h-64 mt-2 overflow-auto leading-4">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.display-input label="Name" value="{{ ($lists->profile->completed == 0) ? "" : strtoupper($lists->name) }}"/>
-                                                                    <x-form.display-input label="Email" value="{{ ($lists->profile->completed == 0) ? "" : $lists->email }}"/>
-                                                                    <x-form.display-input label="Phone No" value="{{ ($lists->profile->completed == 0) ? "" : $lists->phone_no }}"/>
-                                                                    <x-form.display-input label="New IC" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->ic }}"/>
-                                                                    <x-form.display-input label="Old IC" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->old_ic }}"/>
-                                                                    <x-form.display-input label="Pasport" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->passport }}"/>
-                                                                    <x-form.display-input label="Police / Army ID" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->gov_id }}"/>
+                                                                    <x-form.display-input label="Name" value="{{ ($lists->profile == null) ? "" : strtoupper($lists->name) }}"/>
+                                                                    <x-form.display-input label="Email" value="{{ ($lists->profile == null) ? "" : $lists->email }}"/>
+                                                                    <x-form.display-input label="Phone No" value="{{ ($lists->profile == null) ? "" : $lists->phone_no }}"/>
+                                                                    <x-form.display-input label="New IC" value="{{ ($lists->profile == null) ? "" : $lists->profile->ic }}"/>
+                                                                    <x-form.display-input label="Old IC" value="{{ ($lists->profile == null) ? "" : $lists->profile->old_ic }}"/>
+                                                                    <x-form.display-input label="Pasport" value="{{ ($lists->profile == null) ? "" : $lists->profile->passport }}"/>
+                                                                    <x-form.display-input label="Police / Army ID" value="{{ ($lists->profile == null) ? "" : $lists->profile->gov_id }}"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                    <x-form.display-input-address label="Address" address1="{{ strtoupper($lists->profile->address1) }}" address2="{{ strtoupper($lists->profile->address2) }}" address3="{{ strtoupper($lists->profile->address3) }}" town="{{ strtoupper($lists->profile->town) }}" postcode="{{ $lists->profile->postcode }}" state="{{ strtoupper($lists->profile->state->description) }}" />
+                                                                    <x-form.display-input-address label="Address" address1="{{ ($lists->profile == null) ? "" : strtoupper($lists->profile->address1) }}" address2="{{ ($lists->profile == null) ? "" : strtoupper($lists->profile->address2) }}" address3="{{ ($lists->profile == null) ? "" : strtoupper($lists->profile->address3) }}" town="{{ ($lists->profile == null) ? "" : strtoupper($lists->profile->town) }}" postcode="{{ ($lists->profile == null) ? "" : $lists->profile->postcode }}" state="{{ ($lists->profile == null) ? "" : strtoupper($lists->profile->state->description) }}" />
                                                                 </div>
                                                             </div>
                                                         </x-slot>
@@ -112,11 +112,11 @@
                                                         <x-slot name="content">
                                                             <div class="h-64 mt-2 overflow-auto leading-4"">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.display-input label="Bank" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->bankName->name) }}"/>
-                                                                    <x-form.display-input label="Bank Swift Code" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->swift_code) }}"/>
-                                                                    <x-form.display-input label="Bank Account No" value="{{ ($lists->bank->completed == 0) ? "" : $lists->bank->acc_no }}"/>
-                                                                    <x-form.display-input label="Bank Account Holder Name" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->acc_holder_name) }}"/>
-                                                                    <x-form.display-input label="Bank Account ID" value="{{ ($lists->bank->completed == 0) ? "" : $lists->bank->acc_id }}"/>
+                                                                    <x-form.display-input label="Bank" value="{{ ($lists->bank == null) ? "" : strtoupper($lists->bank->bankName->name) }}"/>
+                                                                    <x-form.display-input label="Bank Swift Code" value="{{ ($lists->bank == null) ? "" : strtoupper($lists->bank->swift_code) }}"/>
+                                                                    <x-form.display-input label="Bank Account No" value="{{ ($lists->bank == null) ? "" : $lists->bank->acc_no }}"/>
+                                                                    <x-form.display-input label="Bank Account Holder Name" value="{{ ($lists->bank == null) ? "" : strtoupper($lists->bank->acc_holder_name) }}"/>
+                                                                    <x-form.display-input label="Bank Account ID" value="{{ ($lists->bank == null) ? "" : $lists->bank->acc_id }}"/>
                                                                 </div>
                                                             </div>
                                                         </x-slot>
