@@ -16,7 +16,6 @@ class PendingApprovalKapAgent extends Component
     use WithPagination;
 
     public $search = '';
-    public $list;
     public $membership_id;
 
     public function updatingSearch()
