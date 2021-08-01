@@ -87,13 +87,13 @@
                                                         <x-slot name="content">
                                                             <div class="h-64 mt-2 overflow-auto leading-4">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.display-input label="Name" value="{{ strtoupper($lists->name) }}"/>
-                                                                    <x-form.display-input label="Email" value="{{ $lists->email }}"/>
-                                                                    <x-form.display-input label="Phone No" value="{{ $lists->phone_no }}"/>
-                                                                    <x-form.display-input label="New IC" value="{{ $lists->profile->ic }}"/>
-                                                                    <x-form.display-input label="Old IC" value="{{ $lists->profile->old_ic }}"/>
-                                                                    <x-form.display-input label="Pasport" value="{{ $lists->profile->passport }}"/>
-                                                                    <x-form.display-input label="Police / Army ID" value="{{ $lists->profile->gov_id }}"/>
+                                                                    <x-form.display-input label="Name" value="{{ ($lists->profile->completed == 0) ? "" : strtoupper($lists->name) }}"/>
+                                                                    <x-form.display-input label="Email" value="{{ ($lists->profile->completed == 0) ? "" : $lists->email }}"/>
+                                                                    <x-form.display-input label="Phone No" value="{{ ($lists->profile->completed == 0) ? "" : $lists->phone_no }}"/>
+                                                                    <x-form.display-input label="New IC" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->ic }}"/>
+                                                                    <x-form.display-input label="Old IC" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->old_ic }}"/>
+                                                                    <x-form.display-input label="Pasport" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->passport }}"/>
+                                                                    <x-form.display-input label="Police / Army ID" value="{{ ($lists->profile->completed == 0) ? "" : $lists->profile->gov_id }}"/>
                                                                 </div>
                                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                                     <x-form.display-input-address label="Address" address1="{{ strtoupper($lists->profile->address1) }}" address2="{{ strtoupper($lists->profile->address2) }}" address3="{{ strtoupper($lists->profile->address3) }}" town="{{ strtoupper($lists->profile->town) }}" postcode="{{ $lists->profile->postcode }}" state="{{ strtoupper($lists->profile->state->description) }}" />
@@ -112,11 +112,11 @@
                                                         <x-slot name="content">
                                                             <div class="h-64 mt-2 overflow-auto leading-4"">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.display-input label="Bank" value="{{ strtoupper($lists->bank->bankName->name) }}"/>
-                                                                    <x-form.display-input label="Bank Swift Code" value="{{ strtoupper($lists->bank->swift_code) }}"/>
-                                                                    <x-form.display-input label="Bank Account No" value="{{ $lists->bank->acc_no }}"/>
-                                                                    <x-form.display-input label="Bank Account Holder Name" value="{{ strtoupper($lists->bank->acc_holder_name) }}"/>
-                                                                    <x-form.display-input label="Bank Account ID" value="{{ $lists->bank->acc_id }}"/>
+                                                                    <x-form.display-input label="Bank" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->bankName->name) }}"/>
+                                                                    <x-form.display-input label="Bank Swift Code" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->swift_code) }}"/>
+                                                                    <x-form.display-input label="Bank Account No" value="{{ ($lists->bank->completed == 0) ? "" : $lists->bank->acc_no }}"/>
+                                                                    <x-form.display-input label="Bank Account Holder Name" value="{{ ($lists->bank->completed == 0) ? "" : strtoupper($lists->bank->acc_holder_name) }}"/>
+                                                                    <x-form.display-input label="Bank Account ID" value="{{ ($lists->bank->completed == 0) ? "" : $lists->bank->acc_id }}"/>
                                                                 </div>
                                                             </div>
                                                         </x-slot>
@@ -136,22 +136,30 @@
                                                             <x-table.table-header class="text-left" value="Percentage" sort=""/>
                                                         </x-slot>
                                                         <x-slot name="tbody">
-                                                            @foreach ($lists->nominees as $nominee)
-                                                            <tr>
-                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    {{ strtoupper($nominee->nominee_name) }}
-                                                                </x-table.table-body>
-                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    {{ $nominee->nominee_id }}
-                                                                </x-table.table-body>
-                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    {{ strtoupper($nominee->memberRelationship->description) }}
-                                                                </x-table.table-body>
-                                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
-                                                                    {{ $nominee->percentage }}%
-                                                                </x-table.table-body>
-                                                            </tr>
-                                                            @endforeach
+                                                            @if ($lists->nominees == null)
+                                                                <tr>
+                                                                    <x-table.table-body colspan="4" class="font-medium text-gray-900">
+                                                                        <p class="italic">NO DATA AVALAIBLE</p>
+                                                                    </x-table.table-body>
+                                                                </tr>
+                                                            @else
+                                                                @foreach ($lists->nominees as $nominee)
+                                                                <tr>
+                                                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                        {{ strtoupper($nominee->nominee_name) }}
+                                                                    </x-table.table-body>
+                                                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                        {{ $nominee->nominee_id }}
+                                                                    </x-table.table-body>
+                                                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                        {{ strtoupper($nominee->memberRelationship->description) }}
+                                                                    </x-table.table-body>
+                                                                    <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                                        {{ $nominee->percentage }}%
+                                                                    </x-table.table-body>
+                                                                </tr>
+                                                                @endforeach
+                                                            @endif
                                                         </x-slot>
                                                     </x-table.table>
                                                 </div>
