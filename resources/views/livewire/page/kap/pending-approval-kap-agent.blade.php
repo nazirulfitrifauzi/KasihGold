@@ -16,18 +16,22 @@
         </div>
 
         <div class="p-4 mt-8 mb-20 bg-white sm:mb-0">
-            <div class="flex justify-between my-4">
-                {{-- <div wire:loading>
+            <div class="flex justify-between mb-4">
+                <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
                         style="left: 50%; top:50%">
                         <x-heroicon-o-cog class="-ml-0.5 mr-2 h-8 w-8 animate-spin" />
                         <p class="text-sm">Waiting<span class="animate-ping">...</span></p>
                     </div>
-                </div> --}}
-                <div class="flex items-center">
-                    <x-form.search-input />
                 </div>
             </div>
+
+            <div class="flex justify-end">
+                <div class="w-80">
+                    <x-form.search-input placeholder="Search by email address" wire:model="search"/>
+                </div>
+            </div>
+
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="No" sort="" />
@@ -189,7 +193,7 @@
                     @endforelse
                 </x-slot>
                 <div class="px-2 py-2">
-                    {{-- {{ $list->links('pagination::tailwind') }} --}}
+                    {{ $list->links('pagination-links') }}
                 </div>
             </x-table.table>
         </div>
