@@ -9,18 +9,19 @@ use App\Models\UserDownline;
 use App\Models\UserUpline;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PendingApprovalKapAgent extends Component
 {
+    use WithPagination;
+
+    public $search = '';
     public $list;
     public $membership_id;
 
-    public function mount()
+    public function updatingSearch()
     {
-        $logged_user = auth()->user()->id;
-        $this->list = User::whereHas('profile', function ($query) use ($logged_user) {
-            $query->where('agent_id', '=', $logged_user);
-        })->whereClient(2)->whereRole(4)->whereActive(0)->get();
+        $this->resetPage();
     }
 
     public function approve($id)
@@ -65,6 +66,15 @@ class PendingApprovalKapAgent extends Component
 
     public function render()
     {
-        return view('livewire.page.kap.pending-approval-kap-agent');
+        $logged_user = auth()->user()->id;
+
+        return view('livewire.page.kap.pending-approval-kap-agent', [
+            'list' => User::whereHas('profile', function ($query) use ($logged_user) {
+                            $query->where('agent_id', '=', $logged_user);
+                        })
+                        ->whereRole(4)
+                        ->whereActive(0)
+                        ->paginate(10),
+        ]);
     }
 }
