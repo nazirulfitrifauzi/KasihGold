@@ -73,6 +73,7 @@ class PendingApprovalKapAgent extends Component
                         })
                         ->whereRole(4)
                         ->whereActive(0)
+                        ->where('email', 'like', '%' . $this->search . '%')
                         ->paginate(10),
         ]);
     }
