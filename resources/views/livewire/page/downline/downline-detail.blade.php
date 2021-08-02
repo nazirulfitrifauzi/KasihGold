@@ -52,9 +52,9 @@
                                 <p>{{ $lists->user->email }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                @if(auth()->user()->role == 3)
+                                @if($lists->user->role == 3)
                                     <p>{{ $lists->user->profile->phone1 }}</p>
-                                @elseif (auth()->user()->role == 4)
+                                @elseif ($lists->user->role == 4)
                                     <p>{{ $lists->user->phone_no }}</p>
                                 @endif
                             </x-table.table-body>
