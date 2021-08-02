@@ -15,7 +15,7 @@
             @endif
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
+        <div class="p-4 mt-8 mb-20 bg-white sm:mb-0">
             <div class="flex justify-between my-4">
                 {{-- <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
@@ -52,7 +52,11 @@
                                 <p>{{ $lists->user->email }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $lists->user->profile->phone1 }}</p>
+                                @if(auth()->user()->role == 3)
+                                    <p>{{ $lists->user->profile->phone1 }}</p>
+                                @elseif (auth()->user()->role == 4)
+                                    <p>{{ $lists->user->phone_no }}</p>
+                                @endif
                             </x-table.table-body>
                             @if (auth()->user()->role != 1)
                                 <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
