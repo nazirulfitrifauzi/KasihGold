@@ -160,4 +160,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\InvCart', 'user_id', 'id');
     }
+
+    public function referralCode()
+    {
+        return $this->hasOne('App\Models\ReferralCode', 'user_id', 'id');
+    }
 }
