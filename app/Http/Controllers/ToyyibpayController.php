@@ -129,11 +129,13 @@ class ToyyibpayController extends Controller
 
             session()->flash('success');
             session()->flash('title', 'Success!');
-        } elseif ($response['status_id'] == 3) {
-
+        } elseif ($response['status_id'] == 3 && $toyyibBill->status != 3) {
             $gold = GoldbarOwnershipPending::where('referenceNumber', $response['billcode'])
                 ->where('status', 2)
                 ->get();
+
+            $toyyibBill->status = 3;
+            $toyyibBill->save();
 
             foreach ($gold as $golds) {
                 //Nullifies the gold pending because of failed payment
