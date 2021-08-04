@@ -42,44 +42,42 @@
                 </x-slot>
                 <x-slot name="tbody">
                     @forelse ($activeUser as $index => $lists)
-                        @if($lists->user != NULL) <!-- Delete this after done -->
-                            <tr wire:key="lists-{{ $lists->id }}">
+                        <tr wire:key="lists-{{ $lists->id }}">
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>{{ $loop->iteration  }}</p>
+                            </x-table.table-body>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>{{ $lists->user->name }}</p>
+                            </x-table.table-body>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                <p>{{ $lists->user->email }}</p>
+                            </x-table.table-body>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                @if($lists->user->role == 3)
+                                    <p>{{ $lists->user->profile->phone1 }}</p>
+                                @elseif ($lists->user->role == 4)
+                                    <p>{{ $lists->user->phone_no }}</p>
+                                @endif
+                            </x-table.table-body>
+                            @if (auth()->user()->role != 1)
                                 <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                    <p>{{ $loop->iteration  }}</p>
+                                    <p>{{ $lists->user->profile->membership_id }}</p>
                                 </x-table.table-body>
+                            @elseif(auth()->user()->role == 1)
                                 <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                    <p>{{ $lists->user->name }}</p>
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                    <p>{{ $lists->user->email }}</p>
-                                </x-table.table-body>
-                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                    @if($lists->user->role == 3)
-                                        <p>{{ $lists->user->profile->phone1 }}</p>
-                                    @elseif ($lists->user->role == 4)
-                                        <p>{{ $lists->user->phone_no }}</p>
+                                    @if ($lists->user->referralCode == NULL)
+                                        <div class="flex">
+                                            <button wire:click="generate({{ $lists->user->id }})" class="flex items-center justify-center px-2 py-2 text-white bg-green-400 rounded-lg hover:bg-green-300">
+                                                <x-heroicon-o-key class="w-6 h-6 "/>
+                                                <p class="ml-2 font-bold">Generate</p>
+                                            </button>
+                                        </div>
+                                    @else
+                                        <p>{{ $lists->user->referralCode->referral_code }}</p>
                                     @endif
                                 </x-table.table-body>
-                                @if (auth()->user()->role != 1)
-                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <p>{{ $lists->user->profile->membership_id }}</p>
-                                    </x-table.table-body>
-                                @elseif(auth()->user()->role == 1)
-                                    <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        @if ($lists->user->referralCode == NULL)
-                                            <div class="flex">
-                                                <button wire:click="generate({{ $lists->user->id }})" class="flex items-center justify-center px-2 py-2 text-white bg-green-400 rounded-lg hover:bg-green-300">
-                                                    <x-heroicon-o-key class="w-6 h-6 "/>
-                                                    <p class="ml-2 font-bold">Generate</p>
-                                                </button>
-                                            </div>
-                                        @else
-                                            <p>{{ $lists->user->referralCode->referral_code }}</p>
-                                        @endif
-                                    </x-table.table-body>
-                                @endif
-                            </tr>
-                        @endif
+                            @endif
+                        </tr>
                     @empty
                         <tr>
                             <x-table.table-body colspan="4" class="text-center text-gray-500">
