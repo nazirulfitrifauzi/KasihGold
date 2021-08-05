@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Mail\admin\CreditBalance;
+use App\Models\Profile_personal;
+use App\Models\ReferralCode;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +20,18 @@ class Register extends Component
     public $email = '';
     public $password = '';
     public $passwordConfirmation = '';
+    public $phone1;
+    public $phone2;
     public $phone_no;
     public $referral_code;
     public $tnc;
 
     public function register()
     {
+        $this->phone2 = str_replace('-', '', $this->phone2);
+        $this->phone2 = str_replace(' ', '', $this->phone2);
+        $this->phone_no = $this->phone1 . $this->phone2;
+
         $data = $this->validate([
             'name'              => ['required'],
             'email'             => ['required', 'email', 'unique:users'],
@@ -32,11 +40,6 @@ class Register extends Component
             'referral_code'     => ['required', 'min:6'],
             'tnc'               => ['required'],
         ]);
-
-        dd($data);
-        $data['phone_no'] = str_replace('+6', '', $data['phone_no']);
-        $data['phone_no'] = str_replace('-', '', $data['phone_no']);
-        $data['phone_no'] = str_replace(' ', '', $data['phone_no']);
 
         $user = User::create([
             'email'     => $this->email,
@@ -49,6 +52,16 @@ class Register extends Component
         ]);
 
         event(new Registered($user));
+
+        // find id newly created user & insert data to profile
+        $user_id = User::whereEmail($this->email)->value('id');
+        $agent   = ReferralCode::where('referral_code', $this->referral_code)->value('user_id');
+
+        Profile_personal::updateOrCreate([
+            'user_id'       => $user_id
+        ], [
+            'agent_id'      => $agent,
+        ]);
 
         // generate OTP code n sms to the user
         $client     = new \GuzzleHttp\Client();
