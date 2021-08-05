@@ -18,22 +18,23 @@ class Register extends Component
     public $email = '';
     public $password = '';
     public $passwordConfirmation = '';
-    // public $type = '';
-    // public $client = ''; hide for live KAP
     public $phone_no;
+    public $referral_code;
     public $tnc;
 
     public function register()
     {
         $data = $this->validate([
-            'name'      => ['required'],
-            'email'     => ['required', 'email', 'unique:users'],
-            'password'  => ['required', 'min:8', 'same:passwordConfirmation'],
-            'phone_no'  => ['required', 'string', 'min:10', 'unique:users'],
-            'tnc'       => ['required'],
+            'name'              => ['required'],
+            'email'             => ['required', 'email', 'unique:users'],
+            'password'          => ['required', 'min:8', 'same:passwordConfirmation'],
+            'phone_no'          => ['required', 'string', 'min:10', 'unique:users'],
+            'referral_code'     => ['required', 'min:6'],
+            'tnc'               => ['required'],
         ]);
 
-        $data['phone_no'] = str_replace('+', '', $data['phone_no']);
+        dd($data);
+        $data['phone_no'] = str_replace('+6', '', $data['phone_no']);
         $data['phone_no'] = str_replace('-', '', $data['phone_no']);
         $data['phone_no'] = str_replace(' ', '', $data['phone_no']);
 

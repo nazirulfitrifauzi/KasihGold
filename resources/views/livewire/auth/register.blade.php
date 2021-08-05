@@ -112,26 +112,40 @@
                         </div>
                     </x-general.grid>
 
-                    {{-- Hide for Live KAP
-                    <div class="mt-6">
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
-                                <option value="1">KASIH GOLD</option></option>
-                                <option value="2">KASIH AP</option>
-                            </select>
+                    <div class="mt-6" x-data="{ open: false }">
+                        <div class="relative rounded-md shadow-sm">
+                            <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Referral Codes" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                                <template x-if="open == true">
+                                    <x-heroicon-s-x-circle class="w-5 h-5 text-red-500 tooltipbtn" data-title="Close" data-placement="top" @click="open = ! open"/>
+                                </template>
+                                <template x-if="open == false">
+                                    <x-heroicon-s-question-mark-circle class="w-5 h-5 text-blue-500 tooltipbtn" data-title="View Details" data-placement="top" @click="open = ! open"/>
+                                </template>
+                            </div>
                         </div>
-                    </div> --}}
 
-                    {{-- <div class="mt-6"> hide for KAP live
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
-                                <option value="1">INDIVIDUAL</option>
-                                <option value="2">INSTITUTION</option>
-                            </select>
+                        @error('referral_code')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+
+                        <div class="p-4 mt-4 border-l-4 border-blue-400 bg-blue-50" x-show="open" x-cloak>
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <x-heroicon-s-information-circle class="w-5 h-5 text-blue-500" />
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-700">
+                                        If you are <span class="font-bold">MEMBER of KasihGold</span> or <span class="font-bold">any Cooperative/Institution registered as Agent of Kasih AP Gold</span>, please get your referral code from KasihGold or Cooperative/Institution.
+                                    </p>
+                                    <br>
+                                    <p class="text-sm text-blue-700">
+                                        If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "XXX".
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="mt-6">
                         <div class="flex items-center">
