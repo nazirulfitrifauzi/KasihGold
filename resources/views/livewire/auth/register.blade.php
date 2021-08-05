@@ -116,12 +116,12 @@
                         <div class="relative rounded-md shadow-sm">
                             <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Referral Codes" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
-                                <template x-if="open == true">
+                                <div x-show="open">
                                     <x-heroicon-s-x-circle class="w-5 h-5 text-red-500 tooltipbtn" data-title="Close" data-placement="top" @click="open = ! open"/>
-                                </template>
-                                <template x-if="open == false">
+                                </div>
+                                <div x-show="!open">
                                     <x-heroicon-s-question-mark-circle class="w-5 h-5 text-blue-500 tooltipbtn" data-title="View Details" data-placement="top" @click="open = ! open"/>
-                                </template>
+                                </div>
                             </div>
                         </div>
 
