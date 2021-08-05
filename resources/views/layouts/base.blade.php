@@ -10,6 +10,10 @@
             <title>{{ config('app.name') }}</title>
         @endif
 
+        <!-- tooltip -->
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
 
@@ -51,6 +55,17 @@
             AOS.init({
                 offset:100,
                 duration :1000
+            });
+        </script>
+        <script>
+            tippy('.tooltipbtn', {
+                content:(reference)=>reference.getAttribute('data-title'),
+                onMount(instance) {
+                    instance.popperInstance.setOptions({
+                    placement :instance.reference.getAttribute('data-placement')
+                    });
+                },
+                allowHTML: true,
             });
         </script>
     </body>

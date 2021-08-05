@@ -1,28 +1,9 @@
-<x-general.card class="mt-2 bg-white shadow-lg mb-20 sm:mb-0">
+<x-general.card class="mt-2 mb-20 bg-white shadow-lg sm:mb-0">
     @if (session('success'))
         <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif
     <x-form.basic-form>
         <x-slot name="content">
-            @if (auth()->user()->client == "1")
-                <div class="flex items-center px-5 py-5 border-b border-gray-200 sm:py-3">
-                    <h2 class="mr-auto text-base font-medium">
-                        Referrer Information
-                    </h2>
-                </div>
-                <div class="px-4 py-2">
-                    <div class="mt-2 leading-4">
-                        <div class="grid gap-2 lg:grid-cols-3 sm:grid-cols-1">
-                            @if (auth()->user()->client == "1")
-                                <x-form.input label="KG Code" wire:model="code" value="code" disable="true"/>
-                                <x-form.input label="Introducer" wire:model="introducer" value="introducer" disable="true"/>
-                                <x-form.input label="Introducer Name" wire:model="introducerName" value="introducerName" disable="true"/>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            @endif
-
             <div class="flex items-center px-5 py-5 border-b border-gray-200 sm:py-3">
                 <h2 class="mr-auto text-base font-medium">
                     {{ (auth()->user()->type == 1) ? 'Personal Information' : 'Company Information' }}
@@ -31,17 +12,9 @@
             <div class="px-4 py-2">
                 <div class="mt-2 leading-4">
                     <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                        @if (auth()->user()->client == "2")
-                            <x-form.input label="KAP Code" wire:model="code" value="code" disable="true"/>
-                            @if (auth()->user()->type == "1")
-                                <x-form.dropdown label="Agent" default="no" wire:model="agentId" value="agentId">
-                                    <option value="" hide selected>Select an Agent</option>
-                                        @foreach ($agent as $agents)
-                                            <option value="{{ $agents->id }}">{{ $agents->name }}</option>
-                                        @endforeach
-                                </x-form.dropdown>
-                                <x-form.input label="Membership ID" wire:model="membership_id" value="membership_id" disable="true"/>
-                            @endif
+                        <x-form.input label="KAP Code" wire:model="code" value="code" disable="true"/>
+                        @if (auth()->user()->type == "1")
+                            <x-form.input label="Membership ID" wire:model="membership_id" value="membership_id" disable="true"/>
                         @endif
                         <x-form.input label="Name" wire:model="name" value="name"/>
                         <x-form.input type="email" label="Email Address" wire:model="email" value="email" disable="true"/>

@@ -65,8 +65,9 @@
 
                 <form wire:submit.prevent="register">
                     <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name <span class="font-semibold text-red-600">*</span></label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="Type your name" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="e.g Ali bin Abu" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('name')
@@ -75,8 +76,9 @@
                     </div>
 
                     <div class="mt-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address <span class="font-semibold text-red-600">*</span></label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="email" id="email" type="email" required  placeholder="Type your email" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="email" id="email" type="email" required placeholder="e.g test@test.com" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('email')
@@ -85,8 +87,16 @@
                     </div>
 
                     <div class="mt-6">
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="phone_no" id="phone_no" type="text" required  placeholder="Type your mobile phone number. e.g: 0123456789" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                        <label for="phone1" class="block text-sm font-medium text-gray-700">Phone Number <span class="font-semibold text-red-600">*</span></label>
+                        <div class="flex mt-1 rounded-md shadow-sm">
+                            <select name="phone1" wire:model="phone1" class="appearance-none block w-1/6 mr-2 px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror">
+                                <option value="0" hidden>Code</option>
+                                @for($i = 0; $i < 10; $i++)
+                                    <option value="{{ '01'.$i }}">{{ '01'.$i }}</option>
+                                @endfor
+                            </select>
+                            <input wire:model.lazy="phone2" id="phone2" type="text" required placeholder="e.g 1234567" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input type="hidden" wire:model.lazy="phone_no" />
                         </div>
 
                         @error('phone_no')
@@ -94,44 +104,63 @@
                         @enderror
                     </div>
 
-                    <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
-                            </div>
-
-                            @error('password')
-                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="mt-6">
-                            <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
-                            </div>
-                        </div>
-                    </x-general.grid>
-
-                    {{-- Hide for Live KAP
                     <div class="mt-6">
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="client" wire:model="client" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT CLIENTS --</option>
-                                <option value="1">KASIH GOLD</option></option>
-                                <option value="2">KASIH AP</option>
-                            </select>
-                        </div>
-                    </div> --}}
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password <span class="font-semibold text-red-600">*</span></label>
+                        <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
+                            <div>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                </div>
 
-                    {{-- <div class="mt-6"> hide for KAP live
-                        <div class="block w-full px-3 py-2 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5">
-                            <select name="type" wire:model="type" class="w-full bg-gray-100 focus:outline-none">
-                                <option value="0" hidden>-- PLEASE SELECT TYPE --</option>
-                                <option value="1">INDIVIDUAL</option>
-                                <option value="2">INSTITUTION</option>
-                            </select>
+                                @error('password')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div>
+                                <div class="mt-1 rounded-md shadow-sm">
+                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm your password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                                </div>
+                            </div>
+                        </x-general.grid>
+                    </div>
+
+
+                    <div class="mt-6" x-data="{ open: false }">
+                        <label for="referral" class="block text-sm font-medium text-gray-700">Referral Code <span class="font-semibold text-red-600">*</span></label>
+                        <div class="relative rounded-md shadow-sm">
+                            <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Type your referral code" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                                <div x-show="open" x-cloak>
+                                    <x-heroicon-s-x-circle class="w-5 h-5 text-red-500 tooltipbtn" data-title="Close" data-placement="top" @click="open = ! open"/>
+                                </div>
+                                <div x-show="!open" x-cloak>
+                                    <x-heroicon-s-question-mark-circle class="w-5 h-5 text-blue-500 tooltipbtn" data-title="View Details" data-placement="top" @click="open = ! open"/>
+                                </div>
+                            </div>
                         </div>
-                    </div> --}}
+
+                        @error('referral_code')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+
+                        <div class="p-4 mt-4 border-l-4 border-blue-400 bg-blue-50" x-show="open" x-cloak>
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <x-heroicon-s-information-circle class="w-5 h-5 text-blue-500" />
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-700">
+                                        If you are <span class="font-bold">MEMBER of KasihGold</span> or <span class="font-bold">any Cooperative/Institution registered as Agent of Kasih AP Gold</span>, please get your referral code from KasihGold or Cooperative/Institution.
+                                    </p>
+                                    <br>
+                                    <p class="text-sm text-blue-700">
+                                        If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "XXX".
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="mt-6">
                         <div class="flex items-center">
