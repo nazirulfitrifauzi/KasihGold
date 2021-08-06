@@ -67,7 +67,7 @@ Route::middleware('guest')->group(function () {
 
     // ** Authentication *
     Route::get('login', Login::class)->name('login');
-    Route::get('register', Register::class)->name('register');
+    Route::get('register/{code}', Register::class)->name('register');
     Route::get('register/agent', RegisterAgent::class)->name('register.agent');
     Route::get('password/reset', Email::class)->name('password.request');
     Route::get('password/reset/{token}', Reset::class)->name('password.reset');

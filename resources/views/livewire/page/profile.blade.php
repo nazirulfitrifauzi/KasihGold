@@ -24,14 +24,12 @@
                     <div class="ml-4 mr-auto">
                         <div class="text-base font-medium">{{ $name }}</div>
                         <div class="text-gray-600">KAP Code: {{ (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $temp_code }}</div>
-                        <div class="text-gray-600">Referral Code: {{ $referral_code }}</div>
-                        {{-- @if ($referral_code != "")
-                            <button type="button" class="flex px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none hover:bg-blue-400 tooltipbtn" data-title="Click to copy and share your link with referral code." data-placement="right" onclick="copyLink()">
+                        @if ($referral_code != "")
+                            <button type="button" class="flex px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none tooltipbtn" data-title="Click to copy and share your link with referral code." data-placement="right" onclick="copyLink()">
                                 <x-heroicon-o-document-duplicate class="w-5 h-5 mr-2" />
-                                Referral Link: <input type="text" id="email" class="bg-blue-500 border-none hover:bg-blue-400">
+                                Referral Link: <input type="text" value="{{ config('app.url') }}/register/{{ $referral_code  }}" id="myInput" class="text-white bg-blue-500 border-none appearance-none cursor-pointer myInput focus:outline-none">
                             </button>
-                            <input class="" type="text" value="{{ config('app.url') }}/register/{{ $referral_code  }}" id="myInput">
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
                     <div class="flex flex-col p-4 border-t border-gray-200 sm:flex-row">

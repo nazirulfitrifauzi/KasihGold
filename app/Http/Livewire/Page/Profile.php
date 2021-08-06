@@ -28,9 +28,11 @@ class Profile extends Component
     public $doc_nom, $doc_ic;
     public $doc_nom_ic = [];
     public $doc_dir_list = [];
+    public $referral_code;
 
     public function mount()
     {
+        $this->referral_code = auth()->user()->referralCode->referral_code ?? "";
         $this->profile_id = auth()->user()->profile->id ?? "";
         $this->agent = User::whereRole(3)->whereClient(2)->whereActive(1)->get();
         $this->states = States::all();
