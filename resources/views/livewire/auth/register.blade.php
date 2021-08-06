@@ -1,7 +1,7 @@
 @section('title', 'Create a new account')
 
 <div>
-    <div class="grid h-screen grid-cols-12 bg-gray-800">
+    <div class="grid h-full sm:h-screen grid-cols-12 bg-gray-800">
         <!-- Mobile view -->
         <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="flex items-center justify-center w-full pt-32 pb-6">
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
-                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
+                            <p class="text-base font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
                             <p class="text-xs text-center text-white">
                                 Are you ready to join us in empowering economy thru Waqf?
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="z-40 w-full px-4 py-6 mt-0 sm:px-24 md:mt-14"  x-data="{ active: 0 }">
-                <div class="my-8 sm:mx-auto sm:w-full">
+                <div class="my-2 md:my-8 sm:mx-auto sm:w-full">
                     @if (session('error'))
                         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
                     @elseif (session('info'))
@@ -67,7 +67,7 @@
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Full Name <span class="font-semibold text-red-600">*</span></label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="e.g Ali bin Abu" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="name" id="name" type="text" required autofocus placeholder="e.g Ali bin Abu" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('name')
@@ -78,7 +78,7 @@
                     <div class="mt-6">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email Address <span class="font-semibold text-red-600">*</span></label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input wire:model.lazy="email" id="email" type="email" required placeholder="e.g test@test.com" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="email" id="email" type="email" required placeholder="e.g test@test.com" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('email')
@@ -89,13 +89,13 @@
                     <div class="mt-6">
                         <label for="phone1" class="block text-sm font-medium text-gray-700">Phone Number <span class="font-semibold text-red-600">*</span></label>
                         <div class="flex mt-1 rounded-md shadow-sm">
-                            <select name="phone1" wire:model="phone1" class="appearance-none block w-1/6 mr-2 px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror">
+                            <select name="phone1" wire:model="phone1" class="text-xs appearance-none block w-1/3 mr-2 px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror">
                                 <option value="0" hidden>Code</option>
                                 @for($i = 0; $i < 10; $i++)
                                     <option value="{{ '01'.$i }}">{{ '01'.$i }}</option>
                                 @endfor
                             </select>
-                            <input wire:model.lazy="phone2" id="phone2" type="text" required placeholder="e.g 1234567" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                            <input wire:model.lazy="phone2" id="phone2" type="text" required placeholder="e.g 1234567" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                             <input type="hidden" wire:model.lazy="phone_no" />
                         </div>
 
@@ -109,7 +109,7 @@
                         <x-general.grid mobile="2" gap="5" sm="2" md="2" lg="2" xl="2" class="w-full col-span-6">
                             <div>
                                 <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                    <input wire:model.lazy="password" id="password" type="password" placeholder="Type your password" required class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                                 </div>
 
                                 @error('password')
@@ -119,7 +119,7 @@
 
                             <div>
                                 <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm your password" required class="block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm your password" required class="text-xs block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
                                 </div>
                             </div>
                         </x-general.grid>
@@ -129,7 +129,7 @@
                     <div class="mt-6" x-data="{ open: false }">
                         <label for="referral" class="block text-sm font-medium text-gray-700">Referral Code <span class="font-semibold text-red-600">*</span></label>
                         <div class="relative rounded-md shadow-sm">
-                            <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Type your referral code" class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
+                            <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Type your referral code" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
                                 <div x-show="open" x-cloak>
                                     <x-heroicon-s-x-circle class="w-5 h-5 text-red-500 tooltipbtn" data-title="Close" data-placement="top" @click="open = ! open"/>

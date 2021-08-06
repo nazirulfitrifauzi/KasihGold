@@ -9,7 +9,7 @@
     @elseif (session('warning'))
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif
-    <div class="grid w-screen h-screen grid-cols-12 bg-gray-800">
+    <div class="grid w-screen h-full sm:h-screen grid-cols-12 bg-gray-800">
         <!-- Mobile view -->
         <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="flex items-center justify-center w-full pt-32 pb-6">
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
-                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
+                            <p class="text-base font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
                             <p class="text-xs text-center text-white">
                                 Are you ready to join us in empowering economy thru Waqf?
@@ -64,7 +64,7 @@
                     <div>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input wire:model.lazy="email" id="email" name="email" type="email" required autofocus placeholder="Type your email"
-                                class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('email')
@@ -75,7 +75,7 @@
                     <div class="mt-6">
                         <div class="mt-1 rounded-md shadow-sm">
                             <input wire:model.lazy="password" id="password" type="password" required placeholder="Type your password"
-                                class="appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
+                                class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" />
                         </div>
 
                         @error('password')
