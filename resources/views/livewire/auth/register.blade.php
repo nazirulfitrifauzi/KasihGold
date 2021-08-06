@@ -1,7 +1,7 @@
 @section('title', 'Create a new account')
 
 <div>
-    <div class="grid h-full sm:h-screen grid-cols-12 bg-gray-800">
+    <div class="grid h-full grid-cols-12 bg-gray-800 sm:h-screen">
         <!-- Mobile view -->
         <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -119,7 +119,7 @@
 
                             <div>
                                 <div class="mt-1 rounded-md shadow-sm">
-                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm your password" required class="text-xs block w-full px-3 py-4 transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
+                                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" placeholder="Confirm your password" required class="block w-full px-3 py-4 text-xs transition duration-150 ease-in-out bg-gray-100 appearance-none focus:outline-none sm:text-sm sm:leading-5" />
                                 </div>
                             </div>
                         </x-general.grid>
@@ -153,10 +153,10 @@
                                     <p class="text-sm text-blue-700">
                                         If you are <span class="font-bold">MEMBER of KasihGold</span> or <span class="font-bold">any Cooperative/Institution registered as Agent of Kasih AP Gold</span>, please get your referral code from KasihGold or Cooperative/Institution.
                                     </p>
-                                    <br>
+                                    {{-- <br>
                                     <p class="text-sm text-blue-700">
                                         If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "XXX".
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </div>

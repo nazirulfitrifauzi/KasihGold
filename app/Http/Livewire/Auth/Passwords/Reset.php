@@ -12,16 +12,9 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class Reset extends Component
 {
-    /** @var string */
     public $token;
-
-    /** @var string */
     public $email;
-
-    /** @var string */
     public $password;
-
-    /** @var string */
     public $passwordConfirmation;
 
     public function mount($token)
