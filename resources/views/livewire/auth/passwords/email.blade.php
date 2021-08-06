@@ -1,7 +1,7 @@
 @section('title', 'Reset password')
 
 <div>
-    <div class="bg-gray-800 w-screen h-screen grid grid-cols-12">
+    <div class="bg-gray-800 w-screen h-full sm:h-screen grid grid-cols-12">
         <!-- Mobile view -->
         <div class="h-full col-span-12 w-full block md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="flex items-center justify-center w-full pt-32 pb-6">
                         <div class="max-w-xl -mt-20 animate__animated animate__zoomIn">
-                            <p class="text-xl font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
+                            <p class="text-base font-bold leading-tight text-center text-yellow-400">Empowering Economic Endowment (Waqf)</p>
                             <p class="my-2 border-b"></p>
                             <p class="text-xs text-white text-center">
                                 Are you ready to join us in empowering economy thru Waqf?
@@ -30,8 +30,7 @@
             </div>
         </div>
         <!-- End Mobile view -->
-        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl
-        md:rounded-t-none">
+        <div class="relative flex flex-col items-center justify-center h-full col-span-12 bg-white md:col-span-8 lg:col-span-5 rounded-t-2xl  md:rounded-t-none">
             <div class="w-full absolute top-0 px-4 pt-8 hidden md:block">
                 <div class="flex justify-between">
                     <a href="/">
