@@ -70,7 +70,7 @@ class ProductBuy extends Component
                 'billExternalReferenceNo' => $refPayment,
                 'billTo' => auth()->user()->name,
                 'billEmail' => auth()->user()->email,
-                'billPhone' => auth()->user()->profile->phone1,
+                'billPhone' => (auth()->user()->role == 3) ? auth()->user()->profile->phone1 : auth()->user()->phone_no,
                 'billSplitPayment' => 0,
                 'billSplitPaymentArgs' => '',
                 'billPaymentChannel' => '0',
