@@ -25,6 +25,16 @@ class Register extends Component
     public $phone_no;
     public $referral_code;
     public $tnc;
+    public $code;
+
+    public function mount($code)
+    {
+        if($code == 'user') {
+            $this->referral_code = "";
+        } else {
+            $this->referral_code = $code;
+        }
+    }
 
     public function register()
     {

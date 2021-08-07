@@ -35,6 +35,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     @livewireStyles
+    <style>
+        .myInput {
+            -webkit-appearance: none;
+        }
+    </style>
 </head>
 <body>
     <div class="" x-data="setup()" x-init="$refs.loading.classList.add('hidden');">
@@ -50,20 +55,20 @@
                 @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto printContent">
                     <div class="hidden md:block">
-                        <div @if(Route::current()->uri == 'home') 
-                                class="hidden" 
-                            @else 
-                                class="px-6 pt-6 flex  justify-between bg-center bg-cover"
-                                style="height:8rem; background-image: url({{ asset('img/header.jpg') }});" 
+                        <div @if(Route::current()->uri == 'home')
+                                class="hidden"
+                            @else
+                                class="flex justify-between px-6 pt-6 bg-center bg-cover"
+                                style="height:8rem; background-image: url({{ asset('img/header.jpg') }});"
                             @endif>
                             <div>
-                                @if(Route::current()->uri == 'home') 
+                                @if(Route::current()->uri == 'home')
                                 @else
-                                <h2 class="mr-5 mt-2 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
+                                <h2 class="mt-2 mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
                                 @endif
                             </div>
                             <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
-                                <div class="mt-4 flex items-center px-2 py-2 rounded-md bg-white text-yellow-400 align-middle bg-white hover:text-white hover:bg-yellow-400 focus:outline-none">
+                                <div class="flex items-center px-2 py-2 mt-4 text-yellow-400 align-middle bg-white rounded-md hover:text-white hover:bg-yellow-400 focus:outline-none">
                                     <x-heroicon-o-logout class="w-5 h-5 mr-1" />
                                     <p class="font-semibold">Log out</p>
                                 </div>
@@ -81,7 +86,7 @@
                                 <div class="w-full h-full px-8 py-4 bg-opacity-75 "></div>
                             </div>
                         </header>
-                        
+
                     @endif
                     <!-- User avatar -->
                     <div class="grid px-4 pb-10 mx-auto lg:px-8">

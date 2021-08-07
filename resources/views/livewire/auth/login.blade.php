@@ -9,7 +9,7 @@
     @elseif (session('warning'))
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
     @endif
-    <div class="grid w-screen h-full sm:h-screen grid-cols-12 bg-gray-800">
+    <div class="grid w-screen h-full grid-cols-12 bg-gray-800 sm:h-screen">
         <!-- Mobile view -->
         <div class="block w-full h-full col-span-12 md:hidden">
             <div class="bg-center bg-cover " style="height:100%; background-image: url({{asset('img/bg.jpg')}});">
@@ -21,7 +21,7 @@
                                 <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-10 p-2 bg-white rounded-md">
                             </div>
                         </a>
-                        <a href="{{ route('register') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
+                        <a href="{{ route('register', 'user') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
                             <p>Register</p>
                         </a>
                     </div>
@@ -46,7 +46,7 @@
                             <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-8">
                         </div>
                     </a>
-                    <a href="{{ route('register') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
+                    <a href="{{ route('register', 'user') }}" class="text-xl font-semibold text-yellow-400 hover:text-yellow-300">
                         <p>Register</p>
                     </a>
                 </div>
