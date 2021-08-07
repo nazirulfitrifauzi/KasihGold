@@ -15,19 +15,19 @@
     </div>
     <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
         <!-- BEGIN: Profile Menu -->
-        <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
+        <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 ">
             <x-general.card class="w-full mt-5 bg-white shadow-lg">
-                <div class="relative flex flex-col md:flex-row items-start md:items-center  p-5">
-                    <div class="w-20 h-20 image-fit">
+                <div class="relative flex flex-col md:flex-row items-center p-5">
+                    <div class="w-24 h-24 image-fit">
                         <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                     </div>
-                    <div class="ml-0 md:ml-4 mr-auto">
+                    <div class="ml-4 text-center lg:text-left">
                         <div class="text-base font-medium">{{ $name }}</div>
                         <div class="text-gray-600">KAP Code: {{ (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $temp_code }}</div>
                         <div>
                             @if ($referral_code != "")
                                 <button type="button"
-                                        class="flex flex-col md:flex-row px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none tooltipbtn" 
+                                        class="flex flex-col items-center md:flex-row px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none tooltipbtn" 
                                         data-title="Click to copy and share your link with referral code." 
                                         data-placement="right" 
                                         onclick="copy(this)"
