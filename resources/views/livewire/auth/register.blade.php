@@ -153,10 +153,10 @@
                                     <p class="text-sm text-blue-700">
                                         If you are <span class="font-bold">MEMBER of KasihGold</span> or <span class="font-bold">any Cooperative/Institution registered as Agent of Kasih AP Gold</span>, please get your referral code from KasihGold or Cooperative/Institution.
                                     </p>
-                                    {{-- <br>
+                                    <br>
                                     <p class="text-sm text-blue-700">
-                                        If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "XXX".
-                                    </p> --}}
+                                        If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "KBuljv".
+                                    </p>
                                 </div>
                             </div>
                         </div>
