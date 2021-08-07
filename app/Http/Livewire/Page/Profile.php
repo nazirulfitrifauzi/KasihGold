@@ -28,9 +28,11 @@ class Profile extends Component
     public $doc_nom, $doc_ic;
     public $doc_nom_ic = [];
     public $doc_dir_list = [];
+    public $referral_code;
 
     public function mount()
     {
+        $this->referral_code = auth()->user()->referralCode->referral_code ?? "";
         $this->profile_id = auth()->user()->profile->id ?? "";
         $this->agent = User::whereRole(3)->whereClient(2)->whereActive(1)->get();
         $this->states = States::all();
@@ -49,6 +51,7 @@ class Profile extends Component
         $last_code = $last_code->code;
         // $last_code = User::has('profile')->where('client', $client)->get()->pluck('profile.code')->last();
         $this->temp_code = sprintf('%06d', $last_code + 1);
+
         if(auth()->user()->role == 4 && auth()->user()->profile->code != NULL) {
             $this->code = auth()->user()->profile->code;
         } else {
