@@ -17,19 +17,29 @@
         <!-- BEGIN: Profile Menu -->
         <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
             <x-general.card class="w-full mt-5 bg-white shadow-lg">
-                <div class="relative flex items-center p-5">
+                <div class="relative flex flex-col md:flex-row items-start md:items-center  p-5">
                     <div class="w-20 h-20 image-fit">
                         <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                     </div>
-                    <div class="ml-4 mr-auto">
+                    <div class="ml-0 md:ml-4 mr-auto">
                         <div class="text-base font-medium">{{ $name }}</div>
                         <div class="text-gray-600">KAP Code: {{ (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $temp_code }}</div>
-                        @if ($referral_code != "")
-                            <button type="button" class="flex px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none tooltipbtn" data-title="Click to copy and share your link with referral code." data-placement="right" onclick="copyLink()">
-                                <x-heroicon-o-document-duplicate class="w-5 h-5 mr-2" />
-                                Referral Link: <input type="text" value="{{ config('app.url') }}/register/{{ $referral_code  }}" id="myInput" class="text-white bg-blue-500 border-none appearance-none cursor-pointer myInput focus:outline-none">
-                            </button>
-                        @endif
+                        <div>
+                            @if ($referral_code != "")
+                                <button type="button"
+                                        class="flex flex-col md:flex-row px-4 py-2 mt-2 text-sm font-bold text-white bg-blue-500 rounded focus:outline-none tooltipbtn" 
+                                        data-title="Click to copy and share your link with referral code." 
+                                        data-placement="right" 
+                                        onclick="copy(this)"
+                                        >
+                                        <div class="flex space-x-1 mr-2">
+                                            <x-heroicon-o-document-duplicate class="w-5 h-5" />
+                                            <p>Referral Link: </p>
+                                        </div>
+                                        <p class="font-normal">{{ config('app.url') }}/register/{{ $referral_code  }}</p>
+                                </button>
+                            @endif
+                        </div>
                     </div>
                 </div>
                     <div class="flex flex-col p-4 border-t border-gray-200 sm:flex-row">
@@ -67,11 +77,16 @@
 </div>
 
 <script>
-    function copyLink() {
-        var copyText = document.getElementById("myInput");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999)
-        document.execCommand("copy");
+    function copy(that){
+        var inp = document.createElement('input');
+        document.body.appendChild(inp)
+        inp.value =that.textContent
+        inp.value = inp.value.replace('Referral Link:', ' ');
+        inp.value = inp.value.replace(/ /g,"");
+        inp.select();
+        document.execCommand('copy',false);
+        inp.remove();
+
         Swal.fire({
             icon: 'success',
             title: 'Copied to clipboard!',
