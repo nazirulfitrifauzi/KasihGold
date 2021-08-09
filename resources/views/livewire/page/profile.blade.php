@@ -21,7 +21,7 @@
                     <div class="w-24 h-24 image-fit">
                         <img alt="Midone" class="rounded-full" src="https://image.flaticon.com/icons/png/512/149/149071.png">
                     </div>
-                    <div class="ml-4 text-center lg:text-left">
+                    <div class="ml-0 lg:ml-4 text-center lg:text-left">
                         <div class="text-base font-medium">{{ $name }}</div>
                         <div class="text-gray-600">KAP Code: {{ (auth()->user()->profile != NULL) ? auth()->user()->profile->code : $temp_code }}</div>
                         <div>
