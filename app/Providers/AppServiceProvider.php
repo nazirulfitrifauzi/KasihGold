@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Charts $charts)
     {
+        setlocale(LC_TIME, 'Malay');
         $charts->register([
             \App\Charts\AnalyticsChart::class
         ]);
