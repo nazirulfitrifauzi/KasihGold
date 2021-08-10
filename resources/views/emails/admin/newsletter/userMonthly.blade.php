@@ -109,8 +109,7 @@
             /* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */
         }
 
-        /* Outlook 07, 10 Padding issue fix
-          Bring inline: No.*/
+        /* Outlook 07, 10 Padding issue fix Bring inline: No.*/
         table td {
             border-collapse: collapse;
         }
@@ -283,11 +282,9 @@
                                                 <tr>
                                                     <td>
                                                         <h1>Pelanggan-pelanggan yang dihormati sekelian,</h1>
-                                                        <p>Terima kasih kerana menjadi pelanggan kami.</p>
-                                                        <p>Untuk makluman tuan/puan sehingga 31 Julai 2021 simpanan emas
-                                                            digital tuan/puan adalah
-                                                            sebanyak x.xx gram.</p>
-                                                        <p>Teruskan simpanan emas tuan/puan sepanjang bulan Ogos 2021.
+                                                        <p>Terima kasih {{ $name }} kerana menjadi pelanggan kami.</p>
+                                                        <p>Untuk makluman tuan/puan sehingga {{ $endLastMonth->formatLocalized('%d %B %Y') }} simpanan emas digital tuan/puan adalah sebanyak {{ $gram }} gram.</p>
+                                                        <p>Teruskan simpanan emas tuan/puan sepanjang bulan {{ $thisMonth->formatLocalized('%B %Y') }}.
                                                             (<a href="https://digital.kasihgold.com.login"
                                                                 target="_blank"
                                                                 rel="noopener">https://digital.kasihgold.com.login</a>)
@@ -302,12 +299,12 @@
                                                         <p>Kasih AP Gold Sdn. Bhd.</p>
                                                         <p>&nbsp;</p>
                                                         <h1>Dear clients,</h1>
-                                                        <p>Thank you for being our customer.</p>
-                                                        <p>Please note that up to 31 July 2021 your digital gold
-                                                            deposit is&nbsp;<a
-                                                                href="https://ssl.microsofttranslator.com/bv.aspx?ref=TAns&amp;from=&amp;to=en&amp;a=x.xx">x.xx</a>&nbsp;grams.<br />Continue
-                                                            your gold savings throughout August 2021. (<a
-                                                                href="https://digital.kasihgold.com.login">https://digital.kasihgold.com.login</a>)
+                                                        <p>Thank you {{ $name }} for being our customer.</p>
+                                                        <p>Please note that up to {{ $endLastMonth->format('d F Y') }} your digital gold deposit is {{ $gram }} grams.
+                                                        <p>Continue your gold savings throughout {{ $thisMonth->format('F Y') }}.
+                                                            (<a href="https://digital.kasihgold.com.login"
+                                                                target="_blank"
+                                                                rel="noopener">https://digital.kasihgold.com.login</a>)
                                                         </p>
                                                         <p>If you have any questions please contact us at:</p>
                                                         <p><a href="mailto:customersupport@kasihapgold.com"
