@@ -1,16 +1,18 @@
 <div>
-    {{-- @foreach ($users as $user)
-        {{ $user->name }} ({{ $user->email }}) : {{ $user->gold->where('active_ownership',1)->sum('weight') }} <br>
-    @endforeach
-
-    <button type="button" wire:click="sendEmail" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Button text
-    </button> --}}
     <div>
         <div class="flex flex-col items-center my-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
                 Newsletter
             </h2>
+            @if (session('error'))
+                <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('info'))
+                <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('success'))
+                <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @elseif (session('warning'))
+                <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+            @endif
         </div>
         <div class="mb-20 bg-white sm:mb-0">
             <x-table.table>
@@ -26,18 +28,24 @@
                             <p>1</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>monthly newsletter July 2021</p>
+                            <p>Monthly Newsletter {{ now()->subMonthsNoOverflow()->format('F Y') }}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>sent out</p>
+                            @if($newsletter != NULL && $newsletter->status == 1)
+                                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Sent Out</span>
+                            @else
+                                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Waiting to be sent</span>
+                            @endif
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex space-x-2">
-                                <button wire:click="sendEmail"
-                                    class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
-                                    <x-heroicon-o-mail class="w-5 h-5 mr-1" />
-                                    Blast
-                                </button>
+                                @if($newsletter == NULL)
+                                    <button wire:click="sendEmail"
+                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
+                                        <x-heroicon-o-mail class="w-5 h-5 mr-1" />
+                                        Blast Email
+                                    </button>
+                                @endif
                             </div>
                         </x-table.table-body>
                     </tr>
