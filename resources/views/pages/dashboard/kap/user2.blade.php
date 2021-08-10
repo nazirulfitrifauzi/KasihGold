@@ -36,7 +36,7 @@
                         earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus.
                         Nihil ex tempora neque cum consectetur dolores.
                     </p> --}}
-                    <div class="flex justify-center">
+                    <div class=" h-96 overflow-auto">
                         <img src="{{asset('img/announcement/1.jpg')}}" class="w-auto "/>
                     </div>
                 </div>
