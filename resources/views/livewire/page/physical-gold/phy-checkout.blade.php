@@ -20,7 +20,7 @@
                                         </div>
                                         <div class="text-xl">
                                             <p>My wallet Gold </p>
-                                            <p class="text-lg">{{$this->tGold}} g</p>
+                                            <p class="text-lg">{{$this->total}} g</p>
                                         </div>
                                     </div>
                                 </div>
