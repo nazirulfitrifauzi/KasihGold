@@ -33,7 +33,7 @@
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex space-x-2">
-                                <button wire:click=""
+                                <button wire:click="sendEmail"
                                     class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
                                     <x-heroicon-o-mail class="w-5 h-5 mr-1" />
                                     Blast
