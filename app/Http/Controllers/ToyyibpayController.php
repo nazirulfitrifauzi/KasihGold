@@ -18,34 +18,48 @@ use Illuminate\Support\Facades\Log;
 class ToyyibpayController extends Controller
 {
 
-
-
     public function paymentStatusConv()
     {
         $response = request()->all(['status_id', 'billcode', 'order_id']);
+        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
+            ->first();
 
-        if ($response['status_id'] == 1) {
-            $gold = PhysicalConvert::where('user_id', auth()->user()->id)
+        if ($response['status_id'] == 1 && $toyyibBill->status != 1) {
+
+            $toyyibBill->update(['status' => 1]);
+
+            $phyConv = PhysicalConvert::where('user_id', auth()->user()->id)
                 ->where('ref_payment', $response['billcode'])
                 ->where('status', 2)
                 ->first();
 
-            if ($gold) {
-                $gold->update(['status' => 1]);
+            if ($phyConv) {
+                $phyConv->update(['status' => 0]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
+
+                $goldOwnership = GoldbarOwnership::where('user_id', auth()->user()->id)
+                    ->where('ex_id', $phyConv->id)
+                    ->where('active_ownership', 0)
+                    ->get();
+
+                foreach ($goldOwnership as $golds) {
+                    $golds->update(['ex_flag' => 2]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
+                }
 
                 session()->flash('message', 'Your Physical Gold Conversion Request Has Successfully Submitted.');
 
                 session()->flash('success');
                 session()->flash('title', 'Success!');
             }
-        } elseif ($response['status_id'] == 3) {
-            $gold = PhysicalConvert::where('user_id', auth()->user()->id)
+        } elseif ($response['status_id'] == 3 && $toyyibBill->status != 3) {
+            $toyyibBill->update(['status' => 3]);
+
+            $phyConv = PhysicalConvert::where('user_id', auth()->user()->id)
                 ->where('ref_payment', $response['billcode'])
                 ->where('status', 2)
                 ->first();
 
-            if ($gold) {
-                $gold->update(['status' => 3]);
+            if ($phyConv) {
+                $phyConv->update(['status' => 3]);
 
                 session()->flash('message', 'Your Physical Gold Conversion Request is Unsuccessful.');
 

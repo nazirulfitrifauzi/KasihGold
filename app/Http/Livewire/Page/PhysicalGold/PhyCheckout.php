@@ -8,17 +8,24 @@ use Livewire\Component;
 
 class PhyCheckout extends Component
 {
-    public $prod_qty, $type, $totalGoldbar, $goldbar063, $goldbar064, $total, $totalW;
+    public $prod_qty, $type, $totalGoldbar, $goldbar063, $goldbar064, $total;
     public $info_bar063, $info_bar064;
     public $goldInfo;
-    public $tGold, $tPrice;
+    public $oneG, $miscG, $totMiscG;
 
 
     public function mount()
     {
         $this->totalGoldbar = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
-        $this->info_bar063 = InvInfo::where('user_id', 10)->where('prod_weight', 0.25)->first();
-        $this->info_bar064 = InvInfo::where('user_id', 10)->where('prod_weight', 1)->first();
+        $this->oneG         = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', 1.00)->count();
+        $this->miscG        = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', '!=', 1.00)->get();
+        $this->info_bar063  = InvInfo::where('user_id', 10)->where('prod_weight', 0.25)->first();
+        $this->info_bar064  = InvInfo::where('user_id', 10)->where('prod_weight', 1)->first();
+
+        foreach ($this->miscG as $tmGold) {
+            $this->totMiscG += $tmGold->weight;
+        }
+        // dd($this->totMiscG);
 
         foreach ($this->totalGoldbar as $tGold) {
             $this->total += $tGold->weight;
@@ -26,13 +33,6 @@ class PhyCheckout extends Component
 
         $this->goldbar063 = 0;
         $this->goldbar064 = 0;
-
-        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
-        $this->tGold = 0;
-        foreach ($goldInfo as $golds) {
-            $this->tGold += $golds->weight;
-        }
-        $this->tPrice = $this->tGold * 252;
     }
 
     public function exitProd($prod_qty, $type)
@@ -46,7 +46,7 @@ class PhyCheckout extends Component
                 $this->goldbar064 = $this->goldbar064 + ($prod_qty);
         }
         if ($type == "0.25") {
-            if (((($this->goldbar063 + ($prod_qty)) * 0.25) + $this->goldbar064) > $this->total) {
+            if (((($this->goldbar063 + ($prod_qty)) * 0.25) > $this->totMiscG) || (($this->goldbar064 + ((($this->goldbar063 + ($prod_qty)) * 0.25)) > $this->total))) {
                 session()->flash('error');
                 session()->flash('title', 'Invalid Quantity!');
                 session()->flash('message', 'You cannot exceed more than what you own.');

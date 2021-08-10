@@ -17,7 +17,7 @@
                     @foreach ($history as $item)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>Kasih Digital Gold {{ $item->weight }}g</p>
+                                <p>Kasih Digital Gold {{ number_format($item->weight,2) }}g</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>{{ number_format($item->bought_price,2) }}</p>
