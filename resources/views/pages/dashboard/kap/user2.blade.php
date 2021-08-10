@@ -20,23 +20,25 @@
                 </p>
             </div>
             <!-- Start modal details -->
-            <x-general.modal2 modalActive="modalOpen" title="Announcements" modalSize="lg" headerbg="blue-500" closeBtn="yes">
+            <x-general.modal2 modalActive="modalOpen" title="Announcements" modalSize="xl" headerbg="blue-500" closeBtn="yes">
                 <x-slot name="icon">
                     <x-heroicon-s-information-circle class="w-8 h-8 mr-1" />
                 </x-slot>
                 <div class="p-6">
-                    <h1 class="pb-2 text-lg font-semibold">
-                        <span class="flex items-center text-blue-500">
-                            <x-heroicon-o-calendar class="w-5 h-5 mr-2" />
+                    <div class="pb-2 text-base font-semibold">
+                        <p class="flex items-center text-blue-500">
+                            <x-heroicon-o-calendar class="w-6 h-6 mr-2" />
                             FPX Maintenance on 11 August 2021 (02:00 AM - 06:00 AM)
-                        </span>
-                    </h1>
+                        </p>
+                    </div>
                     {{-- <p class="text-base text-gray-600">Lorem Ipsum is simply dummy text of the printing and typesetting
                         Cum qui rem deleniti. Suscipit in dolor veritatis sequi aut. Vero ut
                         earum quis deleniti. Ut a sunt eum cum ut repudiandae possimus.
                         Nihil ex tempora neque cum consectetur dolores.
                     </p> --}}
-                    <img src="{{asset('img/announcement/1.jpg')}}" class="w-full "/>
+                    <div class="flex justify-center">
+                        <img src="{{asset('img/announcement/1.jpg')}}" class="w-auto "/>
+                    </div>
                 </div>
             </x-general.modal2>
             <!-- End modal details -->

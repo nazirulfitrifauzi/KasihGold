@@ -30,7 +30,7 @@
     </div>
     <div class="p-4 mt-2">
         <div class="h-full ">
-            <ul class="-my-5 divide-y divide-gray-200 overflow-hidden" style="max-height: 39.9rem;">
+            <ul class="-mt-4 divide-y divide-gray-200 overflow-hidden" style="max-height: 39.9rem;">
                 {{$slot}}
             </ul>
         </div>
