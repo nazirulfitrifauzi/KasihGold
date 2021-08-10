@@ -228,6 +228,12 @@
                     </x-sidebar.nav-item>
                 @endif
 
+                @if (auth()->user()->isAdminKAP())
+                    <x-sidebar.nav-item title="Newsletter" route="{{ route('admin.newsletter') }}" uri="admin/newsletter">
+                        <x-heroicon-o-newspaper class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+                @endif
+
                 @if (auth()->user()->isAdminKG())
                     <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
                         <x-heroicon-o-cog class="w-5 h-5" />

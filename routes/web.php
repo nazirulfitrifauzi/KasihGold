@@ -47,6 +47,7 @@ use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Livewire\Auth\RegisterAgent;
 use App\Http\Livewire\Auth\VerifyOtp;
+use App\Http\Livewire\Page\Admin\Newsletter;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -157,5 +158,6 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/exit-approval-outright', [ProductKAController::class, 'exitAppOutright'])->name('exit-approval-outright');
         Route::get('product/admin/product/sell', [ProductAddController::class, 'admin'])->name('admin.product-sell-hq');
         Route::get('product/admin/product/sell-add', [ProductAddController::class, 'adminAdd'])->name('admin.product-add-hq');
+        Route::get('admin/newsletter', Newsletter::class)->name('admin.newsletter');
     });
 });
