@@ -31,7 +31,7 @@ class Newsletter extends Notification implements ShouldQueue
         $name = strtoupper($this->user->name);
         $gram = number_format(($this->user->gold->where('active_ownership', 1)->sum('weight')), 2);
 
-        return (new MailMessage)->subject('Simpanan Emas Digital anda sehingga ' . $endLastMonth)
+        return (new MailMessage)->subject('Simpanan Emas Digital anda sehingga ' . $endLastMonth->format('F Y'))
             ->view('emails.admin.newsletter.userMonthly', [
                     'endLastMonth'  => $endLastMonth,
                     'thisMonth'     => $thisMonth,
