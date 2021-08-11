@@ -42,6 +42,7 @@
             padding: 0;
             width: 100% !important;
             line-height: 100% !important;
+            background-color: #2c2b2b;
         }
 
         /* End reset */
@@ -208,6 +209,7 @@
         table.body-wrap {
             width: 100%;
             padding: 30px;
+            margin-top: 20px;
         }
 
 
@@ -215,17 +217,26 @@
         table.footer-wrap {
             width: 100%;
             clear: both !important;
+            background-color: #2c2b2b;
         }
 
         .footer-wrap .container p {
             font-size: 12px;
-            color: #666;
+            color: rgba(253, 194, 2, 0.979);
+            background-color: #2c2b2b;
+            
         }
 
         table.footer-wrap a {
-            color: #999;
+            color: rgba(253, 194, 2, 0.979);
+            background-color: #2c2b2b;
+            padding: 30px;
+            
         }
 
+        .bold{
+            font-weight: bold;
+        }
 
         /* Give it some responsive love */
         .container {
@@ -234,6 +245,9 @@
             margin: 0 auto !important;
             /* makes it centered */
             clear: both !important;
+            border-radius: 20px;
+            border-top: 5px solid rgb(255, 208, 0);
+            border-width: 4px;
         }
 
         /* Set the padding on the td rather than the div for Outlook compatibility */
@@ -254,9 +268,9 @@
         }
     </style>
     <!--[if gte mso 9]>
-      <style>
-        /* Target Outlook 2007 and 2010 */
-      </style>
+        <style>
+            /* Target Outlook 2007 and 2010 */
+        </style>
     <![endif]-->
 </head>
 
@@ -276,15 +290,21 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <img src="{{ asset('img/kasihAPGold.png') }}"
-                                                        style="width:250px; heigth:250px; margin-left:-15px " />
+                                                    <th style="background-color: rgba(253, 194, 2, 0.979); padding:10px">
+                                                        <img src="{{ asset('img/kasihAPGold.png') }}" style="width:250px; heigth:250px;  " />
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        <img src="{{ asset('img/clients.png') }}" style="width:250px; heigth:250px;  " />
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <h1>Pelanggan-pelanggan yang dihormati sekelian,</h1>
-                                                        <p>Terima kasih {{ $name }} kerana menjadi pelanggan kami.</p>
-                                                        <p>Untuk makluman tuan/puan sehingga {{ $endLastMonth->formatLocalized('%d %B %Y') }} simpanan emas digital tuan/puan adalah sebanyak {{ $gram }} gram.</p>
-                                                        <p>Teruskan simpanan emas tuan/puan sepanjang bulan {{ $thisMonth->formatLocalized('%B %Y') }}.
+                                                        <h4 style="padding-bottom:10px;">Pelanggan-pelanggan yang dihormati sekelian,</h4>
+                                                        <p>Terima kasih  {{ $name }}  kerana menjadi pelanggan kami.</p>
+                                                        <p>Untuk makluman tuan/puan sehingga  <span class="bold" > {{ $endLastMonth->formatLocalized('%d %B %Y') }}</span>  simpanan emas digital tuan/puan adalah sebanyak  <span class="bold" > {{ $gram }}  gram. </span> </p>
+                                                        <p>Teruskan simpanan emas tuan/puan sepanjang bulan <span class="bold" > {{ $thisMonth->formatLocalized('%B %Y') }} . </span>
                                                             (<a href="https://digital.kasihgold.com.login"
                                                                 target="_blank"
                                                                 rel="noopener">https://digital.kasihgold.com.login</a>)
@@ -297,11 +317,11 @@
                                                             whatapps kami di 0127499771</p>
                                                         <p>Terima kasih.</p>
                                                         <p>Kasih AP Gold Sdn. Bhd.</p>
-                                                        <p>&nbsp;</p>
-                                                        <h1>Dear clients,</h1>
-                                                        <p>Thank you {{ $name }} for being our customer.</p>
-                                                        <p>Please note that up to {{ $endLastMonth->format('d F Y') }} your digital gold deposit is {{ $gram }} grams.
-                                                        <p>Continue your gold savings throughout {{ $thisMonth->format('F Y') }}.
+                                                        <div style="margin-top:20px; border-top: 1px solid rgb(196, 196, 196);"></div>
+                                                        <h4 style="padding-bottom:10px;" >Dear clients,</h4>
+                                                        <p>Thank you  $name  for being our customer.</p>
+                                                        <p>Please note that up to   <span class="bold" > {{ $endLastMonth->format('d F Y') }}</span>  your digital gold deposit is  <span class="bold" > {{ $gram }}  grams.</span>
+                                                        <p>Continue your gold savings throughout  <span class="bold" > {{ $thisMonth->format('F Y') }} . </span>
                                                             (<a href="https://digital.kasihgold.com.login"
                                                                 target="_blank"
                                                                 rel="noopener">https://digital.kasihgold.com.login</a>)
@@ -330,13 +350,13 @@
                         <tbody>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td class="container">
+                                <td>
                                     <!-- content -->
                                     <div class="content">
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td align="center" valign="top">
+                                                    <td align="center" valign="top" style="color:rgba(253, 194, 2, 0.979); padding: 30px;">
                                                         © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
                                                     </td>
                                                 </tr>
