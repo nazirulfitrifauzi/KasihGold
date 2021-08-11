@@ -302,7 +302,7 @@
                                                 <tr>
                                                     <td>
                                                         <h4 style="padding-bottom:10px;">Pelanggan-pelanggan yang dihormati sekelian,</h4>
-                                                        <p>Terima kasih  {{ $name }}  kerana menjadi pelanggan kami.</p>
+                                                        <p>Terima kasih <span class="bold" > {{ $name }} </span> kerana menjadi pelanggan kami.</p>
                                                         <p>Untuk makluman tuan/puan sehingga  <span class="bold" > {{ $endLastMonth->formatLocalized('%d %B %Y') }}</span>  simpanan emas digital tuan/puan adalah sebanyak  <span class="bold" > {{ $gram }}  gram. </span> </p>
                                                         <p>Teruskan simpanan emas tuan/puan sepanjang bulan <span class="bold" > {{ $thisMonth->formatLocalized('%B %Y') }} . </span>
                                                             (<a href="https://digital.kasihgold.com.login"
@@ -319,7 +319,7 @@
                                                         <p>Kasih AP Gold Sdn. Bhd.</p>
                                                         <div style="margin-top:20px; border-top: 1px solid rgb(196, 196, 196);"></div>
                                                         <h4 style="padding-bottom:10px;" >Dear clients,</h4>
-                                                        <p>Thank you  $name  for being our customer.</p>
+                                                        <p>Thank you  <span class="bold" > {{ $name }} </span> for being our customer.</p>
                                                         <p>Please note that up to   <span class="bold" > {{ $endLastMonth->format('d F Y') }}</span>  your digital gold deposit is  <span class="bold" > {{ $gram }}  grams.</span>
                                                         <p>Continue your gold savings throughout  <span class="bold" > {{ $thisMonth->format('F Y') }} . </span>
                                                             (<a href="https://digital.kasihgold.com.login"
