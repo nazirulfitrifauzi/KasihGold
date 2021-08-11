@@ -305,9 +305,9 @@
                                                         <p>Terima kasih <span class="bold" > {{ $name }} </span> kerana menjadi pelanggan kami.</p>
                                                         <p>Untuk makluman tuan/puan sehingga  <span class="bold" > {{ $endLastMonth->formatLocalized('%d %B %Y') }}</span>  simpanan emas digital tuan/puan adalah sebanyak  <span class="bold" > {{ $gram }}  gram. </span> </p>
                                                         <p>Teruskan simpanan emas tuan/puan sepanjang bulan <span class="bold" > {{ $thisMonth->formatLocalized('%B %Y') }} . </span>
-                                                            (<a href="https://digital.kasihgold.com/login"
+                                                            (<a href="https://digital.kasihapgold.com/login"
                                                                 target="_blank"
-                                                                rel="noopener">https://digital.kasihgold.com/login</a>)
+                                                                rel="noopener">https://digital.kasihapgold.com/login</a>)
                                                         </p>
                                                         <p>Sekiranya tuan/puan mempunyai sebarang persoalan sila hubungi
                                                             kami di:</p>
@@ -322,9 +322,9 @@
                                                         <p>Thank you  <span class="bold" > {{ $name }} </span> for being our customer.</p>
                                                         <p>Please note that up to   <span class="bold" > {{ $endLastMonth->format('d F Y') }}</span>  your digital gold deposit is  <span class="bold" > {{ $gram }}  grams.</span>
                                                         <p>Continue your gold savings throughout  <span class="bold" > {{ $thisMonth->format('F Y') }} . </span>
-                                                            (<a href="https://digital.kasihgold.com/login"
+                                                            (<a href="https://digital.kasihapgold.com/login"
                                                                 target="_blank"
-                                                                rel="noopener">https://digital.kasihgold.com/login</a>)
+                                                                rel="noopener">https://digital.kasihapgold.com/login</a>)
                                                         </p>
                                                         <p>If you have any questions please contact us at:</p>
                                                         <p><a href="mailto:customersupport@kasihapgold.com"
