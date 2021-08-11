@@ -48,6 +48,8 @@ use App\Http\Controllers\ToyyibpayController;
 use App\Http\Livewire\Auth\RegisterAgent;
 use App\Http\Livewire\Auth\VerifyOtp;
 use App\Http\Livewire\Page\Admin\Newsletter;
+use App\Http\Livewire\Page\Admin\Announcement\ListAnnouncement;
+use App\Http\Livewire\Page\Admin\Announcement\CreateAnnouncement;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -139,6 +141,7 @@ Route::middleware('auth')->group(function () {
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
 
+
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
 
@@ -159,5 +162,7 @@ Route::middleware('auth')->group(function () {
         Route::get('product/admin/product/sell', [ProductAddController::class, 'admin'])->name('admin.product-sell-hq');
         Route::get('product/admin/product/sell-add', [ProductAddController::class, 'adminAdd'])->name('admin.product-add-hq');
         Route::get('admin/newsletter', Newsletter::class)->name('admin.newsletter');
+        Route::get('admin/list-announcements', ListAnnouncement::class)->name('admin.list-announcements');
+        Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
     });
 });
