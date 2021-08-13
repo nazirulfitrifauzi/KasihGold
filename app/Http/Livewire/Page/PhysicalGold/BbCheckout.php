@@ -63,6 +63,7 @@ class BbCheckout extends Component
 
                         if ($gold) {
                             $gold->active_ownership = 0;
+                            $gold->ex_flag = 0;
                             $gold->ex_id = $outrightId;
                             $gold->save();
                         }
@@ -100,6 +101,7 @@ class BbCheckout extends Component
 
                         if ($gold) {
                             $gold->active_ownership = 0;
+                            $gold->ex_flag = 0;
                             $gold->ex_id = $buybackId;
                             $gold->save();
                         }

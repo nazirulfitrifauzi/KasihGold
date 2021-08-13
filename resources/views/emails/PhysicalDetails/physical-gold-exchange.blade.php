@@ -376,18 +376,18 @@
                                 <tr>
                                 <td>
                                     <table align="center" style="margin-bottom:20px; width:80%">
-                                            <tr style="background-color: #23c503">
-                                                <th colspan="2"  style="padding: 10px; font-weight: bold; font-size:14px; text-align:center; color:white">Physical Conversion-Details</th>                                             
+                                            <tr >
+                                                <th colspan="2"  style="padding: 10px; font-weight: bold; font-size:18px; text-align:center; ">Physical Conversion-Details</th>                                           
                                             </tr>
                                             <tr>
-                                                <td style="padding: 10px;"></td>
+                                                <td colspan="2" style="padding-bottom:10px; border-top: 1px solid rgb(196, 196, 196);"></td>
                                             </tr>
                                             <tr>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Transaction Number :</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> Vxs2eUot</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$toyyibBill->ref_payment}} </p>
                                                 </td>
                                                 
                                             </tr>
@@ -396,7 +396,7 @@
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Transaction date :</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> 10/8/2021</p>
+                                                <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$toyyibBill->created_at->format('d-m-Y')}} </p>
                                                 </td>
                                                 
                                             </tr>
@@ -405,7 +405,7 @@
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Customer Name :</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> Muhammad Safwan</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$phyConv->name}} </p>
                                                 </td>
                                                 
                                             </tr>
@@ -414,7 +414,7 @@
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Customer ID :</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> 1337</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$phyConv->user_id}} </p>
                                                 </td>
                                                 
                                             </tr>
@@ -423,7 +423,11 @@
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Address : </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> Lot kampung 43000 kajang selangor</p>
+                                                    @if ($phyConv->address3)
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$phyConv->address1}}, <br> {{$phyConv->address2}}, <br> {{$phyConv->address3}}, <br> {{$phyConv->postcode}} {{$phyConv->town}}, <br>{{$phyConv->states->description}} </p>
+                                                    @else 
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$phyConv->address1}}, <br> {{$phyConv->address2}}, <br> {{$phyConv->postcode}} {{$phyConv->town}}, <br>{{$phyConv->states->description}} </p>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <tr>
@@ -431,7 +435,7 @@
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">Phone Number : </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> 012223456</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;"> {{$phyConv->phone1}}</p>
                                                 </td>                                             
                                             </tr>
 
@@ -442,13 +446,13 @@
                                             <tr>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
                                                     <p style="font-weight: bold; font-size:16px; text-align:left;">Total Gold</p>
-                                                    <p style="font-weight: bold; font-size:12px; text-align:left;">1 Gram</p>
                                                     <p style="font-weight: bold; font-size:12px; text-align:left;">0.25 Gram</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:left;">1 Gram</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;">
-                                                    <p style="font-weight: bold; font-size:16px; text-align:right;"> 1.75 G</p>
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;">1 pcs</p>
-                                                    <p style="font-weight: bold; font-size:12px; text-align:right;">3 pcs</p>
+                                                    <p style="font-weight: bold; font-size:16px; text-align:right;"> {{number_format($phyConv->one_gram+($phyConv->quarter_gram*0.25),2)}}G</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;">{{$phyConv->one_gram}} pcs</p>
+                                                    <p style="font-weight: bold; font-size:12px; text-align:right;">{{$phyConv->quarter_gram}} pcs</p>
                                                 </td>                                             
                                             </tr>
 
@@ -477,7 +481,7 @@
                                 role="presentation">
                                 <tr>
                                     <td class="content-cell" align="center" style="color:rgba(253, 194, 2, 0.979)">
-                                        © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+                                        © {{ date('Y') }} Kasih AP Gold. @lang('All rights reserved.')
                                     </td>
                                 </tr>
                             </table>
