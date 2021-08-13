@@ -45,6 +45,32 @@ class WithdrawalRequest extends Component
         return redirect('withdrawal-request');
     }
 
+    public function outDec($appid)
+    {
+        $this->validate([
+            'proofdoc' => 'required|file|max:4096', // 4MB Max
+
+        ]);
+
+        $outright = OutrightSell::where('id', $appid)->first();
+
+        $outright->status = 2;
+        $outright->save();
+
+        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
+
+        foreach ($goldOwnership as $ownership) {
+            $ownership->ex_flag = 2;
+            $ownership->active_ownership = 1;
+            $ownership->save();
+        }
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Outright Sell has successfully approved!');
+        return redirect('withdrawal-request');
+    }
+
     public function bbApp($appid)
     {
         $this->validate([
@@ -55,13 +81,39 @@ class WithdrawalRequest extends Component
         $buyback = BuyBack::where('id', $appid)->first();
 
         $buyback->status = 1;
-        $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');;
+        $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');
         $buyback->save();
 
         $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 1;
+            $ownership->save();
+        }
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Buyback has successfully approved!');
+        return redirect('withdrawal-request');
+    }
+
+    public function bbDec($appid)
+    {
+        $this->validate([
+            'proofdoc' => 'required|file|max:4096', // 4MB Max
+
+        ]);
+
+        $buyback = BuyBack::where('id', $appid)->first();
+
+        $buyback->status = 2;
+        $buyback->save();
+
+        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
+
+        foreach ($goldOwnership as $ownership) {
+            $ownership->ex_flag = 2;
+            $ownership->active_ownership = 1;
             $ownership->save();
         }
 
