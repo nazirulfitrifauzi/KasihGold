@@ -140,8 +140,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
+                                                                    <button wire:click="outDec({{$outlist->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                        Decline
+                                                                    </button>
                                                                     <button wire:click="outApp({{$outlist->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                                        Submit
+                                                                        Approve
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -205,11 +208,7 @@
                                                 <! -- End modal Details -->
 
 
-                                                <button
-                                                        class="inline-flex items-center px-4 py-2 font-semibold text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none">
-                                                    <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1" />
-                                                    Approve
-                                                </button>
+                                               
 
                                             </div>
                                         </x-table.table-body>
@@ -324,22 +323,21 @@
                                                                     <div class="flex mt-5">
                                                                         <label for="product-img1"
                                                                             class="w-full p-10 text-center {{ ($errors->has('proofdoc')) ? 'bg-red-400  hover:bg-red-500': 'bg-gray-200  hover:bg-gray-300' }} rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
-                                                                            @if ($proofdoc)
-                                                                                <img src="{{ $proofdoc->temporaryUrl() }}">
-                                                                            @else
                                                                                 <span
                                                                                     class="inline-flex items-center font-medium {{ ($errors->has('proofdoc')) ? 'text-red-400 ': 'text-gray-600' }} {{ ($errors->has('proofdoc')) ? 'group-hover:text-red-500': 'group-hover:text-gray-700' }}">
                                                                                     <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 {{ ($errors->has('proofdoc')) ? 'text-red-600 ': 'text-yellow-400' }} " />
                                                                                 </span>
-                                                                            @endif
                                                                         </label>
                                                                         <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
                                                                             name="product-img1" wire:model="proofdoc">
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
+                                                                    <button wire:click="bbDec({{$buyback->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                        Decline
+                                                                    </button>
                                                                     <button wire:click="bbApp({{$buyback->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                                                        Submit
+                                                                        Approve
                                                                     </button>
                                                                 </div>
                                                             </div>
