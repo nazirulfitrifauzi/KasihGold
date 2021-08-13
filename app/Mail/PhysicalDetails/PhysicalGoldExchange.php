@@ -2,6 +2,8 @@
 
 namespace App\Mail\PhysicalDetails;
 
+use App\Models\PhysicalConvert;
+use App\Models\ToyyibBills;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +18,12 @@ class PhysicalGoldExchange extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $phyConv, $toyyibBill;
+
+    public function __construct(PhysicalConvert $phyConv, ToyyibBills $toyyibBill)
     {
-        //
+        $this->phyConv = $phyConv;
+        $this->toyyibBill = $toyyibBill;
     }
 
     /**
@@ -29,6 +34,5 @@ class PhysicalGoldExchange extends Mailable
     public function build()
     {
         return $this->markdown('emails.PhysicalDetails.physical-gold-exchange');
-
     }
 }

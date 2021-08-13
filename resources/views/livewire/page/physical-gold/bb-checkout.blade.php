@@ -21,7 +21,7 @@
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <x-form.dropdown label="Bank" wire:model="bankId" default="no" value="bankId">
+                                                                    <x-form.dropdown label="Bank" wire:model="bankId" default="no" value="bankId" disabled>
                                                                         <option value="0">Choose Bank</option>
                                                                         @foreach ($banks as $item)
                                                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -34,7 +34,7 @@
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="swiftCode"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                                                                            >
+                                                                            disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div>
@@ -44,7 +44,7 @@
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="accNo"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                                                                            >
+                                                                            disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div>
@@ -54,7 +54,7 @@
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="accHolderName"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                                                                            >
+                                                                            disabled>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -66,7 +66,7 @@
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="bankAccId"
                                                                                 class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
-                                                                            >
+                                                                            disabled>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -145,7 +145,11 @@
                                         <p>Total</p>
                                     </div>
                                     <div class="font-semibold text-lg">
+                                        @if(session('outright')!=1)
                                         <p>RM {{number_format((session('total')*1.06),2)}}</p>
+                                        @else
+                                        <p>RM {{number_format((session('total')),2)}}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

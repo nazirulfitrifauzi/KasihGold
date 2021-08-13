@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Page\Kap;
 
+use App\Mail\PhysicalDetails\PhysicalGoldExchange;
 use App\Models\BuyBack;
 use App\Models\GoldbarOwnership;
 use App\Models\OutrightSell;
 use App\Models\PhysicalConvert;
+use App\Models\ToyyibBills;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -26,7 +29,7 @@ class WithdrawalRequest extends Component
         $outright = OutrightSell::where('id', $appid)->first();
 
         $outright->status = 1;
-        $outright->doc_1 = $this->proofdoc->storeAs('public/exit', $outright->id . '-Outright-ProofOfTransfer.pdf');;
+        $outright->doc_1 = $this->proofdoc->storeAs('public/exit', $outright->id . '-Outright-ProofOfTransfer.jpg');;
         $outright->save();
 
         $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
@@ -52,7 +55,7 @@ class WithdrawalRequest extends Component
         $buyback = BuyBack::where('id', $appid)->first();
 
         $buyback->status = 1;
-        $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.pdf');;
+        $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');;
         $buyback->save();
 
         $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
@@ -72,9 +75,11 @@ class WithdrawalRequest extends Component
     {
 
         $phyConv = PhysicalConvert::where('id', $appid)->first();
+        $toyyibBill = ToyyibBills::where('bill_code', $phyConv->ref_payment)->first();
 
         $phyConv->status = 1;
         $phyConv->save();
+
 
         $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
 
@@ -85,9 +90,42 @@ class WithdrawalRequest extends Component
 
         session()->flash('success');
         session()->flash('title', 'Success!');
-        session()->flash('message', 'Physical Conversion has successfully approved and will reach at your doorstep soon!');
+        session()->flash('message', 'Physical Conversion has successfully approved and will reach at their doorstep soon!');
+
+        Mail::to("hadikasihgold@gmail.com")->send(new PhysicalGoldExchange($phyConv, $toyyibBill));
+
+
         return redirect('withdrawal-request');
     }
+
+    public function pConvDec($appid)
+    {
+
+        $phyConv = PhysicalConvert::where('id', $appid)->first();
+        $toyyibBill = ToyyibBills::where('bill_code', $phyConv->ref_payment)->first();
+
+        $phyConv->status = 2;
+        $phyConv->save();
+
+
+        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
+
+        foreach ($goldOwnership as $ownership) {
+            $ownership->ex_flag = 2;
+            $ownership->active_ownership = 1;
+            $ownership->save();
+        }
+
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Physical Conversion has been declined and the gold is returned back to their inventory!');
+
+        // Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($phyConv, $toyyibBill));
+
+
+        return redirect('withdrawal-request');
+    }
+
     public function render()
     {
         return view('livewire.page.kap.withdrawal-request', [
