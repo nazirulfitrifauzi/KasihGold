@@ -46,8 +46,9 @@ class Register extends Component
             'name'              => ['required'],
             'email'             => ['required', 'email', 'unique:users'],
             'password'          => ['required', 'min:8', 'same:passwordConfirmation'],
+            'phone1'            => ['required'],
             'phone_no'          => ['required', 'string', 'min:10'],
-            'referral_code'     => ['required', 'min:6'],
+            'referral_code'     => ['required', 'min:6', 'exists:App\Models\ReferralCode,referral_code'],
             'tnc'               => ['required'],
         ]);
 
