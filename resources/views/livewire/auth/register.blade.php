@@ -102,6 +102,9 @@
                         @error('phone_no')
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
+                        @error('phone1')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mt-6">
