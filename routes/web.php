@@ -43,6 +43,7 @@ use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\BankInformationController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\AllNewsController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
 use App\Http\Livewire\Auth\RegisterAgent;
@@ -141,7 +142,6 @@ Route::middleware('auth')->group(function () {
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
 
-
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
 
@@ -164,5 +164,6 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/newsletter', Newsletter::class)->name('admin.newsletter');
         Route::get('admin/list-announcements', ListAnnouncement::class)->name('admin.list-announcements');
         Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
+        Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
     });
 });

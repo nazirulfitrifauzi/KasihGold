@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Page;
 
+use App\Models\Announcement;
 use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
@@ -21,6 +22,7 @@ class Home extends Component
     public $tGold, $goldInfo;
     public $chart1, $mainchart1, $chart2, $mainchart2, $chart3, $mainchart3;
     public $subchart1day, $subchart1month, $subchart2day, $subchart2month, $subchart3day, $subchart3month, $subchart4day, $subchart4month;
+    public $announcement;
 
     public function mount()
     {
@@ -136,6 +138,7 @@ class Home extends Component
             $this->subchart4month = DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_MONTHLY ' . $logged_user . ', "1" ');
 
         } elseif (auth()->user()->isUserKAP()) {
+            $this->announcement = Announcement::orderBy('id','desc')->get();
             $chartQuery1 = DB::table('gold_ownership')
                             ->select(DB::raw("count(weight) as weight"))
                             ->where('user_id', auth()->user()->id)

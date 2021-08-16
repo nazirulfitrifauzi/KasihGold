@@ -89,7 +89,7 @@
                     <div class="mt-6">
                         <label for="phone1" class="block text-sm font-medium text-gray-700">Phone Number <span class="font-semibold text-red-600">*</span></label>
                         <div class="flex mt-1 rounded-md shadow-sm">
-                            <select name="phone1" wire:model="phone1" class="text-xs appearance-none block w-1/3 mr-2 px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror">
+                            <select name="phone1" wire:model="phone1" class="text-xs appearance-none block w-1/3 mr-2 px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phone_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror @error('phone1') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror">
                                 <option value="0" hidden>Code</option>
                                 @for($i = 0; $i < 10; $i++)
                                     <option value="{{ '01'.$i }}">{{ '01'.$i }}</option>
