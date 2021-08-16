@@ -262,9 +262,9 @@
                         <x-heroicon-o-newspaper class="w-5 h-5" />
                     </x-sidebar.nav-item>
 
-                    {{-- <x-sidebar.nav-item title="Announcement" route="{{route('admin.list-announcements')}}" uri="setting-kap">
+                    <x-sidebar.nav-item title="Announcement" route="{{route('admin.list-announcements')}}" uri="setting-kap">
                         <x-heroicon-o-speakerphone class="w-5 h-5" />
-                    </x-sidebar.nav-item> --}}
+                    </x-sidebar.nav-item>
                 @endif
 
                 @if (auth()->user()->isAdminKG())
