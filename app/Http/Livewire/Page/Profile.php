@@ -291,9 +291,9 @@ class Profile extends Component
     public function nomineeUpload()
     {
         $this->validate([
-            'doc_nom'       => 'required|file|max:2048',
-            'doc_ic'        => 'required|file|max:2048',
-            'doc_nom_ic.*'  => 'required|file|max:2048',
+            'doc_nom'       => 'required|file|max:5048',
+            'doc_ic'        => 'required|file|max:5048',
+            'doc_nom_ic.*'  => 'required|file|max:5048',
         ]);
 
         $this->doc_nom->storeAs('public/nominee/' . auth()->user()->id, 'nominee-form.pdf');
