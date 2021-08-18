@@ -132,7 +132,7 @@
                     <div class="mt-6" x-data="{ open: false }">
                         <label for="referral" class="block text-sm font-medium text-gray-700">Referral Code <span class="font-semibold text-red-600">*</span></label>
                         <div class="relative rounded-md shadow-sm">
-                            <input wire:model.lazy="referral_code" id="referral_code" type="text" required  placeholder="Type your referral code" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
+                            <input wire:model.lazy="referral_code" disabled id="referral_code" type="text" required  placeholder="Type your referral code" class="text-xs appearance-none block w-full px-3 py-4 bg-gray-100 focus:outline-none  transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('referral_code') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:shadow-outline-red @enderror" >
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
                                 <div x-show="open" x-cloak>
                                     <x-heroicon-s-x-circle class="w-5 h-5 text-red-500 tooltipbtn" data-title="Close" data-placement="top" @click="open = ! open"/>
@@ -156,10 +156,10 @@
                                     <p class="text-sm text-blue-700">
                                         If you are <span class="font-bold">MEMBER of KasihGold</span> or <span class="font-bold">any Cooperative/Institution registered as Agent of Kasih AP Gold</span>, please get your referral code from KasihGold or Cooperative/Institution.
                                     </p>
-                                    <br>
+                                    {{-- <br>
                                     <p class="text-sm text-blue-700">
                                         If you <span class="font-bold">ARE NOT A MEMBER</span> of the above, your referral code shall be "KBuljv".
-                                    </p>
+                                    </p> --}}
                                 </div>
                             </div>
                         </div>

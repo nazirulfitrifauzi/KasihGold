@@ -30,7 +30,7 @@ class Register extends Component
     public function mount($code)
     {
         if($code == 'user') {
-            $this->referral_code = "";
+            $this->referral_code = 'KBuljv';
         } else {
             $this->referral_code = $code;
         }
