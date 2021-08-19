@@ -47,10 +47,6 @@ class WithdrawalRequest extends Component
 
     public function outDec($appid)
     {
-        $this->validate([
-            'proofdoc' => 'required|file|max:4096', // 4MB Max
-
-        ]);
 
         $outright = OutrightSell::where('id', $appid)->first();
 
@@ -64,6 +60,7 @@ class WithdrawalRequest extends Component
             $ownership->active_ownership = 1;
             $ownership->save();
         }
+
 
         session()->flash('success');
         session()->flash('title', 'Success!');
