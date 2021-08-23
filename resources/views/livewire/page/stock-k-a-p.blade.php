@@ -136,6 +136,7 @@
                                         <x-table.table-header class="text-left" value="No" sort=""/>
                                         <x-table.table-header class="text-left" value="Goldbar Serial Number" sort=""/>
                                         <x-table.table-header class="text-left" value="Weight Occupied" sort=""/>
+                                        <x-table.table-header class="text-left" value="Weight On Hold" sort=""/>
                                         <x-table.table-header class="text-left" value="Weight Vacant" sort=""/>
                                         <x-table.table-header class="text-left" value="Created Date" sort=""/>
                                     </x-slot>
@@ -150,6 +151,9 @@
                                                 </x-table.table-body>
                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
                                                     {{number_format($gold->weight_occupied,2)}}
+                                                </x-table.table-body>
+                                                <x-table.table-body colspan="" class="font-medium text-gray-900">
+                                                    {{number_format($gold->weight_on_hold,2)}}
                                                 </x-table.table-body>
                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
                                                     {{number_format($gold->weight_vacant,2)}}
