@@ -4,10 +4,10 @@
     </h2>
 </div>
 
-<div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
+{{-- <div class="grid grid-cols-12 gap-6"  x-data="{ active: 0 }">
     <!-- BEGIN: Profile Menu -->
     <div class="flex col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
-            <x-general.card class="mt-5 bg-white shadow-lg w-full">
+            <x-general.card class="w-full mt-5 bg-white shadow-lg">
                     <div class="flex overflow-x-auto">
                         <x-tab.nav-tab name="0" livewire="">
                             <div class="flex font-semibold">
@@ -28,7 +28,7 @@
             </x-general.card>
         </div>
         <!-- END: Profile Menu -->
-        <div class="col-span-12 lg:col-span-12 xxl:col-span-12 mb-20 sm:mb-0">
+        <div class="col-span-12 mb-20 lg:col-span-12 xxl:col-span-12 sm:mb-0">
             <x-tab.nav-content name="0">
                 @include('pages.reporting.performance')
             </x-tab.nav-content>
@@ -41,4 +41,4 @@
                 @include('pages.reporting.regulatory')
             </x-tab.nav-content>
         </div>
-</div>
+</div> --}}

@@ -51,11 +51,11 @@
                     <x-heroicon-o-home class="w-5 h-5" />
                 </x-sidebar.nav-item>
 
-                {{-- @if (auth()->user()->role == 1)
-                    <x-sidebar.nav-item title="Dealership" route="http://cscapps.net.my/demoKasih/siskop" uri="#">
-                        <x-heroicon-o-user-group class="w-5 h-5" />
+                @if (auth()->user()->isAdminKAP())
+                    <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
+                        <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
-                @endif --}}
+                @endif
 
                 @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isAdminKAP()) {{-- kg bukan user --}}
                     <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
@@ -78,12 +78,6 @@
                             @endif
                         </div>
                     </x-sidebar.dropdown-nav-item>
-                @endif
-
-                @if (auth()->user()->role != 4 && auth()->user()->client == 1)
-                <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
-                    <x-heroicon-o-clipboard-list class="w-5 h-5" />
-                </x-sidebar.nav-item>
                 @endif
 
                 {{-- @if (auth()->user()->client == 1 && auth()->user()->role == 1)
@@ -233,7 +227,7 @@
                         <x-heroicon-o-newspaper class="w-5 h-5" />
                     </x-sidebar.nav-item>
 
-                    <x-sidebar.nav-item title="Announcement" route="{{route('admin.list-announcements')}}" uri="setting-kap">
+                    <x-sidebar.nav-item title="Announcement" route="{{route('admin.list-announcements')}}" uri="admin/list-announcements">
                         <x-heroicon-o-speakerphone class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif
