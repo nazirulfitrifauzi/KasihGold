@@ -6,7 +6,6 @@ use App\Models\CommissionRateKap;
 use App\Models\InvCart;
 use App\Models\MarketPrice;
 use Livewire\Component;
-use Illuminate\Support\Str;
 
 class Cart extends Component
 {
@@ -19,7 +18,7 @@ class Cart extends Component
 
     public function mount()
     {
-        // dd((string) Str::uuid());
+
         $this->total = 0;
         $this->comm = 0;
         //Cart information
