@@ -140,9 +140,26 @@
                     }
                 ],
                 columns: [
-                    {data: 'serial_id', name: 'serial_id', orderable: true, searchable: true},
-                    {data: 'weight', name: 'weight', orderable: true, searchable: true},
+                    {data: 'serial_id', name: 'serial_id', orderable: true},
+                    { render:function(data, type, row) {
+                        return parseFloat(row.weight).toFixed(2)
+                        }, orderable: true
+                    },
                     {data: 'total', name: 'total', orderable: true},
+                ],
+                columnDefs: [
+                    {
+                        targets: 0,
+                        className: 'dt-body-center'
+                    },
+                    {
+                        targets: 1,
+                        className: 'dt-body-center'
+                    },
+                    {
+                        targets: 2,
+                        className: 'dt-body-center'
+                    }
                 ],
                 bLengthChange: false,
                 dom: "<'flex items-center justify-end mb-3'<B>>" +
