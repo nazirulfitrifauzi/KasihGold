@@ -130,7 +130,7 @@
             allowHTML: true,
         });
     </script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
         var myDate = new Date();
         var hrs = myDate.getHours();
@@ -152,6 +152,5 @@
         }).replace(/ /g, ' ');
         document.getElementById('getDate').innerHTML = 'Here are your stats for Today, ' + formattedDate;
     </script>
-    {{-- <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script> --}}
     @stack('js')
 </html>
