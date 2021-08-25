@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Log;
 
 class ReportingController extends Controller
 {
-    public function index(){
-        $goldbar = Goldbar::get();
-        return view ('pages.reporting.reporting', compact('goldbar'));
-    }
-
     public function summaryGoldbar(Request $request)
     {
         $date = Carbon::createFromFormat('Y-m-d', $request->report_date. '-01');

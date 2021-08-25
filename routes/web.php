@@ -150,10 +150,6 @@ Route::middleware('auth')->group(function () {
         Route::get('toyyibpay-status-conv', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
         Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatusBuy'])->name('toyyibpay-status-buy');
         Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
-
-
-        //-- Reporting --//
-        Route::get('list-report', ListReport::class)->name('list-report');
     });
 
     Route::middleware('auth.admin')->group(function () {
@@ -170,7 +166,8 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/list-announcements', ListAnnouncement::class)->name('admin.list-announcements');
         Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
         Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
-        Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
+
+        Route::get('reporting', ListReport::class)->name('reporting');
         Route::get('reporting/goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
     });
 });
