@@ -81,20 +81,35 @@
             Reporting Goldbar
         </h2>
     </div>
+    <div class="bg-white p-4 shadow-lg rounded-md flex space-x-0 space-y-2 items-start flex-col md:space-y-0 md:flex-row  md:items-center md:space-x-4 my-6">
 
-    <div class="flex items-center">
-        <div>
-            <label for="serial">Gold Serial:</label>
-            <select class="select2" id="serial" onchange="myFunction()">
-                <option></option>
-                @foreach($goldbar as $gold)
-                    <option value="{{ $gold->id }}">{{ $gold->serial_id }}</option>
-                @endforeach
-            </select>
-        </div>
-        <label for="report_date">Report Month:</label>
-        <input type="month" id="report_date" name="report_date" min="2021-07" value="{{ now()->format('Y-m') }}">
-        <button id="submit">Generate</button>
+        <label class="block text-sm font-semibold leading-5 text-gray-700"  for="serial">Gold Serial:</label>
+        <select 
+            class="block w-52 transition duration-150 ease-in-out form-select sm:text-sm sm:leading-5" 
+            id="serial" 
+            onchange="myFunction()"
+            >
+            <option value="0" hidden>Select a Goldbar Serial</option>
+            @foreach($goldbar as $gold)
+                <option value="{{ $gold->id }}">{{ $gold->serial_id }}</option>
+            @endforeach
+        </select>
+
+        <label class="block text-sm font-semibold leading-5 text-gray-700"  for="report_date">Report Month:</label>
+        <input 
+            class="form-input block  transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            type="month" 
+            id="report_date" 
+            name="report_date"
+            min="2021-07" 
+            value="{{ now()->format('Y-m') }}"
+        >
+
+        <button id="submit" class="bg-yellow-300 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded inline-flex items-center focus:outline-none" >
+            <x-heroicon-o-cog class="w-6 h-6 mr-2"/>
+            <span>Generate</span>
+        </button>
+
     </div>
 
     <table id="table" class="divide-y divide-gray-200 stripe hover" >
@@ -131,10 +146,18 @@
                 },
                 buttons: [
                     {
+                        text: `<div class="flex space-x-2 items-center bg-green-400 py-2 px-4 text-white rounded-md mr-2">
+                                    <x-heroicon-o-document-download class="w-6 h-6"/>
+                                    <p>Excel</p>
+                                </div>`,
                         extend: 'excelHtml5',
                         title: 'Goldbar Report '
                     },
                     {
+                        text: `<div class="flex space-x-2 items-center bg-orange-400 py-2 px-4 text-white rounded-md mr-2">
+                                    <x-heroicon-o-document-text class="w-6 h-6"/>
+                                    <p>Pdf</p>
+                                </div>`,
                         extend: 'pdfHtml5',
                         title: 'Goldbar Report '
                     }

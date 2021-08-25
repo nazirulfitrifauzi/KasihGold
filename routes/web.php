@@ -52,6 +52,7 @@ use App\Http\Livewire\Auth\VerifyOtp;
 use App\Http\Livewire\Page\Admin\Newsletter;
 use App\Http\Livewire\Page\Admin\Announcement\ListAnnouncement;
 use App\Http\Livewire\Page\Admin\Announcement\CreateAnnouncement;
+use App\Http\Livewire\Page\Reporting\ListReport;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -149,6 +150,10 @@ Route::middleware('auth')->group(function () {
         Route::get('toyyibpay-status-conv', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
         Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatusBuy'])->name('toyyibpay-status-buy');
         Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
+
+
+        //-- Reporting --//
+        Route::get('list-report', ListReport::class)->name('list-report');
     });
 
     Route::middleware('auth.admin')->group(function () {

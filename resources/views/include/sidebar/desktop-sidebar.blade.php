@@ -52,7 +52,7 @@
                 </x-sidebar.nav-item>
 
                 @if (auth()->user()->isAdminKAP())
-                    <x-sidebar.nav-item title="Reporting" route="{{route('reporting')}}" uri="reporting">
+                    <x-sidebar.nav-item title="Reporting" route="{{route('list-report')}}" uri="list-report">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
                 @endif

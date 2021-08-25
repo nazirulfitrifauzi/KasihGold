@@ -47,7 +47,7 @@
             @include('include.sidebar.desktop-sidebar')
 
             <!-- content -->
-            <div class="flex flex-col flex-1 w-full mx-0 bg-white">
+            <div class="relative flex flex-col flex-1 w-full mx-0 bg-white">
                 @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto printContent">
                     <div class="hidden md:block">
