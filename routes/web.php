@@ -168,6 +168,7 @@ Route::middleware('auth')->group(function () {
         Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
 
         Route::get('reporting', ListReport::class)->name('reporting');
-        Route::get('reporting/goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
+        Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
+        Route::get('reporting/summary-agent', [ReportingController::class, 'summaryAgent'])->name('summaryAgent');
     });
 });

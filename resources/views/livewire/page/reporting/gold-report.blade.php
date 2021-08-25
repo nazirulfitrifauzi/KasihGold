@@ -8,9 +8,8 @@
         <div class="flex flex-col items-start md:flex-row md:items-center md:space-x-4">
             <label class="block text-sm font-semibold leading-5 text-gray-700"  for="serial">Gold Serial:</label>
             <select
-                class="block transition duration-150 ease-in-out w-52 form-select sm:text-sm sm:leading-5"
+                class="block transition duration-150 ease-in-out select2 w-52 form-select sm:text-sm sm:leading-5"
                 id="serial"
-                onchange="myFunction()"
                 >
                 <option value="0" hidden>Select a Goldbar Serial</option>
                 @foreach($goldbar as $gold)
@@ -87,7 +86,7 @@
                     {
                         text: `<div class="flex items-center px-4 py-2 mr-2 space-x-2 text-white bg-orange-400 rounded-md">
                                     <x-heroicon-o-document-text class="w-6 h-6"/>
-                                    <p>Pdf</p>
+                                    <p>PDF</p>
                                 </div>`,
                         extend: 'pdfHtml5',
                         title: 'Goldbar Report '
