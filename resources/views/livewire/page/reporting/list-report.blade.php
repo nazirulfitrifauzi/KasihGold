@@ -74,7 +74,7 @@
 @endsection
 
 <div class="overflow-hidden ">
-    <section id="section" class="absolute top-0 bottom-0 left-0 flex max-w-full md:top-32" aria-labelledby="slide-over-heading">
+    <section id="section" class="absolute top-0 bottom-0 left-0 flex max-w-full md:top-32 z-10" aria-labelledby="slide-over-heading">
         <div class="w-screen max-w-md my-20 md:my-0">
             <div id="reportList" class="flex flex-col h-auto py-6 pt-0 overflow-y-auto bg-white shadow-xl animate__animated animate__fadeInLeft md:h-full">
                 <div class="relative flex-shrink-0 overflow-hidden bg-yellow-400 ">
