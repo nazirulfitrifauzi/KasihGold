@@ -41,4 +41,25 @@ class ReportingController extends Controller
         return Datatables::of($data)
             ->make(true);
     }
+
+    public function summaryCommission(Request $request)
+    {
+        $agent = $request->agent;
+        $date = Carbon::createFromFormat('Y-m-d', $request->report_date . '-01');
+
+        $data = DB::select("select user_id, CAST(YEAR(created_at) AS VARCHAR(4)) + '-' + CAST(MONTH(created_at) AS VARCHAR(2)) AS date, SUM(commission) AS commission, status
+                            FROM commission_detail_kaps
+                            where user_id = '".$agent."'
+                                and CAST (created_at as date) >= '". $date->startOfMonth()->toDateString() . "' and CAST (created_at as date) <= '". $date->endOfMonth()->toDateString() ."'
+                            GROUP BY CAST(YEAR(created_at) AS VARCHAR(4)) + '-' + CAST(MONTH(created_at) AS VARCHAR(2)),
+                                user_id,status
+                            order by CAST(YEAR(created_at) AS VARCHAR(4)) + '-' + CAST(MONTH(created_at) AS VARCHAR(2))");
+
+        return Datatables::of($data)
+            ->editColumn('date', function ($data) {
+                $format_date = Carbon::createFromFormat('Y-m', $data->date);
+                return $format_date->format('F Y');
+            })
+            ->make(true);
+    }
 }

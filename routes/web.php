@@ -170,5 +170,6 @@ Route::middleware('auth')->group(function () {
         Route::get('reporting', ListReport::class)->name('reporting');
         Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
         Route::get('reporting/summary-agent', [ReportingController::class, 'summaryAgent'])->name('summaryAgent');
+        Route::get('reporting/summary-commission', [ReportingController::class, 'summaryCommission'])->name('summaryCommission');
     });
 });

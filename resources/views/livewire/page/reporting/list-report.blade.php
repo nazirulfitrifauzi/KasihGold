@@ -74,7 +74,7 @@
 @endsection
 
 <div class="overflow-hidden ">
-    <section id="section" class="absolute top-0 bottom-0 left-0 flex max-w-full md:top-32 z-10" aria-labelledby="slide-over-heading">
+    <section id="section" class="absolute top-0 bottom-0 left-0 z-10 flex max-w-full md:top-32" aria-labelledby="slide-over-heading">
         <div class="w-screen max-w-md my-20 md:my-0">
             <div id="reportList" class="flex flex-col h-auto py-6 pt-0 overflow-y-auto bg-white shadow-xl animate__animated animate__fadeInLeft md:h-full">
                 <div class="relative flex-shrink-0 overflow-hidden bg-yellow-400 ">
@@ -101,6 +101,10 @@
                                 <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
                                 <span>Agents Report</span>
                             </button>
+                            <button id="commissionReportMenu" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400">
+                                <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
+                                <span>Commission Report</span>
+                            </button>
                         </div>
                     </div>
                     <!-- /End replace -->
@@ -116,6 +120,10 @@
     <div id="agentReport" class="hidden">
         <livewire:page.reporting.agent-report/>
     </div>
+
+    <div id="commissionReport" class="hidden">
+        <livewire:page.reporting.commission-report/>
+    </div>
 </div>
 
 @push('js')
@@ -125,6 +133,7 @@
             var slide = document.getElementById("reportList");
             var goldbar = document.getElementById("goldbarReport");
             var agent = document.getElementById("agentReport");
+            var commission = document.getElementById("commissionReport");
 
             $(".reportMenu").click(function(e) {
                 slide.classList.remove("animate__fadeInLeft");
@@ -148,6 +157,12 @@
                     agent.classList.remove("block");
                     agent.classList.add("hidden");
                 }
+
+                if(commission.classList.contains("block")) {
+                    commission.classList.remove("block");
+                    commission.classList.add("hidden");
+                }
+
                 goldbar.classList.remove("hidden");
                 goldbar.classList.add("block");
             });
@@ -157,8 +172,29 @@
                     goldbar.classList.remove("block");
                     goldbar.classList.add("hidden");
                 }
+
+                if(commission.classList.contains("block")) {
+                    commission.classList.remove("block");
+                    commission.classList.add("hidden");
+                }
+
                 agent.classList.remove("hidden");
                 agent.classList.add("block");
+            });
+
+            $("#commissionReportMenu").click(function(e) {
+                if(goldbar.classList.contains("block")) {
+                    goldbar.classList.remove("block");
+                    goldbar.classList.add("hidden");
+                }
+
+                if(agent.classList.contains("block")) {
+                    agent.classList.remove("block");
+                    agent.classList.add("hidden");
+                }
+
+                commission.classList.remove("hidden");
+                commission.classList.add("block");
             });
         });
     </script>
