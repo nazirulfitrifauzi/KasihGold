@@ -13,27 +13,23 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
-
     <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
-
     <link rel="stylesheet" href="{{ asset('css/print.css')}}" />
-
     <link rel="stylesheet" href="{{ asset('dist/apexcharts.css')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('swipper/swipper.css')}}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <script src="{{ asset('dist/apexcharts.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('js/init-alpine.js')}}"></script>
     <script src="{{ asset('js/accounting.js')}}"></script>
-
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('swipper/swipper.css')}}" />
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @yield('style')
     @livewireStyles
     <style>
         .myInput {
@@ -51,7 +47,7 @@
             @include('include.sidebar.desktop-sidebar')
 
             <!-- content -->
-            <div class="flex flex-col flex-1 w-full mx-0 bg-white">
+            <div class="relative flex flex-col flex-1 w-full mx-0 bg-white">
                 @include('include.sidebar.mobile-navbar')
                 <main class="overflow-y-auto printContent">
                     <div class="hidden md:block">
@@ -134,7 +130,7 @@
             allowHTML: true,
         });
     </script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script>
         var myDate = new Date();
         var hrs = myDate.getHours();

@@ -46,11 +46,13 @@ use App\Http\Controllers\AllNewsController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\SnapAPI;
 use App\Http\Controllers\ToyyibpayController;
+use App\Http\Controllers\UsersController;
 use App\Http\Livewire\Auth\RegisterAgent;
 use App\Http\Livewire\Auth\VerifyOtp;
 use App\Http\Livewire\Page\Admin\Newsletter;
 use App\Http\Livewire\Page\Admin\Announcement\ListAnnouncement;
 use App\Http\Livewire\Page\Admin\Announcement\CreateAnnouncement;
+use App\Http\Livewire\Page\Reporting\ListReport;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -94,7 +96,6 @@ Route::middleware('auth')->group(function () {
         Route::get('stock/management', [StockManagementController::class, 'index'])->name('stock-management');
         Route::get('stock/movement', [StockMovementController::class, 'index'])->name('stock-movement');
         Route::get('incident-reporting', [IncidentReportingController::class, 'index'])->name('incidentReporting');
-        Route::get('reporting', [ReportingController::class, 'index'])->name('reporting');
         Route::get('tracking', [TrackingController::class, 'index'])->name('tracking');
         Route::get('product/detail', [ProductDetailController::class, 'index'])->name('product-detail');
         Route::get('product/buy', [ProductBuyController::class, 'index'])->name('product-buy');
@@ -165,5 +166,10 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/list-announcements', ListAnnouncement::class)->name('admin.list-announcements');
         Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
         Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
+
+        Route::get('reporting', ListReport::class)->name('reporting');
+        Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
+        Route::get('reporting/summary-agent', [ReportingController::class, 'summaryAgent'])->name('summaryAgent');
+        Route::get('reporting/summary-commission', [ReportingController::class, 'summaryCommission'])->name('summaryCommission');
     });
 });
