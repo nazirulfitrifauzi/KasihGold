@@ -14,4 +14,9 @@ class ToyyibBills extends Model
     protected $guarded = [];
 
     protected $table = 'toyyib_bills';
+
+    public function golds()
+    {
+        return $this->hasMany('App\Models\GoldbarOwnershipPending', 'referenceNumber', 'bill_code');
+    }
 }

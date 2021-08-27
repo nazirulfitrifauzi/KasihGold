@@ -6,7 +6,7 @@
                 <x-heroicon-o-desktop-computer class="w-8 h-8 text-yellow-400" />
             </x-slot>
         </x-dashboard.info-card-user>
-        <x-dashboard.info-card-user bg="teal-400" title="Physical Gold" value="0.00 G" iconColor='white'
+        <x-dashboard.info-card-user bg="teal-400" title="Physical Gold" value="{{$this->pGold}} G" iconColor='white'
             cardRoute="{{route('physical-gold')}}">
             <x-slot name="svg">
                 <x-heroicon-o-user class="w-8 h-8 text-teal-400" />
