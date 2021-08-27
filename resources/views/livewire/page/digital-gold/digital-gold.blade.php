@@ -84,7 +84,7 @@
 
         </div>
 
-        @if(auth()->user()->isAgentKAP())
+
             <div x-data="{ active: 0 }">
                 <div class="grid grid-cols-12 mx-4 border-2 rounded-lg">
                     <div class="col-span-12 overflow-auto intro-y lg:overflow-visible">
@@ -118,224 +118,36 @@
 
                         <!-- Start Transaction History -->
                         <x-tab.content name="0">
-                            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="px-6 mr-auto text-lg font-medium">
-                                    Purchase History
-                                </h2>
-                            </div>
-                            <div class="p-4 mt-4 bg-white">
-                                <x-table.table>
-                                    <x-slot name="thead">
-                                        <x-table.table-header class="text-left" value="Items" sort="" />
-                                        <x-table.table-header class="text-left" value="Price (RM)" sort="" />
-                                        <x-table.table-header class="text-left" value="Purchase Date" sort="" />
-                                    </x-slot>
-                                    <x-slot name="tbody">
-                                        @foreach ($history as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Kasih Digital Gold {{ number_format($item->weight,2) }}g</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ number_format($item->bought_price,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                    </x-slot>
-                                    <div class="px-2 py-2">
-                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
-                                    </div>
-                                </x-table.table>
-                            </div>
+                            <livewire:page.digital-gold.transaction-history/>
                         </x-tab.content>
                         <!--End Transaction History -->
 
                         <!-- Start Success -->
                         <x-tab.content name="1">
-                            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="px-6 mr-auto text-lg font-medium">
-                                    Success
-                                </h2>
-                            </div>
-                            <div class="p-4 mt-4 bg-white">
-                                <x-table.table>
-                                    <x-slot name="thead">
-                                        <x-table.table-header class="text-left" value="Items" sort="" />
-                                        <x-table.table-header class="text-left" value="Price (RM)" sort="" />
-                                        <x-table.table-header class="text-left" value="Purchase Date" sort="" />
-                                        <x-table.table-header class="text-left" value="Status" sort="" />
-                                    </x-slot>
-                                    <x-slot name="tbody">
-                                        @foreach ($history as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Kasih Digital Gold {{ number_format($item->weight,2) }}g</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ number_format($item->bought_price,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">Success</span>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                    </x-slot>
-                                    <div class="px-2 py-2">
-                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
-                                    </div>
-                                </x-table.table>
-                            </div>
+                            <livewire:page.digital-gold.success/>
                         </x-tab.content>
                         <!-- End Success -->
 
                         <!-- Start Pending -->
                         <x-tab.content name="2">
-                            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="px-6 mr-auto text-lg font-medium">
-                                    Pending
-                                </h2>
-                            </div>
-                            <div class="p-4 mt-4 bg-white">
-                                <x-table.table>
-                                    <x-slot name="thead">
-                                        <x-table.table-header class="text-left" value="Items" sort="" />
-                                        <x-table.table-header class="text-left" value="Price (RM)" sort="" />
-                                        <x-table.table-header class="text-left" value="Purchase Date" sort="" />
-                                        <x-table.table-header class="text-left" value="Status" sort="" />
-                                    </x-slot>
-                                    <x-slot name="tbody">
-                                        @foreach ($history as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Kasih Digital Gold {{ number_format($item->weight,2) }}g</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ number_format($item->bought_price,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">Pending</span>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                    </x-slot>
-                                    <div class="px-2 py-2">
-                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
-                                    </div>
-                                </x-table.table>
-                            </div>
+                            <livewire:page.digital-gold.pending/>
                         </x-tab.content>
                         <!-- End Pending -->
 
                         <!-- Start Fail -->
                         <x-tab.content name="3">
-                            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="px-6 mr-auto text-lg font-medium">
-                                    Fail
-                                </h2>
-                            </div>
-                            <div class="p-4 mt-4 bg-white">
-                                <x-table.table>
-                                    <x-slot name="thead">
-                                        <x-table.table-header class="text-left" value="Items" sort="" />
-                                        <x-table.table-header class="text-left" value="Price (RM)" sort="" />
-                                        <x-table.table-header class="text-left" value="Purchase Date" sort="" />
-                                        <x-table.table-header class="text-left" value="Status" sort="" />
-                                    </x-slot>
-                                    <x-slot name="tbody">
-                                        @foreach ($history as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Kasih Digital Gold {{ number_format($item->weight,2) }}g</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ number_format($item->bought_price,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">Fail</span>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                    </x-slot>
-                                    <div class="px-2 py-2">
-                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
-                                    </div>
-                                </x-table.table>
-                            </div>
+                            <livewire:page.digital-gold.fail/>
                         </x-tab.content>
                         <!-- End Fail -->
 
                         <!-- Start Exit Request  -->
                         <x-tab.content name="4">
-                            <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
-                                <h2 class="px-6 mr-auto text-lg font-medium">
-                                    Exit Request
-                                </h2>
-                            </div>
-                            <div class="p-4 mt-4 bg-white">
-                                <x-table.table>
-                                    <x-slot name="thead">
-                                        <x-table.table-header class="text-left" value="Type of Exit" sort="" />
-                                        <x-table.table-header class="text-left" value="Surrendered Price (RM)" sort="" />
-                                        <x-table.table-header class="text-left" value="Applied Date" sort="" />
-                                        <x-table.table-header class="text-left" value="Approval Status" sort="" />
-                                    </x-slot>
-                                    <x-slot name="tbody">
-                                        @foreach ($outright as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Outright Sell</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>RM {{ number_format($item->surrendered_amount,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($item->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($item->status == 1) ? 'green' : 'yellow'}}-800">{{ ($item->status == 1) ? 'Successful': 'Pending'}}</span>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                        @foreach ($bb as $item)
-                                            <tr>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>Buyback</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>RM {{ number_format($item->surrendered_amount,2) }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <p>{{ $item->created_at->format('d F Y') }}</p>
-                                                </x-table.table-body>
-                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($item->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($item->status == 1) ? 'green' : 'yellow'}}-800">{{ ($item->status == 1) ? 'Successful': 'Pending'}}</span>
-                                                </x-table.table-body>
-                                            </tr>
-                                        @endforeach
-                                    </x-slot>
-                                    <div class="px-2 py-2">
-                                        {{-- {{ $list->links('pagination::tailwind') }} --}}
-                                    </div>
-                                </x-table.table>
-                            </div>
+                            <livewire:page.digital-gold.exit-request/>
                         </x-tab.content>
                         <!-- End Exit Request  -->
 
                     </div>
                 </div>
             </div>
-        @endif
     </div>
 </div>

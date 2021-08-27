@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
-                Physical Gold Details
+                Physical Gold Conversion Details
             </h2>
         </div>
 
@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="text-lg">
                                     <p>Total Grams</p>
-                                    <p class="text-base">2.03 g</p>
+                                    <p class="text-base">{{$totalGrammage}} g</p>
                                 </div>
                             </div>
                         </div>
@@ -28,8 +28,8 @@
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
                                 <div class="text-lg">
-                                    <p>Total Convertable 1g Gold</p>
-                                    <p class="text-base">Upto 2 pcs</p>
+                                    <p>Total Converted 1g Gold Pieces</p>
+                                    <p class="text-base">{{$one_gram}} pcs</p>
                                 </div>
                             </div>
                         </div>
@@ -41,8 +41,8 @@
                                     <x-heroicon-o-clipboard-list class="w-8 h-8 text-yellow-400" />
                                 </div>
                                 <div class="text-lg">
-                                    <p>Total Convertable 0.25g Gold</p>
-                                    <p class="text-base">Upto 8 pcs</p>
+                                    <p>Total Converted 0.25g Gold Pieces</p>
+                                    <p class="text-base">{{$quarter_gram}} pcs</p>
                                 </div>
                             </div>
                         </div>
@@ -50,69 +50,37 @@
             </x-general.grid>
             <x-table.table>
                 <x-slot name="thead">
-                    <x-table.table-header class="text-left" value="Grams" sort="" />
-                    <x-table.table-header class="text-left" value="Price Bought" sort="" />
-                    <x-table.table-header class="text-left" value="Price Now" sort="" />
+                    <x-table.table-header class="text-left" value="Reference Number" sort="" />
+                    <x-table.table-header class="text-left" value="1g Gold Pieces" sort="" />
+                    <x-table.table-header class="text-left" value="0.25g Gold Pieces" sort="" />
+                    <x-table.table-header class="text-left" value="Conversion Date" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
+                @forelse ($exit as $item)   
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>1 g</p>
+                            <p>{{$item->ref_payment}}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 241.00</p>
+                            <p>{{$item->one_gram}} Pcs</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 252.00</p>
+                            <p>{{$item->quarter_gram}} Pcs</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>{{ $item->created_at->format('d F Y') }}</p>
                         </x-table.table-body>
                     </tr>
+                @empty 
                     <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>1 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 241.00</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 252.00</p>
+                        <x-table.table-body colspan="4" class="text-center text-gray-500">
+                            No Pending Transaction
                         </x-table.table-body>
                     </tr>
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>0.01 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                    </tr>
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>0.01 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                    </tr>
-                    <tr>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>0.01 g</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <p>RM 2.52</p>
-                        </x-table.table-body>
-                    </tr>
+                @endforelse
                 </x-slot>
                 <div class="px-2 py-2">
-                    {{-- {{ $list->links('pagination::tailwind') }} --}}
+                    {{ $exit->links('pagination-links') }}
                 </div>
             </x-table.table>
         </div>
