@@ -23,21 +23,31 @@ class PendingApprovalKapAgent extends Component
         $this->resetPage();
     }
 
-    public function approve($id)
+    public function approve($id, $member_id)
     {
-        $data = $this->validate([
-            'membership_id'       => 'required',
-        ]);
+        if($member_id == '0') {
+            $data = $this->validate([
+                'membership_id'       => 'required',
+            ]);
+        }
 
         //update user for active
         User::whereId($id)->update(['active' => 1]);
 
         //update profile info for the successor
-        Profile_personal::where('user_id', $id)->update([
-            'membership_id'     => $this->membership_id[$id],
-            'introducer_code'   => auth()->user()->id,
-            'introducer_name'   => auth()->user()->name,
-        ]);
+        if ($member_id == '0') {
+            Profile_personal::where('user_id', $id)->update([
+                'membership_id'     => $this->membership_id[$id],
+                'introducer_code'   => auth()->user()->id,
+                'introducer_name'   => auth()->user()->name,
+            ]);
+        } else {
+            Profile_personal::where('user_id', $id)->update([
+                'membership_id'     => $member_id,
+                'introducer_code'   => auth()->user()->id,
+                'introducer_name'   => auth()->user()->name,
+            ]);
+        }
 
         //update downline for the iniator
         UserDownline::create([
@@ -68,13 +78,14 @@ class PendingApprovalKapAgent extends Component
         $logged_user = auth()->user()->id;
 
         return view('livewire.page.kap.pending-approval-kap-agent', [
-            'list' => User::whereHas('profile', function ($query) use ($logged_user) {
-                            $query->where('agent_id', '=', $logged_user);
-                        })
-                        ->whereRole(4)
-                        ->whereActive(0)
-                        ->where('email', 'like', '%' . $this->search . '%')
-                        ->paginate(10),
+            'list' => User::select('users.*', 'former_users.member_id')
+                    ->leftJoin('profile_personal', 'profile_personal.user_id', 'users.id')
+                    ->leftJoin('former_users', 'former_users.nric', 'profile_personal.ic')
+                    ->where('users.role', 4)
+                    ->where('users.active', 0)
+                    ->where('profile_personal.agent_id', $logged_user)
+                    ->where('users.email', 'like', '%' . $this->search . '%')
+                    ->paginate(10),
         ]);
     }
 }
