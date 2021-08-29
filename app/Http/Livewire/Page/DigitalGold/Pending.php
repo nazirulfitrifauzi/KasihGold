@@ -22,6 +22,7 @@ class Pending extends Component
     {
         return view('livewire.page.digital-gold.pending', [
             'historyP' => ToyyibBills::where('created_by', auth()->user()->id)->where('status', 2)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5),
         ]);
     }

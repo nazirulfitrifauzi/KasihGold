@@ -22,6 +22,7 @@ class Success extends Component
     {
         return view('livewire.page.digital-gold.success', [
             'historyS' => ToyyibBills::where('created_by', auth()->user()->id)->where('status', 1)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5),
         ]);
     }

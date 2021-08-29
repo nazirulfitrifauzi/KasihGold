@@ -21,6 +21,7 @@ class TransactionHistory extends Component
     {
         return view('livewire.page.digital-gold.transaction-history', [
             'history' => ToyyibBills::where('created_by', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5),
         ]);
     }
