@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
+use App\Models\InvInfo;
 use App\Models\ToyyibBills;
+use App\Models\User;
+use App\Models\UserUpline;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
@@ -42,13 +46,13 @@ Artisan::command('UpdatePayment', function () {
         $url = 'https://dev.toyyibpay.com/index.php/api/getBillTransactions';
         $response = Http::asForm()->post($url, $option);
 
-        if ($response[0]['billpaymentStatus'] == 1) {
-            $pendingTrx->update(['status' => 1]);
+        if ($response[0]['billpaymentStatus'] == 1 && $pendingTrx->status != 1) {
+            $pendingTrx->update(['status' => 1, 'updated_by' => 0]);
 
             $pendingGold = GoldbarOwnershipPending::where('referenceNumber', $pendingTrx->bill_code)->get();
 
             foreach ($pendingGold as $pendingG) {
-                $pendingG->update(['status' => 1]);
+                $pendingG->update(['status' => 1, 'updated_by' => 0]);
 
                 GoldbarOwnership::create([
                     'gold_id'           => $pendingG->gold_id,
@@ -68,14 +72,37 @@ Artisan::command('UpdatePayment', function () {
                 $currentGoldbar->weight_on_hold -= $pendingG->weight;
                 $currentGoldbar->weight_occupied += $pendingG->weight;
                 $currentGoldbar->save();
+
+                $gold_info = InvInfo::where('prod_weight', $pendingG->weight)
+                    ->where('user_id', 10)
+                    ->first();
+
+                $user_info = User::where('id', $pendingG->user_id)->first();
+
+                // distribute commission/cashback to the upline user
+                if ($user_info->role == 4 && $user_info->client == 2) {
+                    $commission = $gold_info->item->commissionKAP->agent_rate;
+                    $upline = UserUpline::where('user_id', $pendingG->user_id)->first();
+
+                    CommissionDetailKap::create([
+                        'user_id'           => $upline->upline_id,
+                        'item_id'           => $gold_info->item->id,
+                        'bought_id'         => $pendingG->user_id,
+                        'commission'        => $commission,
+                        'created_by'        => 0,
+                        'updated_by'        => 0,
+                        'created_at'        => now(),
+                        'updated_at'        => now(),
+                    ]);
+                }
             }
         } elseif (($response[0]['billpaymentStatus'] == 4) && ($pendingTrx->updated_at <= now()->subMinutes(2))) {
-            $pendingTrx->update(['status' => 3]);
+            $pendingTrx->update(['status' => 3, 'updated_by' => 0]);
 
             $pendingGold = GoldbarOwnershipPending::where('referenceNumber', $pendingTrx->bill_code)->get();
 
             foreach ($pendingGold as $pendingG) {
-                $pendingG->update(['status' => 3]);
+                $pendingG->update(['status' => 3, 'updated_by' => 0]);
 
                 $currentGoldbar = Goldbar::where('id', $pendingG->gold_id)->first();
                 $currentGoldbar->weight_on_hold -= $pendingG->weight;

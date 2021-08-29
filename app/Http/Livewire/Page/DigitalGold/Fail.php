@@ -22,6 +22,7 @@ class Fail extends Component
     {
         return view('livewire.page.digital-gold.fail', [
             'historyF' => ToyyibBills::where('created_by', auth()->user()->id)->where('status', 3)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5),
         ]);
     }

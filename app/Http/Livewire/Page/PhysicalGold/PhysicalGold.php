@@ -14,6 +14,7 @@ class PhysicalGold extends Component
 
     public function mount()
     {
+        $this->totalGrammage = 0;
         $this->totalExit = PhysicalConvert::where('user_id', auth()->user()->id)
             ->where('status', 1)
             ->get();
