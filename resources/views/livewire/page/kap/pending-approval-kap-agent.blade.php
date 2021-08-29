@@ -55,7 +55,11 @@
                                 <p>{{ $lists->email }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <x-form.input wire:model="membership_id.{{ $lists->id }}" name="membership_id" id="membership_id" value="membership_id" label="" type="text" placeholder="Membership ID" />
+                                @if($lists->member_id != null)
+                                    <p>{{ $lists->member_id }}</p>
+                                @else
+                                    <x-form.input wire:model="membership_id.{{ $lists->id }}" name="membership_id" id="membership_id" value="membership_id" label="" type="text" placeholder="Membership ID" />
+                                @endif
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
                                 <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($lists->profile_c == 1) ? 'green' : 'yellow'}}-100 text-{{ ($lists->profile_c == 1) ? 'green' : 'yellow'}}-800">{{ ($lists->profile_c == 1) ? 'Complete': 'Incomplete'}}</span>
@@ -176,7 +180,7 @@
                                     <! -- End modal Details -->
 
                                     @if ($lists->profile_c == 1)
-                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1 text-green-500 cursor-pointer tooltipbtn" wire:click="approve({{ $lists->id }})" data-title="Approve User" data-placement="top"/>
+                                        <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1 text-green-500 cursor-pointer tooltipbtn" wire:click="approve({{ $lists->id }}, '{{ $lists->member_id ?? 0 }}')" data-title="Approve User" data-placement="top"/>
                                     @endif
 
                                     <x-heroicon-o-trash class="w-5 h-5 mr-1 text-red-600 cursor-pointer tooltipbtn" data-id="{{ $lists->id }}" onclick="deleteConfirmation({{ $lists->id }})" data-title="Reject User" data-placement="top"/>
