@@ -29,6 +29,7 @@ class Profile extends Component
     public $doc_nom_ic = [];
     public $doc_dir_list = [];
     public $referral_code;
+    public $ic_front, $ic_back;
 
     public function mount()
     {
@@ -125,6 +126,14 @@ class Profile extends Component
         ]);
     }
 
+    public function clearIcFront() {
+        $this->ic_front = "";
+    }
+
+    public function clearIcBack() {
+        $this->ic_back= "";
+    }
+
     public function savePersonal() {
         if (auth()->user()->type == 1) {
             $data = $this->validate([
@@ -139,6 +148,7 @@ class Profile extends Component
                 'postcode'      => 'required',
                 'town'          => 'required',
                 'state'         => 'required',
+                'ic_front'      => 'required|image|max:5024', // 5MB Max
             ]);
         } else {
             $data = $this->validate([
@@ -162,7 +172,7 @@ class Profile extends Component
                 'name' => $data['name'],
             ]);
 
-        if (auth()->user()->type == 1){
+        if (auth()->user()->type == 1){  // Individual User
             Profile_personal::updateOrCreate([
                 'user_id'       => auth()->user()->id
             ], [
@@ -182,6 +192,13 @@ class Profile extends Component
 
             User::whereId(auth()->user()->id)->update([
                 'phone_no'  => $data['phone1'],
+            ]);
+
+            $this->ic_front->storeAs('public/document/' . auth()->user()->id, $this->ic . '_ic.' . $this->ic_front->extension());
+            Profile_personal::updateOrCreate([
+                'user_id'       => auth()->user()->id
+            ], [
+                'ic_path'  => 'storage/document/' . auth()->user()->id .'/'. $this->ic . '_ic.' . $this->ic_front->extension(),
             ]);
         } else {
             Profile_personal::updateOrCreate([
