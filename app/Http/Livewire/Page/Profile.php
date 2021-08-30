@@ -31,6 +31,7 @@ class Profile extends Component
     public $doc_dir_list = [];
     public $referral_code;
     public $ic_front, $ic_back;
+    public $bank_statement;
 
     public function mount()
     {
@@ -133,6 +134,10 @@ class Profile extends Component
 
     public function clearIcBack() {
         $this->ic_back= "";
+    }
+
+    public function clearBankStatement() {
+        $this->bank_statement= "";
     }
 
     public function savePersonal() {
@@ -256,13 +261,25 @@ class Profile extends Component
 
     public function saveBank()
     {
-        $data = $this->validate([
-            'bankId'            => 'required',
-            'swiftCode'         => 'required',
-            'accNo'             => 'required',
-            'accHolderName'     => 'required',
-            'bankAccId'         => 'required',
-        ]);
+        if(auth()->user()->bank == NULL) {
+            $data = $this->validate([
+                'bankId'            => 'required',
+                'swiftCode'         => 'required',
+                'accNo'             => 'required',
+                'accHolderName'     => 'required',
+                'bankAccId'         => 'required',
+                'bank_statement'    => 'required|image|max:5024', // 5MB Max
+            ]);
+        } else {
+            $data = $this->validate([
+                'bankId'            => 'required',
+                'swiftCode'         => 'required',
+                'accNo'             => 'required',
+                'accHolderName'     => 'required',
+                'bankAccId'         => 'required',
+                'bank_statement'    => auth()->user()->bank->bank_statement == NULL ? 'required|image|max:5024' : '', // 5MB Max
+            ]);
+        }
 
         Profile_bank_info::updateOrCreate([
             'user_id' => auth()->user()->id
@@ -275,11 +292,22 @@ class Profile extends Component
             'completed'         => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
         ]);
 
+        if ($this->bank_statement != NULL) {
+            $this->bank_statement->storeAs('public/document/' . auth()->user()->id, $this->ic . '_bank_statement.' . $this->bank_statement->extension());
+            Profile_bank_info::updateOrCreate([
+                'user_id'       => auth()->user()->id
+            ], [
+                'bank_statement'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_bank_statement.' . $this->bank_statement->extension(),
+            ]);
+        }
+
         $this->checkCompleted();
 
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your bank information has been updated.');
+
+        return redirect('profile');
     }
 
     public function checkCompleted() {

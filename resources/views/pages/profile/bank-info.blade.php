@@ -1,4 +1,4 @@
-<x-general.card class="mt-2 bg-white shadow-lg mb-20 sm:mb-0">
+<x-general.card class="mt-2 mb-20 bg-white shadow-lg sm:mb-0">
     <x-note-card>
         1. Please take note that the information submitted will not be reflected on your account untill it has been reviewed by Kasih AP staffs.
         <br>
@@ -24,8 +24,8 @@
                         <x-form.input label="Bank Account No" value="accNo" wire:model="accNo"/>
                         <x-form.input label="Bank Account Holder Name" value="accHolderName" wire:model="accHolderName"/>
                         <x-form.input label="Bank Account ID (Reg. No / NRIC / Army ID / Police ID / Passport or others ID registered with bank)" value="bankAccId" wire:model="bankAccId"/>
-                        {{-- <x-form.input type="file" label="Bank Copy Attachement (1st page of bank's Pass book) (Max size 2MB)" value="bankAttachment" wire:model="bankAttachment"/> --}}
                     </div>
+                    @include('pages.profile.upload.bank_statement')
                     <div class="flex justify-end py-4">
                         <button type="button" class="flex px-4 py-2 text-sm font-bold text-white bg-green-500 rounded focus:outline-none hover:bg-green-400" wire:click="saveBank">
                             Save
