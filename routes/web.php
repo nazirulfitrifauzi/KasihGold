@@ -87,6 +87,8 @@ Route::middleware('auth')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)->middleware('signed')->name('verification.verify');
     Route::post('logout', LogoutController::class)->name('logout');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile')->middleware('verified.otp');
+    Route::post('profile/ic_front/{id}', [ProfileController::class, 'deleteIcFront'])->name('profile.deleteIcFront');
+    Route::post('profile/ic_back/{id}', [ProfileController::class, 'deleteIcBack'])->name('profile.deleteIcBack');
     Route::get('nomineePDF', [ProfileController::class, 'nomineePDF'])->name('nomineePDF');
 
     Route::middleware(['passScreen', 'verified.otp'])->group(function () {
@@ -121,7 +123,7 @@ Route::middleware('auth')->group(function () {
         Route::get('snapBuy', [SnapAPI::class, 'snapBuy'])->name('snapBuy');
 
         Route::get('cart', [CartController::class, 'index'])->name('cart');
-        Route::post('cart/{id}', [CartController::class, 'destroy'])->name('cart.detroy');
+        Route::post('cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
         Route::get('bank-information', [BankInformationController::class, 'index'])->name('bank-information');
 
 

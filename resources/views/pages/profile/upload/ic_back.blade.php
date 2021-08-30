@@ -5,36 +5,19 @@
     <div class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('ic_back') border-red-500 @enderror border-dashed rounded-md cursor-pointer"
         style="display: block;">
         @if(isset(auth()->user()->profile->ic_back))
-            <div class="flex" x-data="{ open: false }">
-                <div class="justify-center">
-                    <span class="inline-flex rounded-md shadow-sm">
-                        <a href="{{ asset(auth()->user()->profile->ic_back) }}"
-                            target="_blank" type="button"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                <path fill-rule="evenodd"
-                                    d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            View/Download
-                        </a>
-                    </span>
-                    <span class="inline-flex rounded-md shadow-sm">
-                        <button type="submit"
-                            class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"
-                            @click.prevent="open = true">
-                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            Delete
-                        </button>
-                    </span>
+            <div>
+                <div class="flex justify-center">
+                    <img src="{{ asset(auth()->user()->profile->ic_back)}}">
                 </div>
-
-                {{-- delete gambar modal --}}
-                {{-- end delete gambar modal --}}
+                <div class="flex justify-center mt-3">
+                    <button
+                        type="button"
+                        class="flex px-4 py-2 text-sm font-bold text-white bg-red-500 rounded focus:outline-none hover:bg-red-400"
+                        onclick="deleteIcBack({{ auth()->user()->id }})">
+                        Delete
+                    </button>
+                    <x-popup.delete-profile name="deleteIcBack" variable="id" posturl="{{ url('/profile/ic_back/') }}/" successText="Your IC Back has been deleted!" failText="Your IC Back has not been deleted!" redirectUrl="{{ url('/profile') }}"/>
+                </div>
             </div>
         @else
             @if ($ic_back)
