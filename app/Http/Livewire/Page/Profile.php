@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 
 class Profile extends Component
 {
@@ -148,8 +149,8 @@ class Profile extends Component
                 'postcode'      => 'required',
                 'town'          => 'required',
                 'state'         => 'required',
-                'ic_front'      => 'sometimes|required|image|max:5024', // 5MB Max
-                'ic_back'       => 'sometimes|required|image|max:5024', // 5MB Max
+                'ic_front'      => auth()->user()->profile->ic_front == NULL ? 'required|image|max:5024' : '', // 5MB Max
+                'ic_back'       => auth()->user()->profile->ic_back == NULL ? 'required|image|max:5024' : '', // 5MB Max
             ]);
         } else {
             $data = $this->validate([
@@ -195,14 +196,23 @@ class Profile extends Component
                 'phone_no'  => $data['phone1'],
             ]);
 
-            $this->ic_front->storeAs('public/document/' . auth()->user()->id, $this->ic . '_front.' . $this->ic_front->extension());
-            $this->ic_back->storeAs('public/document/' . auth()->user()->id, $this->ic . '_back.' . $this->ic_back->extension());
-            Profile_personal::updateOrCreate([
-                'user_id'       => auth()->user()->id
-            ], [
-                'ic_front'  => 'storage/document/' . auth()->user()->id .'/'. $this->ic . '_front.' . $this->ic_front->extension(),
-                'ic_back'  => 'storage/document/' . auth()->user()->id .'/'. $this->ic . '_back.' . $this->ic_back->extension(),
-            ]);
+            if($this->ic_front != NULL) {
+                $this->ic_front->storeAs('public/document/' . auth()->user()->id, $this->ic . '_front.' . $this->ic_front->extension());
+                Profile_personal::updateOrCreate([
+                    'user_id'       => auth()->user()->id
+                ], [
+                    'ic_front'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_front.' . $this->ic_front->extension(),
+                ]);
+            }
+
+            if($this->ic_back != NULL) {
+                $this->ic_back->storeAs('public/document/' . auth()->user()->id, $this->ic . '_back.' . $this->ic_back->extension());
+                Profile_personal::updateOrCreate([
+                    'user_id'       => auth()->user()->id
+                ], [
+                    'ic_back'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_back.' . $this->ic_back->extension(),
+                ]);
+            }
         } else {
             Profile_personal::updateOrCreate([
                 'user_id' => auth()->user()->id
@@ -240,6 +250,8 @@ class Profile extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your personal information has been updated.');
+
+        return redirect('profile');
     }
 
     public function saveBank()
