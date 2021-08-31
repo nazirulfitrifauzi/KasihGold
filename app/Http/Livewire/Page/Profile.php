@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
 
 class Profile extends Component
 {
@@ -29,6 +30,8 @@ class Profile extends Component
     public $doc_nom_ic = [];
     public $doc_dir_list = [];
     public $referral_code;
+    public $ic_front, $ic_back;
+    public $bank_statement;
 
     public function mount()
     {
@@ -125,6 +128,18 @@ class Profile extends Component
         ]);
     }
 
+    public function clearIcFront() {
+        $this->ic_front = "";
+    }
+
+    public function clearIcBack() {
+        $this->ic_back= "";
+    }
+
+    public function clearBankStatement() {
+        $this->bank_statement= "";
+    }
+
     public function savePersonal() {
         if (auth()->user()->type == 1) {
             $data = $this->validate([
@@ -139,6 +154,8 @@ class Profile extends Component
                 'postcode'      => 'required',
                 'town'          => 'required',
                 'state'         => 'required',
+                'ic_front'      => auth()->user()->profile->ic_front == NULL ? 'required|image|max:5024' : '', // 5MB Max
+                'ic_back'       => auth()->user()->profile->ic_back == NULL ? 'required|image|max:5024' : '', // 5MB Max
             ]);
         } else {
             $data = $this->validate([
@@ -162,7 +179,7 @@ class Profile extends Component
                 'name' => $data['name'],
             ]);
 
-        if (auth()->user()->type == 1){
+        if (auth()->user()->type == 1){  // Individual User
             Profile_personal::updateOrCreate([
                 'user_id'       => auth()->user()->id
             ], [
@@ -183,6 +200,24 @@ class Profile extends Component
             User::whereId(auth()->user()->id)->update([
                 'phone_no'  => $data['phone1'],
             ]);
+
+            if($this->ic_front != NULL) {
+                $this->ic_front->storeAs('public/document/' . auth()->user()->id, $this->ic . '_front.' . $this->ic_front->extension());
+                Profile_personal::updateOrCreate([
+                    'user_id'       => auth()->user()->id
+                ], [
+                    'ic_front'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_front.' . $this->ic_front->extension(),
+                ]);
+            }
+
+            if($this->ic_back != NULL) {
+                $this->ic_back->storeAs('public/document/' . auth()->user()->id, $this->ic . '_back.' . $this->ic_back->extension());
+                Profile_personal::updateOrCreate([
+                    'user_id'       => auth()->user()->id
+                ], [
+                    'ic_back'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_back.' . $this->ic_back->extension(),
+                ]);
+            }
         } else {
             Profile_personal::updateOrCreate([
                 'user_id' => auth()->user()->id
@@ -220,17 +255,31 @@ class Profile extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your personal information has been updated.');
+
+        return redirect('profile');
     }
 
     public function saveBank()
     {
-        $data = $this->validate([
-            'bankId'            => 'required',
-            'swiftCode'         => 'required',
-            'accNo'             => 'required',
-            'accHolderName'     => 'required',
-            'bankAccId'         => 'required',
-        ]);
+        if(auth()->user()->bank == NULL) {
+            $data = $this->validate([
+                'bankId'            => 'required',
+                'swiftCode'         => 'required',
+                'accNo'             => 'required',
+                'accHolderName'     => 'required',
+                'bankAccId'         => 'required',
+                'bank_statement'    => 'required|image|max:5024', // 5MB Max
+            ]);
+        } else {
+            $data = $this->validate([
+                'bankId'            => 'required',
+                'swiftCode'         => 'required',
+                'accNo'             => 'required',
+                'accHolderName'     => 'required',
+                'bankAccId'         => 'required',
+                'bank_statement'    => auth()->user()->bank->bank_statement == NULL ? 'required|image|max:5024' : '', // 5MB Max
+            ]);
+        }
 
         Profile_bank_info::updateOrCreate([
             'user_id' => auth()->user()->id
@@ -243,11 +292,22 @@ class Profile extends Component
             'completed'         => 1, //pending checking mandatory field, if completed, flag completed to 1. for now now checking.
         ]);
 
+        if ($this->bank_statement != NULL) {
+            $this->bank_statement->storeAs('public/document/' . auth()->user()->id, $this->ic . '_bank_statement.' . $this->bank_statement->extension());
+            Profile_bank_info::updateOrCreate([
+                'user_id'       => auth()->user()->id
+            ], [
+                'bank_statement'  => 'storage/document/' . auth()->user()->id . '/' . $this->ic . '_bank_statement.' . $this->bank_statement->extension(),
+            ]);
+        }
+
         $this->checkCompleted();
 
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Your bank information has been updated.');
+
+        return redirect('profile');
     }
 
     public function checkCompleted() {
