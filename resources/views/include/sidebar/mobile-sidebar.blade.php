@@ -81,6 +81,10 @@
                 </x-sidebar.nav-item>
 
                 @if (auth()->user()->isAdminKAP())
+                    <x-sidebar.nav-item title="User Management" route="{{ route('admin.userManagement') }}" uri="admin/user-management">
+                        <x-heroicon-o-user-group class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+
                     <x-sidebar.nav-item title="Reporting" route="{{ route('reporting') }}" uri="reporting">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
