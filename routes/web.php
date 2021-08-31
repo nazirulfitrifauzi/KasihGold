@@ -52,6 +52,7 @@ use App\Http\Livewire\Auth\VerifyOtp;
 use App\Http\Livewire\Page\Admin\Newsletter;
 use App\Http\Livewire\Page\Admin\Announcement\ListAnnouncement;
 use App\Http\Livewire\Page\Admin\Announcement\CreateAnnouncement;
+use App\Http\Livewire\Page\Admin\UserManagement;
 use App\Http\Livewire\Page\Reporting\ListReport;
 use Illuminate\Support\Facades\Artisan;
 
@@ -168,6 +169,7 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/list-announcements', ListAnnouncement::class)->name('admin.list-announcements');
         Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
         Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
+        Route::get('admin/user-management', UserManagement::class)->name('admin.userManagement');
 
         Route::get('reporting', ListReport::class)->name('reporting');
         Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');

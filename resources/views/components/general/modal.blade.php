@@ -1,5 +1,5 @@
 <div x-show="{{$modalActive}}" style="display: none;" class="fixed inset-0 z-40 overflow-y-auto">
-    <div class="flex items-end justify-center min-h-screen  px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         <div x-show="{{$modalActive}}"
             x-description="Background overlay, show/hide based on modal state."
             x-transition:enter="ease-out duration-300"
@@ -32,7 +32,7 @@
                         <h3 class="text-lg font-semibold leading-6 text-black" id="modal-headline">
                             {{$title}}
                         </h3>
-                        
+
                         @if (isset($closeBtn) and $closeBtn == "yes")
                             <x-heroicon-o-x-circle @click="{{$modalActive}} = false" class="w-8 h-8 text-red-600 cursor-pointer"/>
                         @endif

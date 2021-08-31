@@ -27,6 +27,11 @@ class Profile_personal extends Model
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 
+    public function tempAgent()
+    {
+        return $this->belongsTo('App\Models\User', 'agent_id', 'id');
+    }
+
     public function getFullAddressAttribute()
     {
         $address = [
