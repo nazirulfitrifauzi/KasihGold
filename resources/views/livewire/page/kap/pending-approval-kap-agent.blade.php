@@ -87,6 +87,11 @@
                                                         <x-heroicon-o-clipboard-list class="w-4 h-4 mr-2"/>Nominee
                                                     </div>
                                                 </x-tab.nav-tab>
+                                                <x-tab.nav-tab name="3" livewire="">
+                                                    <div class="flex items-center font-medium">
+                                                        <x-heroicon-o-clipboard-list class="w-4 h-4 mr-2"/>Supporting Documents
+                                                    </div>
+                                                </x-tab.nav-tab>
                                             </div>
 
                                             <! -- Start Personal Details -->
@@ -174,6 +179,86 @@
                                                 </div>
                                             </x-tab.nav-content>
                                             <! -- Start Nominee Details -->
+
+                                            <! -- Start Supporting Document -->
+                                            <x-tab.nav-content name="3">
+                                                <!-- IC Front -->
+                                                <div class="py-2">
+                                                    <label for="profile_pic" class="flex text-sm font-medium leading-5 text-gray-700">
+                                                        NRIC Copy (Front)
+                                                    </label>
+                                                    <div class="flex justify-center px-6 pt-5 pb-6 mt-2 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                                        style="display: block;">
+                                                        @if($lists->profile != NULL && $lists->profile->ic_front != NULL)
+                                                            <div class="flex justify-center">
+                                                                <span class="inline-flex rounded-md shadow-sm">
+                                                                    <a href="{{ asset($lists->profile->ic_front) }}"
+                                                                        target="_blank" type="button"
+                                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                                                        <x-heroicon-o-document-download class="w-5 h-5" />
+                                                                        View/Download
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        @else
+                                                            <div class="flex justify-center">
+                                                                <p class="italic">NO DATA AVALAIBLE</p>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- IC Back -->
+                                                <div class="py-2">
+                                                    <label for="profile_pic" class="flex text-sm font-medium leading-5 text-gray-700">
+                                                        NRIC Copy (Back)
+                                                    </label>
+                                                    <div class="flex justify-center px-6 pt-5 pb-6 mt-2 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                                        style="display: block;">
+                                                        @if($lists->profile != NULL && $lists->profile->ic_back != NULL)
+                                                            <div class="flex justify-center">
+                                                                <span class="inline-flex rounded-md shadow-sm">
+                                                                    <a href="{{ asset($lists->profile->ic_back) }}"
+                                                                        target="_blank" type="button"
+                                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                                                        <x-heroicon-o-document-download class="w-5 h-5" />
+                                                                        View/Download
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        @else
+                                                            <div class="flex justify-center">
+                                                                <p class="italic">NO DATA AVALAIBLE</p>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- Bank Statement-->
+                                                <div class="py-2">
+                                                    <label for="profile_pic" class="flex text-sm font-medium leading-5 text-gray-700">
+                                                        Bank Statement
+                                                    </label>
+                                                    <div class="flex justify-center px-6 pt-5 pb-6 mt-2 border-2 border-gray-300 border-dashed rounded-md cursor-pointer"
+                                                        style="display: block;">
+                                                        @if($lists->bank != NULL && $lists->bank->bank_statement != NULL)
+                                                            <div class="flex justify-center">
+                                                                <span class="inline-flex rounded-md shadow-sm">
+                                                                    <a href="{{ asset($lists->bank->bank_statement) }}"
+                                                                        target="_blank" type="button"
+                                                                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
+                                                                        <x-heroicon-o-document-download class="w-5 h-5" />
+                                                                        View/Download
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        @else
+                                                            <div class="flex justify-center">
+                                                                <p class="italic">NO DATA AVALAIBLE</p>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </x-tab.nav-content>
+                                            <! -- Start Supporting Document -->
 
                                         </div>
                                     </x-general.modal>
