@@ -33,6 +33,7 @@ class PhysicalGold extends Component
 
             'exit' => PhysicalConvert::where('user_id', auth()->user()->id)
                 ->where('status', 1)
+                ->orderBy('created_at', 'desc')
                 ->paginate(5),
         ]);
     }
