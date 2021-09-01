@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
-                Cashback Collection from {{ $from->format('d F Y') }} - {{ $date->format('d F Y') }}
+                Cashback Collection from {{ $date->startOfMonth()->format('d F Y') }} - {{ $date->endOfMonth()->format('d F Y') }}
             </h2>
             @if (session('error'))
                 <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
@@ -15,8 +15,19 @@
             @endif
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0">
+        <div class="p-4 mt-8 mb-20 bg-white sm:mb-0">
             <div class="flex justify-between my-4">
+                <div class="flex items-center">
+                    <label class="block text-sm font-semibold leading-5 text-gray-700"  for="report_date">Report Month:</label>
+                    <input
+                        class="block ml-3 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
+                        type="month"
+                        id="report_date"
+                        name="report_date"
+                        min="2021-07"
+                        wire:model.lazy="report_date"
+                    >
+                </div>
                 <div wire:loading>
                     <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
                         style="left: 50%; top:50%">
@@ -36,14 +47,13 @@
                     <x-table.table-header class="text-left" value="Action" sort="" />
                 </x-slot>
                 <x-slot name="tbody">
-
-                    @foreach ($lists as $list)
+                    @forelse ($lists as $list)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>{{ $loop->iteration }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>{{ $list->user->name }}</p>
+                                <p>{{ $list->user == null ? '' : $list->user->name }}</p>
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
                                 <p>{{ number_format($list->total, 2) }}</p>
@@ -66,19 +76,19 @@
 
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{ $list->user->bank->bankName->name }}"
+                                                            <input disabled type="text" value="{{ $list->user == null || $list->user->bank == null ? '' : $list->user->bank->bankName->name }}"
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{ $list->user->bank->acc_no }}"
+                                                            <input disabled type="text" value="{{ $list->user == null || $list->user->bank == null ? '' : $list->user->bank->acc_no }}"
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
                                                     <div class="mt-5">
                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                            <input disabled type="text" value="{{ strtoupper($list->user->bank->acc_holder_name) }}"
+                                                            <input disabled type="text" value="{{ $list->user == null || $list->user->bank == null ? '' : strtoupper($list->user->bank->acc_holder_name) }}"
                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                         </div>
                                                     </div>
@@ -121,7 +131,13 @@
                                 </div>
                             </x-table.table-body>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <x-table.table-body colspan="4" class="text-center text-gray-500">
+                                No Data Available
+                            </x-table.table-body>
+                        </tr>
+                    @endforelse
                 </x-slot>
                 <div class="px-2 py-2">
                     {{-- {{ $list->links('pagination::tailwind') }} --}}
