@@ -290,7 +290,7 @@
                                                     <div class="mt-2">
                                                         <h3 class="text-base font-semibold leading-6 text-gray-900">Current {{ $lists->name }}'s Agent :</h3>
                                                         <p class="text-sm text-gray-500">
-                                                            {{ $lists->profile->tempAgent->name }}
+                                                            {{ $lists->profile->tempAgent == NULL ? 'No Data Available' : $lists->profile->tempAgent->name }}
                                                         </p>
                                                     </div>
                                                     <div class="mt-4">
@@ -299,7 +299,9 @@
                                                             <select class="block w-full text-center border border-indigo-500 rounded-md focus:ring-indigo-800 focus:border-indigo-800 sm:text-sm" wire:model="selectedAgent">
                                                                 <option value="0" hidden>Select an Agent</option>
                                                                 @foreach($agent as $agents)
-                                                                    <option value="{{ $agents->id }}">{{ $agents->name }}</option>
+                                                                    <option value="{{ $agents->id }}">
+                                                                        {{ $agents->name }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -308,7 +310,7 @@
                                                         <div class="mr-4">
                                                             <h3 class="text-base font-semibold leading-6 text-gray-900">Current Agent</h3>
                                                             <p class="text-sm text-gray-500">
-                                                                {{ $lists->profile->tempAgent->name }}
+                                                                {{ $lists->profile->tempAgent == NULL ? 'No Data Available' : $lists->profile->tempAgent->name }}
                                                             </p>
                                                         </div>
                                                         <div class="flex items-center ">
