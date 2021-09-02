@@ -260,10 +260,18 @@
                                 </div>
 
                                 <div class="flex justify-center my-6">
+                                    
+                                    @if($this->karts->isEmpty())
+                                    <a type="button"
+                                        class="flex items-center justify-center w-full px-2 py-2 text-sm font-bold text-white bg-gray-500 rounded focus:outline-none cursor-not-allowed hover:bg-gray-600">
+                                        <p>Proceed to checkout</p>
+                                    </a>
+                                    @else 
                                     <a href="{{ route('product-buy') }}"
                                         class="flex items-center justify-center w-full px-2 py-2 text-sm font-bold text-white bg-yellow-400 rounded focus:outline-none hover:bg-yellow-500">
                                         <p>Proceed to checkout</p>
                                     </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
