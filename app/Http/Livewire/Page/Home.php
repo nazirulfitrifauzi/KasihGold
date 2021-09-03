@@ -123,7 +123,7 @@ class Home extends Component
             $this->todayTrans = GoldbarOwnership::whereIn('user_id', $downline_id)
                 ->whereDate('created_at', '=', now()->format('Y-m-d'))
                 ->sum('bought_price');
-            $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->sum('commission');
+            $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->where('status',0)->sum('commission');
             $this->myWallet = array_sum(GoldbarOwnership::where('user_id', auth()->user()->id)->pluck('bought_price')->toArray());
 
             $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user));
