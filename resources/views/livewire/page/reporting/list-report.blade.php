@@ -103,6 +103,10 @@
                                 <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
                                 <span>Commission Report</span>
                             </button>
+                            <button id="userReportMenu" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400">
+                                <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
+                                <span>User Report (Buying & Not Buying)</span>
+                            </button>
                         </div>
                     </div>
                     <!-- /End replace -->
@@ -122,6 +126,10 @@
     <div id="commissionReport" class="hidden">
         <livewire:page.reporting.commission-report/>
     </div>
+
+    <div id="userReport" class="hidden">
+        <livewire:page.reporting.user-report/>
+    </div>
 </div>
 
 @push('js')
@@ -132,6 +140,7 @@
             var goldbar = document.getElementById("goldbarReport");
             var agent = document.getElementById("agentReport");
             var commission = document.getElementById("commissionReport");
+            var user = document.getElementById("userReport");
 
             $(".reportMenu").click(function(e) {
                 slide.classList.remove("animate__fadeInLeft");
@@ -161,6 +170,11 @@
                     commission.classList.add("hidden");
                 }
 
+                if(user.classList.contains("block")) {
+                    user.classList.remove("block");
+                    user.classList.add("hidden");
+                }
+
                 goldbar.classList.remove("hidden");
                 goldbar.classList.add("block");
             });
@@ -174,6 +188,11 @@
                 if(commission.classList.contains("block")) {
                     commission.classList.remove("block");
                     commission.classList.add("hidden");
+                }
+
+                if(user.classList.contains("block")) {
+                    user.classList.remove("block");
+                    user.classList.add("hidden");
                 }
 
                 agent.classList.remove("hidden");
@@ -191,8 +210,33 @@
                     agent.classList.add("hidden");
                 }
 
+                if(user.classList.contains("block")) {
+                    user.classList.remove("block");
+                    user.classList.add("hidden");
+                }
+
                 commission.classList.remove("hidden");
                 commission.classList.add("block");
+            });
+
+            $("#userReportMenu").click(function(e) {
+                if(goldbar.classList.contains("block")) {
+                    goldbar.classList.remove("block");
+                    goldbar.classList.add("hidden");
+                }
+
+                if(agent.classList.contains("block")) {
+                    agent.classList.remove("block");
+                    agent.classList.add("hidden");
+                }
+
+                if(commission.classList.contains("block")) {
+                    commission.classList.remove("block");
+                    commission.classList.add("hidden");
+                }
+
+                user.classList.remove("hidden");
+                user.classList.add("block");
             });
         });
     </script>
