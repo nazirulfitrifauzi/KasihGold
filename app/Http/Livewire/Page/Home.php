@@ -110,6 +110,7 @@ class Home extends Component
                 ->get()
                 ->toArray();
         } elseif (auth()->user()->isAgentKAP()) {
+            $this->announcement = Announcement::orderBy('id', 'desc')->get();
             $logged_user = auth()->user()->id;
             $this->pendingApproval = User::whereHas('profile', function ($query) use ($logged_user) {
                 $query->where('agent_id', '=', $logged_user);
