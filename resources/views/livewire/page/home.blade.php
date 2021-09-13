@@ -84,162 +84,164 @@
                 @if (auth()->user()->isUserKAP())
                     @include('pages.dashboard.kap.user2')
                 @else
-                <div class="
-                    @if (auth()->user()->isAdminKAP())
-                    sm:col-span-12 md:col-span-12 lg:col-span-12 xxl:col-span-12
-                    @elseif (auth()->user()->isAgentKAP())
-                    sm:col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8
-                    @endif
-                    p-4 mt-8 border-2 border-gray-100 rounded-lg shadow-xl bg-gray-50 
-                    ">
-                    <div class="flex justify-end mb-3">
-                        <button onclick="window.print()" class="flex px-2 py-1 text-sm font-bold text-white bg-yellow-300 rounded cursor-pointer printHide focus:outline-none hover:bg-yellow-400">
-                            <div class="flex space-x-1">
-                                <x-heroicon-o-printer class="w-5 h-5" />
-                                <p>Print</p>
-                            </div>
-                        </button>
-                    </div>
-                    <div id="DIV_ID">
+                <div class="lg:grid grid-cols-12 gap-6 col-span-12 flex flex-col-reverse ">
+                    <div class="
                         @if (auth()->user()->isAdminKAP())
-                            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                                <x-general.grid mobile="1" gap="5" sm="3" md="3" lg="3" xl="3">
-                                    <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
-                                    <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark2"></div>
-                                    <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark3"></div>
-                                </x-general.grid>
-                            </div>
+                        col-span-12 md:col-span-12 lg:col-span-12 xxl:col-span-12
                         @elseif (auth()->user()->isAgentKAP())
-                            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                                <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12">
-                                    <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
-                                </x-general.grid>
-                            </div>
+                        col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8 
                         @endif
+                        p-4 mt-8 border-2 border-gray-100 rounded-lg shadow-xl bg-gray-50 
+                        ">
+                        <div class="flex justify-end mb-3">
+                            <button onclick="window.print()" class="flex px-2 py-1 text-sm font-bold text-white bg-yellow-300 rounded cursor-pointer printHide focus:outline-none hover:bg-yellow-400">
+                                <div class="flex space-x-1">
+                                    <x-heroicon-o-printer class="w-5 h-5" />
+                                    <p>Print</p>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="DIV_ID">
+                            @if (auth()->user()->isAdminKAP())
+                                <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                                    <x-general.grid mobile="1" gap="5" sm="3" md="3" lg="3" xl="3">
+                                        <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
+                                        <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark2"></div>
+                                        <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark3"></div>
+                                    </x-general.grid>
+                                </div>
+                            @elseif (auth()->user()->isAgentKAP())
+                                <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                                    <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12">
+                                        <div class="p-4 mb-4 bg-white rounded-lg shadow-lg" id="chart-spark1"></div>
+                                    </x-general.grid>
+                                </div>
+                            @endif
 
-                        @if(auth()->user()->client == 2) <!-- once graph for kg done, delete this condition -->
-                        <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
-                            <div class="flex flex-col mt-4 printContent">
-                                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                        <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                            <table class="min-w-full bg-white divide-y divide-gray-200">
-                                                <thead>
-                                                    <tr class="bg-gray-200 rounded-lg">
-                                                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Product</th>
-                                                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Total Value</th>
-                                                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Percentage of Portfolio</th>
-                                                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Last 10 Days</th>
-                                                        <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Monthly Volume</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="border-b-2 border-gray-100">
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.01 g</td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            RM {{ number_format( array_sum($chart1->where('weight',0.01)->pluck('bought_price')->toArray()),2) }}
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            @if($chart1->count() == 0)
-                                                                0%
-                                                            @else
-                                                                {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
-                                                            @endif
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class="min-h-160" id="chart-1"></div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class=" min-h-160" id="chart-5"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="border-b-2 border-gray-100">
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.10 g</td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            RM {{ number_format( array_sum($chart1->where('weight',0.1)->pluck('bought_price')->toArray()),2) }}
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            @if($chart1->count() == 0)
-                                                                0%
-                                                            @else
-                                                                {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
-                                                            @endif
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class="min-h-160" id="chart-2"></div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class=" min-h-160" id="chart-6"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="border-b-2 border-gray-100">
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.25 g</td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            RM {{ number_format( array_sum($chart1->where('weight',0.25)->pluck('bought_price')->toArray()),2) }}
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            @if($chart1->count() == 0)
-                                                                0%
-                                                            @else
-                                                                {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
-                                                            @endif
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class="min-h-160" id="chart-3"></div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class="min-h-160" id="chart-7"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="border-b-2 border-gray-100">
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>1.00 g</td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            RM {{ number_format( array_sum($chart1->where('weight',1)->pluck('bought_price')->toArray()),2) }}
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            @if($chart1->count() == 0)
-                                                                0%
-                                                            @else
-                                                                {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
-                                                            @endif
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class="min-h-160" id="chart-4"></div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
-                                                            <div class="flex justify-center">
-                                                                <div class=" min-h-160" id="chart-8"></div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                            @if(auth()->user()->client == 2) <!-- once graph for kg done, delete this condition -->
+                            <div class="col-span-12 lg:col-span-12 xxl:col-span-12">
+                                <div class="flex flex-col mt-4 printContent">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                            <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                                                <table class="min-w-full bg-white divide-y divide-gray-200">
+                                                    <thead>
+                                                        <tr class="bg-gray-200 rounded-lg">
+                                                            <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Product</th>
+                                                            <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Total Value</th>
+                                                            <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Percentage of Portfolio</th>
+                                                            <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Last 10 Days</th>
+                                                            <th class="px-4 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase">Monthly Volume</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.01 g</td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.01)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.01)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-1"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-5"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.10 g</td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.1)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-2"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-6"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>0.25 g</td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',0.25)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',0.25)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-3"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-7"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="border-b-2 border-gray-100">
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">Kasih Digital <br>1.00 g</td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                RM {{ number_format( array_sum($chart1->where('weight',1)->pluck('bought_price')->toArray()),2) }}
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                @if($chart1->count() == 0)
+                                                                    0%
+                                                                @else
+                                                                    {{ number_format(($chart1->where('weight',1)->count()) / ($chart1->count()) * 100, 2) }}%
+                                                                @endif
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class="min-h-160" id="chart-4"></div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-4 text-sm font-medium text-center text-gray-900 whitespace-nowrap">
+                                                                <div class="flex justify-center">
+                                                                    <div class=" min-h-160" id="chart-8"></div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
-                        @endif
-                    </div>
+                    @endif
+                </div>
+                @if (auth()->user()->isAgentKAP())
+                    @include('pages.dashboard.kap.agent2')
                 @endif
             </div>
-            @if (auth()->user()->isAgentKAP())
-                @include('pages.dashboard.kap.agent2')
-            @endif
         </div>
     </div>
 </div>
