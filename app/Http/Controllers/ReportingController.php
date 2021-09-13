@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuyBack;
 use App\Models\GoldbarOwnership;
 use App\Models\Goldbar;
+use App\Models\OutrightSell;
+use App\Models\PhysicalConvert;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
@@ -91,5 +94,29 @@ class ReportingController extends Controller
 
         return Datatables::of($data)
             ->make(true);
+    }
+
+    public function exitReporting(Request $request)
+    {
+        $status = $request->exit;
+
+        if ($status == 'convert') {
+            $data = PhysicalConvert::where('status',1)->get();
+        } elseif ($status == 'outright') {
+            $data = OutrightSell::where('status', 1)->get();
+        } elseif ($status == 'buyback') {
+            $data = BuyBack::where('status', 1)->get();
+        } else {
+            $data = PhysicalConvert::where('status', 1)->get();
+        }
+
+        return Datatables::of($data)
+                    ->editColumn('user_id', function ($data) {
+                        return $data->user->name;
+                    })
+                    ->editColumn('created_at', function ($data) {
+                        return $data->created_at->format('d/m/Y, h:i a');
+                    })
+                    ->make(true);
     }
 }
