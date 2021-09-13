@@ -14,6 +14,12 @@ class OutrightSell extends Model
     protected $table = 'outright_sell';
     protected $guarded = [];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
