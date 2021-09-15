@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
     <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
     <link rel="stylesheet" href="{{ asset('css/print.css')}}" />
+     <link rel="stylesheet" href="{{ asset('css/select2.css')}}" />
     <link rel="stylesheet" href="{{ asset('dist/apexcharts.css')}}" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />

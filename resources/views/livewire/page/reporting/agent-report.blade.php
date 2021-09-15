@@ -7,13 +7,13 @@
     <div class="flex justify-between p-4 my-6 space-x-0 space-y-2 bg-white rounded-md shadow-lg">
         <div class="flex flex-col items-start md:flex-row md:items-center md:space-x-4">
             <label class="block text-sm font-semibold leading-5 text-gray-700"  for="agent">Agent:</label>
-            <select class="block transition duration-150 ease-in-out w-52 form-select sm:text-sm sm:leading-5 select2" id="agent" >
+            <select class="w-52 select2" id="agent"
+            >
                 <option></option>
                 @foreach($agents as $agent)
                     <option value="{{ $agent->id }}">{{ $agent->name }}</option>
                 @endforeach
             </select>
-
             <label class="block text-sm font-semibold leading-5 text-gray-700"  for="report_date">Report Month:</label>
             <input
                 class="block transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
@@ -58,6 +58,7 @@
             $('#agentTable').wrap('<div id="hide_agent" style="display:none"/>');
             $('.select2').select2({
                 placeholder: "Select an Agent"
+                
             });
 
             var agenttable = $('#agentTable').DataTable({
