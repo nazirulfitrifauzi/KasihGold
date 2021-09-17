@@ -344,7 +344,7 @@
                                     <! -- End modal trasnfer user -->
                                 @endif
 
-                                @if($lists->active == 1 && $lists->deceased != NULL)
+                                @if($lists->active == 1 && $lists->deceased == NULL)
                                     <x-heroicon-o-user-remove
                                         class="w-5 h-5 mr-1 text-red-500 cursor-pointer tooltipbtn"
                                         data-title="Deceased User" data-placement="top"
