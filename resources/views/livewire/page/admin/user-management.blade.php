@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
+    <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             User Management
         </h2>
@@ -14,7 +14,7 @@
         @endif
     </div>
 
-    <div class="p-4 mt-3 mb-20 bg-white sm:mb-0">
+    <div class="p-4 mb-20 bg-white sm:mb-0">
         <div class="flex justify-between mb-4">
             <div wire:loading>
                 <div class="absolute flex items-center justify-center p-4 text-white bg-yellow-400 rounded"
@@ -57,10 +57,15 @@
                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($lists->role == 4) ? 'green' : 'yellow'}}-100 text-{{ ($lists->role == 4) ? 'green' : 'yellow'}}-800">{{ ($lists->role == 4) ? 'User': 'Agent'}}</span>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($lists->active == 1) ? 'green' : 'yellow'}}-100 text-{{ ($lists->active == 1) ? 'green' : 'yellow'}}-800">{{ ($lists->active == 1) ? 'Active': 'Inactive'}}</span>
+                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium
+                                @if($lists->active == 1) bg-green-100 @elseif($lists->active == 0) bg-yellow-100 @elseif($lists->active == 9) bg-red-100 @endif
+                                @if($lists->active == 1) text-green-800 @elseif($lists->active == 0) text-yellow-800 @elseif($lists->active == 9) text-red-800 @endif"
+                            >
+                                @if($lists->active == 1) Active @elseif($lists->active == 0) Inactive @elseif($lists->active == 9) Deceased @endif
+                            </span>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex space-x-2" x-data="{ openModal : false, openModal2 : false}">
+                            <div class="flex space-x-2" x-data="{ openModal : false, openModal2 : false, openModal3 : false}">
                                 <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500 cursor-pointer tooltipbtn" @click="openModal = true" data-title="View Details" data-placement="top"/>
 
                                 <! -- Start modal Details -->
@@ -266,7 +271,7 @@
                                 <! -- End modal Details -->
 
                                 @if ($lists->role == 4 && $lists->active == 0)
-                                    <x-heroicon-o-external-link class="w-5 h-5 mr-1 text-orange-500 cursor-pointer tooltipbtn" @click="openModal2 = true" x-on:close-modal.window="openModal2 = false" data-title="Transfer User" data-placement="top"/>
+                                    <x-heroicon-o-external-link class="w-5 h-5 mr-1 text-yellow-300 cursor-pointer tooltipbtn" @click="openModal2 = true" x-on:close-modal.window="openModal2 = false" data-title="Transfer User" data-placement="top"/>
 
                                     <! -- Start modal trasnfer user -->
                                     <x-general.new-modal modalName="openModal2" size="2xl">
@@ -336,7 +341,92 @@
                                             </div>
                                         </div>
                                     </x-general.new-modal>
-                                <! -- End modal trasnfer user -->
+                                    <! -- End modal trasnfer user -->
+                                @endif
+
+                                @if($lists->active == 1 && $lists->deceased != NULL)
+                                    <x-heroicon-o-user-remove
+                                        class="w-5 h-5 mr-1 text-red-500 cursor-pointer tooltipbtn"
+                                        data-title="Deceased User" data-placement="top"
+                                        @click="openModal3 = true" x-on:close-modal.window="openModal3 = false"
+                                        x-on:close-modal3.window="openModal3 = false"/>
+
+                                    <! -- Start modal deceased user -->
+                                    <x-general.new-modal modalName="openModal3" size="2xl">
+                                        <x-form.basic-form wire:submit.prevent="submitDeceased({{ $lists->id }})">
+                                            <x-slot name="content">
+                                                <div class="p-4 mt-4 leading-4">
+                                                    <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
+                                                        <x-heroicon-o-user-remove class="w-6 h-6 text-red-600" />
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <h1 class="text-lg font-bold">Deceased User</h1>
+                                                        <div class="p-4 mt-2 border-l-4 border-blue-400 bg-blue-50">
+                                                            <div class="flex">
+                                                                <div class="flex-shrink-0">
+                                                                    <x-heroicon-o-information-circle class="w-5 h-5 text-blue-400"/>
+                                                                </div>
+                                                                <div class="ml-3">
+                                                                    <p class="text-sm text-blue-700">Please note that only inactive user can be transfer to another agent.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex mt-5">
+                                                        <label for="death_cert" class="mt-2 w-full flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 @error('death_cert') border-red-500 @enderror border-dashed rounded-md cursor-pointer">
+
+                                                            @if ($death_cert)
+                                                                {{ $death_cert->getClientOriginalName() }}
+                                                            @endif
+
+                                                            <span class="text-center group {{ $death_cert ? 'hidden' : '' }}" id="death_cert-div">
+                                                                <div class="cursor-pointer ">
+                                                                    <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
+                                                                    viewBox="0 0 48 48">
+                                                                        <path
+                                                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    </svg>
+                                                                    <p class="mt-1 text-sm text-gray-600">
+                                                                        <a
+                                                                            class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
+                                                                            Upload
+                                                                        </a>
+                                                                    </p>
+                                                                    <p class="mt-1 text-xs text-gray-500">
+                                                                        Upload the user's death Certificate here.
+                                                                    </p>
+                                                                    <p class="mt-1 text-xs text-gray-500">
+                                                                        PDF format only | Max Size: 10MB
+                                                                    </p>
+                                                            </div>
+                                                            <span class="text-center group">
+                                                                <div class="cursor-pointer ">
+                                                                    @error('death_cert')
+                                                                    <p class="mt-4 text-xs italic text-red-500">
+                                                                        Only PDF file (max 10MB) is accepted.
+                                                                    </p>
+                                                                    @enderror
+                                                                </div>
+                                                            </span>
+                                                        </label>
+                                                        <input type="file" class="absolute invisible pointer-events-none" id="death_cert"
+                                                            name="death_cert" wire:model="death_cert">
+                                                    </div>
+
+                                                    <div class="flex justify-end mt-4 space-x-2">
+                                                        <a type="button" @click="openModal3 = false" class="flex px-4 py-2 text-sm font-bold text-white bg-red-600 rounded cursor-pointer focus:outline-none hover:bg-red-500">
+                                                            Cancel
+                                                        </a>
+                                                        <button type="cancel" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </x-slot>
+                                        </x-form.basic-form>
+                                    </x-general.new-modal>
+                                    <! -- End modal deceased user -->
                                 @endif
 
                             </div>

@@ -165,4 +165,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\ReferralCode', 'user_id', 'id');
     }
+
+    public function deceased()
+    {
+        return $this->hasOne('App\Models\DeceasedUser', 'user_id', 'id');
+    }
 }
