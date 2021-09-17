@@ -21,7 +21,11 @@
                     @endforeach
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            @if($item->status == 1)
+                            <p><a href="https://dev.toyyibpay.com/{{$item->bill_code}}">Kasih Digital Gold (Total Gold {{ number_format($this->totalGrammage,2) }}g)</a></p>
+                            @else
                             <p>Kasih Digital Gold (Total Gold {{ number_format($this->totalGrammage,2) }}g)</p>
+                            @endif
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>RM {{number_format($item->bill_amount,2) }}</p>

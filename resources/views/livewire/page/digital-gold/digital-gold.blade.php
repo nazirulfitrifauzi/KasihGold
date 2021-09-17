@@ -8,7 +8,7 @@
 
         <div class="p-4 mt-4">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 px-6 py-6 mb-6 bg-white border-2 rounded-lg">
-                <div class="flex items-center justify-center flex-auto ">
+                <div class="flex items-center justify-center flex-auto cursor-pointer" wire:click="details">
                     @if($this->tGold<=1.0)
                     <x-gold.goldview name="" type="1g" percentage="{{$this->tGold*100}}" totalGram="{{$this->tGold}}" reachGram="{{1-$this->tGold}}" />
                     @elseif ($this->tGold<=2.5)

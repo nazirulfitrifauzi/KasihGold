@@ -139,6 +139,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('product/ka/sell', [ProductKAController::class, 'sell'])->name('product-ka-sell');
         Route::get('digital-gold', [DigitalGoldController::class, 'index'])->name('digital-gold');
+        Route::get('digital-gold-details', [DigitalGoldController::class, 'details'])->name('digital-gold-details');
         Route::get('physical-gold', [physicalGoldController::class, 'index'])->name('physical-gold');
         Route::get('physical-gold-cart', [physicalGoldController::class, 'cart'])->name('physical-gold-cart');
         Route::get('physical-gold-confirmation', [physicalGoldController::class, 'confirm'])->name('physical-gold-confirmation');

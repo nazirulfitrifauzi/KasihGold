@@ -8,6 +8,10 @@ class DigitalGoldController extends Controller
 {
     public function index()
     {
-        return view ('pages.digital-gold.digital-gold');
+        return view('pages.digital-gold.digital-gold');
+    }
+    public function details()
+    {
+        return view('pages.digital-gold.digital-gold-details');
     }
 }
