@@ -185,13 +185,6 @@ class PhyConfirmConversion extends Component
             $golds->ex_flag             = 0;
             $golds->ex_id               = $physicalId;
             $golds->save();
-
-
-            $currentGoldbar = Goldbar::where('id', $golds->gold_id)->first();
-
-            $currentGoldbar->weight_vacant += $golds->weight;
-            $currentGoldbar->weight_occupied -= $golds->weight;
-            $currentGoldbar->save();
         }
 
         return redirect('https://dev.toyyibpay.com/' . $billCode);
