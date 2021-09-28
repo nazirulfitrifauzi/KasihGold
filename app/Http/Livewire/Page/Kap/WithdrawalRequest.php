@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page\Kap;
 
 use App\Mail\PhysicalDetails\PhysicalGoldExchange;
 use App\Models\BuyBack;
+use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\OutrightSell;
 use App\Models\PhysicalConvert;
@@ -35,6 +36,12 @@ class WithdrawalRequest extends Component
         $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
 
         foreach ($goldOwnership as $ownership) {
+
+            $goldBar = Goldbar::where('id', $ownership->gold_id)->first();
+            $goldBar->weight_occupied -= $ownership->weight;
+            $goldBar->weight_vacant += $ownership->weight;
+            $goldBar->save();
+
             $ownership->ex_flag = 1;
             $ownership->save();
         }
@@ -42,6 +49,7 @@ class WithdrawalRequest extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Outright Sell has successfully approved!');
+
         return redirect('withdrawal-request');
     }
 
@@ -84,6 +92,12 @@ class WithdrawalRequest extends Component
         $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
 
         foreach ($goldOwnership as $ownership) {
+
+            $goldBar = Goldbar::where('id', $ownership->gold_id)->first();
+            $goldBar->weight_occupied -= $ownership->weight;
+            $goldBar->weight_vacant += $ownership->weight;
+            $goldBar->save();
+
             $ownership->ex_flag = 1;
             $ownership->save();
         }
@@ -125,7 +139,6 @@ class WithdrawalRequest extends Component
 
         $phyConv = PhysicalConvert::where('id', $appid)->first();
         $toyyibBill = ToyyibBills::where('bill_code', $phyConv->ref_payment)->first();
-
         $phyConv->status = 1;
         $phyConv->save();
 
@@ -133,6 +146,12 @@ class WithdrawalRequest extends Component
         $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
 
         foreach ($goldOwnership as $ownership) {
+
+            $goldBar = Goldbar::where('id', $ownership->gold_id)->first();
+            $goldBar->weight_occupied -= $ownership->weight;
+            $goldBar->weight_vacant += $ownership->weight;
+            $goldBar->save();
+
             $ownership->ex_flag = 1;
             $ownership->save();
         }

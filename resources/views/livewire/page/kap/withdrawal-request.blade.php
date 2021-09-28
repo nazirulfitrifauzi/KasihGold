@@ -151,65 +151,6 @@
                                                         </x-slot>
                                                     </x-form.basic-form>
                                                 </x-general.modal>
-                                                <! -- Start modal Show -->
-
-{{-- 
-                                                <button  @click="openModal = true"
-                                                    class="inline-flex items-center px-4 py-2 mr-1 font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none">
-                                                    <x-heroicon-o-clipboard-list class="w-5 h-5 mr-1" />
-                                                    Details
-                                                </button> --}}
-
-                                                <! -- Start modal Details -->
-                                                {{-- <x-general.new-modal modalName="openModal" size="2xl">
-                                                    <div class="flex items-center justify-center w-12 h-12 mx-auto bg-blue-100 rounded-full">
-                                                        <x-heroicon-o-identification class="w-6 h-6 text-blue-600" />
-                                                    </div>
-                                                    <div class="my-3 text-center sm:mt-5">
-                                                        <h1 class="text-lg font-bold">Personal Information</h1>
-                                                    </div>
-                                                    <div class="px-4 py-4">
-                                                        <x-form.basic-form>
-                                                            <x-slot name="content">
-                                                                <div class="mt-2 overflow-auto leading-4 h-96">
-                                                                    <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
-                                                                        <x-form.input label="KAP Code" value="" disable="true" />
-                                                                        <x-form.input label="Membership ID"  value="" disable="true" />
-
-                                                                        <x-form.input label="Name"  value="" />
-                                                                        <x-form.input type="email" label="Email Address"  value="" disable="true" />
-
-                                                                        <x-form.input label="New IC"  value="" />
-                                                                        <x-form.input label="Old IC" value="" />
-                                                                        <x-form.input label="Passport / Foreign ID" value="" />
-                                                                        <x-form.input label="Police / Army" value="" />
-
-                                                                        <x-form.input label="Company No"  value="" />
-
-                                                                        <x-form.input label="Phone No" value="" />
-                                                                        <x-form.input label="Fax No" value=""/>
-                                                                    </div>
-                                                                    <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                        <x-form.address class="" label="Address" value1="" value2="" value3="" value4="" value5="" value6=""  condition=""/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="grid gap-2 mt-5 lg:grid-cols-2 sm:grid-cols-1">
-                                                                    <button type="button" class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="openModal = false">
-                                                                            Cancel
-                                                                    </button>
-                                                                    <a href="#" type="button" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:col-start-2 sm:text-sm">
-                                                                            Submit
-                                                                    </a>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-form.basic-form>
-                                                    </div>
-                                                </x-general.new-modal> --}}
-                                                <! -- End modal Details -->
-
-
-                                               
-
                                             </div>
                                         </x-table.table-body>
                                     </tr>
