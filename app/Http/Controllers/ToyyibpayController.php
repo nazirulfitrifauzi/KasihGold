@@ -45,7 +45,7 @@ class ToyyibpayController extends Controller
                     $golds->update(['ex_flag' => 2]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
                 }
 
-                session()->flash('message', 'Your Physical Gold Conversion Request Has Successfully Submitted.');
+                session()->flash('message', 'The Physical Gold Conversion Request Has Successfully Submitted.');
 
                 session()->flash('success');
                 session()->flash('title', 'Success!');
@@ -61,7 +61,7 @@ class ToyyibpayController extends Controller
             if ($phyConv) {
                 $phyConv->update(['status' => 3]);
 
-                session()->flash('message', 'Your Physical Gold Conversion Request is Unsuccessful.');
+                session()->flash('message', 'The Physical Gold Conversion Request is Rejected.');
 
                 session()->flash('error');
                 session()->flash('title', 'Error!');
@@ -106,6 +106,7 @@ class ToyyibpayController extends Controller
                     'updated_by'        => auth()->user()->id,
                     'created_at'        => now(),
                     'updated_at'        => now(),
+                    'split'             => 0,
                 ]);
 
                 //Remove weight on hold and replaces it with weight occupied

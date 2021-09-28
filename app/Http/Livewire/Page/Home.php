@@ -31,7 +31,7 @@ class Home extends Component
         if (auth()->user()->isAdminKAP()) {
             $this->pendingApproval = User::where('client', 2)->where('role', 3)->where('active', 0)->get();
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
-            $this->todayTrans = GoldbarOwnership::whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
+            $this->todayTrans = GoldbarOwnership::where('split', '!=', 3)->whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
             $this->cashback = CommissionDetailKap::sum('commission');
             $this->chart1 = GoldbarOwnership::get();
             $this->mainchart1 = DB::table('gold_ownership')
@@ -121,10 +121,11 @@ class Home extends Component
             foreach ($x->downline as $y) {
                 $downline_id[] = array($y->downline_id);
             }
-            $this->todayTrans = GoldbarOwnership::whereIn('user_id', $downline_id)
+            $this->todayTrans = GoldbarOwnership::where('split', '!=', 3)
+                ->whereIn('user_id', $downline_id)
                 ->whereDate('created_at', '=', now()->format('Y-m-d'))
                 ->sum('bought_price');
-            $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->where('status',0)->sum('commission');
+            $this->cashback = CommissionDetailKap::where('user_id', auth()->user()->id)->where('status', 0)->sum('commission');
             $this->myWallet = array_sum(GoldbarOwnership::where('user_id', auth()->user()->id)->pluck('bought_price')->toArray());
 
             $this->chart1 = collect(DB::select('SET NOCOUNT ON ; exec DOWNLINE_TOTAL_BOUGHT_DETAIL ' . $logged_user));
