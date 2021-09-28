@@ -161,6 +161,7 @@ class PhyConfirmConversion extends Component
                             'updated_by'        => auth()->user()->id,
                             'created_at'        => now(),
                             'updated_at'        => now(),
+                            'split'             => 3,
                         ]);
 
                         if ($total_req_gram != 0) {
