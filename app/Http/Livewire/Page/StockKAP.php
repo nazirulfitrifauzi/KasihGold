@@ -18,6 +18,7 @@ class StockKAP extends Component
             'addSerialID'        => 'required',
             'addSupplierName'    => 'required',
             'addVaultLocation'   => 'required',
+            'addBoughtPrice'     => 'required|numeric',
         ]);
 
         Goldbar::create([
