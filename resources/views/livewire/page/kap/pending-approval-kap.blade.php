@@ -58,19 +58,12 @@
                             </x-table.table-body>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-2" wire:key="referral-code-{{ $lists->id }}">
-                                    <div class="flex mt-1 rounded-md shadow-sm">
+                                    {{-- <div class="flex mt-1 rounded-md shadow-sm"> --}}
                                         <div class="flex">
-                                            <input type="text" disabled wire:model="referral_codes.{{ $lists->id }}.code" name="referral_code" id="referral_code"
-                                            class="@error('referral_codes.'.$lists->id.'.code') border-red-300 focus:ring-red-500 focus:border-red-500 bg-red-50 @else border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 bg-gray-50 @enderror w-full border rounded-none rounded-l-md sm:text-sm " placeholder="Referral Code">
+                                            <input type="text" wire:model.lazy="referral_codes.{{ $lists->id }}.code" name="referral_code" id="referral_code"
+                                            class="@error('referral_codes.'.$lists->id.'.code') border-red-300 focus:ring-red-500 focus:border-red-500 bg-red-50 @else border-gray-300 focus:ring-yellow-500 focus:border-yellow-500  @enderror w-full border rounded-md sm:text-sm " placeholder="Referral Code">
                                         </div>
-                                        <button
-                                            wire:click="generate({{ $lists->id }})"
-                                            class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-white bg-yellow-400 border border-gray-300 rounded-r-md hover:bg-yellow-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-600"
-                                        >
-                                            <x-heroicon-o-key class="w-5 h-5 mr-1 text-white" />
-                                            <span>Generate</span>
-                                        </button>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                                 @error('referral_codes.'.$lists->id.'.code')
                                     <small class="italic text-red-500 ">{{ $message }}</small>
@@ -276,7 +269,7 @@
                                     </x-general.modal>
                                     <! -- End modal Details -->
 
-                              
+
 
                                     @if ($lists->profile_c == 1)
                                         <x-heroicon-o-clipboard-check class="w-5 h-5 mr-1 text-green-500 cursor-pointer tooltipbtn" wire:click="approve({{ $lists->id }}, '{{ $lists->member_id ?? 0 }}')" data-title="Approve Agent" data-placement="top"/>
