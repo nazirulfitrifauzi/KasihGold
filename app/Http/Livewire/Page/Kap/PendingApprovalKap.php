@@ -18,60 +18,22 @@ class PendingApprovalKap extends Component
 
     public $search = '';
     public $referral_codes;
-    // public $status;
 
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
-    // public function mount()
-    // {
-    //     $this->status = 0;
-    // }
-
     protected $rules = [
         'referral_codes.*.code' => 'required|min:6',
     ];
 
-    // function random_strings($length_of_string)
-    // {
-    //     $str_result = '1234567890abcdefghijklmnopqrstuvwxyz';
-    //     return substr(str_shuffle($str_result), 0, $length_of_string);
-    // }
-
-    // public function generate($userId)
-    // {
-    //     $user = User::whereId($userId)->first();
-
-    //     $words = explode(' ', $user->name);
-    //     if (count($words) >= 2) {
-    //         $initial = strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
-    //     } else {
-    //         preg_match_all('#([A-Z]+)#', $user->name, $capitals);
-    //         if (count($capitals[1]) >= 2) {
-    //             return substr(implode('', $capitals[1]), 0, 2);
-    //         }
-    //         $initial = strtoupper(substr($user->name, 0, 2));
-    //     }
-
-    //     $randomNo = $this->random_strings(4);
-    //     $referralCode = $initial . $randomNo;
-    //     $this->referral_codes[$userId]['code'] = $referralCode;
-    //     $this->status = true;
-    // }
-
     public function approve($id)
     {
-        // if($this->status == 0)
-        // {
-        //     $this->referral_codes[$id]['code'] = "";
-        // }
 
         // validate referal code
         $this->validate();
 
-        // dd($this->referral_codes[$id]['code']);
         //update user for active
         User::whereId($id)->update(['active' => 1]);
 
