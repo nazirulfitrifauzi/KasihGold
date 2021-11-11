@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserUpline;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
@@ -27,6 +28,24 @@ use Illuminate\Support\Str;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
+})->purpose('Display an inspiring quote');
+
+
+Artisan::command('UpdateCompletedProfile', function () {
+
+    $CustLists = DB::connection('sqlsrv')->select(DB::raw("SELECT a.id, a.email, b.completed,c.completed FROM users a
+    join profile_personal b on b.user_id = a.id
+    join profile_bank_info c on c.user_id = a.id
+      where a.profile_c = 0
+      and b.completed = 1
+      and c.completed =1
+    "));
+
+    foreach ($CustLists as $items) {
+        $user = User::select('profile_c')->where('id', $items->id)->first();
+        $user->profile_c = 1;
+        $user->save();
+    }
 })->purpose('Display an inspiring quote');
 
 
