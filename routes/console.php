@@ -42,7 +42,7 @@ Artisan::command('UpdateCompletedProfile', function () {
     "));
 
     foreach ($CustLists as $items) {
-        $user = User::select('profile_c')->where('id', $items->id)->first();
+        $user = User::where('id', $items->id)->first();
         $user->profile_c = 1;
         $user->save();
     }
