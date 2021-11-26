@@ -85,6 +85,7 @@ Artisan::command('UpdatePayment', function () {
                     'updated_by'        => 0,
                     'created_at'        => now(),
                     'updated_at'        => now(),
+                    'split'             => 0,
                 ]);
 
                 $currentGoldbar = Goldbar::where('id', $pendingG->gold_id)->first();
