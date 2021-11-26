@@ -131,7 +131,7 @@
                                     @if(session('outright')!=1)
                                     <div class="flex justify-between">
                                         <div class="text-gray-500">
-                                            <p>Buyback price at 31/01/2022</p>
+                                            <p>Buyback price at {{date('d/m/Y',strtotime((now()->addMonths(7))))}}</p>
                                         </div>
                                         <div class="font-semibold">
                                             <p>RM {{number_format((session('total')*1.06),2)}}</p>
@@ -139,7 +139,7 @@
                                     </div>
                                     @endif
                                 </div>
-
+                                @if(session('outright')==1)
                                 <div class="flex justify-between mt-6 border-b-2 pb-4">
                                     <div class="font-semibold">
                                         <p>Total</p>
@@ -152,6 +152,7 @@
                                         @endif
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
