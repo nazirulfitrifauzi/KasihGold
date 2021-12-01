@@ -3,9 +3,9 @@
         <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
             <h2 class="mr-auto text-lg font-medium">
                 @if ($this->buybackStatus==0)
-                    Outright Checkout
+                    Outright Checkout 
                 @else
-                    Buyback Checkout
+                    Buyback Checkout 
                 @endif
             </h2>
         </div>
@@ -185,3 +185,14 @@
         </div>
     </div>
 </div>
+
+
+@push('js')
+    <script>
+       
+       window.livewire.on('message', message => {
+    alert(message);
+    // or whatever alerting library you'd like to use
+})
+    </script>
+@endpush
