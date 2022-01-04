@@ -8,17 +8,17 @@ use Livewire\Component;
 
 class ProductView extends Component
 {
+
+    public $digitalGold, $digitalDinar;
+
+    public function mount()
+    {
+        $this->digitalGold = InvInfo::where('prod_cat', 1)->get();
+        $this->digitalDinar = InvInfo::where('prod_cat', 2)->get();
+    }
     public function render()
     {
-        if (auth()->user()->client == 1 ) { // user dashboard
-            return view('livewire.page.shop.product-view', [
-                'list' => InvInfo::where('user_id', 1)->get(),
-            ]);
-        } else { // agent n admin dashboard
-            return view('livewire.page.shop.product-view', [
-                // 'list' => InvInfo::where('user_id', 10)->get(),
-                'list' => InvItem::whereClient(2)->get(),
-            ]);
-        }
+
+        return view('livewire.page.shop.product-view');
     }
 }
