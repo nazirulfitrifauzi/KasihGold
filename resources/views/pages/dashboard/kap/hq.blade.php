@@ -10,7 +10,7 @@
     </x-slot>
 </x-dashboard.info-card>
 
-<x-dashboard.info-card bg="pink-500" title="Withdrawal Request" value="" cardRoute="{{route('withdrawal-request')}}" >
+<x-dashboard.info-card bg="pink-500" title="Withdrawal Request" value="{{ $withdrawalRequest }} Request" cardRoute="{{route('withdrawal-request')}}" >
     <x-slot name="svg">
         <x-heroicon-o-currency-dollar class="w-10 h-10 text-pink-400"/>
     </x-slot>
