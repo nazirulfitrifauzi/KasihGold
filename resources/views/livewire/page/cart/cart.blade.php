@@ -105,9 +105,9 @@
                             <div class="p-4 border-2 rounded-md">
                                     
                                     @foreach ($this->karts as $cartInfo)
-                                    @php
+                                    {{-- @php
                                         $category = "qty_".$cartInfo->products->prod_cat
-                                    @endphp
+                                    @endphp --}}
                                     <div class="py-2 border-b-2">
                                         <div class="flex items-center justify-between">
                                             <div>
@@ -127,27 +127,15 @@
                                                 
                                                 <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
                                                     
-                                                    @if($this->$category==1)
-                                                    <button  
-                                                    btnRoute="#" 
-                                                    data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})"
-                                                        class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
-                                                        <span class="m-auto text-2xl font-thin">-</span>
-                                                    </button>
-                                                    @else
                                                     <button  wire:click="subProd({{$cartInfo->products->prod_weight}})"
                                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                         <span class="m-auto text-2xl font-thin">-</span>
                                                     </button>
-                                                    @endif
 
                                                     <input  type="text"
-                                                            class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
-                                                            hover:text-black focus:text-black  md:text-basecursor-default flex items-center
-                                                            justify-center
-                                                            text-gray-700 
-                                                            outline-none"
+                                                            class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center justify-center text-gray-700 outline-none"
                                                             name="custom-input-number" wire:model="qty_{{$cartInfo->products->prod_cat}}" value="qty_{{$cartInfo->products->prod_cat}}" ></input>
+                                                            
                                                     <button  wire:click="addProd({{$cartInfo->products->prod_weight}})"
                                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                         <span class="m-auto text-2xl font-thin">+</span>

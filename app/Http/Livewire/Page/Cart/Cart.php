@@ -12,8 +12,8 @@ class Cart extends Component
     public $prod_qty, $type;
     public $total, $comm;
     public $karts, $marketP, $commR;
-    public $info_061, $info_062, $info_063, $info_064;
-    public $qty_061, $qty_062, $qty_063, $qty_064;
+    public $info_061, $info_062, $info_063, $info_064, $info_065;
+    public $qty_061, $qty_062, $qty_063, $qty_064, $qty_065;
 
 
     public function mount()
@@ -26,6 +26,7 @@ class Cart extends Component
         $this->info_062 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10007)->first();
         $this->info_063 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10009)->first();
         $this->info_064 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10010)->first();
+        $this->info_065 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10011)->first();
 
         //Cart specific quantity
         if ($this->info_061 != null) {
@@ -39,6 +40,9 @@ class Cart extends Component
         }
         if ($this->info_064 != null) {
             $this->qty_064 = $this->info_064->prod_qty;
+        }
+        if ($this->info_065 != null) {
+            $this->qty_065 = $this->info_065->prod_qty;
         }
 
         //Beginning to calculate the total price and commission if any.
@@ -108,6 +112,18 @@ class Cart extends Component
 
             $this->info_064->save();
         }
+        if ($type == "4.25") {
+            $this->total -= $this->marketP[4]->price;
+
+            if ((auth()->user()->isAgentKAP())) {
+                $this->comm -= $this->commR[4]->agent_rate;
+            }
+
+            $this->info_065->prod_qty -= 1;
+            $this->qty_065 -= 1;
+
+            $this->info_065->save();
+        }
     }
 
 
@@ -160,6 +176,18 @@ class Cart extends Component
             $this->qty_064 += 1;
 
             $this->info_064->save();
+        }
+        if ($type == "4.25") {
+            $this->total += $this->marketP[4]->price;
+
+            if ((auth()->user()->isAgentKAP())) {
+                $this->comm += $this->commR[4]->agent_rate;
+            }
+
+            $this->info_065->prod_qty += 1;
+            $this->qty_065 += 1;
+
+            $this->info_065->save();
         }
     }
 

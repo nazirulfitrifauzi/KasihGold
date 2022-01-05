@@ -161,7 +161,7 @@
                             <p>Total Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064),2)}}</p>
+                            <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p>
                         </div>
                     </div>
                     @if ($this->buybackStatus==1)
@@ -170,7 +170,7 @@
                             <p>Total Buyback Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM {{number_format((($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064))*1.06,2)}}</p>
+                            <p>RM {{number_format((($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064)+($info_bar065->outright_price*$goldbar065))*1.06,2)}}</p>
                         </div>
                     </div>
                     @endif
