@@ -29,7 +29,7 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Total Grams</p>
+                                        <p>Total Grams (Digital Gold)</p>
                                         <p class="text-lg">{{$this->tGold}} g</p>
                                     </div>
                                 </div>
@@ -42,8 +42,21 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
+                                        <p>Total Grams (Digital Dinar)</p>
+                                        <p class="text-lg">{{$this->tGoldD}} g</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </x-general.price-card>
+                    <x-general.price-card  class="text-white bg-yellow-400 rounded-lg">
+                        <div class="text-base font-bold text-white">
+                                <div class="flex flex-col items-center space-x-4 lg:flex-row">
+                                    <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
+                                        <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
+                                    </div>
+                                    <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
                                         <p>Purchased Price</p>
-                                        <p class="text-lg">RM {{number_format($this->tPrice,2)}}</p>
+                                        <p class="text-lg">RM {{number_format(($this->tPrice+$this->tPriceD),2)}}</p>
                                     </div>
                                 </div>
                             </div>

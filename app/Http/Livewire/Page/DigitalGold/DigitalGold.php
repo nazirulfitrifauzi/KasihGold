@@ -9,15 +9,22 @@ class DigitalGold extends Component
 {
     public $goldInfo;
     public $tGold, $tPrice;
+    public $goldInfoD;
+    public $tGoldD, $tPriceD;
     // public $history, $historyS, $historyP, $historyF;
     // public $outright, $bb;
 
     public function mount()
     {
-        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->get();
+        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', '<>', '4.25')->get();
         foreach ($goldInfo as $golds) {
             $this->tGold += $golds->weight;
             $this->tPrice += $golds->bought_price;
+        }
+        $goldInfoD = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', '4.25')->get();
+        foreach ($goldInfoD as $golds) {
+            $this->tGoldD += $golds->weight;
+            $this->tPriceD += $golds->bought_price;
         }
 
         // $this->history = GoldbarOwnershipPending::where('user_id', auth()->user()->id)->paginate(10);

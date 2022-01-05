@@ -10,11 +10,12 @@ class StockKAP extends Component
 {
 
     public $addTotalWeight, $addSerialID, $addSupplierName, $addVaultLocation, $addBoughtPrice;
-
+    public $max;
     public function addGold()
     {
+        $this->max = 13;
         $data = $this->validate([
-            'addTotalWeight'     => 'required',
+            'addTotalWeight'     => 'required|numeric|max:' . $this->max,
             'addSerialID'        => 'required',
             'addSupplierName'    => 'required',
             'addVaultLocation'   => 'required',
