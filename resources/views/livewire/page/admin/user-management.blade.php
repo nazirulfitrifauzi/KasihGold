@@ -65,7 +65,7 @@
                             </span>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                            <div class="flex space-x-2" x-data="{ openModal : false, openModal2 : false, openModal3 : false}">
+                            <div class="flex space-x-2" x-data="{ openModal : false, openModal2 : false, openModal3 : false ,openTransferHistory :false}">
                                 <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500 cursor-pointer tooltipbtn" @click="openModal = true" data-title="View Details" data-placement="top"/>
 
                                 <! -- Start modal Details -->
@@ -343,6 +343,16 @@
                                     </x-general.new-modal>
                                     <! -- End modal trasnfer user -->
                                 @endif
+
+                                <x-heroicon-o-clock class="w-5 h-5 mr-1 text-orange-400 cursor-pointer tooltipbtn" @click="openTransferHistory = true" x-on:close-modal.window="openTransferHistory = false" data-title="Transfer History" data-placement="top"/>
+
+                                <! -- Start modal Transfer History -->
+                                <x-general.modal modalActive="openTransferHistory" title="Transaction History" modalSize="4xl">
+                                    <div class="py-2">
+                                        <livewire:page.digital-gold.transaction-history/>    
+                                    </div>
+                                </x-general.modal>
+                                <! -- End modal Transfer History -->
 
                                 {{-- @if($lists->active == 1 && $lists->deceased == NULL)
                                     <x-heroicon-o-user-remove
