@@ -16,7 +16,7 @@ class InvInfo extends Model
 
     public function item()
     {
-        return $this->belongsTo('App\Models\InvItem', 'prod_code', 'code');
+        return $this->belongsTo('App\Models\InvItem', 'item_id', 'id');
     }
 
     public function user()

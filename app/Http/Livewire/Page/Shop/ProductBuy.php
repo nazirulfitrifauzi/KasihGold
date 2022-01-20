@@ -52,7 +52,7 @@ class ProductBuy extends Component
         if (auth()->user()->client == '2') {
 
             foreach ($products as $prod) { // Count total price for the transaction
-                $comm += $prod->products->item->commissionKAP->agent_rate * $prod->prod_qty;
+                $comm += $prod->commission->agent_rate * $prod->prod_qty;
                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }
             $refPayment = (string) Str::uuid();
@@ -102,7 +102,7 @@ class ProductBuy extends Component
                         'gold_id'           => $goldbar->id,
                         'user_id'           => auth()->user()->id,
                         'weight'            => $prod->products->prod_weight,
-                        'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->products->item->commissionKAP->agent_rate)) : ($prod->products->item->marketPrice->price),
+                        'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
                         'status'            => 2,
                         'created_by'        => auth()->user()->id,
                         'updated_by'        => auth()->user()->id,

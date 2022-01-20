@@ -24,14 +24,12 @@
                                 <x-slot name="tbody">
                             
                                     @foreach ($this->karts as $cartInfo)
-                                    @php
-                                        $category = "qty_".$cartInfo->products->prod_cat
-                                    @endphp
                                     <tr>
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             <div class="flex flex-col items-center space-x-3 lg:flex-row">
                                                 <img class="object-cover w-16 h-16 rounded"
-                                                    src="{{ asset('img/gold/'.$cartInfo->products->prod_img1) }}" alt="">
+                                                    src="{{ asset('img/product/'.$cartInfo->products->prod_cat.'/'.$cartInfo->products->item_id.'/'.$cartInfo->products->prod_img1) }}" alt="">
+
                                                 <div class="mt-4 lg:mt-0">
                                                     <h3 class="text-sm font-semibold">{{$cartInfo->products->prod_name}}</h3>
                                                 </div>
@@ -46,19 +44,11 @@
                                             <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
                                                 
                                                 
-                                                @if($this->$category==1)
-                                                <button  
-                                                btnRoute="#" 
-                                                data-id="{{ $cartInfo->id }}" onclick="deleteConfirmation({{ $cartInfo->id }})"
+                                                
+                                                <button  wire:click="subProd({{$cartInfo->id}})"
                                                     class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                     <span class="m-auto text-2xl font-thin">-</span>
                                                 </button>
-                                                @else
-                                                <button  wire:click="subProd({{$cartInfo->products->prod_weight}})"
-                                                    class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
-                                                    <span class="m-auto text-2xl font-thin">-</span>
-                                                </button>
-                                                @endif
 
                                                 <input  type="text"
                                                         class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
@@ -66,8 +56,8 @@
                                                         justify-center
                                                         text-gray-700 
                                                         outline-none"
-                                                        name="custom-input-number" wire:model="qty_{{$cartInfo->products->prod_cat}}" value="qty_{{$cartInfo->products->prod_cat}}" ></input>
-                                                <button  wire:click="addProd({{$cartInfo->products->prod_weight}})"
+                                                        name="custom-input-number"  value="{{$cartInfo->prod_qty}}" disabled></input>
+                                                <button  wire:click="addProd({{$cartInfo->id}})"
                                                     class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                     <span class="m-auto text-2xl font-thin">+</span>
                                                 </button>
@@ -75,7 +65,7 @@
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$this->$category),2) : number_format($cartInfo->products->item->marketPrice->price*$this->$category,2) }}</p>
+                                            <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate*$cartInfo->prod_qty)),2) : number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty,2) }}</p>
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
@@ -105,9 +95,6 @@
                             <div class="p-4 border-2 rounded-md">
                                     
                                     @foreach ($this->karts as $cartInfo)
-                                    {{-- @php
-                                        $category = "qty_".$cartInfo->products->prod_cat
-                                    @endphp --}}
                                     <div class="py-2 border-b-2">
                                         <div class="flex items-center justify-between">
                                             <div>
@@ -150,7 +137,7 @@
                                             </div>
                                             <div>
                                                 <p class="text-xs text-gray-500">TOTAL PRICE</p>
-                                                <p class='text-sm font-semibold text-right'>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$this->$category),2) : number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty,2) }}</p>
+                                                <p class='text-sm font-semibold text-right'>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)),2) : number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty,2) }}</p>
                                                 
                                             </div>
                                         </div>
