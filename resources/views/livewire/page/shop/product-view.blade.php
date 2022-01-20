@@ -20,11 +20,12 @@
                 <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
                     @foreach ($digitalGold as $item)
                     <a
-                        href="{{ route('product-detail',['iid'=>$item->id]) }}"
+                        href="{{ route('product-detail',['iid'=>$item->item_id]) }}"
                         class="w-full max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-md shadow-xl cursor-pointer hover:shadow-2xl"
                     >
                         <div class="flex w-full h-40 bg-white bg-center bg-no-repeat bg-contain"
-                            style="background-image: url('{{ asset('img/gold/'.$item->prod_img1) }}')">
+                            style="background-image: url('{{ asset('img/product/'.$item->prod_cat.'/'.$item->item_id.'/'.$item->prod_img1) }}')">
+
                         </div>
                         <div class="px-5 py-3 bg-white">
                             <h3 class="text-sm font-bold text-black uppercase">{{{$item->prod_name}}}</h3>
@@ -61,7 +62,8 @@
                         class="w-full max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-md shadow-xl cursor-pointer hover:shadow-2xl"
                     >
                         <div class="flex w-full h-40 bg-white bg-center bg-no-repeat bg-contain"
-                            style="background-image: url('{{ asset('img/gold/'.$item->prod_img1) }}')">
+                            style="background-image: url('{{ asset('img/product/'.$item->prod_cat.'/'.$item->item_id.'/'.$item->prod_img1) }}')">
+
                         </div>
                         <div class="px-5 py-3 bg-white">
                             <h3 class="text-sm font-bold text-black uppercase">{{{$item->prod_name}}}</h3>

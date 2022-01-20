@@ -16,7 +16,7 @@ class InvCart extends Model
 
     public function products()
     {
-        return $this->belongsTo('App\Models\InvInfo', 'item_id', 'id');
+        return $this->belongsTo('App\Models\InvInfo', 'item_id', 'item_id');
     }
 
     public function user()
@@ -27,5 +27,9 @@ class InvCart extends Model
     public function item()
     {
         return $this->belongsTo('App\Models\InvItem', 'item_id', 'id');
+    }
+    public function commission()
+    {
+        return $this->belongsTo('App\Models\CommissionRateKap', 'item_id', 'item_id');
     }
 }

@@ -189,8 +189,8 @@
                                                         <div class="flex justify-between pb-4 mt-6 border-b-2">
                                                             <div class="flex">
                                                                 <img class="object-cover w-20 h-20 rounded"
-                                                                    src="{{ asset('img/gold/'.$prod->products->prod_img1) }}"
-                                                                    alt="">
+                                                                src="{{ asset('img/product/'.$prod->products->prod_cat.'/'.$prod->products->item_id.'/'.$prod->products->prod_img1) }}" alt="">
+                                                                
                                                                 <div class="mx-3 my-3">
                                                                     <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
                                                                     <h6 class="text-sm text-gray-600">{{$prod->prod_qty}} pcs</h6>
@@ -202,7 +202,7 @@
                                                         </div>
                                                         @php
                                                             $total += $prod->products->item->marketPrice->price*$prod->prod_qty;
-                                                            $comm += $prod->products->item->commissionKAP->agent_rate*$prod->prod_qty;
+                                                            $comm += $prod->commission->agent_rate*$prod->prod_qty;
                                                         @endphp
                                                         @endforeach
                                                         {{-- <x-form.basic-form wire:submit.prevent="">

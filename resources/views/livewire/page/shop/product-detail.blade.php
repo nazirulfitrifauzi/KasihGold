@@ -27,7 +27,7 @@
                 <div class="flex flex-col -mx-4 md:flex-row">
                     <!-Start detail of image -->
                     <div class="px-4 md:flex-1">
-                        <div x-data="{imageUrl: '{{ asset('img/gold/'.$info->prod_img1) }}'}" x-cloak>
+                        <div x-data="{imageUrl: '{{ asset('img/product/'.$info->prod_cat.'/'.$info->item_id.'/'.$info->prod_img1) }}'}" x-cloak>
                             <div class="h-64 mb-4 bg-white rounded-lg md:h-80">
                                 <div class="flex items-center justify-center h-64 mb-4 bg-white rounded-lg md:h-80">
                                     <img id="main" :src="imageUrl" class="object-contain w-full h-full bg-cover" />
@@ -36,30 +36,30 @@
                             @if (auth()->user()->isUserKG()) <!-- bukan agent kg -->
                             <div class="grid grid-cols-4 gap-6 mt-6 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4">
                                 <button class="flex items-center justify-center w-full h-24 bg-white rounded-lg focus:outline-none md:h-32">
-                                    <img src="{{ asset('img/gold/'.$info->prod_img1) }}"
+                                    <img src="{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img1) }}"
                                         class="object-contain w-full h-full bg-cover"
-                                        @click="imageUrl = '{{ asset('img/gold/'.$info->prod_img1) }}'"
+                                        @click="imageUrl = '{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img1) }}'"
                                         />
                                 </button>
                                 <button
                                     class="flex items-center justify-center w-full h-24 bg-white rounded-lg focus:outline-none md:h-32">
-                                    <img src="{{ asset('storage/'.$info->prod_img2) }}"
+                                    <img src="{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img2) }}"
                                         class="object-contain w-full h-full bg-cover"
-                                        @click="imageUrl = '{{ asset('storage/'.$info->prod_img2) }}'"
+                                        @click="imageUrl = '{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img2) }}'"
                                         />
                                 </button>
                                 <button
                                     class="flex items-center justify-center w-full h-24 bg-white rounded-lg focus:outline-none md:h-32">
-                                    <img src="{{ asset('storage/'.$info->prod_img3) }}"
+                                    <img src="{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img3) }}"
                                         class="object-contain w-full h-full bg-cover"
-                                        @click="imageUrl = '{{ asset('storage/'.$info->prod_img3) }}'"
+                                        @click="imageUrl = '{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img3) }}'"
                                         />
                                 </button>
                                 <button
                                     class="flex items-center justify-center w-full h-24 bg-white rounded-lg focus:outline-none md:h-32">
-                                    <img src="{{ asset('storage/'.$info->prod_img4) }}"
+                                    <img src="{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img4) }}"
                                         class="object-contain w-full h-full bg-cover"
-                                        @click="imageUrl = '{{ asset('storage/'.$info->prod_img4) }}'"
+                                        @click="imageUrl = '{{ asset('img/product/'.$info->category_id.'/'.$info->item_id.'/'.$info->prod_img4) }}'"
                                         />
                                 </button>
                             </div>

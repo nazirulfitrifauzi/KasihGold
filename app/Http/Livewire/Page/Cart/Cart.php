@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page\Cart;
 use App\Models\CommissionRateKap;
 use App\Models\InvCart;
 use App\Models\MarketPrice;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
 class Cart extends Component
@@ -18,181 +19,53 @@ class Cart extends Component
 
     public function mount()
     {
+    }
 
+    public function subProd($cartID)
+    {
+        $cartItem = InvCart::where('id', $cartID)->first();
+        $this->total -= $cartItem->products->item->marketPrice->price;
+        if ((auth()->user()->isAgentKAP())) {
+            $this->comm -= $cartItem->commission->agent_rate;
+        }
+        if ($cartItem->prod_qty != 1) {
+            $cartItem->prod_qty -= 1;
+            $cartItem->save();
+        } else {
+            $cartItem->delete();
+        }
+    }
+
+    public function addProd($cartID)
+    {
+        $cartItem = InvCart::where('id', $cartID)->first();
+        $this->total += $cartItem->products->item->marketPrice->price;
+        if ((auth()->user()->isAgentKAP())) {
+            $this->comm += $cartItem->commission->agent_rate;
+        }
+        if ($cartItem->prod_qty != 99) {
+            $cartItem->prod_qty += 1;
+            $cartItem->save();
+        } else {
+            $cartItem->delete();
+        }
+    }
+
+
+    public function render()
+    {
         $this->total = 0;
         $this->comm = 0;
-        //Cart information
-        $this->info_061 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10005)->first();
-        $this->info_062 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10007)->first();
-        $this->info_063 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10009)->first();
-        $this->info_064 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10010)->first();
-        $this->info_065 = InvCart::where('user_id', auth()->user()->id)->where('item_id', 10011)->first();
-
-        //Cart specific quantity
-        if ($this->info_061 != null) {
-            $this->qty_061 = $this->info_061->prod_qty;
-        }
-        if ($this->info_062 != null) {
-            $this->qty_062 = $this->info_062->prod_qty;
-        }
-        if ($this->info_063 != null) {
-            $this->qty_063 = $this->info_063->prod_qty;
-        }
-        if ($this->info_064 != null) {
-            $this->qty_064 = $this->info_064->prod_qty;
-        }
-        if ($this->info_065 != null) {
-            $this->qty_065 = $this->info_065->prod_qty;
-        }
-
-        //Beginning to calculate the total price and commission if any.
         $this->karts = InvCart::where('user_id', auth()->user()->id)->get();
-        $this->marketP = MarketPrice::all();
-        $this->commR = CommissionRateKap::all();
 
         foreach ($this->karts as $kart) {
 
             $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
 
             if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $kart->products->item->commissionKAP->agent_rate * $kart->prod_qty;
+                $this->comm += $kart->commission->agent_rate * $kart->prod_qty;
             }
         }
-    }
-
-    public function subProd($type)
-    {
-        if ($type == "0.01") {
-            $this->total -= $this->marketP[0]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm -= $this->commR[0]->agent_rate;
-            }
-            if ($this->info_061->prod_qty == 0) {
-                $this->info_061->delete();
-            } else {
-                $this->info_061->prod_qty -= 1;
-                $this->qty_061 -= 1;
-            }
-            $this->info_061->save();
-        }
-        if ($type == "0.1") {
-            $this->total -= $this->marketP[1]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm -= $this->commR[1]->agent_rate;
-            }
-
-            $this->info_062->prod_qty -= 1;
-            $this->qty_062 -= 1;
-
-            $this->info_062->save();
-        }
-        if ($type == "0.25") {
-            $this->total -= $this->marketP[2]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm -= $this->commR[2]->agent_rate;
-            }
-
-            $this->info_063->prod_qty -= 1;
-            $this->qty_063 -= 1;
-
-            $this->info_063->save();
-        }
-        if ($type == "1.00") {
-            $this->total -= $this->marketP[3]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm -= $this->commR[3]->agent_rate;
-            }
-
-            $this->info_064->prod_qty -= 1;
-            $this->qty_064 -= 1;
-
-            $this->info_064->save();
-        }
-        if ($type == "4.25") {
-            $this->total -= $this->marketP[4]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm -= $this->commR[4]->agent_rate;
-            }
-
-            $this->info_065->prod_qty -= 1;
-            $this->qty_065 -= 1;
-
-            $this->info_065->save();
-        }
-    }
-
-
-    public function addProd($type)
-    {
-        if ($type == "0.01") {
-            $this->total += $this->marketP[0]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $this->commR[0]->agent_rate;
-            }
-
-            $this->info_061->prod_qty += 1;
-            $this->qty_061 += 1;
-
-            $this->info_061->save();
-        }
-        if ($type == "0.1") {
-            $this->total += $this->marketP[1]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $this->commR[1]->agent_rate;
-            }
-
-            $this->info_062->prod_qty += 1;
-            $this->qty_062 += 1;
-
-            $this->info_062->save();
-        }
-        if ($type == "0.25") {
-            $this->total += $this->marketP[2]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $this->commR[2]->agent_rate;
-            }
-
-            $this->info_063->prod_qty += 1;
-            $this->qty_063 += 1;
-
-            $this->info_063->save();
-        }
-        if ($type == "1.00") {
-            $this->total += $this->marketP[3]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $this->commR[3]->agent_rate;
-            }
-
-            $this->info_064->prod_qty += 1;
-            $this->qty_064 += 1;
-
-            $this->info_064->save();
-        }
-        if ($type == "4.25") {
-            $this->total += $this->marketP[4]->price;
-
-            if ((auth()->user()->isAgentKAP())) {
-                $this->comm += $this->commR[4]->agent_rate;
-            }
-
-            $this->info_065->prod_qty += 1;
-            $this->qty_065 += 1;
-
-            $this->info_065->save();
-        }
-    }
-
-    public function render()
-    {
         return view('livewire.page.cart.cart');
     }
 }

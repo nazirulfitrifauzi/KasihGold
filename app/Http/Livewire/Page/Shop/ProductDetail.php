@@ -84,7 +84,8 @@ class ProductDetail extends Component
     {
         if (auth()->user()->isAgentKAP() || auth()->user()->isUserKAP()) { //kap bukan admin
 
-            $masterProducts = InvInfo::where('inv_info.id', $this->iid)->first();
+            $masterProducts = InvInfo::where('item_id', $this->iid)->first();
+
             // dd($masterProducts->item->marketPrice);
             return view('livewire.page.shop.product-detail', [
                 'info' => $masterProducts,

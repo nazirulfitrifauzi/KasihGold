@@ -13,8 +13,8 @@ class ProductView extends Component
 
     public function mount()
     {
-        $this->digitalGold = InvInfo::where('prod_cat', '<>', '065')->get();
-        $this->digitalDinar = InvInfo::where('prod_cat', '065')->get();
+        $this->digitalGold = InvInfo::where('prod_cat', '1')->get();
+        $this->digitalDinar = InvInfo::where('prod_cat', '2')->get();
     }
     public function render()
     {
