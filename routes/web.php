@@ -54,6 +54,8 @@ use App\Http\Livewire\Page\Admin\Announcement\ListAnnouncement;
 use App\Http\Livewire\Page\Admin\Announcement\CreateAnnouncement;
 use App\Http\Livewire\Page\Admin\UserManagement;
 use App\Http\Livewire\Page\Reporting\ListReport;
+use App\Http\Livewire\Page\Admin\Promo\PromoList;
+use App\Http\Livewire\Page\Admin\Promo\PromoAdd;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -160,6 +162,8 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/screening', [ScreeningController::class, 'index'])->name('admin.screening');
         Route::get('admin/incident-reporting', [IncidentReportingController::class, 'admin'])->name('admin.incidentReporting');
         Route::get('admin/suppliers', [SuppliersController::class, 'index'])->name('admin.suppliers');
+        Route::get('admin/list-promotion', PromoList::class)->name('admin.list-promotion');
+        Route::get('admin/add-promotion', PromoAdd::class)->name('admin.add-promotion');
         Route::get('withdrawal-request', [DashboardController::class, 'withdrawalRequest'])->name('withdrawal-request');
         Route::get('admin/exit-approval', [ProductKAController::class, 'exitApp'])->name('exit-approval');
         Route::get('admin/exit-approval-bb', [ProductKAController::class, 'exitAppBB'])->name('exit-approval-bb');

@@ -215,6 +215,11 @@
                     </div>
                 </x-sidebar.dropdown-nav-item>
 
+                <x-sidebar.nav-item title="Promotion" route="{{route('admin.list-promotion')}}"
+                    uri="admin/list-promotion">
+                    <x-heroicon-o-trending-down class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
                 @if (auth()->user()->role != 1)
                 <x-sidebar.nav-item title="Contact Us" route="{{route('incidentReporting')}}"
                     uri="incident-reporting">
