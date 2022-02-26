@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\BuyBack;
 use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
@@ -77,15 +78,33 @@ class ToyyibpayController extends Controller
     public function paymentStatusBuy()
     {
         $response = request()->all(['status_id', 'billcode', 'order_id']);
-        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
-            ->first();
 
-        if ($response['status_id'] == 1 && $toyyibBill->status != 1) {
+        if ($response['status_id'] == 1) {
+            session()->flash('message', 'Your Digital Gold Purchase is Successful.');
+
+            session()->flash('success');
+            session()->flash('title', 'Success!');
+        } elseif ($response['status_id'] == 3) {
+            session()->flash('message', 'Your Digital Gold Purchase is Unsuccessful.');
+
+            session()->flash('error');
+            session()->flash('title', 'Error!');
+        }
+
+        return redirect('home');
+        // return $response;
+    }
+
+    public function callback()
+    {
+        $response = request()->all(['refno', 'status', 'billcode']);
+        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])->first();
+
+        if ($response['status'] == 1 && $toyyibBill->status != 1) {
 
             $gold = GoldbarOwnershipPending::where('referenceNumber', $response['billcode'])
                 ->where('status', 2)
                 ->get();
-
 
             $toyyibBill->status = 1;
             $toyyibBill->save();
@@ -96,14 +115,15 @@ class ToyyibpayController extends Controller
 
                 GoldbarOwnership::create([
                     'gold_id'           => $golds->gold_id,
-                    'user_id'           => auth()->user()->id,
+                    'user_id'           => $golds->user_id,
+                    'item_id'           => $golds->item_id,
                     'ouid'              => (string) Str::uuid(),
                     'weight'            => $golds->weight,
                     'bought_price'      => $golds->bought_price,
                     'active_ownership'  => 1,
                     'referenceNumber'   => $response['billcode'],
-                    'created_by'        => auth()->user()->id,
-                    'updated_by'        => auth()->user()->id,
+                    'created_by'        => $golds->user_id,
+                    'updated_by'        => $golds->user_id,
                     'created_at'        => now(),
                     'updated_at'        => now(),
                     'split'             => 0,
@@ -118,33 +138,27 @@ class ToyyibpayController extends Controller
                 $currentGoldbar->weight_occupied += $golds->weight;
                 $currentGoldbar->save();
 
-                $gold_info = InvInfo::where('prod_weight', $golds->weight)
-                    ->where('user_id', 10)
+                $gold_info = InvInfo::where('item_id', $golds->item_id)
                     ->first();
 
                 // distribute commission/cashback to the upline user
-                if (auth()->user()->isUserKAP()) {
+                if ($golds->user->isUserKAP()) {
                     $commission = $gold_info->item->commissionKAP->agent_rate;
-                    $upline_id = auth()->user()->upline->user->id;
+                    $upline_id = $golds->user->upline->user->id;
 
                     CommissionDetailKap::create([
                         'user_id'           => $upline_id,
-                        'item_id'           => $gold_info->item->id,
-                        'bought_id'         => auth()->user()->id,
+                        'item_id'           => $gold_info->item_id,
+                        'bought_id'         => $golds->user_id,
                         'commission'        => $commission,
-                        'created_by'        => auth()->user()->id,
-                        'updated_by'        => auth()->user()->id,
+                        'created_by'        => $golds->user_id,
+                        'updated_by'        => $golds->user_id,
                         'created_at'        => now(),
                         'updated_at'        => now(),
                     ]);
                 }
             }
-
-            session()->flash('message', 'Your Digital Gold Purchase is Successful.');
-
-            session()->flash('success');
-            session()->flash('title', 'Success!');
-        } elseif ($response['status_id'] == 3 && $toyyibBill->status != 3) {
+        } elseif ($response['status'] == 3 && $toyyibBill->status != 3) {
             $gold = GoldbarOwnershipPending::where('referenceNumber', $response['billcode'])
                 ->where('status', 2)
                 ->get();
@@ -163,20 +177,6 @@ class ToyyibpayController extends Controller
                 $currentGoldbar->weight_vacant += $golds->weight;
                 $currentGoldbar->save();
             }
-
-            session()->flash('message', 'Your Digital Gold Purchase is Unsuccessful.');
-
-            session()->flash('error');
-            session()->flash('title', 'Error!');
         }
-
-        return redirect('home');
-        // return $response;
-    }
-
-    public function callback()
-    {
-        $response = request()->all(['refno', 'status', 'reason', 'billcode', 'order_id', 'amount']);
-        Log::info($response);
     }
 }
