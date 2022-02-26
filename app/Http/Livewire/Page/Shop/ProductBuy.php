@@ -45,15 +45,21 @@ class ProductBuy extends Component
 
     public function buy()
     {
-        $products = InvCart::where('user_id', auth()->user()->id)->get();
+        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $total = 1.0; //Total is RM1 because of FPX Payment
         $comm = 0.0;
+        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d', strtotime($currentDate));
 
         if (auth()->user()->client == '2') {
-
             foreach ($products as $prod) { // Count total price for the transaction
                 $comm += $prod->commission->agent_rate * $prod->prod_qty;
-                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+
+                if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
+                    $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+                } else {
+                    $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+                }
             }
             $refPayment = (string) Str::uuid();
 
@@ -111,9 +117,7 @@ class ProductBuy extends Component
                     ]);
 
                     // update available gold bar weight
-
                     $currentGoldbar = Goldbar::where('id', $goldbar->id)->first();
-
                     $currentGoldbar->weight_on_hold += $prod->products->prod_weight;
                     $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
                     $currentGoldbar->save();
@@ -146,7 +150,6 @@ class ProductBuy extends Component
             // session()->flash('message', 'Product successfully added to your Gold Shelf!');
             // return redirect()->to('/home');
         } else {
-
             foreach ($products as $prod) {
                 NewOrders::create([
                     'user_id'       => auth()->user()->id,
@@ -171,7 +174,7 @@ class ProductBuy extends Component
 
     public function render()
     {
-        $products = InvCart::where('user_id', auth()->user()->id)->get();
+        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $tProducts = 0;
         foreach ($products as $prod) {
             $tProducts += $prod->prod_qty;

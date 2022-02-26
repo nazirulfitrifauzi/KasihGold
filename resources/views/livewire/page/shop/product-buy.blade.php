@@ -1,5 +1,5 @@
 <div class="">
-    <div class="bg-white rounded-lg mb-20 sm:mb-0">
+    <div class="mb-20 bg-white rounded-lg sm:mb-0">
         <main class="px-4 py-6 my-8">
             <div class="container mx-auto">
                 <h3 class="text-2xl font-medium text-gray-700">Checkout</h3>
@@ -190,18 +190,36 @@
                                                             <div class="flex">
                                                                 <img class="object-cover w-20 h-20 rounded"
                                                                 src="{{ asset('img/product/'.$prod->products->prod_cat.'/'.$prod->products->item_id.'/'.$prod->products->prod_img1) }}" alt="">
-                                                                
+
                                                                 <div class="mx-3 my-3">
                                                                     <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
                                                                     <h6 class="text-sm text-gray-600">{{$prod->prod_qty}} pcs</h6>
                                                                 </div>
                                                             </div>
-                                                            <span class="my-3 font-semibold text-gray-600">
-                                                                RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_qty, 2) }}
-                                                            </span>
+
+                                                            @php
+                                                                $currentDate = date('Y-m-d');
+                                                                $currentDate = date('Y-m-d', strtotime($currentDate));
+                                                                $startDate = $prod->products->item->promotions->start_date ?? '';
+                                                                $endDate = $prod->products->item->promotions->end_date ?? '';
+                                                            @endphp
+                                                            @if($prod->products->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
+                                                                <span class="my-3 font-semibold text-gray-600">
+                                                                    RM {{ number_format($prod->products->item->promotions->promo_price*$prod->prod_qty, 2) }}
+                                                                </span>
+                                                            @else
+                                                                <span class="my-3 font-semibold text-gray-600">
+                                                                    RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_qty, 2) }}
+                                                                </span>
+                                                            @endif
                                                         </div>
                                                         @php
-                                                            $total += $prod->products->item->marketPrice->price*$prod->prod_qty;
+                                                            if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
+                                                                $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+                                                            } else {
+                                                                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+                                                            }
+
                                                             $comm += $prod->commission->agent_rate*$prod->prod_qty;
                                                         @endphp
                                                         @endforeach
@@ -290,14 +308,14 @@
                                                             </div>
                                                             @endif
 
-                                                            <div class="flex justify-between">
+                                                            {{-- <div class="flex justify-between">
                                                                 <div class="text-gray-500">
                                                                     <p>Promotions</p>
                                                                 </div>
                                                                 <div class="text-gray-500">
                                                                     <p>RM 0.00</p>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
 
                                                         <div class="flex justify-between pb-4 mt-6 border-b-2">
@@ -320,7 +338,7 @@
                                 </div>
 
                                 @if(auth()->user()->active == 1)
-                                
+
                                     @if($products->isEmpty())
                                         <div class="flex items-center justify-end mt-2">
                                             <a type="button" class="flex items-center px-3 py-2 text-sm font-medium text-white bg-gray-500 rounded-md cursor-not-allowed hover:bg-gray-600 focus:outline-none">
@@ -328,7 +346,7 @@
                                                 <span>COMPLETE ORDER</span>
                                             </a>
                                         </div>
-                                    @else 
+                                    @else
                                         <div class="flex items-center justify-end">
                                             <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none">
                                                 <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />

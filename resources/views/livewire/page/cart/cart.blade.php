@@ -56,9 +56,6 @@
 
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
-
-
-
                                                 <button  wire:click="subProd({{$cartInfo->id}})"
                                                     class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                     <span class="m-auto text-2xl font-thin">-</span>
@@ -75,7 +72,15 @@
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            <p>RM {{ (auth()->user()->isAgentKAP()) ? number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate*$cartInfo->prod_qty)),2) : number_format($cartInfo->products->item->marketPrice->price*$cartInfo->prod_qty,2) }}</p>
+                                            @if($cartInfo->products->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ?
+                                                number_format(($cartInfo->products->item->promotions->promo_price - $cartInfo->products->item->commissionKAP->agent_rate * $cartInfo->prod_qty),2) :
+                                                number_format($cartInfo->products->item->promotions->promo_price * $cartInfo->prod_qty,2) }}</p>
+                                            @else
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ?
+                                                number_format((($cartInfo->products->item->marketPrice->price - $cartInfo->products->item->commissionKAP->agent_rate * $cartInfo->prod_qty)),2)
+                                                : number_format($cartInfo->products->item->marketPrice->price * $cartInfo->prod_qty,2) }}</p>
+                                            @endif
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class="relative text-xs font-medium text-gray-700">
