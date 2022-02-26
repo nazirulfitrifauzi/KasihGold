@@ -19,6 +19,7 @@ class Cart extends Component
 
     public function mount()
     {
+        //
     }
 
     public function subProd($cartID)
@@ -56,11 +57,17 @@ class Cart extends Component
     {
         $this->total = 0;
         $this->comm = 0;
-        $this->karts = InvCart::where('user_id', auth()->user()->id)->get();
+        $this->karts = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
+        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d', strtotime($currentDate));
 
         foreach ($this->karts as $kart) {
-
-            $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
+            // check if item have promo on this date
+            if ($kart->item->promotions != NULL&& ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
+                $this->total += $kart->products->item->promotions->promo_price * $kart->prod_qty;
+            } else {
+                $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
+            }
 
             if ((auth()->user()->isAgentKAP())) {
                 $this->comm += $kart->commission->agent_rate * $kart->prod_qty;
