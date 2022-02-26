@@ -62,4 +62,9 @@ class InvItem extends Model
     {
         return $this->hasMany('App\Models\CostHistory', 'item_id', 'id');
     }
+
+    public function promotions()
+    {
+        return $this->hasOne(Promotion::class, 'item_id', 'id');
+    }
 }
