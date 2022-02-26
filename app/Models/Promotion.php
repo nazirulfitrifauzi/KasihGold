@@ -14,11 +14,18 @@ class Promotion extends Model
         'name',
         'start_date',
         'end_date',
-        'description'
+        'description',
+        'item_id',
+        'promo_price'
     ];
 
     public function types()
     {
         return $this->hasOne(RefPromoType::class, 'id', 'type');
+    }
+
+    public function items()
+    {
+        return $this->belongsTo(InvItem::class, 'item_id', 'id');
     }
 }

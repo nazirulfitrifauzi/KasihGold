@@ -2,12 +2,19 @@
 
 namespace App\Http\Livewire\Page\Admin\Promo;
 
+use App\Models\InvItem;
 use App\Models\Promotion;
 use Livewire\Component;
 
 class PromoAdd extends Component
 {
-    public $type, $name, $start_date, $end_date, $description;
+    public $items;
+    public $type, $name, $start_date, $end_date, $description, $item_id, $promo_price;
+
+    public function mount()
+    {
+        $this->items = InvItem::all();
+    }
 
     public function save()
     {
@@ -16,7 +23,9 @@ class PromoAdd extends Component
             'name' => 'required|min:3|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'description' => 'required|min:5|string'
+            'description' => 'required|min:5|string',
+            'item_id' => 'required_if:type,1',
+            'promo_price' => 'required|numeric'
         ]);
 
         Promotion::create($data);

@@ -20,6 +20,8 @@ class CreatePromotionsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('description');
+            $table->bigInteger('item_id');
+            $table->decimal('promo_price', 18, 2);
             $table->timestamps();
         });
     }

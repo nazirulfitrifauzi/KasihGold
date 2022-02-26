@@ -12,7 +12,7 @@
                 <x-form.basic-form wire:submit.prevent="save">
                     <x-slot name="content">
                         <x-general.grid mobile="1" gap="3" sm="1" md="2" lg="2" xl="2" class="col-span-6">
-                            <x-form.dropdown label="Type" wire:model.defer="type" default="no" value="type">
+                            <x-form.dropdown label="Type" wire:model="type" default="no" value="type">
                                 <option value="0">Choose type</option>
                                 <option value="1">Price Promotion</option>
                                 <option value="2">Comission Promotion</option>
@@ -20,6 +20,14 @@
                             <x-form.input label="Name" wire:model.defer="name" value="name" />
                             <x-form.input label="Start Date" type="date" wire:model.defer="start_date" value="start_date" />
                             <x-form.input label="End Date" type="date" wire:model.defer="end_date" value="end_date" />
+                            @if ($type == 1)
+                                <x-form.dropdown label="Type" wire:model.defer="item_id" default="no" value="item_id">
+                                    @foreach ($items as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </x-form.dropdown>
+                                <x-form.input label="Promo Proce" wire:model.defer="promo_price" value="promo_price" />
+                            @endif
                         </x-general.grid>
 
                         <x-general.grid mobile="1" gap="3" sm="1" md="1" lg="1" xl="1" class="col-span-6 pb-4 mt-4">
