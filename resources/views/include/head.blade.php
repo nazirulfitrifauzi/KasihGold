@@ -38,6 +38,45 @@
         .myInput {
             -webkit-appearance: none;
         }
+        s,
+        strike {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        s:after,
+        strike:after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 0px;
+            border-top: 4px solid rgb(240, 82, 82);
+            height: 100%;
+            height: calc(50% - 1px);
+            width: 100%;
+            transform: rotateZ(20deg);
+        }
+
+        s,
+        .gift-strike {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        s:after,
+        .gift-strike:after {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            border-top: 6px solid rgb(240, 82, 82);
+            height: 100%;
+            height: calc(50% - 1px);
+            width: 90%;
+            transform: rotateZ(-10deg);
+        }
     </style>
 </head>
 <body>

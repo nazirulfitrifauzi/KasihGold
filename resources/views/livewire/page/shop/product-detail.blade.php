@@ -76,14 +76,26 @@
                                 <span class="text-yellow-400">{{$userInfo->name}}</span>
                             </p>
                         @endif
+                        
                         <div class="flex items-center my-4 space-x-4">
-                                <div class="flex px-3 py-2 bg-gray-100 rounded-lg">
+                                <div class="flex">
                                     @if(auth()->user()->isAgentKAP())
-                                        <span class="text-xl font-bold text-yellow-400">
-                                            RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
-                                        </span>
+                                        <div class="px-3 py-2 bg-gray-100 rounded-lg">  
+                                            <span class="text-xl font-bold text-yellow-400">
+                                                RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                            </span>
+                                        </div>
                                     @else
-                                        <span class="text-xl font-bold text-yellow-400">RM {{ number_format($info->item->marketPrice->price,2) }}</span>
+                                    <div>
+                                        <div class="px-3 py-2 mb-2 font-bold text-yellow-300 bg-black rounded-lg">
+                                            <p>Normal Price</p>
+                                        </div>
+                                        <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                            <strike>
+                                                <span class="text-xl font-bold text-yellow-400">RM {{ number_format($info->item->marketPrice->price,2) }}</span>
+                                            </strike>
+                                        </div>
+                                    </div>
                                     @endif
                                 </div>
 
@@ -94,13 +106,22 @@
                                     $endDate = $info->item->promotions->end_date ?? '';
                                 @endphp
                                 @if($info->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
-                                    <div class="flex px-3 py-2 bg-gray-100 rounded-lg">
+                                    <div class="flex">
                                         @if(auth()->user()->isAgentKAP())
-                                            <span class="text-xl font-bold text-green-400">
-                                                RM {{ number_format(($info->item->promotions->promo_price - $info->item->commissionKAP->agent_rate),2) }}
-                                            </span>
+                                            <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                                <span class="text-xl font-bold text-green-400">
+                                                    RM {{ number_format(($info->item->promotions->promo_price - $info->item->commissionKAP->agent_rate),2) }}
+                                                </span>
+                                            </div>
                                         @else
-                                            <span class="text-xl font-bold text-green-400">RM {{ number_format($info->item->promotions->promo_price,2) }}</span>
+                                        <div>
+                                            <div class="px-3 py-2 mb-2 font-bold text-green-400 bg-black rounded-lg">
+                                                <p>Promo Price</p>
+                                            </div>
+                                            <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                                <span class="text-xl font-bold text-green-400">RM {{ number_format($info->item->promotions->promo_price,2) }}</span> 
+                                            </div>
+                                        </div>
                                         @endif
                                     </div>
                                 @endif
@@ -114,7 +135,7 @@
                         </p>
                         <x-form.basic-form wire:submit.prevent="buy">
                             <x-slot name="content">
-                                <div class="flex flex-col py-4 space-x-0 lg:flex-row lg:space-x-4">
+                                <div class="flex flex-col items-center py-4 space-x-0 lg:flex-row lg:space-x-4">
 
 
                                     <div class="relative flex flex-row w-24 h-10 my-2 mt-1 bg-transparent rounded-lg">
