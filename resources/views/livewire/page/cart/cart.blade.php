@@ -332,7 +332,7 @@
     <script>
         window.livewire.on('message', message => {
             Swal.fire({
-                icon: 'success',
+                icon: 'error',
                 title: message,
                 showConfirmButton: false,
                 timer: 2500

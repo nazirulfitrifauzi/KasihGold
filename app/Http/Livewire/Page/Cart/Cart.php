@@ -69,9 +69,10 @@ class Cart extends Component
             $promo_period = true;
         }
 
-        if ($code && $code->count() == 0) {
+
+        if (!$code) {
             $this->emit('message', 'Invalid Promotion Code.');
-        } elseif ($code && $code->count() > 0 && $promo_period == false) {
+        } elseif ($code && $promo_period == false) {
             $this->emit('message', 'Promotion Code expired.');
         }
 
@@ -89,7 +90,7 @@ class Cart extends Component
 
         foreach ($this->karts as $kart) {
             // check if item have promo on this date
-            if ($kart->item->promotions != NULL&& ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
+            if ($kart->item->promotions != NULL && ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
                 $this->total += $kart->products->item->promotions->promo_price * $kart->prod_qty;
             } else {
                 $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
