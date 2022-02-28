@@ -69,7 +69,6 @@ class Cart extends Component
             $promo_period = true;
         }
 
-
         if (!$code) {
             $this->emit('message', 'Invalid Promotion Code.');
         } elseif ($code && $promo_period == false) {
