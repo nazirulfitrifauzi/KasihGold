@@ -1,14 +1,4 @@
 <div>
-    @if (session('error'))
-        <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
-    @elseif (session('info'))
-        <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
-    @elseif (session('success'))
-        <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
-    @elseif (session('warning'))
-        <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
-    @endif
-
     <div>
         <div class="flex flex-col w-full mt-8 intro-y sm:flex-row">
             <h2 class="text-lg font-medium">
@@ -328,3 +318,16 @@
         btn.addEventListener("click", increment);
     });
 </script>
+
+@push('js')
+    <script>
+        window.livewire.on('message', message => {
+            Swal.fire({
+                icon: 'success',
+                title: message,
+                showConfirmButton: false,
+                timer: 2500
+            });
+        })
+    </script>
+@endpush

@@ -61,28 +61,22 @@ class Cart extends Component
 
         $code = Promotion::where('promo_code', $this->promo_code)->first();
         $current_date = now()->format('Y-m-d');
-        $start_date = $code->start_date;
-        $end_date = $code->end_date;
+        $start_date = $code->start_date ?? '';
+        $end_date = $code->end_date ?? '';
         $promo_period = false;
 
         if (($current_date >= $start_date) && ($current_date <= $end_date)) {
             $promo_period = true;
         }
 
-        if ($code->count() == 0) {
-            session()->flash('error');
-            session()->flash('title', 'Error!');
-            session()->flash('message', 'Invalid Promotion Code.');
-            return redirect()->route('cart');
-        } elseif ($code->count() > 0 && $promo_period == false) {
-            session()->flash('error');
-            session()->flash('title', 'Error!');
-            session()->flash('message', 'Promotion Code expired.');
-            return redirect()->route('cart');
+        if ($code && $code->count() == 0) {
+            $this->emit('message', 'Invalid Promotion Code.');
+        } elseif ($code && $code->count() > 0 && $promo_period == false) {
+            $this->emit('message', 'Promotion Code expired.');
         }
 
-        dump($promo_period);
-        dd($code);
+        // dump($promo_period);
+        // dd($code);
     }
 
     public function render()
