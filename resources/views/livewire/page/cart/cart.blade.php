@@ -163,20 +163,29 @@
                         <!--End Mobile view-->
 
                         <! -- Start Checkout -->
-                        <x-form.basic-form wire:submit.prevent="calculatePromo">
-                            <x-slot name="content">
-                                <x-form.input label="Promo Code" wire:model.defer="promo_code" value="promo_code" />
-                                <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
-                                    Submit
-                                </button>
-                            </x-slot>
-                        </x-form.basic-form>
-
                         <div class="flex justify-end my-6">
                             <div class="w-full px-4 py-4 bg-white border-2 rounded-lg lg:w-1/2">
                                 <div class="py-4 border-b-2">
                                     <h1 class="text-3xl font-semibold">Cart totals</h1>
                                 </div>
+
+                                <div class="py-4 border-b-2">
+                                    <x-form.basic-form wire:submit.prevent="calculatePromo">
+                                        <x-slot name="content">
+                                            <div class="flex space-x-4">
+                                                <div class="flex-grow">
+                                                    <x-form.input placeholder="Promo Code" label="" wire:model.defer="promo_code" value="promo_code" />
+                                                </div>
+                                                <div class="flex-none">
+                                                    <button type="submit" class="flex items-center px-6 py-2 mt-1 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </x-slot>
+                                    </x-form.basic-form>
+                                </div>
+                                
                                 <div class="flex flex-col py-4 border-b-2">
                                     <div class="flex flex-col justify-between lg:flex-row">
                                         <div class="text-sm font-semibold lg:text-lg">
