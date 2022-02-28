@@ -238,6 +238,23 @@
                                                                 </div>
                                                             </x-slot>
                                                         </x-form.basic-form> --}}
+                                                        <x-form.basic-form wire:submit.prevent="calculatePromo">
+                                                            <x-slot name="content">
+                                                                <div class="pt-4 font-semibold">
+                                                                    <p>Promotion</p>
+                                                                </div>
+                                                                <div class="flex py-4 space-x-4 border-b-2">
+                                                                    <div class="flex-grow">
+                                                                        <x-form.input placeholder="Promo Code" label="" wire:model.defer="promo_code" value="promo_code" />
+                                                                    </div>
+                                                                    <div class="flex-none">
+                                                                        <button type="submit" class="flex items-center px-6 py-2 mt-1 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                            Submit
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-form.basic-form>
 
                                                         <div class="pb-4 mt-6 border-b-2">
                                                             <div class="flex justify-between">
