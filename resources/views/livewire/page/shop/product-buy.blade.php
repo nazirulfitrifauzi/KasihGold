@@ -308,14 +308,14 @@
                                                             </div>
                                                             @endif
 
-                                                            {{-- <div class="flex justify-between">
+                                                            <div class="flex justify-between">
                                                                 <div class="text-gray-500">
                                                                     <p>Promotions</p>
                                                                 </div>
                                                                 <div class="text-gray-500">
                                                                     <p>RM 0.00</p>
                                                                 </div>
-                                                            </div> --}}
+                                                            </div>
                                                         </div>
 
                                                         <div class="flex justify-between pb-4 mt-6 border-b-2">

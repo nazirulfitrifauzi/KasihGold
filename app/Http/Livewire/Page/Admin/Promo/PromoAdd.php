@@ -9,7 +9,7 @@ use Livewire\Component;
 class PromoAdd extends Component
 {
     public $items;
-    public $type, $name, $start_date, $end_date, $description, $item_id, $promo_price;
+    public $type, $name, $start_date, $end_date, $description, $item_id, $promo_price, $promo_code;
 
     public function mount()
     {
@@ -25,7 +25,8 @@ class PromoAdd extends Component
             'end_date' => 'required|date|after_or_equal:start_date',
             'description' => 'required|min:5|string',
             'item_id' => 'required_if:type,1',
-            'promo_price' => 'required|numeric'
+            'promo_price' => 'sometimes|required_if:type,1|nullable|numeric',
+            'promo_code' => 'required_if:type,2|max:6'
         ]);
 
         Promotion::create($data);

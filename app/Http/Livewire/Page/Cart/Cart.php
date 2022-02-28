@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page\Cart;
 use App\Models\CommissionRateKap;
 use App\Models\InvCart;
 use App\Models\MarketPrice;
+use App\Models\Promotion;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -15,7 +16,7 @@ class Cart extends Component
     public $karts, $marketP, $commR;
     public $info_061, $info_062, $info_063, $info_064, $info_065;
     public $qty_061, $qty_062, $qty_063, $qty_064, $qty_065;
-
+    public $promo_code;
 
     public function mount()
     {
@@ -52,6 +53,37 @@ class Cart extends Component
         }
     }
 
+    public function calculatePromo()
+    {
+        $this->validate([
+            'promo_code' => 'required|max:6'
+        ]);
+
+        $code = Promotion::where('promo_code', $this->promo_code)->first();
+        $current_date = now()->format('Y-m-d');
+        $start_date = $code->start_date;
+        $end_date = $code->end_date;
+        $promo_period = false;
+
+        if (($current_date >= $start_date) && ($current_date <= $end_date)) {
+            $promo_period = true;
+        }
+
+        if ($code->count() == 0) {
+            session()->flash('error');
+            session()->flash('title', 'Error!');
+            session()->flash('message', 'Invalid Promotion Code.');
+            return redirect()->route('cart');
+        } elseif ($code->count() > 0 && $promo_period == false) {
+            session()->flash('error');
+            session()->flash('title', 'Error!');
+            session()->flash('message', 'Promotion Code expired.');
+            return redirect()->route('cart');
+        }
+
+        dump($promo_period);
+        dd($code);
+    }
 
     public function render()
     {

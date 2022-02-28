@@ -16,7 +16,8 @@ class Promotion extends Model
         'end_date',
         'description',
         'item_id',
-        'promo_price'
+        'promo_price',
+        'promo_code'
     ];
 
     public function types()

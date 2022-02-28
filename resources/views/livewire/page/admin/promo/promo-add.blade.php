@@ -1,4 +1,13 @@
 <div>
+    @if (session('error'))
+        <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('info'))
+        <x-toaster.info title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('success'))
+        <x-toaster.success title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @elseif (session('warning'))
+        <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}"/>
+    @endif
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             Add Promotion
@@ -26,7 +35,9 @@
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </x-form.dropdown>
-                                <x-form.input label="Promo Proce" wire:model.defer="promo_price" value="promo_price" />
+                                <x-form.input label="Promo Price" wire:model.defer="promo_price" value="promo_price" />
+                            @elseif($type == 2)
+                                <x-form.input label="Promo Code" wire:model.defer="promo_code" value="promo_code" />
                             @endif
                         </x-general.grid>
 
