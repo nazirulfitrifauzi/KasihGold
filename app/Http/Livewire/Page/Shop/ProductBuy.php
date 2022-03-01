@@ -25,6 +25,7 @@ class ProductBuy extends Component
     public function mount()
     {
         $this->state               = States::all();
+        $this->redipay = 0;
     }
 
     public function updated($field)
@@ -43,130 +44,112 @@ class ProductBuy extends Component
         ]);
     }
 
+
+
     public function buy()
     {
         $products = InvCart::where('user_id', auth()->user()->id)->get();
         $total = 1.0; //Total is RM1 because of FPX Payment
         $comm = 0.0;
 
-        if (auth()->user()->client == '2') {
 
-            foreach ($products as $prod) { // Count total price for the transaction
-                $comm += $prod->commission->agent_rate * $prod->prod_qty;
-                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
-            }
-            $refPayment = (string) Str::uuid();
-
-            $option = array(
-                'userSecretKey' => config('toyyibpay.key'),
-                'categoryCode' => config('toyyibpay.category'),
-                'billName' => 'Kasih AP Digital',
-                'billDescription' => 'Digital Gold Purchase',
-                'billPriceSetting' => 1,
-                'billPayorInfo' => 1,
-                'billAmount' => (auth()->user()->isAgentKAP()) ? (($total - $comm) * 100) : ($total * 100),
-                'billReturnUrl' => route('toyyibpay-status-buy'),
-                'billCallbackUrl' => route('toyyibpay-callback'),
-                'billExternalReferenceNo' => $refPayment,
-                'billTo' => auth()->user()->name,
-                'billEmail' => auth()->user()->email,
-                'billPhone' => (auth()->user()->role == 3) ? auth()->user()->profile->phone1 : auth()->user()->phone_no,
-                'billSplitPayment' => 0,
-                'billSplitPaymentArgs' => '',
-                'billPaymentChannel' => '0',
-                'billContentEmail' => 'Thank you for purchasing our product!',
-                'billChargeToCustomer' => 1
-            );
-
-            $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
-            $response = Http::asForm()->post($url, $option);
-            $billCode = $response[0]['BillCode'];
-
-            ToyyibBills::create([
-                'ref_payment'       => $refPayment,
-                'bill_code'         => $billCode,
-                'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
-                'status'            => 2,
-                'created_by'        => auth()->user()->id,
-                'updated_by'        => auth()->user()->id,
-                'created_at'        => now(),
-                'updated_at'        => now(),
-            ]);
-
-            foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
-                // Search for available gold bar to be filled
-                $goldbar = Goldbar::where('weight_vacant', '>=', $prod->products->prod_weight)->first();
-                for ($i = 0; $i < $prod->prod_qty; $i++) {
-                    GoldbarOwnershipPending::create([
-                        'referenceNumber'   => $billCode,
-                        'gold_id'           => $goldbar->id,
-                        'user_id'           => auth()->user()->id,
-                        'weight'            => $prod->products->prod_weight,
-                        'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
-                        'status'            => 2,
-                        'created_by'        => auth()->user()->id,
-                        'updated_by'        => auth()->user()->id,
-                        'created_at'        => now(),
-                        'updated_at'        => now(),
-                    ]);
-
-                    // update available gold bar weight
-
-                    $currentGoldbar = Goldbar::where('id', $goldbar->id)->first();
-
-                    $currentGoldbar->weight_on_hold += $prod->products->prod_weight;
-                    $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
-                    $currentGoldbar->save();
-                }
-                $prod->delete();
-            }
-
-            return redirect('https://dev.toyyibpay.com/' . $billCode);
-
-            // $_SERVER['SERVER_PORT'] == 80;
-            // $returnUrl = sprintf("%s://%s", 'http', $_SERVER['HTTP_HOST']);
-            // $returnUrl .= "localhost:8000/pay2";
-            // $returnUrl = "/home";
-            // session()->flash('agency', 'KASIHGOLD');
-            // session()->flash('refNo', $refNumber);
-            // session()->flash('amount', $total);
-            // session()->flash('email', auth()->user()->email);
-            // session()->flash('returnUrl', $returnUrl);
-
-
-
-            // return redirect()->route('snapBuy');
-
-            // $url = 'https://prod.snapnpay.co/payments/api';
-
-            // $response = Http::asForm()->post($url, $bill);
-
-            // session()->flash('success');
-            // session()->flash('title', 'Success!');
-            // session()->flash('message', 'Product successfully added to your Gold Shelf!');
-            // return redirect()->to('/home');
-        } else {
-
-            foreach ($products as $prod) {
-                NewOrders::create([
-                    'user_id'       => auth()->user()->id,
-                    'item_id'       => $prod->item_id,
-                    'quantity'      => $prod->prod_qty,
-                    'created_by'    => auth()->user()->id,
-                    'updated_by'    => auth()->user()->id,
-                    'created_at'    => now(),
-                    'updated_at'    => now(),
-                    'user_name'     => auth()->user()->name,
-                    'fulfillment'   => 0,
-                ]);
-                $prod->delete();
-            }
-
-            session()->flash('success');
-            session()->flash('title', 'Success!');
-            session()->flash('message', 'Product successfully ordered! Awaiting for HQ approval!');
-            return redirect()->to('/home');
+        foreach ($products as $prod) { // Count total price for the transaction
+            $comm += $prod->commission->agent_rate * $prod->prod_qty;
+            $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
         }
+        $refPayment = (string) Str::uuid();
+
+        $option = array(
+            'userSecretKey' => config('toyyibpay.key'),
+            'categoryCode' => config('toyyibpay.category'),
+            'billName' => 'Kasih AP Digital',
+            'billDescription' => 'Digital Gold Purchase',
+            'billPriceSetting' => 1,
+            'billPayorInfo' => 1,
+            'billAmount' => (auth()->user()->isAgentKAP()) ? (($total - $comm) * 100) : ($total * 100),
+            'billReturnUrl' => route('toyyibpay-status-buy'),
+            'billCallbackUrl' => route('toyyibpay-callback'),
+            'billExternalReferenceNo' => $refPayment,
+            'billTo' => auth()->user()->name,
+            'billEmail' => auth()->user()->email,
+            'billPhone' => (auth()->user()->role == 3) ? auth()->user()->profile->phone1 : auth()->user()->phone_no,
+            'billSplitPayment' => 0,
+            'billSplitPaymentArgs' => '',
+            'billPaymentChannel' => '0',
+            'billContentEmail' => 'Thank you for purchasing our product!',
+            'billChargeToCustomer' => 1
+        );
+
+        $url = 'https://dev.toyyibpay.com/index.php/api/createBill';
+        $response = Http::asForm()->post($url, $option);
+        $billCode = $response[0]['BillCode'];
+
+        ToyyibBills::create([
+            'ref_payment'       => $refPayment,
+            'bill_code'         => $billCode,
+            'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
+            'status'            => 2,
+            'created_by'        => auth()->user()->id,
+            'updated_by'        => auth()->user()->id,
+            'created_at'        => now(),
+            'updated_at'        => now(),
+        ]);
+
+
+        foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
+            // Search for available gold bar to be filled
+            $goldbar = Goldbar::where('weight_vacant', '>=', $prod->products->prod_weight)->first();
+            for ($i = 0; $i < $prod->prod_qty; $i++) {
+                GoldbarOwnershipPending::create([
+                    'referenceNumber'   => $billCode,
+                    'gold_id'           => $goldbar->id,
+                    'user_id'           => auth()->user()->id,
+                    'weight'            => $prod->products->prod_weight,
+                    'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
+                    'status'            => 2,
+                    'created_by'        => auth()->user()->id,
+                    'updated_by'        => auth()->user()->id,
+                    'created_at'        => now(),
+                    'updated_at'        => now(),
+                ]);
+
+                // update available gold bar weight
+
+                $currentGoldbar = Goldbar::where('id', $goldbar->id)->first();
+
+                $currentGoldbar->weight_on_hold += $prod->products->prod_weight;
+                $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
+                $currentGoldbar->save();
+            }
+            $prod->delete();
+        }
+
+        return redirect('https://dev.toyyibpay.com/' . $billCode);
+
+
+        // $_SERVER['SERVER_PORT'] == 80;
+        // $returnUrl = sprintf("%s://%s", 'http', $_SERVER['HTTP_HOST']);
+        // $returnUrl .= "localhost:8000/pay2";
+        // $returnUrl = "/home";
+        // session()->flash('agency', 'KASIHGOLD');
+        // session()->flash('refNo', $refNumber);
+        // session()->flash('amount', $total);
+        // session()->flash('email', auth()->user()->email);
+        // session()->flash('returnUrl', $returnUrl);
+
+
+
+        // return redirect()->route('snapBuy');
+
+        // $url = 'https://prod.snapnpay.co/payments/api';
+
+        // $response = Http::asForm()->post($url, $bill);
+
+        // session()->flash('success');
+        // session()->flash('title', 'Success!');
+        // session()->flash('message', 'Product successfully added to your Gold Shelf!');
+        // return redirect()->to('/home');
+
     }
 
     public function render()
