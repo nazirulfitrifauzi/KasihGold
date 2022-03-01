@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Page\Shop;
 
 use App\Models\CommissionDetailKap;
+use App\Models\CommissionPromotion;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Models\InvCart;
 use App\Models\InvMaster;
 use App\Models\NewOrders;
+use App\Models\Promotion;
 use App\Models\States;
 use App\Models\ToyyibBills;
 use Illuminate\Support\Facades\Http;
@@ -21,6 +23,7 @@ class ProductBuy extends Component
     public $iid, $item_id;
     public $fname, $lname, $cname, $nric;
     public $address1, $address2, $address3, $town, $postcode, $state_id;
+    public $promo_code, $apply_code_type, $apply_code;
 
     public function mount()
     {
@@ -44,20 +47,53 @@ class ProductBuy extends Component
         ]);
     }
 
+    public function calculatePromo()
+    {
+        $this->validate([
+            'promo_code' => 'required|max:6'
+        ]);
 
+        $code = Promotion::where('promo_code', $this->promo_code)->first();
+        $current_date = now()->format('Y-m-d');
+        $start_date = $code->start_date ?? '';
+        $end_date = $code->end_date ?? '';
+        $promo_period = false;
+
+        if (($current_date >= $start_date) && ($current_date <= $end_date)) {
+            $promo_period = true;
+        }
+
+        if (!$code) {
+            $this->emit('message', ['icon' => 'error', 'message' => 'Invalid Promotion Code.']);
+        } elseif ($code && $promo_period == false) {
+            $this->emit('message', ['icon' => 'error', 'message' => 'Promotion Code expired.']);
+        } else {
+            $this->emit('message', ['icon' => 'success', 'message' => 'Promotion Code Applied.']);
+            $this->apply_code_type = ucfirst($code->types->description);
+            $this->apply_code = $code->promo_code;
+        }
+
+        $this->promo_code = '';
+    }
 
     public function buy()
     {
-        $products = InvCart::where('user_id', auth()->user()->id)->get();
+        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $total = 1.0; //Total is RM1 because of FPX Payment
         $comm = 0.0;
+        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d', strtotime($currentDate));
 
+            foreach ($products as $prod) { // Count total price for the transaction
+                $comm += $prod->commission->agent_rate * $prod->prod_qty;
 
-        foreach ($products as $prod) { // Count total price for the transaction
-            $comm += $prod->commission->agent_rate * $prod->prod_qty;
-            $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
-        }
-        $refPayment = (string) Str::uuid();
+                if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
+                    $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+                } else {
+                    $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+                }
+            }
+            $refPayment = (string) Str::uuid();
 
         $option = array(
             'userSecretKey' => config('toyyibpay.key'),
@@ -84,16 +120,36 @@ class ProductBuy extends Component
         $response = Http::asForm()->post($url, $option);
         $billCode = $response[0]['BillCode'];
 
-        ToyyibBills::create([
-            'ref_payment'       => $refPayment,
-            'bill_code'         => $billCode,
-            'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
-            'status'            => 2,
-            'created_by'        => auth()->user()->id,
-            'updated_by'        => auth()->user()->id,
-            'created_at'        => now(),
-            'updated_at'        => now(),
-        ]);
+            // if promo code applied
+            if ($this->apply_code) {
+                $cart = $products->map(function ($item, $key) {
+                    return [
+                        'item_id' => $item->item_id,
+                        'prod_qty' => $item->prod_qty
+                    ];
+                });
+
+                $prod_json = [];
+                $prod_json = $cart->toArray();
+
+                CommissionPromotion::create([
+                    'user_id' => auth()->user()->id,
+                    'product' => json_encode($prod_json),
+                    'promo_code' => $this->apply_code,
+                    'billCode' => $billCode
+                ]);
+            }
+
+            ToyyibBills::create([
+                'ref_payment'       => $refPayment,
+                'bill_code'         => $billCode,
+                'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
+                'status'            => 2,
+                'created_by'        => auth()->user()->id,
+                'updated_by'        => auth()->user()->id,
+                'created_at'        => now(),
+                'updated_at'        => now(),
+            ]);
 
 
         foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
@@ -155,7 +211,7 @@ class ProductBuy extends Component
 
     public function render()
     {
-        $products = InvCart::where('user_id', auth()->user()->id)->get();
+        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $tProducts = 0;
         foreach ($products as $prod) {
             $tProducts += $prod->prod_qty;
