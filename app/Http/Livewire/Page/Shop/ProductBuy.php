@@ -104,6 +104,7 @@ class ProductBuy extends Component
                     'referenceNumber'   => $billCode,
                     'gold_id'           => $goldbar->id,
                     'user_id'           => auth()->user()->id,
+                    'item_id'           => $prod->item_id,
                     'weight'            => $prod->products->prod_weight,
                     'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
                     'status'            => 2,
