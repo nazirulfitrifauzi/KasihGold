@@ -19,30 +19,31 @@
                 <x-table.table>
                     <x-slot name="thead">
                         <x-table.table-header class="text-left" value="Product" sort="" />
-                        <x-table.table-header class="text-left" value="Current Product Price" sort="" />
+                        <x-table.table-header class="text-left" value="Total Quantity Available" sort="" />
                         <x-table.table-header class="text-left" value="Quantity" sort="" />
-                        <x-table.table-header class="text-left" value="Outright Price" sort="" />
+                        {{-- <x-table.table-header class="text-left" value="Outright Price" sort="" /> --}}
                     </x-slot>
                     <x-slot name="tbody">
 
-                        @foreach ($gtype as $types)
+                        @foreach ($goldO as $types)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-3 items-center">
-                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
+                                    <img class="object-cover w-16 h-16 rounded" 
+                                    src="{{ asset('img/product/'.$types->products->prod_cat.'/'.$types->products->item_id.'/'.$types->products->prod_img1) }}" alt="">
                                     <div>
-                                        <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
+                                        <h3 class="text-sm font-semibold">{{$types->products->prod_name}}</h3>
                                     </div>
                                 </div>
                             </x-table.table-body>
 
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>RM {{$types->prod_price}}</p>
+                                <p>{{$types->total}} Pcs</p>
                             </x-table.table-body>
 
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                    <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
+                                    <button  wire:click="exitProdSub({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">−</span>
                                     </button>
@@ -52,17 +53,20 @@
                                         justify-center
                                         text-gray-700 
                                         outline-none"
-                                        name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
-                                    <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
+                                        {{-- name="custom-input-number" value="{{$types->products->item_id}}" disabled></input> --}}
+                                        name="custom-input-number" value="{{($types->cart ? ($types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first() ? $types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first()->prod_qty : 0): 0 )}}" disabled>
+                                    
+                                    </input>
+                                    <button  wire:click="exitProdAdd({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">+</span>
                                     </button>
                                 </div>
                             </x-table.table-body>
 
-                            <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <p>RM {{$types->outright_price}}</p>
-                            </x-table.table-body>
+                            </x-table.table-body> --}}
 
                         </tr>
                         @endforeach
@@ -79,15 +83,16 @@
             <!--Start Mobile view-->
             <div class="block lg:hidden">
                 <div class="border-2 p-4 rounded-md">
-                    @foreach ($gtype as $types)
+                    @foreach ($goldO as $types)
                         <div class="border-b-2 py-2">
                             <div class="flex justify-between items-center">
                                 <div>
-                                    <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
-                                    <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
+                                    <img class="object-cover w-16 h-16 rounded" 
+                                    src="{{ asset('img/product/'.$types->products->prod_cat.'/'.$types->products->item_id.'/'.$types->products->prod_img1) }}"alt="">
+                                    <h3 class="text-sm font-semibold">{{$types->products->prod_name}}</h3>
                                 </div>
                                 <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                    <button  wire:click="exitProd({{-1}},'{{$types->prod_weight}}')"
+                                    <button  wire:click="exitProdAdd({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">−</span>
                                     </button>
@@ -97,8 +102,9 @@
                                         justify-center
                                         text-gray-700 
                                         outline-none"
-                                        name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
-                                    <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
+                                        name="custom-input-number" value="{{$types->products->prod_cat}}" disabled>
+                                    </input>
+                                    <button  wire:click="exitProdSub({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">+</span>
                                     </button>
@@ -107,11 +113,11 @@
                             <div class="flex justify-between mt-1">
                                 <div>
                                     <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
-                                    <p class='text-sm font-semibold'>RM {{$types->prod_price}}</p>
+                                    <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                    <p class='text-sm font-semibold text-right'>RM {{$types->outright_price}}</p>
+                                    <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +167,8 @@
                             <p>Total Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p>
+                            {{-- <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p> --}}
+                            <p>RM </p>
                         </div>
                     </div>
                     @if ($this->buybackStatus==1)
@@ -170,7 +177,7 @@
                             <p>Total Buyback Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM {{number_format((($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064)+($info_bar065->outright_price*$goldbar065))*1.06,2)}}</p>
+                            <p>RM </p>
                         </div>
                     </div>
                     @endif
