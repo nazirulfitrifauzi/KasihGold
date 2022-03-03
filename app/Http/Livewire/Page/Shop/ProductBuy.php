@@ -164,7 +164,7 @@ class ProductBuy extends Component
                     'user_id'           => auth()->user()->id,
                     'item_id'           => $prod->item_id,
                     'weight'            => ($prod->products->prod_cat == 3 ? $prod->prod_gram : $prod->products->prod_weight),
-                    'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
+                    'bought_price'      => (auth()->user()->isAgentKAP()) ? ($prod->products->prod_cat != 3 ? ($prod->products->item->marketPrice->price - $prod->commission->agent_rate) : (($prod->products->item->marketPrice->price - $prod->commission->agent_rate) * $prod->products->prod_weight)) : (($prod->products->prod_cat != 3 ? ($prod->products->item->marketPrice->price) : ($prod->products->item->marketPrice->price * $prod->products->prod_weight))),
                     'status'            => 2,
                     'spot_gold'         => ($prod->products->prod_cat == 3 ? 1 : 0),
                     'created_by'        => auth()->user()->id,
