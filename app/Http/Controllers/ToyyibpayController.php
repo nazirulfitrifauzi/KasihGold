@@ -121,7 +121,7 @@ class ToyyibpayController extends Controller
                     'weight'            => $golds->weight,
                     'bought_price'      => $golds->bought_price,
                     'active_ownership'  => 1,
-                    'spot_gold'         => $gold->spot_gold,
+                    'spot_gold'         => $golds->spot_gold,
                     'referenceNumber'   => $response['billcode'],
                     'created_by'        => $golds->user_id,
                     'updated_by'        => $golds->user_id,
