@@ -51,6 +51,7 @@
             <x-table.table>
                 <x-slot name="thead">
                     <x-table.table-header class="text-left" value="No." sort="" />
+                    <x-table.table-header class="text-left" value="Product Name" sort="" />
                     <x-table.table-header class="text-left" value="Unique Ownership ID" sort="" />
                     <x-table.table-header class="text-left" value="Weight" sort="" />
                     <x-table.table-header class="text-left" value="Bought Price" sort="" />
@@ -61,6 +62,9 @@
                     <tr>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>{{$loop->iteration}}</p>
+                        </x-table.table-body>
+                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                            <p>{{$item->products->prod_name}}</p>
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>{{$item->ouid}}</p>
