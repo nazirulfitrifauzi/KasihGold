@@ -47,6 +47,10 @@
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format(($cartInfo->products->item->promotions->promo_price - $cartInfo->products->item->commissionKAP->agent_rate),2) :
                                                 number_format($cartInfo->products->item->promotions->promo_price,2) }}</p>
+                                            @elseif ($cartInfo->products->prod_cat==3)
+                                                <p>RM {{ (auth()->user()->isAgentKAP()) ?
+                                                number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) :
+                                                number_format($cartInfo->products->item->marketPrice->price,2) }} / g</p>
                                             @else
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) :
@@ -56,29 +60,37 @@
 
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             <div class="relative flex flex-row w-24 h-10 mt-1 bg-transparent rounded-lg">
+                                                @if($cartInfo->products->prod_cat!=3)
                                                 <button  wire:click="subProd({{$cartInfo->id}})"
                                                     class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                     <span class="m-auto text-2xl font-thin">-</span>
                                                 </button>
+                                                @endif
 
                                                 <input  type="text"
                                                         class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
-                                                        name="custom-input-number"  value="{{$cartInfo->prod_qty}}" disabled></input>
+                                                        name="custom-input-number"  value="{{($cartInfo->products->prod_cat!=3 ? $cartInfo->prod_qty : $cartInfo->prod_gram.' g')}}" disabled></input>
+                                                @if ($cartInfo->products->prod_cat!=3)
                                                 <button  wire:click="addProd({{$cartInfo->id}})"
                                                     class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                     <span class="m-auto text-2xl font-thin">+</span>
                                                 </button>
+                                                @endif
                                             </div>
                                         </x-table.table-body>
 
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             @if($cartInfo->products->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
-                                                number_format(($cartInfo->products->item->promotions->promo_price - $cartInfo->products->item->commissionKAP->agent_rate * $cartInfo->prod_qty),2) :
+                                                number_format((($cartInfo->products->item->promotions->promo_price - $cartInfo->products->item->commissionKAP->agent_rate) * $cartInfo->prod_qty),2) :
                                                 number_format($cartInfo->products->item->promotions->promo_price * $cartInfo->prod_qty,2) }}</p>
+                                            @elseif ($cartInfo->products->prod_cat==3)
+                                            <p>RM {{ (auth()->user()->isAgentKAP()) ?
+                                                number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$cartInfo->prod_gram),2) :
+                                                number_format(($cartInfo->products->item->marketPrice->price)*$cartInfo->prod_gram,2) }}</p>
                                             @else
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
-                                                number_format((($cartInfo->products->item->marketPrice->price - $cartInfo->products->item->commissionKAP->agent_rate * $cartInfo->prod_qty)),2)
+                                                number_format(((($cartInfo->products->item->marketPrice->price - $cartInfo->products->item->commissionKAP->agent_rate) * $cartInfo->prod_qty)),2)
                                                 : number_format($cartInfo->products->item->marketPrice->price * $cartInfo->prod_qty,2) }}</p>
                                             @endif
                                         </x-table.table-body>

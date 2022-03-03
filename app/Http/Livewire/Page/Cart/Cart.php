@@ -86,6 +86,8 @@ class Cart extends Component
             // check if item have promo on this date
             if ($kart->item->promotions != NULL && ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
                 $this->total += $kart->products->item->promotions->promo_price * $kart->prod_qty;
+            } elseif ($kart->products->prod_cat == 3) {
+                $this->total += $kart->products->item->marketPrice->price * $kart->prod_gram;
             } else {
                 $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
             }

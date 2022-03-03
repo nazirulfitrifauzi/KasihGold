@@ -45,7 +45,11 @@
 
                                                                 <div class="mx-3 my-3">
                                                                     <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
+                                                                    @if ($prod->products->prod_cat == 3)
+                                                                    <h6 class="text-sm text-gray-600">{{$prod->prod_gram}} g</h6>
+                                                                    @else
                                                                     <h6 class="text-sm text-gray-600">{{$prod->prod_qty}} pcs</h6>
+                                                                    @endif
                                                                 </div>
                                                             </div>
 
@@ -59,6 +63,10 @@
                                                                 <span class="my-3 font-semibold text-gray-600">
                                                                     RM {{ number_format($prod->products->item->promotions->promo_price*$prod->prod_qty, 2) }}
                                                                 </span>
+                                                            @elseif ($prod->products->prod_cat == 3)
+                                                                <span class="my-3 font-semibold text-gray-600">
+                                                                    RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_gram, 2) }}
+                                                                </span>
                                                             @else
                                                                 <span class="my-3 font-semibold text-gray-600">
                                                                     RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_qty, 2) }}
@@ -68,7 +76,11 @@
                                                         @php
                                                             if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
                                                                 $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
-                                                            } else {
+                                                            } 
+                                                            elseif ($prod->products->prod_cat == 3) {
+                                                                $total += $prod->products->item->marketPrice->price * $prod->prod_gram;
+                                                            }                                           
+                                                            else {
                                                                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
                                                             }
 
@@ -244,87 +256,7 @@
                         </x-form.basic-form>
                     </div>
 
-                    {{-- <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 lg:w-1/2 lg:mb-0 lg:order-2">
-                        <div class="flex justify-center lg:justify-end">
-                            <div class="w-full max-w-md px-4 py-3 border">
-                                <div class="flex items-center justify-between">
-
-                                    <h3 class="font-medium text-gray-700">Order total ({{$tprod}})</h3>
-                                </div>
-
-                                @foreach ($products as $prod)
-
-                                <div class="flex justify-between pb-4 mt-6 border-b-2">
-                                    <div class="flex">
-                                        <img class="object-cover w-20 h-20 rounded"
-                                            src="{{ asset('img/gold/'.$prod->products->prod_img1) }}"
-                                            alt="">
-                                        <div class="mx-3 my-3">
-                                            <h3 class="text-sm text-gray-600">{{$prod->products->prod_name}}</h3>
-                                        </div>
-                                    </div>
-                                    <span class="my-3 font-semibold text-gray-600">RM {{number_format($prod->products->prod_price*$prod->prod_qty,2)}}</span>
-                                </div>
-                                @php
-                                    $total+=$prod->products->prod_price*$prod->prod_qty;
-                                @endphp
-                                @endforeach
-
-                                <x-form.basic-form wire:submit.prevent="">
-                                    <x-slot name="content">
-                                        <div class="pb-4 mt-6 border-b-2 ">
-                                            @if (auth()->user()->client == 2)
-                                            <x-form.input label="Agent Referral Code" value=""  />
-                                            @else
-                                            <x-form.input label="Gift card or discount code" value=""  />
-                                            @endif
-                                            <button class="flex items-center px-3 py-2 my-auto text-sm font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none">
-                                                <x-heroicon-o-badge-check class="w-5 h-5 mr-2" />
-                                                <span>Apply</span>
-                                        </button>
-                                        </div>
-                                    </x-slot>
-                                </x-form.basic-form>
-
-                                <div class="pb-4 mt-6 border-b-2">
-                                    <div class="flex justify-between">
-                                        <div class="text-gray-500">
-                                            <p>Subtotal</p>
-                                        </div>
-                                        <div class="font-semibold">
-                                            <p>RM {{number_format($total,2)}}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex justify-between">
-                                        <div class="text-gray-500">
-                                            <p>Shipping</p>
-                                        </div>
-                                        <div class="font-semibold">
-                                            @if (auth()->user()->client == 2)
-                                            <p>RM 0.00</p>
-                                            @else
-                                            <p>RM {{number_format($postage,2)}}</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-between pb-4 mt-6 border-b-2">
-                                    <div class="font-semibold">
-                                        <p>Total</p>
-                                    </div>
-                                    <div class="text-lg font-semibold">
-                                        @if (auth()->user()->client == 2)
-                                            <p>RM {{number_format($total,2)}}</p>
-                                        @else
-                                            <p>RM {{number_format($total+$postage,2)}}</p>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                 
 
                 </div>
             </div>

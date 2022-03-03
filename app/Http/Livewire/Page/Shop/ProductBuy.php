@@ -89,6 +89,8 @@ class ProductBuy extends Component
 
             if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
                 $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+            } elseif ($prod->products->prod_cat == 3) {
+                $total += $prod->products->item->marketPrice->price * $prod->prod_gram;
             } else {
                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }
@@ -164,6 +166,7 @@ class ProductBuy extends Component
                     'weight'            => $prod->products->prod_weight,
                     'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
                     'status'            => 2,
+                    'spot_gold'         => ($prod->products->prod_cat == 3 ? 1 : 0),
                     'created_by'        => auth()->user()->id,
                     'updated_by'        => auth()->user()->id,
                     'created_at'        => now(),

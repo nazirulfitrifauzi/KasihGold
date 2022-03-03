@@ -86,7 +86,7 @@
 
                         <div class="flex items-center my-4 space-x-4">
                                 <div class="flex">
-                                    @if(auth()->user()->isAgentKAP())
+                                    @if(auth()->user()->isAgentKAP() && $info->prod_cat!=3)
                                     <div>
                                         <div class="px-3 py-2 mb-2 font-bold text-yellow-300 bg-black rounded-lg">
                                             <p>Normal Price</p>
@@ -105,7 +105,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    @else
+                                    @elseif(!auth()->user()->isAgentKAP() && $info->prod_cat!=3)
                                     <div>
                                         <div class="px-3 py-2 mb-2 font-bold text-yellow-300 bg-black rounded-lg">
                                             <p>Normal Price</p>
@@ -117,6 +117,25 @@
                                                 </strike>
                                             @else
                                                 <span class="text-xl font-bold text-yellow-400">RM {{ number_format($info->item->marketPrice->price,2) }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    @else
+                                    <div>
+                                        <div class="px-3 py-2 mb-2 font-bold text-yellow-300 bg-black rounded-lg">
+                                            <p>Spot Price</p>
+                                        </div>
+                                        <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                            @if($info->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
+                                                <strike>
+                                                    <span class="text-xl font-bold text-yellow-400">
+                                                        RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                                    </span>
+                                                </strike>
+                                            @else
+                                                <span class="text-xl font-bold text-yellow-400">
+                                                    RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                                </span>
                                             @endif
                                         </div>
                                     </div>
@@ -147,6 +166,25 @@
                                         </div>
                                         @endif
                                     </div>
+                                @elseif($info->prod_cat==3)
+                                    <div class="flex">
+                                        <div>
+                                            <div class="px-3 py-2 mb-2 font-bold text-green-400 bg-black rounded-lg">
+                                                <p>Total Price</p>
+                                            </div>
+                                            <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                                
+                                                <span class="text-xl font-bold text-green-400">RM 
+                                                    @if($spotGram != null && is_numeric($spotGram))
+                                                        {{ number_format(($spotGram*($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate)),2) }}
+                                                    @else 
+                                                        0.00
+                                                    @endif
+                                                
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
 
                             {{-- <div class="flex-1">
@@ -162,7 +200,7 @@
 
 
                                     <div class="relative flex flex-row w-24 h-10 my-2 mt-1 bg-transparent rounded-lg">
-
+                                    @if($info->prod_cat!=3)
                                     <button type="button" wire:click="subQty"
                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-l cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">-</span>
@@ -177,18 +215,32 @@
                                         class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">+</span>
                                     </button>
+                                    @else
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm">
+                                            g
+                                        </span>
+                                    </div>
+                                    <input  type="text"
+                                        class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
+                                        name="custom-input-number" wire:model="spotGram"  >
+                                    </input>
+                                    
+                                    @endif
 
                                     </div>
 
                                     <div class="flex">
-                                        <button type="button" wire:click="buyNow({{$this->prod_qty}})"
+                                        <button type="button" wire:click="buyNow()"
                                             class="px-2 py-2 font-semibold text-white bg-green-400 h-14 rounded-xl hover:bg-green-300 focus:outline-none">
                                             Buy Now
                                         </button>
-                                        <button type="button" wire:click="addCart({{$prod_qty}})"
+                                        @if($info->prod_cat!=3)
+                                        <button type="button" wire:click="addCart()"
                                             class="px-2 py-2 ml-2 font-semibold text-white bg-yellow-400 h-14 rounded-xl hover:bg-yellow-300 focus:outline-none">
                                             Add to Cart
                                         </button>
+                                        @endif
                                     </div>
                                 </div>
                             </x-slot>

@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('ReleaseUnpaidTransaction')->everyMinute();
         $schedule->command('UpdatePayment')->everyMinute();
         $schedule->command('UpdateCompletedProfile')->everyMinute();
+        $schedule->command('UpdateSpotPrice')->everyMinute();
     }
 
     /**
