@@ -49,6 +49,33 @@ Artisan::command('UpdateCompletedProfile', function () {
 })->purpose('Display an inspiring quote');
 
 
+Artisan::command('UpdateSpotPrice', function () {
+
+
+
+    $spotGold = InvInfo::where('prod_cat', 3)->first();
+
+
+    if (($spotGold->item->marketPrice->updated_at <= now()->subMinutes(60))) {
+
+        $option = array(
+            'access_key' => 'vd1ud4ptyr6cnr2o4o97sfii8uxc9yrnybsihvmp9x58g516nd2csi50w9cj',
+            'base' => 'MYR',
+            'symbols' => 'XAU',
+        );
+
+        $url = 'https://www.metals-api.com/api/latest';
+        $response = Http::get($url, $option);
+        $response = json_decode($response->getBody()->getContents());
+
+        $this->spotPrice = ($response->rates->XAU / 31.1035);
+
+        $spotGold->item->marketPrice->update(['price' => number_format($this->spotPrice, 2), 'updated_at' => now()]);
+    }
+})->purpose('Display an inspiring quote');
+
+
+
 
 
 Artisan::command('UpdatePayment', function () {

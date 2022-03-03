@@ -27,8 +27,12 @@
                     data-title="Cart" data-placement="right">
                     @php
                         $cartCount = 0;
-                        foreach (auth()->user()->cart as $cart) {
-                            $cartCount += $cart->prod_qty;
+                        $cartTotal = auth()->user()->cart;
+                        
+                        foreach ($cartTotal as $cart) {
+                            $outCart = $cart->where('exit_type', NULL)->where('id',$cart->id)->first();
+                            if ($outCart)
+                            $cartCount += $outCart->prod_qty;
                         }
                     @endphp
                     @if($cartCount > 0)

@@ -18,11 +18,6 @@ class Cart extends Component
     public $qty_061, $qty_062, $qty_063, $qty_064, $qty_065;
     public $promo_code;
 
-    public function mount()
-    {
-        //
-    }
-
     public function subProd($cartID)
     {
         $cartItem = InvCart::where('id', $cartID)->first();
@@ -83,7 +78,7 @@ class Cart extends Component
     {
         $this->total = 0;
         $this->comm = 0;
-        $this->karts = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
+        $this->karts = InvCart::where('exit_type', NULL)->with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $currentDate = date('Y-m-d');
         $currentDate = date('Y-m-d', strtotime($currentDate));
 
@@ -91,6 +86,8 @@ class Cart extends Component
             // check if item have promo on this date
             if ($kart->item->promotions != NULL && ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
                 $this->total += $kart->products->item->promotions->promo_price * $kart->prod_qty;
+            } elseif ($kart->products->prod_cat == 3) {
+                $this->total += $kart->products->item->marketPrice->price * $kart->prod_gram;
             } else {
                 $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
             }

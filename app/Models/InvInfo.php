@@ -23,4 +23,9 @@ class InvInfo extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
+
+    public function ownership()
+    {
+        return $this->hasMany('App\Models\GoldbarOwnership', 'item_id', 'item_id');
+    }
 }

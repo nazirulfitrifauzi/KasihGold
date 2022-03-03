@@ -23,4 +23,14 @@ class GoldbarOwnership extends Model
     {
         return $this->belongsTo('App\Models\Goldbar', 'gold_id', 'id');
     }
+
+    public function products()
+    {
+        return $this->belongsTo('App\Models\InvInfo', 'item_id', 'item_id');
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo('App\Models\InvCart', 'item_id', 'item_id');
+    }
 }

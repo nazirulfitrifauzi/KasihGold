@@ -84,16 +84,18 @@ class ProductBuy extends Component
         $currentDate = date('Y-m-d');
         $currentDate = date('Y-m-d', strtotime($currentDate));
 
-            foreach ($products as $prod) { // Count total price for the transaction
-                $comm += $prod->commission->agent_rate * $prod->prod_qty;
+        foreach ($products as $prod) { // Count total price for the transaction
+            $comm += $prod->commission->agent_rate * $prod->prod_qty;
 
-                if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
-                    $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
-                } else {
-                    $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
-                }
+            if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
+                $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+            } elseif ($prod->products->prod_cat == 3) {
+                $total += $prod->products->item->marketPrice->price * $prod->prod_gram;
+            } else {
+                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }
-            $refPayment = (string) Str::uuid();
+        }
+        $refPayment = (string) Str::uuid();
 
         $option = array(
             'userSecretKey' => config('toyyibpay.key'),
@@ -120,36 +122,36 @@ class ProductBuy extends Component
         $response = Http::asForm()->post($url, $option);
         $billCode = $response[0]['BillCode'];
 
-            // if promo code applied
-            if ($this->apply_code) {
-                $cart = $products->map(function ($item, $key) {
-                    return [
-                        'item_id' => $item->item_id,
-                        'prod_qty' => $item->prod_qty
-                    ];
-                });
+        // if promo code applied
+        if ($this->apply_code) {
+            $cart = $products->map(function ($item, $key) {
+                return [
+                    'item_id' => $item->item_id,
+                    'prod_qty' => $item->prod_qty
+                ];
+            });
 
-                $prod_json = [];
-                $prod_json = $cart->toArray();
+            $prod_json = [];
+            $prod_json = $cart->toArray();
 
-                CommissionPromotion::create([
-                    'user_id' => auth()->user()->id,
-                    'product' => json_encode($prod_json),
-                    'promo_code' => $this->apply_code,
-                    'billCode' => $billCode
-                ]);
-            }
-
-            ToyyibBills::create([
-                'ref_payment'       => $refPayment,
-                'bill_code'         => $billCode,
-                'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
-                'status'            => 2,
-                'created_by'        => auth()->user()->id,
-                'updated_by'        => auth()->user()->id,
-                'created_at'        => now(),
-                'updated_at'        => now(),
+            CommissionPromotion::create([
+                'user_id' => auth()->user()->id,
+                'product' => json_encode($prod_json),
+                'promo_code' => $this->apply_code,
+                'billCode' => $billCode
             ]);
+        }
+
+        ToyyibBills::create([
+            'ref_payment'       => $refPayment,
+            'bill_code'         => $billCode,
+            'bill_amount'       => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
+            'status'            => 2,
+            'created_by'        => auth()->user()->id,
+            'updated_by'        => auth()->user()->id,
+            'created_at'        => now(),
+            'updated_at'        => now(),
+        ]);
 
 
         foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
@@ -164,6 +166,7 @@ class ProductBuy extends Component
                     'weight'            => $prod->products->prod_weight,
                     'bought_price'      => (auth()->user()->isAgentKAP()) ? (($prod->products->item->marketPrice->price - $prod->commission->agent_rate)) : ($prod->products->item->marketPrice->price),
                     'status'            => 2,
+                    'spot_gold'         => ($prod->products->prod_cat == 3 ? 1 : 0),
                     'created_by'        => auth()->user()->id,
                     'updated_by'        => auth()->user()->id,
                     'created_at'        => now(),
@@ -182,36 +185,11 @@ class ProductBuy extends Component
         }
 
         return redirect('https://dev.toyyibpay.com/' . $billCode);
-
-
-        // $_SERVER['SERVER_PORT'] == 80;
-        // $returnUrl = sprintf("%s://%s", 'http', $_SERVER['HTTP_HOST']);
-        // $returnUrl .= "localhost:8000/pay2";
-        // $returnUrl = "/home";
-        // session()->flash('agency', 'KASIHGOLD');
-        // session()->flash('refNo', $refNumber);
-        // session()->flash('amount', $total);
-        // session()->flash('email', auth()->user()->email);
-        // session()->flash('returnUrl', $returnUrl);
-
-
-
-        // return redirect()->route('snapBuy');
-
-        // $url = 'https://prod.snapnpay.co/payments/api';
-
-        // $response = Http::asForm()->post($url, $bill);
-
-        // session()->flash('success');
-        // session()->flash('title', 'Success!');
-        // session()->flash('message', 'Product successfully added to your Gold Shelf!');
-        // return redirect()->to('/home');
-
     }
 
     public function render()
     {
-        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
+        $products = InvCart::where('exit_type', NULL)->with('item.promotions')->where('user_id', auth()->user()->id)->get();
         $tProducts = 0;
         foreach ($products as $prod) {
             $tProducts += $prod->prod_qty;

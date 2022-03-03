@@ -9,12 +9,13 @@ use Livewire\Component;
 class ProductView extends Component
 {
 
-    public $digitalGold, $digitalDinar;
+    public $digitalGold, $digitalDinar, $premiumGold;
 
     public function mount()
     {
         $this->digitalGold = InvInfo::where('prod_cat', '1')->get();
         $this->digitalDinar = InvInfo::where('prod_cat', '2')->get();
+        $this->premiumGold = InvInfo::where('prod_cat', '3')->get();
     }
     public function render()
     {
