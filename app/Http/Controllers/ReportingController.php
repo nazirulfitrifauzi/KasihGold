@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BuyBack;
+use App\Models\CommissionPromotion;
 use App\Models\GoldbarOwnership;
 use App\Models\Goldbar;
 use App\Models\OutrightSell;
@@ -116,6 +117,25 @@ class ReportingController extends Controller
                     })
                     ->editColumn('created_at', function ($data) {
                         return $data->created_at->format('d/m/Y, h:i a');
+                    })
+                    ->make(true);
+    }
+
+    public function commissionPromotionReporting(Request $request)
+    {
+        $promo_code = $request->promoCode;
+
+        $data = DB::table('commission_promotions')
+                    ->join('toyyib_bills', 'commission_promotions.billCode', '=', 'toyyib_bills.bill_code')
+                    ->join('users', 'commission_promotions.user_id', '=', 'users.id')
+                    ->select('users.name','commission_promotions.product','commission_promotions.billCode', 'commission_promotions.created_at')
+                    ->where('toyyib_bills.status',1)
+                    ->get();
+
+        return Datatables::of($data)
+                    ->editColumn('product', function ($data) {
+                        $result = json_decode($data->product);
+                        return $result;
                     })
                     ->make(true);
     }

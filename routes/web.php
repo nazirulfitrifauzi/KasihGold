@@ -182,5 +182,6 @@ Route::middleware('auth')->group(function () {
         Route::get('reporting/summary-commission', [ReportingController::class, 'summaryCommission'])->name('summaryCommission');
         Route::get('reporting/user/buyOrNot', [ReportingController::class, 'userBuyOrNot'])->name('userBuyOrNot');
         Route::get('reporting/exit', [ReportingController::class, 'exitReporting'])->name('reporting.exit');
+        Route::get('reporting/commission-promotion', [ReportingController::class, 'commissionPromotionReporting'])->name('reporting.commissionPromotion');
     });
 });

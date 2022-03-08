@@ -111,6 +111,10 @@
                                 <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
                                 <span>Exit Report</span>
                             </button>
+                            <button id="commissionPromotionMenu" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400">
+                                <x-heroicon-o-document-text  class="w-4 h-4 mr-2"/>
+                                <span>Commission Promotion Report</span>
+                            </button>
                         </div>
                     </div>
                     <!-- /End replace -->
@@ -138,6 +142,10 @@
     <div id="exitReport" class="hidden">
         <livewire:page.reporting.exit-report/>
     </div>
+
+    <div id="commissionPromotionReport" class="hidden">
+        <livewire:page.reporting.commission-promotion-report/>
+    </div>
 </div>
 
 @push('js')
@@ -150,6 +158,7 @@
             var commission = document.getElementById("commissionReport");
             var user = document.getElementById("userReport");
             var exit = document.getElementById("exitReport");
+            var commissionPromotion = document.getElementById("commissionPromotionReport");
 
             $(".reportMenu").click(function(e) {
                 slide.classList.remove("animate__fadeInLeft");
@@ -189,6 +198,11 @@
                     exit.classList.add("hidden");
                 }
 
+                if(commissionPromotion.classList.contains("block")) {
+                    commissionPromotion.classList.remove("block");
+                    commissionPromotion.classList.add("hidden");
+                }
+
                 goldbar.classList.remove("hidden");
                 goldbar.classList.add("block");
             });
@@ -212,6 +226,11 @@
                 if(exit.classList.contains("block")) {
                     exit.classList.remove("block");
                     exit.classList.add("hidden");
+                }
+
+                if(commissionPromotion.classList.contains("block")) {
+                    commissionPromotion.classList.remove("block");
+                    commissionPromotion.classList.add("hidden");
                 }
 
                 agent.classList.remove("hidden");
@@ -239,6 +258,11 @@
                     exit.classList.add("hidden");
                 }
 
+                if(commissionPromotion.classList.contains("block")) {
+                    commissionPromotion.classList.remove("block");
+                    commissionPromotion.classList.add("hidden");
+                }
+
                 commission.classList.remove("hidden");
                 commission.classList.add("block");
             });
@@ -262,6 +286,11 @@
                 if(exit.classList.contains("block")) {
                     exit.classList.remove("block");
                     exit.classList.add("hidden");
+                }
+
+                if(commissionPromotion.classList.contains("block")) {
+                    commissionPromotion.classList.remove("block");
+                    commissionPromotion.classList.add("hidden");
                 }
 
                 user.classList.remove("hidden");
@@ -289,8 +318,43 @@
                     user.classList.add("hidden");
                 }
 
+                if(commissionPromotion.classList.contains("block")) {
+                    commissionPromotion.classList.remove("block");
+                    commissionPromotion.classList.add("hidden");
+                }
+
                 exit.classList.remove("hidden");
                 exit.classList.add("block");
+            });
+
+            $("#commissionPromotionMenu").click(function(e) {
+                if(goldbar.classList.contains("block")) {
+                    goldbar.classList.remove("block");
+                    goldbar.classList.add("hidden");
+                }
+
+                if(agent.classList.contains("block")) {
+                    agent.classList.remove("block");
+                    agent.classList.add("hidden");
+                }
+
+                if(commission.classList.contains("block")) {
+                    commission.classList.remove("block");
+                    commission.classList.add("hidden");
+                }
+
+                if(user.classList.contains("block")) {
+                    user.classList.remove("block");
+                    user.classList.add("hidden");
+                }
+
+                if(exit.classList.contains("block")) {
+                    exit.classList.remove("block");
+                    exit.classList.add("hidden");
+                }
+
+                commissionPromotion.classList.remove("hidden");
+                commissionPromotion.classList.add("block");
             });
         });
     </script>

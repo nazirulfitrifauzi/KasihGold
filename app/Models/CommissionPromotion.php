@@ -17,4 +17,14 @@ class CommissionPromotion extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function toyyibBills()
+    {
+        return $this->belongsTo('App\Models\ToyyibBills', 'billCode', 'bill_code');
+    }
 }
