@@ -87,7 +87,7 @@ class Cart extends Component
             if ($kart->item->promotions != NULL && ($currentDate >= $kart->item->promotions->start_date) && ($currentDate <= $kart->item->promotions->end_date)) {
                 $this->total += $kart->products->item->promotions->promo_price * $kart->prod_qty;
             } elseif ($kart->products->prod_cat == 3) {
-                $this->total += $kart->products->item->marketPrice->price * $kart->prod_gram;
+                $this->total += ($kart->products->item->marketPrice->price + round(($kart->products->item->marketPrice->price * $kart->percentage()), 2)) * $kart->prod_gram;
             } else {
                 $this->total += $kart->products->item->marketPrice->price * $kart->prod_qty;
             }

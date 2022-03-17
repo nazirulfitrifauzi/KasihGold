@@ -35,7 +35,6 @@
                                                 </div>
                                             </div>
                                         </x-table.table-body>
-
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             @php
                                                 $currentDate = date('Y-m-d');
@@ -50,7 +49,7 @@
                                             @elseif ($cartInfo->products->prod_cat==3)
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) :
-                                                number_format($cartInfo->products->item->marketPrice->price,2) }} / g</p>
+                                                number_format($cartInfo->products->item->marketPrice->price+round(($cartInfo->products->item->marketPrice->price*$cartInfo->percentage()),2),2) }} / g</p>
                                             @else
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format(($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate),2) :
@@ -87,7 +86,8 @@
                                             @elseif ($cartInfo->products->prod_cat==3)
                                             <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format((($cartInfo->products->item->marketPrice->price-$cartInfo->products->item->commissionKAP->agent_rate)*$cartInfo->prod_gram),2) :
-                                                number_format(($cartInfo->products->item->marketPrice->price)*$cartInfo->prod_gram,2) }}</p>
+                                                number_format(($cartInfo->products->item->marketPrice->price+round(($cartInfo->products->item->marketPrice->price*$cartInfo->percentage()),2))*$cartInfo->prod_gram,2) }}
+                                                </p>
                                             @else
                                                 <p>RM {{ (auth()->user()->isAgentKAP()) ?
                                                 number_format(((($cartInfo->products->item->marketPrice->price - $cartInfo->products->item->commissionKAP->agent_rate) * $cartInfo->prod_qty)),2)

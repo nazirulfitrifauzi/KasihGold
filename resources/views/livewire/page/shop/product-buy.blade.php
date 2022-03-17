@@ -65,7 +65,7 @@
                                                                 </span>
                                                             @elseif ($prod->products->prod_cat == 3)
                                                                 <span class="my-3 font-semibold text-gray-600">
-                                                                    RM {{ number_format($prod->products->item->marketPrice->price*$prod->prod_gram, 2) }}
+                                                                    RM {{ number_format(($prod->products->item->marketPrice->price+round(($prod->products->item->marketPrice->price*$prod->percentage()),2))*$prod->prod_gram,2) }}
                                                                 </span>
                                                             @else
                                                                 <span class="my-3 font-semibold text-gray-600">
@@ -78,7 +78,7 @@
                                                                 $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
                                                             } 
                                                             elseif ($prod->products->prod_cat == 3) {
-                                                                $total += $prod->products->item->marketPrice->price * $prod->prod_gram;
+                                                                $total += ($prod->products->item->marketPrice->price+(round($prod->products->item->marketPrice->price*$prod->percentage(),2)))*$prod->prod_gram;
                                                             }                                           
                                                             else {
                                                                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;

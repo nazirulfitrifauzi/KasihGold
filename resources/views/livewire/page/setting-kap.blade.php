@@ -29,6 +29,9 @@
                                         <x-settingTab.title name="1" livewire="">
                                             <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Commission
                                         </x-settingTab.title>
+                                        <x-settingTab.title name="2" livewire="">
+                                            <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Spot Price
+                                        </x-settingTab.title>
                                     </nav>
                                 </aside>
 
@@ -39,6 +42,9 @@
 
                                     <x-settingTab.content name="1" x-cloak>
                                         <livewire:page.setting.commission-kap/>
+                                    </x-settingTab.content>
+                                    <x-settingTab.content name="2" x-cloak>
+                                        <livewire:page.setting.spot-price/>
                                     </x-settingTab.content>
                                 </div>
 
