@@ -28,8 +28,32 @@ class InvCart extends Model
     {
         return $this->belongsTo('App\Models\InvItem', 'item_id', 'id');
     }
+
     public function commission()
     {
         return $this->belongsTo('App\Models\CommissionRateKap', 'item_id', 'item_id');
+    }
+
+    public function percentage()
+    {
+        $category = "1g";
+
+        if ($this->prod_gram >= 1000) {
+            $category = "1000g";
+        } else if ($this->prod_gram >= 250) {
+            $category = "250g";
+        } else if ($this->prod_gram >= 100) {
+            $category = "100g";
+        } else if ($this->prod_gram >= 50) {
+            $category = "50g";
+        } else if ($this->prod_gram >= 20) {
+            $category = "20g";
+        } else if ($this->prod_gram >= 10) {
+            $category = "10g";
+        } else if ($this->prod_gram >= 5) {
+            $category = "5g";
+        }
+        $spotPricePercentage = SpotGoldPricing::select('percentage')->where('range', $category)->first();
+        return ($spotPricePercentage->percentage / 100);
     }
 }
