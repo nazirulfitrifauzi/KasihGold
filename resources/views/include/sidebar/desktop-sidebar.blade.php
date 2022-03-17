@@ -28,7 +28,7 @@
             </div>
             <div class="relative flex justify-center">
                 <img class="w-24 h-24 border-4 border-yellow-400 rounded-full shadow-md "
-                    src="https://image.flaticon.com/icons/png/512/149/149071.png" alt=""
+                    src="{{ asset('img/defaultUser.png') }}" alt=""
                     aria-hidden="true" />
                 <a href="{{route('profile')}}" class="absolute bottom-0 flex items-center justify-center w-6 h-6 text-yellow-400 bg-white border-2 border-yellow-400 rounded-full right-20 tooltipbtn"
                     data-title="Edit Profile" data-placement="right">
