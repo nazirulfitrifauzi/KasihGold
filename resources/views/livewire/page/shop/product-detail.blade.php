@@ -129,12 +129,12 @@
                                             @if($info->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
                                                 <strike>
                                                     <span class="text-xl font-bold text-yellow-400">
-                                                        RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
                                                     </span>
                                                 </strike>
                                             @else
                                                 <span class="text-xl font-bold text-yellow-400">
-                                                    RM {{ number_format(($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate),2) }}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
                                                 </span>
                                             @endif
                                         </div>
@@ -176,7 +176,7 @@
                                                 
                                                 <span class="text-xl font-bold text-green-400">RM 
                                                     @if($spotGram != null && is_numeric($spotGram))
-                                                        {{ number_format(($spotGram*($info->item->marketPrice->price - $info->item->commissionKAP->agent_rate)),2) }}
+                                                        {{number_format(($info->item->marketPrice->price+(round($info->item->marketPrice->price*$percentage,2)))*$spotGram,2)}}
                                                     @else 
                                                         0.00
                                                     @endif
