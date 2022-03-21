@@ -6,6 +6,7 @@ use App\Models\InvCart;
 use App\Models\InvInfo;
 use App\Models\InvMaster;
 use App\Models\MarketPrice;
+use App\Models\SpotGoldPricing;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
@@ -16,7 +17,7 @@ class ProductDetail extends Component
 {
     public $iid;
     public $prod_qty;
-    public $spotGold, $spotGram;
+    public $spotGold, $spotGram, $percentage;
 
     public function mount()
     {
@@ -110,8 +111,32 @@ class ProductDetail extends Component
         }
     }
 
+
+
     public function render()
     {
+
+        $category = "1g";
+
+        if ($this->spotGram >= 1000) {
+            $category = "1000g";
+        } else if ($this->spotGram >= 250) {
+            $category = "250g";
+        } else if ($this->spotGram >= 100) {
+            $category = "100g";
+        } else if ($this->spotGram >= 50) {
+            $category = "50g";
+        } else if ($this->spotGram >= 20) {
+            $category = "20g";
+        } else if ($this->spotGram >= 10) {
+            $category = "10g";
+        } else if ($this->spotGram >= 5) {
+            $category = "5g";
+        }
+        $spotPricePercentage = SpotGoldPricing::select('percentage')->where('range', $category)->first();
+        $this->percentage = ($spotPricePercentage->percentage / 100);
+
+
         if (auth()->user()->isAgentKAP() || auth()->user()->isUserKAP()) { //kap bukan admin
             $masterProducts = InvInfo::where('item_id', $this->iid)->first();
             return view('livewire.page.shop.product-detail', [
