@@ -18,7 +18,7 @@
                     @elseif (($this->tGold+$this->tGoldS)<=10)
                     <x-gold.goldview name="" type="10g" percentage="{{(($this->tGold+$this->tGoldS)/10)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{10-($this->tGold+$this->tGoldS)}}" />
                     @else
-                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold+$this->tGoldS)/1000)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{10-($this->tGold+$this->tGoldS)}}" />
+                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold+$this->tGoldS)/1000)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{$this->tGold+$this->tGoldS}}" />
                     @endif
                 </div>
 
