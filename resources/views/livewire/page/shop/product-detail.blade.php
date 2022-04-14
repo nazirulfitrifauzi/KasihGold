@@ -129,12 +129,12 @@
                                             @if($info->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
                                                 <strike>
                                                     <span class="text-xl font-bold text-yellow-400">
-                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage,2)))}}
                                                     </span>
                                                 </strike>
                                             @else
                                                 <span class="text-xl font-bold text-yellow-400">
-                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage,2)))}}
                                                 </span>
                                             @endif
                                         </div>

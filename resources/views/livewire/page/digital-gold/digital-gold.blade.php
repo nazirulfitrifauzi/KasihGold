@@ -29,7 +29,7 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Total Grams (Digital Gold)</p>
+                                        <p>Digital Gold Wafer (Fixed)</p>
                                         <p class="text-lg">{{$this->tGold+$this->tGoldS}} g</p>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Total Grams (Digital Dinar)</p>
+                                        <p>Digital Gold Dinar</p>
                                         <p class="text-lg">{{$this->tGoldD}} g</p>
                                     </div>
                                 </div>
@@ -55,8 +55,8 @@
                                         <x-heroicon-o-currency-dollar class="w-8 h-8 text-yellow-400" />
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
-                                        <p>Purchased Price</p>
-                                        <p class="text-lg">RM {{number_format(($this->tPrice+$this->tPriceD+$this->tPriceS),2)}}</p>
+                                        <p>Digital Gold Wafer (Flexible)</p>
+                                        <p class="text-lg">{{$this->tGoldS}} g</p>
                                     </div>
                                 </div>
                             </div>
