@@ -76,6 +76,8 @@ Route::middleware('guest')->group(function () {
     // Bypass landing page
     Route::get('/', Login::class)->name('login');
     Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
+    Route::post('toyyibpay-callback-mint', [ToyyibpayController::class, 'callbackMint'])->name('toyyibpay-callback-mint');
+
 
     // ** Authentication *
     Route::get('login', Login::class)->name('login');
@@ -161,6 +163,7 @@ Route::middleware('auth')->group(function () {
 
         // -- Toyyib Pay -- //
         Route::get('toyyibpay-status-conv', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
+        Route::get('toyyibpay-status-gMint', [ToyyibpayController::class, 'paymentStatusMint'])->name('toyyibpay-status-gMint');
         Route::get('toyyibpay-status', [ToyyibpayController::class, 'paymentStatusBuy'])->name('toyyibpay-status-buy');
     });
 

@@ -8,6 +8,8 @@ use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
+use App\Models\GoldMinting;
+use App\Models\GoldMintingRecords;
 use App\Models\InvInfo;
 use App\Models\PhysicalConvert;
 use App\Models\ToyyibBills;
@@ -177,6 +179,69 @@ class ToyyibpayController extends Controller
                 $currentGoldbar->weight_on_hold -= $golds->weight;
                 $currentGoldbar->weight_vacant += $golds->weight;
                 $currentGoldbar->save();
+            }
+        }
+    }
+
+
+
+    public function paymentStatusMint()
+    {
+        $response = request()->all(['status_id', 'billcode', 'order_id']);
+
+        if ($response['status_id'] == 1) {
+            session()->flash('message', 'The Gold Minting Request Has Successfully Submitted.');
+
+            session()->flash('success');
+            session()->flash('title', 'Success!');
+        } elseif ($response['status_id'] == 3) {
+            session()->flash('message', 'The Gold Minting Request is Rejected.');
+
+            session()->flash('error');
+            session()->flash('title', 'Error!');
+        }
+
+        return redirect('home');
+        // return $response;
+    }
+
+    public function callbackMint()
+    {
+        $response = request()->all(['refno', 'status', 'billcode']);
+        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])->first();
+
+        if ($response['status'] == 1 && $toyyibBill->status != 1) {
+
+            $gold = GoldMintingRecords::where('bill_code', $response['billcode'])
+                ->where('status', 0)
+                ->get();
+
+            $toyyibBill->status = 1;
+            $toyyibBill->save();
+
+            foreach ($gold as $golds) {
+                //Change the gold pending to successful payment
+                $golds->update(['status' => 1]);
+
+                $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
+
+                $goldMinting->update(['status' => 0]);
+            }
+        } elseif ($response['status'] == 3 && $toyyibBill->status != 3) {
+            $gold = GoldMintingRecords::where('bill_code', $response['billcode'])
+                ->where('status', 0)
+                ->get();
+
+            $toyyibBill->status = 3;
+            $toyyibBill->save();
+
+            foreach ($gold as $golds) {
+                //Nullifies the gold pending because of failed payment
+                $golds->update(['status' => 2]);
+
+                $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
+
+                $goldMinting->update(['status' => 2]);
             }
         }
     }
