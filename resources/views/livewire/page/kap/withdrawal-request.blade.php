@@ -43,6 +43,15 @@
                         <div class="mt-1 text-xl font-bold text-white">Physical conversion</div>
                     </div>
                 </x-cardtab.title>
+
+                <x-cardtab.title name="3" livewire="" bg="yellow">
+                    <x-slot name="icon">
+                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-yellow-400"/>
+                    </x-slot>
+                    <div class="flex justify-center text-center">
+                        <div class="mt-1 text-xl font-bold text-white">Gold Minting</div>
+                    </div>
+                </x-cardtab.title>
             </x-general.grid>
 
 
@@ -424,6 +433,128 @@
                 </div>
             </x-cardtab.content>
             <!--End Physical conversion -->
+
+             <!--Start Gold Minting conversion -->
+             <x-cardtab.content name="2" x-cloak>
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12">
+                        <x-table.table>
+                            <x-slot name="thead">
+                                <x-table.table-header class="text-left" value="No" sort="" />
+                                <x-table.table-header class="text-left" value="Name" sort="" />
+                                <x-table.table-header class="text-left" value="Email" sort="" />
+                                <x-table.table-header class="text-left" value="Amount of 1 Gram" sort="" />
+                                <x-table.table-header class="text-left" value="Amount of 0.25 Gram" sort="" />
+                                <x-table.table-header class="text-left" value="Applied Date" sort="" />
+                                <x-table.table-header class="text-left" value="Approval Status" sort="" />
+                                <x-table.table-header class="text-left" value="Action" sort="" />
+                            </x-slot>
+                            <x-slot name="tbody">
+                                @forelse ($spotgold as $spotgolds)
+                                    <tr>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{ $loop->iteration  }}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$spotgolds->user->name}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$spotgolds->user->email}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$spotgolds->one_gram}} Pcs</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$spotgolds->quarter_gram}} Pcs</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$spotgolds->created_at->format('d-m-Y')}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
+                                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($spotgolds->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($spotgolds->status == 1) ? 'green' : 'yellow'}}-800">{{ ($spotgolds->status == 1) ? 'Successful': 'Pending'}}</span>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                            <div x-data="{ openShow: false}">
+                                                <a href="#detail_{{$spotgolds->id}}" @click="openShow = true"
+                                                    class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+                                                    <x-heroicon-o-eye class="w-5 h-5 mr-1" />
+                                                    Show
+                                                </a>
+
+                                                {{-- Start modal Show --}}
+                                                <x-general.modal modalActive="openShow" title="Physical Conversion" modalSize="lg">
+                                                    <x-form.basic-form >
+                                                        <x-slot name="content">
+                                                            <div class="p-4 mt-4 leading-4">
+                                                                <div class="h-full">
+                                                                    <h2 class="text-lg font-bold">Customer Information</h2>
+                                                                    <label class="block mt-3 text-sm font-semibold leading-5 text-gray-700">
+                                                                        Name
+                                                                    </label>
+                                                                    <div>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$spotgolds->name}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <label class="block mt-3 text-sm font-semibold leading-5 text-gray-700">
+                                                                        Phone Number
+                                                                    </label>
+                                                                    <div>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$spotgolds->phone1}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 1 Gram</h2>
+
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$spotgolds->one_gram}} Pcs"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 0.25 Gram</h2>
+
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$spotgolds->quarter_gram}} Pcs"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="flex justify-end mt-4">
+                                                                    <button wire:click="pConvDec({{$spotgolds->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                        Decline
+                                                                    </button>
+                                                                    <button wire:click="pConvApp({{$spotgolds->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                        Approve
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </x-slot>
+                                                    </x-form.basic-form>
+                                                </x-general.modal>
+                                                {{-- End modal Show --}}
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <x-table.table-body colspan="8" class="text-center text-gray-500">
+                                            No new Gold Minting request to be approved
+                                        </x-table.table-body>
+                                    </tr>
+                                @endforelse
+                            </x-slot>
+                        </x-table.table>
+                    </div>
+                </div>
+            </x-cardtab.content>
+            <!--End Gold Minting -->
         </div>
     </div>
 </div>

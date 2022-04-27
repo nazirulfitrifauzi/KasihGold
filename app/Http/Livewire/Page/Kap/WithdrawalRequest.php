@@ -6,6 +6,7 @@ use App\Mail\PhysicalDetails\PhysicalGoldExchange;
 use App\Models\BuyBack;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
+use App\Models\GoldMinting;
 use App\Models\OutrightSell;
 use App\Models\PhysicalConvert;
 use App\Models\ToyyibBills;
@@ -200,6 +201,7 @@ class WithdrawalRequest extends Component
             'outright' => OutrightSell::where('status', 0)->paginate(5),
             'buybacks' => BuyBack::where('status', 0)->paginate(5),
             'physical' => PhysicalConvert::where('status', 0)->paginate(5),
+            'spotgold' => GoldMinting::where('status', 0)->paginate(5),
         ]);
     }
 }
