@@ -10,15 +10,15 @@
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 px-6 py-6 mb-6 bg-white border-2 rounded-lg">
                 <div class="flex items-center justify-center flex-auto cursor-pointer" wire:click="details">
                     @if(($this->tGold+$this->tGoldS)<=1.0)
-                    <x-gold.goldview name="" type="1g" percentage="{{($this->tGold+$this->tGoldS)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{1-($this->tGold+$this->tGoldS)}}" />
+                    <x-gold.goldview name="" type="1g" percentage="{{($this->tGold+$this->tGoldS+$this->tGoldD)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{1-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
                     @elseif (($this->tGold+$this->tGoldS)<=2.5)
-                    <x-gold.goldview name="" type="2.5g" percentage="{{(($this->tGold+$this->tGoldS)/2.5)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{2.5-($this->tGold+$this->tGoldS)}}" />
+                    <x-gold.goldview name="" type="2.5g" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/2.5)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{2.5-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
                     @elseif (($this->tGold+$this->tGoldS)<=5)
-                    <x-gold.goldview  name="" type="5g" percentage="{{(($this->tGold+$this->tGoldS)/5)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{5-($this->tGold+$this->tGoldS)}}" />
+                    <x-gold.goldview  name="" type="5g" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/5)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{5-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
                     @elseif (($this->tGold+$this->tGoldS)<=10)
-                    <x-gold.goldview name="" type="10g" percentage="{{(($this->tGold+$this->tGoldS)/10)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{10-($this->tGold+$this->tGoldS)}}" />
+                    <x-gold.goldview name="" type="10g" percentage="{{(($this->tGold+$this->$this->tGoldD+$this->tGoldD)/10)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{10-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
                     @else
-                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold+$this->tGoldS)/1000)*100}}" totalGram="{{($this->tGold+$this->tGoldS)}}" reachGram="{{$this->tGold+$this->tGoldS}}" />
+                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/1000)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{$this->tGold+$this->tGoldS+$this->tGoldD}}" />
                     @endif
                 </div>
 
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
                                         <p>Digital Gold Wafer (Fixed)</p>
-                                        <p class="text-lg">{{$this->tGold+$this->tGoldS}} g</p>
+                                        <p class="text-lg">{{$this->tGold}} g</p>
                                     </div>
                                 </div>
                             </div>
@@ -89,6 +89,20 @@
                                         </div>
                                         <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
                                             <p>Outright Sell/Buy Back</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </x-general.price-card>
+                    </a>
+                    <a href="gold-minting">
+                        <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                            <div class="text-base font-bold text-white">
+                                    <div class="flex flex-col items-center space-x-4 lg:flex-row">
+                                        <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
+                                            <x-heroicon-o-database class="w-8 h-8 text-red-400" />
+                                        </div>
+                                        <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
+                                            <p>Gold Minting (Flexible Gold)</p>
                                         </div>
                                     </div>
                                 </div>

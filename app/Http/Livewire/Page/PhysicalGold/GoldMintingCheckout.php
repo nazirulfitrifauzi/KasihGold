@@ -159,6 +159,8 @@ class GoldMintingCheckout extends Component
             'updated_at'    => now(),
         ]);
 
+        $this->GoldMint->delete();
+
         $goldMintingId = $goldMinting->id;
 
 
@@ -171,18 +173,20 @@ class GoldMintingCheckout extends Component
             $item->ex_flag = 5; //5 for Gold Mint exit
             $item->ex_id = $goldMintingId;
 
-            if ($item->available_weight == 0) {
+            if ($item->available_weight == 0)
                 $item->active_ownership = 0;
-            }
+
+            $item->save();
+
 
             $goldMintRecords = GoldMintingRecords::where('created_by', auth()->user()->id)->where('status', 0)->where('gold_ids', $item->id)->first();
 
             $goldMintRecords->bill_code = $billCode;
+            $goldMintRecords->status = 3;
             $goldMintRecords->exit_id = $goldMintingId;
             $goldMintRecords->updated_at = now();
 
             $goldMintRecords->save();
-            $item->save();
         }
 
 

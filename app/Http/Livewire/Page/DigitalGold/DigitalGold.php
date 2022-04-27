@@ -28,9 +28,9 @@ class DigitalGold extends Component
             $this->tPriceD += $golds->bought_price;
         }
 
-        $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('spot_gold', 1)->get();
-        foreach ($goldInfo as $golds) {
-            $this->tGoldS += $golds->weight;
+        $goldInfoS = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('spot_gold', 1)->get();
+        foreach ($goldInfoS as $golds) {
+            $this->tGoldS += $golds->available_weight;
             $this->tPriceS += $golds->bought_price;
         }
 

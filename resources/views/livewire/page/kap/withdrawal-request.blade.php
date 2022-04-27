@@ -443,8 +443,7 @@
                                 <x-table.table-header class="text-left" value="No" sort="" />
                                 <x-table.table-header class="text-left" value="Name" sort="" />
                                 <x-table.table-header class="text-left" value="Email" sort="" />
-                                <x-table.table-header class="text-left" value="Amount of 1 Gram" sort="" />
-                                <x-table.table-header class="text-left" value="Amount of 0.25 Gram" sort="" />
+                                <x-table.table-header class="text-left" value="Goldbar Grammage" sort="" />
                                 <x-table.table-header class="text-left" value="Applied Date" sort="" />
                                 <x-table.table-header class="text-left" value="Approval Status" sort="" />
                                 <x-table.table-header class="text-left" value="Action" sort="" />
@@ -462,10 +461,7 @@
                                             <p>{{$spotgolds->user->email}}</p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            <p>{{$spotgolds->one_gram}} Pcs</p>
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            <p>{{$spotgolds->quarter_gram}} Pcs</p>
+                                            <p>{{$spotgolds->grammage}} Pcs</p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                             <p>{{$spotgolds->created_at->format('d-m-Y')}}</p>
@@ -482,7 +478,7 @@
                                                 </a>
 
                                                 {{-- Start modal Show --}}
-                                                <x-general.modal modalActive="openShow" title="Physical Conversion" modalSize="lg">
+                                                <x-general.modal modalActive="openShow" title="Gold Minting Request" modalSize="lg">
                                                     <x-form.basic-form >
                                                         <x-slot name="content">
                                                             <div class="p-4 mt-4 leading-4">
@@ -508,29 +504,22 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 1 Gram</h2>
+                                                                    <h2 class="mt-5 text-lg font-bold">Goldbar Grammage</h2>
 
                                                                     <div class="mt-3">
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input disabled type="text" value="{{$spotgolds->one_gram}} Pcs"
+                                                                            <input disabled type="text" value="{{$spotgolds->grammage}} gram"
                                                                                 class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
                                                                         </div>
                                                                     </div>
-                                                                    <h2 class="mt-5 text-lg font-bold">Amount of 0.25 Gram</h2>
 
-                                                                    <div class="mt-3">
-                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input disabled type="text" value="{{$spotgolds->quarter_gram}} Pcs"
-                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
-                                                                        </div>
-                                                                    </div>
                                                                 </div>
 
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="pConvDec({{$spotgolds->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="gMintDec({{$spotgolds->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
-                                                                    <button wire:click="pConvApp({{$spotgolds->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                    <button wire:click="gMintApp({{$spotgolds->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
                                                                         Approve
                                                                     </button>
                                                                 </div>

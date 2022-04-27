@@ -7,6 +7,7 @@ use App\Models\BuyBack;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\GoldMinting;
+use App\Models\GoldMintingRecords;
 use App\Models\OutrightSell;
 use App\Models\PhysicalConvert;
 use App\Models\ToyyibBills;
@@ -34,7 +35,7 @@ class WithdrawalRequest extends Component
         $outright->doc_1 = $this->proofdoc->storeAs('public/exit', $outright->id . '-Outright-ProofOfTransfer.jpg');;
         $outright->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->where('user_id', $outright->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -51,7 +52,7 @@ class WithdrawalRequest extends Component
         session()->flash('title', 'Success!');
         session()->flash('message', 'Outright Sell has successfully approved!');
 
-        return redirect('withdrawal-request');
+        return redirect('home');
     }
 
     public function outDec($appid)
@@ -62,7 +63,7 @@ class WithdrawalRequest extends Component
         $outright->status = 2;
         $outright->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->where('user_id', $outright->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
@@ -74,7 +75,7 @@ class WithdrawalRequest extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Outright Sell has successfully approved!');
-        return redirect('withdrawal-request');
+        return redirect('home');
     }
 
     public function bbApp($appid)
@@ -90,7 +91,7 @@ class WithdrawalRequest extends Component
         $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');
         $buyback->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
+        $$goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -106,7 +107,7 @@ class WithdrawalRequest extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Buyback has successfully approved!');
-        return redirect('withdrawal-request');
+        return redirect('home');
     }
 
     public function bbDec($appid)
@@ -121,7 +122,7 @@ class WithdrawalRequest extends Component
         $buyback->status = 2;
         $buyback->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
@@ -132,7 +133,7 @@ class WithdrawalRequest extends Component
         session()->flash('success');
         session()->flash('title', 'Success!');
         session()->flash('message', 'Buyback has successfully approved!');
-        return redirect('withdrawal-request');
+        return redirect('home');
     }
 
     public function pConvApp($appid)
@@ -144,7 +145,7 @@ class WithdrawalRequest extends Component
         $phyConv->save();
 
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->where('user_id', $phyConv->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -164,7 +165,7 @@ class WithdrawalRequest extends Component
         Mail::to("hadikasihgold@gmail.com")->send(new PhysicalGoldExchange($phyConv, $toyyibBill));
 
 
-        return redirect('withdrawal-request');
+        return redirect('home');
     }
 
     public function pConvDec($appid)
@@ -177,7 +178,7 @@ class WithdrawalRequest extends Component
         $phyConv->save();
 
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->where('user_id', $phyConv->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
@@ -192,7 +193,77 @@ class WithdrawalRequest extends Component
         // Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($phyConv, $toyyibBill));
 
 
-        return redirect('withdrawal-request');
+        return redirect('home');
+    }
+
+    public function gMintApp($appid)
+    {
+
+        $goldMint = GoldMinting::where('id', $appid)->first();
+        $toyyibBill = ToyyibBills::where('bill_code', $goldMint->bill_code)->first();
+        $goldMint->status = 1;
+        $goldMint->save();
+
+        $goldMintRecord = GoldMintingRecords::where('status', 1)->where('bill_code', $goldMint->bill_code)->get();
+
+
+
+
+        foreach ($goldMintRecord as $ownership) {
+
+            $goldOwnership = GoldbarOwnership::where('id', $ownership->gold_ids)->where('ex_id', $goldMint->id)->where('user_id', $goldMint->user_id)->where('ex_flag', 5)->first();
+
+
+            $goldBar = Goldbar::where('id', $goldOwnership->gold_id)->first();
+            $goldBar->weight_occupied -= $ownership->grammage;
+            $goldBar->weight_vacant += $ownership->grammage;
+            $goldBar->save();
+
+            $goldOwnership->ex_flag = 6; //success flag for Gold Minting Exit
+            $ownership->save();
+        }
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Gold Minting Request has successfully approved and will reach at their doorstep soon!');
+
+        Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($goldMint, $toyyibBill));
+
+
+        return redirect('home');
+    }
+
+    public function gMintDec($appid)
+    {
+
+        $goldMint = GoldMinting::where('id', $appid)->first();
+        $toyyibBill = ToyyibBills::where('bill_code', $goldMint->bill_code)->first();
+
+        $goldMint->status = 2;
+        $goldMint->save();
+
+
+        $goldOwnership = GoldbarOwnership::where('ex_id', $goldMint->id)->where('user_id', $goldMint->user_id)->where('ex_flag', 5)->get();
+
+        foreach ($goldOwnership as $ownership) {
+            $goldMintRecord = GoldMintingRecords::where('gold_ids', $ownership->id)->where('status', 1)->where('bill_code', $goldMint->bill_code)->first();
+            $ownership->available_weight += $goldMintRecord->grammage;
+            $ownership->ex_flag = 7; //fail flag for Gold Minting Exit
+            if ($ownership->active_ownership == 0) {
+                $ownership->active_ownership = 1;
+            }
+            $goldMintRecord->update(['status' => 2]);
+            $ownership->save();
+        }
+
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Gold Minting Request has been declined and the gold is returned back to their inventory!');
+
+        Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($goldMint, $toyyibBill));
+
+
+        return redirect('home');
     }
 
     public function render()
