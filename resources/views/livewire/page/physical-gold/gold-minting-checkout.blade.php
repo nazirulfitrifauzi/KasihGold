@@ -1,23 +1,23 @@
 <div class="">
-    <div class="bg-white rounded-lg mb-20 sm:mb-0">
-        <main class="my-8 py-6 px-4">
+    <div class="mb-20 bg-white rounded-lg sm:mb-0">
+        <main class="px-4 py-6 my-8">
             <div class="container mx-auto">
-                <h3 class="text-gray-700 text-2xl font-medium">Bank Information</h3>
-                <div class="flex flex-col lg:flex-row mt-2">
-                    <div class="w-full lg:w-1/2 order-2">
+                <h3 class="text-2xl font-medium text-gray-700">Bank Information</h3>
+                <div class="flex flex-col mt-2 lg:flex-row">
+                    <div class="order-2 w-full lg:w-1/2">
                         <x-form.basic-form wire:submit.prevent="submit">
                             <x-slot name="content">
                                 <div class="pb-8">
                                     <div class="lg:w-full">
                                         <div>
                                             <div class="mt-4">
-                                                <div class="flex items-center justify-between w-full bg-white border  p-4 focus:outline-none">
+                                                <div class="flex items-center justify-between w-full p-4 bg-white border focus:outline-none">
                                                     <label class="flex items-center">
                                                             <span class="ml-2 text-base text-gray-700">Bank Information</span>
                                                     </label>
                                                 </div>
                                                 <div class="overflow-hidden bg-white">
-                                                    <div class="border-2 px-4 py-4">
+                                                    <div class="px-4 py-4 border-2">
                                                         <x-form.basic-form>
                                                             <x-slot name="content">
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
@@ -33,7 +33,7 @@
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="swiftCode"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
+                                                                                class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
                                                                     </div>
@@ -43,7 +43,7 @@
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="accNo"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
+                                                                                class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
                                                                     </div>
@@ -53,7 +53,7 @@
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="accHolderName"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
+                                                                                class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
                                                                     </div>
@@ -65,7 +65,7 @@
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
                                                                             <input value="" wire:model="bankAccId"
-                                                                                class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
+                                                                                class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
                                                                     </div>
@@ -80,7 +80,7 @@
                                 </div>
                                 
                                 <div class="flex items-center justify-end mt-2">
-                                    <button class="flex items-center px-3 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none">
+                                    <button class="flex items-center px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none">
                                         <x-heroicon-o-clipboard-check class="w-5 h-5 mr-2" />
                                         <span>CONFIRM</span>
                                     </button>
@@ -88,65 +88,60 @@
                             </x-slot>
                         </x-form.basic-form>
                     </div>
-                    <div class="w-full mb-8 flex-shrink-0 order-1 lg:w-1/2 lg:mb-0 lg:order-2 mt-4">
+                    <div class="flex-shrink-0 order-1 w-full mt-4 mb-8 lg:w-1/2 lg:mb-0 lg:order-2">
                         <div class="flex justify-center lg:justify-end">
-                            <div class="border  max-w-md w-full px-4 py-3">
+                            <div class="w-full max-w-md px-4 py-3 border">
                                 <div class="flex items-center justify-between">
                                     @if(session('outright')==1)
-                                    <h3 class="text-gray-700 font-medium">Outright total </h3>
+                                    <h3 class="font-medium text-gray-700">Outright total </h3>
                                     @else
-                                    <h3 class="text-gray-700 font-medium">Buyback total </h3>
+                                    <h3 class="font-medium text-gray-700">Buyback total </h3>
                                     @endif
                                 </div>
 
                                 
                                 
-                                        <div class="flex justify-between mt-6 border-b-2 pb-4">
-                                            <div class="flex">
-                                                <img class="h-20 w-20 object-cover rounded"
-                                                    src="{{ asset('img/product/1/9/d1.png') }}"
-                                                    alt="">
-                                                <div class="mx-3 my-3">
-                                                    <h3 class="text-sm text-gray-600">Kasih AP Gold Wafer</h3>
-                                                    <h4 class="text-sm text-gray-600"><b>{{$GoldMintQTY}} gram</b></h4>
-                                                </div>
+                                    <div class="flex justify-between pb-4 mt-6 border-b-2">
+                                        <div class="flex">
+                                            <img class="object-cover w-20 h-20 rounded"
+                                                src="{{ asset('img/product/1/9/d1.png') }}"
+                                                alt="">
+                                            <div class="mx-3 my-3">
+                                                <h3 class="text-sm text-gray-600">Kasih AP Gold Wafer</h3>
+                                                <h4 class="text-sm text-gray-600"><b>{{$GoldMintQTY}} gram</b></h4>
                                             </div>
-                                            <span class="font-semibold text-gray-600 my-3">RM {{$MintingCost}}</span>
                                         </div>
+                                        <span class="my-3 font-semibold text-gray-600">RM {{$MintingCost}}</span>
+                                    </div>
 
-                            
-                                <div class="flex justify-between mt-6 ">
-                                    <div class="font-semibold">
-                                        <p>Minting Cost</p>
-                                    </div>
-                                    <div class="font-semibold text-lg text-left">
-                                        <p>RM {{$MintingCost}}</p>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between mt-6 ">
-                                    <div class="font-semibold">
-                                        <p>Shipping</p>
-                                    </div>
-                                    <div class="font-semibold text-lg text-left">
-                                        <p>RM 10</p>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between mt-2 border-b-2 pb-4">
-                                    <div class="font-semibold">
-                                        <p>Misc. Charges </p>
-                                    </div>
-                                    <div class="font-semibold text-lg text-left">
-                                        <p>RM 1</p>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between mt-6 ">
-                                    <div class="font-bold">
-                                        <p>Total Cost</p>
-                                    </div>
-                                    <div class="font-bold text-lg">
-                                        <p>RM {{$MintingCost + 10}}</p>
-                                    </div>
-                                </div>
+                                    <table class="w-full">
+                                        <tr>
+                                            <th width="80%"></th>
+                                            <th width="10%"></th>
+                                            <th width="10%"></th>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-6 font-semibold">Minting Cost</td>
+                                            <td class="px-2 pt-6 text-lg font-semibold text-right">RM</td>
+                                            <td class="pt-6 text-lg font-semibold text-right">{{$MintingCost}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-6 font-semibold">Shipping</td>
+                                            <td class="px-2 pt-6 text-lg font-semibold text-right">RM</td>
+                                            <td class="pt-6 text-lg font-semibold text-right ">10</td>
+                                        </tr>
+                                        <tr class="border-b-2 ">
+                                            <td  class="py-2 font-semibold">Misc. Charges</td>
+                                            <td  class="px-2 py-2 text-lg font-semibold text-right">RM</td>
+                                            <td  class="py-2 text-lg font-semibold text-right">1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pt-2 font-semibold">Total Cost</td>
+                                            <td class="px-2 pt-2 text-lg font-semibold text-right">RM</td>
+                                            <td class="pt-2 text-lg font-semibold text-right">{{$MintingCost + 10}}</td>
+                                        </tr>
+                                    </table>
+                                
                             </div>
                         </div>
                     </div>
