@@ -173,7 +173,10 @@ class Home extends Component
             $this->pGold = 0;
 
             foreach ($goldInfo as $golds) {
-                $this->tGold += $golds->weight;
+                if ($golds->spot_gold != 1)
+                    $this->tGold += $golds->weight;
+                else
+                    $this->tGold += $golds->available_weight;
             }
 
             $phyExit = PhysicalConvert::where('user_id', auth()->user()->id)->where('status', 1)->get();

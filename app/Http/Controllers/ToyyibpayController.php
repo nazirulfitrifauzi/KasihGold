@@ -213,23 +213,25 @@ class ToyyibpayController extends Controller
         if ($response['status'] == 1 && $toyyibBill->status != 1) {
 
             $gold = GoldMintingRecords::where('bill_code', $response['billcode'])
-                ->where('status', 0)
+                ->where('status', 3)
                 ->get();
-
             $toyyibBill->status = 1;
             $toyyibBill->save();
 
             foreach ($gold as $golds) {
                 //Change the gold pending to successful payment
-                $golds->update(['status' => 1]);
-
-                $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
-
-                $goldMinting->update(['status' => 0]);
+                $golds->status = 1;
+                $golds->save();
             }
+
+            $exit_id = $gold->first->exit_id;
+
+            $goldMinting = GoldMinting::where('id', $exit_id)->where('status', 3)->first();
+            $goldMinting->status = 0;
+            $goldMinting->save();
         } elseif ($response['status'] == 3 && $toyyibBill->status != 3) {
             $gold = GoldMintingRecords::where('bill_code', $response['billcode'])
-                ->where('status', 0)
+                ->where('status', 3)
                 ->get();
 
             $toyyibBill->status = 3;
@@ -238,11 +240,12 @@ class ToyyibpayController extends Controller
             foreach ($gold as $golds) {
                 //Nullifies the gold pending because of failed payment
                 $golds->update(['status' => 2]);
-
-                $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
-
-                $goldMinting->update(['status' => 2]);
             }
+            $exit_id = $gold->first->exit_id;
+
+            $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
+
+            $goldMinting->update(['status' => 2]);
         }
     }
 }
