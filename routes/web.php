@@ -56,6 +56,8 @@ use App\Http\Livewire\Page\Admin\UserManagement;
 use App\Http\Livewire\Page\Reporting\ListReport;
 use App\Http\Livewire\Page\Admin\Promo\PromoList;
 use App\Http\Livewire\Page\Admin\Promo\PromoAdd;
+use App\Http\Livewire\Page\PhysicalGold\GoldMinting;
+use App\Http\Livewire\Page\PhysicalGold\GoldMintingCheckout;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -149,6 +151,10 @@ Route::middleware('auth')->group(function () {
         Route::get('outright-gold-cart', [physicalGoldController::class, 'ocart'])->name('outright-gold-cart');
         Route::get('bb-gold-cart', [physicalGoldController::class, 'bbcart'])->name('bb-gold-cart');
         Route::get('Purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
+
+        Route::get('gold-minting', GoldMinting::class)->name('goldMinting');
+        Route::get('gm-checkout', GoldMintingCheckout::class)->name('mintingCheckout');
+
 
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
