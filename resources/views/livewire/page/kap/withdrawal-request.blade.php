@@ -16,7 +16,7 @@
         </div>
 
         <div class="p-4 mt-8 bg-white mb-20 sm:mb-0" x-data="{ active: 0 }">
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 mb-10">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="4" xl="4" class="col-span-12 mb-10">
                 <x-cardtab.title name="0" livewire="" bg="pink">
                     <x-slot name="icon">
                         <x-heroicon-o-clipboard-list class="w-10 h-10 text-pink-500"/>
@@ -435,7 +435,7 @@
             <!--End Physical conversion -->
 
              <!--Start Gold Minting conversion -->
-             <x-cardtab.content name="2" x-cloak>
+             <x-cardtab.content name="3" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
                         <x-table.table>
