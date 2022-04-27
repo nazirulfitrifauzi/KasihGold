@@ -6,7 +6,7 @@
                 <div class="flex flex-col mt-2 lg:flex-row">
                     <div class="w-full lg:w-1/2 order-2">
                         
-                        <x-form.basic-form wire:submit.prevent="convert">
+                        <x-form.basic-form wire:submit.prevent="submit">
                            <x-slot name="content">
                                <div class="pb-8">
                                    <div class="lg:w-full">
