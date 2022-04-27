@@ -16,7 +16,7 @@ class GoldMintingCheckout extends Component
 {
     public $name, $phone1, $address1, $address2, $address3, $postcode, $town, $state, $membership_id;
     public $states;
-    public $GoldMintQTY, $MintingCost;
+    public $GoldMint, $GoldMintQTY, $MintingCost;
 
 
     public function mount()
@@ -83,22 +83,23 @@ class GoldMintingCheckout extends Component
                 } else {
                     $current_grammage -= $buffer_grammage;
                 }
+
+
+                $item->available_weight -= $buffer_grammage;
+                $item->save();
+
+                GoldMintingRecords::create([
+                    'status'        => 0,
+                    'grammage'      => $buffer_grammage,
+                    'gold_ids'      => $item->id,
+                    'created_by'    => auth()->user()->id,
+                    'updated_by'    => auth()->user()->id,
+                    'created_at'    => now(),
+                    'updated_at'    => now(),
+                ]);
+
+                array_push($gold_ownId, $item->id);
             }
-
-            $item->available_weight -= $buffer_grammage;
-            $item->save();
-
-            GoldMintingRecords::create([
-                'status'        => 0,
-                'grammage'      => $this->GoldMint->prod_qty,
-                'gold_ids'      => $item->id,
-                'created_by'    => auth()->user()->id,
-                'updated_by'    => auth()->user()->id,
-                'created_at'    => now(),
-                'updated_at'    => now(),
-            ]);
-
-            array_push($gold_ownId, $item->id);
         }
         $refPayment = (string) Str::uuid();
 
@@ -142,8 +143,8 @@ class GoldMintingCheckout extends Component
             'user_id'       => auth()->user()->id,
             'status'        => 3,
             'grammage'      => $this->GoldMint->prod_qty,
-            'billcode'      => $billCode,
-            'gold_ids'      => $gold_ownId,
+            'bill_code'     => $billCode,
+            'gold_ids'      => implode(',', $gold_ownId),
             'name'          => $this->name,
             'phone1'        => $this->phone1,
             'address1'      => $this->address1,
@@ -151,7 +152,7 @@ class GoldMintingCheckout extends Component
             'address3'      => $this->address3,
             'postcode'      => $this->postcode,
             'town'          => $this->town,
-            'state'         => $this->state,
+            'state_id'         => $this->state,
             'created_by'    => auth()->user()->id,
             'updated_by'    => auth()->user()->id,
             'created_at'    => now(),

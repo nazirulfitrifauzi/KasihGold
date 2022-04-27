@@ -20,7 +20,7 @@ class GoldMinting extends Component
         $totalGoldbar = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('spot_gold', 1)->get();
 
         foreach ($totalGoldbar as $tGold) {
-            $this->total += $tGold->weight;
+            $this->total += $tGold->available_weight;
         }
 
         $this->GoldMint = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 3)->first();
