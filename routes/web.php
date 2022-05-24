@@ -74,6 +74,7 @@ Route::middleware('guest')->group(function () {
     // Bypass landing page
     Route::get('/', Login::class)->name('login');
     Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
+    Route::post('toyyibpay-callbackConv', [ToyyibpayController::class, 'callbackConv'])->name('toyyibpay-callbackConv');
 
     // ** Authentication *
     Route::get('login', Login::class)->name('login');

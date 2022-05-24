@@ -58,8 +58,8 @@ class PhyCheckout extends Component
     public function convert()
     {
         $cart = collect([
-            ['prod_name' => $this->info_bar064->prod_name, 'prod_img' => $this->info_bar064->prod_img1, 'prod_weight' => $this->info_bar064->prod_weight, 'qty' => $this->goldbar064],
-            ['prod_name' => $this->info_bar063->prod_name, 'prod_img' => $this->info_bar063->prod_img1, 'prod_weight' => $this->info_bar063->prod_weight, 'qty' => $this->goldbar063],
+            ['prod_name' => $this->info_bar064->prod_name, 'prod_img' => $this->info_bar064->prod_img1, 'prod_cat' => $this->info_bar064->prod_cat, 'item_id' => $this->info_bar064->item_id, 'prod_weight' => $this->info_bar064->prod_weight, 'qty' => $this->goldbar064],
+            ['prod_name' => $this->info_bar063->prod_name, 'prod_img' => $this->info_bar063->prod_img1, 'prod_cat' => $this->info_bar063->prod_cat, 'item_id' => $this->info_bar063->item_id, 'prod_weight' => $this->info_bar063->prod_weight, 'qty' => $this->goldbar063],
         ]);
 
         $total =  $this->goldbar063 +  $this->goldbar064;

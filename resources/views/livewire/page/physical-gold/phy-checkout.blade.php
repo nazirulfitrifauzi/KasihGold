@@ -40,9 +40,11 @@
 
                                 @foreach ($gtype as $types)
                                 <tr>
+
                                     <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                        <div class="flex items-center space-x-3">
-                                            <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
+                                        <div class="flex space-x-3 items-center">
+                                            <img class="object-cover w-16 h-16 rounded" 
+                                            src="{{ asset('img/product/'.$types->prod_cat.'/'.$types->item_id.'/'.$types->prod_img1) }}" alt="">
                                             <div>
                                                 <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
                                             </div>
@@ -61,7 +63,7 @@
                                             </button>
                                             <input type="text"
                                                 class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
-                                                name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
+                                                name="custom-input-number" wire:model="goldbar{{$types->prod_code}}" value="goldbar{{$types->prod_code}}" disabled></input>
                                             <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
                                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                 <span class="m-auto text-2xl font-thin">+</span>
@@ -96,7 +98,7 @@
                             <div class="py-2 border-b-2">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/gold/'.$types->prod_img1) }}" alt="">
+                                        <img class="object-cover w-16 h-16 rounded" src="{{ asset('img/product/'.$types->prod_cat.'/'.$types->item_id.'/'.$types->prod_img1) }}" alt="">
                                         <h3 class="text-sm font-semibold">{{$types->prod_name}}</h3>
                                     </div>
                                     <div>                                                                                     
@@ -107,7 +109,7 @@
                                             </button>
                                             <input type="text"
                                                 class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
-                                                name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" ></input>
+                                                name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" disabled></input>
                                             <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
                                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                 <span class="m-auto text-2xl font-thin">+</span>

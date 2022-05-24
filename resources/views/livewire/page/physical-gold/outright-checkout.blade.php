@@ -26,6 +26,7 @@
                     <x-slot name="tbody">
 
                         @foreach ($goldO as $types)
+                        @if($types->products->prod_cat==1)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-3 items-center">
@@ -69,7 +70,18 @@
                             </x-table.table-body> --}}
 
                         </tr>
+                        @endif
                         @endforeach
+                        <tr>
+                            <x-table.table-body colspan="2" class="text-xs text-right font-medium text-gray-700 ">
+                               <p>Total Weight</p>
+                            </x-table.table-body>
+
+                            <x-table.table-body colspan="" class="text-xs font-medium text-{{ ($total_weight >= 1 &&  (floor($total_weight) == $total_weight)) ? 'grey' : 'red' }}-700 ">
+                                <p>{{$total_weight}} g</p>
+                            </x-table.table-body>
+                        </tr>
+                        
                         
 
                     </x-slot>
@@ -84,44 +96,70 @@
             <div class="block lg:hidden">
                 <div class="border-2 p-4 rounded-md">
                     @foreach ($goldO as $types)
-                        <div class="border-b-2 py-2">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <img class="object-cover w-16 h-16 rounded" 
-                                    src="{{ asset('img/product/'.$types->products->prod_cat.'/'.$types->products->item_id.'/'.$types->products->prod_img1) }}"alt="">
-                                    <h3 class="text-sm font-semibold">{{$types->products->prod_name}}</h3>
+                        @if($types->products->prod_cat==1)
+                            <div class="border-b-2 py-2">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <img class="object-cover w-16 h-16 rounded" 
+                                        src="{{ asset('img/product/'.$types->products->prod_cat.'/'.$types->products->item_id.'/'.$types->products->prod_img1) }}"alt="">
+                                        <h3 class="text-sm font-semibold">{{$types->products->prod_name}}</h3>
+                                    </div>
+                                    <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                                        <button  wire:click="exitProdSub({{$types->products->item_id}})"
+                                            class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
+                                            <span class="m-auto text-2xl font-thin">−</span>
+                                        </button>
+                                        <input type="text"
+                                            class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
+                                            hover:text-black focus:text-black  md:text-basecursor-default flex items-center
+                                            justify-center
+                                            text-gray-700 
+                                            outline-none"
+                                            name="custom-input-number" value="{{($types->cart ? ($types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first() ? $types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first()->prod_qty : 0): 0 )}}" disabled>
+                                        </input>
+                                        <button  wire:click="exitProdAdd({{$types->products->item_id}})"
+                                            class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
+                                            <span class="m-auto text-2xl font-thin">+</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                    <button  wire:click="exitProdAdd({{$types->products->item_id}})"
-                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
-                                        <span class="m-auto text-2xl font-thin">−</span>
-                                    </button>
-                                    <input type="text"
-                                        class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
-                                        hover:text-black focus:text-black  md:text-basecursor-default flex items-center
-                                        justify-center
-                                        text-gray-700 
-                                        outline-none"
-                                        name="custom-input-number" value="{{$types->products->prod_cat}}" disabled>
-                                    </input>
-                                    <button  wire:click="exitProdSub({{$types->products->item_id}})"
-                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
-                                        <span class="m-auto text-2xl font-thin">+</span>
-                                    </button>
-                                </div>
+                                {{-- <div class="flex justify-between mt-1">
+                                    <div>
+                                        <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
+                                        <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
+                                        <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
+                                    </div>
+                                </div> --}}
                             </div>
-                            <div class="flex justify-between mt-1">
-                                <div>
-                                    <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
-                                    <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                    <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
-                                </div>
+                        @endif
+                    @endforeach
+
+                    <div class="border-b-2 py-2">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-sm font-semibold">Total Weight</h3>
+                            </div>
+
+                            <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
+                                <h3 class="text-sm font-semibold text-{{ ($total_weight >= 1 &&  (floor($total_weight) == $total_weight)) ? 'grey' : 'red' }}-700 ">{{$total_weight}} g</h3>
                             </div>
                         </div>
-                    @endforeach
+                        {{-- <div class="flex justify-between mt-1">
+                            <div>
+                                <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
+                                <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
+                                <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
+                            </div>
+                        </div> --}}
+                    </div>
+
+
                 </div>
             </div>
             <!--End Mobile view-->
@@ -139,7 +177,7 @@
                             </label>
                             <div class="flex flex-col ml-8 text-left justify-start -mt-6">
                                 <span class="block text-sm font-medium text-gray-900">
-                                    Buy Back
+                                    Buy Back 
                                 </span>
                                 <span class="block text-sm text-gray-500">
                                     You can repurchase your surrendered digital gold at a fixed rate for upto<br>
@@ -168,7 +206,7 @@
                         </div>
                         <div class="font-semibold text-lg">
                             {{-- <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p> --}}
-                            <p>RM </p>
+                            <p>RM {{number_format($total,2)}}</p>
                         </div>
                     </div>
                     @if ($this->buybackStatus==1)
@@ -177,7 +215,7 @@
                             <p>Total Buyback Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            <p>RM </p>
+                            <p>RM {{number_format($total*1.06,2)}}</p>
                         </div>
                     </div>
                     @endif

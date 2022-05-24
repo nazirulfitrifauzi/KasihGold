@@ -33,7 +33,7 @@ class WithdrawalRequest extends Component
         $outright->doc_1 = $this->proofdoc->storeAs('public/exit', $outright->id . '-Outright-ProofOfTransfer.jpg');;
         $outright->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->where('user_id', $outright->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -61,7 +61,7 @@ class WithdrawalRequest extends Component
         $outright->status = 2;
         $outright->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $outright->id)->where('user_id', $outright->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
@@ -70,9 +70,9 @@ class WithdrawalRequest extends Component
         }
 
 
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'Outright Sell has successfully approved!');
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Outright Sell has been declined and the gold is returned back to their inventory!');
         return redirect('withdrawal-request');
     }
 
@@ -89,7 +89,7 @@ class WithdrawalRequest extends Component
         $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');
         $buyback->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -110,17 +110,14 @@ class WithdrawalRequest extends Component
 
     public function bbDec($appid)
     {
-        $this->validate([
-            'proofdoc' => 'required|file|max:4096', // 4MB Max
 
-        ]);
 
         $buyback = BuyBack::where('id', $appid)->first();
 
         $buyback->status = 2;
         $buyback->save();
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
@@ -128,9 +125,9 @@ class WithdrawalRequest extends Component
             $ownership->save();
         }
 
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'Buyback has successfully approved!');
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Buyback has been declined and the gold is returned back to their inventory!');
         return redirect('withdrawal-request');
     }
 
@@ -143,7 +140,7 @@ class WithdrawalRequest extends Component
         $phyConv->save();
 
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->where('user_id', $phyConv->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -176,7 +173,7 @@ class WithdrawalRequest extends Component
         $phyConv->save();
 
 
-        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $phyConv->id)->where('user_id', $phyConv->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
             $ownership->ex_flag = 2;
