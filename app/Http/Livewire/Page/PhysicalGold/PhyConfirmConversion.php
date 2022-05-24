@@ -85,7 +85,7 @@ class PhyConfirmConversion extends Component
             'billPayorInfo' => 1,
             'billAmount' => 1000, // Dikira dalam bentuk sen. Maksudnya dekat sini RM10
             'billReturnUrl' => route('toyyibpay-status-conv'),
-            'billCallbackUrl' => route('toyyibpay-callback'),
+            'billCallbackUrl' => route('toyyibpay-callbackConv'),
             'billExternalReferenceNo' => $refPayment,
             'billTo' => auth()->user()->name,
             'billEmail' => auth()->user()->email,

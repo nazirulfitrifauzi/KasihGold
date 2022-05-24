@@ -100,24 +100,22 @@
                                 </div>
 
                                 
-                                @if(session('products'))
-                                    @foreach (session('products') as $product)
-                                        @if($product['qty']!=0)
+                                    @foreach ($cartInfo as $product)
                                         <div class="flex justify-between mt-6 border-b-2 pb-4">
                                             <div class="flex">
-                                                <img class="h-20 w-20 object-cover rounded"
-                                                    src="{{ asset('img/gold/'.$product['prod_img']) }}"
-                                                    alt="">
+                                                <img class="object-cover w-20 h-20 rounded"
+                                                src="{{ asset('img/product/'.$product->products->prod_cat.'/'.$product->products->item_id.'/'.$product->products->prod_img1) }}" alt="">
+
                                                 <div class="mx-3 my-3">
-                                                    <h3 class="text-sm text-gray-600">{{$product['prod_name']}}</h3>
-                                                    <h4 class="text-sm text-gray-600"><b>{{$product['qty']}} pcs</b></h4>
+                                                    <h3 class="text-sm text-gray-600">{{$product->products->prod_name}}</h3>
+                                                    <h6 class="text-sm text-gray-600">{{$product->prod_qty}} pcs</h6>
                                                 </div>
                                             </div>
-                                            <span class="font-semibold text-gray-600 my-3">RM {{number_format($product['prod_price']*$product['qty'],2)}}</span>
+                                            {{-- <span class="font-semibold text-gray-600 my-3">RM {{number_format($product['prod_price']*$product['qty'],2)}}</span>
+                                            <span class="font-semibold text-gray-600 my-3">RM {{ number_format($product->products->out->price*$prod->prod_qty, 2) }} --}}
+                                            </span>
                                         </div>
-                                        @endif
                                     @endforeach
-                                @endif
 
                                 <div class="mt-6 border-b-2 pb-4">
                                     <div class="flex justify-between">
@@ -125,7 +123,7 @@
                                             <p>Surrender Price</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM {{number_format(session('total'),2)}}</p>
+                                            <p>RM {{number_format($total,2)}}</p>
                                         </div>
                                     </div>
                                     @if(session('outright')!=1)
@@ -134,7 +132,7 @@
                                             <p>Buyback price at {{date('d/m/Y',strtotime((now()->addMonths(7))))}}</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM {{number_format((session('total')*1.06),2)}}</p>
+                                            <p>RM {{number_format(($total*1.06),2)}}</p>
                                         </div>
                                     </div>
                                     @endif
@@ -146,9 +144,9 @@
                                     </div>
                                     <div class="font-semibold text-lg">
                                         @if(session('outright')!=1)
-                                        <p>RM {{number_format((session('total')*1.06),2)}}</p>
+                                        <p>RM {{number_format(($total*1.06),2)}}</p>
                                         @else
-                                        <p>RM {{number_format((session('total')),2)}}</p>
+                                        <p>RM {{number_format($total,2)}}</p>
                                         @endif
                                     </div>
                                 </div>

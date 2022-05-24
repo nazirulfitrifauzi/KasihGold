@@ -72,9 +72,9 @@ class WithdrawalRequest extends Component
         }
 
 
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'Outright Sell has successfully approved!');
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Outright Sell has been declined and the gold is returned back to their inventory!');
         return redirect('home');
     }
 
@@ -91,7 +91,7 @@ class WithdrawalRequest extends Component
         $buyback->doc_1 = $this->proofdoc->storeAs('public/exit', $buyback->id . '-Buyback-ProofOfTransfer.jpg');
         $buyback->save();
 
-        $$goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
+        $goldOwnership = GoldbarOwnership::where('ex_id', $buyback->id)->where('user_id', $buyback->user_id)->get();
 
         foreach ($goldOwnership as $ownership) {
 
@@ -112,10 +112,7 @@ class WithdrawalRequest extends Component
 
     public function bbDec($appid)
     {
-        $this->validate([
-            'proofdoc' => 'required|file|max:4096', // 4MB Max
 
-        ]);
 
         $buyback = BuyBack::where('id', $appid)->first();
 
@@ -130,9 +127,9 @@ class WithdrawalRequest extends Component
             $ownership->save();
         }
 
-        session()->flash('success');
-        session()->flash('title', 'Success!');
-        session()->flash('message', 'Buyback has successfully approved!');
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Buyback has been declined and the gold is returned back to their inventory!');
         return redirect('home');
     }
 

@@ -62,8 +62,7 @@
                                         <div class="flex justify-between mt-6 border-b-2 pb-4">
                                             <div class="flex">
                                                 <img class="h-20 w-20 object-cover rounded"
-                                                    src="{{ asset('img/gold/'.$product['prod_img']) }}"
-                                                    alt="">
+                                                    src="{{ asset('img/product/'.$product['prod_cat'].'/'.$product['item_id'].'/'.$product['prod_img']) }}" alt="">
                                                 <div class="mx-3 my-3">
                                                     <h3 class="text-sm text-gray-600">{{$product['prod_name']}}</h3>
                                                     <h4 class="text-sm text-gray-600"><b>{{$product['qty']}} pcs</b></h4>
