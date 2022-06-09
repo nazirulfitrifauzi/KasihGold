@@ -9,16 +9,16 @@
         <div class="p-4 mt-4">
             <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-6 px-6 py-6 mb-6 bg-white border-2 rounded-lg">
                 <div class="flex items-center justify-center flex-auto cursor-pointer" wire:click="details">
-                    @if(($this->tGold+$this->tGoldS)<=1.0)
-                    <x-gold.goldview name="" type="1g" percentage="{{($this->tGold+$this->tGoldS+$this->tGoldD)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{1-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
-                    @elseif (($this->tGold+$this->tGoldS)<=2.5)
-                    <x-gold.goldview name="" type="2.5g" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/2.5)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{2.5-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
-                    @elseif (($this->tGold+$this->tGoldS)<=5)
-                    <x-gold.goldview  name="" type="5g" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/5)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{5-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
-                    @elseif (($this->tGold+$this->tGoldS)<=10)
-                    <x-gold.goldview name="" type="10g" percentage="{{(($this->tGold+$this->$this->tGoldD+$this->tGoldD)/10)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{10-($this->tGold+$this->tGoldS+$this->tGoldD)}}" />
+                    @if(($this->tGold)<=1.0)
+                    <x-gold.goldview name="" type="1g" percentage="{{($this->tGold)*100}}" totalGram="{{($this->tGold)}}" reachGram="{{1-($this->tGold)}}" />
+                    @elseif (($this->tGold)<=2.5)
+                    <x-gold.goldview name="" type="2.5g" percentage="{{(($this->tGold)/2.5)*100}}" totalGram="{{($this->tGold)}}" reachGram="{{2.5-($this->tGold)}}" />
+                    @elseif (($this->tGold)<=5)
+                    <x-gold.goldview  name="" type="5g" percentage="{{(($this->tGold)/5)*100}}" totalGram="{{($this->tGold)}}" reachGram="{{5-($this->tGold)}}" />
+                    @elseif (($this->tGold)<=10)
+                    <x-gold.goldview name="" type="10g" percentage="{{(($this->tGold)/10)*100}}" totalGram="{{($this->tGold)}}" reachGram="{{10-($this->tGold)}}" />
                     @else
-                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold+$this->tGoldS+$this->tGoldD)/1000)*100}}" totalGram="{{($this->tGold+$this->tGoldS+$this->tGoldD)}}" reachGram="{{$this->tGold+$this->tGoldS+$this->tGoldD}}" />
+                    <x-gold.goldview name="" type="1kg" percentage="{{(($this->tGold)/1000)*100}}" totalGram="{{($this->tGold)}}" reachGram="{{$this->tGold}}" />
                     @endif
                 </div>
 
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
                                         <p>Digital Gold Wafer (Fixed)</p>
-                                        <p class="text-lg">{{$this->tGold}} g</p>
+                                        <p class="text-lg">{{$this->tGoldN}} g</p>
                                     </div>
                                 </div>
                             </div>
