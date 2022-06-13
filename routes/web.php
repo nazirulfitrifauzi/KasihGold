@@ -74,13 +74,13 @@ Route::middleware('guest')->group(function () {
     // Route::view('/mengenai-kami', 'about')->name('aboutUs');
 
     // Bypass landing page
+    Route::get('/', Login::class)->name('login');
     Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
     Route::post('toyyibpay-callback-mint', [ToyyibpayController::class, 'callbackMint'])->name('toyyibpay-callback-mint');
     Route::post('toyyibpay-callbackConv', [ToyyibpayController::class, 'callbackConv'])->name('toyyibpay-callbackConv');
 
 
     // ** Authentication *
-    Route::get('login', Login::class)->name('login');
     Route::get('register/{code}', Register::class)->name('register');
     Route::get('agentRegistration', RegisterAgent::class)->name('register.agent');
     Route::get('password/reset', Email::class)->name('password.request');
