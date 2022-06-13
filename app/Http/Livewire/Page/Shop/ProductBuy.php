@@ -90,7 +90,7 @@ class ProductBuy extends Component
             if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
                 $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
             } elseif ($prod->products->prod_cat == 3) {
-                $total += $prod->products->item->marketPrice->price * $prod->prod_gram;
+                $total += ($prod->products->item->marketPrice->price + round(($prod->products->item->marketPrice->price * $prod->percentage()), 2)) * $prod->prod_gram;
             } else {
                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
             }

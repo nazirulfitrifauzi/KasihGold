@@ -129,12 +129,12 @@
                                             @if($info->item->promotions !== NULL && ($currentDate >= $startDate) && ($currentDate <= $endDate))
                                                 <strike>
                                                     <span class="text-xl font-bold text-yellow-400">
-                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$percentage,2)))}}
                                                     </span>
                                                 </strike>
                                             @else
                                                 <span class="text-xl font-bold text-yellow-400">
-                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$info->percentage(),2)))}}
+                                                    RM {{($info->item->marketPrice->price+(round($info->item->marketPrice->price*$percentage,2)))}}
                                                 </span>
                                             @endif
                                         </div>
@@ -161,7 +161,11 @@
                                                 <p>Promo Price</p>
                                             </div>
                                             <div class="px-3 py-2 bg-gray-100 rounded-lg">
+                                                @if($spotGram != null && is_numeric($spotGram))
+                                                <span class="text-xl font-bold text-green-400">RM {{ number_format(($info->item->promotions->promo_price+(round($info->item->promotions->promo_price*$percentage,2)))*$spotGram,2) }}</span>
+                                                @else 
                                                 <span class="text-xl font-bold text-green-400">RM {{ number_format($info->item->promotions->promo_price,2) }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         @endif
