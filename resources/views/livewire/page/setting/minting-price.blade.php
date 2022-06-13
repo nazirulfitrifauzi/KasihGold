@@ -1,7 +1,7 @@
 <div class="px-4 sm:p-6 lg:pb-8">
     <div class="py-4">
         <h2 class="flex mb-4 mr-auto text-lg font-medium">
-            Spot Gold Mark Up Percentage
+            Minting Price
         </h2>
         @if (session('error'))
         <x-toaster.error title="{{ session('title') }}" message="{{ session('message') }}" />
@@ -23,7 +23,7 @@
                         </th>
                         <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             <div class="flex cursor-pointer">
-                                <span class="mr-2">Percentage</span>
+                                <span class="mr-2">Price</span>
                             </div>
                         </th>
                     </x-slot>
@@ -37,7 +37,7 @@
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                     <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}"/>
                                     <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}.id"/>
-                                    <x-form.input type="text" label="" value="items.{{ $key }}.percentage" wire:model="items.{{ $key }}.percentage"/>
+                                    <x-form.input type="text" label="" value="items.{{ $key }}.minting_cost" wire:model="items.{{ $key }}.minting_cost"/>
                                 </x-table.table-body>
                             </tr>
                         @endforeach

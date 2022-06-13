@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Page\Setting;
 
+use App\Models\MintingGoldPrice;
 use Livewire\Component;
 
 class MintingPrice extends Component
@@ -11,13 +12,13 @@ class MintingPrice extends Component
 
     public function mount()
     {
-        $this->items = SpotGoldPricing::all();
+        $this->items = MintingGoldPrice::all();
     }
 
     protected $rules = [
         'items.*' => 'required',
         'items.*.id' => 'required',
-        'items.*.percentage' => 'required|between:0.01,99.99',
+        'items.*.minting_cost' => 'required|between:0.01,99.99',
     ];
 
     public function submit()
@@ -26,17 +27,17 @@ class MintingPrice extends Component
 
         $max = $this->items->count();
         for ($x = 0; $x < $max; $x++) {
-            SpotGoldPricing::updateOrCreate([
+            MintingGoldPrice::updateOrCreate([
                 'id'       => $this->items[$x]['id']
             ], [
-                'percentage'    => $this->items[$x]['percentage'],
+                'minting_cost'    => $this->items[$x]['minting_cost'],
                 'updated_at'    => now(),
             ]);
         }
 
         session()->flash('success');
         session()->flash('title', 'Success!');
-        session()->flash('message', 'Spot Gold Mark Up Percentage successfully updated.');
+        session()->flash('message', 'Minting Price successfully updated.');
     }
 
 
