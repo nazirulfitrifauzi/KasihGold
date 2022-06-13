@@ -74,7 +74,6 @@ Route::middleware('guest')->group(function () {
     // Route::view('/mengenai-kami', 'about')->name('aboutUs');
 
     // Bypass landing page
-    Route::get('/', Login::class)->name('login');
     Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
     Route::post('toyyibpay-callback-mint', [ToyyibpayController::class, 'callbackMint'])->name('toyyibpay-callback-mint');
     Route::post('toyyibpay-callbackConv', [ToyyibpayController::class, 'callbackConv'])->name('toyyibpay-callbackConv');
