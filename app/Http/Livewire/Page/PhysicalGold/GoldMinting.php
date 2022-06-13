@@ -7,7 +7,7 @@ use App\Models\InvCart;
 use App\Models\InvInfo;
 use Illuminate\Support\Facades\DB;
 use App\Models\GoldbarOwnership;
-
+use App\Models\MintingGoldPrice;
 
 class GoldMinting extends Component
 {
@@ -47,6 +47,9 @@ class GoldMinting extends Component
         $this->MintingCost = 0;
 
         $this->GoldMint = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 3)->first();
+        $MintingCost = MintingGoldPrice::orderBy('id', 'desc')->get();
+        $this->MintingCost = 0;
+
 
 
 
@@ -66,22 +69,13 @@ class GoldMinting extends Component
                     ]
                 );
 
-                if ($this->GoldMintQTY >= 1000)
-                    $this->MintingCost = 50;
-                else if ($this->GoldMintQTY >= 250)
-                    $this->MintingCost = 70;
-                else if ($this->GoldMintQTY >= 100)
-                    $this->MintingCost = 80;
-                else if ($this->GoldMintQTY >= 50)
-                    $this->MintingCost = 90;
-                else if ($this->GoldMintQTY >= 20)
-                    $this->MintingCost = 100;
-                else if ($this->GoldMintQTY >= 10)
-                    $this->MintingCost = 160;
-                else if ($this->GoldMintQTY >= 5)
-                    $this->MintingCost = 185;
-                else if ($this->GoldMintQTY >= 1)
-                    $this->MintingCost = 70;
+                foreach ($MintingCost as $MC) {
+                    if ($this->MintingCost == 0) {
+                        if ($this->GoldMintQTY >= $MC->range) {
+                            $this->MintingCost = $MC->minting_cost;
+                        }
+                    }
+                }
             } else if ($roundedGrammage < $this->GoldMintQTY) {
                 session()->flash('error');
                 session()->flash('title', 'Invalid Quantity!');
@@ -108,29 +102,18 @@ class GoldMinting extends Component
                 $this->GoldMintQTY = $this->GoldMint->prod_qty;
             }
 
+
+
             if ($this->GoldMint->deleted_at == NULL) {
-                if ($this->GoldMint->prod_qty >= 1000)
-                    $this->MintingCost = 50;
-                else if ($this->GoldMint->prod_qty >= 250)
-                    $this->MintingCost = 70;
-                else if ($this->GoldMint->prod_qty >= 100)
-                    $this->MintingCost = 80;
-                else if ($this->GoldMint->prod_qty >= 50)
-                    $this->MintingCost = 90;
-                else if ($this->GoldMint->prod_qty >= 20)
-                    $this->MintingCost = 100;
-                else if ($this->GoldMint->prod_qty >= 10)
-                    $this->MintingCost = 160;
-                else if ($this->GoldMint->prod_qty >= 5)
-                    $this->MintingCost = 185;
-                else if ($this->GoldMint->prod_qty >= 1)
-                    $this->MintingCost = 70;
-                else
-                    $this->MintingCost = 0;
+                foreach ($MintingCost as $MC) {
+                    if ($this->MintingCost == 0) {
+                        if ($this->GoldMintQTY >= $MC->range) {
+                            $this->MintingCost = $MC->minting_cost;
+                        }
+                    }
+                }
             }
         }
-
-
 
 
 

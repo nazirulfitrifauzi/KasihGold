@@ -7,6 +7,7 @@ use App\Models\GoldbarOwnership;
 use App\Models\GoldMinting;
 use App\Models\GoldMintingRecords;
 use App\Models\InvCart;
+use App\Models\MintingGoldPrice;
 use Illuminate\Support\Str;
 use App\Models\States;
 use App\Models\ToyyibBills;
@@ -38,30 +39,21 @@ class GoldMintingCheckout extends Component
 
 
         $this->GoldMint = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 3)->first();
+        $MintingCost = MintingGoldPrice::orderBy('id', 'desc')->get();
+        $this->MintingCost = 0;
 
         if (!$this->GoldMint) {
             redirect('home');
         } else {
             $this->GoldMintQTY = $this->GoldMint->prod_qty;
 
-            if ($this->GoldMint->prod_qty >= 1000)
-                $this->MintingCost = 50;
-            else if ($this->GoldMint->prod_qty >= 250)
-                $this->MintingCost = 70;
-            else if ($this->GoldMint->prod_qty >= 100)
-                $this->MintingCost = 80;
-            else if ($this->GoldMint->prod_qty >= 50)
-                $this->MintingCost = 90;
-            else if ($this->GoldMint->prod_qty >= 20)
-                $this->MintingCost = 100;
-            else if ($this->GoldMint->prod_qty >= 10)
-                $this->MintingCost = 160;
-            else if ($this->GoldMint->prod_qty >= 5)
-                $this->MintingCost = 185;
-            else if ($this->GoldMint->prod_qty >= 1)
-                $this->MintingCost = 70;
-            else
-                $this->MintingCost = 0;
+            foreach ($MintingCost as $MC) {
+                if ($this->MintingCost == 0) {
+                    if ($this->GoldMintQTY >= $MC->range) {
+                        $this->MintingCost = $MC->minting_cost;
+                    }
+                }
+            }
         }
     }
 
