@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Livewire\Page\DigitalGold;
+
+
 use App\Models\GoldbarOwnership;
 use Livewire\Component;
 
@@ -11,8 +14,7 @@ class DigitalGold extends Component
     public $tGoldD, $tPriceD;
     public $tGoldS, $tPriceS;
     public $tGoldN;
-    // public $history, $historyS, $historyP, $historyF;
-    // public $outright, $bb;
+
 
     public function mount()
     {
