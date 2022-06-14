@@ -84,7 +84,13 @@
                                                                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
                                                             }
 
-                                                            $comm += $prod->commission->agent_rate*$prod->prod_qty;
+
+                                                            if ($prod->products->prod_cat == 3){
+                                                                $comm += ( $prod->commission->agent_rate/100)* ($prod->products->item->marketPrice->price+(round($prod->products->item->marketPrice->price*$prod->percentage(),2)))*$prod->prod_gram;
+                                                            }
+                                                            else 
+                                                                $comm += $prod->commission->agent_rate*$prod->prod_qty;
+
                                                         @endphp
                                                         @endforeach
                                                         {{-- <x-form.basic-form wire:submit.prevent="">

@@ -150,7 +150,7 @@ class ToyyibpayController extends Controller
                     $upline_id = $golds->user->upline->user->id;
 
                     if ($golds->spot_gold == 1) {
-                        $commission = $golds->bought_price * $gold_info->item->commissionKAP->agent_rate;
+                        $commission = $golds->bought_price * ($gold_info->item->commissionKAP->agent_rate / 100);
                     }
                     CommissionDetailKap::create([
                         'user_id'           => $upline_id,
