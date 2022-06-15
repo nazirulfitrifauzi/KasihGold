@@ -121,6 +121,7 @@ class ToyyibpayController extends Controller
                     'item_id'           => $golds->item_id,
                     'ouid'              => (string) Str::uuid(),
                     'weight'            => $golds->weight,
+                    'available_weight'  => $golds->weight,
                     'bought_price'      => $golds->bought_price,
                     'active_ownership'  => 1,
                     'spot_gold'         => $golds->spot_gold,
