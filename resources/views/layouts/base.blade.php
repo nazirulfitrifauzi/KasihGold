@@ -11,8 +11,8 @@
         @endif
 
         <!-- tooltip -->
-        <script src="https://unpkg.com/@popperjs/core@2"></script>
-        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script src="{{ asset('js/popper.min.js')}}"></script>
+        <script src="{{ asset('js/tippy.min.js')}}"></script>
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
@@ -31,7 +31,7 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <link rel="stylesheet" href="{{ asset('css/aos.css')}}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
@@ -49,7 +49,7 @@
         @yield('body')
 
         @livewireScripts
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src="{{ asset('js/aos.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
             AOS.init({

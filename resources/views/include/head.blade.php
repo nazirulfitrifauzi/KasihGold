@@ -15,10 +15,10 @@
     <link rel="shortcut icon" href="{{asset('img/kasihgoldicon.jpg')}}">
     <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
     <link rel="stylesheet" href="{{ asset('css/print.css')}}" />
-     <link rel="stylesheet" href="{{ asset('css/select2.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/select2.css')}}" />
     <link rel="stylesheet" href="{{ asset('dist/apexcharts.css')}}" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/swiper.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/swiper.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('swipper/swipper.css')}}" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -27,8 +27,8 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="{{ asset('js/init-alpine.js')}}"></script>
     <script src="{{ asset('js/accounting.js')}}"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="{{ asset('js/popper.min.js')}}"></script>
+    <script src="{{ asset('js/tippy.min.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -140,12 +140,10 @@
     </div>
 
     @livewireScripts
-    <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
-    <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('js/swiper.min.js')}}"></script>
+    <script src="{{ asset('js/swiper.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('swipper/swipper.js')}}"></script>
 
