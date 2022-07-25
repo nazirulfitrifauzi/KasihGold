@@ -371,7 +371,7 @@
             @endif
             <! -- End Transfer User Details -->
 
-            <! -- Start Deceased user Details -->
+            {{-- <! -- Start Deceased user Details -->
             @if($lists->active == 1 && $lists->deceased == NULL)
                 <div>
                     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -468,7 +468,7 @@
                     </div>
                 </div>
             @endif
-            <! -- End Deceased user Details -->
+            <! -- End Deceased user Details --> --}}
         </div>
     </div>
 </div>
