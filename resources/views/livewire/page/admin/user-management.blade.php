@@ -356,7 +356,9 @@
                                 <! -- Start modal Transfer History -->
                                 <x-general.modal modalActive="openTransferHistory" title="Transaction History" modalSize="4xl">
                                     <div class="py-2">
-                                        <livewire:page.digital-gold.transaction-history/>
+                                        <livewire:page.digital-gold.transaction-history  
+                                            :lists="$lists" :key="time().$lists->id" 
+                                        />
                                     </div>
                                 </x-general.modal>
                                 <! -- End modal Transfer History -->
@@ -458,7 +460,7 @@
                 @endforelse
             </x-slot>
             <div class="px-2 py-2">
-                {{ $list->links('pagination::default') }}
+                {{ $list->links('pagination-links') }}
             </div>
         </x-table.table>
     </div>
