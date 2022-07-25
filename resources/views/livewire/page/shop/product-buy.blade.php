@@ -76,10 +76,10 @@
                                                         @php
                                                             if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
                                                                 $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
-                                                            } 
+                                                            }
                                                             elseif ($prod->products->prod_cat == 3) {
                                                                 $total += ($prod->products->item->marketPrice->price+(round($prod->products->item->marketPrice->price*$prod->percentage(),2)))*$prod->prod_gram;
-                                                            }                                           
+                                                            }
                                                             else {
                                                                 $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
                                                             }
@@ -88,7 +88,7 @@
                                                             if ($prod->products->prod_cat == 3){
                                                                 $comm += ( $prod->commission->agent_rate/100)* ($prod->products->item->marketPrice->price+(round($prod->products->item->marketPrice->price*$prod->percentage(),2)))*$prod->prod_gram;
                                                             }
-                                                            else 
+                                                            else
                                                                 $comm += $prod->commission->agent_rate*$prod->prod_qty;
 
                                                         @endphp
@@ -108,7 +108,8 @@
                                                                 </div>
                                                             </x-slot>
                                                         </x-form.basic-form> --}}
-                                                        <div class="pt-4 font-semibold">
+
+                                                        {{-- <div class="pt-4 font-semibold">
                                                             <p>Promotion</p>
                                                         </div>
                                                         <div class="flex py-4 space-x-4 border-b-2">
@@ -120,7 +121,7 @@
                                                                     Submit
                                                                 </a>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="pb-4 mt-6 border-b-2">
                                                             <div class="flex justify-between">
@@ -262,7 +263,7 @@
                         </x-form.basic-form>
                     </div>
 
-                 
+
 
                 </div>
             </div>
