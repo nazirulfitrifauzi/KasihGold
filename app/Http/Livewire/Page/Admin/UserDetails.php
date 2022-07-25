@@ -6,6 +6,7 @@ use App\Models\DeceasedUser;
 use App\Models\Profile_personal;
 use App\Models\User;
 use App\Models\UserDownline;
+use App\Models\UserUpline;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -66,9 +67,18 @@ class UserDetails extends Component
     public function submit($id)
     {
         $upline_new = Profile_personal::where('code', $this->newUpline)->first();
-        $count = UserDownline::where('downline_id', $id)->count();
+        $count = UserUpline::where('user_id', $id)->count();
 
         if ($count == 0) {
+            UserUpline::create([
+                'user_id' => $id,
+                'upline_id' => $upline_new->user_id,
+                'created_by' => auth()->user()->id,
+                'updated_by' => auth()->user()->id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
             UserDownline::create([
                 'user_id' => $upline_new->user_id,
                 'downline_id' => $id,
@@ -77,21 +87,19 @@ class UserDetails extends Component
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
-        } else {
-            UserDownline::where('downline_id', $id)->update([
-                'user_id' => $upline_new->user_id,
-            ]);
         }
 
         Profile_personal::where('user_id', $id)->update([
-            'introducer_code' => $this->newUpline,
+            'agent_id' => $this->selectedAgent,
+            'introducer_code' => $this->selectedAgent,
         ]);
 
-        $this->newUpline = "";
+        $this->selectedAgent = "";
+        $this->dispatchBrowserEvent('close-modal'); // close modal when done
 
         session()->flash('success');
         session()->flash('title', 'Success!');
-        session()->flash('message', 'User has been transfered to the new upline.');
+        session()->flash('message', 'User has been transfered to the new agent.');
     }
 
     public function submitDeceased($id)
@@ -125,6 +133,7 @@ class UserDetails extends Component
     public function render()
     {
         $lists = User::with('upline')->whereId($this->userId)->first();
+        // dd($lists->profile);
 
         return view('livewire.page.admin.user-details', [
             'lists' => $lists,
