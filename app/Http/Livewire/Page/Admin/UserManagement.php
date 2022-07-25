@@ -73,7 +73,7 @@ class UserManagement extends Component
 
     public function render()
     {
-        return view( 'livewire.page.admin.user-management', [
+        return view('livewire.page.admin.user-management', [
             'list' => User::where('role','!=',1)
                             ->where('email', 'like', '%' . $this->search . '%')
                             ->paginate(10),

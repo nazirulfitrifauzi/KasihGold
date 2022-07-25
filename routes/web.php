@@ -56,6 +56,7 @@ use App\Http\Livewire\Page\Admin\UserManagement;
 use App\Http\Livewire\Page\Reporting\ListReport;
 use App\Http\Livewire\Page\Admin\Promo\PromoList;
 use App\Http\Livewire\Page\Admin\Promo\PromoAdd;
+use App\Http\Livewire\Page\Admin\UserDetails;
 use App\Http\Livewire\Page\PhysicalGold\GoldMinting;
 use App\Http\Livewire\Page\PhysicalGold\GoldMintingCheckout;
 use Illuminate\Support\Facades\Artisan;
@@ -185,6 +186,7 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/create-announcements', CreateAnnouncement::class)->name('admin.create-announcements');
         Route::post('admin/list-announcements/{id}', [AnnouncementController::class, 'delete'])->name('admin.list-announcements.delete');
         Route::get('admin/user-management', UserManagement::class)->name('admin.userManagement');
+        Route::get('admin/user-details/{id}', UserDetails::class)->name('admin.user-details');
 
         Route::get('reporting', ListReport::class)->name('reporting');
         Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');

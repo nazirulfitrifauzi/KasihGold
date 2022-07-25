@@ -66,7 +66,7 @@
                         </x-table.table-body>
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <div class="flex space-x-2" x-data="{ openModal : false, openModal2 : false, openModal3 : false ,openTransferHistory :false}">
-                                <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500 cursor-pointer tooltipbtn" @click="openModal = true" data-title="View Details" data-placement="top"/>
+                                {{-- <x-heroicon-o-eye class="w-5 h-5 mr-1 text-blue-500 cursor-pointer tooltipbtn" @click="openModal = true" data-title="View Details" data-placement="top"/>
 
                                 <! -- Start modal Details -->
                                 <x-general.modal modalActive="openModal" title="Details" modalSize="2xl">
@@ -268,7 +268,14 @@
 
                                     </div>
                                 </x-general.modal>
-                                <! -- End modal Details -->
+                                <! -- End modal Details --> --}}
+                                <a href={{ route('admin.user-details', ['id' => $lists->id]) }}>
+                                    <x-heroicon-o-eye
+                                        class="w-5 h-5 text-blue-500 cursor-pointer tooltipbtn"
+                                        data-title="View Details"
+                                        data-placement="top"
+                                    />
+                                </a>
 
                                 @if ($lists->role == 4 && $lists->active == 0)
                                     <x-heroicon-o-external-link class="w-5 h-5 mr-1 text-yellow-300 cursor-pointer tooltipbtn" @click="openModal2 = true" x-on:close-modal.window="openModal2 = false" data-title="Transfer User" data-placement="top"/>
@@ -349,7 +356,7 @@
                                 <! -- Start modal Transfer History -->
                                 <x-general.modal modalActive="openTransferHistory" title="Transaction History" modalSize="4xl">
                                     <div class="py-2">
-                                        <livewire:page.digital-gold.transaction-history/>    
+                                        <livewire:page.digital-gold.transaction-history/>
                                     </div>
                                 </x-general.modal>
                                 <! -- End modal Transfer History -->
