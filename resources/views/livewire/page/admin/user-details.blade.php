@@ -307,7 +307,7 @@
             </div>
 
             <! -- Start Transfer User Details -->
-            @if ($lists->role == 3 && $history == 0)
+            @if ($lists->role == 4 && $lists->active == 0)
                 <div>
                     <div class="md:grid md:grid-cols-3 md:gap-6">
                         <div class="md:col-span-1">
