@@ -43,7 +43,7 @@
             <x-slot name="tbody">
                 @php $i = 1 + $list->currentPage() * $list->perPage() - $list->perPage(); @endphp
                 @forelse ($list as $index => $lists)
-                    <tr wire:key="lists-{{ $lists->id }}">
+                    <tr wire:key="lists-{{ $lists->id }}" >
                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                             <p>{{ $i++ }}</p>
                         </x-table.table-body>
@@ -451,7 +451,7 @@
                 @endforelse
             </x-slot>
             <div class="px-2 py-2">
-                {{ $list->links('pagination-links') }}
+                {{ $list->links('pagination::default') }}
             </div>
         </x-table.table>
     </div>
