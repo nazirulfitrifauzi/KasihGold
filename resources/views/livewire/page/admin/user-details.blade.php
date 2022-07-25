@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col items-center mt-4 intro-y sm:flex-row">
+    <div class="flex flex-col items-center my-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             User Details
         </h2>
@@ -13,8 +13,8 @@
         <x-toaster.warning title="{{ session('title') }}" message="{{ session('message') }}" />
         @endif
     </div>
-
-    <div class="p-4 mt-6 mb-20 bg-gray-100 sm:mb-0">
+    <div class="grid grid-cols-12 gap-6 p-4 mb-20 bg-gray-100 sm:mb-0">
+        <div class="col-span-12 lg:col-span-12 xxl:col-span-12 lg:block">
         <div>
             <! -- Start Introducer -->
             <div>
@@ -47,7 +47,7 @@
             </div>
             <! -- End Introducer -->
 
-            <div class="hidden sm:block" aria-hidden="true">
+            <div class="block" aria-hidden="true">
                 <div class="py-5">
                     <div class="border-t border-gray-300"></div>
                 </div>
@@ -103,7 +103,7 @@
             </div>
             <! -- End Personal Details -->
 
-            <div class="hidden sm:block" aria-hidden="true">
+            <div class="block" aria-hidden="true">
                 <div class="py-5">
                     <div class="border-t border-gray-300"></div>
                 </div>
@@ -141,7 +141,7 @@
             </div>
             <! -- End Bank Details -->
 
-            <div class="hidden sm:block" aria-hidden="true">
+            <div class="block" aria-hidden="true">
                 <div class="py-5">
                     <div class="border-t border-gray-300"></div>
                 </div>
@@ -200,7 +200,7 @@
             </div>
             <! -- End Nominee Details -->
 
-            <div class="hidden sm:block" aria-hidden="true">
+            <div class="block" aria-hidden="true">
                 <div class="py-5">
                     <div class="border-t border-gray-300"></div>
                 </div>
@@ -300,7 +300,7 @@
             </div>
             <! -- End Supporting Documents Details -->
 
-            <div class="hidden sm:block" aria-hidden="true">
+            <div class="block" aria-hidden="true">
                 <div class="py-5">
                     <div class="border-t border-gray-300"></div>
                 </div>
@@ -363,7 +363,7 @@
                     </div>
                 </div>
 
-                <div class="hidden sm:block" aria-hidden="true">
+                <div class="block" aria-hidden="true">
                     <div class="py-5">
                         <div class="border-t border-gray-300"></div>
                     </div>
@@ -387,8 +387,7 @@
                             <div class="">
                                 <x-form.basic-form wire:submit.prevent="submitDeceased({{ $lists->id }})">
                                     <x-slot name="content">
-
-                                            <div class="px-4 bg-white sm:p-6">
+                                            <div class="p-6 bg-white">
                                                 <x-form.switch-toggle
                                                     label="{{ $check == true ? 'YES' : 'NO'}}"
                                                     wire:click="toggleDeceased"
@@ -469,6 +468,7 @@
                 </div>
             @endif
             <! -- End Deceased user Details --> --}}
+        </div>
         </div>
     </div>
 </div>
