@@ -3,7 +3,7 @@
         {{ $label }}
     </label>
     <div class="flex mt-1 rounded-md shadow-sm">
-        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($address1 == "") ? "italic" : "" }}">
+        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($address1 == "") ? "italic" : "" }}">
             @if($address1 == "")
                 NO DATA
             @else
@@ -13,7 +13,7 @@
     </div>
 
     <div class="flex mt-1 rounded-md shadow-sm">
-        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($address2 == "") ? "italic" : "" }}">
+        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($address2 == "") ? "italic" : "" }}">
             @if($address2 == "")
                 NO DATA
             @else
@@ -24,7 +24,7 @@
 
     @if ($address3 != "")
     <div class="flex mt-1 rounded-md shadow-sm">
-        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($address3 == "") ? "italic" : "" }}">
+        <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($address3 == "") ? "italic" : "" }}">
             @if($address3 == "")
                 NO DATA
             @else
@@ -40,7 +40,7 @@
             Town
         </label>
         <div class="flex mt-1 rounded-md shadow-sm">
-            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($town == "") ? "italic" : "" }}">
+            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($town == "") ? "italic" : "" }}">
                 @if($town == "")
                 NO DATA
             @else
@@ -54,7 +54,7 @@
             Postcode
         </label>
         <div class="flex mt-1 rounded-md shadow-sm">
-            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($postcode == "") ? "italic" : "" }}">
+            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($postcode == "") ? "italic" : "" }}">
                 @if($postcode == "")
                 NO DATA
             @else
@@ -68,7 +68,7 @@
             State
         </label>
         <div class="flex mt-1 rounded-md shadow-sm">
-            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 {{ ($state == "") ? "italic" : "" }}">
+            <p class="block w-full transition duration-150 ease-in-out form-input sm:text-sm  sm:leading-5 bg-gray-200 cursor-not-allowed {{ ($state == "") ? "italic" : "" }}">
                 @if($state == "")
                 NO DATA
             @else
