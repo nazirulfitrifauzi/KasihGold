@@ -75,7 +75,7 @@ class UserManagement extends Component
     {
         return view( 'livewire.page.admin.user-management', [
             'list' => User::where('role','!=',1)
-                            ->where('users.email', 'like', '%' . $this->search . '%')
+                            ->where('email', 'like', '%' . $this->search . '%')
                             ->paginate(10),
         ])->extends('default.default');
     }
