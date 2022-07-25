@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\MarketPrice;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/market-price', function () {
+    $marketPrice = DB::table('market_prices')
+                        ->join('inv_items', 'inv_items.id', '=', 'market_prices.item_id')
+                        ->select('inv_items.name', 'market_prices.price', 'market_prices.updated_at')
+                        ->get();
+
+    return $marketPrice;
 });
