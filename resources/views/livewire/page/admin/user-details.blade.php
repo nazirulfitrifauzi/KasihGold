@@ -336,13 +336,13 @@
                                             <div class="mt-2">
                                                 <h3 class="text-base font-semibold leading-6 text-gray-900">Current {{ $lists->name }}'s Upline :</h3>
                                                 <p class="text-sm text-gray-500">
-                                                    {{ $upline == NULL ? 'No Data Available' : $upline->upline->name }}
+                                                    {{ $upline == NULL ? 'No Data Available' : $upline->user->name }}
                                                 </p>
                                             </div>
                                             <div class="mt-4">
                                                 <h3 class="text-base font-semibold leading-6 text-gray-900">Transfer to new Upline :</h3>
                                                 <div class="px-44 ">
-                                                    <x-form.input label="" value="newUpline" wire:model.defer="newUpline" mandatory="" disable="false" placeholder="Insert new upline KG code"/>
+                                                    <x-form.input label="" value="newUpline" wire:model.defer="newUpline" mandatory="" disable="false" placeholder="Insert new upline KAP code"/>
                                                 </div>
                                             </div>
                                         </div>

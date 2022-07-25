@@ -12,6 +12,6 @@ class UserUpline extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'upline_id', 'id');
+        return $this->belongsTo(User::class, 'upline_id', 'id',);
     }
 }
