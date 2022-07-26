@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Page\Admin;
 
 use App\Models\DeceasedUser;
 use App\Models\Profile_personal;
+use App\Models\ReferralCode;
 use App\Models\User;
 use App\Models\UserDownline;
 use App\Models\UserUpline;
@@ -66,32 +67,39 @@ class UserDetails extends Component
 
     public function submit($id)
     {
-        $upline_new = Profile_personal::where('code', $this->newUpline)->first();
-        $count = UserUpline::where('user_id', $id)->count();
+        $upline_new   = ReferralCode::where('referral_code', $this->newUpline)->value('user_id');
 
-        if ($count == 0) {
-            UserUpline::create([
-                'user_id' => $id,
-                'upline_id' => $upline_new->user_id,
-                'created_by' => auth()->user()->id,
-                'updated_by' => auth()->user()->id,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-
-            UserDownline::create([
-                'user_id' => $upline_new->user_id,
-                'downline_id' => $id,
-                'created_by' => auth()->user()->id,
-                'updated_by' => auth()->user()->id,
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
+        $checkUpline = UserUpline::where('user_id', $id)->count();
+        if ($checkUpline > 0) {
+            UserUpline::where('user_id', $id)->delete();
         }
 
+        UserUpline::create([
+            'user_id' => $id,
+            'upline_id' => $upline_new,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        $checkDownline = UserDownline::where('downline_id', $id)->count();
+        if ($checkDownline > 0) {
+            UserDownline::where('downline_id', $id)->delete();
+        }
+
+        UserDownline::create([
+            'user_id' => $upline_new,
+            'downline_id' => $id,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         Profile_personal::where('user_id', $id)->update([
-            'agent_id' => $this->selectedAgent,
-            'introducer_code' => $this->selectedAgent,
+            'agent_id' => $upline_new,
+            'introducer_code' => $upline_new,
         ]);
 
         $this->selectedAgent = "";
