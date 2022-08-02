@@ -48,6 +48,16 @@
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">−</span>
                                     </button>
+
+                                    @php
+
+                                        $cart_qty = 0;
+                                        // $quantity=0;
+                                        // $quantity = /App/Models/InvCart::select('prod_qty')->where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id',$types->products->item_id)->first();
+                                        $quantity = DB::table('inv_cart')->select('prod_qty')->where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id',$types->products->item_id)->where('deleted_at',NULL)->first();
+                                        // dump($quantity);
+
+                                    @endphp
                                     <input type="text"
                                         class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
                                         hover:text-black focus:text-black  md:text-basecursor-default flex items-center
@@ -55,9 +65,12 @@
                                         text-gray-700 
                                         outline-none"
                                         {{-- name="custom-input-number" value="{{$types->products->item_id}}" disabled></input> --}}
-                                        name="custom-input-number" value="{{($types->cart ? ($types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first() ? $types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first()->prod_qty : 0): 0 )}}" disabled>
+                                        name="custom-input-number" value="{{($quantity ? $quantity->prod_qty : 0)}}" disabled>
                                     
                                     </input>
+                                    @if(!empty($quantity))
+                                    {{-- {{dump($quantity)}} --}}
+                                    @endif
                                     <button  wire:click="exitProdAdd({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
                                         <span class="m-auto text-2xl font-thin">+</span>
@@ -77,8 +90,8 @@
                                <p>Total Weight</p>
                             </x-table.table-body>
 
-                            <x-table.table-body colspan="" class="text-xs font-medium text-{{ ($total_weight >= 1 &&  (floor($total_weight) == $total_weight)) ? 'grey' : 'red' }}-700 ">
-                                <p>{{$total_weight}} g</p>
+                            <x-table.table-body colspan="" class="text-xs font-medium text-{{ ($gross_weight >= 1 &&  (floor($gross_weight) == $gross_weight)) ? 'grey' : 'red' }}-700 ">
+                                <p>{{$gross_weight}} g</p>
                             </x-table.table-body>
                         </tr>
                         

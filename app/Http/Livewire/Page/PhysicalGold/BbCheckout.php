@@ -16,7 +16,7 @@ class BbCheckout extends Component
 
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAccId;
     public $banks, $data, $total, $outright, $cartInfo;
-    public $centiG, $deciG, $quartG, $oneG;
+    public $centiG, $deciG, $quartG, $oneG, $beyond1G;
 
     public function mount()
     {
@@ -35,6 +35,7 @@ class BbCheckout extends Component
         $this->deciG = 0;
         $this->quartG = 0;
         $this->oneG = 0;
+        $this->beyond1G = 0;
 
         foreach ($this->cartInfo as $cart) {
             $this->total += $cart->products->prod_weight * $cart->prod_qty;
@@ -46,6 +47,8 @@ class BbCheckout extends Component
                 $this->quartG = $cart->prod_qty;
             else if ($cart->products->prod_weight == 1.00)
                 $this->oneG = $cart->prod_qty;
+            else
+                $this->beyond1G = $cart->prod_qty;
         }
 
         $this->total = $this->total * 310;
@@ -72,6 +75,7 @@ class BbCheckout extends Component
                 'decigram'                  => $this->deciG,
                 'quarter_gram'              => $this->quartG,
                 'one_gram'                  => $this->oneG,
+                'beyond1G'                  => $this->beyond1G,
                 'surrendered_amount'        => $this->total,
                 'updated_by'                => auth()->user()->id,
                 'created_by'                => auth()->user()->id,
@@ -106,6 +110,7 @@ class BbCheckout extends Component
                 'decigram'                  => $this->deciG,
                 'quarter_gram'              => $this->quartG,
                 'one_gram'                  => $this->oneG,
+                'beyond1G'                  => $this->beyond1G,
                 'surrendered_amount'        => $this->total,
                 'buyback_price'             => ($this->total * 1.06),
                 'buyback_date'              => now()->addMonths(7),
