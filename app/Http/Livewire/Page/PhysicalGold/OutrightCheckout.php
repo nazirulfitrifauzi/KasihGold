@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\DB;
 class OutrightCheckout extends Component
 {
 
-    public $prod_qty, $type, $total, $total_weight, $buybackStatus;
-    public $goldOwnership;
+    public $prod_qty, $type, $total, $total_weight, $gross_weight, $buybackStatus;
+    public $goldOwnership, $beyond1G, $originalVariance, $OVWeight;
 
     public function mount()
     {
@@ -26,35 +26,22 @@ class OutrightCheckout extends Component
 
     public function exitProdAdd($type)
     {
-        $gold = GoldbarOwnership::where('user_id', auth()->user()->id)->where('item_id', $type)->where('active_ownership', 1)->first();
         $goldQty = GoldbarOwnership::where('user_id', auth()->user()->id)->where('item_id', $type)->groupBy('item_id')->select('item_id', DB::raw('count(*) as total'))->first();
 
-        if ($gold->cart) {
+        $exitCart = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id', $type)->first();
 
-            $outCart = $gold->cart->where('exit_type', 1)->where('item_id', $type)->first();
-            if ($outCart) {
+        if ($exitCart) {
 
-                if ($goldQty->total > $outCart->prod_qty) {
-                    $outCart->prod_qty += 1;
-                    $outCart->save();
-                } else {
-                    session()->flash('error');
-                    session()->flash('title', 'Invalid Quantity!');
-                    session()->flash('message', 'You cannot exceed more than what you own.');
-                }
+
+
+
+            if ($goldQty->total > $exitCart->prod_qty) {
+                $exitCart->prod_qty += 1;
+                $exitCart->save();
             } else {
-                InvCart::create(
-                    [
-                        'user_id'       => auth()->user()->id,
-                        'item_id'       => $type,
-                        'prod_qty'      => 1,
-                        'exit_type'     => 1,
-                        'created_by'    => auth()->user()->id,
-                        'updated_by'    => auth()->user()->id,
-                        'created_at'    => now(),
-                        'updated_at'    => now(),
-                    ]
-                );
+                session()->flash('error');
+                session()->flash('title', 'Invalid Quantity!');
+                session()->flash('message', 'You cannot exceed more than what you own.');
             }
         } else {
             InvCart::create(
@@ -76,18 +63,18 @@ class OutrightCheckout extends Component
     {
 
         $gold = GoldbarOwnership::where('user_id', auth()->user()->id)->where('item_id', $type)->where('active_ownership', 1)->first();
+        $exitCart = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id', $type)->first();
 
-        if ($gold->cart) {
 
-            $outCart = $gold->cart->where('exit_type', 1)->where('item_id', $type)->first();
-            if ($outCart) {
+        if ($exitCart) {
 
-                if ($outCart->prod_qty != 1) {
-                    $outCart->prod_qty -= 1;
-                    $outCart->save();
-                } else
-                    $outCart->delete();
-            }
+
+
+            if ($exitCart->prod_qty != 1) {
+                $exitCart->prod_qty -= 1;
+                $exitCart->save();
+            } else
+                $exitCart->delete();
         }
     }
 
@@ -106,7 +93,7 @@ class OutrightCheckout extends Component
 
     public function outright()
     {
-        if ($this->total_weight >= 1 &&  (floor($this->total_weight) == $this->total_weight)) {
+        if (($this->originalVariance == 1) || ($this->OVWeight == 0 && $this->beyond1G == 1)) {
             if ($this->buybackStatus == 1) {
 
                 session()->flash('outright', 2);
@@ -126,20 +113,42 @@ class OutrightCheckout extends Component
     public function render()
     {
         $this->total_weight = 0;
+        $this->gross_weight = 0;
         $this->total = 0;
+
+        $this->beyond1G = 0;
+        $this->originalVariance = 0; //check if the normal variance meets the 1g denomination requirements
+        $this->OVWeight = 0;
 
 
         $goldtype = InvInfo::all();
         $this->goldOwnership = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->groupBy('item_id')->select('item_id', DB::raw('count(*) as total'))->get();
 
+
         $cartInfo = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->get();
         foreach ($cartInfo as $cartItems) {
-            $this->total_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
-            if ($this->total_weight >= 1 && (floor($this->total_weight) == $this->total_weight)) {
-                $this->total = $this->total_weight * 310;
+
+            if (($cartItems->item_id == 11)) {
+                $this->total_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
+                $this->gross_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
+                $this->beyond1G = 1;
+            } else {
+                $this->OVWeight += $cartItems->products->prod_weight * $cartItems->prod_qty;
+                $this->gross_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
             }
         }
 
+        if ($this->OVWeight >= 1 && (floor($this->OVWeight) == $this->OVWeight)) {
+            $this->originalVariance = 1;
+            $this->total_weight += $this->OVWeight;
+        } else {
+            $this->originalVariance = 0;
+        }
+
+
+        if (($this->originalVariance == 1) || ($this->OVWeight == 0 && $this->beyond1G == 1)) {
+            $this->total = $this->total_weight * 310;
+        }
 
 
 
