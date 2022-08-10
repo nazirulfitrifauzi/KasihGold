@@ -18,6 +18,9 @@ class DigitalGold extends Component
 
     public function mount()
     {
+        $this->tGoldN = 0;
+        $this->tGoldD = 0;
+        $this->tGoldS = 0;
         $goldInfo = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', '<>', '4.25')->where('spot_gold', 0)->get();
         foreach ($goldInfo as $golds) {
             $this->tGoldN += $golds->weight;
