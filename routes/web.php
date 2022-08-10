@@ -59,6 +59,8 @@ use App\Http\Livewire\Page\Admin\Promo\PromoAdd;
 use App\Http\Livewire\Page\Admin\UserDetails;
 use App\Http\Livewire\Page\PhysicalGold\GoldMinting;
 use App\Http\Livewire\Page\PhysicalGold\GoldMintingCheckout;
+use App\Http\Livewire\Page\PhysicalGold\OutrightCheckoutSG;
+use App\Http\Livewire\Page\PhysicalGold\OutrightSpotGold;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/clear-cache', function () {
@@ -158,6 +160,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('gold-minting', GoldMinting::class)->name('goldMinting');
         Route::get('gm-checkout', GoldMintingCheckout::class)->name('mintingCheckout');
+        Route::get('outright-spot-gold', OutrightSpotGold::class)->name('outSpotGold');
+        Route::get('outright-sg', OutrightCheckoutSG::class)->name('outCheckoutSG');
 
 
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
