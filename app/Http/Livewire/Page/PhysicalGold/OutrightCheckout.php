@@ -16,11 +16,6 @@ class OutrightCheckout extends Component
 
     public function mount()
     {
-
-
-
-
-
         $this->buybackStatus = 0;
     }
 
@@ -31,9 +26,6 @@ class OutrightCheckout extends Component
         $exitCart = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id', $type)->first();
 
         if ($exitCart) {
-
-
-
 
             if ($goldQty->total > $exitCart->prod_qty) {
                 $exitCart->prod_qty += 1;
