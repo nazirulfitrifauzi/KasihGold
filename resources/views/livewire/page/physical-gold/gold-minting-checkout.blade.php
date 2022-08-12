@@ -2,7 +2,7 @@
     <div class="mb-20 bg-white rounded-lg sm:mb-0">
         <main class="px-4 py-6 my-8">
             <div class="container mx-auto">
-                <h3 class="text-2xl font-medium text-gray-700">Bank Information</h3>
+                <h3 class="text-2xl font-medium text-gray-700">Customer Information</h3>
                 <div class="flex flex-col mt-2 lg:flex-row">
                     <div class="w-full lg:w-1/2 order-2">
                         
@@ -51,11 +51,8 @@
                         <div class="flex justify-center lg:justify-end">
                             <div class="w-full max-w-md px-4 py-3 border">
                                 <div class="flex items-center justify-between">
-                                    @if(session('outright')==1)
-                                    <h3 class="font-medium text-gray-700">Outright total </h3>
-                                    @else
-                                    <h3 class="font-medium text-gray-700">Buyback total </h3>
-                                    @endif
+                                  
+                                    <h3 class="font-medium text-gray-700">Minting Spot Gold </h3>
                                 </div>
 
                                 

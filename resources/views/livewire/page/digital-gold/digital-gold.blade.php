@@ -108,6 +108,20 @@
                                 </div>
                         </x-general.price-card>
                     </a>
+                    <a href="outright-spot-gold">
+                        <x-general.price-card  class="text-white bg-red-400 rounded-lg">
+                            <div class="text-base font-bold text-white">
+                                    <div class="flex flex-col items-center space-x-4 lg:flex-row">
+                                        <div class="flex px-4 py-4 ml-3 bg-white rounded-full item-center lg:ml-0">
+                                            <x-heroicon-o-database class="w-8 h-8 text-red-400" />
+                                        </div>
+                                        <div class="pt-2 text-base text-center lg:text-xl lg:text-left lg:pt-0">
+                                            <p>Outright (Flexible Gold)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </x-general.price-card>
+                    </a>
                 </div>
             </x-general.grid>
 
