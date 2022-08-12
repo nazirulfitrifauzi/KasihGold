@@ -218,7 +218,7 @@ class WithdrawalRequest extends Component
             $goldBar->weight_vacant += $ownership->grammage;
             $goldBar->save();
 
-            $goldOwnership->ex_flag = 6; //success flag for Gold Minting Exit
+            $goldOwnership->ex_flag = 1; //success flag for Gold Minting Exit
             $ownership->save();
         }
 
@@ -268,8 +268,15 @@ class WithdrawalRequest extends Component
     public function SGOutApp($appid)
     {
 
+        $this->validate([
+            'proofdoc' => 'required|file|max:4096', // 4MB Max
+
+        ]);
+
         $goldMint = outrightSG::where('id', $appid)->first();
         $goldMint->status = 1;
+        $goldMint->doc_1 = $this->proofdoc->storeAs('public/exit', $goldMint->id . '-Outright-ProofOfTransfer.jpg');
+
         $goldMint->save();
 
         $goldMintRecord = outrightSGRecords::where('status', 3)->where('exit_id', $goldMint->id)->get();
@@ -287,7 +294,7 @@ class WithdrawalRequest extends Component
             $goldBar->weight_vacant += $ownership->grammage;
             $goldBar->save();
 
-            $goldOwnership->status = 9; //success flag for Gold Minting Exit
+            $ownership->status = 1; //success flag for Gold Minting Exit
             $ownership->save();
         }
 
