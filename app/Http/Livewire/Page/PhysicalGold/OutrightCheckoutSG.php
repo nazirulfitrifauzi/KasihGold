@@ -134,7 +134,7 @@ class OutrightCheckoutSG extends Component
             $OutrightRecords->save();
         }
 
-        session()->flash('message', 'Your Buy Back request has successfully submitted');
+        session()->flash('message', 'Your Outright request has successfully submitted');
         session()->flash('success');
         session()->flash('title', 'Success!');
         return redirect('home');
