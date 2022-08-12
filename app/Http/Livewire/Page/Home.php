@@ -9,6 +9,7 @@ use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
 use App\Models\OutrightSell;
+use App\Models\outrightSG;
 use App\Models\PhysicalConvert;
 use App\Models\User;
 use App\Models\UserDownline;
@@ -33,7 +34,7 @@ class Home extends Component
         if (auth()->user()->isAdminKAP()) {
             $this->pendingApproval = User::where('client', 2)->where('role', 3)->where('active', 0)->get();
             $this->myAgent = User::where('client', 2)->where('role', 3)->where('active', 1)->get();
-            $this->withdrawalRequest = (OutrightSell::where('status', 0)->count() + BuyBack::where('status', 0)->count() + PhysicalConvert::where('status', 0)->count());
+            $this->withdrawalRequest = (OutrightSell::where('status', 0)->count() + BuyBack::where('status', 0)->count() + PhysicalConvert::where('status', 0)->count() + outrightSG::where('status', 0)->count());
             $this->todayTrans = GoldbarOwnership::where('split', '!=', 3)->whereDate('created_at', '=', now()->format('Y-m-d'))->sum('bought_price');
             $this->cashback = CommissionDetailKap::sum('commission');
             $this->chart1 = GoldbarOwnership::get();
