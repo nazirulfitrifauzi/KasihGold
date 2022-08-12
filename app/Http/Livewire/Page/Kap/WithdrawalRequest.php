@@ -9,6 +9,8 @@ use App\Models\GoldbarOwnership;
 use App\Models\GoldMinting;
 use App\Models\GoldMintingRecords;
 use App\Models\OutrightSell;
+use App\Models\outrightSG;
+use App\Models\outrightSGRecords;
 use App\Models\PhysicalConvert;
 use App\Models\ToyyibBills;
 use Illuminate\Support\Facades\Mail;
@@ -201,7 +203,7 @@ class WithdrawalRequest extends Component
         $goldMint->status = 1;
         $goldMint->save();
 
-        $goldMintRecord = GoldMintingRecords::where('status', 1)->where('bill_code', $goldMint->bill_code)->get();
+        $goldMintRecord = GoldMintingRecords::where('status', 3)->where('bill_code', $goldMint->bill_code)->get();
 
 
 
@@ -243,7 +245,7 @@ class WithdrawalRequest extends Component
         $goldOwnership = GoldbarOwnership::where('ex_id', $goldMint->id)->where('user_id', $goldMint->user_id)->where('ex_flag', 5)->get();
 
         foreach ($goldOwnership as $ownership) {
-            $goldMintRecord = GoldMintingRecords::where('gold_ids', $ownership->id)->where('status', 1)->where('bill_code', $goldMint->bill_code)->first();
+            $goldMintRecord = GoldMintingRecords::where('gold_ids', $ownership->id)->where('status', 3)->where('bill_code', $goldMint->bill_code)->first();
             $ownership->available_weight += $goldMintRecord->grammage;
             $ownership->ex_flag = 7; //fail flag for Gold Minting Exit
             if ($ownership->active_ownership == 0) {
@@ -263,6 +265,74 @@ class WithdrawalRequest extends Component
         return redirect('home');
     }
 
+    public function SGOutApp($appid)
+    {
+
+        $goldMint = outrightSG::where('id', $appid)->first();
+        $goldMint->status = 1;
+        $goldMint->save();
+
+        $goldMintRecord = outrightSGRecords::where('status', 3)->where('exit_id', $goldMint->id)->get();
+
+
+
+
+        foreach ($goldMintRecord as $ownership) {
+
+            $goldOwnership = GoldbarOwnership::where('id', $ownership->gold_ids)->where('ex_id', $goldMint->id)->where('user_id', $goldMint->user_id)->where('ex_flag', 8)->first();
+
+
+            $goldBar = Goldbar::where('id', $goldOwnership->gold_id)->first();
+            $goldBar->weight_occupied -= $ownership->grammage;
+            $goldBar->weight_vacant += $ownership->grammage;
+            $goldBar->save();
+
+            $goldOwnership->status = 9; //success flag for Gold Minting Exit
+            $ownership->save();
+        }
+
+        session()->flash('success');
+        session()->flash('title', 'Success!');
+        session()->flash('message', 'Spot Gold Outright Request has successfully approved!');
+
+        // Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($goldMint, $toyyibBill));
+
+
+        return redirect('home');
+    }
+
+    public function SGOutDec($appid)
+    {
+
+        $goldMint = outrightSG::where('id', $appid)->first();
+        $goldMint->status = 2;
+        $goldMint->save();
+
+
+        $goldOwnership = GoldbarOwnership::where('ex_id', $goldMint->id)->where('user_id', $goldMint->user_id)->where('ex_flag', 8)->get();
+
+        foreach ($goldOwnership as $ownership) {
+            $goldMintRecord = outrightSGRecords::where('gold_ids', $ownership->id)->where('status', 3)->where('exit_id', $goldMint->id)->first();
+            $ownership->available_weight += $goldMintRecord->grammage;
+            $ownership->status = 10; //fail flag for Gold Minting Exit
+            if ($ownership->active_ownership == 0) {
+                $ownership->active_ownership = 1;
+            }
+            $goldMintRecord->update(['status' => 2]);
+            $ownership->save();
+        }
+
+        session()->flash('warning');
+        session()->flash('title', 'Declined!');
+        session()->flash('message', 'Spot Gold Outright Request has declined and the gold is returned back to their inventory!');
+
+
+        // Mail::to("mehmediskandar7@gmail.com")->send(new PhysicalGoldExchange($goldMint, $toyyibBill));
+
+
+        return redirect('home');
+    }
+
     public function render()
     {
         return view('livewire.page.kap.withdrawal-request', [
@@ -270,6 +340,7 @@ class WithdrawalRequest extends Component
             'buybacks' => BuyBack::where('status', 0)->paginate(5),
             'physical' => PhysicalConvert::where('status', 0)->paginate(5),
             'spotgold' => GoldMinting::where('status', 0)->paginate(5),
+            'spotgoldO' => outrightSG::where('status', 0)->paginate(5),
         ]);
     }
 }

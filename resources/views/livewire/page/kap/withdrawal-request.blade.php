@@ -52,6 +52,14 @@
                         <div class="mt-1 text-xl font-bold text-white">Gold Minting</div>
                     </div>
                 </x-cardtab.title>
+                <x-cardtab.title name="4" livewire="" bg="yellow">
+                    <x-slot name="icon">
+                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-yellow-600"/>
+                    </x-slot>
+                    <div class="flex justify-center text-center">
+                        <div class="mt-1 text-xl font-bold text-white">Outright Spot Gold</div>
+                    </div>
+                </x-cardtab.title>
             </x-general.grid>
 
 
@@ -544,6 +552,129 @@
                 </div>
             </x-cardtab.content>
             <!--End Gold Minting -->
+
+
+            <!--Start Outright SG  -->
+            <x-cardtab.content name="4" x-cloak>
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12">
+                        <x-table.table>
+                            <x-slot name="thead">
+                                <x-table.table-header class="text-left" value="No" sort="" />
+                                <x-table.table-header class="text-left" value="Name" sort="" />
+                                <x-table.table-header class="text-left" value="Email" sort="" />
+                                <x-table.table-header class="text-left" value="Goldbar Grammage" sort="" />
+                                <x-table.table-header class="text-left" value="Applied Date" sort="" />
+                                <x-table.table-header class="text-left" value="Approval Status" sort="" />
+                                <x-table.table-header class="text-left" value="Action" sort="" />
+                            </x-slot>
+                            <x-slot name="tbody">
+                                @forelse ($spotgoldO as $itemSG)
+                                    <tr>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{ $loop->iteration  }}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$itemSG->user->name}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$itemSG->user->email}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$itemSG->total_grammage}} g</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                            <p>{{$itemSG->created_at->format('d-m-Y')}}</p>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
+                                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($itemSG->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($itemSG->status == 1) ? 'green' : 'yellow'}}-800">{{ ($itemSG->status == 1) ? 'Successful': 'Pending'}}</span>
+                                        </x-table.table-body>
+                                        <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
+                                            <div x-data="{ openShow: false}">
+                                                <a href="#detail_{{$itemSG->id}}" @click="openShow = true"
+                                                    class="inline-flex items-center px-4 py-2 font-semibold text-white bg-orange-400 rounded-lg hover:bg-orange-500 focus:outline-none">
+                                                    <x-heroicon-o-eye class="w-5 h-5 mr-1" />
+                                                    Show
+                                                </a>
+
+                                                {{-- Start modal Show --}}
+                                                <x-general.modal modalActive="openShow" title="Electronic Fund Transfer" modalSize="lg">
+                                                    <x-form.basic-form >
+                                                        <x-slot name="content">
+                                                            <div class="p-4 mt-4 leading-4">
+                                                                <div class="h-full">
+                                                                    <h2 class="text-lg font-bold">Customer Bank Information</h2>
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$itemSG->user->bank->acc_holder_name}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$itemSG->user->bank->swift_code}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mt-5">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="{{$itemSG->user->bank->acc_no}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h2 class="mt-5 text-lg font-bold">Surrendered Amount</h2>
+
+                                                                    <div class="mt-3">
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input disabled type="text" value="RM {{number_format($itemSG->surrendered_amount,2)}}"
+                                                                                class="block w-full text-gray-400 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5">
+                                                                        </div>
+                                                                    </div>
+                                                                
+
+                                                                    <h2 class="mt-5 text-lg font-bold">Proof of Transfer</h2>
+
+                                                                    <div class="flex mt-5">
+                                                                        <label for="product-img1"
+                                                                            class="w-full p-10 text-center {{ ($errors->has('proofdoc')) ? 'bg-red-400  hover:bg-red-500': 'bg-gray-200  hover:bg-gray-300' }} rounded-lg shadow cursor-pointer hover:bg-gray-300 group">
+                                                                                <span
+                                                                                    class="inline-flex items-center font-medium {{ ($errors->has('proofdoc')) ? 'text-red-400 ': 'text-gray-600' }} {{ ($errors->has('proofdoc')) ? 'group-hover:text-red-500': 'group-hover:text-gray-700' }}">
+                                                                                    <x-heroicon-o-plus-circle class="w-10 h-10 mr-2 {{ ($errors->has('proofdoc')) ? 'text-red-600 ': 'text-yellow-400' }} " />
+                                                                                </span>
+                                                                        </label>
+                                                                        <input type="file" class="absolute invisible pointer-events-none" id="product-img1"
+                                                                            name="product-img1" wire:model="proofdoc">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex justify-end mt-4">
+                                                                    <button wire:click="SGOutDec({{$itemSG->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                        Decline
+                                                                    </button>
+                                                                    <button wire:click="SGOutApp({{$itemSG->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
+                                                                        Approve
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </x-slot>
+                                                    </x-form.basic-form>
+                                                </x-general.modal>
+                                                {{-- End modal Show --}}
+                                            </div>
+                                        </x-table.table-body>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <x-table.table-body colspan="8" class="text-center text-gray-500">
+                                            No new Outright (Spot Gold) request to be approved
+                                        </x-table.table-body>
+                                    </tr>
+                                @endforelse
+                            </x-slot>
+                        </x-table.table>
+                    </div>
+                </div>
+            </x-cardtab.content>
+            <!--End Outright SG -->
         </div>
     </div>
 </div>
