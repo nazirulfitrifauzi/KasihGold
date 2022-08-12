@@ -15,58 +15,50 @@
             @endif
         </div>
 
-        <div class="p-4 mt-8 bg-white mb-20 sm:mb-0" x-data="{ active: 0 }">
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="4" xl="4" class="col-span-12 mb-10">
-                <x-cardtab.title name="0" livewire="" bg="pink">
-                    <x-slot name="icon">
-                        <x-heroicon-o-clipboard-list class="w-10 h-10 text-pink-500"/>
-                    </x-slot>
-                    <div class="flex justify-center text-center">
-                        <div class="mt-1 text-xl font-bold text-white">Outright Sell List </div>
-                    </div>
-                </x-cardtab.title>
-
-                <x-cardtab.title name="1" livewire="" bg="green">
-                    <x-slot name="icon">
-                        <x-heroicon-o-login class="w-10 h-10 text-green-400"/>
-                    </x-slot>
-                    <div class="flex justify-center text-center">
-                        <div class="mt-1 text-xl font-bold text-white">Buyback</div>
-                    </div>
-                </x-cardtab.title>
-
-                <x-cardtab.title name="2" livewire="" bg="indigo">
-                    <x-slot name="icon">
-                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-indigo-400"/>
-                    </x-slot>
-                    <div class="flex justify-center text-center">
-                        <div class="mt-1 text-xl font-bold text-white">Physical conversion</div>
-                    </div>
-                </x-cardtab.title>
-
-                <x-cardtab.title name="3" livewire="" bg="yellow">
-                    <x-slot name="icon">
-                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-yellow-400"/>
-                    </x-slot>
-                    <div class="flex justify-center text-center">
-                        <div class="mt-1 text-xl font-bold text-white">Gold Minting</div>
-                    </div>
-                </x-cardtab.title>
-                <x-cardtab.title name="4" livewire="" bg="yellow">
-                    <x-slot name="icon">
-                        <x-heroicon-o-presentation-chart-bar class="w-10 h-10 text-yellow-600"/>
-                    </x-slot>
-                    <div class="flex justify-center text-center">
-                        <div class="mt-1 text-xl font-bold text-white">Outright Spot Gold</div>
-                    </div>
-                </x-cardtab.title>
-            </x-general.grid>
+        <div class="p-4 mt-2 mb-20 bg-white sm:mb-0" x-data="{ active: 0 ,open:false}">
+            <div x-show="open" class="overflow-hidden ">
+                <x-slider title="List Withdrawal Request">
+                    <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
+                        x-on:click.prevent="active = 0 , open = false">
+                        <x-heroicon-o-clipboard-list class="w-4 h-4 mr-2"/>
+                        <span>Sell List</span>
+                    </a>
+                    <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
+                        x-on:click.prevent="active = 1, open = false">
+                        <x-heroicon-o-login class="w-4 h-4 mr-2"/>
+                        <span>Buyback</span>
+                    </a>
+                    <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
+                        x-on:click.prevent="active = 2, open = false">
+                        <x-heroicon-o-presentation-chart-bar class="w-4 h-4 mr-2"/>
+                        <span>Physical conversion</span>
+                    </a>
+                    <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
+                        x-on:click.prevent="active = 3, open = false">
+                        <x-heroicon-o-presentation-chart-bar class="w-4 h-4 mr-2"/>
+                        <span>Gold Minting</span>
+                    </a>
+                    <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
+                    x-on:click.prevent="active = 4, open = false">
+                        <x-heroicon-o-presentation-chart-bar class="w-4 h-4 mr-2"/>
+                        <span>Outright Spot Gold</span>
+                    </a>
+                </x-slider>
+            </div>
 
 
             <!--Start Outright -->
-            <x-cardtab.content name="0">
+            <x-cardtab.content name="0" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12 ">
+                        <div class="flex flex-col flex-col-reverse items-start justify-between p-4 mb-4 border-b md:items-center md:flex-row">
+                            <p class="mt-4 text-lg font-semibold md:mt-0">Sell List</p>
+                            <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none"
+                                x-on:click.prevent="open = true" >
+                                <x-heroicon-o-view-list class="w-6 h-6 mr-2"/>
+                                <span>Select Withdrawal Request</span>
+                            </button>
+                        </div>
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -96,7 +88,7 @@
                                             <p>{{$outlist->created_at->format('d-m-Y')}}</p>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class="text-xs font-medium text-gray-700">
-                                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-800">{{ ($outlist->status == 1) ? 'Successful': 'Pending'}}</span>
+                                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-100 text-{{ ($outlist->status == 1) ? 'green' : 'yellow'}}-800">{{ ($outlist->status == 1) ? 'Successful': 'Pending'}}</div>
                                         </x-table.table-body>
                                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
                                             <div class="flex" x-data="{ openShow: false ,  openModal : false}">
@@ -157,7 +149,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="outDec({{$outlist->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="outDec({{$outlist->id}})" class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
                                                                     <button wire:click="outApp({{$outlist->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -191,6 +183,14 @@
             <x-cardtab.content name="1" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
+                        <div class="flex flex-col flex-col-reverse items-start justify-between p-4 mb-4 border-b md:items-center md:flex-row">
+                            <p class="mt-4 text-lg font-semibold md:mt-0">Buyback</p>
+                            <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none"
+                                x-on:click.prevent="open = true" >
+                                <x-heroicon-o-view-list class="w-6 h-6 mr-2"/>
+                                <span>Select Withdrawal Request</span>
+                            </button>
+                        </div>
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -291,7 +291,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="bbDec({{$buyback->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="bbDec({{$buyback->id}})" class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
                                                                     <button wire:click="bbApp({{$buyback->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -324,6 +324,14 @@
             <x-cardtab.content name="2" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
+                        <div class="flex flex-col flex-col-reverse items-start justify-between p-4 mb-4 border-b md:items-center md:flex-row">
+                            <p class="mt-4 text-lg font-semibold md:mt-0">Physical conversion </p>
+                            <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none"
+                                x-on:click.prevent="open = true" >
+                                <x-heroicon-o-view-list class="w-6 h-6 mr-2"/>
+                                <span>Select Withdrawal Request</span>
+                            </button>
+                        </div>
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -413,7 +421,7 @@
                                                                 </div>
 
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="pConvDec({{$physicals->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="pConvDec({{$physicals->id}})" class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
                                                                     <button wire:click="pConvApp({{$physicals->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -442,10 +450,18 @@
             </x-cardtab.content>
             <!--End Physical conversion -->
 
-             <!--Start Gold Minting conversion -->
-             <x-cardtab.content name="3" x-cloak>
+            <!--Start Gold Minting conversion -->
+            <x-cardtab.content name="3" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
+                        <div class="flex flex-col flex-col-reverse items-start justify-between p-4 mb-4 border-b md:items-center md:flex-row">
+                            <p class="mt-4 text-lg font-semibold md:mt-0">Gold Minting conversion </p>
+                            <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none"
+                                x-on:click.prevent="open = true" >
+                                <x-heroicon-o-view-list class="w-6 h-6 mr-2"/>
+                                <span>Select Withdrawal Request</span>
+                            </button>
+                        </div>
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -524,7 +540,7 @@
                                                                 </div>
 
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="gMintDec({{$spotgolds->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="gMintDec({{$spotgolds->id}})" class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
                                                                     <button wire:click="gMintApp({{$spotgolds->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -553,11 +569,18 @@
             </x-cardtab.content>
             <!--End Gold Minting -->
 
-
             <!--Start Outright SG  -->
             <x-cardtab.content name="4" x-cloak>
                 <div class="grid grid-cols-12">
                     <div class="col-span-12">
+                        <div class="flex flex-col flex-col-reverse items-start justify-between p-4 mb-4 border-b md:items-center md:flex-row">
+                            <p class="mt-4 text-lg font-semibold md:mt-0">Outright Spot Gold</p>
+                            <button class="inline-flex items-center px-4 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-600 focus:outline-none"
+                                x-on:click.prevent="open = true" >
+                                <x-heroicon-o-view-list class="w-6 h-6 mr-2"/>
+                                <span>Select Withdrawal Request</span>
+                            </button>
+                        </div>
                         <x-table.table>
                             <x-slot name="thead">
                                 <x-table.table-header class="text-left" value="No" sort="" />
@@ -647,7 +670,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex justify-end mt-4">
-                                                                    <button wire:click="SGOutDec({{$itemSG->id}})" class="flex mr-2 px-4 py-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
+                                                                    <button wire:click="SGOutDec({{$itemSG->id}})" class="flex px-4 py-2 mr-2 text-sm font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-500">
                                                                         Decline
                                                                     </button>
                                                                     <button wire:click="SGOutApp({{$itemSG->id}})" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
