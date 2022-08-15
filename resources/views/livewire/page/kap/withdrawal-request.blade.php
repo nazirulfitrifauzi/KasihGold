@@ -15,7 +15,7 @@
             @endif
         </div>
 
-        <div class="p-4 mt-2 mb-20 bg-white sm:mb-0" x-data="{ active: 0 ,open:false}">
+        <div class="p-4 mt-2 mb-20 bg-white sm:mb-0" x-data="{ active: -1 ,open:true}">
             <div x-show="open" class="overflow-hidden ">
                 <x-slider title="List Withdrawal Request">
                     <a href="#" class="inline-flex items-center w-full px-4 py-2 text-base font-semibold text-gray-500 reportMenu hover:text-yellow-400"
