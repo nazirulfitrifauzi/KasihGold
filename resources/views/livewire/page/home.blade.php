@@ -1,26 +1,28 @@
 
 <div>
-    <div class="-mt-52 printContent">
+    <div class="-mt-64 md:-mt-52 printContent">
         <div class="grid grid-cols-12 gap-6 mb-20 sm:mb-0">
             <div class="grid grid-cols-12 col-span-12 gap-6">
                 <div class="col-span-12 mt-8 printHide">
                     <div class="flex items-center">
-                        <div class="flex justify-between w-full">
-                            <div>
-                                <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
-                                <p class="text-sm text-white" id="getDate"></p>
-                            </div>
-                            <div class="hidden md:block">
-                                <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
-                                    <div class="flex items-center px-2 py-2 text-yellow-400 align-middle bg-white rounded-md hover:text-white hover:bg-yellow-400 focus:outline-none ">
-                                        <x-heroicon-o-logout class="w-5 h-5 mr-1" />
-                                        <p class="font-semibold">Log out</p>
-                                    </div>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </a>
+                        <div class="hidden w-full md:block">
+                            <div class="flex justify-between w-full">
+                                <div>
+                                    <h2 class="mr-5 text-xl font-bold text-white lg:text-4xl" id="lblGreetings"></h2>
+                                    <p class="text-sm text-white" id="getDate"></p>
+                                </div>
+                                <div>
+                                    <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="">
+                                        <div class="flex items-center px-2 py-2 text-yellow-400 align-middle bg-white rounded-md hover:text-white hover:bg-yellow-400 focus:outline-none ">
+                                            <x-heroicon-o-logout class="w-5 h-5 mr-1" />
+                                            <p class="font-semibold">Log out</p>
+                                        </div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         @if (session('error'))
@@ -84,7 +86,7 @@
                 @if (auth()->user()->isUserKAP())
                     @include('pages.dashboard.kap.user2')
                 @else
-                <div class="lg:grid grid-cols-12 gap-6 col-span-12 flex flex-col-reverse ">
+                <div class="flex flex-col-reverse grid-cols-12 col-span-12 gap-6 lg:grid ">
                     <div class="
                         @if (auth()->user()->isAdminKAP())
                         col-span-12 md:col-span-12 lg:col-span-12 xxl:col-span-12

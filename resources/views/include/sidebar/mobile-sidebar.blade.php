@@ -1,9 +1,9 @@
     <!-- Mobile sidebar -->
     <div x-show="isSidebarOpenMobile" @click="isSidebarOpenMobile = false"
-        class="fixed inset-0 z-10 bg-black bg-opacity-50 lg:hidden"></div>
+        class="fixed inset-0 z-10 bg-black bg-opacity-50"></div>
 
     <nav aria-label="Options"
-        class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between px-4 py-2 bg-gray-700 sm:hidden shadow-t rounded-t-3xl">
+        class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between px-4 py-2 bg-gray-700 shadow-t rounded-t-3xl">
 
 
         <!-- User avatar -->
@@ -47,7 +47,7 @@
     <div x-transition:enter="transform transition-transform duration-300" x-transition:enter-start="-translate-x-full"
         x-transition:enter-end="translate-x-0" x-transition:leave="transform transition-transform duration-300"
         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" x-show="isSidebarOpenMobile"
-        class="fixed inset-y-0 left-0 z-40 flex-shrink-0 block w-64 bg-gray-800 shadow-lg sm:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 md:hidden" x-cloak>
+        class="fixed inset-y-0 left-0 z-40 flex-shrink-0 block w-64 bg-gray-800 shadow-lg md:left-16 rounded-tr-3xl rounded-br-3xl sm:w-72 lg:static lg:w-60 md:hidden" x-cloak>
         <nav x-show="currentSidebarTab == 'linksTab'" aria-label="Main" class="flex flex-col h-full pb-4">
             <!-- Logo -->
             <div class="flex flex-shrink-0 pt-4 pb-1">
