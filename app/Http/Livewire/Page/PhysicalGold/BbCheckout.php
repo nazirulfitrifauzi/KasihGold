@@ -99,6 +99,7 @@ class BbCheckout extends Component
                         $gold->save();
                     }
                 }
+                $product->delete();
             }
             session()->flash('message', 'Your Outright Sell request has successfully submitted');
         } else if ($this->outright == 2) {
@@ -136,6 +137,7 @@ class BbCheckout extends Component
                         $gold->save();
                     }
                 }
+                $product->delete();
             }
 
             session()->flash('message', 'Your Buy Back request has successfully submitted');
