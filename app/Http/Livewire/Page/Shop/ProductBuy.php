@@ -24,6 +24,14 @@ class ProductBuy extends Component
     public $fname, $lname, $cname, $nric;
     public $address1, $address2, $address3, $town, $postcode, $state_id;
     public $promo_code, $apply_code_type, $apply_code;
+    public $selectPayment;
+
+
+    public function select_payment($selectPayment)
+    {
+        $this->selectPayment = $selectPayment;
+    }
+
 
     public function mount()
     {
@@ -185,6 +193,11 @@ class ProductBuy extends Component
         }
 
         return redirect('https://dev.toyyibpay.com/' . $billCode);
+    }
+
+    public function buySnapNpay()
+    {
+        dd('snapNpay');
     }
 
     public function render()
