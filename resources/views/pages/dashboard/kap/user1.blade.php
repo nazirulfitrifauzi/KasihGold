@@ -1,5 +1,5 @@
 <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8">
-    <div class="grid grid-cols-12 gap-6 mt-10">
+    <div class="grid grid-cols-1 gap-6 mt-10 xl:grid-cols-2">
         <x-dashboard.info-card-user bg="yellow-400" title="Digital Gold" value="{{$this->tGold}} G" iconColor='white'
             cardRoute="{{route('digital-gold')}}">
             <x-slot name="svg">
@@ -25,7 +25,111 @@
             </x-slot>
         </x-dashboard.info-card-user>
     </div>
-    <div class="z-20 col-span-12 p-4 mt-4 mb-4 bg-white rounded-lg shadow-xl lg:col-span-12 xxl:col-span-12 lg:block" id="chartpie"></div>
+    <div class="col-span-12 mt-10 sm:col-span-12 md:col-span-12 lg:col-span-6 xxl:col-span-6" >
+        <div class="p-4 bg-white rounded-md shadow-md">
+            <p class="mb-2 text-lg font-semibold">Kap Gold Product</p>
+            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                
+                <!-- Start Spot Price Digital Gold-->
+                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                    <div class="flex items-center space-x-2 ">
+                        <img src="{{ asset('img/gold/gold-bars.png')}}" class="w-auto h-24" />
+                        <p class="text-sm font-semibold xl:text-base">Spot Price Digital Gold</p>
+                    </div>
+                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                        <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                            <p class="text-sm font-bold text-black">Buy Price</p>
+                            <p class="text-base font-semibold" >RM 200</p>
+                        </div>
+                        <div class="p-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                            <p class="text-sm text-yellow-300">Sell Price</p>
+                            <p class="text-base font-semibold ">RM 200</p>
+                        </div>
+                    </x-general.grid>
+                </div>
+                <!-- End Spot Price Digital Gold-->
+                
+                <!-- Start Digital Dinar-->
+                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                    <div class="flex items-center mb-4 space-x-2">
+                        <img src="{{ asset('img/gold/coin.png')}}"  class="w-auto h-20" />
+                        <p class="text-sm font-semibold xl:text-base">Digital Dinar</p>
+                    </div>
+                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                        <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                            <p class="text-sm font-bold text-black">Buy Price</p>
+                            <p class="text-base font-semibold" >RM 200</p>
+                        </div>
+                        <div class="p-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                            <p class="text-sm text-yellow-300">Sell Price</p>
+                            <p class="text-base font-semibold ">RM 200</p>
+                        </div>
+                    </x-general.grid>
+                </div>
+                <!-- End Digital Dinar-->
+                
+            </div>
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+                <!-- Start Digital Gold-->
+                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                    <div class="flex items-center space-x-2">
+                        <img src="{{ asset('img/gold/gold-bars.png')}}" class="w-auto h-24" />
+                        <p class="text-sm font-semibold xl:text-base">Digital Gold</p>
+                    </div>
+                    <x-general.grid mobile="1" gap="20" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                        <div>
+                            <p class="mb-2 text-base font-semibold">Buy Price</p>
+                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                    <p class="text-sm font-bold text-black">Gram</p>
+                                    <p class="text-base font-semibold" >0.01g</p>
+                                </div>
+                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                    <p class="text-sm text-yellow-300">Price</p>
+                                    <p class="text-base font-semibold ">RM 200</p>
+                                </div>
+                            </x-general.grid>
+                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                    <p class="text-sm font-bold text-black">Gram</p>
+                                    <p class="text-base font-semibold" >0.01g</p>
+                                </div>
+                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                    <p class="text-sm text-yellow-300">Price</p>
+                                    <p class="text-base font-semibold ">RM 200</p>
+                                </div>
+                            </x-general.grid>
+                        </div>
+                        <div>
+                            <p class="mb-2 text-base font-semibold">Sell Price</p>
+                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                    <p class="text-sm font-bold text-black">Gram</p>
+                                    <p class="text-base font-semibold" >0.01g</p>
+                                </div>
+                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                    <p class="text-sm text-yellow-300">Price</p>
+                                    <p class="text-base font-semibold ">RM 200</p>
+                                </div>
+                            </x-general.grid>
+                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                    <p class="text-sm font-bold text-black">Gram</p>
+                                    <p class="text-base font-semibold" >0.01g</p>
+                                </div>
+                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                    <p class="text-sm text-yellow-300">Price</p>
+                                    <p class="text-base font-semibold ">RM 200</p>
+                                </div>
+                            </x-general.grid>
+                        </div>
+                    </x-general.grid>
+                </div>
+                <!-- End Digital Gold-->
+            </div>
+        </div>
+        
+    </div>
 </div>
 @push('js')
 {{-- pie Chart --}}
