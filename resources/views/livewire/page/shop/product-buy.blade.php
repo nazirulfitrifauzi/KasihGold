@@ -54,7 +54,7 @@
                                     @if($selectPayment == 'toyyib')
                                         <form wire:submit.prevent="buy">
                                     @elseif($selectPayment == 'snapNpay')
-                                        <form method="post" id="payment" action="https://paydev.tulus.my/">
+                                        <form method="post" id="payment" action="https://pay.tulus.my/">
                                     @endif
                                         <div class="p-0 bg-gray-100 border shadow-lg">
                                             <div class="px-2 py-2 mr-auto text-lg font-medium text-white bg-white border-b">
