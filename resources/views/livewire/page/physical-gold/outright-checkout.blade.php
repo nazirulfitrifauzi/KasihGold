@@ -26,7 +26,7 @@
                     <x-slot name="tbody">
 
                         @foreach ($goldO as $types)
-                        @if($types->products->prod_cat==1)
+                        @if($types->products->prod_cat!=3)
                         <tr>
                             <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
                                 <div class="flex space-x-3 items-center">

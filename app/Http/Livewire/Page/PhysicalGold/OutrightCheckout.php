@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Page\PhysicalGold;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
 use App\Models\InvInfo;
+use App\Models\OutrightPrice;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
@@ -104,6 +105,9 @@ class OutrightCheckout extends Component
 
     public function render()
     {
+
+        $Oprice1g = OutrightPrice::select('price')->where('item_id', 9)->first();
+        $totalBg = 0;
         $this->total_weight = 0;
         $this->gross_weight = 0;
         $this->total = 0;
@@ -120,9 +124,10 @@ class OutrightCheckout extends Component
         $cartInfo = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->get();
         foreach ($cartInfo as $cartItems) {
 
-            if (($cartItems->item_id == 11)) {
+            if (($cartItems->products->prod_weight > 1)) {
                 $this->total_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
                 $this->gross_weight += $cartItems->products->prod_weight * $cartItems->prod_qty;
+                $totalBg += ($cartItems->outright_price->price * $cartItems->prod_qty);
                 $this->beyond1G = 1;
             } else {
                 $this->OVWeight += $cartItems->products->prod_weight * $cartItems->prod_qty;
@@ -139,7 +144,7 @@ class OutrightCheckout extends Component
 
 
         if (($this->originalVariance == 1) || ($this->OVWeight == 0 && $this->beyond1G == 1)) {
-            $this->total = $this->total_weight * 310;
+            $this->total = ($this->OVWeight * $Oprice1g->price) + $totalBg;
         }
 
 

@@ -34,6 +34,11 @@ class InvCart extends Model
         return $this->belongsTo('App\Models\CommissionRateKap', 'item_id', 'item_id');
     }
 
+    public function outright_price()
+    {
+        return $this->belongsTo('App\Models\OutrightPrice', 'item_id', 'item_id');
+    }
+
     public function percentage()
     {
         $category = "1g";
