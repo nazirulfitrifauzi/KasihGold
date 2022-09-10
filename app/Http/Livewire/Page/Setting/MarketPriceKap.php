@@ -16,11 +16,11 @@ class MarketPriceKap extends Component
     public function mount()
     {
         $this->items = InvItem::leftJoin('market_prices', 'inv_items.id', '=', 'market_prices.item_id')
-                        ->select('inv_items.*','market_prices.price','market_prices.start_date', 'market_prices.end_date')
-                        ->where('inv_items.client', 2)
-                        ->get();
-        $this->start_date = MarketPrice::orderBy('id','desc')->take(1)->value('start_date');
-        $this->end_date = MarketPrice::orderBy('id','desc')->take(1)->value('end_date');
+            ->select('inv_items.*', 'market_prices.price', 'market_prices.start_date', 'market_prices.end_date')
+            ->where('inv_items.client', 2)
+            ->get();
+        $this->start_date = MarketPrice::orderBy('id', 'desc')->take(1)->value('start_date');
+        $this->end_date = MarketPrice::orderBy('id', 'desc')->take(1)->value('end_date');
     }
 
     protected $rules = [

@@ -6,6 +6,7 @@ use App\Models\Banks;
 use App\Models\BuyBack;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
+use App\Models\OutrightPrice;
 use App\Models\OutrightSell;
 use Illuminate\Support\Str;
 use App\Models\Profile_bank_info;
@@ -17,6 +18,7 @@ class BbCheckout extends Component
     public $bankId, $swiftCode, $accNo, $accHolderName, $bankAccId;
     public $banks, $data, $total, $outright, $cartInfo;
     public $centiG, $deciG, $quartG, $oneG, $beyond1G;
+    public $total1G, $totalBg;
 
     public function mount()
     {
@@ -30,6 +32,8 @@ class BbCheckout extends Component
 
         $this->cartInfo = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->get();
 
+        $Oprice1g = OutrightPrice::select('price')->where('item_id', 9)->first();
+
         $this->total = 0;
         $this->centiG = 0;
         $this->deciG = 0;
@@ -38,20 +42,25 @@ class BbCheckout extends Component
         $this->beyond1G = 0;
 
         foreach ($this->cartInfo as $cart) {
-            $this->total += $cart->products->prod_weight * $cart->prod_qty;
-            if ($cart->products->prod_weight == 0.01)
+            if ($cart->products->prod_weight == 0.01) {
                 $this->centiG = $cart->prod_qty;
-            else if ($cart->products->prod_weight == 0.10)
+                $this->total1G += $cart->products->prod_weight * $cart->prod_qty;
+            } else if ($cart->products->prod_weight == 0.10) {
                 $this->deciG = $cart->prod_qty;
-            else if ($cart->products->prod_weight == 0.25)
+                $this->total1G += $cart->products->prod_weight * $cart->prod_qty;
+            } else if ($cart->products->prod_weight == 0.25) {
                 $this->quartG = $cart->prod_qty;
-            else if ($cart->products->prod_weight == 1.00)
+                $this->total1G += $cart->products->prod_weight * $cart->prod_qty;
+            } else if ($cart->products->prod_weight == 1.00) {
                 $this->oneG = $cart->prod_qty;
-            else
+                $this->total1G += $cart->products->prod_weight * $cart->prod_qty;
+            } else {
                 $this->beyond1G = $cart->prod_qty;
+                $this->totalBg += ($cart->outright_price->price * $cart->prod_qty);
+            }
         }
 
-        $this->total = $this->total * 310;
+        $this->total = ($this->total1G * $Oprice1g->price) + $this->totalBg;
 
 
 

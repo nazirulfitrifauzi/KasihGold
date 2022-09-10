@@ -35,6 +35,9 @@
                                         <x-settingTab.title name="3" livewire="">
                                             <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Minting Price
                                         </x-settingTab.title>
+                                        <x-settingTab.title name="4" livewire="">
+                                            <x-heroicon-o-currency-dollar class="w-6 h-6 mr-2"/>Outright Price
+                                        </x-settingTab.title>
                                     </nav>
                                 </aside>
 
@@ -51,6 +54,9 @@
                                     </x-settingTab.content>
                                     <x-settingTab.content name="3" x-cloak>
                                         <livewire:page.setting.minting-price/>
+                                    </x-settingTab.content>
+                                    <x-settingTab.content name="4" x-cloak>
+                                        <livewire:page.setting.outright-price/>
                                     </x-settingTab.content>
                                 </div>
 
