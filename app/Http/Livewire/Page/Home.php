@@ -8,9 +8,12 @@ use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
+use App\Models\InvInfo;
+use App\Models\OutrightPrice;
 use App\Models\OutrightSell;
 use App\Models\outrightSG;
 use App\Models\PhysicalConvert;
+use App\Models\SpotGoldPricing;
 use App\Models\User;
 use App\Models\UserDownline;
 use Carbon\Carbon;
@@ -27,6 +30,7 @@ class Home extends Component
     public $chart1, $mainchart1, $chart2, $mainchart2, $chart3, $mainchart3;
     public $subchart1day, $subchart1month, $subchart2day, $subchart2month, $subchart3day, $subchart3month, $subchart4day, $subchart4month;
     public $announcement;
+    public $spotPrice, $spotPriceB, $dinarPrice, $digitalPrice, $digital1gOutPrice;
 
     public function mount()
     {
@@ -185,6 +189,13 @@ class Home extends Component
             foreach ($phyExit as $golds) {
                 $this->pGold += $golds->one_gram + ($golds->quarter_gram * 0.25);
             }
+
+
+            $this->digitalPrice = InvInfo::where('prod_cat', 1)->get();
+            $this->digital1gOutPrice = OutrightPrice::select('price')->where('item_id', 9)->first();
+            $this->dinarPrice = InvInfo::where('prod_cat', 2)->first();
+            $this->spotPrice = InvInfo::where('prod_cat', 3)->first();
+            $this->spotPriceB = SpotGoldPricing::select('percentage')->where('range', '1g')->first();
         }
     }
 

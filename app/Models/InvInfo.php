@@ -29,6 +29,16 @@ class InvInfo extends Model
         return $this->hasMany('App\Models\GoldbarOwnership', 'item_id', 'item_id');
     }
 
+    public function marketPrice()
+    {
+        return $this->hasOne('App\Models\MarketPrice', 'item_id', 'item_id');
+    }
+
+    public function outrightPrice()
+    {
+        return $this->belongsTo('App\Models\OutrightPrice', 'item_id', 'item_id');
+    }
+
     public function percentage()
     {
         $category = "1g";
