@@ -60,6 +60,10 @@
                         <x-heroicon-o-user-group class="w-5 h-5" />
                     </x-sidebar.nav-item>
 
+                    <x-sidebar.nav-item title="User Detailed Info" route="{{ route('admin.user-detailed-info') }}" uri="admin/user-detailed-info">
+                        <x-heroicon-o-user class="w-5 h-5" />
+                    </x-sidebar.nav-item>
+
                     <x-sidebar.nav-item title="Reporting" route="{{ route('reporting') }}" uri="reporting">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />
                     </x-sidebar.nav-item>
