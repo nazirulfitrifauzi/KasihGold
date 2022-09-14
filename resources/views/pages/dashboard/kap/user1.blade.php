@@ -1,4 +1,4 @@
-<div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8">
+<div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-8 xxl:col-span-8">
     <div class="grid grid-cols-1 gap-6 mt-10 xl:grid-cols-2">
         <x-dashboard.info-card-user bg="yellow-400" title="Digital Gold" value="{{$this->tGold}} G" iconColor='white'
             cardRoute="{{route('digital-gold')}}">
@@ -28,15 +28,16 @@
     <div class="col-span-12 mt-10 sm:col-span-12 md:col-span-12 lg:col-span-6 xxl:col-span-6" >
         <div class="p-4 bg-white rounded-md shadow-md">
             <p class="mb-2 text-lg font-semibold">Kap Gold Product</p>
-            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
-                
+            <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-1">
+                <div class="px-2 py-4 rounded-md shadow-sm bg-gray-50">
+                <x-general.grid mobile="1" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
                 <!-- Start Spot Price Digital Gold-->
-                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                <div class="mr-4 lg:mr-0">
                     <div class="flex items-center space-x-2 ">
                         <img src="{{ asset('img/gold/gold-bars.png')}}" class="w-auto h-24" />
                         <p class="text-sm font-semibold xl:text-base">Spot Price Digital Gold</p>
                     </div>
-                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12 ">
                         <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                             <p class="text-sm font-bold text-black">Buy Price</p>
                             <p class="text-base font-semibold" >RM {{round($spotPrice->marketPrice->price*(($spotPriceB->percentage+100)/100),2)}}</p>
@@ -50,12 +51,12 @@
                 <!-- End Spot Price Digital Gold-->
                 
                 <!-- Start Digital Dinar-->
-                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                <div class="mt-4 mr-4 lg:mr-0 lg:mt-0">
                     <div class="flex items-center mb-4 space-x-2">
-                        <img src="{{ asset('img/gold/coin.png')}}"  class="w-auto h-20" />
+                        <img src="{{ asset('img/gold/coin.png')}}"  class="w-auto h-16 lg:h-20" />
                         <p class="text-sm font-semibold xl:text-base">Digital Dinar</p>
                     </div>
-                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                    <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12 ">
                         <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                             <p class="text-sm font-bold text-black">Buy Price</p>
                             <p class="text-base font-semibold" >RM {{$dinarPrice->marketPrice->price}}</p>
@@ -67,22 +68,23 @@
                     </x-general.grid>
                 </div>
                 <!-- End Digital Dinar-->
+                </x-general.grid>
                 
             </div>
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+            <div class="grid grid-cols-1 gap-0 mt-4 sm:grid-cols-1">
                 <!-- Start Digital Gold-->
-                <div class="p-4 rounded-md shadow-sm bg-gray-50">
+                <div class="px-2 py-4 rounded-md shadow-sm bg-gray-50">
                     <div class="flex items-center space-x-2">
                         <img src="{{ asset('img/gold/gold-bars.png')}}" class="w-auto h-24" />
                         <p class="text-sm font-semibold xl:text-base">Digital Gold</p>
                     </div>
-                    <x-general.grid mobile="1" gap="20" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
+                    <x-general.grid mobile="1" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3 ">
                         @foreach($digitalPrice as $item)
-                            <div>
+                            <div  class="mr-4 lg:mr-0">
                                 @if ($loop->iteration == 1)
                                     <p class="mb-2 text-base font-semibold">Buy Price</p>
                                 @endif
-                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12">
                                     <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                                         <p class="text-sm font-bold text-black">Gram</p>
                                         <p class="text-base font-semibold" >{{number_format($item->prod_weight,2)}}g</p>
@@ -94,11 +96,11 @@
                                 </x-general.grid>
                             </div>
                         
-                            <div>
+                            <div  class="mr-4 lg:mr-0">
                                 @if ($loop->iteration == 1)
                                     <p class="mb-2 text-base font-semibold">Sell Price</p>
                                 @endif
-                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12 ">
                                     <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                                         <p class="text-sm font-bold text-black">Gram</p>
                                         <p class="text-base font-semibold" >{{number_format($item->prod_weight,2)}}g</p>
@@ -114,6 +116,7 @@
                     </x-general.grid>
                 </div>
                 <!-- End Digital Gold-->
+            </div>
             </div>
         </div>
         
