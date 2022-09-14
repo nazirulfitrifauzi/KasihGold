@@ -77,6 +77,12 @@
             width: 90%;
             transform: rotateZ(-10deg);
         }
+
+        @media (min-width: 1280px){
+            .container {
+                max-width:  1420px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -127,7 +133,7 @@
 
                     @endif
                     <!-- User avatar -->
-                    <div class="grid px-4 pb-10 mx-auto lg:px-8">
+                    <div class="container grid px-4 pb-10 mx-auto ">
                         <div class="mt-10 md:mt-0">
                             @yield('content')
                         </div>
