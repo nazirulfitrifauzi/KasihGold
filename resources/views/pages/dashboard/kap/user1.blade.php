@@ -39,11 +39,11 @@
                     <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
                         <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                             <p class="text-sm font-bold text-black">Buy Price</p>
-                            <p class="text-base font-semibold" >RM 200</p>
+                            <p class="text-base font-semibold" >RM {{round($spotPrice->marketPrice->price*(($spotPriceB->percentage+100)/100),2)}}</p>
                         </div>
                         <div class="p-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
                             <p class="text-sm text-yellow-300">Sell Price</p>
-                            <p class="text-base font-semibold ">RM 200</p>
+                            <p class="text-base font-semibold ">RM {{$spotPrice->marketPrice->price}}</p>
                         </div>
                     </x-general.grid>
                 </div>
@@ -58,11 +58,11 @@
                     <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
                         <div class="p-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                             <p class="text-sm font-bold text-black">Buy Price</p>
-                            <p class="text-base font-semibold" >RM 200</p>
+                            <p class="text-base font-semibold" >RM {{$dinarPrice->marketPrice->price}}</p>
                         </div>
                         <div class="p-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
                             <p class="text-sm text-yellow-300">Sell Price</p>
-                            <p class="text-base font-semibold ">RM 200</p>
+                            <p class="text-base font-semibold ">RM {{$dinarPrice->outrightPrice->price}}</p>
                         </div>
                     </x-general.grid>
                 </div>
@@ -77,52 +77,40 @@
                         <p class="text-sm font-semibold xl:text-base">Digital Gold</p>
                     </div>
                     <x-general.grid mobile="1" gap="20" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3">
-                        <div>
-                            <p class="mb-2 text-base font-semibold">Buy Price</p>
-                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
-                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
-                                    <p class="text-sm font-bold text-black">Gram</p>
-                                    <p class="text-base font-semibold" >0.01g</p>
-                                </div>
-                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
-                                    <p class="text-sm text-yellow-300">Price</p>
-                                    <p class="text-base font-semibold ">RM 200</p>
-                                </div>
-                            </x-general.grid>
-                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
-                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
-                                    <p class="text-sm font-bold text-black">Gram</p>
-                                    <p class="text-base font-semibold" >0.01g</p>
-                                </div>
-                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
-                                    <p class="text-sm text-yellow-300">Price</p>
-                                    <p class="text-base font-semibold ">RM 200</p>
-                                </div>
-                            </x-general.grid>
-                        </div>
-                        <div>
-                            <p class="mb-2 text-base font-semibold">Sell Price</p>
-                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
-                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
-                                    <p class="text-sm font-bold text-black">Gram</p>
-                                    <p class="text-base font-semibold" >0.01g</p>
-                                </div>
-                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
-                                    <p class="text-sm text-yellow-300">Price</p>
-                                    <p class="text-base font-semibold ">RM 200</p>
-                                </div>
-                            </x-general.grid>
-                            <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
-                                <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
-                                    <p class="text-sm font-bold text-black">Gram</p>
-                                    <p class="text-base font-semibold" >0.01g</p>
-                                </div>
-                                <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
-                                    <p class="text-sm text-yellow-300">Price</p>
-                                    <p class="text-base font-semibold ">RM 200</p>
-                                </div>
-                            </x-general.grid>
-                        </div>
+                        @foreach($digitalPrice as $item)
+                            <div>
+                                @if ($loop->iteration == 1)
+                                    <p class="mb-2 text-base font-semibold">Buy Price</p>
+                                @endif
+                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                    <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                        <p class="text-sm font-bold text-black">Gram</p>
+                                        <p class="text-base font-semibold" >{{number_format($item->prod_weight,2)}}g</p>
+                                    </div>
+                                    <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                        <p class="text-sm text-yellow-300">Price</p>
+                                        <p class="text-base font-semibold ">RM {{$item->marketPrice->price}}</p>
+                                    </div>
+                                </x-general.grid>
+                            </div>
+                        
+                            <div>
+                                @if ($loop->iteration == 1)
+                                    <p class="mb-2 text-base font-semibold">Sell Price</p>
+                                @endif
+                                <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                                    <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
+                                        <p class="text-sm font-bold text-black">Gram</p>
+                                        <p class="text-base font-semibold" >{{number_format($item->prod_weight,2)}}g</p>
+                                    </div>
+                                    <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
+                                        <p class="text-sm text-yellow-300">Price</p>
+                                        <p class="text-base font-semibold ">RM {{ ($item->prod_weight <= 1) ? $digital1gOutPrice->price : $item->outrightPrice->price}}</p>
+                                    </div>
+                                </x-general.grid>
+                            </div>
+
+                        @endforeach
                     </x-general.grid>
                 </div>
                 <!-- End Digital Gold-->
