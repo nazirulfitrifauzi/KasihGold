@@ -78,12 +78,10 @@
                         <img src="{{ asset('img/gold/gold-bars.png')}}" class="w-auto h-24" />
                         <p class="text-sm font-semibold xl:text-base">Digital Gold</p>
                     </div>
-                    <x-general.grid mobile="1" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12 px-3 ">
-                        @foreach($digitalPrice as $item)
-                            <div  class="mr-4 lg:mr-0">
-                                @if ($loop->iteration == 1)
-                                    <p class="mb-2 text-base font-semibold">Buy Price</p>
-                                @endif
+                    <x-general.grid mobile="1" gap="0" sm="2" md="2" lg="2" xl="2" class="w-full col-span-12">
+                        <div  class="mr-4 lg:mr-0">
+                            <p class="mb-2 text-base font-semibold">Buy Price</p>
+                            @foreach($digitalPrice as $item)
                                 <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12">
                                     <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                                         <p class="text-sm font-bold text-black">Gram</p>
@@ -94,12 +92,12 @@
                                         <p class="text-base font-semibold ">RM {{$item->marketPrice->price}}</p>
                                     </div>
                                 </x-general.grid>
-                            </div>
-                        
-                            <div  class="mr-4 lg:mr-0">
-                                @if ($loop->iteration == 1)
-                                    <p class="mb-2 text-base font-semibold">Sell Price</p>
-                                @endif
+                            @endforeach
+                        </div>
+                    
+                        <div  class="mr-4 lg:mr-0">
+                            <p class="mb-2 text-base font-semibold">Sell Price</p>
+                            @foreach($digitalPrice as $item)
                                 <x-general.grid mobile="2" gap="0" sm="2" md="2" lg="3" xl="3" class="w-full col-span-12 ">
                                     <div class="p-4 mb-4 text-white bg-yellow-300 border-2 border-yellow-300 rounded-tl-lg rounded-bl-lg">
                                         <p class="text-sm font-bold text-black">Gram</p>
@@ -110,9 +108,8 @@
                                         <p class="text-base font-semibold ">RM {{ ($item->prod_weight <= 1) ? $digital1gOutPrice->price : $item->outrightPrice->price}}</p>
                                     </div>
                                 </x-general.grid>
-                            </div>
-
-                        @endforeach
+                            @endforeach
+                        </div>
                     </x-general.grid>
                 </div>
                 <!-- End Digital Gold-->
