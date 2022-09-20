@@ -118,7 +118,7 @@ class PhyConfirmConversion extends Component
             'one_gram'      => $this->data[0]['qty'],
             'quarter_gram'  => $this->data[1]['qty'],
             'ref_payment'   => $billCode,
-            'status'        => 0,
+            'status'        => 2,
             'name'          => $this->name,
             'phone1'        => $this->phone1,
             'address1'      => $this->address1,

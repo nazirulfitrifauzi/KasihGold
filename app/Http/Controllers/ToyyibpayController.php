@@ -24,53 +24,21 @@ class ToyyibpayController extends Controller
     public function paymentStatusConv()
     {
         $response = request()->all(['status_id', 'billcode', 'order_id']);
-        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
-            ->first();
 
-        if ($response['status_id'] == 1 && $toyyibBill->status != 1) {
 
-            $toyyibBill->update(['status' => 1]);
+        if ($response['status_id'] == 1) {
+            session()->flash('message', 'The Physical Gold Conversion Request Has Successfully Submitted.');
 
-            $phyConv = PhysicalConvert::where('user_id', auth()->user()->id)
-                ->where('ref_payment', $response['billcode'])
-                ->where('status', 2)
-                ->first();
+            session()->flash('success');
+            session()->flash('title', 'Success!');
+        } elseif ($response['status_id'] == 3) {
 
-            if ($phyConv) {
-                $phyConv->update(['status' => 0]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
 
-                $goldOwnership = GoldbarOwnership::where('user_id', auth()->user()->id)
-                    ->where('ex_id', $phyConv->id)
-                    ->where('active_ownership', 0)
-                    ->get();
+            session()->flash('message', 'The Physical Gold Conversion Request is Rejected.');
 
-                foreach ($goldOwnership as $golds) {
-                    $golds->update(['ex_flag' => 2]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
-                }
-
-                session()->flash('message', 'The Physical Gold Conversion Request Has Successfully Submitted.');
-
-                session()->flash('success');
-                session()->flash('title', 'Success!');
-            }
-        } elseif ($response['status_id'] == 3 && $toyyibBill->status != 3) {
-            $toyyibBill->update(['status' => 3]);
-
-            $phyConv = PhysicalConvert::where('user_id', auth()->user()->id)
-                ->where('ref_payment', $response['billcode'])
-                ->where('status', 2)
-                ->first();
-
-            if ($phyConv) {
-                $phyConv->update(['status' => 3]);
-
-                session()->flash('message', 'The Physical Gold Conversion Request is Rejected.');
-
-                session()->flash('error');
-                session()->flash('title', 'Error!');
-            }
+            session()->flash('error');
+            session()->flash('title', 'Error!');
         }
-
 
         return redirect('home');
         // return $response;
@@ -250,6 +218,49 @@ class ToyyibpayController extends Controller
             $goldMinting = GoldMinting::where('id', $golds->exit_id)->where('status', 3)->first();
 
             $goldMinting->update(['status' => 2]);
+        }
+    }
+
+
+    public function callbackConv()
+    {
+
+        $response = request()->all(['status_id', 'billcode', 'order_id']);
+        $toyyibBill = ToyyibBills::where('bill_code', $response['billcode'])
+            ->first();
+
+        if ($response['status_id'] == 1 && $toyyibBill->status != 1) {
+
+            $toyyibBill->update(['status' => 1]);
+
+            $phyConv = PhysicalConvert::where('user_id', $toyyibBill->created_by)
+                ->where('ref_payment', $response['billcode'])
+                ->where('status', 2)
+                ->first();
+
+            if ($phyConv) {
+                $phyConv->update(['status' => 0]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
+
+                $goldOwnership = GoldbarOwnership::where('user_id', $toyyibBill->created_by)
+                    ->where('ex_id', $phyConv->id)
+                    ->where('active_ownership', 0)
+                    ->get();
+
+                foreach ($goldOwnership as $golds) {
+                    $golds->update(['ex_flag' => 2]); //0 is in process, 1 is successful, 2 is pending, 3 is failure
+                }
+            }
+        } elseif ($response['status_id'] == 3 && $toyyibBill->status != 3) {
+            $toyyibBill->update(['status' => 3]);
+
+            $phyConv = PhysicalConvert::where('user_id', $toyyibBill->created_by)
+                ->where('ref_payment', $response['billcode'])
+                ->where('status', 2)
+                ->first();
+
+            if ($phyConv) {
+                $phyConv->update(['status' => 3]);
+            }
         }
     }
 }
