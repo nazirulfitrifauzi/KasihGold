@@ -260,6 +260,11 @@ class ToyyibpayController extends Controller
 
             if ($phyConv) {
                 $phyConv->update(['status' => 3]);
+
+                $goldOwnership = GoldbarOwnership::where('user_id', $toyyibBill->created_by)
+                    ->where('ex_id', $phyConv->id)
+                    ->where('active_ownership', 0)
+                    ->get();
             }
         }
     }
