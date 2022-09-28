@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="p-4 mb-4 text-white bg-gray-800 border-2 border-gray-800 rounded-tr-lg rounded-br-lg">
                                         <p class="text-sm text-yellow-300">Price</p>
-                                        <p class="text-base font-semibold ">RM {{ ($item->prod_weight <= 1) ? $digital1gOutPrice->price : $item->outrightPrice->price}}</p>
+                                        <p class="text-base font-semibold ">RM {{ ($item->prod_weight < 1) ? $digital1gOutPrice->price." (1g)" : $item->outrightPrice->price}}</p>
                                     </div>
                                 </x-general.grid>
                             @endforeach

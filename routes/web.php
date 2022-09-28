@@ -82,6 +82,8 @@ Route::middleware('guest')->group(function () {
     Route::post('toyyibpay-callback', [ToyyibpayController::class, 'callback'])->name('toyyibpay-callback');
     Route::post('toyyibpay-callback-mint', [ToyyibpayController::class, 'callbackMint'])->name('toyyibpay-callback-mint');
     Route::post('toyyibpay-callbackConv', [ToyyibpayController::class, 'callbackConv'])->name('toyyibpay-callbackConv');
+    Route::post('pay2', [SnapAPI::class, 'callback'])->name('pay2');
+
 
 
     // ** Authentication *
@@ -132,7 +134,6 @@ Route::middleware('auth')->group(function () {
         Route::get('setting', [settingController::class, 'setting'])->name('setting');
 
         Route::get('pay', [SnapAPI::class, 'index'])->name('pay');
-        Route::get('pay2', [SnapAPI::class, 'callback'])->name('pay2');
         Route::get('snapBuy', [SnapAPI::class, 'snapBuy'])->name('snapBuy');
 
         Route::get('cart', [CartController::class, 'index'])->name('cart');
