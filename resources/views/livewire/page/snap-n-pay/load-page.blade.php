@@ -47,17 +47,17 @@
         </div>
     </div>
 
-    {{-- Disabled snapnpay Payment Gateway
+
 
         <form method="post" action="https://prod.snapnpay.co/payments/api" name="load">
         <input type="hidden" size=40 name="agency" value="{{session('agency')}}" class="form-control" id="agency"/>
         <input type="hidden" size=40 name="refNo" value="{{session('refNo')}}" class="form-control" id="refNo"/>
         <input type="hidden" size=40 name="amount" value="{{session('amount')}}" class="form-control" id="amount"/>
         <input type="hidden" size=40 name="email" value="{{session('email')}}" class="form-control" id="email"/>
-        <input type="hidden" size=40 name="returnUrl" value="{{session('returnUrl')}}" class="form-control" id="returnUrl"/>
+        <input type="hidden" size=40 name="returnUrl" value="https://cscabs.net.my/kasihgold/pay2" class="form-control" id="returnUrl"/>
+        <button id="btn" wire:click="buy" type="submit" style="display:none;">Buy</button>
 
-    </form> --}}
-    <button id="btn" wire:click="buy" style="display:none;">Buy</button>
+    </form>
 </body>
 
 @livewireScripts
@@ -82,69 +82,69 @@
 
     </script>
     <script>
-        tippy('.tooltipbtn', {
-            content:(reference)=>reference.getAttribute('data-title'),
-            onMount(instance) {
-                instance.popperInstance.setOptions({
-                placement :instance.reference.getAttribute('data-placement')
-                });
-            },
-            allowHTML: true,
-        });
+        // tippy('.tooltipbtn', {
+        //     content:(reference)=>reference.getAttribute('data-title'),
+        //     onMount(instance) {
+        //         instance.popperInstance.setOptions({
+        //         placement :instance.reference.getAttribute('data-placement')
+        //         });
+        //     },
+        //     allowHTML: true,
+        // });
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- echo scripts -->
     <script>
-        var userId = document.querySelector('meta[name="userId"]').content;
-        Echo.private('App.Models.User.' + userId)
-            .notification((notification) => {
-                toastr.options =
-                {
-                    "closeButton": true,
-                    "newestOnTop": true,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                if (notification.status == 'success') {
-                    toastr.success(notification.message,notification.title);
-                } else if (notification.status == 'info') {
-                    toastr.info(notification.message,notification.title);
-                } else if (notification.status == 'warning') {
-                    toastr.warning(notification.message,notification.title);
-                } else {
-                    toastr.error(notification.message,notification.title);
-                }
-            });
+        // var userId = document.querySelector('meta[name="userId"]').content;
+        // Echo.private('App.Models.User.' + userId)
+        //     .notification((notification) => {
+        //         toastr.options =
+        //         {
+        //             "closeButton": true,
+        //             "newestOnTop": true,
+        //             "progressBar": true,
+        //             "positionClass": "toast-top-right",
+        //             "onclick": null,
+        //             "showDuration": "300",
+        //             "hideDuration": "1000",
+        //             "timeOut": "5000",
+        //             "extendedTimeOut": "1000",
+        //             "showEasing": "swing",
+        //             "hideEasing": "linear",
+        //             "showMethod": "fadeIn",
+        //             "hideMethod": "fadeOut"
+        //         }
+        //         if (notification.status == 'success') {
+        //             toastr.success(notification.message,notification.title);
+        //         } else if (notification.status == 'info') {
+        //             toastr.info(notification.message,notification.title);
+        //         } else if (notification.status == 'warning') {
+        //             toastr.warning(notification.message,notification.title);
+        //         } else {
+        //             toastr.error(notification.message,notification.title);
+        //         }
+        //     });
     </script>
     <script>
-        var myDate = new Date();
-        var hrs = myDate.getHours();
-        var greet;
-        if (hrs < 12)
-            greet = 'Good Morning';
-        else if (hrs >= 12 && hrs <= 17)
-            greet = 'Good Afternoon';
-        else if (hrs >= 17 && hrs <= 24)
-            greet = 'Good Evening';
-        document.getElementById('lblGreetings').innerHTML = greet + ' {{ Auth()->user()->name }}';
+        // var myDate = new Date();
+        // var hrs = myDate.getHours();
+        // var greet;
+        // if (hrs < 12)
+        //     greet = 'Good Morning';
+        // else if (hrs >= 12 && hrs <= 17)
+        //     greet = 'Good Afternoon';
+        // else if (hrs >= 17 && hrs <= 24)
+        //     greet = 'Good Evening';
+        // document.getElementById('lblGreetings').innerHTML = greet + ' {{ Auth()->user()->name }}';
     </script>
     <script>
-        const date = new Date();
-        const formattedDate = date.toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        }).replace(/ /g, ' ');
-        document.getElementById('getDate').innerHTML = 'Here are your stats for Today, ' + formattedDate;
+        // const date = new Date();
+        // const formattedDate = date.toLocaleDateString('en-GB', {
+        //     day: 'numeric',
+        //     month: 'short',
+        //     year: 'numeric'
+        // }).replace(/ /g, ' ');
+        // document.getElementById('getDate').innerHTML = 'Here are your stats for Today, ' + formattedDate;
     </script>
     @stack('js')
 </html>

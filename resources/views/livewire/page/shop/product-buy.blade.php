@@ -34,7 +34,7 @@
                                                                 <img src="{{ asset('img/snapNpay.png') }}" class="w-auto h-12" >
                                                             </div>
                                                             <p class="mt-2 text-xs text-center ">
-                                                                Service Charge : RM 0.00
+                                                                Service Charge : RM 1.00
                                                             </p>
                                                         </div>
                                                         <div class="p-4 border rounded-md cursor-pointer hover:bg-yellow-300  {{$selectPayment == 'toyyib' ? 'bg-yellow-300' : 'bg-white'}}"
@@ -259,7 +259,7 @@
                                         </div>
                                     </div>
                                     @if(auth()->user()->active == 1)
-                                    {{-- @if($products->isNotEmpty()) --}}
+                                    @if($products->isNotEmpty())
                                         <div
                                             x-show="disableBtn == true"
                                             class="flex items-center justify-end mt-2">
@@ -268,7 +268,7 @@
                                                 <span>COMPLETE ORDER</span>
                                             </a>
                                         </div>
-                                    {{-- @else --}}
+                                    @else
                                         <div
                                             x-show="disableBtn == false"
                                             class="flex items-center justify-end mt-2">
@@ -277,7 +277,7 @@
                                                 <span>COMPLETE ORDER</span>
                                             </a>
                                         </div>
-                                    {{-- @endif --}}
+                                    @endif
                                     @else
                                         <div class="p-4 rounded-md bg-red-50">
                                             <div class="flex">

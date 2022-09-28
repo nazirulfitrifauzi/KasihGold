@@ -12,6 +12,7 @@ use App\Models\InvCart;
 use App\Models\InvMaster;
 use App\Models\NewOrders;
 use App\Models\Promotion;
+use App\Models\SnapNPay;
 use App\Models\States;
 use App\Models\ToyyibBills;
 use Illuminate\Support\Facades\Http;
@@ -197,7 +198,94 @@ class ProductBuy extends Component
 
     public function buySnapNpay()
     {
-        dd('snapNpay');
+        // dd('snapNpay');
+
+        $products = InvCart::with('item.promotions')->where('user_id', auth()->user()->id)->get();
+        $total = 1.0; //Total is RM1 because of FPX Payment
+        $comm = 0.0;
+        $currentDate = date('Y-m-d');
+        $currentDate = date('Y-m-d', strtotime($currentDate));
+
+        foreach ($products as $prod) { // Count total price for the transaction
+            $comm += $prod->commission->agent_rate * $prod->prod_qty;
+
+            if ($prod->products->item->promotions != NULL && ($currentDate >= $prod->products->item->promotions->start_date) && ($currentDate <= $prod->products->item->promotions->end_date)) {
+                $total += $prod->products->item->promotions->promo_price * $prod->prod_qty;
+            } elseif ($prod->products->prod_cat == 3) {
+                $total += ($prod->products->item->marketPrice->price + round(($prod->products->item->marketPrice->price * $prod->percentage()), 2)) * $prod->prod_gram;
+            } else {
+                $total += $prod->products->item->marketPrice->price * $prod->prod_qty;
+            }
+        }
+        $refPayment = (string) Str::uuid();
+
+
+        // if promo code applied
+        if ($this->apply_code) {
+            $cart = $products->map(function ($item, $key) {
+                return [
+                    'item_id' => $item->item_id,
+                    'prod_qty' => $item->prod_qty
+                ];
+            });
+
+            $prod_json = [];
+            $prod_json = $cart->toArray();
+
+            CommissionPromotion::create([
+                'user_id' => auth()->user()->id,
+                'product' => json_encode($prod_json),
+                'promo_code' => $this->apply_code,
+                'billCode' => $refPayment
+            ]);
+        }
+
+        SnapNPay::create([
+            'ref_no'            => $refPayment,
+            'amount'            => (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total),
+            'status'            => 2,
+            'created_by'        => auth()->user()->id,
+            'updated_by'        => auth()->user()->id,
+            'created_at'        => now(),
+            'updated_at'        => now(),
+        ]);
+
+
+        foreach ($products as $prod) { //Filling all these request to Goldbar Ownership Pending
+            // Search for available gold bar to be filled
+            $goldbar = Goldbar::where('weight_vacant', '>=', $prod->products->prod_weight)->first();
+            for ($i = 0; $i < $prod->prod_qty; $i++) {
+                GoldbarOwnershipPending::create([
+                    'referenceNumber'   => $refPayment,
+                    'gold_id'           => $goldbar->id,
+                    'user_id'           => auth()->user()->id,
+                    'item_id'           => $prod->item_id,
+                    'weight'            => ($prod->products->prod_cat == 3 ? $prod->prod_gram : $prod->products->prod_weight),
+                    'bought_price'      => (auth()->user()->isAgentKAP()) ? ($prod->products->prod_cat != 3 ? ($prod->products->item->marketPrice->price - $prod->commission->agent_rate) : ((($prod->products->item->marketPrice->price + round(($prod->products->item->marketPrice->price * $prod->percentage()), 2)) - $prod->commission->agent_rate) * $prod->prod_gram)) : (($prod->products->prod_cat != 3 ? ($prod->products->item->marketPrice->price) : (($prod->products->item->marketPrice->price + round(($prod->products->item->marketPrice->price * $prod->percentage()), 2)) * $prod->prod_gram))),
+                    'status'            => 2,
+                    'spot_gold'         => ($prod->products->prod_cat == 3 ? 1 : 0),
+                    'snapNPayFlag'      => 2, // 2 for pending, 0 processed, 1 success , 3 failed
+                    'created_by'        => auth()->user()->id,
+                    'updated_by'        => auth()->user()->id,
+                    'created_at'        => now(),
+                    'updated_at'        => now(),
+                ]);
+
+                // update available gold bar weight
+
+                $currentGoldbar = Goldbar::where('id', $goldbar->id)->first();
+
+                $currentGoldbar->weight_on_hold += $prod->products->prod_weight;
+                $currentGoldbar->weight_vacant -= $prod->products->prod_weight;
+                $currentGoldbar->save();
+            }
+            $prod->delete();
+        }
+        session()->flash('agency', 'KASIHGOLD');
+        session()->flash('refNo', $refPayment);
+        session()->flash('amount', (auth()->user()->isAgentKAP()) ? (($total - $comm)) : ($total));
+        session()->flash('email', auth()->user()->email);
+        return redirect('snapBuy');
     }
 
     public function render()

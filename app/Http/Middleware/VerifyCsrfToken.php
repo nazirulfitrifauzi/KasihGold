@@ -14,6 +14,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'toyyibpay-callback',
         'toyyibpay-callback-mint',
+        'toyyibpay-callbackConv',
+        'pay2',
         //
     ];
 }
