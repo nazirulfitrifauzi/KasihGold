@@ -18,7 +18,7 @@ class MarketPriceController extends Controller
         $dinarPrice = InvInfo::where('prod_cat', 2)->first();
         $spotPrice = InvInfo::where('prod_cat', 3)->first();
         $spotPriceB = SpotGoldPricing::select('percentage')->where('range', '1g')->first();
-        $date = MarketPrice::find(10005)->value('updated_at');
+        $date = MarketPrice::whereId(10005)->value('updated_at');
 
         $digitalGoldBuy = [];
         $digitalGoldSell = [];
