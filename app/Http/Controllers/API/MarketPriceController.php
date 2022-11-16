@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\InvInfo;
+use App\Models\MarketPrice;
 use App\Models\OutrightPrice;
 use App\Models\SpotGoldPricing;
 use Illuminate\Http\Request;
@@ -17,13 +18,14 @@ class MarketPriceController extends Controller
         $dinarPrice = InvInfo::where('prod_cat', 2)->first();
         $spotPrice = InvInfo::where('prod_cat', 3)->first();
         $spotPriceB = SpotGoldPricing::select('percentage')->where('range', '1g')->first();
+        $date = MarketPrice::find(10005)->value('updated_at');
 
         $digitalGoldBuy = [];
         $digitalGoldSell = [];
 
         foreach($digitalPrice as $item){
             $digitalGoldBuy[] = array(number_format($item->prod_weight, 2), $item->marketPrice->price);
-            $digitalGoldSell[] = array(number_format($item->prod_weight, 2), ($item->prod_weight < 1) ? $digital1gOutPrice->price . " (1g)" : $item->outrightPrice->price);
+            $digitalGoldSell[] = array(number_format($item->prod_weight, 2), ($item->prod_weight < 1) ? "--" : $item->outrightPrice->price);
         }
 
         return $this->successResponse("Data fetch successfully.", [
@@ -33,6 +35,7 @@ class MarketPriceController extends Controller
             'dinar_sell' => $dinarPrice->outrightPrice->price,
             'digital_gold_buy' => $digitalGoldBuy,
             'digital_gold_sell' => $digitalGoldSell,
+            'updated_date' => $date,
         ], 201);
     }
 }
