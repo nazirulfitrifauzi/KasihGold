@@ -6,8 +6,19 @@ use Livewire\Component;
 
 class ExitReport extends Component
 {
+    public $status;
+    public $parameters;
+    public $report = 'exit-report';
+
+
+    public function mount()
+    {
+        $this->status = $this->status;
+    }
+
     public function render()
     {
-        return view('livewire.page.reporting.exit-report');
+        $this->parameters = "report=" . $this->report ."&status=".$this->status;
+        return view('livewire.page.reporting.exit-report')->extends('default.default');
     }
 }

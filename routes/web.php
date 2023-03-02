@@ -10,6 +10,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Reporting;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StockManagementController;
 use App\Http\Controllers\ScreeningController;
@@ -63,6 +64,12 @@ use App\Http\Livewire\Page\PhysicalGold\GoldMintingCheckout;
 use App\Http\Livewire\Page\PhysicalGold\OutrightCheckoutSG;
 use App\Http\Livewire\Page\PhysicalGold\OutrightSpotGold;
 use Illuminate\Support\Facades\Artisan;
+
+use App\Http\Livewire\Page\Reporting\AgentReport;
+use App\Http\Livewire\Page\Reporting\CommissionReport;
+use App\Http\Livewire\Page\Reporting\ExitReport;
+use App\Http\Livewire\Page\Reporting\GoldReport;
+use App\Http\Livewire\Page\Reporting\UserReport;
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -195,7 +202,18 @@ Route::middleware('auth')->group(function () {
         Route::get('admin/user-details/{id}', UserDetails::class)->name('admin.user-details');
         Route::get('admin/user-detailed-info', UserDetailedInfo::class)->name('admin.user-detailed-info');
 
+        Route::get('/report/show', [Reporting::class, 'index'])->name('show_report');
         Route::get('reporting', ListReport::class)->name('reporting');
+
+        Route::get('reporting/agent-report', AgentReport::class)->name('reporting.agent-report');
+        Route::get('reporting/commission-report', CommissionReport::class)->name('reporting.commission-report');
+        Route::get('reporting/exit-report', ExitReport::class)->name('reporting.exit-report');
+        Route::get('reporting/gold-report', GoldReport::class)->name('reporting.gold-report');
+        Route::get('reporting/user-report', UserReport::class)->name('reporting.user-report');
+
+
+
+
         Route::get('reporting/summary-goldbar', [ReportingController::class, 'summaryGoldbar'])->name('summaryGoldbar');
         Route::get('reporting/summary-agent', [ReportingController::class, 'summaryAgent'])->name('summaryAgent');
         Route::get('reporting/summary-commission', [ReportingController::class, 'summaryCommission'])->name('summaryCommission');

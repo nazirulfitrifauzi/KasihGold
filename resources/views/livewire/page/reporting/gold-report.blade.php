@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             Goldbars Report
@@ -53,79 +53,53 @@
         <tbody class="bg-white divide-y divide-gray-200">
         </tbody>
     </table>
+</div> --}}
+
+<div>
+    <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12">
+        <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
+            <h2 class="mr-auto text-lg font-medium">
+                Goldbars Report
+            </h2>
+        </div>
+
+        <x-general.card class="px-5 bg-white">
+            <form wire:submit.prevent="">
+                <div class="flex items-center justify-between">
+                    <div class="flex flex-col items-start md:flex-row md:items-center md:space-x-4">
+                        <label class="block text-sm font-semibold leading-5 text-gray-700 " for="agent">Agent:</label>
+                        <select class="w-64 form-select"  wire:model="serial"
+                        >
+                            <option>Select a Goldbar Serial</option>
+                            @foreach($goldbar as $gold)
+                                <option value="{{ $gold->id }}">{{ $gold->serial_id }}</option>
+                            @endforeach
+                        </select>
+                        <label class="block text-sm font-semibold leading-5 text-gray-700"  for="report_date">Report Month:</label>
+                        <input
+                            class="block transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
+                            type="month"
+                            id="report_date_agent"
+                            name="report_date"
+                            min="2021-07"
+                            wire:model="report_date"
+                        >
+                    </div>
+                    <div class ="flex items-center justify-end">
+                        <div>
+                            <a href="{{route('reporting')}}"
+                                class="flex items-center p-2 mt-1 text-xs bg-yellow-300 rounded-full hover:bg-yellow-400 focus:outline-none tooltipbtn"
+                                data-title="Back to list of report"
+                                data-placement="top"
+                                >
+                                <x-heroicon-o-arrow-left class="w-4 h-4 text-black"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </x-general.card>
+
+        <x-reporting.iframe :parameters="$parameters" />
+    </x-general.grid>
 </div>
-
-@push('js')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#goldTable').wrap('<div id="hide" style="display:none"/>');
-            $('.select2').select2({
-                placeholder: "Select a Goldbar Serial"
-            });
-
-            var goldtable = $('#goldTable').DataTable({
-                dom: 'Bfrtip',
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('summaryGoldbar') }}",
-                    data: function (d) {
-                        d.serial = $('#serial').val();
-                        d.report_date = document.getElementById("report_date").value;
-                    }
-                },
-                buttons: [
-                    {
-                        text: `<div class="flex items-center px-4 py-2 mr-2 space-x-2 text-white bg-green-400 rounded-md">
-                                    <x-heroicon-o-document-download class="w-6 h-6"/>
-                                    <p>Excel</p>
-                                </div>`,
-                        extend: 'excelHtml5',
-                        title: 'Goldbar Report '
-                    },
-                    {
-                        text: `<div class="flex items-center px-4 py-2 mr-2 space-x-2 text-white bg-orange-400 rounded-md">
-                                    <x-heroicon-o-document-text class="w-6 h-6"/>
-                                    <p>PDF</p>
-                                </div>`,
-                        extend: 'pdfHtml5',
-                        title: 'Goldbar Report '
-                    }
-                ],
-                columns: [
-                    {data: 'serial_id', name: 'serial_id', orderable: true},
-                    { render:function(data, type, row) {
-                        return parseFloat(row.weight).toFixed(2)
-                        }, orderable: true
-                    },
-                    {data: 'total', name: 'total', orderable: true},
-                ],
-                columnDefs: [
-                    {
-                        targets: 0,
-                        className: 'dt-body-center'
-                    },
-                    {
-                        targets: 1,
-                        className: 'dt-body-center'
-                    },
-                    {
-                        targets: 2,
-                        className: 'dt-body-center'
-                    }
-                ],
-                bLengthChange: false,
-                dom: "<'flex items-center justify-end mb-3'<B>>" +
-                    "<'flex'<'w-full'tr>>" +
-                    "<'flex'<'w-full col-md-5'i><'w-full col-md-7'p>>"
-            })
-
-            $("#submit").click(function(e) {
-                $('#hide').css( 'display', 'block' );
-                $("#goldTable").css("width",'');
-                goldtable.ajax.reload();
-                e.preventDefault();
-            });
-        });
-    </script>
-@endpush
