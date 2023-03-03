@@ -27,7 +27,7 @@
             <div class="flex flex-col items-center justify-center mx-auto">
                 {{-- <x-heroicon-o-cog class="w-24 h-24 text-teal-600 animate-spin"/>
                 <h2 class="text-lg font-bold text-teal-600">Sedang memuatkan <span class="animate-pulse">...</span></h2> --}}
-                <img src="{{ asset('img/kasihgold.gif') }}" class="w-72 h-72"/>
+                <img src="{{ asset('img/kasihAPGold.png') }}" alt="" class="w-auto h-16 animate-bounce">
             </div>
         </div>
     </div>

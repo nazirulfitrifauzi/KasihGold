@@ -16,7 +16,7 @@ class ExitReport
 
     public static function getData($parameters)
     {
-        $status = $report_date = $parameters['status'];
+        $status = $parameters['status'];
 
         if ($status == 'convert') {
             $result = PhysicalConvert::where('status',1)->get();
@@ -27,10 +27,6 @@ class ExitReport
         } else {
             $result = PhysicalConvert::where('status', 1)->get();
         }
-
-
-
-
 
         return [
             'data' => $result,

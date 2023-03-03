@@ -1,16 +1,16 @@
 
 <div class="overflow-hidden">
-    <section class="absolute top-0 bottom-0 left-0 z-10 flex max-w-full md:top-32" aria-labelledby="slide-over-heading">
+    <section class="absolute bottom-0 left-0 z-10 flex max-w-full top-14 md:top-0 md:top-32" aria-labelledby="slide-over-heading">
         <div class="relative w-screen max-w-md">
 
-            <div class="flex flex-col h-full py-6 pt-0 overflow-auto bg-white shadow-xl">
-                <div class="relative flex-shrink-0 overflow-hidden bg-yellow-300 ">
+            <div class="flex flex-col h-screen py-6 pt-0 overflow-auto bg-white shadow-xl lg:h-full">
+                <div class="relative flex-shrink-0 overflow-hidden bg-yellow-400 ">
                     <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
                         <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"/>
                         <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"/>
                     </svg>
                     <div class="relative flex items-center p-4">
-                        <h2 class="text-base font-semibold text-black uppercase">
+                        <h2 class="text-base font-semibold text-white uppercase">
                             Reporting List
                         </h2>
                     </div>
@@ -21,7 +21,7 @@
                     <div class="flex items-center space-x-2">
                         <x-form.search-input label="" placeholder="Search"  value="" id="myInput" onkeyup="myFunction()" />
                     </div>
-                    <div class="pb-8 mt-4 border-2 border-gray-200 ">
+                    <div class="pb-8 mt-4 border-2 border-yellow-400 ">
                         <div class="h-full leading-6" aria-hidden="true">
                             <ul id="myUL">
                                 <li>
