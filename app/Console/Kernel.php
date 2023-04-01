@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('UpdatePayment')->everyMinute();
         $schedule->command('UpdateCompletedProfile')->everyMinute();
         $schedule->command('UpdateSpotPrice')->everyMinute();
+        $schedule->command('UpdateSpotGoldCart')->everyMinute();
+        $schedule->command('UpdateSnapNPayPayment')->everyMinute();
     }
 
     /**
