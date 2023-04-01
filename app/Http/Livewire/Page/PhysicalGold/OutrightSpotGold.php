@@ -47,8 +47,6 @@ class OutrightSpotGold extends Component
 
         $this->GoldMint = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 4)->first();
 
-        $this->MintingCost = 0;
-
 
 
         if (is_numeric($this->GoldMintGram)) {
