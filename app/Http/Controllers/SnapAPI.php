@@ -28,14 +28,14 @@ class SnapAPI extends Controller
         // dd($response);
         $toyyibBill = SnapNPay::where('refNo', $response['refNo'])->first();
 
-        if ($response['status'] == 'success' && $toyyibBill->status == 1) {
+        if ($response['status'] == 'success' && $toyyibBill->status == 0) {
 
             $gold = GoldbarOwnershipPending::where('referenceNumber', $response['refNo'])
                 ->where('SnapNPayFlag', 2)
                 ->get();
 
             $toyyibBill->fpxTxnId = $response['fpxTxnId'];
-            $toyyibBill->ordeR_no = $response['orderNo'];
+            $toyyibBill->order_no = $response['orderNo'];
             $toyyibBill->status = 1;
             $toyyibBill->save();
 
@@ -105,7 +105,7 @@ class SnapAPI extends Controller
                 ->get();
 
             $toyyibBill->fpxTxnId = $response['fpxTxnId'];
-            $toyyibBill->ordeR_no = $response['orderNo'];
+            $toyyibBill->order_no = $response['orderNo'];
             $toyyibBill->status = 3;
             $toyyibBill->save();
 

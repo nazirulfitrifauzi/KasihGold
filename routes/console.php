@@ -4,7 +4,10 @@ use App\Models\CommissionDetailKap;
 use App\Models\Goldbar;
 use App\Models\GoldbarOwnership;
 use App\Models\GoldbarOwnershipPending;
+use App\Models\InvCart;
 use App\Models\InvInfo;
+use App\Models\MarketPrice;
+use App\Models\SnapNPay;
 use App\Models\ToyyibBills;
 use App\Models\User;
 use App\Models\UserUpline;
@@ -75,6 +78,46 @@ Artisan::command('UpdateSpotPrice', function () {
 })->purpose('Display an inspiring quote');
 
 
+Artisan::command('UpdateSpotGoldCart', function () {
+
+
+
+    $spotGold = MarketPrice::select('updated_at')->where('item_id', 12)->first();
+
+    $spotGoldCart = InvCart::where('item_id', 12)->whereNull('deleted_at')->first();
+
+
+    if (($spotGoldCart->updated_at < $spotGold->updated_at) && ($spotGoldCart->updated_at <= now()->subMinutes(10))) {
+        $spotGoldCart->update(['deleted_at' => now()]);
+    }
+})->purpose('clear out any spot gold cart that is using older price');
+
+
+Artisan::command('UpdateSnapNPayPayment', function () {
+
+
+    $pendingPayment = SnapNPay::where('status', 0)
+        ->get();
+
+    foreach ($pendingPayment as $pendingTrx) {
+
+        if (($pendingTrx->updated_at <= now()->subMinutes(30))) {
+            $pendingPayment->update(['status' => 3, 'updated_by' => 0, 'updated_at' => now()]);
+
+            $pendingGold = GoldbarOwnershipPending::where('referenceNumber', $pendingTrx->ref_no)->get();
+
+            foreach ($pendingGold as $pendingG) {
+                $pendingG->update(['status' => 3, 'updated_by' => 0, 'updated_at' => now()]);
+
+                $currentGoldbar = Goldbar::where('id', $pendingG->gold_id)->first();
+                $currentGoldbar->weight_on_hold -= $pendingG->weight;
+                $currentGoldbar->weight_vacant += $pendingG->weight;
+                $currentGoldbar->save();
+            }
+        }
+    }
+})->purpose('clear out pending snapNPay Payment that is past 30 mins');
+
 
 
 
@@ -144,7 +187,7 @@ Artisan::command('UpdatePayment', function () {
                 }
             }
         } elseif (($response[0]['billpaymentStatus'] == 4) && ($pendingTrx->updated_at <= now()->subMinutes(2))) {
-            $pendingTrx->update(['status' => 3, 'updated_by' => 0]);
+            $pendingTrx->update(['status' => 3, 'updated_by' => 0, 'updated_at' => now()]);
 
             $pendingGold = GoldbarOwnershipPending::where('referenceNumber', $pendingTrx->bill_code)->get();
 
