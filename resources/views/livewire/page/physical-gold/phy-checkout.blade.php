@@ -85,7 +85,6 @@
 
                             </x-slot>
                             <div class="px-2 py-2">
-                                {{-- {{ $list->links('pagination::tailwind') }} --}}
                             </div>
                         </x-table.table>
                     </div>
@@ -109,7 +108,7 @@
                                             </button>
                                             <input type="text"
                                                 class="flex items-center justify-center w-full font-semibold text-center text-gray-700 bg-gray-300 outline-none focus:outline-none text-md hover:text-black focus:text-black md:text-basecursor-default"
-                                                name="custom-input-number" wire:model="goldbar{{$types->prod_cat}}" value="goldbar{{$types->prod_cat}}" disabled></input>
+                                                name="custom-input-number" wire:model="goldbar{{$types->prod_code}}" value="goldbar{{$types->prod_code}}" disabled></input>
                                             <button  wire:click="exitProd({{1}},'{{$types->prod_weight}}')"
                                                 class="w-20 h-full text-gray-600 bg-gray-300 rounded-r cursor-pointer hover:text-gray-700 hover:bg-gray-400 focus:outline-none">
                                                 <span class="m-auto text-2xl font-thin">+</span>

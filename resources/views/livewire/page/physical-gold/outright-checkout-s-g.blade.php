@@ -99,15 +99,13 @@
                                         <div class="flex justify-between mt-6 border-b-2 pb-4">
                                             <div class="flex">
                                                 <img class="object-cover w-20 h-20 rounded"
-                                                src="{{ asset('img/product/'.$GoldMint->products->prod_cat.'/'.$GoldMint->products->item_id.'/'.$GoldMint->products->prod_img1) }}" alt="">
+                                                src="{{ asset('img/product/1/9/d1.png') }}" alt="">
 
                                                 <div class="mx-3 my-3">
                                                     <h3 class="text-sm text-gray-600">{{$GoldMint->products->prod_name}}</h3>
                                                     <h6 class="text-sm text-gray-600">{{$GoldMint->prod_gram}} g</h6>
                                                 </div>
                                             </div>
-                                            {{-- <span class="font-semibold text-gray-600 my-3">RM {{number_format($product['prod_price']*$product['qty'],2)}}</span>
-                                            <span class="font-semibold text-gray-600 my-3">RM {{ number_format($product->products->out->price*$prod->prod_qty, 2) }} --}}
                                             </span>
                                         </div>
 
