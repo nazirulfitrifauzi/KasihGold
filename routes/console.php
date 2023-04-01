@@ -54,8 +54,6 @@ Artisan::command('UpdateCompletedProfile', function () {
 
 Artisan::command('UpdateSpotPrice', function () {
 
-
-
     $spotGold = InvInfo::where('prod_cat', 3)->first();
 
 
@@ -80,15 +78,15 @@ Artisan::command('UpdateSpotPrice', function () {
 
 Artisan::command('UpdateSpotGoldCart', function () {
 
-
-
     $spotGold = MarketPrice::select('updated_at')->where('item_id', 12)->first();
 
     $spotGoldCart = InvCart::where('item_id', 12)->whereNull('deleted_at')->first();
 
+    if ($spotGoldCart) {
 
-    if (($spotGoldCart->updated_at < $spotGold->updated_at) && ($spotGoldCart->updated_at <= now()->subMinutes(10))) {
-        $spotGoldCart->update(['deleted_at' => now()]);
+        if (($spotGoldCart->updated_at < $spotGold->updated_at) && ($spotGoldCart->updated_at <= now()->subMinutes(10))) {
+            $spotGoldCart->update(['deleted_at' => now()]);
+        }
     }
 })->purpose('clear out any spot gold cart that is using older price');
 
