@@ -39,21 +39,23 @@ class PhyCheckout extends Component
 
     public function exitProd($prod_qty, $type)
     {
-        if ($type == "1.00") {
-            if ((($this->goldbar064 + ($prod_qty)) + ($this->goldbar063 * 0.25)) > $this->total) {
-                session()->flash('error');
-                session()->flash('title', 'Invalid Quantity!');
-                session()->flash('message', 'You cannot exceed more than what you own.');
-            } else
-                $this->goldbar064 = $this->goldbar064 + ($prod_qty);
-        }
-        if ($type == "0.25") {
-            if (((($this->goldbar063 + ($prod_qty)) * 0.25) > $this->totMiscG) || (($this->goldbar064 + ((($this->goldbar063 + ($prod_qty)) * 0.25)) > $this->total))) {
-                session()->flash('error');
-                session()->flash('title', 'Invalid Quantity!');
-                session()->flash('message', 'You cannot exceed more than what you own.');
-            } else
-                $this->goldbar063 = $this->goldbar063 + ($prod_qty);
+        if ($prod_qty > 0) {
+            if ($type == "1.00") {
+                if ((($this->goldbar064 + ($prod_qty)) + ($this->goldbar063 * 0.25)) > $this->total) {
+                    session()->flash('error');
+                    session()->flash('title', 'Invalid Quantity!');
+                    session()->flash('message', 'You cannot exceed more than what you own.');
+                } else
+                    $this->goldbar064 = $this->goldbar064 + ($prod_qty);
+            }
+            if ($type == "0.25") {
+                if (((($this->goldbar063 + ($prod_qty)) * 0.25) > $this->totMiscG) || (($this->goldbar064 + ((($this->goldbar063 + ($prod_qty)) * 0.25)) > $this->total))) {
+                    session()->flash('error');
+                    session()->flash('title', 'Invalid Quantity!');
+                    session()->flash('message', 'You cannot exceed more than what you own.');
+                } else
+                    $this->goldbar063 = $this->goldbar063 + ($prod_qty);
+            }
         }
     }
 
