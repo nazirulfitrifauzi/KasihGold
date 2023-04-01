@@ -94,7 +94,7 @@ Artisan::command('UpdateSpotGoldCart', function () {
 Artisan::command('UpdateSnapNPayPayment', function () {
 
 
-    $pendingPayment = SnapNPay::where('status', 0)
+    $pendingPayment = SnapNPay::where('status', '!=', 1)->where('status', '!=', 3)
         ->get();
 
     foreach ($pendingPayment as $pendingTrx) {
