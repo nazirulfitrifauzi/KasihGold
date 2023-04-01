@@ -22,12 +22,11 @@ class OutrightCheckout extends Component
 
     public function exitProdAdd($type)
     {
-        $goldQty = GoldbarOwnership::where('user_id', auth()->user()->id)->where('item_id', $type)->groupBy('item_id')->select('item_id', DB::raw('count(*) as total'))->first();
+        $goldQty = GoldbarOwnership::where('user_id', auth()->user()->id)->where('item_id', $type)->where('active_ownership', 1)->groupBy('item_id')->select('item_id', DB::raw('count(*) as total'))->first();
 
         $exitCart = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id', $type)->first();
 
         if ($exitCart) {
-
             if ($goldQty->total > $exitCart->prod_qty) {
                 $exitCart->prod_qty += 1;
                 $exitCart->save();
@@ -122,6 +121,7 @@ class OutrightCheckout extends Component
 
 
         $cartInfo = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 1)->get();
+
         foreach ($cartInfo as $cartItems) {
 
             if (($cartItems->products->prod_weight > 1)) {

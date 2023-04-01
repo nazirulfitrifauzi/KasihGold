@@ -53,72 +53,45 @@
                                         justify-center
                                         text-gray-700 
                                         outline-none"
-                                        {{-- name="custom-input-number" value="{{$types->products->item_id}}" disabled></input> --}}
                                         name="custom-input-number" wire:model="GoldMintGram" >
                                     
                                     </input>
                                 </div>
                             </x-table.table-body>
-
-                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>RM {{$types->outright_price}}</p>
-                            </x-table.table-body> --}}
-
                         </tr>
                         
 
                     </x-slot>
                     <div class="px-2 py-2">
-                        {{-- {{ $list->links('pagination::tailwind') }} --}}
                     </div>
                 </x-table.table>
             </div>
             <!--End desktop view-->
 
             <!--Start Mobile view-->
-            {{-- <div class="block lg:hidden">
+            <div class="block lg:hidden">
                 <div class="border-2 p-4 rounded-md">
-                    @foreach ($goldO as $types)
                         <div class="border-b-2 py-2">
                             <div class="flex justify-between items-center">
                                 <div>
                                     <img class="object-cover w-16 h-16 rounded" 
-                                    src="{{ asset('img/product/'.$types->products->prod_cat.'/'.$types->products->item_id.'/'.$types->products->prod_img1) }}"alt="">
-                                    <h3 class="text-sm font-semibold">{{$types->products->prod_name}}</h3>
+                                    src="{{ asset('img/product/1/9/d1.png') }}" alt="">
+                                    <h3 class="text-sm font-semibold">Kasih AP Gold Wafer</h3>
                                 </div>
                                 <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                    <button  wire:click="exitProdAdd({{$types->products->item_id}})"
-                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
-                                        <span class="m-auto text-2xl font-thin">−</span>
-                                    </button>
                                     <input type="text"
                                         class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
                                         hover:text-black focus:text-black  md:text-basecursor-default flex items-center
                                         justify-center
                                         text-gray-700 
                                         outline-none"
-                                        name="custom-input-number" value="{{$types->products->prod_cat}}" disabled>
+                                        name="custom-input-number" value="" wire:model="GoldMintGram">
                                     </input>
-                                    <button  wire:click="exitProdSub({{$types->products->item_id}})"
-                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
-                                        <span class="m-auto text-2xl font-thin">+</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex justify-between mt-1">
-                                <div>
-                                    <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
-                                    <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                    <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
                 </div>
-            </div> --}}
+            </div>
             <!--End Mobile view-->
 
 
@@ -140,7 +113,6 @@
                             <p>Total Grammage</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            {{-- <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p> --}}
                             <p>{{$GoldMintGram}} Gram</p>
                         </div>
                     </div>
@@ -150,8 +122,11 @@
                             <p>Total Exit Value (RM)</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            {{-- <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p> --}}
-                            <p>RM {{$GoldMintGram * $spotPrice->price}}</p>
+                            @if (is_numeric($GoldMintGram))
+                                <p>RM {{$GoldMintGram * $spotPrice->price}}</p>
+                            @else
+                                <p>RM 0</p>
+                            @endif
                         </div>
                     </div>
                 
@@ -173,7 +148,6 @@
        
        window.livewire.on('message', message => {
     alert(message);
-    // or whatever alerting library you'd like to use
 })
     </script>
 @endpush

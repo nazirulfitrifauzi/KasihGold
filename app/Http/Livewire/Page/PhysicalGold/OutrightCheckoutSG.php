@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Http;
 class OutrightCheckoutSG extends Component
 {
 
-    public $bankId, $swiftCode, $accNo, $accHolderName, $bankAccId;
+    public $bankId, $swiftCode, $accNo, $accHolderName, $bankAccId, $membership_id;
 
     public $states, $banks;
     public $GoldMint, $GoldMintGram, $MintingCost, $total, $spotPrice;

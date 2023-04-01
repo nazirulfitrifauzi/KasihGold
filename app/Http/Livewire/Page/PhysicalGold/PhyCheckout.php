@@ -16,6 +16,8 @@ class PhyCheckout extends Component
 
     public function mount()
     {
+        $this->total = 0;
+
         $this->totalGoldbar = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('spot_gold', 0)->get();
         $this->oneG         = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', 1.00)->count();
         $this->miscG        = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('weight', '!=', 1.00)->get();

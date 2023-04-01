@@ -21,7 +21,6 @@
                         <x-table.table-header class="text-left" value="Product" sort="" />
                         <x-table.table-header class="text-left" value="Total Quantity Available" sort="" />
                         <x-table.table-header class="text-left" value="Quantity" sort="" />
-                        {{-- <x-table.table-header class="text-left" value="Outright Price" sort="" /> --}}
                     </x-slot>
                     <x-slot name="tbody">
 
@@ -50,13 +49,8 @@
                                     </button>
 
                                     @php
-
                                         $cart_qty = 0;
-                                        // $quantity=0;
-                                        // $quantity = /App/Models/InvCart::select('prod_qty')->where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id',$types->products->item_id)->first();
                                         $quantity = DB::table('inv_cart')->select('prod_qty')->where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id',$types->products->item_id)->where('deleted_at',NULL)->first();
-                                        // dump($quantity);
-
                                     @endphp
                                     <input type="text"
                                         class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
@@ -64,12 +58,10 @@
                                         justify-center
                                         text-gray-700 
                                         outline-none"
-                                        {{-- name="custom-input-number" value="{{$types->products->item_id}}" disabled></input> --}}
                                         name="custom-input-number" value="{{($quantity ? $quantity->prod_qty : 0)}}" disabled>
                                     
                                     </input>
                                     @if(!empty($quantity))
-                                    {{-- {{dump($quantity)}} --}}
                                     @endif
                                     <button  wire:click="exitProdAdd({{$types->products->item_id}})"
                                         class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
@@ -77,10 +69,6 @@
                                     </button>
                                 </div>
                             </x-table.table-body>
-
-                            {{-- <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                <p>RM {{$types->outright_price}}</p>
-                            </x-table.table-body> --}}
 
                         </tr>
                         @endif
@@ -99,7 +87,6 @@
 
                     </x-slot>
                     <div class="px-2 py-2">
-                        {{-- {{ $list->links('pagination::tailwind') }} --}}
                     </div>
                 </x-table.table>
             </div>
@@ -109,7 +96,7 @@
             <div class="block lg:hidden">
                 <div class="border-2 p-4 rounded-md">
                     @foreach ($goldO as $types)
-                        @if($types->products->prod_cat==1)
+                        @if($types->products->prod_cat!=3)
                             <div class="border-b-2 py-2">
                                 <div class="flex justify-between items-center">
                                     <div>
@@ -122,13 +109,19 @@
                                             class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer focus:outline-none">
                                             <span class="m-auto text-2xl font-thin">−</span>
                                         </button>
+
+                                        @php
+                                            $cart_qty = 0;
+                                            $quantity = DB::table('inv_cart')->select('prod_qty')->where('user_id', auth()->user()->id)->where('exit_type', 1)->where('item_id',$types->products->item_id)->where('deleted_at',NULL)->first();
+                                        @endphp
+                                    
                                         <input type="text"
                                             class="focus:outline-none text-center w-full bg-gray-300 font-semibold text-md 
                                             hover:text-black focus:text-black  md:text-basecursor-default flex items-center
                                             justify-center
                                             text-gray-700 
                                             outline-none"
-                                            name="custom-input-number" value="{{($types->cart ? ($types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first() ? $types->cart->where('exit_type', 1)->where('item_id',$types->products->item_id)->first()->prod_qty : 0): 0 )}}" disabled>
+                                            name="custom-input-number" value="{{($quantity ? $quantity->prod_qty : 0)}}" disabled>
                                         </input>
                                         <button  wire:click="exitProdAdd({{$types->products->item_id}})"
                                             class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer focus:outline-none">
@@ -136,16 +129,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                {{-- <div class="flex justify-between mt-1">
-                                    <div>
-                                        <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
-                                        <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                        <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
-                                    </div>
-                                </div> --}}
                             </div>
                         @endif
                     @endforeach
@@ -157,19 +140,9 @@
                             </div>
 
                             <div class="flex flex-row h-10 w-24 rounded-lg relative bg-transparent mt-1">
-                                <h3 class="text-sm font-semibold text-{{ ($total_weight >= 1 &&  (floor($total_weight) == $total_weight)) ? 'grey' : 'red' }}-700 ">{{$total_weight}} g</h3>
+                                <h3 class="text-sm font-semibold text-{{ ($gross_weight >= 1 &&  (floor($gross_weight) == $gross_weight)) ? 'grey' : 'red' }}-700 ">{{$gross_weight}} g</h3>
                             </div>
                         </div>
-                        {{-- <div class="flex justify-between mt-1">
-                            <div>
-                                <p class="text-xs text-gray-500">CURRENT PRODUCT PRICE</p>
-                                <p class='text-sm font-semibold'>RM {{$types->products->prod_price}}</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500">OUTRIGHT PRICE</p>
-                                <p class='text-sm font-semibold text-right'>RM {{$types->products->outright_price}}</p>
-                            </div>
-                        </div> --}}
                     </div>
 
 
@@ -218,7 +191,6 @@
                             <p>Total Price</p>
                         </div>
                         <div class="font-semibold text-lg">
-                            {{-- <p>RM {{number_format(($info_bar061->outright_price*$goldbar061)+($info_bar062->outright_price*$goldbar062)+($info_bar063->outright_price*$goldbar063)+($info_bar064->outright_price*$goldbar064+($info_bar065->outright_price*$goldbar065)),2)}}</p> --}}
                             <p>RM {{number_format($total,2)}}</p>
                         </div>
                     </div>
@@ -250,7 +222,6 @@
        
        window.livewire.on('message', message => {
     alert(message);
-    // or whatever alerting library you'd like to use
 })
     </script>
 @endpush

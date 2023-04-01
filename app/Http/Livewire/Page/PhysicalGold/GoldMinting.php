@@ -16,6 +16,7 @@ class GoldMinting extends Component
 
     public function mount()
     {
+        $this->total = 0;
 
         $totalGoldbar = GoldbarOwnership::where('user_id', auth()->user()->id)->where('active_ownership', 1)->where('spot_gold', 1)->get();
 
