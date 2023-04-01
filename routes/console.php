@@ -105,7 +105,7 @@ Artisan::command('UpdateSnapNPayPayment', function () {
             $pendingGold = GoldbarOwnershipPending::where('referenceNumber', $pendingTrx->ref_no)->get();
 
             foreach ($pendingGold as $pendingG) {
-                $pendingG->update(['status' => 3, 'updated_by' => 0, 'updated_at' => now()]);
+                $pendingG->update(['status' => 3, 'snapNPayFlag' => 3, 'updated_by' => 0, 'updated_at' => now()]);
 
                 $currentGoldbar = Goldbar::where('id', $pendingG->gold_id)->first();
                 $currentGoldbar->weight_on_hold -= $pendingG->weight;
