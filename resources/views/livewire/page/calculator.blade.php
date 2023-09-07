@@ -46,46 +46,46 @@
                             </th>
                         </x-slot>
                         <x-slot name="tbody">
-                            {{-- @forelse ($this->gold_types as $code => $gold) --}}
+                            @forelse ($this->gold_types as $code => $gold)
                                 <tr>
                                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700">
-                                        1
+                                        {{ $loop->iteration }}
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700">
-                                        <x-form.input wire:model.lazy="marhun.code.weight" value="marhun.code.weight" label="" placeholder=""/>
+                                        <x-form.input placeholder="" wire:model.lazy="marhun.{{ trim($code) }}.weight" value="marhun.{{ trim($code) }}.weight" label=""/>
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-mono text-sm font-medium text-right text-gray-700">
-                                        1K
+                                        {{ Money($gold['carat']) }}K
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-mono text-sm font-medium text-right text-gray-700">
-                                        RM 1
+                                        RM {{ Money($gold['price']) }}
                                     </x-table.table-body>
                                     <x-table.table-body colspan="" class="font-mono text-sm font-medium text-right text-gray-700">
-                                        RM 1
+                                        RM {{ Money($marhun[trim($code)]['total']) }}
                                     </x-table.table-body>
                                 </tr>
-                            {{-- @empty
+                            @empty
                             <tr>
                                 <x-table.table-body colspan="4" class="text-sm font-medium text-gray-700">
                                     Tiada data
                                 </x-table.table-body>
                             </tr>
-                            @endforelse --}}
+                            @endforelse
                         </x-slot>
                     </x-table.table>
 
                     <div class="mt-4 mb-6">
                         <x-general.grid mobile="1" gap="2" sm="2" md="2" lg="2" xl="2" class="col-span-12">
-                            <x-form.input wire:model="total_marhun.weight" value="total_marhun.weight" label="Jumlah Berat(gram)" disable="true"  placeholder=""/>
-                            <x-form.input wire:model="total_marhun.price" value="total_marhun.price" label="Jumlah Marhun(RM)" disable="true"  placeholder=""/>
+                            <x-form.input placeholder="" wire:model="total_marhun.weight" value="total_marhun.weight" label="Jumlah Berat(gram)" disable="true"  placeholder=""/>
+                            <x-form.input placeholder="" wire:model="total_marhun.price" value="total_marhun.price" label="Jumlah Marhun(RM)" disable="true"  placeholder=""/>
                         </x-general.grid>
                     </div>
 
                     <div class="mt-4 mb-6">
                         <x-general.grid mobile="1" gap="2" sm="3" md="3" lg="3" xl="3" class="col-span-12">
-                            <x-form.input wire:model="duration.from" value="duration.from" label="Dari" disable="true"  placeholder=""/>
-                            <x-form.input wire:model="duration.until" value="duration.until" label="Hingga" disable="true"  placeholder=""/>
-                            <x-form.input wire:model="duration.day" value="duration.day" label="Bilangan Hari" disable="true"  placeholder=""/>
+                            <x-form.input placeholder="" wire:model="duration.from" value="duration.from" label="Dari" disable="true"  placeholder=""/>
+                            <x-form.input placeholder="" wire:model="duration.until" value="duration.until" label="Hingga" disable="true"  placeholder=""/>
+                            <x-form.input placeholder="" wire:model="duration.day" value="duration.day" label="Bilangan Hari" disable="true"  placeholder=""/>
                         </x-general.grid>
                     </div>
 
@@ -102,14 +102,14 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-yellow-50">
-                                    {{-- @foreach ($financing as $row) --}}
+                                    @foreach ($financing as $row)
                                         <tr>
-                                            <td class="p-4 font-semibold">1</td>
-                                            <td class="p-4 font-mono text-right">1</td>
-                                            <td class="p-4 font-mono text-right">1</td>
-                                            <td class="p-4 font-mono text-right">1</td>
+                                            <td class="p-4 font-semibold">{{ $row['name'] }}</td>
+                                            <td class="p-4 font-mono text-right">{{ $row['max_financing'] }}</td>
+                                            <td class="p-4 font-mono text-right">{{ $row['one_month'] }}</td>
+                                            <td class="p-4 font-mono text-right">{{ $row['full_month'] }}</td>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
