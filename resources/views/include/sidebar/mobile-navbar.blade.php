@@ -21,6 +21,10 @@
             <x-heroicon-o-x class="w-6 h-6 "/>
         </div>
 
+
+         <!-- Calculator Btn -->
+         <livewire:page.calculator/>
+
             <!-- Mobile sub header button  jgn padam-->
             {{-- <button @click="isSubHeaderOpen = !isSubHeaderOpen"
                 class="p-2 text-white bg-yellow-400 rounded-lg shadow-md sm:hidden focus:outline-none ">
@@ -35,8 +39,8 @@
                 <x-heroicon-o-bell class="w-6 h-6" />
             </button> --}}
 
-            
-        
+
+
                 <!-- cart -->
                 @if(auth()->user()->isAdminKAP())
                 @else
@@ -47,7 +51,7 @@
                         @php
                             $cartCount = 0;
                             $cartTotal = auth()->user()->cart;
-                            
+
                             foreach ($cartTotal as $cart) {
                                 $outCart = $cart->where('exit_type', NULL)->where('id',$cart->id)->first();
                                 if ($outCart)
@@ -64,7 +68,7 @@
 
                     <!-- Shop -->
                     <div class="relative" x-data="{ isOpen: false }">
-                        <button class="p-2 text-white bg-indigo-500 rounded-lg shadow-md focus:outline-none" 
+                        <button class="p-2 text-white bg-indigo-500 rounded-lg shadow-md focus:outline-none"
                         data-title="Shop" data-placement="right" x-on:click="Open = true"
                         @click="isOpen = !isOpen; $nextTick(() => {isOpen ? $refs.userMenu.focus() : null})">
                         <x-heroicon-o-shopping-bag class="w-6 h-6 " />
@@ -130,12 +134,12 @@
                                     @else
                                         012 749 9771
                                     @endif
-                                </p> 
+                                </p>
                             </div>
                         </x-general.modal2>
                     </div>
                 </div>
-            
+
                 <!-- Screening passed -->
                 <div>
                     @if(auth()->user()->active == 0)

@@ -13,6 +13,9 @@
                 <x-heroicon-o-menu-alt-2 class="w-6 h-6" />
             </button>
 
+            <!-- Calculator Btn -->
+            <livewire:page.calculator/>
+
             <!-- notification button -->
             {{-- <button
                 @click="(isSidebarOpen && currentSidebarTab == 'notificationsTab') ? isSidebarOpen = false : isSidebarOpen = true; currentSidebarTab = 'notificationsTab'"
@@ -34,7 +37,7 @@
                     @php
                         $cartCount = 0;
                         $cartTotal = auth()->user()->cart;
-                        
+
                         foreach ($cartTotal as $cart) {
                             $outCart = $cart->where('exit_type', NULL)->where('id',$cart->id)->first();
                             if ($outCart)
@@ -73,7 +76,7 @@
                             <x-heroicon-s-question-mark-circle class="w-8 h-8 mr-1" />
                         </x-slot>
                         <div class="flex justify-center mt-4 text-base font-semibold text-center">
-                            <p>If you need any assitance please contact us via <br> WhatsApp only 
+                            <p>If you need any assitance please contact us via <br> WhatsApp only
                             </p>
                         </div>
                         <div class="flex justify-center mt-2 text-base font-semibold">
