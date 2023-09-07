@@ -15,7 +15,7 @@
 
         <x-form.basic-form wire:submit.prevent="submit">
             <x-slot name="content">
-               
+
                 <x-table.table>
                     <x-slot name="thead">
                         <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -37,9 +37,9 @@
                                 </x-table.table-body>
 
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}"/>
-                                    <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}.id"/>
-                                    <x-form.input type="text" label="" value="items.{{ $key }}.price" wire:model="items.{{ $key }}.price"/>
+                                    <x-form.input placeholder="" type="hidden" label="" value="" wire:model="items.{{ $key }}"/>
+                                    <x-form.input placeholder="" type="hidden" label="" value="" wire:model="items.{{ $key }}.id"/>
+                                    <x-form.input placeholder="" type="text" label="" value="items.{{ $key }}.price" wire:model="items.{{ $key }}.price"/>
                                 </x-table.table-body>
                             </tr>
                         @endforeach

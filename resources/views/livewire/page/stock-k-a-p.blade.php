@@ -5,9 +5,9 @@
         </h2>
     </div>
 
-    <div class="grid grid-cols-12 gap-5 mt-5 pos intro-y mb-20 sm:mb-0" x-data="{ active: 0 }">
-        <div class="grid grid-cols-12 col-span-12 gap-5  border-t border-theme-5 pt-4">
-            <div class="flex space-x-2 col-span-12">
+    <div class="grid grid-cols-12 gap-5 mt-5 mb-20 pos intro-y sm:mb-0" x-data="{ active: 0 }">
+        <div class="grid grid-cols-12 col-span-12 gap-5 pt-4 border-t border-theme-5">
+            <div class="flex col-span-12 space-x-2">
                 <h2 class="text-lg font-medium">
                     Gold Bar List
                 </h2>
@@ -29,19 +29,19 @@
                                         <x-slot name="content">
                                             <div class="p-4 leading-4">
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Total Weight (g)" value="addTotalWeight" wire:model="addTotalWeight" placeholder="in grams"/>
+                                                    <x-form.input placeholder=""  label="Total Weight (g)" value="addTotalWeight" wire:model="addTotalWeight" placeholder="in grams"/>
                                                 </div>
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Serial Number" value="addSerialID" wire:model="addSerialID" />
+                                                    <x-form.input placeholder=""  label="Serial Number" value="addSerialID" wire:model="addSerialID" />
                                                 </div>
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Supplier Name" value="addSupplierName" wire:model="addSupplierName" />
+                                                    <x-form.input placeholder=""  label="Supplier Name" value="addSupplierName" wire:model="addSupplierName" />
                                                 </div>
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Vault Location" value="addVaultLocation" wire:model="addVaultLocation" />
+                                                    <x-form.input placeholder=""  label="Vault Location" value="addVaultLocation" wire:model="addVaultLocation" />
                                                 </div>
                                                 <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                    <x-form.input  label="Bought Price" value="addBoughtPrice" wire:model="addBoughtPrice" />
+                                                    <x-form.input placeholder=""  label="Bought Price" value="addBoughtPrice" wire:model="addBoughtPrice" />
                                                 </div>
                                                 <div class="flex justify-end mt-4">
                                                     <button type="submit" class="flex px-4 py-2 text-sm font-bold text-white bg-green-600 rounded focus:outline-none hover:bg-green-500">
@@ -59,8 +59,8 @@
                 </div>
             </div>
             <!-- BEGIN: Item List -->
-            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 bg-white rounded-lg border-2 overflow-y-auto " >
-                    <div class="flex bg-white border-b-2 p-4 w-full">
+            <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="1" xl="1" class="col-span-12 overflow-y-auto bg-white border-2 rounded-lg " >
+                    <div class="flex w-full p-4 bg-white border-b-2">
                         <x-tab.title name="0" livewire="">
                             <div class="flex font-semibold">
                                 <x-heroicon-o-check-circle class="w-6 h-6 mr-2"/>Active Goldbar
@@ -73,8 +73,8 @@
                         </x-tab.title>
                     </div>
                 <x-tab.content name="0">
-                    <div class="flex justify-start mb-6 py-6 px-4 ">
-                        <div class="flex items-center  flex-auto ">
+                    <div class="flex justify-start px-4 py-6 mb-6 ">
+                        <div class="flex items-center flex-auto ">
                             @foreach ($golds as $gold)
                             @php
                             $percentage = ($gold->weight_occupied/1000)*100;
@@ -85,8 +85,8 @@
                     </div>
                 </x-tab.content>
                 <x-tab.content name="1" x-cloak>
-                    {{-- <div class="flex justify-start mb-6 py-6 px-4 ">
-                        <div class="flex items-center  flex-auto ">
+                    {{-- <div class="flex justify-start px-4 py-6 mb-6 ">
+                        <div class="flex items-center flex-auto ">
                             @foreach ($golds as $gold)
                             @php
                             $percentage = ($gold->weight_occupied/1000)*100;
@@ -98,11 +98,11 @@
                     </div> --}}
                 </x-tab.content>
             </x-general.grid>
-                    {{-- <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 bg-white rounded-lg border-2 mb-6 py-6">
-                        <div class="flex items-center  flex-auto ">
+                    {{-- <x-general.grid mobile="1" gap="5" sm="1" md="1" lg="3" xl="3" class="col-span-12 py-6 mb-6 bg-white border-2 rounded-lg">
+                        <div class="flex items-center flex-auto ">
                             <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
                         </div>
-                        <div class="flex items-center  flex-auto ">
+                        <div class="flex items-center flex-auto ">
                             <x-gold.goldview type="1kg" percentage="57" totalGram="437.04" reachGram="562.96" />
                         </div>
                     </x-general.grid> --}}
@@ -125,7 +125,7 @@
                             <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto">
                                 <div class="relative flex w-56 text-gray-700">
                                     <span class="mt-3 mr-2">Search</span>
-                                    <x-form.input label="" value=""/>
+                                    <x-form.input placeholder="" label="" value=""/>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                                                 <x-table.table-body colspan="" class="font-medium text-gray-900">
                                                     {{$gold->created_at->format('d/m/Y')}}
                                                 </x-table.table-body>
-                                                
+
                                             </tr>
                                         @endforeach
                                     </x-slot>
@@ -204,7 +204,7 @@
                                 </x-table.table-body>
                             </tr> --}}
                             <tr>
-                                <x-table.table-body colspan="5" class="text-gray-500 text-center">
+                                <x-table.table-body colspan="5" class="text-center text-gray-500">
                                     No Data
                                 </x-table.table-body>
                             </tr>

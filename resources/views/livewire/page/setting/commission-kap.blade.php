@@ -35,9 +35,9 @@
                                 </x-table.table-body>
 
                                 <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                                    <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}"/>
-                                    <x-form.input type="hidden" label="" value="" wire:model="items.{{ $key }}.id"/>
-                                    <x-form.input type="text" label="" value="items.{{ $key }}.agent_rate" wire:model="items.{{ $key }}.agent_rate"/>
+                                    <x-form.input placeholder="" type="hidden" label="" value="" wire:model="items.{{ $key }}"/>
+                                    <x-form.input placeholder="" type="hidden" label="" value="" wire:model="items.{{ $key }}.id"/>
+                                    <x-form.input placeholder="" type="text" label="" value="items.{{ $key }}.agent_rate" wire:model="items.{{ $key }}.agent_rate"/>
                                 </x-table.table-body>
                             </tr>
                         @endforeach

@@ -12,12 +12,12 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Category Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Category Name</span>
                     </div>
                 </th>
@@ -55,11 +55,11 @@
                     </x-table.table-body>
 
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="ic" wire:model="categoryCode"/>
+                        <x-form.input placeholder="" type="text" label="" value="ic" wire:model="categoryCode"/>
                     </x-table.table-body>
 
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="ic" wire:model="categoryName"/>
+                        <x-form.input placeholder="" type="text" label="" value="ic" wire:model="categoryName"/>
                     </x-table.table-body>
 
                     <x-table.table-body colspan="" class="flex items-center gap-5 text-sm font-medium text-gray-700">
@@ -83,17 +83,17 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-52">
+                    <div class="flex cursor-pointer w-52">
                         <span class="mr-2">Parent Category</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Type Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Type Name</span>
                     </div>
                 </th>
@@ -149,13 +149,13 @@
                         </x-form.dropdown>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="typeCode" wire:model="typeCode"/>
+                        <x-form.input placeholder="" type="text" label="" value="typeCode" wire:model="typeCode"/>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="typeName" wire:model="typeName"/>
+                        <x-form.input placeholder="" type="text" label="" value="typeName" wire:model="typeName"/>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="typePurity" wire:model="typePurity"/>
+                        <x-form.input placeholder="" type="text" label="" value="typePurity" wire:model="typePurity"/>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="flex items-center gap-5 text-sm font-medium text-gray-700">
                         <button type="button" class="px-5 py-2 text-sm text-center text-white bg-blue-500 rounded shadow-sm focus:outline-none hover:bg-blue-400" wire:click="addType">Add Type</button>
@@ -178,17 +178,17 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-52">
+                    <div class="flex cursor-pointer w-52">
                         <span class="mr-2">Parent Type</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer  w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Item Code</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Item Name</span>
                     </div>
                 </th>
@@ -236,10 +236,10 @@
                         </x-form.dropdown>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="itemCode" wire:model="itemCode"/>
+                        <x-form.input placeholder="" type="text" label="" value="itemCode" wire:model="itemCode"/>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                        <x-form.input type="text" label="" value="itemName" wire:model="itemName"/>
+                        <x-form.input placeholder="" type="text" label="" value="itemName" wire:model="itemName"/>
                     </x-table.table-body>
                     <x-table.table-body colspan="" class="flex items-center gap-5 text-sm font-medium text-gray-700">
                         <button type="button" class="px-5 py-2 text-sm text-center text-white bg-blue-500 rounded shadow-sm focus:outline-none hover:bg-blue-400" wire:click="addItem">Add Item</button>

@@ -26,18 +26,18 @@
                                 <option value="1">Price Promotion</option>
                                 <option value="2">Comission Promotion</option>
                             </x-form.dropdown>
-                            <x-form.input label="Name" wire:model.defer="name" value="name" />
-                            <x-form.input label="Start Date" type="date" wire:model.defer="start_date" value="start_date" />
-                            <x-form.input label="End Date" type="date" wire:model.defer="end_date" value="end_date" />
+                            <x-form.input placeholder="" label="Name" wire:model.defer="name" value="name" />
+                            <x-form.input placeholder="" label="Start Date" type="date" wire:model.defer="start_date" value="start_date" />
+                            <x-form.input placeholder="" label="End Date" type="date" wire:model.defer="end_date" value="end_date" />
                             @if ($type == 1)
                                 <x-form.dropdown label="Type" wire:model.defer="item_id" default="no" value="item_id">
                                     @foreach ($items as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </x-form.dropdown>
-                                <x-form.input label="Promo Price" wire:model.defer="promo_price" value="promo_price" />
+                                <x-form.input placeholder="" label="Promo Price" wire:model.defer="promo_price" value="promo_price" />
                             @elseif($type == 2)
-                                <x-form.input label="Promo Code" wire:model.defer="promo_code" value="promo_code" />
+                                <x-form.input placeholder="" label="Promo Code" wire:model.defer="promo_code" value="promo_code" />
                             @endif
                         </x-general.grid>
 

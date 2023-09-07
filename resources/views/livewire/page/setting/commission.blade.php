@@ -11,12 +11,12 @@
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Master Dealer</span>
                     </div>
                 </th>
                 <th class = "px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                    <div class="flex cursor-pointer w-32">
+                    <div class="flex w-32 cursor-pointer">
                         <span class="mr-2">Agent</span>
                     </div>
                 </th>
@@ -34,11 +34,11 @@
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.md_rate"/>
+                            <x-form.input placeholder="" type="text" label="" value="" wire:model="items.{{ $key }}.md_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">
-                            <x-form.input type="text" label="" value="" wire:model="items.{{ $key }}.agent_rate"/>
+                            <x-form.input placeholder="" type="text" label="" value="" wire:model="items.{{ $key }}.agent_rate"/>
                         </x-table.table-body>
 
                         <x-table.table-body colspan="" class="text-sm font-medium text-gray-700 ">

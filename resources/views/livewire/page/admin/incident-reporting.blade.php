@@ -34,7 +34,7 @@
                         </div>
                         <div class="flex flex-col items-start lg:flex-row lg:items-center">
                             <p class="mr-2 -mt-3 text-base text-left text-gray-500">Select Date: </p>
-                            <x-form.input type="date" label="" value="" wire:model="search" />
+                            <x-form.input placeholder="" type="date" label="" value="" wire:model="search" />
                         </div>
                     </div>
                     <x-table.table>
