@@ -286,6 +286,10 @@
                     </x-sidebar.nav-item>
                 @endif
 
+                <x-sidebar.nav-item title="Lelongan" route="{{route('lelongan')}}" uri="lelongan">
+                    <x-heroicon-o-scale class="w-5 h-5" />
+                </x-sidebar.nav-item>
+
                 @if(auth()->user()->client == 2)
                     <x-sidebar.nav-item title="Terms & Conditions" targer="_blank" route="{{ asset('pdf/tnc_5.pdf') }}" uri="">
                         <x-heroicon-o-clipboard-list class="w-5 h-5" />

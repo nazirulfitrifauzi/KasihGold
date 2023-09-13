@@ -71,6 +71,8 @@ use App\Http\Livewire\Page\Reporting\ExitReport;
 use App\Http\Livewire\Page\Reporting\GoldReport;
 use App\Http\Livewire\Page\Reporting\UserReport;
 
+use App\Http\Livewire\Page\Lelongan\Lelongan;
+
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
@@ -175,6 +177,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');
         Route::get('all-news', [AllNewsController::class, 'index'])->name('all-news');
+        Route::get('lelongan', Lelongan::class)->name('lelongan');
 
         // -- Toyyib Pay -- //
         Route::get('toyyibpay-status-conv', [ToyyibpayController::class, 'paymentStatusConv'])->name('toyyibpay-status-conv');
