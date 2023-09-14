@@ -5,7 +5,9 @@ namespace App\Http\Livewire\Page\PhysicalGold;
 use App\Models\ArrahnuDailyPrice;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
+use App\Models\KoputraCif;
 use App\Models\MarketPrice;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ArrahnuPawn extends Component
@@ -37,6 +39,13 @@ class ArrahnuPawn extends Component
 
         $this->GoldMintGram = 0;
         $this->GoldMintGramD = 0;
+
+        $user_id = auth()->user()->id;
+        $existFlag = KoputraCif::where('created_by', $user_id)->first();
+
+        if (!$existFlag) {
+            $sql = DB::connection('arrahnudb')->select("EXEC ARRAHNU.sp_ar_insert_cust_kap_to_cif '$user_id', 'W1'");
+        }
     }
 
     public function next()

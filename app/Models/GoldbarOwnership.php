@@ -33,4 +33,9 @@ class GoldbarOwnership extends Model
     {
         return $this->belongsTo('App\Models\InvCart', 'item_id', 'item_id');
     }
+
+    public function arrahnuPawn()
+    {
+        return $this->belongsTo('App\Models\ArrahnuPawnDetails', 'id', 'gold_id');
+    }
 }

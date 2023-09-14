@@ -6,6 +6,7 @@ use App\Models\ArrahnuDailyPrice;
 use App\Models\ArrahnuGoldBox;
 use App\Models\ArrahnuPawnDetails;
 use App\Models\ArrahnuPawnMaster;
+use App\Models\ArrahnuPawnRecords;
 use App\Models\ArrahnuStaffCash;
 use App\Models\Banks;
 use Livewire\Component;
@@ -13,6 +14,7 @@ use App\Models\GoldbarOwnership;
 use App\Models\GoldMinting;
 use App\Models\GoldMintingRecords;
 use App\Models\InvCart;
+use App\Models\KoputraCif;
 use App\Models\MarketPrice;
 use App\Models\MintingGoldPrice;
 use App\Models\outrightSG;
@@ -116,6 +118,9 @@ class ArrahnuPawnCheckout extends Component
 
     public function submit()
     {
+        $user_id = auth()->user()->profile->ic;
+        $customer_info = KoputraCif::where('identity_no', $user_id)->first();
+
         $customer_financing = $this->maximum_financing;
         $profit_percentage = MoneyToFloat(0.096);
         $product_duration = MoneyToFloat(18 / 12);
@@ -138,7 +143,7 @@ class ArrahnuPawnCheckout extends Component
 
         // Save pawn master
         ArrahnuPawnMaster::create([
-            'CIF_NO' => 12244,
+            'CIF_NO' => $customer_info->id,
             'SIRI_NO' => $siri_no,
             'PROD_CODE' => 6,
             'PAWN_DATE' => $p_date,
@@ -206,19 +211,35 @@ class ArrahnuPawnCheckout extends Component
                     $item->available_weight -= $buffer_grammage;
                     $item->save();
 
+                    ArrahnuPawnRecords::create([
+                        'status'        => 0,
+                        'grammage'      => $buffer_grammage,
+                        'gold_ids'      => $item->id,
+                        'SIRI_NO'       => $siri_no,
+                        'created_by'    => auth()->user()->id,
+                        'updated_by'    => auth()->user()->id,
+                        'created_at'    => now(),
+                        'updated_at'    => now(),
+                    ]);
+
                     array_push($gold_ownId, $item->id);
                 }
             }
 
+            $GoldUsed = GoldbarOwnership::where('user_id', auth()->user()->id)
+                ->whereIn('id', $gold_ownId)
+                ->orderBy('id')
+                ->get();
 
 
-            // Exec SP Pre save
-            $staff = 45990;
-            $branch = 'W1';
-            $identity_no = $this->customer_info['identity_no'];
-            $weight = $row['total_weight'];
-            $time = date('Y-m-d');
-            $sql = DB::update("EXEC ARRAHNU.sp_ar_bske_acct_trx_pre_aprv '$staff', '$identity_no', '$time', '$weight', '$branch', '$siri_no'");
+            foreach ($GoldUsed as $item) {
+                $item->ex_flag = 13; //13 for Arrahnu Pawn
+
+                if ($item->available_weight == 0)
+                    $item->active_ownership = 0;
+
+                $item->save();
+            }
         }
 
         session()->flash('message', 'Your Arrahnu Pawn request has successfully submitted');

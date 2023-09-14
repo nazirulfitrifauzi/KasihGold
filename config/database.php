@@ -103,6 +103,18 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+        'koputradb' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL_KOPUTRA'),
+            'host' => env('DB_HOST_KOPUTRA', 'localhost'),
+            'port' => env('DB_PORT_KOPUTRA', '1433'),
+            'database' => env('DB_DATABASE_KOPUTRA', 'forge'),
+            'username' => env('DB_USERNAME_KOPUTRA', 'forge'),
+            'password' => env('DB_PASSWORD_KOPUTRA', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
 
     ],
 
@@ -136,7 +148,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
