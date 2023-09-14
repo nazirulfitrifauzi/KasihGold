@@ -12,7 +12,7 @@ class Input extends Component
     public $type;
     public $disable;
 
-    public function __construct($label, $placeholder = "", $value, $type = "text", $disable = "false")
+    public function __construct($label, $value, $placeholder = "", $type = "text", $disable = "false")
     {
         $this->label            = $label;
         $this->placeholder      = $placeholder;

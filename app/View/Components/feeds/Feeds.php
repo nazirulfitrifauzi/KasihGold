@@ -13,7 +13,7 @@ class Feeds extends Component
     public $date;
     public $tracking;
 
-    public function __construct($line, $iconBg, $title, $subtitle = "", $date, $tracking = "no")
+    public function __construct($line, $iconBg, $date, $title, $subtitle = "", $tracking = "no")
     {
         $this->line     = $line;
         $this->iconBg   = $iconBg;

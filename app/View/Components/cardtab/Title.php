@@ -10,7 +10,7 @@ class Title extends Component
     public $bg;
     public $livewire = "";
 
-    public function __construct($name, $livewire = "",$bg)
+    public function __construct($name,$bg, $livewire = "")
     {
         $this->name = $name;
         $this->livewire = $livewire;
