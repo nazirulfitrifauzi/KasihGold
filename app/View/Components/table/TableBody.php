@@ -7,10 +7,12 @@ use Illuminate\View\Component;
 class TableBody extends Component
 {
     public $colspan;
+    public $rowspan;
 
-    public function __construct($colspan)
+    public function __construct($colspan="", $rowspan="")
     {
         $this->colspan = $colspan;
+        $this->$rowspan = $rowspan;
     }
     public function render()
     {

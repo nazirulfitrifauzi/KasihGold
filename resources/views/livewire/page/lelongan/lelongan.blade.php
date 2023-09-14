@@ -32,44 +32,57 @@
                                     <x-table.table-header class="text-left" value="BERAT MARHUN" sort="" />
                                     <x-table.table-header class="text-center" value="KARAT MARHUN" sort="" />
                                     <x-table.table-header class="text-center" value="HARGA REZAB" sort="" />
-                                    <x-table.table-header class="text-center" value="BIDA" sort="" />
                                     <x-table.table-header class="text-left" value="TINDAKAN" sort="" />
                                 </x-slot>
                                 <x-slot name="tbody">
-                                    <tr>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            NO
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            NO SIRI
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            JENIS MARHUN
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            BERAT MARHUN
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-right text-gray-700 ">
-                                            KARAT MARHUN
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-right text-gray-700 ">
-                                            HARGA REZAB
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-center text-gray-700">
-                                            BIDA
-                                        </x-table.table-body>
-                                        <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
-                                            <div class="flex items-center">
-                                                <a href="#" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600">
-                                                    <x-heroicon-o-cursor-click class="w-4 h-4 mr-1" />
-                                                    <p>Pilih</p>
-                                                </a>
-                                            </div>
-                                        </x-table.table-body>
-                                    </tr>
+                                    @php
+                                        $page = $lelong->currentPage();
+                                        $startIndex = ($page - 1) * 10;
+                                    @endphp
+
+                                    @foreach ($lelong as $list)
+                                        <tr class="bg-indigo-50">
+                                            <x-table.table-body class="text-xs font-bold text-gray-700">
+                                                {{ $startIndex + $loop->iteration }}
+                                            </x-table.table-body>
+                                            <x-table.table-body class="text-xs font-bold text-gray-700 ">
+                                                {{ $list->SIRI_NO }}
+                                            </x-table.table-body>
+                                            <td colspan="3"></td>
+                                            <x-table.table-body colspan="" class="text-xs font-bold text-right text-gray-700 ">
+                                                RM {{ number_format($list->AMT_REZAB, 2) }}
+                                            </x-table.table-body>
+                                            <x-table.table-body colspan="" class="text-xs font-bold text-gray-700 ">
+                                                <div class="flex items-center">
+                                                    <a href="#" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600">
+                                                        <x-heroicon-o-cursor-click class="w-4 h-4 mr-1" />
+                                                        <p>Pilih</p>
+                                                    </a>
+                                                </div>
+                                            </x-table.table-body>
+                                        </tr>
+
+                                        <!-- Display the associated pawnDetails -->
+                                        @foreach($list->pawnDetails as $index => $pawnDetail)
+                                            <tr>
+                                                <td colspan="2"></td> <!-- Empty columns for alignment -->
+                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                                    {{ optional($pawnDetail->marhunType)->MARHUN_TYPE }}
+                                                </x-table.table-body>
+                                                <x-table.table-body colspan="" class="text-xs font-medium text-gray-700 ">
+                                                    {{ $pawnDetail->WEIGHT }} gram
+                                                </x-table.table-body>
+                                                <x-table.table-body colspan="" class="text-xs font-medium text-right text-gray-700 ">
+                                                    {{ $pawnDetail->KARAT }}
+                                                </x-table.table-body>
+                                                <td colspan="2"></td> <!-- Empty column for alignment -->
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
                                 </x-slot>
+
                                 <div class="px-2 py-2">
-                                    {{-- {{ $list->links('pagination-links') }} --}}
+                                    {{ $lelong->links('pagination-links') }}
                                 </div>
                             </x-table.table>
                         </div>

@@ -11,11 +11,18 @@ class ArrahnuPawnDetails extends Model
 
     protected $connection = 'arrahnudb';
     protected $table = "ARRAHNU.PAWN_DETAILS";
-
     protected $guarded = [];
-
     public $timestamps = false;
 
+    public function auctionList()
+    {
+        return $this->belongsTo(ArrahnuAuctionList::class, 'SIRI_NO', 'SIRI_NO');
+    }
+
+    public function marhunType()
+    {
+        return $this->hasOne(ArrahnuRefMarhunType::class, 'MARHUN_CODE', 'MARHUN_CODE');
+    }
     public function gadaian()
     {
         return  $this->belongsTo('App\Models\PawnMaster', 'SIRI_NO', 'SIRI_NO');
