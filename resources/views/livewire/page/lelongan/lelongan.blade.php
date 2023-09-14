@@ -53,7 +53,7 @@
                                             RM {{ number_format($list->AMT_REZAB, 2) }}
                                         </x-table.table-body-lowpadding>
                                         <x-table.table-body-lowpadding colspan="" class="text-xs font-bold text-gray-700 ">
-                                            @if(!in_array($list->SIRI_NO, $selectedSiri))
+                                            @if(!array_key_exists($list->SIRI_NO, $selectedSiri))
                                                 <div class="flex items-center justify-center">
                                                     <a type="button" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg cursor-pointer hover:bg-indigo-600"
                                                     wire:click="addSelected('{{ $list->SIRI_NO }}')">
