@@ -124,7 +124,7 @@
                                         <x-table.table-body-lowpadding colspan="" class="text-xs font-bold text-right text-gray-700 ">
                                             <x-form.input
                                                 label=""
-                                                value=""
+                                                value="bids.{{ $siri }}"
                                                 placeholder=""
                                                 wire:model.defer="bids.{{ $siri }}"
                                             />
