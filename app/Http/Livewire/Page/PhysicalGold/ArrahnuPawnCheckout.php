@@ -145,7 +145,7 @@ class ArrahnuPawnCheckout extends Component
         ArrahnuPawnMaster::create([
             'CIF_NO' => $customer_info->id,
             'SIRI_NO' => $siri_no,
-            'PROD_CODE' => 6,
+            'PROD_CODE' => 9,
             'PAWN_DATE' => $p_date,
             'MAT_DATE' => $mat_date,
             'TOT_WEIGHT' => MoneyToFloat($this->total_weight),
@@ -212,7 +212,7 @@ class ArrahnuPawnCheckout extends Component
                     $item->save();
 
                     ArrahnuPawnRecords::create([
-                        'status'        => 0,
+                        'status'        => 2,
                         'grammage'      => $buffer_grammage,
                         'gold_ids'      => $item->id,
                         'SIRI_NO'       => $siri_no,
