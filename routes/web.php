@@ -59,6 +59,8 @@ use App\Http\Livewire\Page\Admin\Promo\PromoList;
 use App\Http\Livewire\Page\Admin\Promo\PromoAdd;
 use App\Http\Livewire\Page\Admin\UserDetails;
 use App\Http\Livewire\Page\Admin\UserGoldProfile\UserDetailedInfo;
+use App\Http\Livewire\Page\PhysicalGold\ArrahnuPawn;
+use App\Http\Livewire\Page\PhysicalGold\ArrahnuPawnCheckout;
 use App\Http\Livewire\Page\PhysicalGold\GoldMinting;
 use App\Http\Livewire\Page\PhysicalGold\GoldMintingCheckout;
 use App\Http\Livewire\Page\PhysicalGold\OutrightCheckoutSG;
@@ -173,6 +175,9 @@ Route::middleware('auth')->group(function () {
         Route::get('gm-checkout', GoldMintingCheckout::class)->name('mintingCheckout');
         Route::get('outright-spot-gold', OutrightSpotGold::class)->name('outSpotGold');
         Route::get('outright-sg', OutrightCheckoutSG::class)->name('outCheckoutSG');
+        Route::get('arrahnu-pawn', ArrahnuPawn::class)->name('arrahnuPawn');
+        Route::get('arrahnu-pawn-checkout', ArrahnuPawnCheckout::class)->name('arrahnuPawnCheckout');
+
 
 
         Route::get('setting-kap', [settingController::class, 'settingKAP'])->name('setting-kap');

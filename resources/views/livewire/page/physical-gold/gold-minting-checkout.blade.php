@@ -19,10 +19,10 @@
                                                        <x-form.basic-form>
                                                            <x-slot name="content">
                                                                <div class="grid gap-1 lg:grid-cols-1 sm:grid-cols-1">
-                                                                   <x-form.input label="Name" wire:model.defer="name" value="name"/>
+                                                                   <x-form.input label="Name" wire:model.defer="name" value="name" placeholder=""/>
                                                                </div>
                                                                <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
-                                                                   <x-form.input label="Phone Number" wire:model.defer="phone1" value="phone1"/>
+                                                                   <x-form.input label="Phone Number" wire:model.defer="phone1" value="phone1" placeholder=""/>
                                                                    <div class="grid gap-2 lg:grid-cols-1 sm:grid-cols-1">
                                                                        <x-form.address class="" label="Address" value1="address1" value2="address2" value3="address3" value4="town" value5="postcode" value6="state" :state="$states" condition="state"/>
                                                                    </div>
