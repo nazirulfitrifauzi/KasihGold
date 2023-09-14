@@ -53,12 +53,15 @@
                                             RM {{ number_format($list->AMT_REZAB, 2) }}
                                         </x-table.table-body-lowpadding>
                                         <x-table.table-body-lowpadding colspan="" class="text-xs font-bold text-gray-700 ">
-                                            <div class="flex items-center justify-center">
-                                                <a href="#" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600">
-                                                    <x-heroicon-o-cursor-click class="w-4 h-4 mr-1" />
-                                                    <p>Pilih</p>
-                                                </a>
-                                            </div>
+                                            @if(!in_array($list->SIRI_NO, $selectedSiri))
+                                                <div class="flex items-center justify-center">
+                                                    <a type="button" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg cursor-pointer hover:bg-indigo-600"
+                                                    wire:click="addSelected('{{ $list->SIRI_NO }}')">
+                                                        <x-heroicon-o-cursor-click class="w-4 h-4 mr-1" />
+                                                        <p>Pilih</p>
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </x-table.table-body-lowpadding>
                                     </tr>
 
@@ -89,44 +92,53 @@
                 </div>
             </div>
         </div>
-        <div class="relative col-span-12 p-4 sm:col-span-12 md:col-span-5 lg:col-span-4">
 
+        {{-- Selected bidaan --}}
+        <div class="relative col-span-12 p-4 sm:col-span-12 md:col-span-5 lg:col-span-4">
             <div class="sticky top-4 ">
                 <div class="mt-2">
-                    <div class="pb-4 border-b">
-                        <h1 class="text-lg font-medium">Bindaan</h1>
+                    <div class="flex justify-between pb-4 text-2xl font-bold border-b">
+                        <div>
+                            <h1 class="">Bidaan</h1>
+                        </div>
+                        <div>
+                            <h1 class="">RM 0.00</h1>
+                        </div>
                     </div>
                     <div class="p-4 my-6 bg-white rounded-lg shadow-lg">
-                        <x-general.grid mobile="1" gap="2" sm="1" md="1" lg="1" xl="1" class="col-span-12 ">
-                            <x-form.input
-                                label="No Siri"
-                                value=""
-                                placeholder=""
-                                wire:model.defer=""
-                            />
-                            <x-form.input
-                                label="Jenis Marhun"
-                                value=""
-                                placeholder=""
-                                wire:model.defer=""
-                            />
-                            <x-form.input
-                                label="Harga Bida (RM)"
-                                value=""
-                                placeholder=""
-                                wire:model.defer=""
-                            />
-                            <div class="flex items-center mt-2 space-x-1">
-                                <a href="#" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-indigo-500 rounded-lg hover:bg-indigo-600">
-                                    <x-heroicon-o-plus-circle class="w-4 h-4 mr-1" />
-                                    <p>Buat Bindaan</p>
-                                </a>
-                                <a href="#" class="inline-flex items-center px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600">
-                                    <x-heroicon-o-trash class="w-4 h-4 mr-1" />
-                                    <p>Buang Bidaan</p>
-                                </a>
-                            </div>
-                        </x-general.grid>
+                        <x-table.table class="m-4 ">
+                            <x-slot name="thead">
+                                <x-table.table-header class="text-left" value="NO SIRI" sort="" />
+                                <x-table.table-header class="text-left" value="HARGA REZAB " sort="" />
+                                <x-table.table-header class="text-right" value="HARGA BIDAAN (RM)" sort="" />
+                            </x-slot>
+                            <x-slot name="tbody">
+                                @forelse ($selectedSiri as $siri => $amtRezab)
+                                    <tr class="bg-indigo-50">
+                                        <x-table.table-body-lowpadding class="text-xs font-bold text-left text-gray-700">
+                                            {{ $siri }}
+                                        </x-table.table-body-lowpadding>
+                                        <x-table.table-body-lowpadding class="text-xs font-bold text-right text-gray-700">
+                                            RM {{ number_format($amtRezab, 2) }}
+                                        </x-table.table-body-lowpadding>
+                                        <x-table.table-body-lowpadding colspan="" class="text-xs font-bold text-right text-gray-700 ">
+                                            <x-form.input
+                                                label=""
+                                                value=""
+                                                placeholder=""
+                                                wire:model.defer="bids.{{ $siri }}"
+                                            />
+                                        </x-table.table-body-lowpadding>
+                                    </tr>
+                                @empty
+                                    <tr class="bg-indigo-50">
+                                        <x-table.table-body-lowpadding colspan="3" class="text-xs font-bold text-center text-gray-700">
+                                            Tiada No Siri dipilih
+                                        </x-table.table-body-lowpadding>
+                                    </tr>
+                                @endforelse
+                            </x-slot>
+                        </x-table.table>
                     </div>
                 </div>
 
@@ -149,9 +161,9 @@
 
                 <div>
                     <div class="flex items-center justify-center p-4 my-6 rounded-lg bg-gray-50">
-                        <button  class="inline-flex items-center px-2 py-2 text-xs font-semibold text-white bg-green-400 rounded-lg hover:bg-green-500">
+                        <button wire:click="submitBidaan" class="inline-flex items-center px-2 py-2 text-xs font-semibold text-white bg-green-400 rounded-lg hover:bg-green-500">
                             <x-heroicon-o-save class="w-4 h-4 mr-1" />
-                            <p>Sahkan Bindaan</p>
+                            <p>Sahkan Bidaan</p>
                         </button>
                     </div>
                 </div>

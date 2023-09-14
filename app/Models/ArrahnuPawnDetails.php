@@ -23,6 +23,7 @@ class ArrahnuPawnDetails extends Model
     {
         return $this->hasOne(ArrahnuRefMarhunType::class, 'MARHUN_CODE', 'MARHUN_CODE');
     }
+
     public function gadaian()
     {
         return  $this->belongsTo('App\Models\PawnMaster', 'SIRI_NO', 'SIRI_NO');
