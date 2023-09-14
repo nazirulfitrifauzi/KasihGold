@@ -80,7 +80,7 @@
 
         @media (min-width: 1280px){
             .container {
-                max-width:  1420px !important;
+                max-width:  2420px !important;
             }
         }
     </style>
