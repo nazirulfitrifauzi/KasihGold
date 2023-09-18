@@ -3,15 +3,19 @@
 namespace App\Http\Livewire\Page\Lelongan;
 
 use App\Models\ArrahnuAuctionList;
+use App\Models\ArrahnuSystemSetting;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class Lelongan extends Component
 {
-    use WithPagination;
+    use WithPagination, WithFileUploads;
 
     public $selectedSiri = [];
     public $bids = [];
+    public $settingCajBida = 0;
+    public $cajBida = 0;
 
     public function getRules()
     {
@@ -33,6 +37,12 @@ class Lelongan extends Component
         'bids.*.regex' => 'Hanya 2 titik perpuluhan.',
     ];
 
+    public function mount()
+    {
+        $systemData = ArrahnuSystemSetting::whereCode('OT002')->first();
+        $this->settingCajBida = $systemData->value;
+    }
+
     public function addSelected($id)
     {
         // Only add the ID if it's not already in the array
@@ -42,7 +52,14 @@ class Lelongan extends Component
 
             // Initialize the bid for this item with a null value
             $this->bids[$id] = null;
+
+            $this->cajBida = count($this->selectedSiri) * $this->settingCajBida;
         }
+    }
+
+    public function calculateTotalBid()
+    {
+        return array_sum($this->bids);
     }
 
     public function submitBidaan()

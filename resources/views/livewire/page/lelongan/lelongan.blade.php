@@ -8,7 +8,7 @@
         <div class="col-span-12 sm:col-span-12 md:col-span-7 lg:col-span-8 ">
             <div>
                 <x-info-alert title="Syarat & Arahan Lelongan">
-                    A. Setiap bidaan akan dikenakan caj RM5
+                    A. Setiap bidaan akan dikenakan caj RM {{ number_format($settingCajBida, 2) }}
                     <br>
                     <div class="pt-1 pl-4 text-sm text-white">
                         <ol class="list-decimal">
@@ -102,7 +102,7 @@
                             <h1 class="">Bidaan</h1>
                         </div>
                         <div>
-                            <h1 class="">RM 0.00</h1>
+                            <h1 class="">RM {{ number_format($this->calculateTotalBid(), 2) }}</h1>
                         </div>
                     </div>
                     <div class="p-4 my-6 bg-white rounded-lg shadow-lg">
@@ -126,7 +126,7 @@
                                                 label=""
                                                 value="bids.{{ $siri }}"
                                                 placeholder=""
-                                                wire:model.defer="bids.{{ $siri }}"
+                                                wire:model.debounce.500ms="bids.{{ $siri }}"
                                             />
                                         </x-table.table-body-lowpadding>
                                     </tr>
@@ -144,7 +144,7 @@
 
                 <div class="mt-2">
                     <div class="pb-4 border-b">
-                        <h1 class="text-lg font-medium">Muatnaik Caj Bidaan RM0</h1>
+                        <h1 class="text-lg font-medium">Muatnaik Caj Bidaan RM {{ number_format($cajBida, 2) }}</h1>
                     </div>
                     <div class="p-4 my-6 bg-white rounded-lg shadow-lg">
                         <x-general.grid mobile="1" gap="5" sm="1" md="2" lg="1" xl="1" class="col-span-12 ">

@@ -103,6 +103,20 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
+        'siskopdb' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL_SISKOP'),
+            'host' => env('DB_HOST_SISKOP', 'localhost'),
+            'port' => env('DB_PORT_SISKOP', '1433'),
+            'database' => env('DB_DATABASE_SISKOP', 'forge'),
+            'username' => env('DB_USERNAME_SISKOP', 'forge'),
+            'password' => env('DB_PASSWORD_SISKOP', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
         'koputradb' => [
             'driver' => 'sqlsrv',
             'url' => env('DATABASE_URL_KOPUTRA'),
