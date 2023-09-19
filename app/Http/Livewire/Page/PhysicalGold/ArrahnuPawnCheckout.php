@@ -62,17 +62,6 @@ class ArrahnuPawnCheckout extends Component
         $this->accNo = $bankInfo->acc_no ?? "";
         $this->accHolderName = $bankInfo->acc_holder_name ?? "";
         $this->bankAccId = $bankInfo->acc_id ?? "";
-
-
-
-        $this->GoldMint = InvCart::where('user_id', auth()->user()->id)->where('exit_type', 4)->first();
-        $this->total = $this->GoldMint->prod_gram * $this->spotPrice->price;
-
-        if (!$this->GoldMint) {
-            redirect('home');
-        } else {
-            $this->GoldMintGram = $this->GoldMint->prod_gram;
-        }
     }
 
     function pawnSiriNoGenerator($type = 'AKP')
