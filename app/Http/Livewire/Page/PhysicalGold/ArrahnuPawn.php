@@ -55,8 +55,8 @@ class ArrahnuPawn extends Component
             $totalDigitalGold = $this->goldprice['price'] * $this->GoldMintGramD;
 
             $cart = collect([
-                (object)['prod_name' => 'Kasih AP Digital Gold', 'grammage' => $this->GoldMintGram, 'tot_price' => $totalSpotGold, 'spot_gold' => 0],
-                (object)['prod_name' => 'Kasih AP Spot Gold', 'grammage' => $this->GoldMintGramD, 'tot_price' => $totalDigitalGold, 'spot_gold' => 1],
+                (object)['prod_name' => 'Kasih AP Spot Gold', 'grammage' => $this->GoldMintGram, 'tot_price' => $totalSpotGold, 'spot_gold' => 1],
+                (object)['prod_name' => 'Kasih AP Digital Gold', 'grammage' => $this->GoldMintGramD, 'tot_price' => $totalDigitalGold, 'spot_gold' => 0],
             ]);
 
             $total =  $totalSpotGold +  $totalDigitalGold;

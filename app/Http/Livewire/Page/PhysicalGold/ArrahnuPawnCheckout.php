@@ -7,6 +7,8 @@ use App\Models\ArrahnuGoldBox;
 use App\Models\ArrahnuPawnDetails;
 use App\Models\ArrahnuPawnMaster;
 use App\Models\ArrahnuPawnRecords;
+use App\Models\ArrahnuPayType;
+use App\Models\ArrahnuRefProductCode;
 use App\Models\ArrahnuStaffCash;
 use App\Models\Banks;
 use Livewire\Component;
@@ -30,38 +32,42 @@ class ArrahnuPawnCheckout extends Component
 {
 
 
-    public $bankId, $swiftCode, $accNo, $accHolderName, $bankAccId, $membership_id;
 
-    public $states, $banks;
-    public $GoldMint, $GoldMintGram, $MintingCost, $total, $spotPrice, $data, $tot_data, $goldprice;
+
     public $total_weight, $total_pawn, $financeAmt, $maximum_financing, $pay_type;
+    public $data, $tot_data, $goldprice;
+    public $financeMargin, $financeDuration, $profitRules, $minFinancing, $maxFinancing;
 
     public function mount()
     {
         $this->data = request()->session()->get('products');
         $this->total_weight = request()->session()->get('totalWeight');
         $this->total_pawn = request()->session()->get('total');
-        $this->tot_data = count($this->data);
+
+        if ($this->data !== null) {
+            $this->tot_data = count($this->data);
+        } else {
+            $this->tot_data = 0;
+        }
+
+        $productCode = ArrahnuRefProductCode::where('PROD_CODE', 9)->first();
+
+        $this->financeMargin = $productCode->MARGIN . '%';
+        $this->financeDuration = $productCode->DURATION . ' Months';
+        $this->profitRules = $productCode->PROFIT . '%';
+        $this->minFinancing = "RM " . Money($productCode->MIN_FIN);
+        $this->maxFinancing = "RM " . Money($productCode->MAX_FIN);
+
         $this->maximum_financing = MoneyToFloat(MoneyRound($this->total_pawn * 0.8));
         $this->financeAmt = $this->maximum_financing;
 
 
         $goldprice = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
         $this->goldprice = $goldprice['17   '];
-        $bankInfo = Profile_bank_info::where('user_id', auth()->user()->id)->first();
 
-        $this->states = States::all();
-        $this->banks = Banks::all();
-        $this->spotPrice = MarketPrice::where('item_id', 12)->first();
-
-
-        $this->membership_id = auth()->user()->profile->membership_id ?? "";
-
-        $this->bankId = $bankInfo->bank_id ?? "";
-        $this->swiftCode = $bankInfo->swift_code ?? "";
-        $this->accNo = $bankInfo->acc_no ?? "";
-        $this->accHolderName = $bankInfo->acc_holder_name ?? "";
-        $this->bankAccId = $bankInfo->acc_id ?? "";
+        if (!$this->data) {
+            redirect('arrahnu-pawn');
+        }
     }
 
     function pawnSiriNoGenerator($type = 'AKP')
@@ -70,10 +76,10 @@ class ArrahnuPawnCheckout extends Component
             'AKP' => 'AKP'
         ];
 
-        $branch_id = str_pad('W1', 2, '0', STR_PAD_LEFT);
+        $branch_id = str_pad('01', 2, '0', STR_PAD_LEFT);
         $date = now()->format('dmy');
 
-        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', 'W1')->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', '6')->count() + 1;
+        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', 'W1')->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', '9')->count() + 1;
 
         $running_no = str_pad($running_no, 4, '0', STR_PAD_LEFT);
         $header = $types[$type] ?? $type[1];
@@ -149,21 +155,25 @@ class ArrahnuPawnCheckout extends Component
             'BOX_NO' => $kotak->BOX_NO,
             'STAFF_ID' => 45990,
             'BRANCH_CODE' => 'W1',
+            'COOP_ID' => 2,
         ]);
 
         // Save pawn detailed
         foreach ($this->data as $row) {
 
-            ArrahnuPawnDetails::create([
-                'SIRI_NO' => $siri_no,
-                'QTY' => 1,
-                'MARHUN_CODE' => 10,
-                'WEIGHT' => $row['grammage'],
-                'KARAT' => MoneyToFloat(24.0),
-                'PRICE' => MoneyToFloat($row['tot_price']),
-                'REMARKS' => 'GADAIAN KAP',
-                'CERT_NO' => 1,
-            ]);
+            if ($row['grammage'] > 0) {
+                ArrahnuPawnDetails::create([
+                    'SIRI_NO' => $siri_no,
+                    'QTY' => 1,
+                    'MARHUN_CODE' => 13,
+                    'WEIGHT' => $row['grammage'],
+                    'KARAT' => (float)24.0,
+                    'PRICE' => MoneyToFloat($row['tot_price']),
+                    'REMARKS' => 'GADAIAN KAP',
+                    'CERT_NO' => 1,
+                    'COOP_ID' => 2,
+                ]);
+            }
 
             // Update available gold
 
@@ -190,14 +200,14 @@ class ArrahnuPawnCheckout extends Component
 
                 if ($buffer_grammage != 0) {
                     if ($row['grammage'] > $item->available_weight) {
-                        $row['grammage'] -= $item->available_weight;
-                        $buffer_grammage = $item->available_weight;
+                        $row['grammage'] -= round($item->available_weight, 2);
+                        $buffer_grammage = round($item->available_weight, 2);
                     } else {
-                        $row['grammage'] -= $buffer_grammage;
+                        $row['grammage'] -= round($buffer_grammage, 2);
                     }
 
 
-                    $item->available_weight -= $buffer_grammage;
+                    $item->available_weight -= round($buffer_grammage, 2);
                     $item->save();
 
                     ArrahnuPawnRecords::create([
@@ -239,6 +249,10 @@ class ArrahnuPawnCheckout extends Component
 
     public function render()
     {
-        return view('livewire.page.physical-gold.arrahnu-pawn-checkout')->extends('default.default');
+        $lists = $this->data;
+
+        return view('livewire.page.physical-gold.arrahnu-pawn-checkout', [
+            'payment_type' => ArrahnuPayType::where('PAY_CODE', '<>', '3')->where('RECORD_STATUS', 'AKTIF')->get(), 'lists' => $lists
+        ])->extends('default.default');
     }
 }

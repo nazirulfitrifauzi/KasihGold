@@ -26,7 +26,7 @@
                                                                             Financing Margin
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="80%" wire:model=""
+                                                                            <input value="" wire:model="financeMargin"
                                                                                 class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
@@ -36,7 +36,7 @@
                                                                             Financing Duration
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="18 Month" wire:model=""
+                                                                            <input value="" wire:model="financeDuration"
                                                                                 class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
@@ -46,7 +46,7 @@
                                                                             Profit Rules
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="9.60%" wire:model=""
+                                                                            <input value="" wire:model="profitRules"
                                                                                 class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
@@ -58,7 +58,7 @@
                                                                             Minimum Financing
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="RM 50.00" wire:model=""
+                                                                            <input value="" wire:model="minFinancing"
                                                                                 class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
@@ -68,7 +68,7 @@
                                                                             Maximum Financing
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
-                                                                            <input value="RM 150,000.00" wire:model=""
+                                                                            <input value="" wire:model="maxFinancing"
                                                                                 class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
                                                                             disabled>
                                                                         </div>
@@ -120,8 +120,10 @@
                                                                         </div>
                                                                     </div>
                                                                     <x-form.dropdown label="Payable Type" wire:model="pay_type" default="no" value="bankId" >
-                                                                            <option value="cash">Cash</option>
-                                                                            <option value="xfer">Bank Transfer</option>
+                                                                        @foreach ($payment_type as $type)
+                                                                            <option value="{{ $type->PAY_CODE }}">{{ $type->PAY_TYPE }}</option>
+                                                                        @endforeach
+
                                                                     </x-form.dropdown>
                                                                 </div>
                                                             </x-slot>
@@ -149,22 +151,43 @@
                                     <h3 class="text-gray-700 font-medium">Collateral Information </h3>
                                    
                                 </div>
-                                        @foreach(session('products') as $item)
-                                        @if($item->grammage>0)
-                                        <div class="flex justify-between mt-6 border-b-2 pb-4">
-                                            <div class="flex">
-                                                <img class="object-cover w-20 h-20 rounded"
-                                                src="{{ asset('img/product/1/9/d1.png') }}" alt="">
+                                {{-- @dump($lists) --}}
 
-                                                <div class="mx-3 my-3">
-                                                    <h3 class="text-sm text-gray-600">{{$item->prod_name}}</h3>
-                                                    <h6 class="text-sm text-gray-600">{{$item->grammage}} g</h6>
-                                                    <h6 class="text-sm text-gray-600">24 Karat </h6>
+                                        @foreach($lists as $item)
+                                        @if(is_array($item))
+                                            @if($item['grammage']>0)
+                                                <div class="flex justify-between mt-6 border-b-2 pb-4">
+                                                    <div class="flex">
+                                                        <img class="object-cover w-20 h-20 rounded"
+                                                        src="{{ asset('img/product/1/9/d1.png') }}" alt="">
+
+                                                        <div class="mx-3 my-3">
+                                                            <h3 class="text-sm text-gray-600">{{$item['prod_name']}}</h3>
+                                                            <h6 class="text-sm text-gray-600">{{$item['grammage']}} g</h6>
+                                                            <h6 class="text-sm text-gray-600">24 Karat </h6>
+                                                        </div>
+                                                    </div>
+                                                    <span class="my-3 font-semibold text-gray-600">RM {{MoneyRound($item['tot_price'])}}</span>
+                                                    </span>
                                                 </div>
-                                            </div>
-                                            <span class="my-3 font-semibold text-gray-600">RM {{$item->tot_price}}</span>
-                                            </span>
-                                        </div>
+                                            @endif
+                                        @else 
+                                            @if($item->grammage>0)
+                                                <div class="flex justify-between mt-6 border-b-2 pb-4">
+                                                    <div class="flex">
+                                                        <img class="object-cover w-20 h-20 rounded"
+                                                        src="{{ asset('img/product/1/9/d1.png') }}" alt="">
+
+                                                        <div class="mx-3 my-3">
+                                                            <h3 class="text-sm text-gray-600">{{$item->prod_name}}</h3>
+                                                            <h6 class="text-sm text-gray-600">{{$item->grammage}} g</h6>
+                                                            <h6 class="text-sm text-gray-600">24 Karat </h6>
+                                                        </div>
+                                                    </div>
+                                                    <span class="my-3 font-semibold text-gray-600">RM {{MoneyRound($item->tot_price)}}</span>
+                                                    </span>
+                                                </div>
+                                            @endif
                                         @endif
                                         @endforeach
 
@@ -174,7 +197,7 @@
                                             <p>Price Per Gram</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>RM {{number_format($goldprice['price'],2)}}</p>
+                                            <p>RM {{MoneyRound($goldprice['price'],2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +207,7 @@
                                             <p>Total Collateral Weight (g)</p>
                                         </div>
                                         <div class="font-semibold">
-                                            <p>{{number_format($total_weight,2)}} g</p>
+                                            <p>{{MoneyRound($total_weight,2)}} g</p>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +217,7 @@
                                             <p>Pawn Value</p>
                                         </div>
                                         <div class="font-semibold">
-                                        <p>RM {{number_format($total_pawn,2)}}</p>
+                                        <p>RM {{MoneyRound($total_pawn,2)}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +227,7 @@
                                     </div>
                                     <div class="font-semibold text-lg">
                                        
-                                        <p>RM {{number_format($maximum_financing,2)}}</p>
+                                        <p>RM {{MoneyRound($maximum_financing,2)}}</p>
                                     </div>
                                 </div>
                             </div>
