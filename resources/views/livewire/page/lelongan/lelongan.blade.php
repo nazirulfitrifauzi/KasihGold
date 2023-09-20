@@ -1,4 +1,7 @@
 <div class="px-4 mb-20 lg:mb-0">
+    <div wire:loading wire:target="addSelected">
+        @include('misc.loading')
+    </div>
     <div class="flex flex-col items-center mt-8 intro-y sm:flex-row">
         <h2 class="mr-auto text-lg font-medium">
             Lelongan
@@ -148,6 +151,13 @@
                     </div>
                     <div class="p-4 my-6 bg-white rounded-lg shadow-lg">
                         <x-general.grid mobile="1" gap="5" sm="1" md="2" lg="1" xl="1" class="col-span-12 ">
+                            <div
+                                x-data="{ isUploading: false, progress: 0 }"
+                                x-on:livewire-upload-start="isUploading = true"
+                                x-on:livewire-upload-finish="isUploading = false"
+                                x-on:livewire-upload-error="isUploading = false"
+                                x-on:livewire-upload-progress="progress = $event.detail.progress"
+                            >
                             <x-form.input
                                 label="Muat Naik Resit Bayaran Bidaan : (hanya boleh muatnaik jpg/png/jpeg/pdf)"
                                 type="file"
@@ -155,6 +165,9 @@
                                 placeholder=""
                                 wire:model="file"
                             />
+                            <div x-show="isUploading">
+                                @include('misc.loading')
+                            </div>
                         </x-general.grid>
                     </div>
                 </div>
