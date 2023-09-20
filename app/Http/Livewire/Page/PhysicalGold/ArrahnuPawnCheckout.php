@@ -167,7 +167,7 @@ class ArrahnuPawnCheckout extends Component
                     'QTY' => 1,
                     'MARHUN_CODE' => 13,
                     'WEIGHT' => $row['grammage'],
-                    'KARAT' => (float)24.0,
+                    'KARAT' => MoneyRound("24.0"),
                     'PRICE' => MoneyToFloat($row['tot_price']),
                     'REMARKS' => 'GADAIAN KAP',
                     'CERT_NO' => 1,
@@ -204,6 +204,7 @@ class ArrahnuPawnCheckout extends Component
                         $buffer_grammage = round($item->available_weight, 2);
                     } else {
                         $row['grammage'] -= round($buffer_grammage, 2);
+                        $row['grammage'] = abs(round($row['grammage'], 2)); // this is to avoid float precision error
                     }
 
 

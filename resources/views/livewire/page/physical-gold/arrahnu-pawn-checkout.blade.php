@@ -119,7 +119,7 @@
                                                                             >
                                                                         </div>
                                                                     </div>
-                                                                    <x-form.dropdown label="Payable Type" wire:model="pay_type" default="no" value="bankId" >
+                                                                    <x-form.dropdown label="Payable Type" wire:model="pay_type" default="yes" value="bankId" >
                                                                         @foreach ($payment_type as $type)
                                                                             <option value="{{ $type->PAY_CODE }}">{{ $type->PAY_TYPE }}</option>
                                                                         @endforeach
