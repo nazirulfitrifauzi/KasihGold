@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Page\Lelongan;
 
 use App\Models\ArrahnuAuctionList;
 use App\Models\ArrahnuSystemSetting;
+use App\Services\BidService;
+use App\Services\NotificationService;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -16,6 +19,7 @@ class Lelongan extends Component
     public $bids = [];
     public $settingCajBida = 0;
     public $cajBida = 0;
+    public $file;
 
     public function getRules()
     {
@@ -27,7 +31,8 @@ class Lelongan extends Component
                 if ($value < $amtRezab) {
                     $fail("Bidaan mesti lebih daripada Rezab");
                 }
-            }]
+            }],
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048'
         ];
     }
 
@@ -66,7 +71,19 @@ class Lelongan extends Component
     {
         $this->validate($this->getRules());
 
-        dd($this->bids);
+        $bidService = new BidService($this->selectedSiri, $this->bids, $this->file);
+        $lelongans = $bidService->processBids();
+
+        $notificationService = new NotificationService();
+        foreach ($lelongans as $lelongan) {
+            // Send Email Notification
+            $notificationService->sendEmailNotification(auth()->user(), $lelongan);
+
+            // Send SMS Notification
+            $notificationService->sendSMSNotification(auth()->user(), $lelongan);
+        }
+
+        return redirect()->route('home');
     }
 
     public function render()

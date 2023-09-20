@@ -46,38 +46,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdminKG()
-    {
-        if ($this->client == 1 && $this->role == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public function isMasterDealerKG()
-    {
-        if ($this->client == 1 && $this->role == 2) {
-            return true;
-        }
-        return false;
-    }
-
-    public function isAgentKG()
-    {
-        if ($this->client == 1 && $this->role == 3) {
-            return true;
-        }
-        return false;
-    }
-
-    public function isUserKG()
-    {
-        if ($this->client == 1 && $this->role == 4) {
-            return true;
-        }
-        return false;
-    }
-
     public function isAdminKAP()
     {
         if ($this->client == 2 && $this->role == 1) {

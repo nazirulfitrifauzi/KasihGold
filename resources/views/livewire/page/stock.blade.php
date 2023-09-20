@@ -3,11 +3,11 @@
 
         <h2 class="flex mr-auto text-lg font-medium">
             Stock Management
-            @if(auth()->user()->isAdminKG())
+            {{-- @if(auth()->user()->isAdminKG())
                 <span class="flex items-center mx-2 cursor-pointer" x-data="{ openModal: false}">
                     <a href="{{ route('setting') }}"><x-heroicon-o-plus-circle class="w-6 h-6 text-green-400 hover:text-green-500"/></a>
                 </span>
-            @endif
+            @endif --}}
 
         </h2>
 
@@ -37,13 +37,13 @@
                                         @endforeach
                                     @endif
                                 </x-form.dropdown>
-                                @if(auth()->user()->isAdminKG() && $stockStatus == 1) <!-- if admin and stock in -->
+                                {{-- @if(auth()->user()->isAdminKG() && $stockStatus == 1) <!-- if admin and stock in -->
                                     <x-form.dropdown label="Supplier" value="stockSupplier" default="yes" wire:model="stockSupplier">
                                         @foreach ($suppliers as $supplier)
                                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                         @endforeach
                                     </x-form.dropdown>
-                                @endif
+                                @endif --}}
 
                                 @if((auth()->user()->role == 1 && $stockStatus == 2) || auth()->user()->role != 1) <!-- if admin and stock out -->
                                     {{-- <x-form.input label="Customer Name" value="stockCustId" wire:model="stockCustId" /> --}}

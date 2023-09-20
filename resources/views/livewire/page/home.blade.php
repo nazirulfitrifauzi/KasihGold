@@ -43,8 +43,8 @@
                                 @include('pages.dashboard.kap.hq')
                             @elseif (auth()->user()->isAgentKAP())
                                 @include('pages.dashboard.kap.agent')
-                            @elseif (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG())
-                                @include('pages.dashboard.kg.all')
+                            {{-- @elseif (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG())
+                                @include('pages.dashboard.kg.all') --}}
                             @endif
                         </x-general.grid>
                     @endif
@@ -91,9 +91,9 @@
                         @if (auth()->user()->isAdminKAP())
                         col-span-12 md:col-span-12 lg:col-span-12 xxl:col-span-12
                         @elseif (auth()->user()->isAgentKAP())
-                        col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8 
+                        col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8
                         @endif
-                        p-4 mt-8 border-2 border-gray-100 rounded-lg shadow-xl bg-gray-50 
+                        p-4 mt-8 border-2 border-gray-100 rounded-lg shadow-xl bg-gray-50
                         ">
                         <div class="flex justify-end mb-3">
                             <button onclick="window.print()" class="flex px-2 py-1 text-sm font-bold text-white bg-yellow-300 rounded cursor-pointer printHide focus:outline-none hover:bg-yellow-400">

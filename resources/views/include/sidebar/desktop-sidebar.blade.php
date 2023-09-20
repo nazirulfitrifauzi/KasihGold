@@ -69,7 +69,7 @@
                     </x-sidebar.nav-item>
                 @endif
 
-                @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isAdminKAP()) {{-- kg bukan user --}}
+                @if (auth()->user()->isAdminKAP()) {{-- kg bukan user --}}
                     <x-sidebar.dropdown-nav-item active="open" title="Stock" uri="stock/*">
                         <x-slot name="icon">
                             <x-heroicon-o-archive class="w-5 h-5" />
@@ -81,13 +81,13 @@
                                     <x-heroicon-o-cube class="w-5 h-5" />
                                 </x-slot>
                             </x-sidebar.dropdown-item>
-                            @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG())
+                            {{-- @if (auth()->user()->isAdminKG() || auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG())
                                 <x-sidebar.dropdown-item title="Stock Movement" route="{{route('stock-movement')}}" uri="stock/movement">
                                     <x-slot name="icon">
                                         <x-heroicon-o-cube class="w-5 h-5" />
                                     </x-slot>
                                 </x-sidebar.dropdown-item>
-                            @endif
+                            @endif --}}
                         </div>
                     </x-sidebar.dropdown-nav-item>
                 @endif
@@ -120,11 +120,11 @@
                 </x-sidebar.dropdown-nav-item>
                 @endif
 
-                @if (auth()->user()->isAdminKG())
+                {{-- @if (auth()->user()->isAdminKG())
                 <x-sidebar.nav-item title="Screening" route="{{route('admin.screening')}}" uri="admin/screening">
                     <x-heroicon-o-shield-check class="w-5 h-5" />
                 </x-sidebar.nav-item>
-                @endif
+                @endif --}}
 
                 {{-- <x-sidebar.dropdown-nav-item active="open" title="Shop" uri="product/*">
                     <x-slot name="icon">
@@ -162,7 +162,7 @@
                 </x-sidebar.nav-item>
                 @endif
 
-                @if (auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) <!-- kg bukan admin -->
+                {{-- @if (auth()->user()->isMasterDealerKG() || auth()->user()->isAgentKG() || auth()->user()->isUserKG()) <!-- kg bukan admin -->
                     <x-sidebar.dropdown-nav-item active="open" title="Order" uri="order/*">
                         <x-slot name="icon">
                             <x-heroicon-o-shopping-cart class="w-5 h-5" />
@@ -187,14 +187,14 @@
                         <x-heroicon-o-truck class="w-5 h-5" />
                     </x-sidebar.nav-item>
 
-                    {{-- <x-sidebar.nav-item title="My Network" route="{{route('my-network')}}" uri="my-network">
+                    <x-sidebar.nav-item title="My Network" route="{{route('my-network')}}" uri="my-network">
                         <x-heroicon-o-globe-alt class="w-5 h-5" />
-                    </x-sidebar.nav-item> --}}
+                    </x-sidebar.nav-item>
 
                     <x-sidebar.nav-item title="My Commission" route="{{route('commission')}}" uri="commission">
                         <x-heroicon-o-currency-dollar class="w-5 h-5" />
                     </x-sidebar.nav-item>
-                @endif
+                @endif --}}
 
 
 
@@ -251,11 +251,12 @@
                     </x-sidebar.nav-item>
                 @endif
 
-                @if (auth()->user()->isAdminKG())
+                {{-- @if (auth()->user()->isAdminKG())
                     <x-sidebar.nav-item title="Settings" route="{{route('setting')}}" uri="setting">
                         <x-heroicon-o-cog class="w-5 h-5" />
                     </x-sidebar.nav-item>
-                @elseif (auth()->user()->isAdminKAP())
+                @else --}}
+                @if (auth()->user()->isAdminKAP())
                     <x-sidebar.nav-item title="Settings" route="{{route('setting-kap')}}" uri="setting-kap">
                         <x-heroicon-o-cog class="w-5 h-5" />
                     </x-sidebar.nav-item>

@@ -126,7 +126,7 @@
                                                 label=""
                                                 value="bids.{{ $siri }}"
                                                 placeholder=""
-                                                wire:model.debounce.500ms="bids.{{ $siri }}"
+                                                wire:model.defer="bids.{{ $siri }}"
                                             />
                                         </x-table.table-body-lowpadding>
                                     </tr>
@@ -153,7 +153,7 @@
                                 type="file"
                                 value=""
                                 placeholder=""
-                                wire:model.defer=""
+                                wire:model="file"
                             />
                         </x-general.grid>
                     </div>

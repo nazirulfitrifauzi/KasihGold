@@ -359,14 +359,14 @@
                                         </a>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>
                                         <table align="center" style="margin-bottom:20px; width:80%">
                                             <tr >
                                                 <th colspan="2"  style="padding: 10px; font-weight: bold; font-size:14px; text-align:center; ">
-                                                    # MAKLUMAN PERMOHONAN LELONGAN ARRAHNU MELALUI  {{ config('app.name') }} (PERMOHONAN SEDANG DIPROSES)
-                                                </th>                                           
+                                                    MAKLUMAN PERMOHONAN LELONGAN ARRAHNU MELALUI  {{ config('app.name') }} (PERMOHONAN SEDANG DIPROSES)
+                                                </th>
                                             </tr>
                                         </table>
                                     </td>
@@ -380,12 +380,12 @@
                                             <tr >
                                                 <td  colspan="2" style="padding-left:10px; padding-right:10px; font-weight:700; font-size:12px; text-align:left; ">
                                                     Assalamualaikum dan Salam sejahtera,
-                                                </td>                                           
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td   colspan="2" style="padding-left:10px; padding-right:10px; font-weight:700; padding-bottom:10px;  font-size:12px; text-align:left; ">
                                                     Maklumat tentang permohonan lelongan Arrahnu tuan/puan adalah seperti berikut:
-                                                </td>                                           
+                                                </td>
                                             </tr>
                                         </table>
 
@@ -395,7 +395,7 @@
                                                     <p style="font-size:12px; text-align:left;">ID Pengguna Akaun</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: {{ $userId }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -403,7 +403,7 @@
                                                     <p style="font-size:12px; text-align:left;">Nama Pemohon</p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: {{ $userName }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -411,7 +411,7 @@
                                                     <p style="font-size:12px; text-align:left;">No Kad Pengenalan </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: {{ $ic }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -419,7 +419,7 @@
                                                     <p style="font-size:12px; text-align:left;">No. Siri </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: {{ $siriNo }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -427,23 +427,15 @@
                                                     <p style="font-size:12px; text-align:left;">No. Siri Bida </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: {{ $bidId }}</p>
                                                 </td>
                                             <tr>
-                                            </tr>
-                                                <td style="padding-left: 10px; padding-right: 10px;" width="30%">
-                                                    <p style="font-size:12px; text-align:left;">Jenis Marhun </p>
-                                                </td>
-                                                <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
-                                                </td>
-                                            </tr>
                                             <tr>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="30%">
                                                     <p style="font-size:12px; text-align:left;">Rezab </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: RM {{ number_format($rezab, 2) }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -451,7 +443,7 @@
                                                     <p style="font-size:12px; text-align:left;">Harga Bida </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: RM {{ number_format($bidPrice, 2) }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -459,25 +451,25 @@
                                                     <p style="font-size:12px; text-align:left;">Status Permohonan </p>
                                                 </td>
                                                 <td style="padding-left: 10px; padding-right: 10px;" width="70%">
-                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: Test</p>
+                                                    <p style="font-weight:bold; font-size:12px; text-align:left; color:black">: PERMOHONAN SEDANG DIPROSES</p>
                                                 </td>
                                             </tr>
                                         </table>
 
                                         <table align="center" style="margin-bottom:20px; width:80%">
                                             <tr>
-                                                <td colspan="2" style="font-weight: bold; font-size:12px; text-align:center;">thank you for using Kasih AP!</td>                                             
+                                                <td colspan="2" style="font-weight: bold; font-size:12px; text-align:center;">Terima kasih kerana menggunakan Kasih AP Gold!</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2" style="padding-top:5px; font-weight: bold; font-size:12px; text-align:center;">if you have any questions please contact 
+                                                <td colspan="2" style="padding-top:5px; font-weight: bold; font-size:12px; text-align:center;">Sebarang Soalan boleh menghubungi
                                                     <a href="mailto:customersupport@kasihapgold.com" style="color:#fcc200">Kasih AP Customer Support</a>
-                                                </td>                                             
+                                                </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
                             </table>
-                            
+
                         </td>
                     </tr>
                     <tr>
