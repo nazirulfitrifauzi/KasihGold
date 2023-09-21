@@ -176,9 +176,9 @@
                     <div>
                         <div class="flex items-center justify-center p-4 my-6 rounded-lg bg-gray-50">
                             <button 
-                                id="submit"
                                 wire:click="submitBidaan"
                                 class="inline-flex items-center px-2 py-2 text-xs font-semibold text-white bg-green-400 rounded-lg hover:bg-green-500">
+                                <x-heroicon-o-save class="w-4 h-4 mr-1" />
                                 <p>Sahkan Bidaan</p>
                             </button>
                         </div>
@@ -189,3 +189,10 @@
     </div>
 </div>
 
+@push('js')
+<script>
+    window.livewire.on('loadingUpdated', function() {
+        loading();
+    });
+</script>
+@endpush

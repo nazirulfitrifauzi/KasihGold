@@ -69,6 +69,7 @@ class Lelongan extends Component
 
     public function submitBidaan()
     {
+        
         $this->validate($this->getRules());
 
         $bidService = new BidService($this->selectedSiri, $this->bids, $this->file);
@@ -83,11 +84,13 @@ class Lelongan extends Component
             $notificationService->sendSMSNotification(auth()->user(), $lelongan);
         }
 
+        $this->emit('loadingUpdated');
+
         session()->flash('success');
         session()->flash('title', 'Berjaya!');
         session()->flash('message', 'Lelongan berjaya didaftarkan.');
 
-        return redirect()->route('home');
+        return redirect()->to(route('home'));
     }
 
     public function render()
