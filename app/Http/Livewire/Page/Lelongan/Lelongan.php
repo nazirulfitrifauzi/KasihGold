@@ -83,6 +83,10 @@ class Lelongan extends Component
             $notificationService->sendSMSNotification(auth()->user(), $lelongan);
         }
 
+        session()->flash('success');
+        session()->flash('title', 'Berjaya!');
+        session()->flash('message', 'Lelongan berjaya didaftarkan.');
+
         return redirect()->route('home');
     }
 

@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\ArrahnuAuctionList;
 use App\Models\SiskopArrahnuLelongan;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Livewire\TemporaryUploadedFile;
 
 class BidService
@@ -29,7 +28,7 @@ class BidService
         $uniqueId = uniqid();
         $user = auth()->user();
         $cif = $this->getCustomerId($user);
-        $filename = $this->uploadFile($user, $uniqueId);
+        $filename = FileUploadService::upload($this->file, "{$user->id}/lelongan/{$uniqueId}");
 
         return $this->storeBids($cif, $uniqueId, $filename, $user);
     }
@@ -38,16 +37,6 @@ class BidService
     {
         $result = DB::select("EXEC arrahnu_kap.ARRAHNU.sp_ar_insert_cust_kap_to_cif '" . $user->id . "'");
         return $result[0]->id;
-    }
-
-    protected function uploadFile($user, $uniqueId): string
-    {
-        $fileExtension = $this->file->getClientOriginalExtension();
-        $filePath = "public/Files/{$user->id}/lelongan/{$uniqueId}";
-        $fileName = "lelongan.{$fileExtension}";
-        Storage::disk('local')->putFileAs($filePath, $this->file, $fileName);
-
-        return url(Storage::url("{$filePath}/{$fileName}"));
     }
 
     protected function storeBids($cif, $uniqueId, $filename, $user)
