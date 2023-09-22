@@ -132,12 +132,36 @@
             </div>
             <!--End Mobile view-->
 
-
+           
 
             <! -- Start Checkout -->
             <x-general.grid mobile="1" gap="8" sm="1" md="2" lg="2" xl="2" class="w-full col-span-12 mt-6">
                 <div class="bg-white py-2">
-                    
+                    <div class="rounded-lg shadow-sm bg-yellow-50">
+                        <div class="overflow-hidden text-sm">
+                            <table class="w-full divide-y divide-yellow-100">
+                                <thead>
+                                    <tr>
+                                        <th class="p-4 text-left">Produk</th>
+                                        <th class="p-4 text-right">Pembiayaan Maksima (RM)</th>
+                                        {{-- <th class="p-4 text-right">Keuntungan 1 Bulan (RM)</th>
+                                        <th class="p-4 text-right">Keuntungan 18 Bulan (RM)</th> --}}
+                                    </tr>
+                                </thead>
+        
+                                <tbody class="divide-y divide-yellow-50">
+                                    @foreach ($financing as $row)
+                                        <tr>
+                                            <td class="p-4 font-semibold">{{ $row['name'] }}</td>
+                                            <td class="p-4 font-mono text-right">{{ $row['max_financing'] }}</td>
+                                            {{-- <td class="p-4 font-mono text-right">{{ $row['one_month'] }}</td>
+                                            <td class="p-4 font-mono text-right">{{ $row['full_month'] }}</td> --}}
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
     
                 <div class="bg-white py-2 px-4  rounded-lg  border-2">

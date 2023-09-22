@@ -3,22 +3,24 @@
 namespace App\Http\Livewire\Page\PhysicalGold;
 
 use App\Models\ArrahnuDailyPrice;
+use App\Models\ArrahnuRefProductCode;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
 use App\Models\KoputraCif;
 use App\Models\MarketPrice;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ArrahnuPawn extends Component
 {
     public $GoldMintGram, $GoldMint, $total, $totalD, $MintingCost, $spotPrice;
-    public $GoldMintGramD, $goldprice;
+    public $GoldMintGramD, $goldprice, $gold_types, $financing, $total_marhun, $marhun, $duration;
 
     public function mount()
     {
-        $goldprice = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
-        $this->goldprice = $goldprice['17   '];
+        $this->gold_types = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
+        $this->goldprice = $this->gold_types['17   '];
 
         $this->total = 0;
         $this->totalD = 0;
@@ -48,6 +50,19 @@ class ArrahnuPawn extends Component
         }
     }
 
+
+    public function calculateFinancing()
+    {
+        $products = ArrahnuRefProductCode::fetchActiveArrahnuProducts();
+
+        foreach ($products as $code => $product) {
+            $this->financing[trim($code)]['name'] = $product['description'];
+            $this->financing[trim($code)]['max_financing'] = Money(MoneyRound(MoneyToFloat($this->marhun) * (MoneyToFloat($product['margin']) / 100)));
+            $this->financing[trim($code)]['one_month'] = Money(MoneyRound(MoneyToFloat($this->financing[trim($code)]['max_financing']) * (MoneyToFloat($product['profit']) / 100) * (1 / 12)));
+            $this->financing[trim($code)]['full_month'] = Money(MoneyRound(MoneyToFloat($this->financing[trim($code)]['max_financing']) * (MoneyToFloat($product['profit']) / 100) * (18 / 12)));
+        }
+    }
+
     public function next()
     {
         if (($this->GoldMintGram + $this->GoldMintGramD)  >= 1) {
@@ -72,9 +87,12 @@ class ArrahnuPawn extends Component
             $this->emit('message', 'The total weight must be 1 gram and above!');
     }
 
-
     public function render()
     {
+        if ($this->gold_types) {
+            $this->marhun = ($this->GoldMintGram + $this->GoldMintGramD) * $this->goldprice['price'];
+        }
+        $this->calculateFinancing();
 
         return view('livewire.page.physical-gold.arrahnu-pawn')->extends('default.default');
     }
