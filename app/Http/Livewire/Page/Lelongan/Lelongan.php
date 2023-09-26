@@ -6,7 +6,6 @@ use App\Models\ArrahnuAuctionList;
 use App\Models\ArrahnuSystemSetting;
 use App\Services\BidService;
 use App\Services\NotificationService;
-use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -69,7 +68,7 @@ class Lelongan extends Component
 
     public function submitBidaan()
     {
-        
+
         $this->validate($this->getRules());
 
         $bidService = new BidService($this->selectedSiri, $this->bids, $this->file);

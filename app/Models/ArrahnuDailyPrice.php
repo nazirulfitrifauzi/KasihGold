@@ -26,7 +26,9 @@ class ArrahnuDailyPrice extends Model
      */
     public static function fetchTodayGoldPriceDetails()
     {
-        $prices = static::where('EFF_DATE', date('Y-m-d'))->get();
+        $prices = static::where('EFF_DATE', date('Y-m-d'))
+                        ->where('GOLD_CODE', 17)  // filter 24k karat
+                        ->get();
         $value = [];
 
         foreach ($prices as $row) {
