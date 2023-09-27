@@ -52,25 +52,25 @@ class ArrahnuPawnCheckout extends Component
         }
 
         $this->branch = ArrahnuRefBranch::where('ACTIVE_FLAG', 'Y')->get();
-
-        $productCode = ArrahnuRefProductCode::where('PROD_CODE', $this->prod_code)->first();
-
-        $this->prod_name = $productCode->PROD_DESC;
-        $this->financeMargin = $productCode->MARGIN . '%';
-        $this->financeDuration = $productCode->DURATION . ' Months';
-        $this->profitRules = $productCode->PROFIT . '%';
-        $this->minFinancing = "RM " . Money($productCode->MIN_FIN);
-        $this->maxFinancing = "RM " . Money($productCode->MAX_FIN);
-
-        $this->maximum_financing = MoneyToFloat(MoneyRound($this->total_pawn * ($productCode->MARGIN / 100)));
-        $this->financeAmt = $this->maximum_financing;
-
-
-        $goldprice = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
-        $this->goldprice = $goldprice['17   '];
-
         if (!$this->data) {
             redirect('arrahnu-pawn');
+        } else {
+
+            $productCode = ArrahnuRefProductCode::where('PROD_CODE', $this->prod_code)->first();
+
+            $this->prod_name = $productCode->PROD_DESC;
+            $this->financeMargin = $productCode->MARGIN . '%';
+            $this->financeDuration = $productCode->DURATION . ' Months';
+            $this->profitRules = $productCode->PROFIT . '%';
+            $this->minFinancing = "RM " . Money($productCode->MIN_FIN);
+            $this->maxFinancing = "RM " . Money($productCode->MAX_FIN);
+
+            $this->maximum_financing = MoneyToFloat(MoneyRound($this->total_pawn * ($productCode->MARGIN / 100)));
+            $this->financeAmt = $this->maximum_financing;
+
+
+            $goldprice = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
+            $this->goldprice = $goldprice['17   '];
         }
     }
 
@@ -79,11 +79,13 @@ class ArrahnuPawnCheckout extends Component
         $types = [
             'AKP' => 'AKP'
         ];
-        $branch = ArrahnuRefBranch::where('BRANCH_CODE', $this->chosenBranch)->first();
+
+        $branchCode = ($this->chosenBranch) ? $this->chosenBranch : 'W1';
+        $branch = ArrahnuRefBranch::where('BRANCH_CODE', $branchCode)->first();
         $branch_id = str_pad($branch->BRANCH_ID, 2, '0', STR_PAD_LEFT);
         $date = now()->format('dmy');
 
-        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', $this->chosenBranch)->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', $this->prod_code)->count() + 1;
+        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', $branchCode)->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', $this->prod_code)->count() + 1;
 
         $running_no = str_pad($running_no, 4, '0', STR_PAD_LEFT);
         $header = $types[$type] ?? $type[1];
@@ -118,6 +120,7 @@ class ArrahnuPawnCheckout extends Component
     public function submit()
     {
         $user_id = auth()->user()->profile->ic;
+        $cif_id = auth()->user()->id;
         $customer_info = KoputraCif::where('identity_no', $user_id)->first();
 
         $customer_financing = $this->maximum_financing;
@@ -134,12 +137,14 @@ class ArrahnuPawnCheckout extends Component
 
         $gold_ownId = array();
 
+        $branchCode = ($this->chosenBranch) ? $this->chosenBranch : 'W1';
+
 
         // // Add financing to teller collection
         // $staff_cash = ArrahnuStaffCash::where('BIZ_DATE', date('Y-m-d'))->where('STAFF_ID', 45990)->first();
         // $staff_cash->TRX_COLLECTION = $staff_cash->TRX_COLLECTION + MoneyToFloat($this->financeAmt);
         // $staff_cash->save();
-
+        $sql = DB::connection('arrahnudb')->select("EXEC ARRAHNU.sp_ar_update_cust_kap_branch '$cif_id', '$branchCode'");
         // Save pawn master
         ArrahnuPawnMaster::create([
             'CIF_NO' => $customer_info->id,
@@ -158,7 +163,7 @@ class ArrahnuPawnCheckout extends Component
             'STATUS' => 'APPLY',
             'BOX_NO' => $kotak->BOX_NO,
             'STAFF_ID' => $customer_info->id,
-            'BRANCH_CODE' => 'W1',
+            'BRANCH_CODE' => $branchCode,
             'COOP_ID' => 2,
         ]);
 
