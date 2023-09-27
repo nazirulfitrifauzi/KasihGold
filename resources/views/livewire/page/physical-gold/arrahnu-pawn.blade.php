@@ -164,21 +164,26 @@
             {{-- @if($gold_types && !$startDay->isEmpty() && $this->getKotak()) --}}
             @if($gold_types && $flagStartDay == 1 && $flagKotak == 1)
                 <div class="bg-white py-2">
-                    <div class="rounded-lg shadow-sm bg-yellow-50">
+                    <div class="rounded-lg shadow-sm border">
                         <div class="overflow-hidden text-sm">
-                            <table class="w-full divide-y divide-yellow-100">
-                                <thead>
+                            <table class="w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
                                     <tr>
                                         <th class="p-4 text-left">Produk</th>
                                         <th class="p-4 text-right">Pembiayaan Maksima (RM)</th>
                                     </tr>
                                 </thead>
         
-                                <tbody class="divide-y divide-yellow-50">
+                                <tbody>
                                     @foreach ($financing as $row)
-                                        <tr>
+                                        <tr class="border-t">
                                             
-                                            <td class="p-4 font-semibold"><input type="radio" id="prod_code" value="{{ $row['prod_code'] }}" name="prod_code" wire:model="prod_code"> <span>{{ $row['name'] }}</span></td>
+                                            <td class="p-4 font-semibold ">
+                                                <input type="radio" id="prod_code" value="{{ $row['prod_code'] }}"
+                                                class="form-radio w-6 h-6 border-2 border-yellow-400 cursor-pointer text-yellow-400 transition duration-150 ease-in-out  "
+                                                name="prod_code" wire:model="prod_code"> 
+                                                <span class="ml-2">{{ $row['name'] }}</span>
+                                            </td>
                                             <td class="p-4 font-mono text-right">{{ $row['max_financing'] }}</td>
                                         </tr>
                                     @endforeach
