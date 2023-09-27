@@ -58,7 +58,7 @@
                                     <img class="object-cover w-16 h-16 rounded" 
                                     src="{{ asset('img/product/1/9/d1.png') }}" alt="">
                                     <div>
-                                        <h3 class="text-sm font-semibold">Kasih AP Flexible Gold</h3>
+                                        <h3 class="text-sm font-semibold ">Kasih AP Flexible Gold</h3>
                                     </div>
                                 </div>
                             </x-table.table-body>
@@ -160,8 +160,9 @@
 
             <! -- Start Checkout -->
             <x-general.grid mobile="1" gap="8" sm="1" md="2" lg="2" xl="2" class="w-full col-span-12 mt-6">
-
-            @if($gold_types)
+          
+            {{-- @if($gold_types && !$startDay->isEmpty() && $this->getKotak()) --}}
+            @if($gold_types && $flagStartDay == 1 && $flagKotak == 1)
                 <div class="bg-white py-2">
                     <div class="rounded-lg shadow-sm bg-yellow-50">
                         <div class="overflow-hidden text-sm">
@@ -176,7 +177,8 @@
                                 <tbody class="divide-y divide-yellow-50">
                                     @foreach ($financing as $row)
                                         <tr>
-                                            <td class="p-4 font-semibold">{{ $row['name'] }}</td>
+                                            
+                                            <td class="p-4 font-semibold"><input type="radio" id="prod_code" value="{{ $row['prod_code'] }}" name="prod_code" wire:model="prod_code"> <span>{{ $row['name'] }}</span></td>
                                             <td class="p-4 font-mono text-right">{{ $row['max_financing'] }}</td>
                                         </tr>
                                     @endforeach
@@ -185,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            
                 <div class="bg-white py-2 px-4  rounded-lg  border-2">
                     <div class="border-b-2 py-4">
                         <h1 class="text-3xl font-semibold">Ar-Rahnu Pawn Brief Summary</h1>
@@ -213,6 +215,7 @@
                         </button>
                     </div>
                 </div>
+                @endif
             </x-general.grid>
             <! -- End Checkout -->
         </div>

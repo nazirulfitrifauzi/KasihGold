@@ -3,7 +3,10 @@
 namespace App\Http\Livewire\Page\PhysicalGold;
 
 use App\Models\ArrahnuDailyPrice;
+use App\Models\ArrahnuGoldBox;
+use App\Models\ArrahnuRefBranch;
 use App\Models\ArrahnuRefProductCode;
+use App\Models\ArrahnuRefStartEndDay;
 use App\Models\GoldbarOwnership;
 use App\Models\InvCart;
 use App\Models\KoputraCif;
@@ -15,10 +18,39 @@ use Livewire\Component;
 class ArrahnuPawn extends Component
 {
     public $GoldMintGram, $GoldMint, $total, $totalD, $totalWallet, $MintingCost, $spotPrice;
-    public $GoldMintGramD, $goldprice, $gold_types, $financing, $total_marhun, $marhun, $duration;
+    public $GoldMintGramD, $goldprice, $gold_types, $financing, $total_marhun, $marhun, $prod_code, $hqBranch, $startDay, $flagStartDay, $flagKotak;
 
     public function mount()
     {
+        $this->flagStartDay = 0;
+        $this->flagKotak = 0;
+        $today = now()->toDateString(); // Get today's date in the format 'Y-m-d'
+        $this->hqBranch = ArrahnuRefBranch::where('HQ_FLAG', 'Y')->first();
+
+        $this->startDay = ArrahnuRefStartEndDay::whereRaw("CAST(START_DATETIME AS DATE) = ?", [$today])->where('BRANCH_CODE', $this->hqBranch->BRANCH_CODE)
+            ->first();
+
+
+        if ($this->startDay) {
+            $this->flagStartDay = 1;
+        } else {
+            $this->flagStartDay = 0;
+            session()->flash('error');
+            session()->flash('title', 'Disabled!');
+            session()->flash('message', 'Pawn is unavaible because it is outside of Office Hour');
+        }
+
+        if ($this->getKotak())
+            $this->flagKotak = 1;
+        else {
+            $this->flagKotak = 0;
+            session()->flash('error');
+            session()->flash('title', 'Disabled!');
+            session()->flash('message', 'Pawn is unavaible at the current time, please contact support to inquire in regards of this issue');
+        }
+
+
+
         $this->goldprice = 0;
         $this->gold_types = ArrahnuDailyPrice::fetchTodayGoldPriceDetails();
 
@@ -55,6 +87,23 @@ class ArrahnuPawn extends Component
         }
     }
 
+    public function getKotak()
+    {
+        ArrahnuGoldBox::where('TOT_IN_USE', null)->update([
+            'TOT_IN_USE' => 0
+        ]);
+
+        ArrahnuGoldBox::where('CURRENT_COLLECTION', null)->update([
+            'CURRENT_COLLECTION' => 0
+        ]);
+
+        return ArrahnuGoldBox::where('BRANCH_CODE', $this->hqBranch->BRANCH_CODE)
+            ->where('BOX_TYPE', 'KAPG')
+            ->where('RECORD_STATUS', 'AKTIF')
+            ->where('ACTIVE_DAY', 'YA')
+            ->whereRaw('TOT_CAPACITY - TOT_IN_USE - CURRENT_COLLECTION > 0')
+            ->orderBy('BOX_NO')->first();
+    }
 
     public function calculateFinancing()
     {
@@ -63,8 +112,7 @@ class ArrahnuPawn extends Component
             foreach ($products as $code => $product) {
                 $this->financing[trim($code)]['name'] = $product['description'];
                 $this->financing[trim($code)]['max_financing'] = Money(MoneyRound(MoneyToFloat($this->marhun) * (MoneyToFloat($product['margin']) / 100)));
-                $this->financing[trim($code)]['one_month'] = Money(MoneyRound(MoneyToFloat($this->financing[trim($code)]['max_financing']) * (MoneyToFloat($product['profit']) / 100) * (1 / 12)));
-                $this->financing[trim($code)]['full_month'] = Money(MoneyRound(MoneyToFloat($this->financing[trim($code)]['max_financing']) * (MoneyToFloat($product['profit']) / 100) * (18 / 12)));
+                $this->financing[trim($code)]['prod_code'] = $product['prod_code'];
             }
         }
     }
@@ -74,6 +122,7 @@ class ArrahnuPawn extends Component
         $data = $this->validate([
             'GoldMintGram'              => ['numeric'],
             'GoldMintGramD'             => ['numeric'],
+            'prod_code'                 => ['required'],
         ]);
 
         if ($this->gold_types) {
@@ -94,6 +143,7 @@ class ArrahnuPawn extends Component
                 session()->flash('products', $cart);
                 session()->flash('total', $total);
                 session()->flash('totalWeight', $totalW);
+                session()->flash('prod_code', $this->prod_code);
 
                 return redirect('arrahnu-pawn-checkout');
             } else

@@ -23,6 +23,19 @@
                                                                 <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
                                                                     <div>
                                                                         <label class="block text-sm font-semibold leading-5 text-gray-700">
+                                                                            Product Name
+                                                                        </label>
+                                                                        <div class="flex mt-1 mb-2 rounded-md shadow-sm">
+                                                                            <input value="" wire:model="prod_name"
+                                                                                class="form-input bg-gray-200 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 "
+                                                                            disabled>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
+                                                                    <div>
+                                                                        <label class="block text-sm font-semibold leading-5 text-gray-700">
                                                                             Financing Margin
                                                                         </label>
                                                                         <div class="flex mt-1 mb-2 rounded-md shadow-sm">
@@ -119,13 +132,23 @@
                                                                             >
                                                                         </div>
                                                                     </div>
-                                                                    <x-form.dropdown label="Payable Type" wire:model="pay_type" default="yes" value="bankId" >
+                                                                    <x-form.dropdown label="Payable Type" wire:model="pay_type" default="yes" value="" >
                                                                         @foreach ($payment_type as $type)
                                                                             <option value="{{ $type->PAY_CODE }}">{{ $type->PAY_TYPE }}</option>
                                                                         @endforeach
 
                                                                     </x-form.dropdown>
                                                                 </div>
+                                                                @if($pay_type == "1")
+                                                                <div class="grid gap-2 lg:grid-cols-2 sm:grid-cols-1">
+                                                                    <x-form.dropdown label="Pickup Branch" wire:model="chosenBranch" default="yes" value="" >
+                                                                        @foreach ($branch as $item)
+                                                                            <option value="{{ $item->BRANCH_CODE }}">{{ $item->BRANCH_NAME }}</option>
+                                                                        @endforeach
+
+                                                                    </x-form.dropdown>
+                                                                </div>
+                                                                @endif
                                                             </x-slot>
                                                         </x-form.basic-form>
                                                     </div>

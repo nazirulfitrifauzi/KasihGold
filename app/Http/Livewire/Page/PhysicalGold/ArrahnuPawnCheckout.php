@@ -8,6 +8,7 @@ use App\Models\ArrahnuPawnDetails;
 use App\Models\ArrahnuPawnMaster;
 use App\Models\ArrahnuPawnRecords;
 use App\Models\ArrahnuPayType;
+use App\Models\ArrahnuRefBranch;
 use App\Models\ArrahnuRefProductCode;
 use App\Models\ArrahnuStaffCash;
 use App\Models\Banks;
@@ -34,8 +35,8 @@ class ArrahnuPawnCheckout extends Component
 
 
 
-    public $total_weight, $total_pawn, $financeAmt, $maximum_financing, $pay_type;
-    public $data, $tot_data, $goldprice;
+    public $total_weight, $total_pawn, $financeAmt, $maximum_financing, $pay_type, $prod_code, $prod_name;
+    public $data, $tot_data, $goldprice, $branch, $chosenBranch;
     public $financeMargin, $financeDuration, $profitRules, $minFinancing, $maxFinancing;
 
     public function mount()
@@ -43,22 +44,25 @@ class ArrahnuPawnCheckout extends Component
         $this->data = request()->session()->get('products');
         $this->total_weight = request()->session()->get('totalWeight');
         $this->total_pawn = request()->session()->get('total');
-
+        $this->prod_code = request()->session()->get('prod_code');
         if ($this->data !== null) {
             $this->tot_data = count($this->data);
         } else {
             $this->tot_data = 0;
         }
 
-        $productCode = ArrahnuRefProductCode::where('PROD_CODE', 9)->first();
+        $this->branch = ArrahnuRefBranch::where('ACTIVE_FLAG', 'Y')->get();
 
+        $productCode = ArrahnuRefProductCode::where('PROD_CODE', $this->prod_code)->first();
+
+        $this->prod_name = $productCode->PROD_DESC;
         $this->financeMargin = $productCode->MARGIN . '%';
         $this->financeDuration = $productCode->DURATION . ' Months';
         $this->profitRules = $productCode->PROFIT . '%';
         $this->minFinancing = "RM " . Money($productCode->MIN_FIN);
         $this->maxFinancing = "RM " . Money($productCode->MAX_FIN);
 
-        $this->maximum_financing = MoneyToFloat(MoneyRound($this->total_pawn * 0.8));
+        $this->maximum_financing = MoneyToFloat(MoneyRound($this->total_pawn * ($productCode->MARGIN / 100)));
         $this->financeAmt = $this->maximum_financing;
 
 
@@ -75,11 +79,11 @@ class ArrahnuPawnCheckout extends Component
         $types = [
             'AKP' => 'AKP'
         ];
-
-        $branch_id = str_pad('01', 2, '0', STR_PAD_LEFT);
+        $branch = ArrahnuRefBranch::where('BRANCH_CODE', $this->chosenBranch)->first();
+        $branch_id = str_pad($branch->BRANCH_ID, 2, '0', STR_PAD_LEFT);
         $date = now()->format('dmy');
 
-        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', 'W1')->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', '9')->count() + 1;
+        $running_no = ArrahnuPawnMaster::where('BRANCH_CODE', $this->chosenBranch)->whereRaw('CAST(PAWN_DATE AS DATE) = ?', [date('Y-m-d')])->where('PROD_CODE', $this->prod_code)->count() + 1;
 
         $running_no = str_pad($running_no, 4, '0', STR_PAD_LEFT);
         $header = $types[$type] ?? $type[1];
@@ -98,7 +102,7 @@ class ArrahnuPawnCheckout extends Component
         ]);
 
         return ArrahnuGoldBox::where('BRANCH_CODE', 'W1')
-            ->where('BOX_TYPE', 'BSKE')
+            ->where('BOX_TYPE', 'KAPG')
             ->where('RECORD_STATUS', 'AKTIF')
             ->where('ACTIVE_DAY', 'YA')
             ->whereRaw('TOT_CAPACITY - TOT_IN_USE - CURRENT_COLLECTION > 0')
@@ -132,15 +136,15 @@ class ArrahnuPawnCheckout extends Component
 
 
         // // Add financing to teller collection
-        $staff_cash = ArrahnuStaffCash::where('BIZ_DATE', date('Y-m-d'))->where('STAFF_ID', 45990)->first();
-        $staff_cash->TRX_COLLECTION = $staff_cash->TRX_COLLECTION + MoneyToFloat($this->financeAmt);
-        $staff_cash->save();
+        // $staff_cash = ArrahnuStaffCash::where('BIZ_DATE', date('Y-m-d'))->where('STAFF_ID', 45990)->first();
+        // $staff_cash->TRX_COLLECTION = $staff_cash->TRX_COLLECTION + MoneyToFloat($this->financeAmt);
+        // $staff_cash->save();
 
         // Save pawn master
         ArrahnuPawnMaster::create([
             'CIF_NO' => $customer_info->id,
             'SIRI_NO' => $siri_no,
-            'PROD_CODE' => 9,
+            'PROD_CODE' => $this->prod_code,
             'PAWN_DATE' => $p_date,
             'MAT_DATE' => $mat_date,
             'TOT_WEIGHT' => MoneyToFloat($this->total_weight),
@@ -153,7 +157,7 @@ class ArrahnuPawnCheckout extends Component
             'PAY_TYPE' => $this->pay_type,
             'STATUS' => 'APPLY',
             'BOX_NO' => $kotak->BOX_NO,
-            'STAFF_ID' => 45990,
+            'STAFF_ID' => $customer_info->id,
             'BRANCH_CODE' => 'W1',
             'COOP_ID' => 2,
         ]);

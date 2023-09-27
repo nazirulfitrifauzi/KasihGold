@@ -41,6 +41,7 @@ class ArrahnuRefProductCode extends Model
                 'duration' => $row->DURATION,
                 'margin' => $row->MARGIN,
                 'profit' => $row->PROFIT,
+                'prod_code' => $row->PROD_CODE,
             ];
         }
 
