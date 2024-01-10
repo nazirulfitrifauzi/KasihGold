@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\ArrahnuAuctionList;
-use App\Models\SiskopArrahnuLelongan;
+use App\Models\AuctionBidderList;
 use Illuminate\Support\Facades\DB;
 use Livewire\TemporaryUploadedFile;
 
@@ -35,7 +35,7 @@ class BidService
 
     protected function getCustomerId($user): int
     {
-        $result = DB::select("EXEC arrahnu_kap.ARRAHNU.sp_ar_insert_cust_kap_to_cif '" . $user->id . "'");
+        $result = DB::select("EXEC arrahnu_kap_uat.ARRAHNU.sp_ar_insert_cust_kap_to_cif '" . config('app.client_id') . "', '" . $user->id . "'");
         return $result[0]->id;
     }
 
@@ -46,19 +46,18 @@ class BidService
         foreach ($this->bids as $siri => $value) {
             if ($value) {
                 $amtRezab = ArrahnuAuctionList::where('SIRI_NO', $siri)->value('AMT_REZAB');
-                $lelongan = SiskopArrahnuLelongan::create([
-                    'cust_id' => $cif,
-                    'icno' => $user->profile->ic,
-                    'step' => self::BID_STEP,
-                    'flag' => self::BID_FLAG,
-                    'bid_id' => $uniqueId,
-                    'siri_no' => $siri,
-                    'bid' => $value,
-                    'rezab' => $amtRezab,
-                    'files' => $filename,
-                    'bid_at' => now(),
-                    'branch_id' => substr($siri, 4, 1),
-                    'created_at' => now()
+                $lelongan = AuctionBidderList::create([
+                    'CIF_NO' => $cif,
+                    'IDENTITY_NO' => $user->profile->ic,
+                    'STEP' => self::BID_STEP,
+                    'FLAG' => self::BID_FLAG,
+                    'BID_ID' => $uniqueId,
+                    'SIRI_NO' => $siri,
+                    'BID_AMT' => $value,
+                    'REZAB_PRICE' => $amtRezab,
+                    'FILES' => $filename,
+                    'BID_AT' => now(),
+                    'BRANCH_CODE' => substr($siri, 4, 1)
                 ]);
 
                 $storedLelongans[] = $lelongan;

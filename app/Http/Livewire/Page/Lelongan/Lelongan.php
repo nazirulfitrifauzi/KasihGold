@@ -68,7 +68,6 @@ class Lelongan extends Component
 
     public function submitBidaan()
     {
-
         $this->validate($this->getRules());
 
         $bidService = new BidService($this->selectedSiri, $this->bids, $this->file);
